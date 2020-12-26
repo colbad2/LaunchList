@@ -1,9 +1,132 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Agency" representedClassName=".Agency" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="agencies" inverseEntity="Program"/>
+    </entity>
+    <entity name="Configuration" representedClassName=".Configuration" syncable="YES" codeGenerationType="class">
+        <attribute name="family" optional="YES" attributeType="String"/>
+        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="launchLibraryID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="variant" optional="YES" attributeType="String"/>
+        <relationship name="rocket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="configuration" inverseEntity="Rocket"/>
+    </entity>
+    <entity name="Launch" representedClassName=".Launch" syncable="YES" codeGenerationType="class">
+        <attribute name="failReason" optional="YES" attributeType="String"/>
+        <attribute name="hashtag" optional="YES" attributeType="String"/>
+        <attribute name="holdReason" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="URI"/>
+        <attribute name="infographic" optional="YES" attributeType="URI"/>
+        <attribute name="inHold" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="launchLibraryID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="net" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="probability" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="slug" optional="YES" attributeType="String"/>
+        <attribute name="tbdDate" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="tbdTime" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="webcastLive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="windowEnd" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="windowStart" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="mission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Mission" inverseName="launch" inverseEntity="Mission"/>
+        <relationship name="pad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pad" inverseName="launches" inverseEntity="Pad"/>
+        <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="launches" inverseEntity="Program"/>
+        <relationship name="rocket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="launches" inverseEntity="Rocket"/>
+        <relationship name="serviceProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ServiceProvider" inverseName="launches" inverseEntity="ServiceProvider"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="launch" inverseEntity="Status"/>
+    </entity>
+    <entity name="Location" representedClassName=".Location" syncable="YES" codeGenerationType="class">
+        <attribute name="countryCode" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mapImage" optional="YES" attributeType="URI"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="totalLandingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalLaunchCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="pad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pad" inverseName="location" inverseEntity="Pad"/>
+    </entity>
+    <entity name="Mission" representedClassName=".Mission" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="launchDesignator" optional="YES" attributeType="String"/>
+        <attribute name="launchLibraryID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="missionDescription" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="mission" inverseEntity="Launch"/>
+        <relationship name="orbit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Orbit" inverseName="missions" inverseEntity="Orbit"/>
+    </entity>
+    <entity name="Orbit" representedClassName=".Orbit" syncable="YES" codeGenerationType="class">
+        <attribute name="abbreviation" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="missions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mission" inverseName="orbit" inverseEntity="Mission"/>
+    </entity>
+    <entity name="Pad" representedClassName=".Pad" syncable="YES" codeGenerationType="class">
+        <attribute name="agencyID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="infoURL" optional="YES" attributeType="URI"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="mapImage" optional="YES" attributeType="URI"/>
+        <attribute name="mapURL" optional="YES" attributeType="URI"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="totalLaunchCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="wikiURL" optional="YES" attributeType="URI"/>
+        <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="pad" inverseEntity="Launch"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="pad" inverseEntity="Location"/>
+    </entity>
+    <entity name="Program" representedClassName=".Program" syncable="YES" codeGenerationType="class">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="URI"/>
+        <attribute name="infoURL" optional="YES" attributeType="URI"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="programDescription" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="wikiURL" optional="YES" attributeType="URI"/>
+        <relationship name="agencies" toMany="YES" deletionRule="Nullify" destinationEntity="Agency" inverseName="programs" inverseEntity="Agency"/>
+        <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="programs" inverseEntity="Launch"/>
+    </entity>
+    <entity name="Rocket" representedClassName=".Rocket" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="configuration" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Configuration" inverseName="rocket" inverseEntity="Configuration"/>
+        <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="rocket" inverseEntity="Launch"/>
+    </entity>
+    <entity name="ServiceProvider" representedClassName=".ServiceProvider" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="serviceProvider" inverseEntity="Launch"/>
+    </entity>
+    <entity name="Status" representedClassName=".Status" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="statusAbbreviation" optional="YES" attributeType="String"/>
+        <attribute name="statusDescription" optional="YES" attributeType="String"/>
+        <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="status" inverseEntity="Launch"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Agency" positionX="16.8914794921875" positionY="88.14666748046875" width="128" height="118"/>
+        <element name="Configuration" positionX="-234.5071411132812" positionY="40.61614990234375" width="128" height="149"/>
+        <element name="Launch" positionX="-299.257568359375" positionY="-523.8718872070312" width="128" height="389"/>
+        <element name="Location" positionX="175.9981689453125" positionY="-15.702880859375" width="128" height="149"/>
+        <element name="Mission" positionX="-8.34014892578125" positionY="-513.9087829589844" width="128" height="149"/>
+        <element name="Orbit" positionX="151.7491455078125" positionY="-510.4300231933594" width="128" height="89"/>
+        <element name="Pad" positionX="160.2344970703125" positionY="-388.616943359375" width="128" height="224"/>
+        <element name="Program" positionX="12.71588134765625" positionY="-149.1758422851562" width="128" height="194"/>
+        <element name="Rocket" positionX="-232.6825561523438" positionY="-66.848876953125" width="128" height="74"/>
+        <element name="ServiceProvider" positionX="-148.3731689453125" positionY="-516.3382873535156" width="128" height="104"/>
+        <element name="Status" positionX="-390.9207153320312" positionY="-67.84194946289062" width="128" height="104"/>
     </elements>
 </model>
