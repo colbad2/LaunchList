@@ -2,7 +2,9 @@ import Foundation
 import CoreData
 
 /**
+ Part of a [LaunchJSON] object
 
+ 
  example JSON:
  {
      "configuration": { … },

@@ -29,7 +29,7 @@ struct ConfigurationJSON: Decodable
    var id: Int64
    var launchLibraryID: Int64?
    var name: String?
-   var url: URL?
+   var url: String?
    var variant: String?
 
    func addToCoreData( context: NSManagedObjectContext ) -> Configuration
@@ -41,7 +41,7 @@ struct ConfigurationJSON: Decodable
       newConfiguration.id = self.id
       newConfiguration.launchLibraryID = self.launchLibraryID ?? -1
       newConfiguration.name = self.name
-      newConfiguration.url = self.url
+      newConfiguration.url = wrapURL( self.url )
       newConfiguration.variant = self.variant
 
       return newConfiguration

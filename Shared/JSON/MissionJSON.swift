@@ -6,8 +6,8 @@ import CoreData
 
    Part of a [LaunchJSON] object
 
- example JSON:
- {
+   example JSON:
+   {
      "description": "T\u00fcrksat 5A is the first of two Turkish next generation communications satellites, which will be operated by T\u00fcrksat for commercial and military purposes.",
      "id": 1222,
      "launch_designator": null,
@@ -15,7 +15,7 @@ import CoreData
      "name": "T\u00fcrksat 5A",
      "orbit": { … },
      "type": "Communications"
- }
+   }
  */
 struct MissionJSON: Decodable
 {

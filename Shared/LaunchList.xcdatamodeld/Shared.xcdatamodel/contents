@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Agency" representedClassName=".Agency" syncable="YES" codeGenerationType="class">
+        <attribute name="abbreviation" optional="YES" attributeType="String"/>
+        <attribute name="administrator" optional="YES" attributeType="String"/>
+        <attribute name="agencyDescription" optional="YES" attributeType="String"/>
+        <attribute name="countryCode" optional="YES" attributeType="String"/>
+        <attribute name="featured" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="foundingYear" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="launchers" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="parent" optional="YES" attributeType="String"/>
+        <attribute name="spacecraft" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="agencies" inverseEntity="Program"/>
     </entity>
@@ -22,8 +32,8 @@
         <attribute name="hashtag" optional="YES" attributeType="String"/>
         <attribute name="holdReason" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
-        <attribute name="image" optional="YES" attributeType="URI"/>
-        <attribute name="infographic" optional="YES" attributeType="URI"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="infographic" optional="YES" attributeType="String"/>
         <attribute name="inHold" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="launchLibraryID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -50,7 +60,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="totalLandingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalLaunchCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="pad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pad" inverseName="location" inverseEntity="Pad"/>
     </entity>
     <entity name="Mission" representedClassName=".Mission" syncable="YES" codeGenerationType="class">
@@ -117,16 +127,16 @@
         <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="status" inverseEntity="Launch"/>
     </entity>
     <elements>
-        <element name="Agency" positionX="16.8914794921875" positionY="88.14666748046875" width="128" height="118"/>
-        <element name="Configuration" positionX="-234.5071411132812" positionY="40.61614990234375" width="128" height="149"/>
+        <element name="Agency" positionX="16.8914794921875" positionY="88.14666748046875" width="128" height="268"/>
+        <element name="Configuration" positionX="-337.5000610351562" positionY="77.73431396484375" width="128" height="149"/>
         <element name="Launch" positionX="-299.257568359375" positionY="-523.8718872070312" width="128" height="389"/>
         <element name="Location" positionX="175.9981689453125" positionY="-15.702880859375" width="128" height="149"/>
         <element name="Mission" positionX="-8.34014892578125" positionY="-513.9087829589844" width="128" height="149"/>
-        <element name="Orbit" positionX="151.7491455078125" positionY="-510.4300231933594" width="128" height="89"/>
+        <element name="Orbit" positionX="152.6126708984375" positionY="-526.2070007324219" width="128" height="89"/>
         <element name="Pad" positionX="160.2344970703125" positionY="-388.616943359375" width="128" height="224"/>
-        <element name="Program" positionX="12.71588134765625" positionY="-149.1758422851562" width="128" height="194"/>
-        <element name="Rocket" positionX="-232.6825561523438" positionY="-66.848876953125" width="128" height="74"/>
+        <element name="Program" positionX="6.45245361328125" positionY="-151.3077392578124" width="128" height="194"/>
+        <element name="Rocket" positionX="-331.8309326171876" positionY="-37.0150146484375" width="128" height="74"/>
         <element name="ServiceProvider" positionX="-148.3731689453125" positionY="-516.3382873535156" width="128" height="104"/>
-        <element name="Status" positionX="-390.9207153320312" positionY="-67.84194946289062" width="128" height="104"/>
+        <element name="Status" positionX="-516.1858520507812" positionY="-173.7766723632812" width="128" height="104"/>
     </elements>
 </model>

@@ -10,24 +10,12 @@ struct PersistenceController
       let viewContext = result.container.viewContext
 
       let launchProvider = LaunchProvider()
-      for launch in launchProvider.launches.launchSublist!
+      for launch in launchProvider.launches?.launchSublist ?? []
       {
-         let newLaunch = Launch( context: viewContext )
-         newLaunch.failReason = launch.failReason
-         newLaunch.hashtag = launch.hashtag
+         _ = launch.addToCoreData( context: viewContext )
       }
 
-      do
-      {
-         try viewContext.save()
-      }
-      catch
-      {
-         // Replace this implementation with code to handle the error appropriately.
-         // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-         let nsError = error as NSError
-         fatalError( "Unresolved error \(nsError), \(nsError.userInfo)" )
-      }
+      saveContext( viewContext )
 
       return result
    }()
@@ -43,7 +31,7 @@ struct PersistenceController
       }
       container.loadPersistentStores( completionHandler:
       {
-         (storeDescription, error) in
+         ( storeDescription, error ) in
 
          if let error = error as NSError?
          {

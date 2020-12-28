@@ -31,7 +31,7 @@ import CoreData
      "window_start": "2021-01-05T01:27:00Z"
     }
  */
-public struct LaunchJSON: Decodable
+public struct LaunchJSON: Decodable, Identifiable
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -52,9 +52,9 @@ public struct LaunchJSON: Decodable
    var failReason: String?
    var hashtag: String?
    var holdReason: String?
-   var id: String
-   var image: URL?
-   var infographic: URL?
+   public var id: String
+   var image: String?
+   var infographic: String?
    var inHold: Bool?
    var launchLibraryID: Int64?
    var serviceProvider: ServiceProviderJSON?
@@ -69,7 +69,7 @@ public struct LaunchJSON: Decodable
    var status: StatusJSON?
    var tbdDate: Bool?
    var tbdTime: Bool?
-   var url: URL?
+   var url: String?
    var webcastLive: Bool?
    var windowEnd: String?
    var windowStart: String?
@@ -83,7 +83,7 @@ public struct LaunchJSON: Decodable
       newLaunch.holdReason = self.holdReason
       newLaunch.id = self.id
       newLaunch.image = self.image
-      newLaunch.infographic = self.infographic
+      newLaunch.infographic = wrapURL( self.infographic )
       newLaunch.inHold = self.inHold ?? false
       newLaunch.launchLibraryID = self.launchLibraryID ?? -1
 
@@ -96,17 +96,26 @@ public struct LaunchJSON: Decodable
       newLaunch.name = self.name
       newLaunch.net = parseISODate( isoDate: self.net )
       newLaunch.pad = self.pad?.addToCoreData( context: context )
-      newLaunch.probability = self.probability ?? 0
+      newLaunch.probability = self.probability ?? -1
+
       for program in self.programs!
       {
-         newLaunch.addToPrograms( program.addToCoreData( context: context ) )
+         let programEntity: Program = program.addToCoreData( context: context )
+         newLaunch.addToPrograms( programEntity )
+         programEntity.addToLaunches( newLaunch )
       }
+
       newLaunch.rocket = self.rocket?.addToCoreData( context: context )
+      newLaunch.rocket?.addToLaunches( newLaunch )
+
       newLaunch.slug = self.slug
+
       newLaunch.status = self.status?.addToCoreData( context: context )
+      newLaunch.status?.launch = newLaunch
+
       newLaunch.tbdDate = self.tbdDate ?? false
       newLaunch.tbdTime = self.tbdTime ?? false
-      newLaunch.url = self.url
+      newLaunch.url = wrapURL( self.url )
       newLaunch.webcastLive = self.webcastLive ?? false
       newLaunch.windowEnd = parseISODate( isoDate: self.windowEnd )
       newLaunch.windowStart = parseISODate( isoDate: self.windowStart )
@@ -114,3 +123,4 @@ public struct LaunchJSON: Decodable
       return newLaunch
    }
 }
+

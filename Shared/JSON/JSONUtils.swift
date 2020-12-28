@@ -9,3 +9,9 @@ func parseISODate( isoDate: String? ) -> Date?
    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
    return dateFormatter.date( from: isoDate! )
 }
+
+func wrapURL( _ url: String? = nil ) -> URL?
+{
+   if url == nil || url == "" { return nil }
+   return URL( string: url! )
+}

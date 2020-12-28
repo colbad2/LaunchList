@@ -18,7 +18,7 @@ struct LocationJSON: Decodable
 {
    var countryCode: String?
    var id: Int64?
-   var mapImage: URL?
+   var mapImage: String?
    var name: String?
    var totalLandingCount: Int64?
    var totalLaunchCount: Int64?
@@ -30,11 +30,11 @@ struct LocationJSON: Decodable
 
       newLocation.countryCode = self.countryCode
       newLocation.id = self.id ?? -1
-      newLocation.mapImage = self.mapImage
+      newLocation.mapImage = wrapURL( self.mapImage )
       newLocation.name = self.name
       newLocation.totalLandingCount = self.totalLandingCount ?? -1
       newLocation.totalLaunchCount = self.totalLaunchCount ?? -1
-      newLocation.url = self.url
+      newLocation.url = wrapURL( self.url )
 
       return newLocation
    }

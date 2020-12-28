@@ -28,6 +28,19 @@
 		A2A638CA259675D300D58415 /* AgencyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6383D259670E900D58415 /* AgencyJSON.swift */; };
 		A2D6D77D2596C6BF003D5401 /* LaunchList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72052595AF8D009405E6 /* LaunchList.xcdatamodeld */; };
 		A2D6D7832596C6DA003D5401 /* LaunchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72922595B02C009405E6 /* LaunchProvider.swift */; };
+		A2D6D7942597B8CC003D5401 /* AgenciesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7932597B8CC003D5401 /* AgenciesUnitTests.swift */; };
+		A2D6D79B2597B9D0003D5401 /* AgenciesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D79A2597B9D0003D5401 /* AgenciesProvider.swift */; };
+		A2D6D79C2597B9D0003D5401 /* AgenciesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D79A2597B9D0003D5401 /* AgenciesProvider.swift */; };
+		A2D6D79D2597B9D0003D5401 /* AgenciesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D79A2597B9D0003D5401 /* AgenciesProvider.swift */; };
+		A2D6D7A92597BA1C003D5401 /* AgenciesListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7A82597BA1C003D5401 /* AgenciesListJSON.swift */; };
+		A2D6D7AA2597BA1C003D5401 /* AgenciesListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7A82597BA1C003D5401 /* AgenciesListJSON.swift */; };
+		A2D6D7AB2597BA1C003D5401 /* AgenciesListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7A82597BA1C003D5401 /* AgenciesListJSON.swift */; };
+		A2D6D7B42597BD7D003D5401 /* Checkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7B12597BD7D003D5401 /* Checkers.swift */; };
+		A2D6D7BB2597C1CC003D5401 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7BA2597C1CC003D5401 /* CoreDataUtils.swift */; };
+		A2D6D7BC2597C1CC003D5401 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7BA2597C1CC003D5401 /* CoreDataUtils.swift */; };
+		A2D6D7BD2597C1CC003D5401 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7BA2597C1CC003D5401 /* CoreDataUtils.swift */; };
+		A2D6D7DE25982616003D5401 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7DD25982616003D5401 /* RemoteImageCache.swift */; };
+		A2D6D7DF25982616003D5401 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7DD25982616003D5401 /* RemoteImageCache.swift */; };
 		A2DA72242595AF8F009405E6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72232595AF8F009405E6 /* Tests_iOS.swift */; };
 		A2DA722F2595AF8F009405E6 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA722E2595AF8F009405E6 /* Tests_macOS.swift */; };
 		A2DA72312595AF8F009405E6 /* LaunchList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72052595AF8D009405E6 /* LaunchList.xcdatamodeld */; };
@@ -86,6 +99,12 @@
 		A22CDE17259697FF00E3F96B /* JSONUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
 		A2A6383D259670E900D58415 /* AgencyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyJSON.swift; sourceTree = "<group>"; };
 		A2A638462596713100D58415 /* OrbitJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitJSON.swift; sourceTree = "<group>"; };
+		A2D6D7932597B8CC003D5401 /* AgenciesUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgenciesUnitTests.swift; sourceTree = "<group>"; };
+		A2D6D79A2597B9D0003D5401 /* AgenciesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgenciesProvider.swift; sourceTree = "<group>"; };
+		A2D6D7A82597BA1C003D5401 /* AgenciesListJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgenciesListJSON.swift; sourceTree = "<group>"; };
+		A2D6D7B12597BD7D003D5401 /* Checkers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkers.swift; sourceTree = "<group>"; };
+		A2D6D7BA2597C1CC003D5401 /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
+		A2D6D7DD25982616003D5401 /* RemoteImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageCache.swift; sourceTree = "<group>"; };
 		A2DA72062595AF8D009405E6 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		A2DA72072595AF8D009405E6 /* LaunchListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListApp.swift; sourceTree = "<group>"; };
 		A2DA72082595AF8D009405E6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -161,8 +180,18 @@
 			isa = PBXGroup;
 			children = (
 				A2DA72092595AF8D009405E6 /* Persistence.swift */,
+				A2D6D7BA2597C1CC003D5401 /* CoreDataUtils.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A2D6D7D7259825E3003D5401 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A2DA72072595AF8D009405E6 /* LaunchListApp.swift */,
+				A2DA72082595AF8D009405E6 /* ContentView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		A2DA71FF2595AF8C009405E6 = {
@@ -181,13 +210,12 @@
 		A2DA72042595AF8D009405E6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				A2DA72072595AF8D009405E6 /* LaunchListApp.swift */,
-				A2DA72922595B02C009405E6 /* LaunchProvider.swift */,
-				A2DA72082595AF8D009405E6 /* ContentView.swift */,
+				A2D6D7D7259825E3003D5401 /* UI */,
 				A2A637C125965EFC00D58415 /* CoreData */,
 				A2DA72682595AFF3009405E6 /* JSON */,
 				A2DA720A2595AF8F009405E6 /* Assets.xcassets */,
 				A2DA72052595AF8D009405E6 /* LaunchList.xcdatamodeld */,
+				A2D6D7DD25982616003D5401 /* RemoteImageCache.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -244,6 +272,8 @@
 			children = (
 				A2DA72532595AFC4009405E6 /* LaunchListUnitTests.swift */,
 				A2DA72552595AFC4009405E6 /* Info.plist */,
+				A2D6D7932597B8CC003D5401 /* AgenciesUnitTests.swift */,
+				A2D6D7B12597BD7D003D5401 /* Checkers.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -251,6 +281,7 @@
 		A2DA72682595AFF3009405E6 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				A2DA72922595B02C009405E6 /* LaunchProvider.swift */,
 				A2DA72692595AFF3009405E6 /* LocationJSON.swift */,
 				A2DA726A2595AFF3009405E6 /* MissionJSON.swift */,
 				A2DA726B2595AFF3009405E6 /* ConfigurationJSON.swift */,
@@ -264,6 +295,8 @@
 				A2A6383D259670E900D58415 /* AgencyJSON.swift */,
 				A2A638462596713100D58415 /* OrbitJSON.swift */,
 				A22CDE17259697FF00E3F96B /* JSONUtils.swift */,
+				A2D6D79A2597B9D0003D5401 /* AgenciesProvider.swift */,
+				A2D6D7A82597BA1C003D5401 /* AgenciesListJSON.swift */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -455,15 +488,19 @@
 			files = (
 				A2A638CA259675D300D58415 /* AgencyJSON.swift in Sources */,
 				A2DA72352595AF8F009405E6 /* ContentView.swift in Sources */,
+				A2D6D7A92597BA1C003D5401 /* AgenciesListJSON.swift in Sources */,
 				A2DA72772595AFF3009405E6 /* MissionJSON.swift in Sources */,
 				A2DA72332595AF8F009405E6 /* LaunchListApp.swift in Sources */,
+				A2D6D79B2597B9D0003D5401 /* AgenciesProvider.swift in Sources */,
 				A2DA72932595B02C009405E6 /* LaunchProvider.swift in Sources */,
 				A2DA72852595AFF3009405E6 /* ServiceProviderJSON.swift in Sources */,
 				A2DA727B2595AFF3009405E6 /* LaunchListJSON.swift in Sources */,
+				A2D6D7BB2597C1CC003D5401 /* CoreDataUtils.swift in Sources */,
 				A2DA72872595AFF3009405E6 /* ProgramJSON.swift in Sources */,
 				A2DA728B2595AFF3009405E6 /* StatusJSON.swift in Sources */,
 				A2DA72812595AFF3009405E6 /* LaunchJSON.swift in Sources */,
 				A2DA72752595AFF3009405E6 /* LocationJSON.swift in Sources */,
+				A2D6D7DE25982616003D5401 /* RemoteImageCache.swift in Sources */,
 				A2DA727D2595AFF3009405E6 /* PadJSON.swift in Sources */,
 				A2A638472596713100D58415 /* OrbitJSON.swift in Sources */,
 				A22CDE18259697FF00E3F96B /* JSONUtils.swift in Sources */,
@@ -480,15 +517,19 @@
 			files = (
 				A2DA72362595AF8F009405E6 /* ContentView.swift in Sources */,
 				A2DA72822595AFF3009405E6 /* LaunchJSON.swift in Sources */,
+				A2D6D7AA2597BA1C003D5401 /* AgenciesListJSON.swift in Sources */,
 				A2DA72342595AF8F009405E6 /* LaunchListApp.swift in Sources */,
 				A2DA72942595B02C009405E6 /* LaunchProvider.swift in Sources */,
+				A2D6D79C2597B9D0003D5401 /* AgenciesProvider.swift in Sources */,
 				A2DA72862595AFF3009405E6 /* ServiceProviderJSON.swift in Sources */,
 				A2DA727C2595AFF3009405E6 /* LaunchListJSON.swift in Sources */,
 				A2DA72882595AFF3009405E6 /* ProgramJSON.swift in Sources */,
+				A2D6D7BC2597C1CC003D5401 /* CoreDataUtils.swift in Sources */,
 				A2DA728C2595AFF3009405E6 /* StatusJSON.swift in Sources */,
 				A2DA72782595AFF3009405E6 /* MissionJSON.swift in Sources */,
 				A2DA727E2595AFF3009405E6 /* PadJSON.swift in Sources */,
 				A2DA72382595AF8F009405E6 /* Persistence.swift in Sources */,
+				A2D6D7DF25982616003D5401 /* RemoteImageCache.swift in Sources */,
 				A2A638482596713100D58415 /* OrbitJSON.swift in Sources */,
 				A2DA72802595AFF3009405E6 /* RocketJSON.swift in Sources */,
 				A22CDE19259697FF00E3F96B /* JSONUtils.swift in Sources */,
@@ -520,17 +561,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2A6382E2596694800D58415 /* LocationJSON.swift in Sources */,
+				A2D6D7B42597BD7D003D5401 /* Checkers.swift in Sources */,
 				A2A6382F2596694800D58415 /* MissionJSON.swift in Sources */,
 				A2A638302596694800D58415 /* ConfigurationJSON.swift in Sources */,
 				A2A638312596694800D58415 /* LaunchListJSON.swift in Sources */,
+				A2D6D7AB2597BA1C003D5401 /* AgenciesListJSON.swift in Sources */,
 				A2D6D77D2596C6BF003D5401 /* LaunchList.xcdatamodeld in Sources */,
+				A2D6D79D2597B9D0003D5401 /* AgenciesProvider.swift in Sources */,
 				A2D6D7832596C6DA003D5401 /* LaunchProvider.swift in Sources */,
 				A2A638492596713100D58415 /* OrbitJSON.swift in Sources */,
+				A2D6D7942597B8CC003D5401 /* AgenciesUnitTests.swift in Sources */,
 				A2A63840259670E900D58415 /* AgencyJSON.swift in Sources */,
 				A2A638322596694800D58415 /* PadJSON.swift in Sources */,
 				A22CDE1A259697FF00E3F96B /* JSONUtils.swift in Sources */,
 				A2A638332596694800D58415 /* RocketJSON.swift in Sources */,
 				A2A638342596694800D58415 /* LaunchJSON.swift in Sources */,
+				A2D6D7BD2597C1CC003D5401 /* CoreDataUtils.swift in Sources */,
 				A2A638352596694800D58415 /* ServiceProviderJSON.swift in Sources */,
 				A2A638362596694800D58415 /* ProgramJSON.swift in Sources */,
 				A2A638372596694800D58415 /* StatusJSON.swift in Sources */,
