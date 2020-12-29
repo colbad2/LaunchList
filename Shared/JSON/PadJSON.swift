@@ -75,19 +75,19 @@ struct PadJSON: Decodable
 
       newPad.agencyID = self.agencyID ?? -1
       newPad.id = self.id
-      newPad.infoURL = wrapURL( self.infoURL )
+      newPad.infoURL = self.infoURL
       newPad.latitude = Double( self.latitude ?? "0.0" )!
       newPad.longitude = Double( self.longitude ?? "0.0" )!
       
       newPad.location = self.location?.addToCoreData( context: context )
       newPad.location?.pad = newPad
 
-      newPad.mapImage = wrapURL( self.mapImage )
-      newPad.mapURL = wrapURL( self.mapURL )
+      newPad.mapImage = self.mapImage
+      newPad.mapURL = self.mapURL
       newPad.name = self.name
       newPad.totalLaunchCount = self.totalLaunchCount ?? -1
-      newPad.url = wrapURL( self.url )
-      newPad.wikiURL = wrapURL( self.wikiURL )
+      newPad.url = self.url
+      newPad.wikiURL = self.wikiURL
 
       return newPad
    }

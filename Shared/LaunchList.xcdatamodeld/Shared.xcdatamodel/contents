@@ -42,7 +42,7 @@
         <attribute name="slug" optional="YES" attributeType="String"/>
         <attribute name="tbdDate" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="tbdTime" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
         <attribute name="webcastLive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="windowEnd" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="windowStart" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -56,11 +56,11 @@
     <entity name="Location" representedClassName=".Location" syncable="YES" codeGenerationType="class">
         <attribute name="countryCode" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="mapImage" optional="YES" attributeType="URI"/>
+        <attribute name="mapImage" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="totalLandingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalLaunchCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
         <relationship name="pad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pad" inverseName="location" inverseEntity="Pad"/>
     </entity>
     <entity name="Mission" representedClassName=".Mission" syncable="YES" codeGenerationType="class">
@@ -82,15 +82,15 @@
     <entity name="Pad" representedClassName=".Pad" syncable="YES" codeGenerationType="class">
         <attribute name="agencyID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="infoURL" optional="YES" attributeType="URI"/>
+        <attribute name="infoURL" optional="YES" attributeType="String"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="mapImage" optional="YES" attributeType="URI"/>
-        <attribute name="mapURL" optional="YES" attributeType="URI"/>
+        <attribute name="mapImage" optional="YES" attributeType="String"/>
+        <attribute name="mapURL" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="totalLaunchCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="url" optional="YES" attributeType="URI"/>
-        <attribute name="wikiURL" optional="YES" attributeType="URI"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="wikiURL" optional="YES" attributeType="String"/>
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="pad" inverseEntity="Launch"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="pad" inverseEntity="Location"/>
     </entity>

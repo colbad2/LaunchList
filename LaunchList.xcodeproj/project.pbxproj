@@ -76,6 +76,20 @@
 		A2DA728C2595AFF3009405E6 /* StatusJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72742595AFF3009405E6 /* StatusJSON.swift */; };
 		A2DA72932595B02C009405E6 /* LaunchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72922595B02C009405E6 /* LaunchProvider.swift */; };
 		A2DA72942595B02C009405E6 /* LaunchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72922595B02C009405E6 /* LaunchProvider.swift */; };
+		A2DEA26A259ADE2E009D5B4B /* PadDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA269259ADE2E009D5B4B /* PadDetail.swift */; };
+		A2DEA26B259ADE2E009D5B4B /* PadDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA269259ADE2E009D5B4B /* PadDetail.swift */; };
+		A2DEA272259ADE8F009D5B4B /* LaunchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA271259ADE8F009D5B4B /* LaunchDetail.swift */; };
+		A2DEA273259ADE8F009D5B4B /* LaunchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA271259ADE8F009D5B4B /* LaunchDetail.swift */; };
+		A2DEA27A259ADF38009D5B4B /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA279259ADF38009D5B4B /* IconView.swift */; };
+		A2DEA27B259ADF38009D5B4B /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA279259ADF38009D5B4B /* IconView.swift */; };
+		A2DEA282259ADF69009D5B4B /* LaunchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA281259ADF69009D5B4B /* LaunchRow.swift */; };
+		A2DEA283259ADF69009D5B4B /* LaunchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA281259ADF69009D5B4B /* LaunchRow.swift */; };
+		A2DEA28A259ADF9C009D5B4B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */; };
+		A2DEA28B259ADF9C009D5B4B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */; };
+		A2DEA292259ADFE9009D5B4B /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA291259ADFE9009D5B4B /* UIUtils.swift */; };
+		A2DEA293259ADFE9009D5B4B /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA291259ADFE9009D5B4B /* UIUtils.swift */; };
+		A2DEA29A259AE9BE009D5B4B /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA299259AE9BE009D5B4B /* CountdownView.swift */; };
+		A2DEA29B259AE9BE009D5B4B /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA299259AE9BE009D5B4B /* CountdownView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +149,13 @@
 		A2DA72722595AFF3009405E6 /* ProgramJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramJSON.swift; sourceTree = "<group>"; };
 		A2DA72742595AFF3009405E6 /* StatusJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusJSON.swift; sourceTree = "<group>"; };
 		A2DA72922595B02C009405E6 /* LaunchProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchProvider.swift; sourceTree = "<group>"; };
+		A2DEA269259ADE2E009D5B4B /* PadDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadDetail.swift; sourceTree = "<group>"; };
+		A2DEA271259ADE8F009D5B4B /* LaunchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetail.swift; sourceTree = "<group>"; };
+		A2DEA279259ADF38009D5B4B /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
+		A2DEA281259ADF69009D5B4B /* LaunchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRow.swift; sourceTree = "<group>"; };
+		A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		A2DEA291259ADFE9009D5B4B /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
+		A2DEA299259AE9BE009D5B4B /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +211,13 @@
 			children = (
 				A2DA72072595AF8D009405E6 /* LaunchListApp.swift */,
 				A2DA72082595AF8D009405E6 /* ContentView.swift */,
+				A2DEA269259ADE2E009D5B4B /* PadDetail.swift */,
+				A2DEA271259ADE8F009D5B4B /* LaunchDetail.swift */,
+				A2DEA279259ADF38009D5B4B /* IconView.swift */,
+				A2DEA281259ADF69009D5B4B /* LaunchRow.swift */,
+				A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */,
+				A2DEA291259ADFE9009D5B4B /* UIUtils.swift */,
+				A2DEA299259AE9BE009D5B4B /* CountdownView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -489,7 +517,10 @@
 				A2A638CA259675D300D58415 /* AgencyJSON.swift in Sources */,
 				A2DA72352595AF8F009405E6 /* ContentView.swift in Sources */,
 				A2D6D7A92597BA1C003D5401 /* AgenciesListJSON.swift in Sources */,
+				A2DEA292259ADFE9009D5B4B /* UIUtils.swift in Sources */,
+				A2DEA272259ADE8F009D5B4B /* LaunchDetail.swift in Sources */,
 				A2DA72772595AFF3009405E6 /* MissionJSON.swift in Sources */,
+				A2DEA28A259ADF9C009D5B4B /* ImageLoader.swift in Sources */,
 				A2DA72332595AF8F009405E6 /* LaunchListApp.swift in Sources */,
 				A2D6D79B2597B9D0003D5401 /* AgenciesProvider.swift in Sources */,
 				A2DA72932595B02C009405E6 /* LaunchProvider.swift in Sources */,
@@ -497,8 +528,12 @@
 				A2DA727B2595AFF3009405E6 /* LaunchListJSON.swift in Sources */,
 				A2D6D7BB2597C1CC003D5401 /* CoreDataUtils.swift in Sources */,
 				A2DA72872595AFF3009405E6 /* ProgramJSON.swift in Sources */,
+				A2DEA29A259AE9BE009D5B4B /* CountdownView.swift in Sources */,
 				A2DA728B2595AFF3009405E6 /* StatusJSON.swift in Sources */,
 				A2DA72812595AFF3009405E6 /* LaunchJSON.swift in Sources */,
+				A2DEA26A259ADE2E009D5B4B /* PadDetail.swift in Sources */,
+				A2DEA282259ADF69009D5B4B /* LaunchRow.swift in Sources */,
+				A2DEA27A259ADF38009D5B4B /* IconView.swift in Sources */,
 				A2DA72752595AFF3009405E6 /* LocationJSON.swift in Sources */,
 				A2D6D7DE25982616003D5401 /* RemoteImageCache.swift in Sources */,
 				A2DA727D2595AFF3009405E6 /* PadJSON.swift in Sources */,
@@ -518,7 +553,10 @@
 				A2DA72362595AF8F009405E6 /* ContentView.swift in Sources */,
 				A2DA72822595AFF3009405E6 /* LaunchJSON.swift in Sources */,
 				A2D6D7AA2597BA1C003D5401 /* AgenciesListJSON.swift in Sources */,
+				A2DEA293259ADFE9009D5B4B /* UIUtils.swift in Sources */,
+				A2DEA273259ADE8F009D5B4B /* LaunchDetail.swift in Sources */,
 				A2DA72342595AF8F009405E6 /* LaunchListApp.swift in Sources */,
+				A2DEA28B259ADF9C009D5B4B /* ImageLoader.swift in Sources */,
 				A2DA72942595B02C009405E6 /* LaunchProvider.swift in Sources */,
 				A2D6D79C2597B9D0003D5401 /* AgenciesProvider.swift in Sources */,
 				A2DA72862595AFF3009405E6 /* ServiceProviderJSON.swift in Sources */,
@@ -526,8 +564,12 @@
 				A2DA72882595AFF3009405E6 /* ProgramJSON.swift in Sources */,
 				A2D6D7BC2597C1CC003D5401 /* CoreDataUtils.swift in Sources */,
 				A2DA728C2595AFF3009405E6 /* StatusJSON.swift in Sources */,
+				A2DEA29B259AE9BE009D5B4B /* CountdownView.swift in Sources */,
 				A2DA72782595AFF3009405E6 /* MissionJSON.swift in Sources */,
 				A2DA727E2595AFF3009405E6 /* PadJSON.swift in Sources */,
+				A2DEA26B259ADE2E009D5B4B /* PadDetail.swift in Sources */,
+				A2DEA283259ADF69009D5B4B /* LaunchRow.swift in Sources */,
+				A2DEA27B259ADF38009D5B4B /* IconView.swift in Sources */,
 				A2DA72382595AF8F009405E6 /* Persistence.swift in Sources */,
 				A2D6D7DF25982616003D5401 /* RemoteImageCache.swift in Sources */,
 				A2A638482596713100D58415 /* OrbitJSON.swift in Sources */,

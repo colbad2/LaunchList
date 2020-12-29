@@ -78,12 +78,16 @@ public struct LaunchJSON: Decodable, Identifiable
    {
       let newLaunch: Launch = Launch( context: context )
 
-      newLaunch.failReason = self.failReason
+      let fail = self.failReason?.trimmingCharacters( in: .whitespacesAndNewlines )
+      if fail != nil && fail!.count > 0
+      {
+         newLaunch.failReason = self.failReason
+      }
       newLaunch.hashtag = self.hashtag
       newLaunch.holdReason = self.holdReason
       newLaunch.id = self.id
       newLaunch.image = self.image
-      newLaunch.infographic = wrapURL( self.infographic )
+      newLaunch.infographic = self.infographic
       newLaunch.inHold = self.inHold ?? false
       newLaunch.launchLibraryID = self.launchLibraryID ?? -1
 
@@ -115,7 +119,7 @@ public struct LaunchJSON: Decodable, Identifiable
 
       newLaunch.tbdDate = self.tbdDate ?? false
       newLaunch.tbdTime = self.tbdTime ?? false
-      newLaunch.url = wrapURL( self.url )
+      newLaunch.url = self.url
       newLaunch.webcastLive = self.webcastLive ?? false
       newLaunch.windowEnd = parseISODate( isoDate: self.windowEnd )
       newLaunch.windowStart = parseISODate( isoDate: self.windowStart )
