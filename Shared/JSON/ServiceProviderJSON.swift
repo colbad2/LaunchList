@@ -19,7 +19,7 @@ struct ServiceProviderJSON: Decodable
    var id: Int64
    var name: String?
    var type: String?
-   var url: URL?
+   var url: URL? // unused
 
    func addToCoreData( context: NSManagedObjectContext ) -> ServiceProvider
    {
@@ -36,7 +36,6 @@ struct ServiceProviderJSON: Decodable
       entity!.id = self.id
       entity!.name = self.name
       entity!.type = self.type
-      entity!.url = self.url
    }
 }
 

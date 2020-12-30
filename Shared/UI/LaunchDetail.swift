@@ -20,29 +20,37 @@ struct LaunchDetail: View
 
             VStack
             {
-               HStack
+               let providerName = launch?.getProviderName()
+               let rocketName = launch?.rocket?.name
+               let launchName = launch?.name
+               HStack( alignment: .top )
                {
-                  Text( "\(launch?.serviceProvider?.name ?? "")" )
+                  Text( "\(providerName ?? "")" )
                   Spacer()
-                  Text( "\(launch?.rocket?.name ?? launch?.name ?? "")" )
+                  Text( "\(rocketName ?? launchName ?? "")" )
                }
                .font( .subheadline )
                .foregroundColor( .secondary )
 
-               HStack
+               let providerType = launch?.serviceProvider?.type
+               let missionType = launch?.mission?.type
+               if providerType != nil || missionType != nil
                {
-                  Text( "\(launch?.serviceProvider?.type ?? "")" )
-                  Spacer()
-                  Text( "\(launch?.mission?.type ?? "")" )
+                  HStack( alignment: .top )
+                  {
+                     Text( "\(providerType ?? "")" )
+                     Spacer()
+                     Text( "\(missionType ?? "")" )
+                  }
+                  .font( .subheadline )
+                  .foregroundColor( .secondary )
                }
-               .font( .subheadline )
-               .foregroundColor( .secondary )
 
-               if launch?.mission?.orbitName != nil
+               if let orbitName = launch?.mission?.orbitName
                {
                   HStack
                   {
-                     Text( "\(launch?.mission?.orbitName ?? "")" )
+                     Text( "\(orbitName)" )
                      Spacer()
                   }
                   .font( .subheadline )
@@ -77,6 +85,7 @@ struct LaunchDetail: View
                   HStack
                   {
                      Text( "HOLD" )
+                        .foregroundColor( .orange )
                      Spacer()
                      Text( "\(launch?.holdReason ?? "")" )
                   }
@@ -84,19 +93,24 @@ struct LaunchDetail: View
 
                if launch?.failReason != nil
                {
-                  HStack
+                  HStack( alignment: .top )
                   {
                      Text( "FAIL" )
+                        .foregroundColor( .red )
                      Spacer()
                      Text( "\(launch?.failReason ?? "")" )
                   }
                }
             }
 
-            Divider()
+            if let desc = launch?.mission?.missionDescription
+            {
+               Divider()
 
-            Text( "\(launch?.mission?.missionDescription ?? "")" )
-               .lineLimit( 200 )
+               Text( "\(desc)" )
+                  .lineLimit( 200 )
+                  .layoutPriority( 200 )
+            }
 
             if let imageURL = launch?.image
             {

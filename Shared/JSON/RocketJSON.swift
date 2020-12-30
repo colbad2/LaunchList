@@ -42,9 +42,7 @@ struct RocketJSON: Decodable
       entity?.family = self.configuration?.family
       entity?.fullName = self.configuration?.fullName
       entity?.configurationID = self.configuration?.id ?? -1
-      // TODO remove from CD entity?.launchLibraryID = self.configuration?.launchLibraryID ?? -1
       entity?.name = self.configuration?.name
-      // TODO remove from CD  entity?.url = self.configuration?.url
       entity?.variant = self.configuration?.variant
    }
 }

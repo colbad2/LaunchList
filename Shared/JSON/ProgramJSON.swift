@@ -58,7 +58,7 @@ struct ProgramJSON: Decodable
    }
 
    var id: Int64
-   var url: String?
+   var url: String? // unused
    var name: String?
    var description: String?
    var agencies: [AgencyJSON] = []
@@ -81,7 +81,6 @@ struct ProgramJSON: Decodable
       if entity == nil { return }
 
       entity?.id = self.id
-      // entity?.url = self.url
       entity?.name = self.name
       entity?.programDescription = self.description
 

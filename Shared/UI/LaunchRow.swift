@@ -12,10 +12,16 @@ struct LaunchRow: View
          if let imageURL = launch.image
          {
             IconView( withURL: imageURL )
-               .frame( width: 40, height: 40 )
+               .frame( width: 40, height: 60 )
             Spacer()
                .frame( width: 15 )
          }
+         else
+         {
+            Spacer()
+               .frame( width: 55 )
+         }
+         
          VStack( alignment: .leading )
          {
             Text( "\(missionName( launch ))" )
@@ -23,7 +29,8 @@ struct LaunchRow: View
                .lineLimit( 2 )
             HStack
             {
-               Text( "\(launch.serviceProvider?.name ?? "")" )
+               let providerName = launch.getProviderName()
+               Text( "\(providerName)" )
                   .font( .subheadline )
                   .lineLimit( 2 )
                Spacer()
@@ -34,6 +41,7 @@ struct LaunchRow: View
             Text( "\(launch.windowStart!, formatter: Self.taskDateFormat)" )
                .font( .subheadline )
                .foregroundColor( .gray )
+               .textCase( /*@START_MENU_TOKEN@*/.uppercase/*@END_MENU_TOKEN@*/ )
          }
       }
    }

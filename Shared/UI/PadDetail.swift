@@ -17,20 +17,29 @@ struct PadDetail: View
                Text( "\(padName)" )
                   .font( .title )
                   .foregroundColor( .primary )
+                  .multilineTextAlignment( .center )
             }
 
-            if let padLocationName = pad?.location?.name
+            HStack( alignment: .top )
             {
-               Text( "\(padLocationName)" )
-                  .foregroundColor( .primary )
+               if let padLocationName = pad?.location?.name
+               {
+                  Text( "\(padLocationName)" )
+                     .foregroundColor( .secondary )
+               }
+               Spacer()
+               if let lat = pad?.latitude, let lon = pad?.longitude
+               {
+                  Text( "\(lat), \(lon)" )
+                     .foregroundColor( .secondary )
+               }
             }
 
-            if let lat = pad?.latitude, let lon = pad?.longitude
-            {
-               Text( "\(lat), \(lon)" )
-            }
-
-            // Text( "\(pad?.agencyID ?? 0)" ) // TODO link to agency detail
+//            if let agencyID = pad?.agencyID
+//            {
+//               let agency = getAgency( by: agencyID, context: context )
+//               Text( "\(agencyID)" ) // TODO link to agency detail
+//            }
 
             if let mapImage = pad?.mapImage
             {

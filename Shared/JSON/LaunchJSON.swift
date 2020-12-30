@@ -57,7 +57,7 @@ public struct LaunchJSON: Decodable, Identifiable
    var image: String?
    var infographic: String?
    var inHold: Bool?
-   var launchLibraryID: Int64?
+   var launchLibraryID: Int64? // unused
    var serviceProvider: ServiceProviderJSON?
    var mission: MissionJSON?
    var name: String?
@@ -70,7 +70,7 @@ public struct LaunchJSON: Decodable, Identifiable
    var status: StatusJSON?
    var tbdDate: Bool?
    var tbdTime: Bool?
-   var url: String?
+   var url: String? // unused
    var webcastLive: Bool?
    var windowEnd: String?
    var windowStart: String?
@@ -104,7 +104,8 @@ public struct LaunchJSON: Decodable, Identifiable
          newLaunch.mission?.launch = newLaunch
       }
       
-      newLaunch.name = self.name
+      newLaunch.name = self.name?.fixBadUTF() // TODO fix Ã© -> é problems
+
       newLaunch.net = parseISODate( isoDate: self.net )
 
       if let pad = self.pad
@@ -138,7 +139,6 @@ public struct LaunchJSON: Decodable, Identifiable
 
       newLaunch.tbdDate = self.tbdDate ?? false
       newLaunch.tbdTime = self.tbdTime ?? false
-      // TODO remove from CD newLaunch.url = self.url
       newLaunch.webcastLive = self.webcastLive ?? false
       newLaunch.windowEnd = parseISODate( isoDate: self.windowEnd )
       newLaunch.windowStart = parseISODate( isoDate: self.windowStart )

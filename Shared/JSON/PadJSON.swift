@@ -84,8 +84,8 @@ struct PadJSON: Decodable
       entity?.agencyID = self.agencyID ?? -1
       entity?.id = self.id
       entity?.infoURL = self.infoURL
-      entity?.latitude = Double( self.latitude ?? "0.0" )!
-      entity?.longitude = Double( self.longitude ?? "0.0" )!
+      entity?.latitude = self.latitude ?? ""
+      entity?.longitude = self.longitude ?? ""
 
       entity?.location = self.location?.addToCoreData( context: context )
       entity?.location?.pad = entity
@@ -100,7 +100,7 @@ struct PadJSON: Decodable
       
       entity?.name = self.name
       entity?.totalLaunchCount = self.totalLaunchCount ?? -1
-      entity?.url = self.url
+      
       let wikiURL = self.wikiURL?.trimmingCharacters( in: .whitespacesAndNewlines )
       if wikiURL != nil && wikiURL!.count > 0
       {

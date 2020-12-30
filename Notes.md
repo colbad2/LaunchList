@@ -15,13 +15,11 @@ Front-end for the SpaceDevs launch API (https://ll.thespacedevs.com/2.1.0/swagge
 
 ## TODO
 
-- Update Core Data entities on a JSON parse
 - Load launches from API
 - Load db regularly
 - All API loads
 - check indents, spaces, comments
 - Program/Agency logos if not provided by the API
-- Don't put API URLs, or launchLibraryIDs,  in Core Data entities
 - Alternative internal logos for slow loading ones (ISS)
 - Any JSON with a mirror list of containers should have a nav link to that list (pad link to list of launches on that pad for example)
 - response when throttled: {

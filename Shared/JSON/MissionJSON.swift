@@ -61,11 +61,10 @@ struct MissionJSON: Decodable
    {
       if entity == nil { return }
 
-      entity?.missionDescription = self.description
+      entity?.missionDescription = self.description?.fixBadUTF()
       entity?.id = self.id
       entity?.launchDesignator = self.launchDesignator
-      entity?.launchLibraryID = self.launchLibraryID ?? -1
-      entity?.name = self.name
+      entity?.name = self.name?.fixBadUTF()
 
       entity?.orbitName = self.orbit?.name
       entity?.orbitAbbreviation = self.orbit?.abbreviation

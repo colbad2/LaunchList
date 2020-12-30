@@ -27,13 +27,6 @@ struct BasicAgencyRow: View
          Text( "\(agency.name ?? "")" )
                .font( .headline )
                .lineLimit( 2 )
-         Spacer()
-         if let infoURL = agency.url
-         {
-            Link( "Info", destination: wrapURL( infoURL )! )
-               .font( .subheadline )
-               .padding()
-         }
       }
    }
 }

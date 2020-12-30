@@ -37,7 +37,7 @@ struct AgencyJSON: Decodable
    }
 
    var id: Int64
-   var url: String?
+   var url: String? // unused
    var name: String?
    var featured: Bool?
    var type: String?
@@ -64,7 +64,6 @@ struct AgencyJSON: Decodable
       if entity == nil { return }
 
       entity?.id = self.id
-      // TODO remove entity?.url = self.url
       entity?.name = self.name
       // TODO remove entity?.featured = self.featured ?? false
       entity?.type = self.type

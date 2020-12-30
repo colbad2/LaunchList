@@ -51,7 +51,6 @@ struct LocationJSON: Decodable
       newLocation.name = self.name
       newLocation.totalLandingCount = self.totalLandingCount ?? -1
       newLocation.totalLaunchCount = self.totalLaunchCount ?? -1
-      newLocation.url = self.url
 
       return newLocation
    }
