@@ -11,7 +11,8 @@ public class LaunchProvider
 
       do
       {
-         let jsonData = launchListJSON.data( using: .utf8 )!
+         let jsonData = readBundleJSONFile( forName: "launches" )!
+         // let jsonData = launchListJSON.data( using: .utf8 )!
          launches = try decoder.decode( LaunchListJSON.self, from: jsonData )
       }
       catch DecodingError.dataCorrupted( let context ) { print( context ) }

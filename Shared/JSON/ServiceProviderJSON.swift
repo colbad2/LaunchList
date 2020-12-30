@@ -2,6 +2,7 @@ import Foundation
 import CoreData
 
 /**
+ Organization providing services for the launch.
 
  Part of a [LaunchJSON] object
 
@@ -22,13 +23,33 @@ struct ServiceProviderJSON: Decodable
 
    func addToCoreData( context: NSManagedObjectContext ) -> ServiceProvider
    {
-      let newServiceProvider: ServiceProvider = ServiceProvider( context: context )
-
-      newServiceProvider.id = self.id
-      newServiceProvider.name = self.name
-      newServiceProvider.type = self.type
-      newServiceProvider.url = self.url
+      let newServiceProvider = ServiceProvider( context: context )
+      updateEntity( entity: newServiceProvider )
 
       return newServiceProvider
    }
+
+   func updateEntity( entity: ServiceProvider? ) -> Void
+   {
+      if entity == nil { return }
+
+      entity!.id = self.id
+      entity!.name = self.name
+      entity!.type = self.type
+      entity!.url = self.url
+   }
+}
+
+// Core Data search/update
+
+func getProvider( by id: Int64, context: NSManagedObjectContext ) -> ServiceProvider?
+{
+   return getEntityByID( id: id, context: context, entityName: "ServiceProvider" ) as? ServiceProvider
+}
+
+func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObjectContext ) -> ServiceProvider
+{
+   let providerEntity = getProvider( by: provider.id, context: context )
+   provider.updateEntity( entity: providerEntity )
+   return providerEntity ?? provider.addToCoreData( context: context )
 }

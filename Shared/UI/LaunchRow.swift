@@ -9,28 +9,31 @@ struct LaunchRow: View
    {
       HStack( alignment: .top, spacing: 2 )
       {
-         IconView( withURL: launch.image! )
-            .frame( width: 40, height: 40 )
-         Spacer()
-            .frame( width: 15 )
+         if let imageURL = launch.image
+         {
+            IconView( withURL: imageURL )
+               .frame( width: 40, height: 40 )
+            Spacer()
+               .frame( width: 15 )
+         }
          VStack( alignment: .leading )
          {
-            Text( "\(missionName(launch))" )
-               .font(.headline)
+            Text( "\(missionName( launch ))" )
+               .font( .headline )
                .lineLimit( 2 )
             HStack
             {
                Text( "\(launch.serviceProvider?.name ?? "")" )
-                  .font(.subheadline)
+                  .font( .subheadline )
                   .lineLimit( 2 )
                Spacer()
-               Text( "\(launch.rocket?.configuration?.name ?? launch.name!)" )
-                  .font(.subheadline)
+               Text( "\(launch.rocket?.name ?? launch.name!)" )
+                  .font( .subheadline )
                   .lineLimit( 2 )
             }
             Text( "\(launch.windowStart!, formatter: Self.taskDateFormat)" )
-               .font(.subheadline)
-               .foregroundColor(.gray)
+               .font( .subheadline )
+               .foregroundColor( .gray )
          }
       }
    }

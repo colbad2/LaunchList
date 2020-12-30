@@ -4,101 +4,115 @@ import CoreData
 
 struct LaunchDetail: View
 {
-   var launch: Launch
+   var launch: Launch?
 
    var body: some View
    {
-      ScrollView
+      VStack
       {
-         Text( "\(missionName( launch ))" )
-            .font( .title )
-            .foregroundColor( .primary )
-            .padding()
-            .multilineTextAlignment( .center )
-
-         VStack
+         ScrollView
          {
-            HStack
-            {
-               Text( "\(launch.serviceProvider?.name ?? "")" )
-               Spacer()
-               Text( "\(launch.rocket?.configuration?.name ?? launch.name!)" )
-            }
-            .font( .subheadline )
-            .foregroundColor( .secondary )
+            Text( "\(missionName( launch ))" )
+               .font( .title )
+               .foregroundColor( .primary )
+               .padding()
+               .multilineTextAlignment( .center )
 
-            HStack
-            {
-               Text( "\(launch.serviceProvider?.type ?? "")" )
-               Spacer()
-               Text( "\(launch.mission?.type ?? "")" )
-            }
-            .font( .subheadline )
-            .foregroundColor( .secondary )
-
-            if launch.mission?.orbit?.name != nil
+            VStack
             {
                HStack
                {
-                  Text( "\(launch.mission?.orbit?.name ?? "")" )
+                  Text( "\(launch?.serviceProvider?.name ?? "")" )
                   Spacer()
+                  Text( "\(launch?.rocket?.name ?? launch?.name ?? "")" )
                }
                .font( .subheadline )
                .foregroundColor( .secondary )
-            }
 
-            NavigationLink( destination: PadDetail( pad: launch.pad ) )
-            {
-               Text( "\(launch.pad?.name ?? "")" )
+               HStack
+               {
+                  Text( "\(launch?.serviceProvider?.type ?? "")" )
+                  Spacer()
+                  Text( "\(launch?.mission?.type ?? "")" )
+               }
+               .font( .subheadline )
+               .foregroundColor( .secondary )
+
+               if launch?.mission?.orbitName != nil
+               {
+                  HStack
+                  {
+                     Text( "\(launch?.mission?.orbitName ?? "")" )
+                     Spacer()
+                  }
                   .font( .subheadline )
-                  .foregroundColor( Color.blue )
-               Spacer()
+                  .foregroundColor( .secondary )
+               }
+
+               NavigationLink( destination: PadDetail( pad: launch?.pad ) )
+               {
+                  Text( "\(launch?.pad?.name ?? "")" )
+                     .font( .subheadline )
+                     .foregroundColor( Color.blue )
+                  Spacer()
+               }
             }
-         }
 
-         Divider()
+            if let windowStart = launch?.windowStart
+            {
+               let stopShowingCountdown = windowStart + ( 60 * 60 * 5 )
+               if Date() < stopShowingCountdown
+               {
+                  Divider()
+                  Countdown( targetTime: windowStart )
+               }
+            }
 
-         Countdown( targetTime: launch.windowStart )
+            if launch?.inHold == true || launch?.failReason != nil
+            {
+               Divider()
 
-         if launch.inHold || launch.failReason != nil
-         {
+               if launch?.inHold == true
+               {
+                  HStack
+                  {
+                     Text( "HOLD" )
+                     Spacer()
+                     Text( "\(launch?.holdReason ?? "")" )
+                  }
+               }
+
+               if launch?.failReason != nil
+               {
+                  HStack
+                  {
+                     Text( "FAIL" )
+                     Spacer()
+                     Text( "\(launch?.failReason ?? "")" )
+                  }
+               }
+            }
+
             Divider()
 
-            if launch.inHold
+            Text( "\(launch?.mission?.missionDescription ?? "")" )
+               .lineLimit( 200 )
+
+            if let imageURL = launch?.image
             {
-               HStack
-               {
-                  Text( "HOLD" )
-                  Spacer()
-                  Text( "\(launch.holdReason ?? "")" )
-               }
+               IconView( withURL: imageURL )
             }
 
-            if launch.failReason != nil
+            if let infographic = launch?.infographic
             {
-               HStack
-               {
-                  Text( "FAIL" )
-                  Spacer()
-                  Text( "\(launch.failReason ?? "")" )
-               }
+               IconView( withURL: infographic )
             }
          }
+         .padding()
 
-         Divider()
-
-         Text( "\(launch.mission?.missionDescription ?? "")" )
-            .lineLimit( 200 )
-
-         IconView( withURL: launch.image! )
-         if launch.infographic != nil
-         {
-            IconView( withURL: launch.infographic! )
-         }
+         Spacer()
       }
-      .padding()
-
-      Spacer()
+      .navigationTitle( "Launch" )
    }
 }
 
@@ -106,10 +120,8 @@ struct LaunchPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let managedObjectContext = PersistenceController.preview.container.viewContext
-      let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Launch" )
-      let launch = try! managedObjectContext.fetch( request ).first as! Launch
-
+      let launch = getFirstEntity( context: PersistenceController.preview.container.viewContext,
+                                     entityName: "Launch") as? Launch
       LaunchDetail( launch: launch )
    }
 }

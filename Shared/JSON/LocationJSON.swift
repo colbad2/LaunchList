@@ -2,6 +2,10 @@ import Foundation
 import CoreData
 
 /**
+ The larger location of the launch, that contains the launch pad itself. For example, the Kennedy
+ Space Center would be the locaton for Launch Complex 39A.
+
+ Part of a [PadJSON].
 
  example JSON:
  {
@@ -16,14 +20,27 @@ import CoreData
  */
 struct LocationJSON: Decodable
 {
+   /** Three-letter country code containing the location. */
    var countryCode: String?
+   /** ID of the location within the API. */
    var id: Int64?
+   /** URL to a map of the location. */
    var mapImage: String?
+   /** Human-readable name for the location. */
    var name: String?
+   /** Number of landings that have occurred at the location. */
    var totalLandingCount: Int64?
+   /** Number of launches that have occurred at the location. */
    var totalLaunchCount: Int64?
+   /** API URI for this location. */
    var url: String?
 
+   /**
+    Add this location to Core Data as a [Location] entity. The context still needs to be saved after the add.
+
+    - Parameter context: Core Data context to add the entity to.
+    - Returns: the added entity
+    */
    func addToCoreData( context: NSManagedObjectContext ) -> Location
    {
       let newLocation: Location = Location( context: context )

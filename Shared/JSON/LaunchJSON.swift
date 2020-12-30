@@ -2,6 +2,7 @@ import Foundation
 import CoreData
 
 /**
+ Data that describe a launch.
 
     Example JSON:
     {
@@ -89,37 +90,55 @@ public struct LaunchJSON: Decodable, Identifiable
       newLaunch.image = self.image
       newLaunch.infographic = self.infographic
       newLaunch.inHold = self.inHold ?? false
-      newLaunch.launchLibraryID = self.launchLibraryID ?? -1
+      // TODO remove from CD newLaunch.launchLibraryID = self.launchLibraryID ?? -1
 
-      newLaunch.serviceProvider = self.serviceProvider?.addToCoreData( context: context )
-      newLaunch.serviceProvider?.addToLaunches( newLaunch )
-      
-      newLaunch.mission = self.mission?.addToCoreData( context: context )
-      newLaunch.mission?.launch = newLaunch
+      if let provider = self.serviceProvider
+      {
+         newLaunch.serviceProvider = fetchProvider( provider: provider, context: context )
+         newLaunch.serviceProvider?.addToLaunches( newLaunch )
+      }
+
+      if let mission = self.mission
+      {
+         newLaunch.mission = fetchMission( mission: mission, context: context )
+         newLaunch.mission?.launch = newLaunch
+      }
       
       newLaunch.name = self.name
       newLaunch.net = parseISODate( isoDate: self.net )
-      newLaunch.pad = self.pad?.addToCoreData( context: context )
+
+      if let pad = self.pad
+      {
+         newLaunch.pad = fetchPad( pad: pad, context: context )
+         newLaunch.pad?.addToLaunches( newLaunch )
+      }
+      
       newLaunch.probability = self.probability ?? -1
 
       for program in self.programs!
       {
-         let programEntity: Program = program.addToCoreData( context: context )
+         let programEntity = fetchProgram( program: program, context: context )
          newLaunch.addToPrograms( programEntity )
          programEntity.addToLaunches( newLaunch )
       }
 
-      newLaunch.rocket = self.rocket?.addToCoreData( context: context )
-      newLaunch.rocket?.addToLaunches( newLaunch )
+      if let rocket = self.rocket
+      {
+         newLaunch.rocket = fetchRocket( rocket: rocket, context: context )
+         newLaunch.rocket?.addToLaunches( newLaunch )
+      }
 
       newLaunch.slug = self.slug
 
-      newLaunch.status = self.status?.addToCoreData( context: context )
-      newLaunch.status?.launch = newLaunch
+      if let status = self.status
+      {
+         newLaunch.status = fetchStatus( status: status, context: context )
+         newLaunch.status?.launch = newLaunch
+      }
 
       newLaunch.tbdDate = self.tbdDate ?? false
       newLaunch.tbdTime = self.tbdTime ?? false
-      newLaunch.url = self.url
+      // TODO remove from CD newLaunch.url = self.url
       newLaunch.webcastLive = self.webcastLive ?? false
       newLaunch.windowEnd = parseISODate( isoDate: self.windowEnd )
       newLaunch.windowStart = parseISODate( isoDate: self.windowStart )

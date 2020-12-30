@@ -71,25 +71,45 @@ struct ProgramJSON: Decodable
    func addToCoreData( context: NSManagedObjectContext ) -> Program
    {
       let newProgram: Program = Program( context: context )
-
-      newProgram.id = self.id
-      newProgram.url = wrapURL( self.url )
-      newProgram.name = self.name
-      newProgram.programDescription = self.description
-
-      for agency in self.agencies
-      {
-         let agencyEntity: Agency = agency.addToCoreData( context: context )
-         newProgram.addToAgencies( agencyEntity )
-         agencyEntity.addToPrograms( newProgram )
-      }
-      
-      newProgram.imageURL = wrapURL( self.imageURL )
-      newProgram.startDate = parseISODate( isoDate: self.startDate )
-      newProgram.endDate = parseISODate( isoDate: self.endDate )
-      newProgram.infoURL = wrapURL( self.infoURL )
-      newProgram.wikiURL = wrapURL( self.wikiURL )
+      updateEntity( entity: newProgram, context: context )
 
       return newProgram
    }
+
+   func updateEntity( entity: Program?, context: NSManagedObjectContext ) -> Void
+   {
+      if entity == nil { return }
+
+      entity?.id = self.id
+      // entity?.url = self.url
+      entity?.name = self.name
+      entity?.programDescription = self.description
+
+      for agency in self.agencies
+      {
+         let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
+         entity?.addToAgencies( agencyEntity )
+         agencyEntity.addToPrograms( entity! )
+      }
+
+      entity?.imageURL = self.imageURL
+      entity?.startDate = parseISODate( isoDate: self.startDate )
+      entity?.endDate = parseISODate( isoDate: self.endDate )
+      entity?.infoURL = self.infoURL
+      entity?.wikiURL = self.wikiURL
+   }
+}
+
+// Core Data search/update
+
+func getProgram( by id: Int64, context: NSManagedObjectContext ) -> Program?
+{
+   return getEntityByID( id: id, context: context, entityName: "Program" ) as? Program
+}
+
+func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext ) -> Program
+{
+   let programEntity = getProgram( by: program.id, context: context )
+   program.updateEntity( entity: programEntity, context: context )
+   return programEntity ?? program.addToCoreData( context: context )
 }

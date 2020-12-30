@@ -9,6 +9,12 @@ struct PersistenceController
       let result = PersistenceController( inMemory: true )
       let viewContext = result.container.viewContext
 
+      let agencyProvider = AgenciesProvider()
+      for agency in agencyProvider.agencies.agenciesSublist ?? []
+      {
+         _ = agency.addToCoreData( context: viewContext )
+      }
+
       let launchProvider = LaunchProvider()
       for launch in launchProvider.launches?.launchSublist ?? []
       {
@@ -50,4 +56,23 @@ struct PersistenceController
          }
       })
    }
+}
+
+
+ func readBundleJSONFile( forName name: String ) -> Data?
+{
+   do
+   {
+      if let bundlePath = Bundle.main.path( forResource: name, ofType: "json" ),
+         let jsonData = try String( contentsOfFile: bundlePath ).data( using: .utf8 )
+      {
+         return jsonData
+      }
+   }
+   catch
+   {
+      print( error )
+   }
+
+   return nil
 }

@@ -72,23 +72,53 @@ struct PadJSON: Decodable
    func addToCoreData( context: NSManagedObjectContext ) -> Pad
    {
       let newPad: Pad = Pad( context: context )
-
-      newPad.agencyID = self.agencyID ?? -1
-      newPad.id = self.id
-      newPad.infoURL = self.infoURL
-      newPad.latitude = Double( self.latitude ?? "0.0" )!
-      newPad.longitude = Double( self.longitude ?? "0.0" )!
-      
-      newPad.location = self.location?.addToCoreData( context: context )
-      newPad.location?.pad = newPad
-
-      newPad.mapImage = self.mapImage
-      newPad.mapURL = self.mapURL
-      newPad.name = self.name
-      newPad.totalLaunchCount = self.totalLaunchCount ?? -1
-      newPad.url = self.url
-      newPad.wikiURL = self.wikiURL
+      updateEntity( entity: newPad, context: context )
 
       return newPad
    }
+
+   func updateEntity( entity: Pad?, context: NSManagedObjectContext ) -> Void
+   {
+      if entity == nil { return }
+
+      entity?.agencyID = self.agencyID ?? -1
+      entity?.id = self.id
+      entity?.infoURL = self.infoURL
+      entity?.latitude = Double( self.latitude ?? "0.0" )!
+      entity?.longitude = Double( self.longitude ?? "0.0" )!
+
+      entity?.location = self.location?.addToCoreData( context: context )
+      entity?.location?.pad = entity
+
+      entity?.mapImage = self.mapImage
+      
+      let mapURL = self.mapURL?.trimmingCharacters( in: .whitespacesAndNewlines )
+      if mapURL != nil && mapURL!.count > 0
+      {
+         entity?.mapURL = mapURL
+      }
+      
+      entity?.name = self.name
+      entity?.totalLaunchCount = self.totalLaunchCount ?? -1
+      entity?.url = self.url
+      let wikiURL = self.wikiURL?.trimmingCharacters( in: .whitespacesAndNewlines )
+      if wikiURL != nil && wikiURL!.count > 0
+      {
+         entity?.wikiURL = wikiURL
+      }
+   }
+}
+
+// Core Data search/update
+
+func getPad( by id: Int64, context: NSManagedObjectContext ) -> Pad?
+{
+   return getEntityByID( id: id, context: context, entityName: "Pad" ) as? Pad
+}
+
+func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
+{
+   let padEntity = getPad( by: pad.id, context: context )
+   pad.updateEntity( entity: padEntity, context: context )
+   return padEntity ?? pad.addToCoreData( context: context )
 }

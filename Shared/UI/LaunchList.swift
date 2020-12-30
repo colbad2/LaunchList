@@ -1,7 +1,7 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View
+struct LaunchList: View
 {
    @Environment( \.managedObjectContext ) private var viewContext
 
@@ -33,7 +33,7 @@ struct ContentView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        ContentView()
+        LaunchList()
          .environment( \.managedObjectContext,
                        PersistenceController.preview.container.viewContext )
     }

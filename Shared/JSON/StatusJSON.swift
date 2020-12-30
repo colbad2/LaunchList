@@ -31,12 +31,33 @@ struct StatusJSON: Decodable
    func addToCoreData( context: NSManagedObjectContext ) -> Status
    {
       let newStatus: Status = Status( context: context )
-
-      newStatus.statusAbbreviation = self.abbreviation
-      newStatus.statusDescription = self.description
-      newStatus.id = self.id
-      newStatus.name = self.name
+      updateEntity( entity: newStatus, context: context )
 
       return newStatus
    }
+
+   func updateEntity( entity: Status?, context: NSManagedObjectContext ) -> Void
+   {
+      if entity == nil { return }
+
+      entity?.statusAbbreviation = self.abbreviation
+      entity?.statusDescription = self.description
+      entity?.id = self.id
+      entity?.name = self.name
+   }
+}
+
+
+// Core Data search/update
+
+func getStatus( by id: Int64, context: NSManagedObjectContext ) -> Status?
+{
+   return getEntityByID( id: id, context: context, entityName: "Status" ) as? Status
+}
+
+func fetchStatus( status: StatusJSON, context: NSManagedObjectContext ) -> Status
+{
+   let statusEntity = getStatus( by: status.id, context: context )
+   status.updateEntity( entity: statusEntity, context: context )
+   return statusEntity ?? status.addToCoreData( context: context )
 }

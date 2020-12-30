@@ -9,7 +9,8 @@ public class AgenciesProvider
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-      let jsonData = json.data( using: .utf8 )!
+      let jsonData = readBundleJSONFile( forName: "agencies" )!
+      // let jsonData = json.data( using: .utf8 )!
       agencies = try! decoder.decode( AgenciesListJSON.self, from: jsonData )
    }
 }

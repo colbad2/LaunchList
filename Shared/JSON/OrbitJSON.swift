@@ -2,6 +2,9 @@ import Foundation
 import CoreData
 
 /**
+ Mission orbit.
+
+ Used in [MissionJSON]
 
  example JSON:
  {
@@ -23,15 +26,4 @@ struct OrbitJSON: Decodable
    var abbreviation: String?
    var id: Int64
    var name: String?
-
-   func addToCoreData( context: NSManagedObjectContext ) -> Orbit
-   {
-      let newOrbit: Orbit = Orbit( context: context )
-
-      newOrbit.abbreviation = self.abbreviation
-      newOrbit.id = self.id
-      newOrbit.name = self.name
-
-      return newOrbit
-   }
 }

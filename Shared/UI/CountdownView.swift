@@ -62,9 +62,11 @@ func countdownSign( d: Date? ) -> String
 func countdownString( _ n: Int? ) -> String
 {
    if n == nil { return "--" }
-   if n! < 10 { return "0\(n!)" }
+   var t = n!
+   if t < 0 { t = -t }
+   if t < 10 { return "0\(t)" }
 
-   return "\(n!)"
+   return "\(t)"
 }
 
 
@@ -72,6 +74,6 @@ struct CountdownPreview: PreviewProvider
 {
    static var previews: some View
    {
-      Countdown( targetTime: Date().addingTimeInterval( 360000 ) )
+      Countdown( targetTime: Date().addingTimeInterval( -360000 ) )
    }
 }

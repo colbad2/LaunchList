@@ -2,6 +2,9 @@ import Foundation
 import CoreData
 
 /**
+ Agency involved in the launch program.
+
+ Part of a [Program] "agencies" list.
 
  Example JSON:
  {
@@ -51,22 +54,59 @@ struct AgencyJSON: Decodable
    func addToCoreData( context: NSManagedObjectContext ) -> Agency
    {
       let newAgency: Agency = Agency( context: context )
-
-      newAgency.id = self.id
-      newAgency.url = wrapURL( self.url )
-      newAgency.name = self.name
-      newAgency.featured = self.featured ?? false
-      newAgency.type = self.type
-      newAgency.countryCode = self.countryCode
-      newAgency.abbreviation = self.abbreviation
-      newAgency.agencyDescription = self.agencyDescription
-      newAgency.administrator = self.administrator
-      newAgency.foundingYear = self.foundingYear
-      newAgency.launchers = self.launchers
-      newAgency.spacecraft = self.spacecraft
-      newAgency.parent = self.parent
-      newAgency.imageURL = self.imageURL
+      updateEntity( entity: newAgency, context: context )
 
       return newAgency
    }
+
+   func updateEntity( entity: Agency?, context: NSManagedObjectContext ) -> Void
+   {
+      if entity == nil { return }
+
+      entity?.id = self.id
+      // TODO remove entity?.url = self.url
+      entity?.name = self.name
+      // TODO remove entity?.featured = self.featured ?? false
+      entity?.type = self.type
+      entity?.countryCode = self.countryCode
+      entity?.abbreviation = self.abbreviation
+      entity?.agencyDescription = self.agencyDescription
+      entity?.administrator = self.administrator
+      entity?.foundingYear = self.foundingYear
+      if self.launchers?.count ?? 0 > 0 && self.launchers != "None"
+      {
+         entity?.launchers = self.launchers
+      }
+      if self.spacecraft?.count ?? 0 > 0 && self.spacecraft != "None"
+      {
+         entity?.spacecraft = self.spacecraft
+      }
+      entity?.parent = self.parent
+      entity?.imageURL = self.imageURL
+   }
+}
+
+func isBasic( agency: Agency ) -> Bool
+{
+   return agency.name != nil &&
+      agency.agencyDescription == nil &&
+      agency.administrator == nil &&
+      agency.foundingYear == nil &&
+      agency.launchers == nil &&
+      agency.spacecraft == nil &&
+      agency.imageURL == nil
+}
+
+// Core Data search/update
+
+func getAgency( by id: Int64, context: NSManagedObjectContext ) -> Agency?
+{
+   return getEntityByID( id: id, context: context, entityName: "Agency" ) as? Agency
+}
+
+func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agency
+{
+   let agencyEntity = getAgency( by: agency.id, context: context )
+   agency.updateEntity( entity: agencyEntity, context: context )
+   return agencyEntity ?? agency.addToCoreData( context: context )
 }

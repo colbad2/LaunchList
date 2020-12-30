@@ -3,17 +3,17 @@ import SwiftUI
 
 struct IconView: View
 {
-    @ObservedObject var imageLoader: ImageLoader
+   @ObservedObject var imageLoader: ImageLoader
 
-    init( withURL url: String )
-    {
-        imageLoader = ImageLoader( urlString: url )
-    }
+   init( withURL url: String )
+   {
+      imageLoader = ImageLoader( urlString: url )
+   }
 
-    var body: some View
-    {
+   var body: some View
+   {
       Image( uiImage: imageLoader.image ?? UIImage() )
          .resizable()
-         .aspectRatio( contentMode: .fill )
-    }
+         .aspectRatio( contentMode: .fit )
+   }
 }

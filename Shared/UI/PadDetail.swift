@@ -8,45 +8,65 @@ struct PadDetail: View
 
    var body: some View
    {
-      ScrollView
+      VStack
       {
-         Text( "\(pad?.name ?? "")" )
-            .font( .title )
-            .foregroundColor( .primary )
-         Text( "\(pad?.location?.name ?? "")" )
-            .foregroundColor( .primary )
-
-         Text( "\(pad?.latitude ?? 0), \(pad?.longitude ?? 0)" )
-         Text( "Launch count: \(pad?.totalLaunchCount ?? 0)" )
-         // Text( "\(pad?.agencyID ?? 0)" ) // TODO link to agency detail
-
-         if pad?.mapImage != nil
+         ScrollView
          {
-            IconView( withURL: pad?.mapImage ?? "" )
+            if let padName = pad?.name
+            {
+               Text( "\(padName)" )
+                  .font( .title )
+                  .foregroundColor( .primary )
+            }
+
+            if let padLocationName = pad?.location?.name
+            {
+               Text( "\(padLocationName)" )
+                  .foregroundColor( .primary )
+            }
+
+            if let lat = pad?.latitude, let lon = pad?.longitude
+            {
+               Text( "\(lat), \(lon)" )
+            }
+
+            // Text( "\(pad?.agencyID ?? 0)" ) // TODO link to agency detail
+
+            if let mapImage = pad?.mapImage
+            {
+               IconView( withURL: mapImage )
+            }
+
+            HStack
+            {
+               if let infoURL = pad?.infoURL,
+                  let url = wrapURL( infoURL )
+               {
+                  Link( "Info", destination: url )
+                     .font( .subheadline )
+               }
+
+               if let mapURL = pad?.mapURL,
+                  let url = wrapURL( mapURL )
+               {
+                  Link( "Map", destination: url )
+                     .font( .subheadline )
+               }
+
+               if let wikiURL = pad?.wikiURL,
+                  let url = wrapURL( wikiURL )
+               {
+                  Link( "Wiki", destination: url )
+                     .font( .subheadline )
+               }
+            }
+            .padding()
+
+            // TODO country code?
          }
-
-         HStack
-         {
-            if pad?.infoURL != nil
-            {
-               Link( "Info", destination: wrapURL( pad!.infoURL! )! )
-                  .font(.subheadline)
-            }
-
-            if pad?.mapURL != nil
-            {
-               Link( "Map", destination: wrapURL( pad!.mapURL! )! )
-                  .font(.subheadline)
-            }
-
-            if pad?.wikiURL != nil
-            {
-               Link( "Wiki", destination: wrapURL( pad!.wikiURL! )! )
-                  .font(.subheadline)
-            }
-         }
+         .padding()
       }
-      .padding()
+      .navigationTitle( "Pad" )
    }
 }
 
@@ -54,10 +74,8 @@ struct PadPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let managedObjectContext = PersistenceController.preview.container.viewContext
-      let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Pad" )
-      let pad = try! managedObjectContext.fetch( request ).first as! Pad
-
+      let pad = getFirstEntity( context: PersistenceController.preview.container.viewContext,
+                                     entityName: "Pad") as? Pad
       PadDetail( pad: pad )
    }
 }

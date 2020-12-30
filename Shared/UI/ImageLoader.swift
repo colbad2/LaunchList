@@ -6,14 +6,13 @@ class ImageLoader: ObservableObject
 {
    @Published var image: UIImage?
 
-    init( urlString: String )
-    {
-      RemoteImageCache.shared.downloadImage( with: urlString,
-                                             completionHandler:
-                                                {
-                                                   (fetchedImage, done) in
+   init( urlString: String )
+   {
+      RemoteImageCache.shared.downloadImage( with: urlString )
+      {
+         (fetchedImage, done) in
 
-                                                   self.image = fetchedImage
-                                                })
-    }
+         self.image = fetchedImage
+      }
+   }
 }

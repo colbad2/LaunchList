@@ -15,3 +15,35 @@ func saveContext( _ context: NSManagedObjectContext )
       fatalError( "Unresolved error \(nsError), \(nsError.userInfo)" )
    }
 }
+
+func getEntityByID( id: Int64, context: NSManagedObjectContext, entityName: String ) -> Any?
+{
+   do
+   {
+      let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+      request.predicate = NSPredicate( format: "id == %d", id )
+      let entities: [Any] = try context.fetch( request )
+      if entities.count > 0 { return entities.first }
+   }
+   catch
+   {
+       fatalError( "Failed to fetch agencies: \(error)" )
+   }
+
+   return nil
+}
+
+func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> Any?
+{
+   do
+   {
+      let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+      return try context.fetch( request ).first
+   }
+   catch
+   {
+       fatalError( "Failed to fetch agencies: \(error)" )
+   }
+
+   // return nil
+}

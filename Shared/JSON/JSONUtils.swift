@@ -10,8 +10,8 @@ func parseISODate( isoDate: String? ) -> Date?
    return dateFormatter.date( from: isoDate! )
 }
 
-func wrapURL( _ url: String? = nil ) -> URL?
+func wrapURL( _ url: String? ) -> URL?
 {
-   if url == nil || url == "" { return nil }
+   if url == nil || url!.trimmingCharacters( in: .whitespacesAndNewlines ) == "" { return nil }
    return URL( string: url! )
 }
