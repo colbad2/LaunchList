@@ -79,32 +79,37 @@ struct PadJSON: Decodable
 
    func updateEntity( entity: Pad?, context: NSManagedObjectContext ) -> Void
    {
-      if entity == nil { return }
+      // TODO all other JSON objects use guard like this
+      guard let entity = entity else { return }
 
-      entity?.agencyID = self.agencyID ?? -1
-      entity?.id = self.id
-      entity?.infoURL = self.infoURL
-      entity?.latitude = self.latitude ?? ""
-      entity?.longitude = self.longitude ?? ""
+      entity.agencyID = self.agencyID ?? -1
+      entity.id = self.id
+      entity.infoURL = self.infoURL
+      entity.latitude = self.latitude ?? ""
+      entity.longitude = self.longitude ?? ""
 
-      entity?.location = self.location?.addToCoreData( context: context )
-      entity?.location?.pad = entity
+      entity.location = self.location?.addToCoreData( context: context )
+      entity.location?.pad = entity
 
-      entity?.mapImage = self.mapImage
+      entity.mapImage = self.mapImage
       
       let mapURL = self.mapURL?.trimmingCharacters( in: .whitespacesAndNewlines )
       if mapURL != nil && mapURL!.count > 0
       {
-         entity?.mapURL = mapURL
+         entity.mapURL = mapURL!.fixBadUTF()
+         // TODO Pad at Guam International Airport has a map URL like "https://www.google.com/maps/place/35Â°03'34.0"N+118Â°09'06.0"W/"
+         // I fix it to "https://www.google.com/maps/place/35°03'34.0"N+118°09'06.0"W/", which works in a browser, but URL() fails
+         // to convert it to a URL. So, the pad doesn't have a map link it could have. Try to fix the link to it works.
+         // A number of other map links have the issue
       }
       
-      entity?.name = self.name
-      entity?.totalLaunchCount = self.totalLaunchCount ?? -1
+      entity.name = self.name
+      entity.totalLaunchCount = self.totalLaunchCount ?? -1
       
       let wikiURL = self.wikiURL?.trimmingCharacters( in: .whitespacesAndNewlines )
       if wikiURL != nil && wikiURL!.count > 0
       {
-         entity?.wikiURL = wikiURL
+         entity.wikiURL = wikiURL
       }
    }
 }
@@ -122,3 +127,49 @@ func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
    pad.updateEntity( entity: padEntity, context: context )
    return padEntity ?? pad.addToCoreData( context: context )
 }
+
+func getPadCount( context: NSManagedObjectContext ) -> Int?
+{
+   return getRecordsCount( entityName: "Pad", context: context )
+}
+
+func getSamplePad() -> PadJSON?
+{
+   let decoder = JSONDecoder()
+   decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+   do
+   {
+      let jsonData = samplePadJSON.data( using: .utf8 )!
+      return try decoder.decode( PadJSON.self, from: jsonData )
+   }
+   catch { print( "error: ", error) }
+
+   return nil
+}
+
+let samplePadJSON =
+"""
+    {
+      "id": 87,
+      "url": "https://ll.thespacedevs.com/2.1.0/pad/87/",
+      "agency_id": null,
+      "name": "Launch Complex 39A",
+      "info_url": null,
+      "wiki_url": "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A",
+      "map_url": "http://maps.google.com/maps?q=28.608+N,+80.604+W",
+      "latitude": "28.60822681",
+      "longitude": "-80.60428186",
+      "location": {
+        "id": 27,
+        "url": "https://ll.thespacedevs.com/2.1.0/location/27/",
+        "name": "Kennedy Space Center, FL, USA",
+        "country_code": "USA",
+        "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
+        "total_launch_count": 182,
+        "total_landing_count": 0
+      },
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
+      "total_launch_count": 125
+    }
+"""

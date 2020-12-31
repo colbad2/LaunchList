@@ -9,7 +9,6 @@ Front-end for the SpaceDevs launch API (https://ll.thespacedevs.com/2.1.0/swagge
 - What is the launch_library_id in some of the JSON objects? It differs from the API id. If useless, don't add them to CD entities.
 - What are the URLs in some JSON objects for? Are they just URIs? They don't go anywhere. If useless, don't add them to CD entities.
 - Can we collapse RocketJSON and ConfigurationJSON?
-- Can we collapse OrbitJSON into MissionJSON?
 - Can we store list fetch requests?
 
 
@@ -25,3 +24,6 @@ Front-end for the SpaceDevs launch API (https://ll.thespacedevs.com/2.1.0/swagge
 - response when throttled: {
 "detail": "Request was throttled. Expected available in 2429 seconds."
 } HTTP error code 429
+- test in the sim that the bad UTF chars are fixed in all places
+- Roll status into launch entity
+- load all JSON files into db when db is empty for that entity type

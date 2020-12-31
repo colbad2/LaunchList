@@ -61,3 +61,39 @@ func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocke
    return rocketEntity ?? rocket.addToCoreData( context: context )
 }
 
+func getRocketCount( context: NSManagedObjectContext ) -> Int?
+{
+   return getRecordsCount( entityName: "Rocket", context: context )
+}
+
+func getSampleRocket() -> RocketJSON?
+{
+   let decoder = JSONDecoder()
+   decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+   do
+   {
+      let jsonData = sampleRocketJSON.data( using: .utf8 )!
+      return try decoder.decode( RocketJSON.self, from: jsonData )
+   }
+   catch { print( "error: ", error) }
+
+   return nil
+}
+
+let sampleRocketJSON =
+"""
+      {
+        "id": 2663,
+        "configuration": {
+          "id": 143,
+          "launch_library_id": 144,
+          "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/143/",
+          "name": "Space Launch System (SLS)",
+          "family": "SLS",
+          "full_name": "Space Launch System (SLS)",
+          "variant": ""
+        }
+      }
+"""
+

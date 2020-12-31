@@ -1,0 +1,98 @@
+
+{
+  "count": 43,
+  "next": "https://ll.thespacedevs.com/2.1.0/location/?limit=10&offset=10",
+  "previous": null,
+  "results": [
+    {
+      "id": 151,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/151/",
+      "name": "Broglio Space Center, Kenya",
+      "country_code": "ITA",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_151_20200803142409.jpg",
+      "total_launch_count": 0,
+      "total_landing_count": 0
+    },
+    {
+      "id": 10,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/10/",
+      "name": "Onenui Station, Mahia Peninsula, New Zealand",
+      "country_code": "NZL",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_10_20200803142509.jpg",
+      "total_launch_count": 17,
+      "total_landing_count": 1
+    },
+    {
+      "id": 24,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/24/",
+      "name": "Uchinoura Space Center, Japan",
+      "country_code": "JPN",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_24_20200803142411.jpg",
+      "total_launch_count": 6,
+      "total_landing_count": 0
+    },
+    {
+      "id": 28,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/28/",
+      "name": "Van Horn, TX, USA",
+      "country_code": "USA",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_28_20200803142431.jpg",
+      "total_launch_count": 0,
+      "total_landing_count": 0
+    },
+    {
+      "id": 13,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/13/",
+      "name": "Kourou, French Guiana",
+      "country_code": "GUF",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_13_20200803142412.jpg",
+      "total_launch_count": 151,
+      "total_landing_count": 0
+    },
+    {
+      "id": 146,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/146/",
+      "name": "Svobodny Cosmodrome, Russian Federation",
+      "country_code": "RUS",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_146_20200803142450.jpg",
+      "total_launch_count": 0,
+      "total_landing_count": 0
+    },
+    {
+      "id": 20,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/20/",
+      "name": "Air launch to orbit",
+      "country_code": "UNK",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_20_20200803142433.jpg",
+      "total_launch_count": 44,
+      "total_landing_count": 0
+    },
+    {
+      "id": 6,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/6/",
+      "name": "Plesetsk Cosmodrome, Russian Federation",
+      "country_code": "RUS",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_6_20200803142434.jpg",
+      "total_launch_count": 71,
+      "total_landing_count": 0
+    },
+    {
+      "id": 147,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/147/",
+      "name": "Interarmy Special Vehicles Test Centre, French Algeria",
+      "country_code": "FRA",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_147_20200803142452.jpg",
+      "total_launch_count": 0,
+      "total_landing_count": 0
+    },
+    {
+      "id": 29,
+      "url": "https://ll.thespacedevs.com/2.1.0/location/29/",
+      "name": "Corn Ranch, USA",
+      "country_code": "USA",
+      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_29_20200803142436.jpg",
+      "total_launch_count": 13,
+      "total_landing_count": 0
+    }
+  ]
+}

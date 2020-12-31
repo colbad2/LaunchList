@@ -109,3 +109,43 @@ func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agenc
    agency.updateEntity( entity: agencyEntity, context: context )
    return agencyEntity ?? agency.addToCoreData( context: context )
 }
+
+func getAgencyCount( context: NSManagedObjectContext ) -> Int?
+{
+   return getRecordsCount( entityName: "Agency", context: context )
+}
+
+func getSampleAgency() -> AgencyJSON?
+{
+   let decoder = JSONDecoder()
+   decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+   do
+   {
+      let jsonData = sampleAgencyJSON.data( using: .utf8 )!
+      return try decoder.decode( AgencyJSON.self, from: jsonData )
+   }
+   catch { print( "error: ", error) }
+
+   return nil
+}
+
+let sampleAgencyJSON =
+"""
+     {
+       "id": 63,
+       "url": "https://ll.thespacedevs.com/2.1.0/agencies/63/",
+       "name": "Russian Federal Space Agency (ROSCOSMOS)",
+       "featured": true,
+       "type": "Government",
+       "country_code": "RUS",
+       "abbrev": "RFSA",
+       "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
+       "administrator": "Administrator: Dmitry Rogozin",
+       "founding_year": "1992",
+       "launchers": "Soyuz",
+       "spacecraft": "Soyuz",
+       "parent": null,
+       "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg"
+     }
+"""

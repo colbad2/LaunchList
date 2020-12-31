@@ -88,3 +88,41 @@ func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mi
    mission.updateEntity( entity: missionEntity, context: context )
    return missionEntity ?? mission.addToCoreData( context: context )
 }
+
+func getMissionCount( context: NSManagedObjectContext ) -> Int?
+{
+   return getRecordsCount( entityName: "Mission", context: context )
+}
+
+
+func getSampleMission() -> MissionJSON?
+{
+   let decoder = JSONDecoder()
+   decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+   do
+   {
+      let jsonData = sampleMissionJSON.data( using: .utf8 )!
+      return try decoder.decode( MissionJSON.self, from: jsonData )
+   }
+   catch { print("error: ", error) }
+
+   return nil
+}
+
+let sampleMissionJSON =
+"""
+      {
+        "id": 1087,
+        "launch_library_id": 1284,
+        "name": "Europa Clipper",
+        "description": "Europa Clipper is the first dedicated mission to study Jupiter's moon Europa. Mission is developed by NASA and comprises of an orbiter spacecraft, which, while in orbit around Jupiter, will perform numerous flybys over Europa. Europa Clipper payload suit included high-resolution cameras and spectrometers for imaging Europa's surface and thin atmosphere, an ice-penetrating radar to search for subsurface water, and a magnetometer and gravity measurements to measure the moon's magnetic field and unlock clues about its ocean and deep interior.",
+        "launch_designator": null,
+        "type": "Planetary Science",
+        "orbit": {
+          "id": 6,
+          "name": "Heliocentric N/A",
+          "abbrev": "Helio-N/A"
+        }
+      }
+"""

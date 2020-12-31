@@ -23,6 +23,7 @@ extension String
 
    func fixBadUTF() -> String
    {
+//      return self
       return self.replacingOccurrences( of: "Ã©", with: "é" )
          .replacingOccurrences( of: "Ã«", with: "ë" )
          .replacingOccurrences( of: "Ã¬", with: "ì" )
@@ -51,6 +52,8 @@ extension String
          .replacingOccurrences( of: "Â¨", with: "¨" )
          .replacingOccurrences( of: "Â´", with: "´" )
          .replacingOccurrences( of: "Ã´", with: "ô" )
+         .replacingOccurrences( of: "Â°", with: "°" )
+
 
       // TODO https://www.i18nqa.com/debug/utf8-debug.html
    }

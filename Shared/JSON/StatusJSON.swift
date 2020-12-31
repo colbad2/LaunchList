@@ -61,3 +61,8 @@ func fetchStatus( status: StatusJSON, context: NSManagedObjectContext ) -> Statu
    status.updateEntity( entity: statusEntity, context: context )
    return statusEntity ?? status.addToCoreData( context: context )
 }
+
+func getStatusCount( context: NSManagedObjectContext ) -> Int?
+{
+   return getRecordsCount( entityName: "Status", context: context )
+}

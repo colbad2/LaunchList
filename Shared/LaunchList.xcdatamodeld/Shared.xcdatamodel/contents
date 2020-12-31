@@ -14,7 +14,27 @@
         <attribute name="parent" optional="YES" attributeType="String"/>
         <attribute name="spacecraft" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="astronauts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Astronaut" inverseName="agency" inverseEntity="Astronaut"/>
         <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="agencies" inverseEntity="Program"/>
+    </entity>
+    <entity name="Astronaut" representedClassName=".Astronaut" syncable="YES" codeGenerationType="class">
+        <attribute name="bio" optional="YES" attributeType="String"/>
+        <attribute name="dateOfBirth" optional="YES" attributeType="String"/>
+        <attribute name="dateOfDeath" optional="YES" attributeType="String"/>
+        <attribute name="firstFlight" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="instagram" optional="YES" attributeType="String"/>
+        <attribute name="lastFlight" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="nationality" optional="YES" attributeType="String"/>
+        <attribute name="profileImage" optional="YES" attributeType="String"/>
+        <attribute name="profileImageThumbnail" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="twitter" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="wiki" optional="YES" attributeType="String"/>
+        <relationship name="agency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Agency" inverseName="astronauts" inverseEntity="Agency"/>
     </entity>
     <entity name="Launch" representedClassName=".Launch" syncable="YES" codeGenerationType="class">
         <attribute name="failReason" optional="YES" attributeType="String"/>
@@ -110,7 +130,7 @@
         <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="status" inverseEntity="Launch"/>
     </entity>
     <elements>
-        <element name="Agency" positionX="16.8914794921875" positionY="88.14666748046875" width="128" height="239"/>
+        <element name="Agency" positionX="16.8914794921875" positionY="88.14666748046875" width="128" height="268"/>
         <element name="Launch" positionX="-299.257568359375" positionY="-523.8718872070312" width="128" height="359"/>
         <element name="Location" positionX="175.9981689453125" positionY="-15.702880859375" width="128" height="134"/>
         <element name="Mission" positionX="-99.41424560546875" positionY="-498.4798126220703" width="128" height="164"/>
@@ -119,5 +139,6 @@
         <element name="Rocket" positionX="-235.4929809570314" positionY="-106.0228881835938" width="128" height="149"/>
         <element name="ServiceProvider" positionX="-464.8961791992188" positionY="-296.6705322265625" width="128" height="89"/>
         <element name="Status" positionX="-395.1998901367188" positionY="-114.9238891601561" width="128" height="104"/>
+        <element name="Astronaut" positionX="-407.6414184570312" positionY="46.71136474609375" width="128" height="298"/>
     </elements>
 </model>
