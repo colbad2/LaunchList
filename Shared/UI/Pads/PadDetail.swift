@@ -15,13 +15,7 @@ struct PadDetail: View
             TitleField( s: pad.name )
             LeftField( s: pad.location?.name )
             LeftField( s: "\(pad.latitude!), \(pad.longitude!)" )
-
-            // TODO need CD context here before adding this
-//            if let agencyID = pad?.agencyID
-//            {
-//               let agency = getAgency( by: agencyID, context: context )
-//               Text( "\(agencyID)" ) // TODO link to agency detail
-//            }
+            AgencyLink( agencyID: pad.agencyID )
 
             if let mapImage = pad.mapImage
             {

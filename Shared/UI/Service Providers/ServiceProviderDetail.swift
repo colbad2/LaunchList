@@ -11,19 +11,8 @@ struct ServiceProviderDetail: View
    {
       ScrollView
       {
-         if let serviceProviderName = serviceProvider?.name
-         {
-            Text( "\(serviceProviderName)" )
-               .font( .title )
-               .foregroundColor( .primary )
-         }
-
-         if let type = serviceProvider?.type
-         {
-            Text( "\(type)" )
-               .font( .subheadline )
-               .foregroundColor( .secondary )
-         }
+         TitleField( s: serviceProvider?.name )
+         LeftField( s: serviceProvider?.type )
       }
    }
 }
@@ -32,8 +21,9 @@ struct ServiceProviderPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let provider = getFirstEntity( context: PersistenceController.preview.container.viewContext,
-                                     entityName: "ServiceProvider") as? ServiceProvider
+      let context = PersistenceController.preview.container.viewContext
+      let provider = getFirstEntity( context: context,
+                                     entityName: "ServiceProvider" ) as? ServiceProvider
       ServiceProviderDetail( serviceProvider: provider )
    }
 }

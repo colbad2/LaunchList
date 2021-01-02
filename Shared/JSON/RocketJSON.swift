@@ -54,9 +54,11 @@ func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket?
    return getEntityByID( id: id, context: context, entityName: "Rocket" ) as? Rocket
 }
 
-func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket
+func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket?
 {
-   let rocketEntity = getRocket( by: rocket.configuration!.id, context: context )
+   guard let id = rocket.configuration?.id else { return nil }
+
+   let rocketEntity = getRocket( by: id, context: context )
    rocket.updateEntity( entity: rocketEntity, context: context )
    return rocketEntity ?? rocket.addToCoreData( context: context )
 }

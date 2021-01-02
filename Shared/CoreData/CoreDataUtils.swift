@@ -72,7 +72,7 @@ func getEntityByID( id: String, context: NSManagedObjectContext, entityName: Str
 /**
  Gets the first entity of the given name from Core Data.
 
- - Parameter context: the Core Data context to ge tthe entity from
+ - Parameter context: the Core Data context to get the entity from
  - Parameter entityName: the name of the entity type to fetch
  - Returns: the first entity with the given parameters, or nil otherwise
  */
@@ -105,17 +105,32 @@ func getRecordsCount( entityName: String, context: NSManagedObjectContext ) -> I
    return nil
 }
 
+func deleteAllData( entityName: String, context: NSManagedObjectContext )
+{
+   let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+   fetchRequest.returnsObjectsAsFaults = false
+   do
+   {
+      for object in try context.fetch( fetchRequest )
+      {
+         guard let objectData = object as? NSManagedObject else { continue }
+         context.delete( objectData )
+      }
+   }
+   catch
+   {
+      print( "Delete all data of type \(entityName) error :", error)
+   }
+}
+
+// TODO get this to work
 //func deleteAllData( entityName: String, context: NSManagedObjectContext )
 //{
 //   let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
-//   fetchRequest.returnsObjectsAsFaults = false
+//   let deleteRequest = NSBatchDeleteRequest( fetchRequest: fetchRequest)
 //   do
 //   {
-//      for object in try context.fetch( fetchRequest )
-//      {
-//         guard let objectData = object as? NSManagedObject else { continue }
-//         context.delete( objectData )
-//      }
+//      try context.execute( deleteRequest )
 //   }
 //   catch
 //   {
@@ -123,16 +138,28 @@ func getRecordsCount( entityName: String, context: NSManagedObjectContext ) -> I
 //   }
 //}
 
-func deleteAllData( entityName: String, context: NSManagedObjectContext )
+
+func getNextLaunch( context: NSManagedObjectContext ) -> Launch?
 {
-   let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
-   let deleteRequest = NSBatchDeleteRequest( fetchRequest: fetchRequest)
+   return getNextLaunches( count: 1, context: context ).first
+}
+
+func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
+{
    do
    {
-      try context.execute( deleteRequest )
+      let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Launch" )
+      request.predicate = NSPredicate( format: "windowEnd > %@", NSDate() )
+      request.sortDescriptors = [ NSSortDescriptor( key: "windowStart", ascending: true ) ]
+      request.fetchLimit = count
+      let entities: [Launch] = try context.fetch( request ) as! [Launch]
+      if entities.count > 0 { return entities }
    }
    catch
    {
-      print( "Delete all data of type \(entityName) error :", error)
+      let nsError = error as NSError
+      fatalError( "Failed to fetch next launch: \(error), \(nsError.userInfo)" )
    }
+
+   return []
 }

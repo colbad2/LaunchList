@@ -1,11 +1,18 @@
-import Foundation
 import SwiftUI
 import CoreData
 
+/**
+ View of the details of an [Astronaut].
+
+ ### Usage
+ AstronautDetail( astronaut: astronautEntity )
+ */
 struct AstronautDetail: View
 {
+   /** Entity with details to show. */
    var astronaut: Astronaut
 
+   /** View contents. */
    var body: some View
    {
       VStack
@@ -28,6 +35,7 @@ struct AstronautDetail: View
                   LeftField( s: astronaut.nationality! )
                   LeftField( s: astronaut.type! )
                   LeftField( s: astronaut.status! )
+                  AgencyLink( agencyID: astronaut.agency?.id )
 
                   HStack( alignment: .top )
                   {
@@ -74,14 +82,6 @@ struct AstronautDetail: View
                         Spacer()
                      }
                   }
-
-                  // TODO use these defs in other detail views
-
-                  /*
-                   var agency: AgencyJSON?
-                   var profileImage: String?
-                   var profileImageThumbnail: String?
-                   */
                }
             }
 
@@ -94,14 +94,32 @@ struct AstronautDetail: View
    }
 }
 
+/**
+ Format the time range string for an [Astronaut]s life. If there is no death date,
+ provide "present" for the death value.
+
+ - Parameter astronaut: astronaut to calculate the string for
+ - Returns: string of the birth-death range
+
+ ### Usage
+ let birthDeath: String = dates( astronaut: astronautEntity )
+ */
 func lifeDates( astronaut: Astronaut ) -> String
 {
-   let lifeDates = dates( first: astronaut.dateOfBirth ?? "",
-             second: astronaut.dateOfDeath ?? "present" )
-
-   return lifeDates
+   return dates( first: astronaut.dateOfBirth ?? "",
+                 second: astronaut.dateOfDeath ?? "present" )
 }
 
+/**
+ Format the time range string for an [Astronaut]s flight career. If there is no end date,
+ provide "present" for the end value.
+
+ - Parameter astronaut: astronaut to calculate the string for
+ - Returns: string of the birth-death range
+
+ ### Usage
+ let birthDeath: String = dates( astronaut: astronautEntity )
+ */
 func flightDates( astronaut: Astronaut ) -> String
 {
    let firstFlightDate = parseISODate( isoDate: astronaut.firstFlight )
@@ -124,14 +142,17 @@ func dates( first: String, second: String? ) -> String
    return "\(first) to \(second!)"
 }
 
+/**
+ Preview view of the [AstronautDetail]
+ */
 struct AstronautPreview: PreviewProvider
 {
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
       let astronaut = getEntityByID( id: 276,
-                                  context: context,
-                                  entityName: "Astronaut" ) as? Astronaut
+                                     context: context,
+                                     entityName: "Astronaut" ) as? Astronaut
       AstronautDetail( astronaut: astronaut! )
    }
 }

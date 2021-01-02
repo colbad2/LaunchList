@@ -51,6 +51,11 @@ struct DatasetList: View
             {
                DatasetListItem( title: "Astronauts", entity: "Astronaut", context: context )
             }
+
+            NavigationLink( destination: EventList() )
+            {
+               DatasetListItem( title: "Events", entity: "Event", context: context )
+            }
          }
       }
    }

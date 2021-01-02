@@ -22,25 +22,6 @@ struct AgencyDetail: View
          {
             TwoFields( leftString: agency.type,
                        rightPrefix: "Founded ", rightString: agency.foundingYear )
-//            HStack
-//            {
-//               if let type = agency.type
-//               {
-//                  Text( "\(type)" )
-//                     .font( .subheadline )
-//                     .foregroundColor( .secondary )
-//               }
-//
-//               Spacer()
-//
-//               if let foundingYear = agency.foundingYear
-//               {
-//                  Text( "Founded \(foundingYear)" )
-//                     .font( .subheadline )
-//                     .foregroundColor( .secondary )
-//               }
-//            }
-
 
             LeftField( prefix: "Admin: ", s: agency.administrator )
 
@@ -90,7 +71,7 @@ struct AgencyDetail: View
          DescriptionView( desc: agency.agencyDescription )
       }
       .padding()
-      .navigationBarTitle( "", displayMode: .inline )
+      .navigationBarTitle( "Agency", displayMode: .inline ) // TODO sometimes, the title is "Program" or something else
    }
 }
 

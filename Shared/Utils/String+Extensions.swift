@@ -57,4 +57,10 @@ extension String
 
       // TODO https://www.i18nqa.com/debug/utf8-debug.html
    }
+
+   func removePrefix( _ prefix: String ) -> String
+   {
+      guard self.hasPrefix( prefix ) else { return self }
+      return String( self.dropFirst( prefix.count ) )
+   }
 }

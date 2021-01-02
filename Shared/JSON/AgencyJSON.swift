@@ -69,8 +69,12 @@ struct AgencyJSON: Decodable
       entity?.type = self.type
       entity?.countryCode = self.countryCode
       entity?.abbreviation = self.abbreviation
+      if var admin = self.administrator
+      {
+         admin = admin.removePrefix( "Administrator: " )
+         entity?.administrator = admin
+      }
       entity?.agencyDescription = self.agencyDescription
-      entity?.administrator = self.administrator
       entity?.foundingYear = self.foundingYear
       if self.launchers?.count ?? 0 > 0 && self.launchers != "None"
       {

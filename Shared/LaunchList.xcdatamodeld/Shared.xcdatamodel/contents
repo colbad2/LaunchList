@@ -16,6 +16,7 @@
         <attribute name="type" optional="YES" attributeType="String"/>
         <relationship name="astronauts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Astronaut" inverseName="agency" inverseEntity="Astronaut"/>
         <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="agencies" inverseEntity="Program"/>
+        <relationship name="spacecraftConfigs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpacecraftConfig" inverseName="agency" inverseEntity="SpacecraftConfig"/>
     </entity>
     <entity name="Astronaut" representedClassName=".Astronaut" syncable="YES" codeGenerationType="class">
         <attribute name="bio" optional="YES" attributeType="String"/>
@@ -36,6 +37,50 @@
         <attribute name="wiki" optional="YES" attributeType="String"/>
         <relationship name="agency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Agency" inverseName="astronauts" inverseEntity="Agency"/>
     </entity>
+    <entity name="Docking" representedClassName="Docking" syncable="YES" codeGenerationType="class">
+        <attribute name="departure" optional="YES" attributeType="String"/>
+        <attribute name="docking" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="launchID" optional="YES" attributeType="String"/>
+        <relationship name="dockingLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DockingLocation" inverseName="dockings" inverseEntity="DockingLocation"/>
+        <relationship name="flightVehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FlightVehicle" inverseName="dockings" inverseEntity="FlightVehicle"/>
+    </entity>
+    <entity name="DockingLocation" representedClassName=".DockingLocation" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="dockings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Docking" inverseName="dockingLocation" inverseEntity="Docking"/>
+    </entity>
+    <entity name="Event" representedClassName=".Event" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="eventDescription" optional="YES" attributeType="String"/>
+        <attribute name="featureImage" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="newsURL" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="videoURL" optional="YES" attributeType="String"/>
+        <relationship name="expeditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expedition" inverseName="events" inverseEntity="Expedition"/>
+        <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="events" inverseEntity="Launch"/>
+        <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="events" inverseEntity="Program"/>
+        <relationship name="spaceStations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpaceStation" inverseName="events" inverseEntity="SpaceStation"/>
+    </entity>
+    <entity name="Expedition" representedClassName=".Expedition" syncable="YES" codeGenerationType="class">
+        <attribute name="end" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="start" optional="YES" attributeType="String"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="expeditions" inverseEntity="Event"/>
+        <relationship name="spaceStation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpaceStation" inverseName="expeditions" inverseEntity="SpaceStation"/>
+    </entity>
+    <entity name="FlightVehicle" representedClassName=".FlightVehicle" syncable="YES" codeGenerationType="class">
+        <attribute name="destination" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="missionEnd" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="dockings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Docking" inverseName="flightVehicle" inverseEntity="Docking"/>
+        <relationship name="spacecraft" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spacecraft" inverseName="flightVehicle" inverseEntity="Spacecraft"/>
+    </entity>
     <entity name="Launch" representedClassName=".Launch" syncable="YES" codeGenerationType="class">
         <attribute name="failReason" optional="YES" attributeType="String"/>
         <attribute name="hashtag" optional="YES" attributeType="String"/>
@@ -53,12 +98,41 @@
         <attribute name="webcastLive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="windowEnd" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="windowStart" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="launches" inverseEntity="Event"/>
         <relationship name="mission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Mission" inverseName="launch" inverseEntity="Mission"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="newRelationship1" inverseEntity="Launch"/>
+        <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="newRelationship" inverseEntity="Launch"/>
         <relationship name="pad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pad" inverseName="launches" inverseEntity="Pad"/>
         <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="launches" inverseEntity="Program"/>
         <relationship name="rocket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="launches" inverseEntity="Rocket"/>
         <relationship name="serviceProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ServiceProvider" inverseName="launches" inverseEntity="ServiceProvider"/>
         <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="launch" inverseEntity="Status"/>
+    </entity>
+    <entity name="Launcher" representedClassName=".Launcher" syncable="YES" codeGenerationType="class">
+        <attribute name="details" optional="YES" attributeType="String"/>
+        <attribute name="firstLaunchDate" optional="YES" attributeType="String"/>
+        <attribute name="flightProven" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="flights" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="lastLaunchDate" optional="YES" attributeType="String"/>
+        <attribute name="serialNumber" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="launcherConfig" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LauncherConfig" inverseName="launcher" inverseEntity="LauncherConfig"/>
+    </entity>
+    <entity name="LauncherConfig" representedClassName="LauncherConfig" syncable="YES" codeGenerationType="class">
+        <attribute name="family" optional="YES" attributeType="String"/>
+        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="launcher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launcher" inverseName="launcherConfig" inverseEntity="Launcher"/>
+    </entity>
+    <entity name="LiveStream" representedClassName=".LiveStream" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="liveStreamDescription" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Location" representedClassName=".Location" syncable="YES" codeGenerationType="class">
         <attribute name="countryCode" optional="YES" attributeType="String"/>
@@ -104,6 +178,7 @@
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="wikiURL" optional="YES" attributeType="String"/>
         <relationship name="agencies" toMany="YES" deletionRule="Nullify" destinationEntity="Agency" inverseName="programs" inverseEntity="Agency"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="programs" inverseEntity="Event"/>
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="programs" inverseEntity="Launch"/>
     </entity>
     <entity name="Rocket" representedClassName=".Rocket" syncable="YES" codeGenerationType="class">
@@ -115,12 +190,40 @@
         <attribute name="rocketID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="variant" optional="YES" attributeType="String"/>
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="rocket" inverseEntity="Launch"/>
+        <relationship name="vehicles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="launcher" inverseEntity="Vehicle"/>
     </entity>
     <entity name="ServiceProvider" representedClassName=".ServiceProvider" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="serviceProvider" inverseEntity="Launch"/>
+    </entity>
+    <entity name="Spacecraft" representedClassName=".Spacecraft" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="serialNumber" optional="YES" attributeType="String"/>
+        <attribute name="spacecraftDescription" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="flightVehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FlightVehicle" inverseName="spacecraft" inverseEntity="FlightVehicle"/>
+        <relationship name="spacecraftConfig" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpacecraftConfig" inverseName="spacecraft" inverseEntity="SpacecraftConfig"/>
+    </entity>
+    <entity name="SpacecraftConfig" representedClassName=".SpacecraftConfig" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="inUse" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="agency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Agency" inverseName="spacecraftConfigs" inverseEntity="Agency"/>
+        <relationship name="spacecraft" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spacecraft" inverseName="spacecraftConfig" inverseEntity="Spacecraft"/>
+    </entity>
+    <entity name="SpaceStation" representedClassName=".SpaceStation" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="spaceStations" inverseEntity="Event"/>
+        <relationship name="expeditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expedition" inverseName="spaceStation" inverseEntity="Expedition"/>
     </entity>
     <entity name="Status" representedClassName=".Status" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -129,16 +232,40 @@
         <attribute name="statusDescription" optional="YES" attributeType="String"/>
         <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="status" inverseEntity="Launch"/>
     </entity>
+    <entity name="Vehicle" representedClassName=".Vehicle" syncable="YES" codeGenerationType="class">
+        <attribute name="details" optional="YES" attributeType="String"/>
+        <attribute name="firstLaunchDate" optional="YES" attributeType="String"/>
+        <attribute name="flightProven" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="flights" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="lastLaunchDate" optional="YES" attributeType="String"/>
+        <attribute name="serialNumber" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="launcher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="vehicles" inverseEntity="Rocket"/>
+    </entity>
     <elements>
-        <element name="Agency" positionX="16.8914794921875" positionY="88.14666748046875" width="128" height="268"/>
-        <element name="Launch" positionX="-299.257568359375" positionY="-523.8718872070312" width="128" height="359"/>
-        <element name="Location" positionX="175.9981689453125" positionY="-15.702880859375" width="128" height="134"/>
-        <element name="Mission" positionX="-99.41424560546875" positionY="-498.4798126220703" width="128" height="164"/>
-        <element name="Pad" positionX="160.2344970703125" positionY="-388.616943359375" width="128" height="223"/>
-        <element name="Program" positionX="6.45245361328125" positionY="-151.3077392578124" width="128" height="193"/>
-        <element name="Rocket" positionX="-235.4929809570314" positionY="-106.0228881835938" width="128" height="149"/>
-        <element name="ServiceProvider" positionX="-464.8961791992188" positionY="-296.6705322265625" width="128" height="89"/>
-        <element name="Status" positionX="-395.1998901367188" positionY="-114.9238891601561" width="128" height="104"/>
-        <element name="Astronaut" positionX="-407.6414184570312" positionY="46.71136474609375" width="128" height="298"/>
+        <element name="Agency" positionX="61.236083984375" positionY="656.6265563964844" width="128" height="283"/>
+        <element name="Astronaut" positionX="-182.2117919921875" positionY="633.5986938476562" width="128" height="284"/>
+        <element name="Docking" positionX="-357.7117919921875" positionY="262.4818420410156" width="128" height="133"/>
+        <element name="DockingLocation" positionX="-347.2034301757812" positionY="456.0563049316406" width="128" height="88"/>
+        <element name="Event" positionX="86.152587890625" positionY="68.18963623046875" width="128" height="224"/>
+        <element name="Expedition" positionX="-190.941650390625" positionY="117.1736755371094" width="128" height="119"/>
+        <element name="FlightVehicle" positionX="-343.2256469726562" positionY="528.8283386230469" width="128" height="133"/>
+        <element name="Launch" positionX="338.7611083984375" positionY="325.97216796875" width="128" height="418"/>
+        <element name="Launcher" positionX="664.83203125" positionY="136.1828002929688" width="128" height="14"/>
+        <element name="LiveStream" positionX="511.0220947265625" positionY="140.5800323486328" width="128" height="104"/>
+        <element name="Location" positionX="704.0233154296875" positionY="346.5775756835938" width="128" height="134"/>
+        <element name="Mission" positionX="341.4112548828125" positionY="122.8488006591797" width="128" height="178"/>
+        <element name="Pad" positionX="546.6619873046875" positionY="358.8060913085938" width="128" height="209"/>
+        <element name="Program" positionX="100.9578247070312" positionY="406.0181121826172" width="128" height="194"/>
+        <element name="Rocket" positionX="547.4927978515625" positionY="623.874267578125" width="128" height="164"/>
+        <element name="ServiceProvider" positionX="307.8291015625" positionY="827.1043701171875" width="128" height="89"/>
+        <element name="Spacecraft" positionX="9" positionY="243" width="128" height="149"/>
+        <element name="SpacecraftConfig" positionX="-126" positionY="261" width="128" height="149"/>
+        <element name="SpaceStation" positionX="-135.7772827148438" positionY="371.0463256835938" width="128" height="104"/>
+        <element name="Status" positionX="454.5120849609375" positionY="812.7102813720703" width="128" height="104"/>
+        <element name="Vehicle" positionX="697.548095703125" positionY="628.2141723632812" width="128" height="179"/>
+        <element name="LauncherConfig" positionX="-162" positionY="225" width="128" height="14"/>
     </elements>
 </model>

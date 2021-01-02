@@ -65,10 +65,10 @@ struct PersistenceController
       // install the fixed content, if the db has never been filled
       if inMemory == false
       {
-         let forceFill = false
+         let forceFill = true
          if getAgencyCount( context: container.viewContext ) == 0 || forceFill
          {
-            // TODO shouldn't have to do this, but launches seemed to be duplicationg
+            // TODO shouldn't have to do this, but launches seemed to be duplicating
             deleteAllData( entityName: "Agency", context: container.viewContext )
             deleteAllData( entityName: "Astronaut", context: container.viewContext )
             deleteAllData( entityName: "Launch", context: container.viewContext )
@@ -92,28 +92,110 @@ struct PersistenceController
  */
 func fillStore( viewContext: NSManagedObjectContext )
 {
+   // agencies.json
    let agencies: AgenciesListJSON? = parseJSONFile( filename: "agencies" )
    for agency in agencies?.sublist ?? []
    {
       _ = fetchAgency( agency: agency, context: viewContext )
    }
 
+   // launches.json
    let launches: LaunchListJSON? = parseJSONFile( filename: "launches" )
    for launch in launches?.sublist ?? []
    {
       _ = fetchLaunch( launch: launch, context: viewContext )
    }
 
+   // pads.json
    let pads: PadListJSON? = parseJSONFile( filename: "pads" )
    for pad in pads?.sublist ?? []
    {
       _ = fetchPad( pad: pad, context: viewContext )
    }
 
+   // astronauts.json
    let astronauts: AstronautListJSON? = parseJSONFile( filename: "astronauts" )
    for astronaut in astronauts?.sublist ?? []
    {
       _ = fetchAstronaut( astronaut: astronaut, context: viewContext )
+   }
+
+   // startshipTests.json
+   let starshipData: StarshipListJSON? = parseJSONFile( filename: "starshipTests" )
+   for event in starshipData?.upcoming?.events ?? []
+   {
+      _ = fetchEvent( event: event, context: viewContext )
+   }
+   for launch in starshipData?.upcoming?.launches ?? []
+   {
+      _ = fetchLaunch( launch: launch, context: viewContext )
+   }
+   for event in starshipData?.previous?.events ?? []
+   {
+      _ = fetchEvent( event: event, context: viewContext )
+   }
+   for launch in starshipData?.previous?.launches ?? []
+   {
+      _ = fetchLaunch( launch: launch, context: viewContext )
+   }
+   for liveStream in starshipData?.liveStreams ?? []
+   {
+      _ = fetchLiveStream( liveStream: liveStream, context: viewContext )
+   }
+   // TODO
+//   for roadClosure in starshipData?.roadClosures ?? []
+//   {
+//      _ = fetchRoadClosure( roadClosure: roadClosure, context: viewContext )
+//   }
+//   for notice in starshipData?.notices ?? []
+//   {
+//      _ = fetchNotice( notice: notice, context: viewContext )
+//   }
+   for vehicle in starshipData?.vehicles ?? []
+   {
+      _ = fetchVehicle( vehicle: vehicle, context: viewContext )
+   }
+
+   // docking.json
+   let dockingList: DockingListJSON? = parseJSONFile( filename: "docking" )
+   for docking in dockingList?.sublist ?? []
+   {
+      _ = fetchDocking( docking: docking, context: viewContext )
+   }
+
+   // events.json
+   let eventList: EventListJSON? = parseJSONFile( filename: "events" )
+   for event in eventList?.sublist ?? []
+   {
+      _ = fetchEvent( event: event, context: viewContext )
+   }
+
+   // expeditions.json
+   let expeditionList: ExpeditionListJSON? = parseJSONFile( filename: "expeditions" )
+   for expedition in expeditionList?.sublist ?? []
+   {
+      _ = fetchExpedition( expedition: expedition, context: viewContext )
+   }
+
+   // launchers.json
+   let launchersList: LauncherListJSON? = parseJSONFile( filename: "launchers" )
+   for launcher in launchersList?.sublist ?? []
+   {
+      _ = fetchLauncher( launcher: launcher, context: viewContext )
+   }
+
+   // locations.json
+   let locationList: LocationListJSON? = parseJSONFile( filename: "locations" )
+   for location in locationList?.sublist ?? []
+   {
+      _ = fetchLocation( location: location, context: viewContext )
+   }
+
+   // programs.json
+   let programList: ProgramListJSON? = parseJSONFile( filename: "programs" )
+   for program in programList?.sublist ?? []
+   {
+      _ = fetchProgram( program: program, context: viewContext )
    }
 
    saveContext( viewContext )
