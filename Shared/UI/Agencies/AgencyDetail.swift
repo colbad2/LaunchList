@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 import SwiftUI
 
@@ -11,12 +10,7 @@ struct AgencyDetail: View
       ScrollView
       {
          TitleField( s: agency.name )
-
-         // TODO why no show in preview?
-         if let agencyImage = agency.imageURL
-         {
-            IconView( withURL: agencyImage )
-         }
+         IconView( withURL: agency.imageURL )
 
          VStack
          {
@@ -75,6 +69,7 @@ struct AgencyDetail: View
    }
 }
 
+#if DEBUG
 struct AgencyPreview: PreviewProvider
 {
    static var previews: some View
@@ -86,3 +81,4 @@ struct AgencyPreview: PreviewProvider
       AgencyDetail( agency: agency! )
    }
 }
+#endif

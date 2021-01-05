@@ -1,4 +1,4 @@
-import Foundation
+
 import CoreData
 
 /**
@@ -120,20 +120,10 @@ func getProgramCount( context: NSManagedObjectContext ) -> Int?
 
 func getSampleProgram() -> ProgramJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      let jsonData = sampleProgramJSON.data( using: .utf8 )!
-      return try decoder.decode( ProgramJSON.self, from: jsonData )
-   }
-   catch { print("error: ", error) }
-
-   return nil
+   return parseJSONString( json: sampleProgramJSON )
 }
 
-let sampleProgramJSON =
+private let sampleProgramJSON =
 """
     {
       "id": 17,

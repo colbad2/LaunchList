@@ -1,5 +1,3 @@
-import Foundation
-
 public struct AgenciesListJSON: Decodable
 {
    // translate API attribute names into better var names

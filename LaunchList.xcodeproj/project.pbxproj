@@ -28,7 +28,6 @@
 		A22063D0259D766200A27B93 /* LeftField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22063CF259D766200A27B93 /* LeftField.swift */; };
 		A22063D7259D775D00A27B93 /* TwoFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22063D6259D775D00A27B93 /* TwoFields.swift */; };
 		A22063DF259D7B5800A27B93 /* TitleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22063DE259D7B5800A27B93 /* TitleField.swift */; };
-		A22063F0259D7CCD00A27B93 /* AstronautRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22063EF259D7CCD00A27B93 /* AstronautRow.swift */; };
 		A22063FC259D955700A27B93 /* LinkBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22063FB259D955700A27B93 /* LinkBarView.swift */; };
 		A2206403259E41E900A27B93 /* AgencyLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2206402259E41E900A27B93 /* AgencyLink.swift */; };
 		A220640A259E492C00A27B93 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2206409259E492C00A27B93 /* HomeView.swift */; };
@@ -94,17 +93,35 @@
 		A2732A9325A0E34400A11CE6 /* ProgramListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732A9025A0E34400A11CE6 /* ProgramListJSON.swift */; };
 		A2732A9B25A0E40B00A11CE6 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732A9A25A0E40B00A11CE6 /* EventList.swift */; };
 		A2732A9C25A0E40B00A11CE6 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732A9A25A0E40B00A11CE6 /* EventList.swift */; };
-		A2732A9D25A0E40B00A11CE6 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732A9A25A0E40B00A11CE6 /* EventList.swift */; };
-		A2732AA925A0ECE900A11CE6 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AA825A0ECE900A11CE6 /* EventRow.swift */; };
-		A2732AAA25A0ECE900A11CE6 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AA825A0ECE900A11CE6 /* EventRow.swift */; };
-		A2732AAB25A0ECE900A11CE6 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AA825A0ECE900A11CE6 /* EventRow.swift */; };
 		A2732AB225A1180000A11CE6 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AB125A1180000A11CE6 /* EventDetail.swift */; };
 		A2732AB325A1180000A11CE6 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AB125A1180000A11CE6 /* EventDetail.swift */; };
-		A2732AB425A1180000A11CE6 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AB125A1180000A11CE6 /* EventDetail.swift */; };
+		A2732AC125A1595B00A11CE6 /* LiveStreamsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AC025A1595B00A11CE6 /* LiveStreamsList.swift */; };
+		A2732AC225A1595B00A11CE6 /* LiveStreamsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AC025A1595B00A11CE6 /* LiveStreamsList.swift */; };
+		A2732AD825A15A4700A11CE6 /* LiveStreamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AD725A15A4700A11CE6 /* LiveStreamDetail.swift */; };
+		A2732AD925A15A4700A11CE6 /* LiveStreamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AD725A15A4700A11CE6 /* LiveStreamDetail.swift */; };
+		A2732AF025A18A3C00A11CE6 /* VehicleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AEF25A18A3C00A11CE6 /* VehicleList.swift */; };
+		A2732AF125A18A3C00A11CE6 /* VehicleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AEF25A18A3C00A11CE6 /* VehicleList.swift */; };
+		A2732AF925A18AC700A11CE6 /* VehicleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AF825A18AC700A11CE6 /* VehicleDetail.swift */; };
+		A2732AFA25A18AC700A11CE6 /* VehicleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732AF825A18AC700A11CE6 /* VehicleDetail.swift */; };
+		A2732B0825A2BBFF00A11CE6 /* DockingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732B0725A2BBFF00A11CE6 /* DockingList.swift */; };
+		A2732B0925A2BBFF00A11CE6 /* DockingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732B0725A2BBFF00A11CE6 /* DockingList.swift */; };
+		A2732B1F25A2BDD800A11CE6 /* DockingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732B1E25A2BDD800A11CE6 /* DockingDetail.swift */; };
+		A2732B2025A2BDD800A11CE6 /* DockingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732B1E25A2BDD800A11CE6 /* DockingDetail.swift */; };
+		A2732B2825A2C17E00A11CE6 /* RowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732B2725A2C17E00A11CE6 /* RowImage.swift */; };
+		A2732B2925A2C17E00A11CE6 /* RowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732B2725A2C17E00A11CE6 /* RowImage.swift */; };
+		A2732B4125A2CE7600A11CE6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2732B4025A2CE7600A11CE6 /* WidgetKit.framework */; };
+		A2732B4325A2CE7600A11CE6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2732B4225A2CE7600A11CE6 /* SwiftUI.framework */; };
+		A2732B4625A2CE7600A11CE6 /* LaunchListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732B4525A2CE7600A11CE6 /* LaunchListWidget.swift */; };
+		A2732B4925A2CE7800A11CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2732B4825A2CE7800A11CE6 /* Assets.xcassets */; };
+		A2732B4B25A2CE7800A11CE6 /* LaunchListWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = A2732B4725A2CE7600A11CE6 /* LaunchListWidget.intentdefinition */; };
+		A2732B4C25A2CE7800A11CE6 /* LaunchListWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = A2732B4725A2CE7600A11CE6 /* LaunchListWidget.intentdefinition */; };
+		A2732B4F25A2CE7800A11CE6 /* LaunchListWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A2732B3E25A2CE7600A11CE6 /* LaunchListWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A2732B6625A3630000A11CE6 /* TitleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22063DE259D7B5800A27B93 /* TitleField.swift */; };
+		A28AFE8E25A3BD540058D00C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5CE99259C59A10050DF06 /* String+Extensions.swift */; };
+		A28AFE9525A3BD6D0058D00C /* Regex+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5B1A5259CDCB3009DC2D4 /* Regex+Extensions.swift */; };
+		A28AFE9C25A3BD8D0058D00C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72092595AF8D009405E6 /* Persistence.swift */; };
 		A29B4CF8259B933D00EE0B56 /* AgencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29B4CF7259B933D00EE0B56 /* AgencyList.swift */; };
 		A29B4CF9259B933D00EE0B56 /* AgencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29B4CF7259B933D00EE0B56 /* AgencyList.swift */; };
-		A29B4D00259B947800EE0B56 /* AgencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29B4CFF259B947800EE0B56 /* AgencyRow.swift */; };
-		A29B4D01259B947800EE0B56 /* AgencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29B4CFF259B947800EE0B56 /* AgencyRow.swift */; };
 		A2A6382E2596694800D58415 /* LocationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72692595AFF3009405E6 /* LocationJSON.swift */; };
 		A2A6382F2596694800D58415 /* MissionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA726A2595AFF3009405E6 /* MissionJSON.swift */; };
 		A2A638302596694800D58415 /* ConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA726B2595AFF3009405E6 /* ConfigurationJSON.swift */; };
@@ -120,8 +137,6 @@
 		A2A638482596713100D58415 /* OrbitJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A638462596713100D58415 /* OrbitJSON.swift */; };
 		A2A638492596713100D58415 /* OrbitJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A638462596713100D58415 /* OrbitJSON.swift */; };
 		A2A638CA259675D300D58415 /* AgencyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6383D259670E900D58415 /* AgencyJSON.swift */; };
-		A2BBFEFD259CF31800BBC605 /* MissionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BBFEFC259CF31800BBC605 /* MissionRow.swift */; };
-		A2BBFEFE259CF31800BBC605 /* MissionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BBFEFC259CF31800BBC605 /* MissionRow.swift */; };
 		A2BBFF06259CFC2500BBC605 /* ServiceProviderListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BBFF05259CFC2500BBC605 /* ServiceProviderListJSON.swift */; };
 		A2BBFF07259CFC2500BBC605 /* ServiceProviderListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BBFF05259CFC2500BBC605 /* ServiceProviderListJSON.swift */; };
 		A2BBFF1D259D00DC00BBC605 /* launchers.json in Resources */ = {isa = PBXBuildFile; fileRef = A2BBFF1C259D00DC00BBC605 /* launchers.json */; };
@@ -191,8 +206,6 @@
 		A2DEA273259ADE8F009D5B4B /* LaunchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA271259ADE8F009D5B4B /* LaunchDetail.swift */; };
 		A2DEA27A259ADF38009D5B4B /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA279259ADF38009D5B4B /* IconView.swift */; };
 		A2DEA27B259ADF38009D5B4B /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA279259ADF38009D5B4B /* IconView.swift */; };
-		A2DEA282259ADF69009D5B4B /* LaunchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA281259ADF69009D5B4B /* LaunchRow.swift */; };
-		A2DEA283259ADF69009D5B4B /* LaunchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA281259ADF69009D5B4B /* LaunchRow.swift */; };
 		A2DEA28A259ADF9C009D5B4B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */; };
 		A2DEA28B259ADF9C009D5B4B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */; };
 		A2DEA292259ADFE9009D5B4B /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEA291259ADFE9009D5B4B /* UIUtils.swift */; };
@@ -205,12 +218,8 @@
 		A2E540C6259BA1B400AD7BF8 /* ServiceProviderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540C4259BA1B400AD7BF8 /* ServiceProviderList.swift */; };
 		A2E540CD259BA26200AD7BF8 /* ServiceProviderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540CC259BA26200AD7BF8 /* ServiceProviderDetail.swift */; };
 		A2E540CE259BA26200AD7BF8 /* ServiceProviderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540CC259BA26200AD7BF8 /* ServiceProviderDetail.swift */; };
-		A2E540D5259BA31300AD7BF8 /* ServiceProviderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540D4259BA31300AD7BF8 /* ServiceProviderRow.swift */; };
-		A2E540D6259BA31300AD7BF8 /* ServiceProviderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540D4259BA31300AD7BF8 /* ServiceProviderRow.swift */; };
 		A2E540E7259BAE7D00AD7BF8 /* PadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540E6259BAE7D00AD7BF8 /* PadList.swift */; };
 		A2E540E8259BAE7D00AD7BF8 /* PadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540E6259BAE7D00AD7BF8 /* PadList.swift */; };
-		A2E540F4259BB1EE00AD7BF8 /* PadRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540F3259BB1EE00AD7BF8 /* PadRow.swift */; };
-		A2E540F5259BB1EE00AD7BF8 /* PadRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540F3259BB1EE00AD7BF8 /* PadRow.swift */; };
 		A2E540FC259BB43200AD7BF8 /* MissionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540FB259BB43200AD7BF8 /* MissionList.swift */; };
 		A2E540FD259BB43200AD7BF8 /* MissionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E540FB259BB43200AD7BF8 /* MissionList.swift */; };
 		A2E54109259BB51000AD7BF8 /* MissionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54108259BB51000AD7BF8 /* MissionDetail.swift */; };
@@ -219,12 +228,8 @@
 		A2E54112259BD83700AD7BF8 /* ProgramList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54110259BD83700AD7BF8 /* ProgramList.swift */; };
 		A2E54119259BD8CA00AD7BF8 /* ProgramDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54118259BD8CA00AD7BF8 /* ProgramDetail.swift */; };
 		A2E5411A259BD8CA00AD7BF8 /* ProgramDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54118259BD8CA00AD7BF8 /* ProgramDetail.swift */; };
-		A2E54121259BD9F500AD7BF8 /* ProgramRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54120259BD9F500AD7BF8 /* ProgramRow.swift */; };
-		A2E54122259BD9F500AD7BF8 /* ProgramRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54120259BD9F500AD7BF8 /* ProgramRow.swift */; };
 		A2E54129259BE18B00AD7BF8 /* RocketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54128259BE18B00AD7BF8 /* RocketList.swift */; };
 		A2E5412A259BE18B00AD7BF8 /* RocketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54128259BE18B00AD7BF8 /* RocketList.swift */; };
-		A2E54131259BE1C300AD7BF8 /* RocketRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54130259BE1C300AD7BF8 /* RocketRow.swift */; };
-		A2E54132259BE1C300AD7BF8 /* RocketRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54130259BE1C300AD7BF8 /* RocketRow.swift */; };
 		A2E54139259BE1FE00AD7BF8 /* RocketDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54138259BE1FE00AD7BF8 /* RocketDetail.swift */; };
 		A2E5413A259BE1FE00AD7BF8 /* RocketDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E54138259BE1FE00AD7BF8 /* RocketDetail.swift */; };
 		A2E5414F259C001200AD7BF8 /* launches.json in Resources */ = {isa = PBXBuildFile; fileRef = A2E5414E259C001200AD7BF8 /* launches.json */; };
@@ -261,6 +266,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A2732B4D25A2CE7800A11CE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A2DA72002595AF8C009405E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2732B3D25A2CE7600A11CE6;
+			remoteInfo = LaunchListWidgetExtension;
+		};
 		A2DA72202595AF8F009405E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A2DA72002595AF8C009405E6 /* Project object */;
@@ -277,6 +289,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A2732B5325A2CE7800A11CE6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A2732B4F25A2CE7800A11CE6 /* LaunchListWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A21367B725A0D7B30045F482 /* LauncherListJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherListJSON.swift; sourceTree = "<group>"; };
 		A21367C025A0D7E70045F482 /* LauncherJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherJSON.swift; sourceTree = "<group>"; };
@@ -288,7 +314,6 @@
 		A22063CF259D766200A27B93 /* LeftField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftField.swift; sourceTree = "<group>"; };
 		A22063D6259D775D00A27B93 /* TwoFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFields.swift; sourceTree = "<group>"; };
 		A22063DE259D7B5800A27B93 /* TitleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleField.swift; sourceTree = "<group>"; };
-		A22063EF259D7CCD00A27B93 /* AstronautRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautRow.swift; sourceTree = "<group>"; };
 		A22063FB259D955700A27B93 /* LinkBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBarView.swift; sourceTree = "<group>"; };
 		A2206402259E41E900A27B93 /* AgencyLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyLink.swift; sourceTree = "<group>"; };
 		A2206409259E492C00A27B93 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -312,14 +337,25 @@
 		A2732A8225A0E26700A11CE6 /* LocationListJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListJSON.swift; sourceTree = "<group>"; };
 		A2732A9025A0E34400A11CE6 /* ProgramListJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramListJSON.swift; sourceTree = "<group>"; };
 		A2732A9A25A0E40B00A11CE6 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
-		A2732AA825A0ECE900A11CE6 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		A2732AB125A1180000A11CE6 /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
+		A2732AC025A1595B00A11CE6 /* LiveStreamsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamsList.swift; sourceTree = "<group>"; };
+		A2732AD725A15A4700A11CE6 /* LiveStreamDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamDetail.swift; sourceTree = "<group>"; };
+		A2732AEF25A18A3C00A11CE6 /* VehicleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleList.swift; sourceTree = "<group>"; };
+		A2732AF825A18AC700A11CE6 /* VehicleDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetail.swift; sourceTree = "<group>"; };
+		A2732B0725A2BBFF00A11CE6 /* DockingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockingList.swift; sourceTree = "<group>"; };
+		A2732B1E25A2BDD800A11CE6 /* DockingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockingDetail.swift; sourceTree = "<group>"; };
+		A2732B2725A2C17E00A11CE6 /* RowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowImage.swift; sourceTree = "<group>"; };
+		A2732B3E25A2CE7600A11CE6 /* LaunchListWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LaunchListWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2732B4025A2CE7600A11CE6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A2732B4225A2CE7600A11CE6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A2732B4525A2CE7600A11CE6 /* LaunchListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListWidget.swift; sourceTree = "<group>"; };
+		A2732B4725A2CE7600A11CE6 /* LaunchListWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = LaunchListWidget.intentdefinition; sourceTree = "<group>"; };
+		A2732B4825A2CE7800A11CE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2732B4A25A2CE7800A11CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A29B4CF6259B90EE00EE0B56 /* Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Notes.md; sourceTree = "<group>"; };
 		A29B4CF7259B933D00EE0B56 /* AgencyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyList.swift; sourceTree = "<group>"; };
-		A29B4CFF259B947800EE0B56 /* AgencyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyRow.swift; sourceTree = "<group>"; };
 		A2A6383D259670E900D58415 /* AgencyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyJSON.swift; sourceTree = "<group>"; };
 		A2A638462596713100D58415 /* OrbitJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitJSON.swift; sourceTree = "<group>"; };
-		A2BBFEFC259CF31800BBC605 /* MissionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRow.swift; sourceTree = "<group>"; };
 		A2BBFF05259CFC2500BBC605 /* ServiceProviderListJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderListJSON.swift; sourceTree = "<group>"; };
 		A2BBFF1C259D00DC00BBC605 /* launchers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = launchers.json; sourceTree = "<group>"; };
 		A2BBFF24259D015E00BBC605 /* locations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
@@ -366,23 +402,18 @@
 		A2DEA269259ADE2E009D5B4B /* PadDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadDetail.swift; sourceTree = "<group>"; };
 		A2DEA271259ADE8F009D5B4B /* LaunchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetail.swift; sourceTree = "<group>"; };
 		A2DEA279259ADF38009D5B4B /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
-		A2DEA281259ADF69009D5B4B /* LaunchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRow.swift; sourceTree = "<group>"; };
 		A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		A2DEA291259ADFE9009D5B4B /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		A2DEA299259AE9BE009D5B4B /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		A2DEA2A6259B06C3009D5B4B /* AgencyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyDetail.swift; sourceTree = "<group>"; };
 		A2E540C4259BA1B400AD7BF8 /* ServiceProviderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderList.swift; sourceTree = "<group>"; };
 		A2E540CC259BA26200AD7BF8 /* ServiceProviderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderDetail.swift; sourceTree = "<group>"; };
-		A2E540D4259BA31300AD7BF8 /* ServiceProviderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderRow.swift; sourceTree = "<group>"; };
 		A2E540E6259BAE7D00AD7BF8 /* PadList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadList.swift; sourceTree = "<group>"; };
-		A2E540F3259BB1EE00AD7BF8 /* PadRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadRow.swift; sourceTree = "<group>"; };
 		A2E540FB259BB43200AD7BF8 /* MissionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionList.swift; sourceTree = "<group>"; };
 		A2E54108259BB51000AD7BF8 /* MissionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetail.swift; sourceTree = "<group>"; };
 		A2E54110259BD83700AD7BF8 /* ProgramList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramList.swift; sourceTree = "<group>"; };
 		A2E54118259BD8CA00AD7BF8 /* ProgramDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetail.swift; sourceTree = "<group>"; };
-		A2E54120259BD9F500AD7BF8 /* ProgramRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramRow.swift; sourceTree = "<group>"; };
 		A2E54128259BE18B00AD7BF8 /* RocketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketList.swift; sourceTree = "<group>"; };
-		A2E54130259BE1C300AD7BF8 /* RocketRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketRow.swift; sourceTree = "<group>"; };
 		A2E54138259BE1FE00AD7BF8 /* RocketDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketDetail.swift; sourceTree = "<group>"; };
 		A2E5414E259C001200AD7BF8 /* launches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = launches.json; sourceTree = "<group>"; };
 		A2E5415B259C003600AD7BF8 /* agencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = agencies.json; sourceTree = "<group>"; };
@@ -401,6 +432,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A2732B3B25A2CE7600A11CE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2732B4325A2CE7600A11CE6 /* SwiftUI.framework in Frameworks */,
+				A2732B4125A2CE7600A11CE6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A2DA720C2595AF8F009405E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,7 +504,6 @@
 			children = (
 				A22063BC259D71B100A27B93 /* AstronautList.swift */,
 				A22063C8259D723E00A27B93 /* AstronautDetail.swift */,
-				A22063EF259D7CCD00A27B93 /* AstronautRow.swift */,
 			);
 			path = Astronauts;
 			sourceTree = "<group>";
@@ -480,6 +519,7 @@
 				A22063DE259D7B5800A27B93 /* TitleField.swift */,
 				A22063FB259D955700A27B93 /* LinkBarView.swift */,
 				A2206402259E41E900A27B93 /* AgencyLink.swift */,
+				A2732B2725A2C17E00A11CE6 /* RowImage.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -488,10 +528,56 @@
 			isa = PBXGroup;
 			children = (
 				A2732A9A25A0E40B00A11CE6 /* EventList.swift */,
-				A2732AA825A0ECE900A11CE6 /* EventRow.swift */,
 				A2732AB125A1180000A11CE6 /* EventDetail.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		A2732ABF25A1594900A11CE6 /* Live Streams */ = {
+			isa = PBXGroup;
+			children = (
+				A2732AC025A1595B00A11CE6 /* LiveStreamsList.swift */,
+				A2732AD725A15A4700A11CE6 /* LiveStreamDetail.swift */,
+			);
+			path = "Live Streams";
+			sourceTree = "<group>";
+		};
+		A2732AE025A1669B00A11CE6 /* Starship Vehicle */ = {
+			isa = PBXGroup;
+			children = (
+				A2732AEF25A18A3C00A11CE6 /* VehicleList.swift */,
+				A2732AF825A18AC700A11CE6 /* VehicleDetail.swift */,
+			);
+			path = "Starship Vehicle";
+			sourceTree = "<group>";
+		};
+		A2732B0625A2BBEF00A11CE6 /* Docking */ = {
+			isa = PBXGroup;
+			children = (
+				A2732B0725A2BBFF00A11CE6 /* DockingList.swift */,
+				A2732B1E25A2BDD800A11CE6 /* DockingDetail.swift */,
+			);
+			path = Docking;
+			sourceTree = "<group>";
+		};
+		A2732B3F25A2CE7600A11CE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A2732B4025A2CE7600A11CE6 /* WidgetKit.framework */,
+				A2732B4225A2CE7600A11CE6 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A2732B4425A2CE7600A11CE6 /* LaunchListWidget */ = {
+			isa = PBXGroup;
+			children = (
+				A2732B4525A2CE7600A11CE6 /* LaunchListWidget.swift */,
+				A2732B4725A2CE7600A11CE6 /* LaunchListWidget.intentdefinition */,
+				A2732B4825A2CE7800A11CE6 /* Assets.xcassets */,
+				A2732B4A25A2CE7800A11CE6 /* Info.plist */,
+			);
+			path = LaunchListWidget;
 			sourceTree = "<group>";
 		};
 		A2A637C125965EFC00D58415 /* CoreData */ = {
@@ -504,26 +590,37 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		A2B1348225A4EFF7009C42E5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */,
+				A2D6D7DD25982616003D5401 /* RemoteImageCache.swift */,
+				A2DEA291259ADFE9009D5B4B /* UIUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		A2D6D7D7259825E3003D5401 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A2732A9925A0E3F400A11CE6 /* Events */,
 				A2DA72072595AF8D009405E6 /* LaunchListApp.swift */,
 				A2F5B1B2259CE2EF009DC2D4 /* TabsView.swift */,
 				A2206409259E492C00A27B93 /* HomeView.swift */,
 				A2BBFF59259D53BF00BBC605 /* DatasetList.swift */,
-				A22063DD259D7B1700A27B93 /* Subviews */,
 				A22063BB259D71A200A27B93 /* Astronauts */,
+				A2732B0625A2BBEF00A11CE6 /* Docking */,
+				A2732ABF25A1594900A11CE6 /* Live Streams */,
+				A2732A9925A0E3F400A11CE6 /* Events */,
 				A2F5B1CA259CEBAC009DC2D4 /* Rockets */,
+				A2732AE025A1669B00A11CE6 /* Starship Vehicle */,
 				A2F5B1C9259CEBA0009DC2D4 /* Programs */,
 				A2F5B1C8259CEB94009DC2D4 /* MIssions */,
 				A2F5B1C4259CEB52009DC2D4 /* Launches */,
 				A2F5B1C6259CEB6B009DC2D4 /* Agencies */,
 				A2F5B1C5259CEB60009DC2D4 /* Pads */,
 				A2F5B1C7259CEB7F009DC2D4 /* Service Providers */,
-				A2DEA289259ADF9C009D5B4B /* ImageLoader.swift */,
-				A2D6D7DD25982616003D5401 /* RemoteImageCache.swift */,
-				A2DEA291259ADFE9009D5B4B /* UIUtils.swift */,
+				A2B1348225A4EFF7009C42E5 /* Utils */,
+				A22063DD259D7B1700A27B93 /* Subviews */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -538,6 +635,8 @@
 				A2DA72222595AF8F009405E6 /* Tests iOS */,
 				A2DA722D2595AF8F009405E6 /* Tests macOS */,
 				A2DA72522595AFC4009405E6 /* UnitTests */,
+				A2732B4425A2CE7600A11CE6 /* LaunchListWidget */,
+				A2732B3F25A2CE7600A11CE6 /* Frameworks */,
 				A2DA72102595AF8F009405E6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -564,6 +663,7 @@
 				A2DA721F2595AF8F009405E6 /* Tests iOS.xctest */,
 				A2DA722A2595AF8F009405E6 /* Tests macOS.xctest */,
 				A2DA72512595AFC4009405E6 /* UnitTests.xctest */,
+				A2732B3E25A2CE7600A11CE6 /* LaunchListWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -674,7 +774,6 @@
 			isa = PBXGroup;
 			children = (
 				A2DA72082595AF8D009405E6 /* LaunchList.swift */,
-				A2DEA281259ADF69009D5B4B /* LaunchRow.swift */,
 				A2DEA271259ADE8F009D5B4B /* LaunchDetail.swift */,
 			);
 			path = Launches;
@@ -685,7 +784,6 @@
 			children = (
 				A2E540E6259BAE7D00AD7BF8 /* PadList.swift */,
 				A2DEA269259ADE2E009D5B4B /* PadDetail.swift */,
-				A2E540F3259BB1EE00AD7BF8 /* PadRow.swift */,
 			);
 			path = Pads;
 			sourceTree = "<group>";
@@ -695,7 +793,6 @@
 			children = (
 				A29B4CF7259B933D00EE0B56 /* AgencyList.swift */,
 				A2DEA2A6259B06C3009D5B4B /* AgencyDetail.swift */,
-				A29B4CFF259B947800EE0B56 /* AgencyRow.swift */,
 			);
 			path = Agencies;
 			sourceTree = "<group>";
@@ -705,7 +802,6 @@
 			children = (
 				A2E540C4259BA1B400AD7BF8 /* ServiceProviderList.swift */,
 				A2E540CC259BA26200AD7BF8 /* ServiceProviderDetail.swift */,
-				A2E540D4259BA31300AD7BF8 /* ServiceProviderRow.swift */,
 			);
 			path = "Service Providers";
 			sourceTree = "<group>";
@@ -715,7 +811,6 @@
 			children = (
 				A2E540FB259BB43200AD7BF8 /* MissionList.swift */,
 				A2E54108259BB51000AD7BF8 /* MissionDetail.swift */,
-				A2BBFEFC259CF31800BBC605 /* MissionRow.swift */,
 			);
 			path = MIssions;
 			sourceTree = "<group>";
@@ -725,7 +820,6 @@
 			children = (
 				A2E54110259BD83700AD7BF8 /* ProgramList.swift */,
 				A2E54118259BD8CA00AD7BF8 /* ProgramDetail.swift */,
-				A2E54120259BD9F500AD7BF8 /* ProgramRow.swift */,
 			);
 			path = Programs;
 			sourceTree = "<group>";
@@ -734,7 +828,6 @@
 			isa = PBXGroup;
 			children = (
 				A2E54128259BE18B00AD7BF8 /* RocketList.swift */,
-				A2E54130259BE1C300AD7BF8 /* RocketRow.swift */,
 				A2E54138259BE1FE00AD7BF8 /* RocketDetail.swift */,
 			);
 			path = Rockets;
@@ -752,6 +845,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A2732B3D25A2CE7600A11CE6 /* LaunchListWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2732B5025A2CE7800A11CE6 /* Build configuration list for PBXNativeTarget "LaunchListWidgetExtension" */;
+			buildPhases = (
+				A2732B3A25A2CE7600A11CE6 /* Sources */,
+				A2732B3B25A2CE7600A11CE6 /* Frameworks */,
+				A2732B3C25A2CE7600A11CE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LaunchListWidgetExtension;
+			productName = LaunchListWidgetExtension;
+			productReference = A2732B3E25A2CE7600A11CE6 /* LaunchListWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		A2DA720E2595AF8F009405E6 /* LaunchList (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2DA723D2595AF8F009405E6 /* Build configuration list for PBXNativeTarget "LaunchList (iOS)" */;
@@ -759,10 +869,12 @@
 				A2DA720B2595AF8F009405E6 /* Sources */,
 				A2DA720C2595AF8F009405E6 /* Frameworks */,
 				A2DA720D2595AF8F009405E6 /* Resources */,
+				A2732B5325A2CE7800A11CE6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A2732B4E25A2CE7800A11CE6 /* PBXTargetDependency */,
 			);
 			name = "LaunchList (iOS)";
 			productName = "LaunchList (iOS)";
@@ -849,6 +961,9 @@
 				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Bradford Holcombe";
 				TargetAttributes = {
+					A2732B3D25A2CE7600A11CE6 = {
+						CreatedOnToolsVersion = 12.3;
+					};
 					A2DA720E2595AF8F009405E6 = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -886,11 +1001,20 @@
 				A2DA721E2595AF8F009405E6 /* Tests iOS */,
 				A2DA72292595AF8F009405E6 /* Tests macOS */,
 				A2DA72502595AFC4009405E6 /* UnitTests */,
+				A2732B3D25A2CE7600A11CE6 /* LaunchListWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A2732B3C25A2CE7600A11CE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2732B4925A2CE7800A11CE6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A2DA720D2595AF8F009405E6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -953,6 +1077,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A2732B3A25A2CE7600A11CE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2732B4625A2CE7600A11CE6 /* LaunchListWidget.swift in Sources */,
+				A2732B4B25A2CE7800A11CE6 /* LaunchListWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A2DA720B2595AF8F009405E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -960,6 +1093,7 @@
 				A270A91B25A027F50078F1D2 /* DockingLocationJSON.swift in Sources */,
 				A2A638CA259675D300D58415 /* AgencyJSON.swift in Sources */,
 				A220640A259E492C00A27B93 /* HomeView.swift in Sources */,
+				A2732AF925A18AC700A11CE6 /* VehicleDetail.swift in Sources */,
 				A22063BD259D71B100A27B93 /* AstronautList.swift in Sources */,
 				A2DA72352595AF8F009405E6 /* LaunchList.swift in Sources */,
 				A2ED56F5259F834A00ED6369 /* EventTypeJSON.swift in Sources */,
@@ -968,9 +1102,9 @@
 				A2DEA292259ADFE9009D5B4B /* UIUtils.swift in Sources */,
 				A2732A8325A0E26700A11CE6 /* LocationListJSON.swift in Sources */,
 				A2DEA272259ADE8F009D5B4B /* LaunchDetail.swift in Sources */,
-				A2BBFEFD259CF31800BBC605 /* MissionRow.swift in Sources */,
 				A2DA72772595AFF3009405E6 /* MissionJSON.swift in Sources */,
 				A2206403259E41E900A27B93 /* AgencyLink.swift in Sources */,
+				A2732B0825A2BBFF00A11CE6 /* DockingList.swift in Sources */,
 				A2732AB225A1180000A11CE6 /* EventDetail.swift in Sources */,
 				A2732A9125A0E34400A11CE6 /* ProgramListJSON.swift in Sources */,
 				A2BBFF06259CFC2500BBC605 /* ServiceProviderListJSON.swift in Sources */,
@@ -979,9 +1113,10 @@
 				A2BBFF80259D634F00BBC605 /* AstronautJSON.swift in Sources */,
 				A270A92425A028100078F1D2 /* FlightVehicleJSON.swift in Sources */,
 				A21367C125A0D7E70045F482 /* LauncherJSON.swift in Sources */,
+				A2732B1F25A2BDD800A11CE6 /* DockingDetail.swift in Sources */,
 				A2E54111259BD83700AD7BF8 /* ProgramList.swift in Sources */,
+				A2732AC125A1595B00A11CE6 /* LiveStreamsList.swift in Sources */,
 				A270A8E4259F88A20078F1D2 /* AstronautStatusJSON.swift in Sources */,
-				A2E540F4259BB1EE00AD7BF8 /* PadRow.swift in Sources */,
 				A2DEA2A7259B06C3009D5B4B /* AgencyDetail.swift in Sources */,
 				A22063DF259D7B5800A27B93 /* TitleField.swift in Sources */,
 				A2E540C5259BA1B400AD7BF8 /* ServiceProviderList.swift in Sources */,
@@ -992,32 +1127,27 @@
 				A2ED5703259F841000ED6369 /* NoticeJSON.swift in Sources */,
 				A2DA72332595AF8F009405E6 /* LaunchListApp.swift in Sources */,
 				A21367CF25A0DB350045F482 /* LauncherConfigJSON.swift in Sources */,
-				A2E54121259BD9F500AD7BF8 /* ProgramRow.swift in Sources */,
 				A2DA72932595B02C009405E6 /* LaunchListJSON.swift in Sources */,
 				A2E54109259BB51000AD7BF8 /* MissionDetail.swift in Sources */,
-				A2732AA925A0ECE900A11CE6 /* EventRow.swift in Sources */,
 				A2E54139259BE1FE00AD7BF8 /* RocketDetail.swift in Sources */,
 				A2168D7F25A03D3E000D401F /* ExpeditionListJSON.swift in Sources */,
+				A2732B4C25A2CE7800A11CE6 /* LaunchListWidget.intentdefinition in Sources */,
 				A29B4CF8259B933D00EE0B56 /* AgencyList.swift in Sources */,
 				A270A8ED259F88C80078F1D2 /* AstronautTypeJSON.swift in Sources */,
 				A2E54119259BD8CA00AD7BF8 /* ProgramDetail.swift in Sources */,
 				A270A92D25A028310078F1D2 /* SpacecraftJSON.swift in Sources */,
 				A2DA72852595AFF3009405E6 /* ServiceProviderJSON.swift in Sources */,
 				A22063C9259D723E00A27B93 /* AstronautDetail.swift in Sources */,
-				A2E540D5259BA31300AD7BF8 /* ServiceProviderRow.swift in Sources */,
-				A22063F0259D7CCD00A27B93 /* AstronautRow.swift in Sources */,
 				A2D6D7BB2597C1CC003D5401 /* CoreDataUtils.swift in Sources */,
 				A2732A9B25A0E40B00A11CE6 /* EventList.swift in Sources */,
 				A2DA72872595AFF3009405E6 /* ProgramJSON.swift in Sources */,
 				A2DEA29A259AE9BE009D5B4B /* CountdownView.swift in Sources */,
 				A2DA728B2595AFF3009405E6 /* StatusJSON.swift in Sources */,
 				A2168D7125A03CB6000D401F /* EventListJSON.swift in Sources */,
-				A2E54131259BE1C300AD7BF8 /* RocketRow.swift in Sources */,
 				A254CF46259F7A7B002CD844 /* EventJSON.swift in Sources */,
 				A232F6B2259E8ACE00B05FA0 /* VehicleJSON.swift in Sources */,
 				A2DA72812595AFF3009405E6 /* LaunchJSON.swift in Sources */,
 				A2DEA26A259ADE2E009D5B4B /* PadDetail.swift in Sources */,
-				A2DEA282259ADF69009D5B4B /* LaunchRow.swift in Sources */,
 				A2F5CE9A259C59A10050DF06 /* String+Extensions.swift in Sources */,
 				A2BBFF3D259D03A500BBC605 /* PadListJSON.swift in Sources */,
 				A2DEA27A259ADF38009D5B4B /* IconView.swift in Sources */,
@@ -1026,6 +1156,8 @@
 				A2206432259E6D9600A27B93 /* StarshipListJSON.swift in Sources */,
 				A2E540CD259BA26200AD7BF8 /* ServiceProviderDetail.swift in Sources */,
 				A270A8FF25A01FE80078F1D2 /* DockingListJSON.swift in Sources */,
+				A2732AD825A15A4700A11CE6 /* LiveStreamDetail.swift in Sources */,
+				A2732AF025A18A3C00A11CE6 /* VehicleList.swift in Sources */,
 				A254CF4F259F7CA0002CD844 /* ExpeditionJSON.swift in Sources */,
 				A270A93625A028460078F1D2 /* SpacecraftConfigJSON.swift in Sources */,
 				A22063D0259D766200A27B93 /* LeftField.swift in Sources */,
@@ -1037,7 +1169,6 @@
 				A2DA727D2595AFF3009405E6 /* PadJSON.swift in Sources */,
 				A2F5B1B3259CE2EF009DC2D4 /* TabsView.swift in Sources */,
 				A2F5B1A6259CDCB3009DC2D4 /* Regex+Extensions.swift in Sources */,
-				A29B4D00259B947800EE0B56 /* AgencyRow.swift in Sources */,
 				A2A638472596713100D58415 /* OrbitJSON.swift in Sources */,
 				A22CDE18259697FF00E3F96B /* JSONUtils.swift in Sources */,
 				A22063D7259D775D00A27B93 /* TwoFields.swift in Sources */,
@@ -1048,6 +1179,7 @@
 				A2DA72792595AFF3009405E6 /* ConfigurationJSON.swift in Sources */,
 				A2DA72312595AF8F009405E6 /* LaunchList.xcdatamodeld in Sources */,
 				A2ED56EC259F7CD100ED6369 /* SpaceStationJSON.swift in Sources */,
+				A2732B2825A2C17E00A11CE6 /* RowImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1061,7 +1193,6 @@
 				A2D6D7AA2597BA1C003D5401 /* AgenciesListJSON.swift in Sources */,
 				A2DEA293259ADFE9009D5B4B /* UIUtils.swift in Sources */,
 				A2DEA273259ADE8F009D5B4B /* LaunchDetail.swift in Sources */,
-				A2BBFEFE259CF31800BBC605 /* MissionRow.swift in Sources */,
 				A2732AB325A1180000A11CE6 /* EventDetail.swift in Sources */,
 				A2DA72342595AF8F009405E6 /* LaunchListApp.swift in Sources */,
 				A2BBFF07259CFC2500BBC605 /* ServiceProviderListJSON.swift in Sources */,
@@ -1070,7 +1201,7 @@
 				A2BBFF81259D634F00BBC605 /* AstronautJSON.swift in Sources */,
 				A2E54112259BD83700AD7BF8 /* ProgramList.swift in Sources */,
 				A270A92525A028100078F1D2 /* FlightVehicleJSON.swift in Sources */,
-				A2E540F5259BB1EE00AD7BF8 /* PadRow.swift in Sources */,
+				A2732B2025A2BDD800A11CE6 /* DockingDetail.swift in Sources */,
 				A2DEA2A8259B06C3009D5B4B /* AgencyDetail.swift in Sources */,
 				A2ED5704259F841000ED6369 /* NoticeJSON.swift in Sources */,
 				A2E540C6259BA1B400AD7BF8 /* ServiceProviderList.swift in Sources */,
@@ -1078,12 +1209,13 @@
 				A2F5CE92259C537E0050DF06 /* Launch+Extensions.swift in Sources */,
 				A2BBFF4E259D1A8900BBC605 /* DescriptionView.swift in Sources */,
 				A2DA72942595B02C009405E6 /* LaunchListJSON.swift in Sources */,
-				A2E54122259BD9F500AD7BF8 /* ProgramRow.swift in Sources */,
 				A2DA72862595AFF3009405E6 /* ServiceProviderJSON.swift in Sources */,
 				A270A90025A01FE80078F1D2 /* DockingListJSON.swift in Sources */,
+				A2732B6625A3630000A11CE6 /* TitleField.swift in Sources */,
 				A2E5410A259BB51000AD7BF8 /* MissionDetail.swift in Sources */,
 				A270A93725A028460078F1D2 /* SpacecraftConfigJSON.swift in Sources */,
 				A270A8F7259F893A0078F1D2 /* AstronautListJSON.swift in Sources */,
+				A2732AFA25A18AC700A11CE6 /* VehicleDetail.swift in Sources */,
 				A232F6F7259E8C6B00B05FA0 /* VehicleJSON.swift in Sources */,
 				A21367D025A0DB350045F482 /* LauncherConfigJSON.swift in Sources */,
 				A21367B925A0D7B30045F482 /* LauncherListJSON.swift in Sources */,
@@ -1091,17 +1223,16 @@
 				A29B4CF9259B933D00EE0B56 /* AgencyList.swift in Sources */,
 				A2E5411A259BD8CA00AD7BF8 /* ProgramDetail.swift in Sources */,
 				A2DA72882595AFF3009405E6 /* ProgramJSON.swift in Sources */,
-				A2E540D6259BA31300AD7BF8 /* ServiceProviderRow.swift in Sources */,
 				A2D6D7BC2597C1CC003D5401 /* CoreDataUtils.swift in Sources */,
 				A2DA728C2595AFF3009405E6 /* StatusJSON.swift in Sources */,
+				A2732AC225A1595B00A11CE6 /* LiveStreamsList.swift in Sources */,
 				A2DEA29B259AE9BE009D5B4B /* CountdownView.swift in Sources */,
 				A2DA72782595AFF3009405E6 /* MissionJSON.swift in Sources */,
-				A2E54132259BE1C300AD7BF8 /* RocketRow.swift in Sources */,
 				A2DA727E2595AFF3009405E6 /* PadJSON.swift in Sources */,
 				A2732A9C25A0E40B00A11CE6 /* EventList.swift in Sources */,
 				A232F6FE259E8C6F00B05FA0 /* RoadClosureJSON.swift in Sources */,
+				A2732AF125A18A3C00A11CE6 /* VehicleList.swift in Sources */,
 				A2DEA26B259ADE2E009D5B4B /* PadDetail.swift in Sources */,
-				A2DEA283259ADF69009D5B4B /* LaunchRow.swift in Sources */,
 				A2F5CE9B259C59A10050DF06 /* String+Extensions.swift in Sources */,
 				A2732A8425A0E26700A11CE6 /* LocationListJSON.swift in Sources */,
 				A270A90E25A0203D0078F1D2 /* DockingJSON.swift in Sources */,
@@ -1111,9 +1242,9 @@
 				A2DEA27B259ADF38009D5B4B /* IconView.swift in Sources */,
 				A2BBFF5B259D53BF00BBC605 /* DatasetList.swift in Sources */,
 				A2168D8025A03D3E000D401F /* ExpeditionListJSON.swift in Sources */,
-				A2732AAA25A0ECE900A11CE6 /* EventRow.swift in Sources */,
 				A2E540CE259BA26200AD7BF8 /* ServiceProviderDetail.swift in Sources */,
 				A232F6D2259E8C3800B05FA0 /* LiveStreamJSON.swift in Sources */,
+				A2732B2925A2C17E00A11CE6 /* RowImage.swift in Sources */,
 				A2ED56ED259F7CD100ED6369 /* SpaceStationJSON.swift in Sources */,
 				A232F6D8259E8C3F00B05FA0 /* StarshipEventsJSON.swift in Sources */,
 				A2DA72382595AF8F009405E6 /* Persistence.swift in Sources */,
@@ -1125,9 +1256,10 @@
 				A2F5B1B4259CE2EF009DC2D4 /* TabsView.swift in Sources */,
 				A2F5B1A7259CDCB3009DC2D4 /* Regex+Extensions.swift in Sources */,
 				A220643D259E776A00A27B93 /* StarshipListJSON.swift in Sources */,
-				A29B4D01259B947800EE0B56 /* AgencyRow.swift in Sources */,
+				A2732AD925A15A4700A11CE6 /* LiveStreamDetail.swift in Sources */,
 				A2DA72802595AFF3009405E6 /* RocketJSON.swift in Sources */,
 				A2168D6925A03B60000D401F /* HomeView.swift in Sources */,
+				A2732B0925A2BBFF00A11CE6 /* DockingList.swift in Sources */,
 				A22CDE19259697FF00E3F96B /* JSONUtils.swift in Sources */,
 				A2DA72762595AFF3009405E6 /* LocationJSON.swift in Sources */,
 				A270A91C25A027F50078F1D2 /* DockingLocationJSON.swift in Sources */,
@@ -1168,6 +1300,7 @@
 				A2A6382F2596694800D58415 /* MissionJSON.swift in Sources */,
 				A2A638302596694800D58415 /* ConfigurationJSON.swift in Sources */,
 				A2D6D7AB2597BA1C003D5401 /* AgenciesListJSON.swift in Sources */,
+				A28AFE9C25A3BD8D0058D00C /* Persistence.swift in Sources */,
 				A232F6E4259E8C4C00B05FA0 /* StarshipEventsJSON.swift in Sources */,
 				A270A91D25A027F50078F1D2 /* DockingLocationJSON.swift in Sources */,
 				A2D6D77D2596C6BF003D5401 /* LaunchList.xcdatamodeld in Sources */,
@@ -1182,6 +1315,7 @@
 				A2D6D7832596C6DA003D5401 /* LaunchListJSON.swift in Sources */,
 				A21367D125A0DB350045F482 /* LauncherConfigJSON.swift in Sources */,
 				A254CF48259F7A7B002CD844 /* EventJSON.swift in Sources */,
+				A28AFE8E25A3BD540058D00C /* String+Extensions.swift in Sources */,
 				A232F704259E8C7000B05FA0 /* RoadClosureJSON.swift in Sources */,
 				A232F6F6259E8C6700B05FA0 /* AstronautJSON.swift in Sources */,
 				A2A638492596713100D58415 /* OrbitJSON.swift in Sources */,
@@ -1189,8 +1323,6 @@
 				A2A63840259670E900D58415 /* AgencyJSON.swift in Sources */,
 				A2732A8525A0E26700A11CE6 /* LocationListJSON.swift in Sources */,
 				A21367BA25A0D7B30045F482 /* LauncherListJSON.swift in Sources */,
-				A2732A9D25A0E40B00A11CE6 /* EventList.swift in Sources */,
-				A2732AB425A1180000A11CE6 /* EventDetail.swift in Sources */,
 				A232F6F0259E8C5B00B05FA0 /* PadListJSON.swift in Sources */,
 				A232F6F8259E8C6C00B05FA0 /* VehicleJSON.swift in Sources */,
 				A2732A9325A0E34400A11CE6 /* ProgramListJSON.swift in Sources */,
@@ -1199,7 +1331,6 @@
 				A254CF51259F7CA0002CD844 /* ExpeditionJSON.swift in Sources */,
 				A22CDE1A259697FF00E3F96B /* JSONUtils.swift in Sources */,
 				A2A638332596694800D58415 /* RocketJSON.swift in Sources */,
-				A2732AAB25A0ECE900A11CE6 /* EventRow.swift in Sources */,
 				A2A638342596694800D58415 /* LaunchJSON.swift in Sources */,
 				A270A8EF259F88C80078F1D2 /* AstronautTypeJSON.swift in Sources */,
 				A2D6D7BD2597C1CC003D5401 /* CoreDataUtils.swift in Sources */,
@@ -1207,6 +1338,7 @@
 				A2A638362596694800D58415 /* ProgramJSON.swift in Sources */,
 				A21367C325A0D7E70045F482 /* LauncherJSON.swift in Sources */,
 				A270A93825A028460078F1D2 /* SpacecraftConfigJSON.swift in Sources */,
+				A28AFE9525A3BD6D0058D00C /* Regex+Extensions.swift in Sources */,
 				A2A638372596694800D58415 /* StatusJSON.swift in Sources */,
 				A270A90F25A0203D0078F1D2 /* DockingJSON.swift in Sources */,
 				A270A92F25A028310078F1D2 /* SpacecraftJSON.swift in Sources */,
@@ -1218,6 +1350,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A2732B4E25A2CE7800A11CE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A2732B3D25A2CE7600A11CE6 /* LaunchListWidgetExtension */;
+			targetProxy = A2732B4D25A2CE7800A11CE6 /* PBXContainerItemProxy */;
+		};
 		A2DA72212595AF8F009405E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A2DA720E2595AF8F009405E6 /* LaunchList (iOS) */;
@@ -1231,6 +1368,53 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		A2732B5125A2CE7800A11CE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z3JGPQE589;
+				INFOPLIST_FILE = LaunchListWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.colbadhombre.LaunchList.LaunchListWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A2732B5225A2CE7800A11CE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z3JGPQE589;
+				INFOPLIST_FILE = LaunchListWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.colbadhombre.LaunchList.LaunchListWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		A2DA723B2595AF8F009405E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1345,6 +1529,7 @@
 		A2DA723E2595AF8F009405E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1367,6 +1552,7 @@
 		A2DA723F2595AF8F009405E6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1568,6 +1754,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A2732B5025A2CE7800A11CE6 /* Build configuration list for PBXNativeTarget "LaunchListWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2732B5125A2CE7800A11CE6 /* Debug */,
+				A2732B5225A2CE7800A11CE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A2DA72032595AF8C009405E6 /* Build configuration list for PBXProject "LaunchList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

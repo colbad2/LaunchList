@@ -84,15 +84,12 @@ func getDockingCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "Docking", context: context )
 }
 
-func getSampleDocking() -> DockingJSON
+func getSampleDocking() -> DockingJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleDockingJSON.data( using: .utf8 )!
-   return try! decoder.decode( DockingJSON.self, from: jsonData )
+   return parseJSONString( json: sampleDockingJSON )
 }
 
-let sampleDockingJSON =
+private let sampleDockingJSON =
 """
     {
       "id": 100,

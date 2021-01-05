@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 
 /**
@@ -55,7 +54,7 @@ func getEntityByID( id: String, context: NSManagedObjectContext, entityName: Str
    do
    {
       let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
-      request.predicate = NSPredicate( format: "id == %d", id )
+      request.predicate = NSPredicate( format: "id == %@", id )
       let entities: [Any] = try context.fetch( request )
       if entities.count > 0 { return entities.first }
    }

@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>LaunchListWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>UnitTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,7 +32,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>A2732B3D25A2CE7600A11CE6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A2DA720E2595AF8F009405E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A2DA72162595AF8F009405E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A2DA721E2595AF8F009405E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,84 +1,93 @@
-import Foundation
 import SwiftUI
 import CoreData
 
 struct DatasetList: View
 {
+   let listItems: [ListItem] = [ ListItem( title: "Launches", entity: "Launch" ),
+                                 ListItem( title: "Agencies", entity: "Agency" ),
+                                 ListItem( title: "Service Providers", entity: "ServiceProvider" ),
+                                 ListItem( title: "Pads", entity: "Pad" ),
+                                 ListItem( title: "Missions", entity: "Mission" ),
+                                 ListItem( title: "Programs", entity: "Program" ),
+                                 ListItem( title: "Rockets", entity: "Rocket" ),
+                                 ListItem( title: "Astronauts", entity: "Astronaut" ),
+                                 ListItem( title: "Events", entity: "Event" ),
+                                 ListItem( title: "Live Streams", entity: "LiveStream" ),
+                                 ListItem( title: "Starship Vehicles", entity: "Vehicle" ),
+                                 ListItem( title: "Docking", entity: "Docking" ) ]
+
    var body: some View
    {
-      let context = PersistenceController.shared.container.viewContext
-
-      NavigationView
+      List( listItems )
       {
-         List
+         ( listItem: ListItem ) in
+
+         ListItemRow( listItem: listItem )
+      }
+//      .navigationBarHidden( true )
+//      .navigationBarTitle( "Datasets", displayMode: .large )
+      .navigationViewStyle( StackNavigationViewStyle() )
+   }
+}
+
+struct ListItemRow: View
+{
+   var listItem: ListItem
+   let context = PersistenceController.shared.container.viewContext
+
+   var body: some View
+   {
+      HStack
+      {
+         NavigationLink( destination: getListItemView( title: listItem.title )! )
          {
-            NavigationLink( destination: LaunchList() )
+            VStack( alignment: .leading )
             {
-               DatasetListItem( title: "Launches", entity: "Launch", context: context )
-            }
+               TitleField( s: listItem.title )
 
-            NavigationLink( destination: AgencyList() )
-            {
-               DatasetListItem( title: "Agencies", entity: "Agency", context: context )
-            }
-
-            NavigationLink( destination: ServiceProviderList() )
-            {
-               DatasetListItem( title: "Service Providers", entity: "ServiceProvider", context: context )
-            }
-
-            NavigationLink( destination: PadList() )
-            {
-               DatasetListItem( title: "Pads", entity: "Pad", context: context )
-            }
-
-            NavigationLink( destination: MissionList() )
-            {
-               DatasetListItem( title: "Missions", entity: "Mission", context: context )
-            }
-
-            NavigationLink( destination: ProgramList() )
-            {
-               DatasetListItem( title: "Programs", entity: "Program", context: context )
-            }
-
-            NavigationLink( destination: RocketList() )
-            {
-               DatasetListItem( title: "Rockets", entity: "Rocket", context: context )
-            }
-
-            NavigationLink( destination: AstronautList() )
-            {
-               DatasetListItem( title: "Astronauts", entity: "Astronaut", context: context )
-            }
-
-            NavigationLink( destination: EventList() )
-            {
-               DatasetListItem( title: "Events", entity: "Event", context: context )
+               let launchCount = getRecordsCount( entityName: listItem.entity, context: context )!
+               Text( "\(launchCount) \(listItem.title.lowercased())" )
+                  .font( .subheadline )
+                  .foregroundColor( .secondary )
             }
          }
+         Spacer()
       }
    }
 }
 
-struct DatasetListItem: View
+struct ListItem: Identifiable
 {
+   var id: String
    var title: String
    var entity: String
-   var context: NSManagedObjectContext
 
-   var body: some View
+   init( title: String, entity: String )
    {
-      VStack( alignment: .leading )
-      {
-         Text( title )
-            .font( .title2 )
-            .foregroundColor( .primary )
-
-         let launchCount = getRecordsCount( entityName: entity, context: context )!
-         Text( "\(launchCount) \(title.lowercased())" )
-            .font( .subheadline )
-            .foregroundColor( .secondary )
-      }
+      self.id = title
+      self.title = title
+      self.entity = entity
    }
 }
+
+func getListItemView( title: String ) -> AnyView?
+{
+   switch title
+   {
+      case "Launches": return AnyView( LaunchList() )
+      case "Agencies": return AnyView( AgencyList() )
+      case "Service Providers": return AnyView( ServiceProviderList() )
+      case "Pads": return AnyView( PadList() )
+      case "Missions": return AnyView( MissionList() )
+      case "Programs": return AnyView( ProgramList() )
+      case "Rockets": return AnyView( RocketList() )
+      case "Astronauts": return AnyView( AstronautList() )
+      case "Events": return AnyView( EventList() )
+      case "Live Streams": return AnyView( LiveStreamList() )
+      case "Starship Vehicles": return AnyView( VehicleList() )
+      case "Docking": return AnyView( DockingList() )
+      default: return nil
+   }
+}
+
+// TODO preview

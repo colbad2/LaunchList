@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -25,6 +24,24 @@ struct EventList: View
    }
 }
 
+struct EventRow: View
+{
+   var event: Event
+
+   var body: some View
+   {
+      RowImage( imageURL: event.featureImage )
+      VStack( alignment: .leading )
+      {
+         TitleField( s: event.name! )
+         Text( event.date! )
+            .font( .subheadline )
+            .foregroundColor( .secondary )
+      }
+   }
+}
+
+#if DEBUG
 struct EventPreviews: PreviewProvider
 {
     static var previews: some View
@@ -37,3 +54,4 @@ struct EventPreviews: PreviewProvider
 //      }
     }
 }
+#endif

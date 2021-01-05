@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 
 /**
@@ -96,12 +95,9 @@ func getVehicleCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "Vehicle", context: context )
 }
 
-func getVehicleLaunch() -> VehicleJSON
+func getSampleVehicle() -> VehicleJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleVehicleJSON.data( using: .utf8 )!
-   return try! decoder.decode( VehicleJSON.self, from: jsonData )
+   return parseJSONString( json: sampleVehicleJSON )
 }
 
 let sampleVehicleJSON =

@@ -21,13 +21,7 @@ struct AstronautDetail: View
          {
             HStack( alignment: .top )
             {
-               if let profileImage = astronaut.profileImage
-               {
-                  IconView( withURL: profileImage )
-                     .frame( width: 100, height: 150 )
-                  Spacer()
-                     .frame( width: 15 )
-               }
+               RowImage( imageURL: astronaut.profileImage, drawSpace: false )
 
                VStack
                {
@@ -145,6 +139,7 @@ func dates( first: String, second: String? ) -> String
 /**
  Preview view of the [AstronautDetail]
  */
+#if DEBUG
 struct AstronautPreview: PreviewProvider
 {
    static var previews: some View
@@ -156,3 +151,4 @@ struct AstronautPreview: PreviewProvider
       AstronautDetail( astronaut: astronaut! )
    }
 }
+#endif

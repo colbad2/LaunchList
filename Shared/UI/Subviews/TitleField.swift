@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 
 struct TitleField: View
@@ -9,10 +8,11 @@ struct TitleField: View
    {
       if s != nil
       {
-         HStack( spacing: 2 )
+         HStack
          {
             Text( "\(s!)" )
                .font( .title2 )
+               .bold()
                .foregroundColor( .primary )
                .lineLimit( 3 )
             Spacer()
@@ -20,3 +20,26 @@ struct TitleField: View
       }
    }
 }
+
+#if DEBUG
+struct TitleFieldPreview: PreviewProvider
+{
+   static var previews: some View
+   {
+      Group
+      {
+         NavigationView
+         {
+            TitleField( s: "Title" )
+         }
+         .environment( \.colorScheme, .light )
+
+         NavigationView
+         {
+            TitleField( s: "Title" )
+         }
+         .environment( \.colorScheme, .dark )
+      }
+   }
+}
+#endif

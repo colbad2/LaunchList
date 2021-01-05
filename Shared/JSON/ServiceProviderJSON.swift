@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 
 /**
@@ -57,3 +56,19 @@ func getServiceProviderCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "ServiceProvider", context: context )
 }
+
+
+func getSampleServiceProvider() -> ServiceProviderJSON?
+{
+   return parseJSONString( json: sampleServiceProviderJSON )
+}
+
+let sampleServiceProviderJSON =
+"""
+ {
+     "id": 121,
+     "name": "SpaceX",
+     "type": "Commercial",
+     "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
+ }
+"""

@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -16,12 +15,7 @@ struct PadDetail: View
             LeftField( s: pad.location?.name )
             LeftField( s: "\(pad.latitude!), \(pad.longitude!)" )
             AgencyLink( agencyID: pad.agencyID )
-
-            if let mapImage = pad.mapImage
-            {
-               IconView( withURL: mapImage )
-            }
-
+            IconView( withURL: pad.mapImage )
             LinkBarView( infoURL: pad.infoURL, wikiURL: pad.wikiURL, mapURL: pad.mapURL )
 
             // TODO country code?
@@ -32,6 +26,7 @@ struct PadDetail: View
    }
 }
 
+#if DEBUG
 struct PadPreview: PreviewProvider
 {
    static var previews: some View
@@ -43,3 +38,4 @@ struct PadPreview: PreviewProvider
       PadDetail( pad: pad )
    }
 }
+#endif

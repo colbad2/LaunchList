@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 import SwiftUI
 
@@ -14,9 +13,11 @@ struct ServiceProviderDetail: View
          TitleField( s: serviceProvider?.name )
          LeftField( s: serviceProvider?.type )
       }
+      .padding()
    }
 }
 
+#if DEBUG
 struct ServiceProviderPreview: PreviewProvider
 {
    static var previews: some View
@@ -24,6 +25,29 @@ struct ServiceProviderPreview: PreviewProvider
       let context = PersistenceController.preview.container.viewContext
       let provider = getFirstEntity( context: context,
                                      entityName: "ServiceProvider" ) as? ServiceProvider
-      ServiceProviderDetail( serviceProvider: provider )
+      Group
+      {
+         NavigationView
+         {
+            ServiceProviderDetail( serviceProvider: provider )
+               .border( Color.blue )
+         }
+         .environment( \.colorScheme, .dark )
+
+         NavigationView
+         {
+            ServiceProviderDetail( serviceProvider: provider )
+               .border( Color.blue )
+         }
+         .environment( \.colorScheme, .light )
+
+         // Assitive text large
+         NavigationView
+         {
+            ServiceProviderDetail( serviceProvider: provider )
+         }
+         .environment( \.sizeCategory, .accessibilityExtraExtraExtraLarge )
+      }
    }
 }
+#endif

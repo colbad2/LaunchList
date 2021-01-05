@@ -1,5 +1,3 @@
-import Foundation
-
 extension String
 {
    func utf8DecodedString() -> String

@@ -90,4 +90,13 @@ func getSampleSpacecraft() -> SpacecraftJSON
 
 let sampleSpacecraftJSON =
 """
+ {
+   "id": 77,
+   "url": "https://ll.thespacedevs.com/2.1.0/spacecraft/77/",
+   "name": "Soyuz TMA-16",
+   "serial_number": "Soyuz TMA 11F732A17 #226",
+   "status": { … },
+   "description": "Soyuz TMA-16 was a Soyuz spacecraft which launched on September 30 2009 07:14 UTC. It transported two members of the Expedition 21 crew and one participant to the International Space Station. The Expedition 21 crew consisted of Maksim Surayev and Jeffrey Williams. The spaceflight participant was tourist Guy Laliberté.",
+   "spacecraft_config": { … }
+ }
 """

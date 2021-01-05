@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 
 /**
@@ -37,14 +36,13 @@ public struct LaunchJSON: Decodable, Identifiable
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
    {
-      case hashtag, id, image, infographic, mission, name,
+      case hashtag, id, image, infographic, mission, name, program,
          net, pad, probability, rocket, slug, status, url, webcastLive, windowEnd, windowStart
 
       case failReason = "failreason"
       case holdReason = "holdreason"
       case inHold = "inhold"
       case launchLibraryID = "launchLibraryId"
-      case programs = "program"
       case tbdDate = "tbddate"
       case tbdTime = "tbdtime"
       case serviceProvider = "launchServiceProvider"
@@ -64,7 +62,7 @@ public struct LaunchJSON: Decodable, Identifiable
    var net: String?
    var pad: PadJSON?
    var probability: Int16?
-   var programs: [ProgramJSON]? = []
+   var program: [ProgramJSON]?
    var rocket: RocketJSON?
    var slug: String?
    var status: StatusJSON?
@@ -124,9 +122,9 @@ public struct LaunchJSON: Decodable, Identifiable
 
       entity?.probability = self.probability ?? -1
 
-      if self.programs != nil
+      if self.program != nil
       {
-         for program in self.programs!
+         for program in self.program!
          {
             let programEntity = fetchProgram( program: program, context: context )
             entity?.addToPrograms( programEntity )
@@ -177,15 +175,12 @@ func getLaunchCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "Launch", context: context )
 }
 
-func getSampleLaunch() -> LaunchJSON
+func getSampleLaunch() -> LaunchJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleLaunchJSON.data( using: .utf8 )!
-   return try! decoder.decode( LaunchJSON.self, from: jsonData )
+   return parseJSONString( json: sampleLaunchJSON )
 }
 
-let sampleLaunchJSON =
+private let sampleLaunchJSON =
 """
 {
   "id": "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
@@ -258,7 +253,7 @@ let sampleLaunchJSON =
       "id": 15,
       "url": "https://ll.thespacedevs.com/2.1.0/program/15/",
       "name": "Artemis",
-      "description": "The Artemis program is a US government-funded crewed spaceflight program that has the goal of landing \"the first woman and the next man\" on the Moon, specifically at the lunar south pole region by 2024.",
+      "description": "The Artemis program is a US government-funded crewed spaceflight program that has the goal of landing \\"the first woman and the next man\\" on the Moon, specifically at the lunar south pole region by 2024.",
       "agencies": [
         {
           "id": 44,

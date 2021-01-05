@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -25,7 +24,18 @@ struct MissionList: View
    }
 }
 
+struct MissionRow: View
+{
+   var mission: Mission
 
+   var body: some View
+   {
+      Text( "\(mission.name ?? "")" )
+         .font( .headline )
+   }
+}
+
+#if DEBUG
 struct MissionListPreviews: PreviewProvider
 {
    static var previews: some View
@@ -35,3 +45,4 @@ struct MissionListPreviews: PreviewProvider
                        PersistenceController.preview.container.viewContext )
    }
 }
+#endif

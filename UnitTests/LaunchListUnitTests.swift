@@ -10,18 +10,18 @@ class JSONTests: XCTestCase
       decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
    }
-
-   func testParseJSON() throws
-   {
-      let launchProvider: LaunchProvider = LaunchProvider()
-
-      XCTAssertNotNil( launchProvider.launches )
-      XCTAssertEqual( launchProvider.launches.totalLaunchCount, 35 )
-      XCTAssertEqual( launchProvider.launches.nextLaunchGroupURL, "https://ll.thespacedevs.com/2.1.0/launch/upcoming/?limit=10&offset=10&search=SpaceX" )
-      XCTAssertNil( launchProvider.launches.previousLaunchGroupURL )
-      XCTAssertEqual( launchProvider.launches.launchSublist?.count, 10 )
-      // TODO test launchSublist
-   }
+//
+//   func testParseJSON() throws
+//   {
+//      let launchProvider: LaunchProvider = LaunchProvider()
+//
+//      XCTAssertNotNil( launchProvider.launches )
+//      XCTAssertEqual( launchProvider.launches.totalLaunchCount, 35 )
+//      XCTAssertEqual( launchProvider.launches.nextLaunchGroupURL, "https://ll.thespacedevs.com/2.1.0/launch/upcoming/?limit=10&offset=10&search=SpaceX" )
+//      XCTAssertNil( launchProvider.launches.previousLaunchGroupURL )
+//      XCTAssertEqual( launchProvider.launches.launchSublist?.count, 10 )
+//      // TODO test launchSublist
+//   }
 
    func testPadJSON() throws
    {
@@ -519,8 +519,8 @@ class JSONTests: XCTestCase
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
                      name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
-      XCTAssertNotNil( launch.programs )
-      XCTAssertEqual( launch.programs?.count, 0 )
+      XCTAssertNotNil( launch.program )
+      XCTAssertEqual( launch.program?.count, 0 )
       checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
@@ -529,6 +529,104 @@ class JSONTests: XCTestCase
       checkStatus( status: launch.status, abbreviation: "TBC",
                    description: "Awaiting official confirmation - current date is known with some certainty.",
                    id: 8, name: "To Be Confirmed" )
+   }
+
+   func testLaunchParse()
+   {
+      let json =
+      """
+      {
+        "id": "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
+        "url": "https://ll.thespacedevs.com/2.1.0/launch/724dd8ce-78ec-4dad-b17c-ff66c257fab7/",
+        "launch_library_id": 1943,
+        "slug": "sls-block-1b-artemis-7",
+        "name": "SLS Block 1B | Artemis-7",
+        "status": {
+          "id": 2,
+          "name": "To Be Determined",
+          "abbrev": "TBD",
+          "description": "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources."
+        },
+        "net": "2028-01-01T00:00:00Z",
+        "window_end": "2028-01-01T00:00:00Z",
+        "window_start": "2028-01-01T00:00:00Z",
+        "inhold": false,
+        "tbdtime": false,
+        "tbddate": false,
+        "probability": -1,
+        "holdreason": null,
+        "failreason": null,
+        "hashtag": null,
+        "launch_service_provider": {
+          "id": 44,
+          "url": "https://ll.thespacedevs.com/2.1.0/agencies/44/",
+          "name": "National Aeronautics and Space Administration",
+          "type": "Government"
+        },
+        "rocket": {
+          "id": 2548,
+          "configuration": {
+            "id": 205,
+            "launch_library_id": 236,
+            "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/205/",
+            "name": "SLS Block 1B",
+            "family": "",
+            "full_name": "SLS Block 1B",
+            "variant": ""
+          }
+        },
+        "mission": null,
+        "pad": {
+          "id": 4,
+          "url": "https://ll.thespacedevs.com/2.1.0/pad/4/",
+          "agency_id": 44,
+          "name": "Launch Complex 39B",
+          "info_url": null,
+          "wiki_url": "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39B",
+          "map_url": "http://maps.google.com/maps?q=28.627+N,+80.621+W",
+          "latitude": "28.62711233",
+          "longitude": "-80.62101503",
+          "location": {
+            "id": 27,
+            "url": "https://ll.thespacedevs.com/2.1.0/location/27/",
+            "name": "Kennedy Space Center, FL, USA",
+            "country_code": "USA",
+            "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
+            "total_launch_count": 182,
+            "total_landing_count": 0
+          },
+          "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_4_20200803143518.jpg",
+          "total_launch_count": 57
+        },
+        "webcast_live": false,
+        "image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/sls_block_1b_image_20200905100013.jpeg",
+        "infographic": null,
+        "program": [
+          {
+            "id": 15,
+            "url": "https://ll.thespacedevs.com/2.1.0/program/15/",
+            "name": "Artemis",
+            "description": "The Artemis program is a US government-funded crewed spaceflight program that has the goal of landing \\"the first woman and the next man\\" on the Moon, specifically at the lunar south pole region by 2024.",
+            "agencies": [
+              {
+                "id": 44,
+                "url": "https://ll.thespacedevs.com/2.1.0/agencies/44/",
+                "name": "National Aeronautics and Space Administration",
+                "type": "Government"
+              }
+            ],
+            "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/artemis_program_20200821091844.png",
+            "start_date": "2017-12-11T00:00:00Z",
+            "end_date": null,
+            "info_url": "https://www.nasa.gov/specials/artemis/",
+            "wiki_url": "https://en.wikipedia.org/wiki/Artemis_program"
+          }
+        ]
+      }
+      """
+
+      let parsedObject: LaunchJSON? = parseJSONString( json: json )
+      XCTAssertNotNil( parsedObject )
    }
 
    func testLaunchJSON2() throws
@@ -630,8 +728,8 @@ class JSONTests: XCTestCase
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
                      name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
-      XCTAssertNotNil( launch.programs )
-      XCTAssertEqual( launch.programs?.count, 0 )
+      XCTAssertNotNil( launch.program )
+      XCTAssertEqual( launch.program?.count, 0 )
       checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
@@ -750,8 +848,8 @@ class JSONTests: XCTestCase
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
                      name: "Unknown Location", landingCount: 0, lauchCount: 0,
                      url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
-      XCTAssertNotNil( launch.programs )
-      XCTAssertEqual( launch.programs?.count, 0 )
+      XCTAssertNotNil( launch.program )
+      XCTAssertEqual( launch.program?.count, 0 )
       checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
@@ -860,8 +958,8 @@ class JSONTests: XCTestCase
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
                      name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
-      XCTAssertNotNil( launch.programs )
-      XCTAssertEqual( launch.programs?.count, 0 )
+      XCTAssertNotNil( launch.program )
+      XCTAssertEqual( launch.program?.count, 0 )
       checkConfiguration( config: launch.rocket?.configuration, id: 161, family: "Falcon", fullName: "Falcon Heavy",
                           libraryID: 58, name: "Falcon Heavy",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/161/",
@@ -1009,28 +1107,28 @@ class JSONTests: XCTestCase
                      name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
 
-      XCTAssertNotNil( launch.programs )
-      XCTAssertEqual( launch.programs?.count, 1 )
-      checkProgram( program: launch.programs?[ 0 ], id: 11,
+      XCTAssertNotNil( launch.program )
+      XCTAssertEqual( launch.program?.count, 1 )
+      checkProgram( program: launch.program?[ 0 ], id: 11,
                     description: "Commercial Resupply Services (CRS) are a series of flights awarded by NASA for the delivery of cargo and supplies to the International Space Station.The first CRS contracts were signed in 2008 and awarded $1.6 billion to SpaceX for twelve cargo Dragon and $1.9 billion to Orbital Sciences for eight Cygnus flights, covering deliveries to 2016. The Falcon 9 and Antares rockets were also developed under the CRS program to deliver cargo spacecraft to the ISS.",
                     imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/commercial2520_program_20201129212219.png",
                     name: "Commercial Resupply Services",
                     startDate: "2008-12-23T00:00:00Z",
                     url: "https://ll.thespacedevs.com/2.1.0/program/11/",
                     wikiURL: "https://en.wikipedia.org/wiki/Commercial_Resupply_Services#Commercial_Resupply_Services" )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies )
-      XCTAssertEqual( launch.programs?[ 0 ].agencies.count, 4 )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies[ 0 ] )
-      checkAgency( agency: launch.programs?[ 0 ].agencies[ 0 ], id: 44, name: "National Aeronautics and Space Administration",
+      XCTAssertNotNil( launch.program?[ 0 ].agencies )
+      XCTAssertEqual( launch.program?[ 0 ].agencies.count, 4 )
+      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 0 ] )
+      checkAgency( agency: launch.program?[ 0 ].agencies[ 0 ], id: 44, name: "National Aeronautics and Space Administration",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies[ 1 ] )
-      checkAgency( agency: launch.programs?[ 0 ].agencies[ 1 ], id: 257, name: "Northrop Grumman Innovation Systems",
+      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 1 ] )
+      checkAgency( agency: launch.program?[ 0 ].agencies[ 1 ], id: 257, name: "Northrop Grumman Innovation Systems",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/257/" )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies[ 2 ] )
-      checkAgency( agency: launch.programs?[ 0 ].agencies[ 2 ], id: 1020, name: "Sierra Nevada Corporation",
+      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 2 ] )
+      checkAgency( agency: launch.program?[ 0 ].agencies[ 2 ], id: 1020, name: "Sierra Nevada Corporation",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/1020/" )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies[ 3 ] )
-      checkAgency( agency: launch.programs?[ 0 ].agencies[ 3 ], id: 121, name: "SpaceX",
+      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 3 ] )
+      checkAgency( agency: launch.program?[ 0 ].agencies[ 3 ], id: 121, name: "SpaceX",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
 
       checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
@@ -1233,10 +1331,10 @@ class JSONTests: XCTestCase
                      name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
 
-      XCTAssertNotNil( launch.programs )
-      XCTAssertEqual( launch.programs?.count, 2 )
+      XCTAssertNotNil( launch.program )
+      XCTAssertEqual( launch.program?.count, 2 )
 
-      checkProgram( program: launch.programs?[ 0 ], id: 5,
+      checkProgram( program: launch.program?[ 0 ], id: 5,
                     description: "The Commercial Crew Program (CCP) is a human spaceflight program operated by NASA, in association with American aerospace manufacturers Boeing and SpaceX. The program conducts rotations between the expeditions of the International Space Station program, transporting crews to and from the International Space Station (ISS) aboard Boeing Starliner and SpaceX Crew Dragon capsules, in the first crewed orbital spaceflights operated by private companies.",
                     imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/commercial2520_program_20200820201209.png",
                     infoURL: "https://www.nasa.gov/exploration/commercial/crew/index.html",
@@ -1244,19 +1342,19 @@ class JSONTests: XCTestCase
                     startDate: "2011-04-18T00:00:00Z",
                     url: "https://ll.thespacedevs.com/2.1.0/program/5/",
                     wikiURL: "https://en.wikipedia.org/wiki/Commercial_Crew_Program" )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies )
-      XCTAssertEqual( launch.programs?[ 0 ].agencies.count, 3 )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies[ 0 ] )
-      checkAgency( agency: launch.programs?[ 0 ].agencies[ 0 ], id: 80, name: "Boeing",
+      XCTAssertNotNil( launch.program?[ 0 ].agencies )
+      XCTAssertEqual( launch.program?[ 0 ].agencies.count, 3 )
+      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 0 ] )
+      checkAgency( agency: launch.program?[ 0 ].agencies[ 0 ], id: 80, name: "Boeing",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/80/" )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies[ 1 ] )
-      checkAgency( agency: launch.programs?[ 0 ].agencies[ 1 ], id: 44, name: "National Aeronautics and Space Administration",
+      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 1 ] )
+      checkAgency( agency: launch.program?[ 0 ].agencies[ 1 ], id: 44, name: "National Aeronautics and Space Administration",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
-      XCTAssertNotNil( launch.programs?[ 0 ].agencies[ 2 ] )
-      checkAgency( agency: launch.programs?[ 0 ].agencies[ 2 ], id: 121, name: "SpaceX",
+      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 2 ] )
+      checkAgency( agency: launch.program?[ 0 ].agencies[ 2 ], id: 121, name: "SpaceX",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
 
-      checkProgram( program: launch.programs?[ 1 ], id: 17,
+      checkProgram( program: launch.program?[ 1 ], id: 17,
                     description: "The International Space Station programme is tied together by a complex set of legal, political and financial agreements between the sixteen nations involved in the project, governing ownership of the various components, rights to crewing and utilization, and responsibilities for crew rotation and resupply of the International Space Station. It was conceived in 1984 by President Ronald Reagan, during the Space Station Freedom project as it was originally called.",
                     imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/international2_program_20201129184745.png",
                     infoURL: "https://www.nasa.gov/mission_pages/station/main/index.html",
@@ -1264,22 +1362,22 @@ class JSONTests: XCTestCase
                     startDate: "1998-11-20T06:40:00Z",
                     url: "https://ll.thespacedevs.com/2.1.0/program/17/",
                     wikiURL: "https://en.wikipedia.org/wiki/International_Space_Station_programme" )
-      XCTAssertNotNil( launch.programs?[ 1 ].agencies )
-      XCTAssertEqual( launch.programs?[ 1 ].agencies.count, 5 )
-      XCTAssertNotNil( launch.programs?[ 1 ].agencies[ 0 ] )
-      checkAgency( agency: launch.programs?[ 1 ].agencies[ 0 ], id: 16, name: "Canadian Space Agency",
+      XCTAssertNotNil( launch.program?[ 1 ].agencies )
+      XCTAssertEqual( launch.program?[ 1 ].agencies.count, 5 )
+      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 0 ] )
+      checkAgency( agency: launch.program?[ 1 ].agencies[ 0 ], id: 16, name: "Canadian Space Agency",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/16/" )
-      XCTAssertNotNil( launch.programs?[ 1 ].agencies[ 1 ] )
-      checkAgency( agency: launch.programs?[ 1 ].agencies[ 1 ], id: 27, name: "European Space Agency",
+      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 1 ] )
+      checkAgency( agency: launch.program?[ 1 ].agencies[ 1 ], id: 27, name: "European Space Agency",
                    type: "Multinational", url: "https://ll.thespacedevs.com/2.1.0/agencies/27/" )
-      XCTAssertNotNil( launch.programs?[ 1 ].agencies[ 2 ] )
-      checkAgency( agency: launch.programs?[ 1 ].agencies[ 2 ], id: 37, name: "Japan Aerospace Exploration Agency",
+      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 2 ] )
+      checkAgency( agency: launch.program?[ 1 ].agencies[ 2 ], id: 37, name: "Japan Aerospace Exploration Agency",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/37/" )
-      XCTAssertNotNil( launch.programs?[ 1 ].agencies[ 3 ] )
-      checkAgency( agency: launch.programs?[ 1 ].agencies[ 3 ], id: 44, name: "National Aeronautics and Space Administration",
+      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 3 ] )
+      checkAgency( agency: launch.program?[ 1 ].agencies[ 3 ], id: 44, name: "National Aeronautics and Space Administration",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
-      XCTAssertNotNil( launch.programs?[ 1 ].agencies[ 4 ] )
-      checkAgency( agency: launch.programs?[ 1 ].agencies[ 4 ], id: 63, name: "Russian Federal Space Agency (ROSCOSMOS)",
+      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 4 ] )
+      checkAgency( agency: launch.program?[ 1 ].agencies[ 4 ], id: 63, name: "Russian Federal Space Agency (ROSCOSMOS)",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/63/" )
 
       checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
@@ -1391,8 +1489,8 @@ class JSONTests: XCTestCase
                      name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
 
-      XCTAssertNotNil( launch.programs )
-      XCTAssertEqual( launch.programs?.count, 0 )
+      XCTAssertNotNil( launch.program )
+      XCTAssertEqual( launch.program?.count, 0 )
 
       checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",

@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 
 /**
@@ -132,15 +131,12 @@ func getAstronautCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "Astronaut", context: context )
 }
 
-func getSampleAstronaut() -> AstronautJSON
+func getSampleAstronaut() -> AstronautJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleAstronautJSON.data( using: .utf8 )!
-   return try! decoder.decode( AstronautJSON.self, from: jsonData )
+   return parseJSONString( json: sampleAstronautJSON )
 }
 
-let sampleAstronautJSON =
+private let sampleAstronautJSON =
 """
  {
    "id": 276,

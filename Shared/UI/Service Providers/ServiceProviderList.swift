@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -16,18 +15,68 @@ struct ServiceProviderList: View
       {
          ( provider: ServiceProvider ) in
 
-         ServiceProviderRow( serviceProvider: provider )
+         NavigationLink( destination: ServiceProviderDetail( serviceProvider: provider ) )
+         {
+            ServiceProviderRow( serviceProvider: provider )
+         }
       }
       .navigationBarTitle( "Service Providers", displayMode: .inline )
    }
 }
 
+struct ServiceProviderRow: View
+{
+   var serviceProvider: ServiceProvider
+
+   var body: some View
+   {
+      HStack
+      {
+         Text( "\(serviceProvider.name ?? "")" )
+            .font( .headline )
+            .allowsTightening( /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/ )
+         Spacer()
+         Text( "\(serviceProvider.type ?? "")" )
+            .font( .subheadline )
+            .foregroundColor( .secondary )
+      }
+   }
+}
+
+#if DEBUG
 struct ServiceProviderListPreviews: PreviewProvider
 {
    static var previews: some View
    {
-      ServiceProviderList()
-         .environment( \.managedObjectContext,
-                       PersistenceController.preview.container.viewContext )
+      Group
+      {
+         // light view
+         NavigationView
+         {
+            ServiceProviderList()
+            .environment( \.managedObjectContext,
+                          PersistenceController.preview.container.viewContext )
+         }
+         .environment( \.colorScheme, .light )
+
+         // dark view
+         NavigationView
+         {
+            ServiceProviderList()
+            .environment( \.managedObjectContext,
+                          PersistenceController.preview.container.viewContext )
+         }
+         .environment( \.colorScheme, .dark )
+
+         // Assitive text large
+         NavigationView
+         {
+            ServiceProviderList()
+            .environment( \.managedObjectContext,
+                          PersistenceController.preview.container.viewContext )
+         }
+         .environment( \.sizeCategory, .accessibilityExtraExtraExtraLarge )
+      }
    }
 }
+#endif

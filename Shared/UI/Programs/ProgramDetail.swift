@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -11,7 +10,7 @@ import CoreData
 struct ProgramDetail: View
 {
    /** Entity with details to show. */
-   var program: Program?
+   var program: Program
 
    /** View contents. */
    var body: some View
@@ -20,14 +19,9 @@ struct ProgramDetail: View
       {
          HStack
          {
-            if let programImage = program?.imageURL
-            {
-               IconView( withURL: programImage )
-                  .frame( width: 50, height: 50 )
-               Spacer().frame( width: 15 )
-            }
+            RowImage( imageURL: program.imageURL, drawSpace: false )
 
-            if let programName = program?.name
+            if let programName = program.name
             {
                Text( "\(programName)" )
                   .font( .title )
@@ -36,52 +30,83 @@ struct ProgramDetail: View
             Spacer()
          }
 
-         DescriptionView( desc: program?.programDescription )
+         LeftField( prefix: "Began: ", s: dateString( d: program.startDate ) )
+         LeftField( prefix: "Ended: ", s: dateString( d: program.endDate ) )
 
-         if let agencies: NSSet = program?.agencies
+         DescriptionView( desc: program.programDescription )
+//            .border(Color.black)
+
+         if let agencies: NSSet = program.agencies
          {
             if agencies.count > 0
             {
-               Spacer()
+               Divider()
                HStack
                {
-                  Text( "Agencies:" )
-                     .font( .title3 )
-                     .foregroundColor( .primary )
+                  Text( "Agencies" )
+                     .font( .headline )
+                     .foregroundColor( .secondary )
                   Spacer()
                }
-               // TODO sort array by name
-               ForEach( Array( agencies as Set ), id: \.self )
+               ForEach( getAgenciesArray( agencies: agencies ), id: \.self )
                {
                   agency in
-                  let a = agency as! Agency
-                  AgencyLink( agencyID: a.id )
+                  AgencyLink( agencyID: agency.id )
                }
             }
          }
 
-         LinkBarView( infoURL: program?.infoURL, wikiURL: program?.wikiURL )
-
-         /*
-          var agencies: [AgencyJSON] = []
-          var startDate: String?
-          var endDate: String?
-          */
+         Divider()
+         LinkBarView( infoURL: program.infoURL, wikiURL: program.wikiURL )
       }
       .padding()
       .navigationBarTitle( "Program", displayMode: .inline )
    }
 }
 
+func getAgenciesArray( agencies: NSSet ) -> [Agency]
+{
+   var programAgencies = Array( agencies as Set ) as! [Agency]
+   programAgencies.sort( by: { ($0 as Agency).name! < ($1 as Agency).name! } )
+   return programAgencies
+}
+
 /**
  Preview view of the [ProgramDetail]
  */
+#if DEBUG
 struct ProgramPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let program = getFirstEntity( context: PersistenceController.preview.container.viewContext,
-                                     entityName: "Program") as? Program
-      ProgramDetail( program: program )
+      let context = PersistenceController.preview.container.viewContext
+      let issProgram = getEntityByID( id: 17,
+                                      context: context,
+                                      entityName: "Program") as! Program
+      let artemisProgram = getEntityByID( id: 15,
+                                          context: context,
+                                          entityName: "Program") as! Program
+      Group
+      {
+         NavigationView
+         {
+            ProgramDetail( program: issProgram )
+         }
+         .environment( \.colorScheme, .light )
+
+         NavigationView
+         {
+            // TODO why is the description indented?
+            ProgramDetail( program: artemisProgram )
+         }
+         .environment( \.colorScheme, .light )
+
+         NavigationView
+         {
+            ProgramDetail( program: issProgram )
+         }
+         .environment( \.colorScheme, .dark )
+      }
    }
 }
+#endif

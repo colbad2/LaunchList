@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 
 /**
@@ -70,20 +69,10 @@ func getRocketCount( context: NSManagedObjectContext ) -> Int?
 
 func getSampleRocket() -> RocketJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      let jsonData = sampleRocketJSON.data( using: .utf8 )!
-      return try decoder.decode( RocketJSON.self, from: jsonData )
-   }
-   catch { print( "error: ", error) }
-
-   return nil
+   return parseJSONString( json: sampleRocketJSON )
 }
 
-let sampleRocketJSON =
+private let sampleRocketJSON =
 """
       {
         "id": 2663,

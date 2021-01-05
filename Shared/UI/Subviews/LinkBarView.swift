@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 
 struct LinkBarView: View
@@ -16,22 +15,39 @@ struct LinkBarView: View
             if let info = wrapURL( infoURL )
             {
                Link( "Info", destination: info )
-                  .font( .subheadline )
+                  .font( .headline )
             }
 
             if let wiki = wrapURL( wikiURL )
             {
                Link( "Wiki", destination: wiki )
-                  .font( .subheadline )
+                  .font( .headline )
             }
 
             if let map = wrapURL( mapURL )
             {
                Link( "Map", destination: map )
-                  .font( .subheadline )
+                  .font( .headline )
             }
          }
          .padding()
       }
    }
 }
+
+#if DEBUG
+struct LinkBarViewPreview: PreviewProvider
+{
+   static var previews: some View
+   {
+      Group
+      {
+         LinkBarView( infoURL: "a", wikiURL: "b", mapURL: "c" )
+         .environment( \.colorScheme, .light )
+
+         LinkBarView( infoURL: "a", wikiURL: "b", mapURL: "c" )
+         .environment( \.colorScheme, .dark )
+      }
+   }
+}
+#endif

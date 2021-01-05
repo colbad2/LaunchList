@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -19,7 +18,7 @@ struct LaunchDetail: View
                           rightString: launch.rocket?.name ?? launch.name )
                TwoFields( leftString: launch.serviceProvider?.type,
                           rightString: launch.mission?.type )
-               LeftField( prefix: "Orbit: ", s: launch.mission?.orbitName )
+               LeftField( s: launch.mission?.orbitName )
                NavigationLink( destination: PadDetail( pad: launch.pad! ) )
                {
                   LeftField( s: launch.pad?.name )
@@ -64,16 +63,8 @@ struct LaunchDetail: View
             }
 
             DescriptionView( desc: launch.mission?.missionDescription )
-
-            if let imageURL = launch.image
-            {
-               IconView( withURL: imageURL )
-            }
-
-            if let infographic = launch.infographic
-            {
-               IconView( withURL: infographic )
-            }
+            IconView( withURL: launch.image )
+            IconView( withURL: launch.infographic )
          }
          .padding()
       }
@@ -81,6 +72,7 @@ struct LaunchDetail: View
    }
 }
 
+#if DEBUG
 struct LaunchPreview: PreviewProvider
 {
    static var previews: some View
@@ -89,7 +81,23 @@ struct LaunchPreview: PreviewProvider
       let launch = getEntityByID( id: "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
                                   context: context,
                                   entityName: "Launch" ) as? Launch
-      // TODO launch nil
-      LaunchDetail( launch: launch! )
+
+      Group
+      {
+         NavigationView
+         {
+            LaunchDetail( launch: launch! )
+//               .border( Color.blue )
+         }
+         .environment( \.colorScheme, .light )
+         
+         NavigationView
+         {
+            LaunchDetail( launch: launch! )
+//               .border( Color.blue )
+         }
+         .environment( \.colorScheme, .dark )
+      }
    }
 }
+#endif

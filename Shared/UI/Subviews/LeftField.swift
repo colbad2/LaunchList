@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 
 struct LeftField: View
@@ -21,3 +20,19 @@ struct LeftField: View
       }
    }
 }
+
+#if DEBUG
+struct LeftFieldPreviews: PreviewProvider
+{
+   static var previews: some View
+   {
+      Group
+      {
+         LeftField( prefix: "Orbit:  ", s: "Low Earth Orbit" )
+            .padding()
+         LeftField( prefix: "", s: "Low Earth Orbit" )
+            .padding()
+      }
+   }
+}
+#endif

@@ -20,8 +20,13 @@ struct PersistenceController
       _ = getSampleMission()?.addToCoreData( context: viewContext )
       _ = getSamplePad()?.addToCoreData( context: viewContext )
       _ = getSampleRocket()?.addToCoreData( context: viewContext )
-      _ = getSampleLaunch().addToCoreData( context: viewContext )
-      _ = getSampleAstronaut().addToCoreData( context: viewContext )
+      _ = getSampleLaunch()?.addToCoreData( context: viewContext )
+      _ = getSampleAstronaut()?.addToCoreData( context: viewContext )
+      _ = getSampleServiceProvider()?.addToCoreData( context: viewContext )
+      _ = getSampleDocking()?.addToCoreData( context: viewContext )
+      _ = getSampleVehicle()?.addToCoreData( context: viewContext )
+      // TODO all other types
+      // TODO should samples return optionals or not
 
       return result
    }()
@@ -41,7 +46,7 @@ struct PersistenceController
       {
          container.persistentStoreDescriptions.first!.url = URL( fileURLWithPath: "/dev/null" )
       }
-      container.loadPersistentStores( completionHandler:
+      container.loadPersistentStores
       {
          ( storeDescription, error ) in
 
@@ -60,25 +65,36 @@ struct PersistenceController
             */
             fatalError( "Unresolved error \(error), \(error.userInfo)" )
          }
-      })
+      }
 
       // install the fixed content, if the db has never been filled
       if inMemory == false
       {
-         let forceFill = true
+         let forceFill = false
          if getAgencyCount( context: container.viewContext ) == 0 || forceFill
          {
             // TODO shouldn't have to do this, but launches seemed to be duplicating
             deleteAllData( entityName: "Agency", context: container.viewContext )
             deleteAllData( entityName: "Astronaut", context: container.viewContext )
+            deleteAllData( entityName: "Docking", context: container.viewContext )
+            deleteAllData( entityName: "DockingLocation", context: container.viewContext )
+            deleteAllData( entityName: "Event", context: container.viewContext )
+            deleteAllData( entityName: "Expedition", context: container.viewContext )
+            deleteAllData( entityName: "FlightVehicle", context: container.viewContext )
             deleteAllData( entityName: "Launch", context: container.viewContext )
+            deleteAllData( entityName: "LauncherConfig", context: container.viewContext )
+            deleteAllData( entityName: "LiveStream", context: container.viewContext )
             deleteAllData( entityName: "Location", context: container.viewContext )
             deleteAllData( entityName: "Mission", context: container.viewContext )
             deleteAllData( entityName: "Pad", context: container.viewContext )
             deleteAllData( entityName: "Program", context: container.viewContext )
             deleteAllData( entityName: "Rocket", context: container.viewContext )
             deleteAllData( entityName: "ServiceProvider", context: container.viewContext )
+            deleteAllData( entityName: "Spacecraft", context: container.viewContext )
+            deleteAllData( entityName: "SpacecraftConfig", context: container.viewContext )
+            deleteAllData( entityName: "SpaceStation", context: container.viewContext )
             deleteAllData( entityName: "Status", context: container.viewContext )
+            deleteAllData( entityName: "Vehicle", context: container.viewContext )
             fillStore( viewContext: container.viewContext )
          }
       }

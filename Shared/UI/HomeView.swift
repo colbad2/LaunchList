@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 import SwiftUI
 
@@ -8,75 +7,59 @@ struct HomeView: View
    
    var body: some View
    {
-      NavigationView
+      ScrollView
       {
+         HStack
+         {
+            Text( "Next Launch" )
+               .font( .title )
+            Spacer()
+         }
+
+         let launch = getNextLaunch( context: PersistenceController.shared.container.viewContext )!
+
          VStack
          {
-            ScrollView
+            TitleField( s: missionName( launch ) )
+            TwoFields( leftString: launch.getProviderName(),
+                       rightString: launch.rocket?.name ?? launch.name )
+            TwoFields( leftString: launch.serviceProvider?.type,
+                       rightString: launch.mission?.type )
+            LeftField( prefix: "Orbit: ", s: launch.mission?.orbitName )
+            NavigationLink( destination: PadDetail( pad: launch.pad! ) )
             {
-               HStack
+               LeftField( s: launch.pad?.name )
+            }
+            // TODO open correct details page in nav view (may not be possible yet)
+            //                  Button( action: { self.tabSelection = 1 } )
+            //                  {
+            //                     LeftField( s: launch.pad?.name )
+            //                  }
+         }
+         Divider()
+         HoldFailCountdownView( launch: launch )
+         IconView( withURL: launch.image )
+         DescriptionView( desc: launch.mission?.missionDescription )
+         IconView( withURL: launch.infographic )
+
+         VStack
+         {
+            Text( "Upcoming Launches" )
+               .font( .title2 )
+               .padding()
+            List( getUpcomingLaunches() )
+            {
+               launch in
+               NavigationLink( destination: LaunchDetail( launch: launch ) )
                {
-                  Text( "Next Launch" )
-                     .font( .title )
-                  Spacer()
-               }
-
-               let launch = getNextLaunch( context: PersistenceController.shared.container.viewContext )!
-
-               VStack
-               {
-                  TitleField( s: missionName( launch ) )
-                  TwoFields( leftString: launch.getProviderName(),
-                             rightString: launch.rocket?.name ?? launch.name )
-                  TwoFields( leftString: launch.serviceProvider?.type,
-                             rightString: launch.mission?.type )
-                  LeftField( prefix: "Orbit: ", s: launch.mission?.orbitName )
-                  NavigationLink( destination: PadDetail( pad: launch.pad! ) )
-                  {
-                     LeftField( s: launch.pad?.name )
-                  }
-                  // TODO open correct details page in nav view (may not be possible yet)
-//                  Button( action: { self.tabSelection = 1 } )
-//                  {
-//                     LeftField( s: launch.pad?.name )
-//                  }
-               }
-               Divider()
-               HoldFailCountdownView( launch: launch )
-
-               if let imageURL = launch.image
-               {
-                  IconView( withURL: imageURL )
-               }
-
-               DescriptionView( desc: launch.mission?.missionDescription )
-
-               if let infographic = launch.infographic
-               {
-                  IconView( withURL: infographic )
-               }
-
-               VStack
-               {
-                  Text( "Other Upcoming Launches" )
-                     .font( .title2 )
-                     .padding()
-                  List( getUpcomingLaunches() )
-                  {
-                     launch in
-                     NavigationLink( destination: LaunchDetail( launch: launch ) )
-                     {
-                        LaunchRow( launch: launch )
-                     }
-                  }
-                  .frame( height: 400 )
+                  LaunchRow( launch: launch )
                }
             }
-            .padding()
+            .frame( height: 400 )
          }
-         // .navigationBarTitle( "Next Launch", displayMode: .large )
-         .navigationBarHidden( true )
       }
+      .padding()
+      .navigationBarHidden( true )
    }
 }
 
@@ -123,3 +106,5 @@ struct HoldFailCountdownView: View
       }
    }
 }
+
+// TODO preview

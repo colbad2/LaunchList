@@ -1,4 +1,3 @@
-import Foundation
 import XCTest
 
 func checkPad( pad: PadJSON?, id: Int64, agencyID: Int64? = nil, infoURL: String? = nil, lat: String, lon: String,

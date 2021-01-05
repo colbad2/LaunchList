@@ -1,10 +1,9 @@
-import Foundation
 import SwiftUI
 
 struct Countdown: View
 {
    @State var targetTime: Date?
-   @State var parts: DateComponents?
+   @State private var parts: DateComponents?
    let timer = Timer.publish( every: 1, on: .main, in: .common ).autoconnect()
 
    var body: some View
@@ -69,11 +68,33 @@ func countdownString( _ n: Int? ) -> String
    return "\(t)"
 }
 
-
+#if DEBUG
 struct CountdownPreview: PreviewProvider
 {
    static var previews: some View
    {
-      Countdown( targetTime: Date().addingTimeInterval( -360000 ) )
+      Group
+      {
+         NavigationView
+         {
+            Countdown( targetTime: Date().addingTimeInterval( -360000 ) )
+               .border( Color.blue )
+         }
+         .environment( \.colorScheme, .light )
+
+         NavigationView
+         {
+            Countdown( targetTime: Date().addingTimeInterval( -360000 ) )
+               .border( Color.blue )
+         }
+         .environment( \.colorScheme, .dark )
+
+         NavigationView
+         {
+            Countdown( targetTime: Date().addingTimeInterval( -360000 ) )
+               .environment( \.sizeCategory, .accessibilityExtraExtraExtraLarge )
+         }
+      }
    }
 }
+#endif

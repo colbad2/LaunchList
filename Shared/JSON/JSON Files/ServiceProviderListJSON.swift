@@ -1,4 +1,3 @@
-import Foundation
 
 /**
  List of records returned from a URL.

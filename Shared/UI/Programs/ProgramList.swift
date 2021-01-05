@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -25,6 +24,19 @@ struct ProgramList: View
    }
 }
 
+struct ProgramRow: View
+{
+   var program: Program
+
+   var body: some View
+   {
+      Text( "\(program.name ?? "")" )
+         .font( .headline )
+         .lineLimit( 2 )
+   }
+}
+
+#if DEBUG
 struct ProgramListPreviews: PreviewProvider
 {
    static var previews: some View
@@ -34,3 +46,4 @@ struct ProgramListPreviews: PreviewProvider
                        PersistenceController.preview.container.viewContext )
    }
 }
+#endif

@@ -80,7 +80,6 @@ func getSampleFlightVehicle() -> FlightVehicleJSON
    return try! decoder.decode( FlightVehicleJSON.self, from: jsonData )
 }
 
-
 let sampleFlightVehicleJSON =
 """
       {

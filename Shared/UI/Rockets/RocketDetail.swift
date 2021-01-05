@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -10,26 +9,15 @@ struct RocketDetail: View
    {
       ScrollView
       {
-         if let rocketName = rocket?.family
-         {
-            Text( "\(rocketName)" )
-               .font( .title )
-               .foregroundColor( .primary )
-            Spacer()
-         }
-
-         if let variant = rocket?.variant
-         {
-            Text( "\(variant)" )
-               .font( .title )
-               .foregroundColor( .primary )
-         }
+         TitleField( s: rocket?.family )
+         LeftField( s: rocket?.variant )
       }
       .padding()
-      .navigationBarTitle( "", displayMode: .inline )
+      .navigationBarTitle( "Rocket", displayMode: .inline )
    }
 }
 
+#if DEBUG
 struct RocketPreview: PreviewProvider
 {
    static var previews: some View
@@ -42,3 +30,4 @@ struct RocketPreview: PreviewProvider
       RocketDetail( rocket: rocket )
    }
 }
+#endif

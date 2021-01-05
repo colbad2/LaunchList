@@ -1,5 +1,3 @@
-import Foundation
-
 /**
  List of launches returned from a URL.
 

@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 
 /**
@@ -121,20 +120,10 @@ func getAgencyCount( context: NSManagedObjectContext ) -> Int?
 
 func getSampleAgency() -> AgencyJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      let jsonData = sampleAgencyJSON.data( using: .utf8 )!
-      return try decoder.decode( AgencyJSON.self, from: jsonData )
-   }
-   catch { print( "error: ", error) }
-
-   return nil
+   return parseJSONString( json: sampleAgencyJSON )
 }
 
-let sampleAgencyJSON =
+private let sampleAgencyJSON =
 """
      {
        "id": 63,

@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 import SwiftUI
 
@@ -13,7 +12,8 @@ struct MissionDetail: View
          VStack
          {
             TitleField( s: mission?.name )
-            TwoFields( leftString: mission?.type, rightString: mission?.orbitName )
+            LeftField( prefix: "Type:", s: mission?.type )
+            LeftField( prefix: "Orbit:", s: mission?.orbitName  )
             DescriptionView( desc: mission?.missionDescription )
          }
       }
@@ -21,6 +21,7 @@ struct MissionDetail: View
    }
 }
 
+#if DEBUG
 struct MissionDetailPreview: PreviewProvider
 {
    static var previews: some View
@@ -32,3 +33,4 @@ struct MissionDetailPreview: PreviewProvider
       MissionDetail( mission: mission )
    }
 }
+#endif

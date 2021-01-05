@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -16,12 +15,28 @@ struct RocketList: View
       {
          ( rocket: Rocket ) in
 
-         RocketRow( rocket: rocket )
+//         NavigationLink( destination: RocketDetail( rocket: rocket ) )
+//         {
+            RocketRow( rocket: rocket )
+//         }
       }
       .navigationBarTitle( "Rocket", displayMode: .inline )
    }
 }
 
+struct RocketRow: View
+{
+   var rocket: Rocket
+
+   var body: some View
+   {
+      TitleField( s: rocket.fullName! )
+//      TitleField( s: rocket?.family )
+//      LeftField( s: rocket?.variant )
+   }
+}
+
+#if DEBUG
 struct RocketListPreviews: PreviewProvider
 {
    static var previews: some View
@@ -31,3 +46,4 @@ struct RocketListPreviews: PreviewProvider
                        PersistenceController.preview.container.viewContext )
    }
 }
+#endif

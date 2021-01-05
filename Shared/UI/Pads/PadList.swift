@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -25,13 +24,55 @@ struct PadList: View
    }
 }
 
+struct PadRow: View
+{
+   var pad: Pad
 
+   var body: some View
+   {
+      Text( "\(pad.name ?? "")" )
+         .font( .headline )
+         .lineLimit( 3 )
+   }
+}
+
+/**
+ Preview layouts.
+ */
+#if DEBUG
 struct PadListPreviews: PreviewProvider
 {
    static var previews: some View
    {
-      PadList()
+      Group
+      {
+         // light view
+         NavigationView
+         {
+            PadList()
          .environment( \.managedObjectContext,
                        PersistenceController.preview.container.viewContext )
+         }
+         .environment( \.colorScheme, .light )
+
+         // dark view
+         NavigationView
+         {
+            PadList()
+            .environment( \.managedObjectContext,
+                          PersistenceController.preview.container.viewContext )
+         }
+         .environment( \.colorScheme, .dark )
+
+         // Assitive text large
+         NavigationView
+         {
+            PadList()
+            .environment( \.managedObjectContext,
+                          PersistenceController.preview.container.viewContext )
+         }
+         .environment( \.sizeCategory, .accessibilityExtraExtraExtraLarge )
+      }
    }
 }
+#endif

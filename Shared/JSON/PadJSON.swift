@@ -1,4 +1,3 @@
-import Foundation
 import CoreData
 
 /**
@@ -135,20 +134,10 @@ func getPadCount( context: NSManagedObjectContext ) -> Int?
 
 func getSamplePad() -> PadJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      let jsonData = samplePadJSON.data( using: .utf8 )!
-      return try decoder.decode( PadJSON.self, from: jsonData )
-   }
-   catch { print( "error: ", error) }
-
-   return nil
+   return parseJSONString( json: samplePadJSON )
 }
 
-let samplePadJSON =
+private let samplePadJSON =
 """
     {
       "id": 87,

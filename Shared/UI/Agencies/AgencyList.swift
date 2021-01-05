@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -32,6 +31,31 @@ struct AgencyList: View
    }
 }
 
+struct AgencyRow: View
+{
+   var agency: Agency
+
+   var body: some View
+   {
+      Text( "\(agency.name ?? "")" )
+         .font( .headline )
+         .lineLimit( 2 )
+   }
+}
+
+struct BasicAgencyRow: View
+{
+   var agency: Agency
+
+   var body: some View
+   {
+      Text( "\(agency.name ?? "")" )
+         .font( .headline )
+         .lineLimit( 2 )
+   }
+}
+
+#if DEBUG
 struct AgencyListPreviews: PreviewProvider
 {
     static var previews: some View
@@ -41,3 +65,4 @@ struct AgencyListPreviews: PreviewProvider
                        PersistenceController.preview.container.viewContext )
     }
 }
+#endif
