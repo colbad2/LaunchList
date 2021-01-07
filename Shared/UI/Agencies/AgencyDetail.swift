@@ -12,8 +12,11 @@ struct AgencyDetail: View
          HStack( alignment: .top )
          {
             TitleField( s: agency.name )
-            Spacer()
-            Text( "\(flags( for: agency.countryCode ) ?? "")" )
+            if let countryCodes = agency.countryCodes
+            {
+               Spacer()
+               Text( flagsFromCodeArray( countryCodes ) ?? "" )
+            }
          }
          IconView( withURL: agency.imageURL )
 

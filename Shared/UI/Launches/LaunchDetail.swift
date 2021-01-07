@@ -94,6 +94,8 @@ struct LaunchDetail: View
                IconView( withURL: launch.image )
             }
             IconView( withURL: launch.infographic )
+
+            ProgramLinks( programs: launch.programs )
          }
          .padding()
       }
@@ -108,19 +110,20 @@ func allProgramFlags( launch: Launch ) -> String?
    var codes = Set< String >()
    for program in launch.programs! as! Set<Program>
    {
-      if let agencies = program.agencies
-      {
-         for agency in agencies as! Set<Agency>
-         {
-            if let countryCodes = agency.countryCodes
-            {
-               for countryCode in countryCodes
-               {
-                  codes.insert( countryCode )
-               }
-            }
-         }
-      }
+      for code in getAllAgencyFlags( program: program ) { codes.insert(code ) }
+//      if let agencies = program.agencies
+//      {
+//         for agency in agencies as! Set<Agency>
+//         {
+//            if let countryCodes = agency.countryCodes
+//            {
+//               for countryCode in countryCodes
+//               {
+//                  codes.insert( countryCode )
+//               }
+//            }
+//         }
+//      }
    }
 
    if codes.count == 0 { return nil }

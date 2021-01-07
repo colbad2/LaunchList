@@ -56,6 +56,8 @@ Front-end for the SpaceDevs launch API (https://ll.thespacedevs.com/2.1.0/swagge
 - limit large flag lists
 - agency list flag smash titles
 - top justify agency list items
+- click on flag list in details views to get a detail view with flags and country names
+- add flag lists to everything associated with an agency
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"

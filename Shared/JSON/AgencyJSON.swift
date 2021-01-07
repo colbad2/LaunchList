@@ -89,6 +89,15 @@ struct AgencyJSON: Decodable
       }
       entity?.parent = self.parent
       entity?.imageURL = self.imageURL
+
+      // add flags for holes in the API
+      if entity?.name == "Canadian Space Agency" { entity?.countryCodes?.append( "CAN" ) }
+      if entity?.name == "National Aeronautics and Space Administration" { entity?.countryCodes?.append( "USA" ) }
+      if entity?.name == "China National Space Administration" { entity?.countryCodes?.append( "CHN" ) }
+      // TODO go through the agency list and fill in holes
+      // TODO do this with a dictionary
+
+      // TODO same for programs
    }
 }
 

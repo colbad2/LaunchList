@@ -385,6 +385,7 @@
 		A29B4CF7259B933D00EE0B56 /* AgencyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyList.swift; sourceTree = "<group>"; };
 		A2A6383D259670E900D58415 /* AgencyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyJSON.swift; sourceTree = "<group>"; };
 		A2A638462596713100D58415 /* OrbitJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitJSON.swift; sourceTree = "<group>"; };
+		A2BB770A25A7916F004FFFB3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A2BBFF05259CFC2500BBC605 /* ServiceProviderListJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderListJSON.swift; sourceTree = "<group>"; };
 		A2BBFF1C259D00DC00BBC605 /* launchers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = launchers.json; sourceTree = "<group>"; };
 		A2BBFF24259D015E00BBC605 /* locations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
@@ -679,6 +680,7 @@
 		A2DA71FF2595AF8C009405E6 = {
 			isa = PBXGroup;
 			children = (
+				A2BB770A25A7916F004FFFB3 /* README.md */,
 				A29B4CF6259B90EE00EE0B56 /* Notes.md */,
 				A2DA72042595AF8D009405E6 /* Shared */,
 				A2DA72112595AF8F009405E6 /* iOS */,

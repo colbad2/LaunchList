@@ -23,14 +23,21 @@ struct ProgramDetail: View
 
             if let programName = program.name
             {
-               Text( programName )
-                  .font( .title )
-                  .foregroundColor( .primary )
-                  .lineLimit( 3 )
-                  .layoutPriority( 200 )
-                  .fixedSize( horizontal: false, vertical: true )
-                     // here to force last line to draw, may be fixed in later SwiftUI releases
-
+               VStack( alignment: .leading )
+               {
+                  Text( programName )
+                     .font( .title )
+                     .foregroundColor( .primary )
+                     .lineLimit( 3 )
+                     .layoutPriority( 200 )
+                     .fixedSize( horizontal: false, vertical: true )
+                  // here to force last line to draw, may be fixed in later SwiftUI releases
+                  let codes = getAllAgencyFlags( program: program )
+                  if let countryCodes = codes
+                  {
+                     Text( flagsFromCodeArray( countryCodes ) ?? "" )
+                  }
+               }
             }
             Spacer()
          }

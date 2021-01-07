@@ -99,6 +99,22 @@ struct ProgramJSON: Decodable
    }
 }
 
+func getAllAgencyFlags( program: Program? ) -> [String]
+{
+   if program == nil { return [] }
+
+   var codes = Set< String >()
+   for agency in program!.agencies as? Set<Agency> ?? Set()
+   {
+      for countryCode in agency.countryCodes ?? []
+      {
+         codes.insert( countryCode )
+      }
+   }
+
+   return Array( codes )
+}
+
 // Core Data search/update
 
 func getProgram( by id: Int64, context: NSManagedObjectContext ) -> Program?
