@@ -17,6 +17,7 @@ struct HomeView: View
          }
 
          let launch = getNextLaunch( context: PersistenceController.shared.container.viewContext )!
+         let nextLaunchID = launch.id!
 
          VStack
          {
@@ -25,7 +26,7 @@ struct HomeView: View
                        rightString: launch.rocket?.name ?? launch.name )
             TwoFields( leftString: launch.serviceProvider?.type,
                        rightString: launch.mission?.type )
-            LeftField( prefix: "Orbit: ", s: launch.mission?.orbitName )
+            LeftField( s: launch.mission?.orbitName )
             NavigationLink( destination: PadDetail( pad: launch.pad! ) )
             {
                LeftField( s: launch.pad?.name )
@@ -38,7 +39,10 @@ struct HomeView: View
          }
          Divider()
          HoldFailCountdownView( launch: launch )
-         IconView( withURL: launch.image )
+//         NavigationLink( destination: ImageViewer( withURL: launch.image ) )
+//         {
+            IconView( withURL: launch.image )
+//         }
          DescriptionView( desc: launch.mission?.missionDescription )
          IconView( withURL: launch.infographic )
 
@@ -52,10 +56,10 @@ struct HomeView: View
                launch in
                NavigationLink( destination: LaunchDetail( launch: launch ) )
                {
-                  LaunchRow( launch: launch )
+                  LaunchRow( launch: launch, nextLaunchID: nextLaunchID )
                }
             }
-            .frame( height: 400 )
+            .frame( height: 450 )
          }
       }
       .padding()
@@ -65,7 +69,7 @@ struct HomeView: View
 
 func getUpcomingLaunches() -> [Launch]
 {
-   var upcomingLaunches = getNextLaunches( count: 5, context: PersistenceController.shared.container.viewContext )
+   var upcomingLaunches = getNextLaunches( count: 6, context: PersistenceController.shared.container.viewContext )
    upcomingLaunches.remove( at: 0 )
    return upcomingLaunches
 }

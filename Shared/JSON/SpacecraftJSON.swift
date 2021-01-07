@@ -80,15 +80,12 @@ func getSpacecraftCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "Spacecraft", context: context )
 }
 
-func getSampleSpacecraft() -> SpacecraftJSON
+func getSampleSpacecraft() -> SpacecraftJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleSpacecraftJSON.data( using: .utf8 )!
-   return try! decoder.decode( SpacecraftJSON.self, from: jsonData )
+   return parseJSONString( json: sampleSpacecraftJSON )
 }
 
-let sampleSpacecraftJSON =
+private let sampleSpacecraftJSON =
 """
  {
    "id": 77,

@@ -63,7 +63,7 @@ func getSampleServiceProvider() -> ServiceProviderJSON?
    return parseJSONString( json: sampleServiceProviderJSON )
 }
 
-let sampleServiceProviderJSON =
+private let sampleServiceProviderJSON =
 """
  {
      "id": 121,

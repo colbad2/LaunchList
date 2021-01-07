@@ -3,26 +3,33 @@ import CoreData
 /**
  ### Example
  {
-   "id": 6,
-   "url": "https://ll.thespacedevs.com/2.1.0/spacestation/6/",
-   "name": "Skylab",
+   "id": 14,
+   "url": "https://ll.thespacedevs.com/2.1.0/spacestation/14/",
+   "name": "Salyut 6",
    "status": {
      "id": 2,
      "name": "De-Orbited"
-   }
+   },
+   "orbit": "Low Earth Orbit",
+   "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/salyut25206_image_20190318095930.jpg"
+ }
  */
 struct SpaceStationJSON: Decodable
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
    {
-      case id, url, name, status
+      case id, url, name, status, orbit
+
+      case imageURL = "imageUrl"
    }
 
    let id: Int64
    let url: String? // unused
    let name: String?
    let status: StatusJSON?
+   let orbit: String?
+   let imageURL: String?
 
    func addToCoreData( context: NSManagedObjectContext ) -> SpaceStation
    {
@@ -39,6 +46,8 @@ struct SpaceStationJSON: Decodable
       entity.id = self.id
       entity.name = self.name
       entity.status = self.status?.name
+      entity.orbit = self.orbit
+      entity.imageURL = self.imageURL
    }
 }
 
@@ -61,23 +70,23 @@ func getSpaceStationCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "SpaceStation", context: context )
 }
 
-func getSampleSpaceStation() -> SpaceStationJSON
+func getSampleSpaceStation() -> SpaceStationJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleSpaceStationJSON.data( using: .utf8 )!
-   return try! decoder.decode( SpaceStationJSON.self, from: jsonData )
+   return parseJSONString( json: sampleSpaceStationJSON )
 }
 
-let sampleSpaceStationJSON =
+private let sampleSpaceStationJSON =
 """
- {
-   "id": 6,
-   "url": "https://ll.thespacedevs.com/2.1.0/spacestation/6/",
-   "name": "Skylab",
-   "status": {
-     "id": 2,
-     "name": "De-Orbited"
-   }
+      {
+        "id": 4,
+        "url": "https://ll.thespacedevs.com/2.1.0/spacestation/4/",
+        "name": "International Space Station",
+        "status": {
+          "id": 1,
+          "name": "Active"
+        },
+        "orbit": "Low Earth Orbit",
+        "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/international2520space2520station_image_20190220215716.jpeg"
+      }
 """
 

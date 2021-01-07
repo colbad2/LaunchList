@@ -98,28 +98,28 @@ struct EventJSON: Decodable
 
       for launch in launches!
       {
-         let newLaunch: Launch = launch.addToCoreData( context: context )
+         let newLaunch: Launch = fetchLaunch( launch: launch, context: context )
          entity.addToLaunches( newLaunch )
          newLaunch.addToEvents( entity )
       }
 
       for expedition in expeditions!
       {
-         let newExpedition: Expedition = expedition.addToCoreData( context: context )
+         let newExpedition: Expedition = fetchExpedition( expedition: expedition, context: context )
          entity.addToExpeditions( newExpedition )
          newExpedition.addToEvents( entity )
       }
 
       for spaceStation in spaceStations!
       {
-         let newSpaceStations: SpaceStation = spaceStation.addToCoreData( context: context )
+         let newSpaceStations: SpaceStation = fetchSpaceStation( spaceStation: spaceStation, context: context )
          entity.addToSpaceStations( newSpaceStations )
          newSpaceStations.addToEvents( entity )
       }
 
       for program in programs!
       {
-         let newProgram: Program = program.addToCoreData( context: context )
+         let newProgram: Program = fetchProgram( program: program, context: context )
          entity.addToPrograms( newProgram )
          newProgram.addToEvents( entity )
       }
@@ -145,15 +145,12 @@ func getEventCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "Event", context: context )
 }
 
-func getSampleEvent() -> EventJSON
+func getSampleEvent() -> EventJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleEventJSON.data( using: .utf8 )!
-   return try! decoder.decode( EventJSON.self, from: jsonData )
+   return parseJSONString( json: sampleEventJSON )
 }
 
-let sampleEventJSON =
+private let sampleEventJSON =
 """
   {
     "id": 206,

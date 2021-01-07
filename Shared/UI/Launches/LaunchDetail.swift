@@ -13,12 +13,36 @@ struct LaunchDetail: View
          {
             VStack
             {
-               TitleField( s: missionName( launch ) )
+               HStack( alignment: .top )
+               {
+                  TitleField( s: missionName( launch ) )
+                  let flags: String? = allProgramFlags( launch: launch )
+                  if flags != nil
+                  {
+                     Spacer()
+                     Text( flags! )
+                  }
+               }
                TwoFields( leftString: launch.getProviderName(),
                           rightString: launch.rocket?.name ?? launch.name )
                TwoFields( leftString: launch.serviceProvider?.type,
                           rightString: launch.mission?.type )
                LeftField( s: launch.mission?.orbitName )
+               HStack
+               {
+                  // TODO if start and end same, skip end
+                  // TODO if no end, then blank
+                  // TODO if now past end,
+                  Text( "\(launch.windowStart!, formatter: LaunchRow.taskDateFormat)" )
+                     .font( .subheadline )
+                     .foregroundColor( .secondary )
+                     .textCase( .uppercase )
+                  Spacer()
+                  Text( "\(launch.windowEnd!, formatter: LaunchRow.taskDateFormat)" )
+                     .font( .subheadline )
+                     .foregroundColor( .secondary )
+                     .textCase( .uppercase )
+               }
                NavigationLink( destination: PadDetail( pad: launch.pad! ) )
                {
                   LeftField( s: launch.pad?.name )
@@ -63,13 +87,53 @@ struct LaunchDetail: View
             }
 
             DescriptionView( desc: launch.mission?.missionDescription )
-            IconView( withURL: launch.image )
+            // IconView( withURL: launch.image )
+
+            NavigationLink( destination: ImageViewer( withURL: launch.image ) )
+            {
+               IconView( withURL: launch.image )
+            }
             IconView( withURL: launch.infographic )
          }
          .padding()
       }
       .navigationBarTitle( "Launch", displayMode: .inline )
    }
+}
+
+func allProgramFlags( launch: Launch ) -> String?
+{
+   if launch.programs == nil { return nil }
+
+   var codes = Set< String >()
+   for program in launch.programs! as! Set<Program>
+   {
+      if let agencies = program.agencies
+      {
+         for agency in agencies as! Set<Agency>
+         {
+            if let countryCodes = agency.countryCodes
+            {
+               for countryCode in countryCodes
+               {
+                  codes.insert( countryCode )
+               }
+            }
+         }
+      }
+   }
+
+   if codes.count == 0 { return nil }
+   var result = ""
+   for code in codes
+   {
+      if let f = flag( for: code )
+      {
+         result += f
+      }
+   }
+
+   return result
 }
 
 #if DEBUG

@@ -65,24 +65,31 @@ struct MissionJSON: Decodable
       entity?.launchDesignator = self.launchDesignator
       entity?.name = self.name?.fixBadUTF()
 
-      entity?.orbitName = "\(normalizedOrbitName( self.orbit?.name ) ?? "") (\(self.orbit?.abbreviation ?? ""))"
+      if let orbitName = self.orbit?.name
+      {
+         entity?.orbitName = normalizedOrbitName( orbitName, abbreviation: self.orbit?.abbreviation )
+      }
       entity?.orbitAbbreviation = self.orbit?.abbreviation
 
       entity?.type = self.type
    }
 }
 
-func normalizedOrbitName( _ n: String? ) -> String?
+func normalizedOrbitName( _ n: String?, abbreviation: String? = nil ) -> String?
 {
-   guard let orbitName = n else { return nil }
+   guard var orbitName = n else { return nil }
 
-   if orbitName.contains( " Orbit" )
+   if !orbitName.contains( " Orbit" )
    {
-      return orbitName
+      orbitName = orbitName + " Orbit"
    }
 
-   // don't wreck "de-orbited"
-   return orbitName + " Orbit"
+   if let abbreviation = abbreviation
+   {
+      orbitName += " (\(abbreviation))"
+   }
+
+   return orbitName
 }
 
 // Core Data search/update
@@ -103,7 +110,6 @@ func getMissionCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Mission", context: context )
 }
-
 
 func getSampleMission() -> MissionJSON?
 {

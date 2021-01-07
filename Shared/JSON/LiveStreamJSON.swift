@@ -66,15 +66,12 @@ func getLiveStreamCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "LiveStream", context: context )
 }
 
-func getSampleLiveStream() -> LiveStreamJSON
+func getSampleLiveStream() -> LiveStreamJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleLiveStreamJSON.data( using: .utf8 )!
-   return try! decoder.decode( LiveStreamJSON.self, from: jsonData )
+   return parseJSONString( json: sampleLiveStreamJSON )
 }
 
-let sampleLiveStreamJSON =
+private let sampleLiveStreamJSON =
 """
  {
    "title": "LabPadre 24/7 Livestream",

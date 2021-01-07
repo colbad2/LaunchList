@@ -5,7 +5,7 @@ struct DatasetList: View
 {
    let listItems: [ListItem] = [ ListItem( title: "Launches", entity: "Launch" ),
                                  ListItem( title: "Agencies", entity: "Agency" ),
-                                 ListItem( title: "Service Providers", entity: "ServiceProvider" ),
+//                                 ListItem( title: "Service Providers", entity: "ServiceProvider" ),
                                  ListItem( title: "Pads", entity: "Pad" ),
                                  ListItem( title: "Missions", entity: "Mission" ),
                                  ListItem( title: "Programs", entity: "Program" ),
@@ -14,8 +14,10 @@ struct DatasetList: View
                                  ListItem( title: "Events", entity: "Event" ),
                                  ListItem( title: "Live Streams", entity: "LiveStream" ),
                                  ListItem( title: "Starship Vehicles", entity: "Vehicle" ),
-                                 ListItem( title: "Docking", entity: "Docking" ) ]
+                                 ListItem( title: "Docking", entity: "Docking" ),
+                                 ListItem( title: "Space Stations", entity: "SpaceStation" ) ]
 
+// TODO launchers
    var body: some View
    {
       List( listItems )
@@ -24,8 +26,6 @@ struct DatasetList: View
 
          ListItemRow( listItem: listItem )
       }
-//      .navigationBarHidden( true )
-//      .navigationBarTitle( "Datasets", displayMode: .large )
       .navigationViewStyle( StackNavigationViewStyle() )
    }
 }
@@ -76,7 +76,7 @@ func getListItemView( title: String ) -> AnyView?
    {
       case "Launches": return AnyView( LaunchList() )
       case "Agencies": return AnyView( AgencyList() )
-      case "Service Providers": return AnyView( ServiceProviderList() )
+//      case "Service Providers": return AnyView( ServiceProviderList() )
       case "Pads": return AnyView( PadList() )
       case "Missions": return AnyView( MissionList() )
       case "Programs": return AnyView( ProgramList() )
@@ -86,6 +86,7 @@ func getListItemView( title: String ) -> AnyView?
       case "Live Streams": return AnyView( LiveStreamList() )
       case "Starship Vehicles": return AnyView( VehicleList() )
       case "Docking": return AnyView( DockingList() )
+      case "Space Stations": return AnyView( SpaceStationList() )
       default: return nil
    }
 }

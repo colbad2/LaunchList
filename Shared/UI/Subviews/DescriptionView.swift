@@ -9,6 +9,8 @@ struct DescriptionView: View
    {
       if desc != nil
       {
+         VStack( alignment: .leading )
+         {
          Divider()
 
          Text( "\(desc!)" )
@@ -16,6 +18,7 @@ struct DescriptionView: View
             .layoutPriority( 200 )
             .fixedSize( horizontal: false, vertical: true )
                // here to force last line to draw, may be fixed in later SwiftUI releases
+         }
       }
    }
 }

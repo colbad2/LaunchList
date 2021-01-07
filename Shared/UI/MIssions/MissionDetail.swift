@@ -12,8 +12,8 @@ struct MissionDetail: View
          VStack
          {
             TitleField( s: mission?.name )
-            LeftField( prefix: "Type:", s: mission?.type )
-            LeftField( prefix: "Orbit:", s: mission?.orbitName  )
+            LeftField( s: mission?.type )
+            LeftField( s: mission?.orbitName  )
             DescriptionView( desc: mission?.missionDescription )
          }
       }
@@ -30,7 +30,10 @@ struct MissionDetailPreview: PreviewProvider
       let mission = getEntityByID( id: 1087,
                                    context: context,
                                    entityName: "Mission") as? Mission
-      MissionDetail( mission: mission )
+      NavigationView
+      {
+         MissionDetail( mission: mission )
+      }
    }
 }
 #endif

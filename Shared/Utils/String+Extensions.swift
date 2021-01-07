@@ -62,3 +62,95 @@ extension String
       return String( self.dropFirst( prefix.count ) )
    }
 }
+
+// TODO move to a Dictionary extension
+extension Dictionary where Value: Equatable
+{
+    func key( forValue value: Value ) -> Key?
+    {
+        return first { $0.1 == value }?.0
+    }
+}
+
+// Country code to emoji feature
+// https://www.timekl.com/blog/2017/08/31/swift-tricks-emoji-flags/
+
+private func isLowercaseASCIIScalar(_ scalar: Unicode.Scalar) -> Bool
+{
+   return scalar.value >= 0x61 && scalar.value <= 0x7A
+}
+
+private func regionalIndicatorSymbol( for scalar: Unicode.Scalar ) -> Unicode.Scalar
+{
+   precondition( isLowercaseASCIIScalar( scalar ) )
+
+   // 0x1F1E6 marks the start of the Regional Indicator Symbol range and corresponds to 'A'
+   // 0x61 marks the start of the lowercase ASCII alphabet: 'a'
+   return Unicode.Scalar( scalar.value + ( 0x1F1E6 - 0x61 ) )!
+}
+
+/**
+ emojiFlag( for: "de" ) // 🇩🇪
+ emojiFlag( for: "is" ) // 🇮🇸
+ */
+func emojiFlag( for countryCode: String? ) -> String?
+{
+   guard let code = countryCode else { return nil }
+   let lowercasedCode = code.lowercased()
+   guard lowercasedCode.count == 2 else { return nil }
+   guard lowercasedCode.unicodeScalars.reduce( true, { accum, scalar in accum && isLowercaseASCIIScalar( scalar ) } ) else { return nil }
+
+   let indicatorSymbols = lowercasedCode.unicodeScalars.map( { regionalIndicatorSymbol( for: $0 ) } )
+   return String(indicatorSymbols.map( { Character( $0 ) } ) )
+}
+
+func flag( for countryCode3: String? ) -> String?
+{
+   guard let code3 = countryCode3 else { return nil }
+   let code2 = CountryUtility.shared.getCountryCode2( code3 )
+   if code2 == nil { return countryCode3 }
+   return emojiFlag( for: code2 )
+}
+
+func flagsFromCodeArray( _ array: [String] ) -> String?
+{
+   var result = ""
+   for code in array
+   {
+      result += flag( for: code ) ?? code
+   }
+
+   return result
+}
+
+func flags( for country3CodeList: String? ) -> String?
+{
+   guard let codes = country3CodeList else { return nil }
+   let codeList = codes.split( separator: "," )
+   var result = ""
+   for code in codeList
+   {
+      let country = String( code ).trimmingCharacters( in: .whitespacesAndNewlines )
+      if country.count == 6
+      {
+         let c0 = String( country.prefix( 3 ) )
+         let c1 = String( country.suffix( 3 ) )
+         result += flag( for: c0 ) ?? c0
+         result += flag( for: c1 ) ?? c1
+      }
+      else if country.contains( "/" )
+      {
+         let c = country.split( separator: "/" )
+         let c0 = String( c[ 0 ] )
+         let c1 = String( c[ 1 ] )
+         result += flag( for: c0 ) ?? c0
+         result += flag( for: c1 ) ?? c1
+      }
+      else
+      {
+         result += flag( for: country ) ?? country
+      }
+   }
+
+   return result
+}

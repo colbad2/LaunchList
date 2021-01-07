@@ -17,7 +17,7 @@ struct AgencyList: View
 
          if isBasic( agency: agency )
          {
-            BasicAgencyRow( agency: agency )
+            AgencyRow( agency: agency )
          }
          else
          {
@@ -37,23 +37,40 @@ struct AgencyRow: View
 
    var body: some View
    {
-      Text( "\(agency.name ?? "")" )
-         .font( .headline )
-         .lineLimit( 2 )
+      HStack( alignment: .top )
+      {
+         Text( "\(agency.name ?? "")" )
+            .font( .headline )
+            .fixedSize( horizontal: false, vertical: true )
+         if let codes = agency.countryCodes
+         {
+            Spacer()
+            Text( flagsFromCodeArray( codes ) ?? "" )
+         }
+      }
    }
 }
 
-struct BasicAgencyRow: View
-{
-   var agency: Agency
-
-   var body: some View
-   {
-      Text( "\(agency.name ?? "")" )
-         .font( .headline )
-         .lineLimit( 2 )
-   }
-}
+//struct BasicAgencyRow: View
+//{
+//   var agency: Agency
+//
+//   var body: some View
+//   {
+//      HStack( alignment: .top )
+//      {
+//         Text( "\(agency.name ?? "")" )
+//            .font( .headline )
+//            .fixedSize( horizontal: false, vertical: true )
+//         if let codes = agency.countryCodes
+//         {
+//            Spacer()
+//            // Text( "\(flags( for: agency.countryCode ) ?? "")" )
+//            Text( flagsFromCodeArray( codes ) ?? "" )
+//         }
+//      }
+//   }
+//}
 
 #if DEBUG
 struct AgencyListPreviews: PreviewProvider

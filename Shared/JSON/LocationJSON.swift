@@ -83,20 +83,10 @@ func getLocationCount( context: NSManagedObjectContext ) -> Int?
 
 func getSampleLocation() -> LocationJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      let jsonData = sampleLocationJSON.data( using: .utf8 )!
-      return try decoder.decode( LocationJSON.self, from: jsonData )
-   }
-   catch { print("error: ", error) }
-
-   return nil
+   return parseJSONString( json: sampleLocationJSON )
 }
 
-let sampleLocationJSON =
+private let sampleLocationJSON =
 """
          {
            "id": 10,

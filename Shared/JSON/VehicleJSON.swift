@@ -100,7 +100,7 @@ func getSampleVehicle() -> VehicleJSON?
    return parseJSONString( json: sampleVehicleJSON )
 }
 
-let sampleVehicleJSON =
+private let sampleVehicleJSON =
 """
  {
    "id": 75,

@@ -27,6 +27,7 @@ struct RocketPreview: PreviewProvider
       let rocket = getEntityByID( id: 2663,
                                   context: context,
                                   entityName: "Rocket") as? Rocket
+      Text(rocket?.fullName ?? "")
       RocketDetail( rocket: rocket )
    }
 }

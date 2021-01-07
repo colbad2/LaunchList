@@ -9,7 +9,12 @@ struct AgencyDetail: View
    {
       ScrollView
       {
-         TitleField( s: agency.name )
+         HStack( alignment: .top )
+         {
+            TitleField( s: agency.name )
+            Spacer()
+            Text( "\(flags( for: agency.countryCode ) ?? "")" )
+         }
          IconView( withURL: agency.imageURL )
 
          VStack
@@ -26,7 +31,7 @@ struct AgencyDetail: View
                   Text( "Launchers:" )
                      .font( .subheadline )
                      .foregroundColor( .secondary )
-                  Text( "\(launchers)" )
+                  Text( launchers )
                      .font( .subheadline )
                      .foregroundColor( .secondary )
                   Spacer()
@@ -40,7 +45,7 @@ struct AgencyDetail: View
                   Text( "Spacecraft:" )
                      .font( .subheadline )
                      .foregroundColor( .secondary )
-                  Text( "\(spacecraft)" )
+                  Text( spacecraft )
                      .font( .subheadline )
                      .foregroundColor( .secondary )
                   Spacer()

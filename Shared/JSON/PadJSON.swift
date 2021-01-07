@@ -87,8 +87,12 @@ struct PadJSON: Decodable
       entity.latitude = self.latitude ?? ""
       entity.longitude = self.longitude ?? ""
 
-      entity.location = self.location?.addToCoreData( context: context )
-      entity.location?.pad = entity
+      // TODO all of these kinds of assignments should be extension funcs on the CD entity
+      if let loc = self.location
+      {
+         entity.location = fetchLocation( location: loc, context: context )
+         entity.location?.pad = entity
+      }
 
       entity.mapImage = self.mapImage
       
@@ -130,6 +134,16 @@ func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
 func getPadCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Pad", context: context )
+}
+
+func getSamplePadEntity() -> Pad
+{
+   let context = PersistenceController.preview.container.viewContext
+   let pad = getEntityByID( id: 87,
+                            context: context,
+                            entityName: "Pad" ) as! Pad
+
+   return pad
 }
 
 func getSamplePad() -> PadJSON?

@@ -24,9 +24,17 @@ struct PersistenceController
       _ = getSampleAstronaut()?.addToCoreData( context: viewContext )
       _ = getSampleServiceProvider()?.addToCoreData( context: viewContext )
       _ = getSampleDocking()?.addToCoreData( context: viewContext )
+      _ = getSampleDockingLocation()?.addToCoreData( context: viewContext )
       _ = getSampleVehicle()?.addToCoreData( context: viewContext )
-      // TODO all other types
-      // TODO should samples return optionals or not
+      _ = getSampleSpaceStation()?.addToCoreData( context: viewContext )
+      _ = getSampleExpedition()?.addToCoreData( context: viewContext )
+      _ = getSampleLocation()?.addToCoreData( context: viewContext )
+      _ = getSampleLauncher()?.addToCoreData( context: viewContext )
+      _ = getSampleLiveStream()?.addToCoreData( context: viewContext )
+      _ = getSampleEvent()?.addToCoreData( context: viewContext )
+      _ = getSampleFlightVehicle()?.addToCoreData( context: viewContext )
+      _ = getSampleSpacecraft()?.addToCoreData( context: viewContext )
+      _ = getSampleSpacecraftConfig()?.addToCoreData( context: viewContext )
 
       return result
    }()
@@ -112,6 +120,7 @@ func fillStore( viewContext: NSManagedObjectContext )
    let agencies: AgenciesListJSON? = parseJSONFile( filename: "agencies" )
    for agency in agencies?.sublist ?? []
    {
+      if agency.name == "Unknown" { continue }
       _ = fetchAgency( agency: agency, context: viewContext )
    }
 

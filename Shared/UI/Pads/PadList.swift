@@ -33,6 +33,11 @@ struct PadRow: View
       Text( "\(pad.name ?? "")" )
          .font( .headline )
          .lineLimit( 3 )
+      if let countryCode = pad.location?.countryCode
+      {
+         Spacer()
+         Text( flags( for: countryCode )! )
+      }
    }
 }
 

@@ -28,26 +28,34 @@ Front-end for the SpaceDevs launch API (https://ll.thespacedevs.com/2.1.0/swagge
 - TabView tab icons
 - use a common date format
 - logo, db list row icons
-### Info navigation
+### navigation
 - Any JSON with a mirror list of containers should have a nav link to that list (pad link to list of launches on that pad for example)
 - Programmatically go to databse details pages from links in the next launch home page
+- tap on tab icon should return nav to home
 ### Code
 - switch tab tags to enum values
 - use SwiftUI scrollTo proxy when it works in List
 - fix console messages
 -- error: regular expression substitution string doesn't start with 's': '‘s/(.+)/expr'
 -- nw_protocol_get_quic_image_block_invoke dlopen libquic failed
+- any code TODOs
+- remove any unnneeded wrappers around strings in Text views: Text( "\(string)" )
 ### UI Features
 - do all the stored JSON files as elements in the dataset list
-- do a "spacestations" db list entry that lists stations and the missions to them, inverting the expeditions.json file structure.
 - Timeline tab with merged launches/events/dockings etc
 - settings (notifications, update schedule, force update)
 - today buttons in all dated list item lists
-- search tab/search element in lists/filter lists
+- search tab/search element in lists/filter lists (filter by dates, countries, company, etc)
 - remember scroll positions in lists during run/beteween runs
 - instead of scrolling to today in list, scroll to date given in a sheet /date picker
 - notification of launches
 - widget with upcoming launch/event
+- pad with number names need more info in their title
+- launch flags
+- generic wikipedia/google search
+- limit large flag lists
+- agency list flag smash titles
+- top justify agency list items
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"
@@ -66,6 +74,7 @@ Front-end for the SpaceDevs launch API (https://ll.thespacedevs.com/2.1.0/swagge
 - code coverage testing
 - run in profiler
 - run analyze
+- better handling of test data (gather test strings/files)
 
 
 ## Other TODOs
@@ -105,3 +114,5 @@ Front-end for the SpaceDevs launch API (https://ll.thespacedevs.com/2.1.0/swagge
 - exmaples of use in comments
 - example data for all data objects
 - check indents, spaces
+- public/private keywords
+- code line length

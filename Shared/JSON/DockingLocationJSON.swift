@@ -56,15 +56,12 @@ func getDockingLocationCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "DockingLocation", context: context )
 }
 
-func getSampleDockingLocation() -> DockingLocationJSON
+func getSampleDockingLocation() -> DockingLocationJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleDockingLocationJSON.data( using: .utf8 )!
-   return try! decoder.decode( DockingLocationJSON.self, from: jsonData )
+   return parseJSONString( json: sampleDockingLocationJSON )
 }
 
-let sampleDockingLocationJSON =
+private let sampleDockingLocationJSON =
 """
  {
    "id": 2,

@@ -17,15 +17,20 @@ struct ProgramDetail: View
    {
       ScrollView
       {
-         HStack
+         HStack( alignment: .top )
          {
-            RowImage( imageURL: program.imageURL, drawSpace: false )
+            RowImage( imageURL: program.imageURL, drawSpace: false, w: 100, h: 100 )
 
             if let programName = program.name
             {
-               Text( "\(programName)" )
+               Text( programName )
                   .font( .title )
                   .foregroundColor( .primary )
+                  .lineLimit( 3 )
+                  .layoutPriority( 200 )
+                  .fixedSize( horizontal: false, vertical: true )
+                     // here to force last line to draw, may be fixed in later SwiftUI releases
+
             }
             Spacer()
          }
@@ -52,6 +57,7 @@ struct ProgramDetail: View
                {
                   agency in
                   AgencyLink( agencyID: agency.id )
+                     .padding( 3 )
                }
             }
          }
@@ -96,7 +102,6 @@ struct ProgramPreview: PreviewProvider
 
          NavigationView
          {
-            // TODO why is the description indented?
             ProgramDetail( program: artemisProgram )
          }
          .environment( \.colorScheme, .light )

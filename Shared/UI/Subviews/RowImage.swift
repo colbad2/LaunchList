@@ -6,13 +6,15 @@ struct RowImage: View
 {
    var imageURL: String?
    var drawSpace: Bool = true
+   var w: CGFloat?
+   var h: CGFloat?
 
    var body: some View
    {
       if let url = imageURL
       {
          IconView( withURL: url )
-            .frame( width: 50, height: 60 )
+            .frame( width: w ?? 50, height: h ?? 60 )
             .clipped()
          Spacer()
             .frame( width: 15 )
@@ -22,7 +24,7 @@ struct RowImage: View
          if drawSpace
          {
             Spacer()
-               .frame( width: 55 )
+               .frame( width: 75 )
          }
       }
    }

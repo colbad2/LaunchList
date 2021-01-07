@@ -17,13 +17,14 @@ struct LaunchList: View
       {
          proxy in
 
+         let nextLaunchID = getNextLaunch( context: PersistenceController.shared.container.viewContext )!.id!
          List( launches )
          {
             ( launch: Launch ) in
 
             NavigationLink( destination: LaunchDetail( launch: launch ) )
             {
-               LaunchRow( launch: launch )
+               LaunchRow( launch: launch, nextLaunchID: nextLaunchID )
             }
          }
          .overlay(
@@ -72,10 +73,10 @@ struct LaunchList: View
    }
 }
 
-
 struct LaunchRow: View
 {
    var launch: Launch
+   var nextLaunchID: String
 
    var body: some View
    {
@@ -83,9 +84,25 @@ struct LaunchRow: View
 
       VStack( alignment: .leading )
       {
-         Text( "\(missionName( launch ))" )
-            .font( .headline )
-            .lineLimit( 2 )
+         HStack( alignment: .top )
+         {
+            Text( "\(missionName( launch ))" )
+               .font( .headline )
+               .lineLimit( 2 )
+            if launch.id == nextLaunchID
+            {
+               Spacer()
+               ZStack
+               {
+                  Capsule()
+                     .fill(Color.blue)
+                     .frame( width: 50, height: 20 )
+                  Text( "Next" )
+                     .foregroundColor( Color.white )
+                     .font( .subheadline )
+               }
+            }
+         }
          HStack
          {
             let providerName = launch.getProviderName()

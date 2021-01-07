@@ -72,15 +72,12 @@ func getFlightVehicleCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "FlightVehicle", context: context )
 }
 
-func getSampleFlightVehicle() -> FlightVehicleJSON
+func getSampleFlightVehicle() -> FlightVehicleJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-   let jsonData = sampleFlightVehicleJSON.data( using: .utf8 )!
-   return try! decoder.decode( FlightVehicleJSON.self, from: jsonData )
+   return parseJSONString( json: sampleFlightVehicleJSON )
 }
 
-let sampleFlightVehicleJSON =
+private let sampleFlightVehicleJSON =
 """
       {
         "id": 220,

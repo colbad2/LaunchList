@@ -72,20 +72,10 @@ func getLauncherConfigCount( context: NSManagedObjectContext ) -> Int?
 
 func getSampleLauncherConfig() -> LauncherConfigJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      let jsonData = sampleLauncherConfigJSON.data( using: .utf8 )!
-      return try decoder.decode( LauncherConfigJSON.self, from: jsonData )
-   }
-   catch { print( "error: ", error) }
-
-   return nil
+   return parseJSONString( json: sampleLauncherConfigJSON )
 }
 
-let sampleLauncherConfigJSON =
+private let sampleLauncherConfigJSON =
 """
  {
      "id": 169,

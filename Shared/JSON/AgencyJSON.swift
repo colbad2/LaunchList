@@ -66,7 +66,11 @@ struct AgencyJSON: Decodable
       entity?.name = self.name
       // TODO remove entity?.featured = self.featured ?? false
       entity?.type = self.type
+
+      // TODO remove one of these
       entity?.countryCode = self.countryCode
+      entity?.countryCodes = getCountryCodes( countryCode: self.countryCode )
+
       entity?.abbreviation = self.abbreviation
       if var admin = self.administrator
       {
@@ -97,6 +101,40 @@ func isBasic( agency: Agency ) -> Bool
       agency.launchers == nil &&
       agency.spacecraft == nil &&
       agency.imageURL == nil
+}
+
+func getCountryCodes( countryCode: String? ) -> [String]
+{
+   if countryCode == nil { return [] }
+   
+   var codes: [String] = []
+   if let agencyCodes = countryCode
+   {
+      let codeList = agencyCodes.split( separator: "," )
+      for code in codeList
+      {
+         let country = String( code ).trimmingCharacters( in: .whitespacesAndNewlines )
+         if country.count == 6
+         {
+            codes.append( String( country.prefix( 3 ) ) )
+            codes.append( String( country.suffix( 3 ) ) )
+         }
+         else if country.contains( "/" )
+         {
+            let c = country.split( separator: "/" )
+            codes.append( String( c[ 0 ] ) )
+            codes.append( String( c[ 1 ] ) )
+         }
+         else
+         {
+            codes.append( country )
+         }
+      }
+   }
+
+   if codes.count == 0 { return [] }
+
+   return codes
 }
 
 // Core Data search/update

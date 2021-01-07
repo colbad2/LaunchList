@@ -103,7 +103,6 @@ struct AstronautJSON: Decodable
          agencyEntity.addToAstronauts( entity! )
       }
 
-
       entity?.firstFlight = self.firstFlight
       entity?.lastFlight = self.lastFlight
       entity?.profileImage = self.profileImage

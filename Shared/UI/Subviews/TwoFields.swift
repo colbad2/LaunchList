@@ -11,7 +11,7 @@ struct TwoFields: View
    {
       if leftString != nil || rightString != nil
       {
-         HStack
+         HStack( alignment: .top )
          {
             if leftString != nil
             {

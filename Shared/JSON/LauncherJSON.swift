@@ -66,8 +66,11 @@ struct LauncherJSON: Decodable
       entity.status = self.status
       entity.details = self.details
 
-      entity.launcherConfig = self.launcherConfig?.addToCoreData( context: context ) // TODO only if missing
-      entity.launcherConfig?.launcher = entity
+      if let config = self.launcherConfig
+      {
+         entity.launcherConfig = fetchLauncherConfig( launcherConfig: config, context: context )
+         entity.launcherConfig?.launcher = entity
+      }
 
       entity.imageURL = self.imageURL
       entity.flights = self.flights
@@ -97,20 +100,10 @@ func getLauncherCount( context: NSManagedObjectContext ) -> Int?
 
 func getSampleLauncher() -> LauncherJSON?
 {
-   let decoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      let jsonData = sampleLauncherJSON.data( using: .utf8 )!
-      return try decoder.decode( LauncherJSON.self, from: jsonData )
-   }
-   catch { print( "error: ", error) }
-
-   return nil
+   return parseJSONString( json: sampleLauncherJSON )
 }
 
-let sampleLauncherJSON =
+private let sampleLauncherJSON =
 """
  {
    "id": 8,
