@@ -28,6 +28,9 @@ struct SpaceStationJSON: Decodable
    let url: String? // unused
    let name: String?
    let status: StatusJSON?
+   var statusName: String?
+   var statusAbbreviation: String?
+   var statusDescription: String?
    let orbit: String?
    let imageURL: String?
 
@@ -45,7 +48,12 @@ struct SpaceStationJSON: Decodable
 
       entity.id = self.id
       entity.name = self.name
+
       entity.status = self.status?.name
+      entity.statusName = self.status?.name
+      entity.statusAbbreviation = self.status?.abbreviation
+      entity.statusDescription = self.status?.description
+
       entity.orbit = self.orbit
       entity.imageURL = self.imageURL
    }
@@ -77,16 +85,16 @@ func getSampleSpaceStation() -> SpaceStationJSON?
 
 private let sampleSpaceStationJSON =
 """
-      {
-        "id": 4,
-        "url": "https://ll.thespacedevs.com/2.1.0/spacestation/4/",
-        "name": "International Space Station",
-        "status": {
-          "id": 1,
-          "name": "Active"
-        },
-        "orbit": "Low Earth Orbit",
-        "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/international2520space2520station_image_20190220215716.jpeg"
-      }
+{
+  "id": 4,
+  "url": "https://ll.thespacedevs.com/2.1.0/spacestation/4/",
+  "name": "International Space Station",
+  "status": {
+    "id": 1,
+    "name": "Active"
+  },
+  "orbit": "Low Earth Orbit",
+  "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/international2520space2520station_image_20190220215716.jpeg"
+}
 """
 

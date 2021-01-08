@@ -82,33 +82,58 @@ struct AstronautJSON: Decodable
 
    func updateEntity( entity: Astronaut?, context: NSManagedObjectContext ) -> Void
    {
-      if entity == nil { return }
+      guard let entity = entity else { return }
 
-      entity?.id = self.id
-      entity?.name = self.name
-      entity?.status = self.status?.name
-      entity?.type = self.type?.name
-      entity?.dateOfBirth = self.dateOfBirth
-      entity?.dateOfDeath = self.dateOfDeath
-      entity?.nationality = self.nationality
-      entity?.bio = self.bio
-      entity?.twitter = self.twitter
-      entity?.instagram = self.instagram
-      entity?.wiki = self.wiki
+      entity.id = self.id
+      entity.name = self.name
+      entity.status = self.status?.name
+      entity.type = self.type?.name
+      entity.dateOfBirth = self.dateOfBirth
+      entity.dateOfDeath = self.dateOfDeath
+      entity.nationality = self.nationality
+      entity.bio = self.bio
+      entity.twitter = self.twitter
+      entity.instagram = self.instagram
+      entity.wiki = self.wiki
 
       if let agency = self.agency
       {
          let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
-         entity?.agency = agencyEntity
-         agencyEntity.addToAstronauts( entity! )
+         entity.agency = agencyEntity
+         agencyEntity.addToAstronauts( entity )
       }
 
-      entity?.firstFlight = self.firstFlight
-      entity?.lastFlight = self.lastFlight
-      entity?.profileImage = self.profileImage
-      entity?.profileImageThumbnail = self.profileImageThumbnail
+      entity.firstFlight = self.firstFlight
+      entity.lastFlight = self.lastFlight
+      entity.profileImage = self.profileImage
+      entity.profileImageThumbnail = self.profileImageThumbnail
    }
 }
+
+struct AstronautStatusJSON: Decodable
+{
+   // translate API attribute names into better var names
+   enum CodingKeys: String, CodingKey
+   {
+      case id, name
+   }
+
+   var id: Int64
+   var name: String?
+}
+
+struct AstronautTypeJSON: Decodable
+{
+   // translate API attribute names into better var names
+   enum CodingKeys: String, CodingKey
+   {
+      case id, name
+   }
+
+   var id: Int64
+   var name: String?
+}
+
 
 
 // Core Data search/update

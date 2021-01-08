@@ -82,21 +82,21 @@ func getSampleSpacecraftConfig() -> SpacecraftConfigJSON?
 
 private let sampleSpacecraftConfigJSON =
 """
-          {
-            "id": 1,
-            "url": "https://ll.thespacedevs.com/2.1.0/config/spacecraft/1/",
-            "name": "Soyuz",
-            "type": {
-              "id": 1,
-              "name": "Unknown"
-            },
-            "agency": {
-              "id": 63,
-              "url": "https://ll.thespacedevs.com/2.1.0/agencies/63/",
-              "name": "Russian Federal Space Agency (ROSCOSMOS)",
-              "type": "Government"
-            },
-            "in_use": true,
-            "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/soyuz_image_20201015191152.jpg"
-          }
+ {
+   "id": 1,
+   "url": "https://ll.thespacedevs.com/2.1.0/config/spacecraft/1/",
+   "name": "Soyuz",
+   "type": {
+     "id": 1,
+     "name": "Unknown"
+   },
+   "agency": {
+     "id": 63,
+     "url": "https://ll.thespacedevs.com/2.1.0/agencies/63/",
+     "name": "Russian Federal Space Agency (ROSCOSMOS)",
+     "type": "Government"
+   },
+   "in_use": true,
+   "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/soyuz_image_20201015191152.jpg"
+ }
 """

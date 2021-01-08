@@ -57,7 +57,6 @@ struct LauncherJSON: Decodable
 
    func updateEntity( entity: Launcher?, context: NSManagedObjectContext ) -> Void
    {
-      // TODO all other JSON objects use guard like this
       guard let entity = entity else { return }
 
       entity.id = self.id

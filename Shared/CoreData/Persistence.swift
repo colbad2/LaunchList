@@ -24,7 +24,6 @@ struct PersistenceController
       _ = getSampleAstronaut()?.addToCoreData( context: viewContext )
       _ = getSampleServiceProvider()?.addToCoreData( context: viewContext )
       _ = getSampleDocking()?.addToCoreData( context: viewContext )
-      _ = getSampleDockingLocation()?.addToCoreData( context: viewContext )
       _ = getSampleVehicle()?.addToCoreData( context: viewContext )
       _ = getSampleSpaceStation()?.addToCoreData( context: viewContext )
       _ = getSampleExpedition()?.addToCoreData( context: viewContext )

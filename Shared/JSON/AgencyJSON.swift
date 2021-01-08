@@ -60,40 +60,37 @@ struct AgencyJSON: Decodable
 
    func updateEntity( entity: Agency?, context: NSManagedObjectContext ) -> Void
    {
-      if entity == nil { return }
+      guard let entity = entity else { return }
 
-      entity?.id = self.id
-      entity?.name = self.name
-      // TODO remove entity?.featured = self.featured ?? false
-      entity?.type = self.type
+      entity.id = self.id
+      entity.name = self.name
+      entity.type = self.type
 
-      // TODO remove one of these
-      entity?.countryCode = self.countryCode
-      entity?.countryCodes = getCountryCodes( countryCode: self.countryCode )
+      entity.countryCodes = getCountryCodes( countryCode: self.countryCode )
 
-      entity?.abbreviation = self.abbreviation
+      entity.abbreviation = self.abbreviation
       if var admin = self.administrator
       {
          admin = admin.removePrefix( "Administrator: " )
-         entity?.administrator = admin
+         entity.administrator = admin
       }
-      entity?.agencyDescription = self.agencyDescription
-      entity?.foundingYear = self.foundingYear
+      entity.agencyDescription = self.agencyDescription
+      entity.foundingYear = self.foundingYear
       if self.launchers?.count ?? 0 > 0 && self.launchers != "None"
       {
-         entity?.launchers = self.launchers
+         entity.launchers = self.launchers
       }
       if self.spacecraft?.count ?? 0 > 0 && self.spacecraft != "None"
       {
-         entity?.spacecraft = self.spacecraft
+         entity.spacecraft = self.spacecraft
       }
-      entity?.parent = self.parent
-      entity?.imageURL = self.imageURL
+      entity.parent = self.parent
+      entity.imageURL = self.imageURL
 
       // add flags for holes in the API
-      if entity?.name == "Canadian Space Agency" { entity?.countryCodes?.append( "CAN" ) }
-      if entity?.name == "National Aeronautics and Space Administration" { entity?.countryCodes?.append( "USA" ) }
-      if entity?.name == "China National Space Administration" { entity?.countryCodes?.append( "CHN" ) }
+      if entity.name == "Canadian Space Agency" { entity.countryCodes?.append( "CAN" ) }
+      if entity.name == "National Aeronautics and Space Administration" { entity.countryCodes?.append( "USA" ) }
+      if entity.name == "China National Space Administration" { entity.countryCodes?.append( "CHN" ) }
       // TODO go through the agency list and fill in holes
       // TODO do this with a dictionary
 

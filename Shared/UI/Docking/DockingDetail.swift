@@ -21,7 +21,7 @@ struct DockingDetail: View
                TitleField( s: docking.flightVehicle?.destination )
                LeftField( prefix: "Docking:", s: docking.docking )
                LeftField( prefix: "Departure:", s: docking.docking )
-               LeftField( prefix: "Location:", s: docking.dockingLocation?.name )
+               LeftField( prefix: "Location:", s: docking.dockingLocationName )
 
                AgencyLink( agencyID: docking.flightVehicle?.spacecraft?.spacecraftConfig?.agency?.id )
             }

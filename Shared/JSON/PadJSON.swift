@@ -78,7 +78,6 @@ struct PadJSON: Decodable
 
    func updateEntity( entity: Pad?, context: NSManagedObjectContext ) -> Void
    {
-      // TODO all other JSON objects use guard like this
       guard let entity = entity else { return }
 
       entity.agencyID = self.agencyID ?? -1

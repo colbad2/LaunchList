@@ -2,7 +2,6 @@
 
 import CoreData
 
-
 /**
  {
    "id": 77,
@@ -29,6 +28,9 @@ public struct SpacecraftJSON: Decodable, Identifiable
    var name: String?
    var serialNumber: String?
    var status: StatusJSON?
+   var statusName: String?
+   var statusAbbreviation: String?
+   var statusDescription: String?
    var spacecraftDescription: String?
    var spacecraftConfig: SpacecraftConfigJSON?
 
@@ -48,7 +50,12 @@ public struct SpacecraftJSON: Decodable, Identifiable
       entity.url = self.url
       entity.name = self.name
       entity.serialNumber = self.serialNumber
+      
       entity.status = self.status?.name
+      entity.statusName = self.status?.name
+      entity.statusAbbreviation = self.status?.abbreviation
+      entity.statusDescription = self.status?.description
+
       entity.spacecraftDescription = self.spacecraftDescription
 
       if let spacecraftConfig = self.spacecraftConfig
@@ -59,7 +66,6 @@ public struct SpacecraftJSON: Decodable, Identifiable
       }
    }
 }
-
 
 // Core Data search/update
 
@@ -85,9 +91,10 @@ func getSampleSpacecraft() -> SpacecraftJSON?
    return parseJSONString( json: sampleSpacecraftJSON )
 }
 
+// TODO need expanded subparts
 private let sampleSpacecraftJSON =
 """
- {
+{
    "id": 77,
    "url": "https://ll.thespacedevs.com/2.1.0/spacecraft/77/",
    "name": "Soyuz TMA-16",
@@ -95,5 +102,5 @@ private let sampleSpacecraftJSON =
    "status": { … },
    "description": "Soyuz TMA-16 was a Soyuz spacecraft which launched on September 30 2009 07:14 UTC. It transported two members of the Expedition 21 crew and one participant to the International Space Station. The Expedition 21 crew consisted of Maksim Surayev and Jeffrey Williams. The spaceflight participant was tourist Guy Laliberté.",
    "spacecraft_config": { … }
- }
+}
 """

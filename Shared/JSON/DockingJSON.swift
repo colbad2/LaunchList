@@ -27,6 +27,7 @@ public struct DockingJSON: Decodable, Identifiable
    var url: String? // unused
    var launchID: String?
    var docking: String?
+   var dockingLocationName: String?
    var departure: String?
    var flightVehicle: FlightVehicleJSON?
    var dockingLocation: DockingLocationJSON?
@@ -55,15 +56,27 @@ public struct DockingJSON: Decodable, Identifiable
          flightVehicleEntity.addToDockings( entity ) // TODO don't add if it already in dockings!! All have this problem
       }
 
-      if let dockingLocation = self.dockingLocation
-      {
-         let dockingLocationEntity: DockingLocation = fetchDockingLocation( dockingLocation: dockingLocation, context: context )
-         entity.dockingLocation = dockingLocationEntity
-         dockingLocationEntity.addToDockings( entity )
-      }
+      entity.dockingLocationName = self.dockingLocation?.name
    }
 }
 
+/**
+ {
+   "id": 2,
+   "name": "Zvezda aft"
+ }
+ */
+public struct DockingLocationJSON: Decodable, Identifiable
+{
+   // translate API attribute names into better var names
+   enum CodingKeys: String, CodingKey
+   {
+      case id, name
+   }
+
+   public var id: Int64
+   var name: String?
+}
 
 // Core Data search/update
 
