@@ -21,7 +21,7 @@ struct EventDetail: View
          VStack
          {
             TitleField( s: event.name )
-            LeftField( s: event.date )
+            LeftField( s: dateString( event.date ) )
             LeftField( s: event.location )
             LeftField( s: event.type )
             IconView( withURL: event.featureImage )

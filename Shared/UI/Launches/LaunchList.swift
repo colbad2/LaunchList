@@ -28,26 +28,26 @@ struct LaunchList: View
             }
          }
          .overlay(
-             ScrollManagerView(indexPathToSetVisible: $indexPathToSetVisible)
-                 .allowsHitTesting(false).frame(width: 0, height: 0)
+             ScrollManagerView( indexPathToSetVisible: $indexPathToSetVisible )
+                 .allowsHitTesting( false ).frame( width: 0, height: 0 )
          )
-         .navigationBarTitle( "Launches", displayMode: .inline )
-         .navigationBarItems( trailing:
-                                 HStack
-                                 {
-                                    Button( action:
-                                    {
-                                       self.indexPathToSetVisible = IndexPath( row: 0, section: 0 )
-                                    })
-                                    {
-                                       Image( systemName: "arrow.up.to.line" )
-                                    }
-                                    Button( action:
-                                    {
+         .navigationBarTitleDisplayMode( .inline )
+         .toolbar( content:
+         {
+         ToolbarItem( placement: .navigationBarTrailing, content:
+                        {
+                           HStack
+                           {
+                              Button( action: { self.indexPathToSetVisible = IndexPath( row: 0, section: 0 ) } )
+                              {
+                                 Image( systemName: "arrow.up.to.line" )
+                              }
+                              Button( action:
+                                       {
                                           var i = 0
-                                          for launch in launches
+                                          for entity in launches
                                           {
-                                             if launch.windowEnd! < Date()
+                                             if entity.sortingDate! < Date()
                                              {
                                                 i -= 1
                                                 if i < 0 { i = 0 }
@@ -56,19 +56,17 @@ struct LaunchList: View
                                              i += 1
                                           }
                                           self.indexPathToSetVisible = IndexPath( row: i, section: 0 )
-                                    })
-                                    {
-                                       Image( systemName: "calendar" )
-                                    }
-                                    Button( action:
-                                    {
-                                       self.indexPathToSetVisible = IndexPath( row: launches.count - 1, section: 0 )
-                                    })
-                                    {
-                                       Image( systemName: "arrow.down.to.line" )
-                                    }
-                                 }
-         )
+                                       })
+                              {
+                                 Image( systemName: "calendar" )
+                              }
+                              Button( action: { self.indexPathToSetVisible = IndexPath( row: launches.count - 1, section: 0 ) })
+                              {
+                                 Image( systemName: "arrow.down.to.line" )
+                              }
+                           }
+                        })
+         })
       }
    }
 }
@@ -76,7 +74,7 @@ struct LaunchList: View
 struct LaunchRow: View
 {
    var launch: Launch
-   var nextLaunchID: String
+   var nextLaunchID: String?
 
    var body: some View
    {
@@ -95,7 +93,7 @@ struct LaunchRow: View
                ZStack
                {
                   Capsule()
-                     .fill(Color.blue)
+                     .fill( Color.blue )
                      .frame( width: 50, height: 20 )
                   Text( "Next" )
                      .foregroundColor( Color.white )
@@ -117,7 +115,7 @@ struct LaunchRow: View
          Text( "\(launch.windowStart!, formatter: Self.taskDateFormat)" )
             .font( .subheadline )
             .foregroundColor( .secondary )
-            .textCase( /*@START_MENU_TOKEN@*/.uppercase/*@END_MENU_TOKEN@*/ )
+            .textCase( .uppercase )
       }
    }
 

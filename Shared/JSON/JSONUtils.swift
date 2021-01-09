@@ -10,7 +10,7 @@ func parseISODate( isoDate: String? ) -> Date?
    return dateFormatter.date( from: isoDate )
 }
 
-func dateString( d: Date? ) -> String?
+func dateString( _ d: Date? ) -> String?
 {
    guard let d = d else { return nil }
 

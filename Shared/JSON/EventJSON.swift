@@ -94,7 +94,7 @@ struct EventJSON: Decodable
       entity.newsURL = self.newsURL
       entity.videoURL = self.videoURL
       entity.featureImage = self.featureImage
-      entity.date = self.date
+      entity.date = parseISODate( isoDate:self.date )
 
       for launch in launches!
       {
@@ -123,6 +123,9 @@ struct EventJSON: Decodable
          entity.addToPrograms( newProgram )
          newProgram.addToEvents( entity )
       }
+
+      // TimelineEntry
+      entity.sortingDate = parseISODate( isoDate: self.date )
    }
 }
 

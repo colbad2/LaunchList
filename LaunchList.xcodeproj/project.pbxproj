@@ -146,6 +146,8 @@
 		A2A638482596713100D58415 /* OrbitJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A638462596713100D58415 /* OrbitJSON.swift */; };
 		A2A638492596713100D58415 /* OrbitJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A638462596713100D58415 /* OrbitJSON.swift */; };
 		A2A638CA259675D300D58415 /* AgencyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6383D259670E900D58415 /* AgencyJSON.swift */; };
+		A2BB773F25A92DA2004FFFB3 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB773E25A92DA2004FFFB3 /* TimelineView.swift */; };
+		A2BB774025A92DA2004FFFB3 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BB773E25A92DA2004FFFB3 /* TimelineView.swift */; };
 		A2BBFF06259CFC2500BBC605 /* ServiceProviderListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BBFF05259CFC2500BBC605 /* ServiceProviderListJSON.swift */; };
 		A2BBFF07259CFC2500BBC605 /* ServiceProviderListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BBFF05259CFC2500BBC605 /* ServiceProviderListJSON.swift */; };
 		A2BBFF1D259D00DC00BBC605 /* launchers.json in Resources */ = {isa = PBXBuildFile; fileRef = A2BBFF1C259D00DC00BBC605 /* launchers.json */; };
@@ -370,6 +372,7 @@
 		A2A6383D259670E900D58415 /* AgencyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyJSON.swift; sourceTree = "<group>"; };
 		A2A638462596713100D58415 /* OrbitJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitJSON.swift; sourceTree = "<group>"; };
 		A2BB770A25A7916F004FFFB3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A2BB773E25A92DA2004FFFB3 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		A2BBFF05259CFC2500BBC605 /* ServiceProviderListJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderListJSON.swift; sourceTree = "<group>"; };
 		A2BBFF1C259D00DC00BBC605 /* launchers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = launchers.json; sourceTree = "<group>"; };
 		A2BBFF24259D015E00BBC605 /* locations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
@@ -639,6 +642,7 @@
 				A2DA72072595AF8D009405E6 /* LaunchListApp.swift */,
 				A2F5B1B2259CE2EF009DC2D4 /* TabsView.swift */,
 				A2206409259E492C00A27B93 /* HomeView.swift */,
+				A2BB773E25A92DA2004FFFB3 /* TimelineView.swift */,
 				A2BBFF59259D53BF00BBC605 /* DatasetList.swift */,
 				A22063BB259D71A200A27B93 /* Astronauts */,
 				A2732B0625A2BBEF00A11CE6 /* Docking */,
@@ -1160,6 +1164,7 @@
 				A2732AC125A1595B00A11CE6 /* LiveStreamsList.swift in Sources */,
 				A24B48B625A597A4008CC72D /* ImageViewer.swift in Sources */,
 				A2DEA2A7259B06C3009D5B4B /* AgencyDetail.swift in Sources */,
+				A2BB773F25A92DA2004FFFB3 /* TimelineView.swift in Sources */,
 				A22063DF259D7B5800A27B93 /* TitleField.swift in Sources */,
 				A2E540C5259BA1B400AD7BF8 /* ServiceProviderList.swift in Sources */,
 				A2F5CE91259C537E0050DF06 /* Launch+Extensions.swift in Sources */,
@@ -1246,6 +1251,7 @@
 				A2BBFF81259D634F00BBC605 /* AstronautJSON.swift in Sources */,
 				A2E54112259BD83700AD7BF8 /* ProgramList.swift in Sources */,
 				A270A92525A028100078F1D2 /* FlightVehicleJSON.swift in Sources */,
+				A2BB774025A92DA2004FFFB3 /* TimelineView.swift in Sources */,
 				A2732B2025A2BDD800A11CE6 /* DockingDetail.swift in Sources */,
 				A2DEA2A8259B06C3009D5B4B /* AgencyDetail.swift in Sources */,
 				A2ED5704259F841000ED6369 /* NoticeJSON.swift in Sources */,

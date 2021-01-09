@@ -27,10 +27,8 @@ happy with the UI.
 ### Performance/efficiency
 - save loaded images in db? pre-fill image cache with images from db?
 ### Beauty
-- app icon, tab icons, db section icons
-- TabView tab icons
+- tab icons, db section icons
 - use a common date format
-- logo, db list row icons
 ### navigation
 - Any JSON with a mirror list of containers should have a nav link to that list (pad link to list of launches on that pad for example)
 - Programmatically go to databse details pages from links in the next launch home page
@@ -45,7 +43,6 @@ happy with the UI.
 - remove any unneeded wrappers around strings in Text views: Text( "\(string)" )
 ### UI Features
 - pare down the dataset lists to useful stuff only
-- Timeline tab with merged launches/events/dockings etc
 - settings (notifications, update schedule, force update)
 - today buttons in all dated list item lists
 - search tab/search element in lists/filter lists (filter by dates, countries, company, etc)
@@ -57,6 +54,7 @@ happy with the UI.
 - generic wikipedia/google search
 - click on flag list in details views to get a detail view with flags and country names
 - add flag lists to everything associated with an agency
+- sort astronauts by last name
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"

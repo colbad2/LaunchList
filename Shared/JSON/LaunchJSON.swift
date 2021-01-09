@@ -151,6 +151,9 @@ public struct LaunchJSON: Decodable, Identifiable
       entity.webcastLive = self.webcastLive ?? false
       entity.windowEnd = parseISODate( isoDate: self.windowEnd )
       entity.windowStart = parseISODate( isoDate: self.windowStart )
+
+      // TimelineEntry
+      entity.sortingDate = parseISODate( isoDate: self.windowStart )
    }
 }
 

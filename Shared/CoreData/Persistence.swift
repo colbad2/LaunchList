@@ -84,7 +84,6 @@ struct PersistenceController
             deleteAllData( entityName: "Agency", context: container.viewContext )
             deleteAllData( entityName: "Astronaut", context: container.viewContext )
             deleteAllData( entityName: "Docking", context: container.viewContext )
-            deleteAllData( entityName: "DockingLocation", context: container.viewContext )
             deleteAllData( entityName: "Event", context: container.viewContext )
             deleteAllData( entityName: "Expedition", context: container.viewContext )
             deleteAllData( entityName: "FlightVehicle", context: container.viewContext )
@@ -100,7 +99,6 @@ struct PersistenceController
             deleteAllData( entityName: "Spacecraft", context: container.viewContext )
             deleteAllData( entityName: "SpacecraftConfig", context: container.viewContext )
             deleteAllData( entityName: "SpaceStation", context: container.viewContext )
-            deleteAllData( entityName: "Status", context: container.viewContext )
             deleteAllData( entityName: "Vehicle", context: container.viewContext )
             fillStore( viewContext: container.viewContext )
          }

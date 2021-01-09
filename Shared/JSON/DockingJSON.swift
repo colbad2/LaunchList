@@ -57,6 +57,9 @@ public struct DockingJSON: Decodable, Identifiable
       }
 
       entity.dockingLocationName = self.dockingLocation?.name
+
+      // TimelineEntry
+      entity.sortingDate = parseISODate( isoDate: self.docking )
    }
 }
 

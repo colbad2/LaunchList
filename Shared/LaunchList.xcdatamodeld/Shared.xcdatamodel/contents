@@ -37,7 +37,7 @@
         <attribute name="wiki" optional="YES" attributeType="String"/>
         <relationship name="agency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Agency" inverseName="astronauts" inverseEntity="Agency"/>
     </entity>
-    <entity name="Docking" representedClassName=".Docking" syncable="YES" codeGenerationType="class">
+    <entity name="Docking" representedClassName=".Docking" parentEntity="TimelineEntry" syncable="YES" codeGenerationType="class">
         <attribute name="departure" optional="YES" attributeType="String"/>
         <attribute name="docking" optional="YES" attributeType="String"/>
         <attribute name="dockingLocationName" optional="YES" attributeType="String"/>
@@ -45,8 +45,8 @@
         <attribute name="launchID" optional="YES" attributeType="String"/>
         <relationship name="flightVehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FlightVehicle" inverseName="dockings" inverseEntity="FlightVehicle"/>
     </entity>
-    <entity name="Event" representedClassName=".Event" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="String"/>
+    <entity name="Event" representedClassName=".Event" parentEntity="TimelineEntry" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="eventDescription" optional="YES" attributeType="String"/>
         <attribute name="featureImage" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -76,7 +76,7 @@
         <relationship name="dockings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Docking" inverseName="flightVehicle" inverseEntity="Docking"/>
         <relationship name="spacecraft" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spacecraft" inverseName="flightVehicle" inverseEntity="Spacecraft"/>
     </entity>
-    <entity name="Launch" representedClassName=".Launch" syncable="YES" codeGenerationType="class">
+    <entity name="Launch" representedClassName=".Launch" parentEntity="TimelineEntry" syncable="YES" codeGenerationType="class">
         <attribute name="failReason" optional="YES" attributeType="String"/>
         <attribute name="hashtag" optional="YES" attributeType="String"/>
         <attribute name="holdReason" optional="YES" attributeType="String"/>
@@ -227,6 +227,9 @@
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="spaceStations" inverseEntity="Event"/>
         <relationship name="expeditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expedition" inverseName="spaceStation" inverseEntity="Expedition"/>
     </entity>
+    <entity name="TimelineEntry" representedClassName="TimelineEntry" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="sortingDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <entity name="Vehicle" representedClassName=".Vehicle" syncable="YES" codeGenerationType="class">
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="firstLaunchDate" optional="YES" attributeType="String"/>
@@ -260,6 +263,7 @@
         <element name="Spacecraft" positionX="-360.4902954101562" positionY="579.4214935302734" width="128" height="208"/>
         <element name="SpacecraftConfig" positionX="-354.56640625" positionY="855.8470764160156" width="128" height="149"/>
         <element name="SpaceStation" positionX="-213.0076904296875" positionY="253.9388885498047" width="128" height="193"/>
+        <element name="TimelineEntry" positionX="192.3109130859375" positionY="-57.77613830566406" width="128" height="58"/>
         <element name="Vehicle" positionX="720.8387451171875" positionY="679.8338623046875" width="128" height="208"/>
     </elements>
 </model>

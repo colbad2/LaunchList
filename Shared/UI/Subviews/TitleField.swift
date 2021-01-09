@@ -11,7 +11,7 @@ struct TitleField: View
          HStack
          {
             Text( "\(s!)" )
-               .font( .title2 )
+               .font( .title3 )
                .bold()
                .foregroundColor( .primary )
                .lineLimit( 3 )

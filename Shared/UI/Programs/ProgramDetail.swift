@@ -42,8 +42,8 @@ struct ProgramDetail: View
             Spacer()
          }
 
-         LeftField( prefix: "Began: ", s: dateString( d: program.startDate ) )
-         LeftField( prefix: "Ended: ", s: dateString( d: program.endDate ) )
+         LeftField( prefix: "Began: ", s: dateString( program.startDate ) )
+         LeftField( prefix: "Ended: ", s: dateString( program.endDate ) )
 
          DescriptionView( desc: program.programDescription )
 //            .border(Color.black)

@@ -25,6 +25,20 @@ struct TabsView: View
          }
          .tag( 0 )
 
+         NavigationView
+         {
+            TimelineView( tabSelection: $selection )
+         }
+         .onAppear()
+         {
+            UINavigationBar.appearance().isTranslucent = true
+         }
+         .tabItem
+         {
+            Image( systemName: "calendar" )
+            Text( "Timeline" )
+         }
+         .tag( 1 )
 
          NavigationView
          {
@@ -36,7 +50,7 @@ struct TabsView: View
             Image( systemName: "list.dash" )
             Text( "Datasets" )
          }
-         .tag( 1 )
+         .tag( 2 )
       }
    }
 }

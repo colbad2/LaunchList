@@ -9,7 +9,7 @@ struct DatasetList: View
                                  ListItem( title: "Pads", entity: "Pad" ),
                                  ListItem( title: "Missions", entity: "Mission" ),
                                  ListItem( title: "Programs", entity: "Program" ),
-                                 ListItem( title: "Rockets", entity: "Rocket" ),
+//                                 ListItem( title: "Rockets", entity: "Rocket" ),
                                  ListItem( title: "Astronauts", entity: "Astronaut" ),
                                  ListItem( title: "Events", entity: "Event" ),
                                  ListItem( title: "Live Streams", entity: "LiveStream" ),

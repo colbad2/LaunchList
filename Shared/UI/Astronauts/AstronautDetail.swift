@@ -117,9 +117,9 @@ func lifeDates( astronaut: Astronaut ) -> String
 func flightDates( astronaut: Astronaut ) -> String
 {
    let firstFlightDate = parseISODate( isoDate: astronaut.firstFlight )
-   let firstFlightString = dateString( d: firstFlightDate ) ?? ""
+   let firstFlightString = dateString( firstFlightDate ) ?? ""
    let lastFlightDate = parseISODate( isoDate: astronaut.lastFlight )
-   let lastFlightString = dateString( d: lastFlightDate )
+   let lastFlightString = dateString( lastFlightDate )
    var flightDates = dates( first: firstFlightString, second: lastFlightString )
    if firstFlightString == lastFlightString
    {
