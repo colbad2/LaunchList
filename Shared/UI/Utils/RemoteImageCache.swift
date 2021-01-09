@@ -127,7 +127,7 @@ class RemoteImageCache
       if urlString == nil
       {
          completionHandler( nil, true )
-         // TODO log
+         print( "nil image URL" )
          return
       }
 
@@ -142,7 +142,7 @@ class RemoteImageCache
       guard let url = URL( string: urlString! ) else
       {
          completionHandler( nil, true )
-         // TODO log
+         print( "cannot parse image URL: \"\(urlString ?? "nil")\"" )
          return
       }
 
@@ -161,7 +161,7 @@ class RemoteImageCache
          if error != nil
          {
             DispatchQueue.main.async { completionHandler( nil, true ) }
-            // TODO log
+            print( "load image URL fail: \(error!)" )
             return
          }
 

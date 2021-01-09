@@ -30,15 +30,21 @@ struct ServiceProviderRow: View
 
    var body: some View
    {
-      HStack
+      if let name = serviceProvider.name
       {
-         Text( "\(serviceProvider.name ?? "")" )
-            .font( .headline )
-            .allowsTightening( /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/ )
-         Spacer()
-         Text( "\(serviceProvider.type ?? "")" )
-            .font( .subheadline )
-            .foregroundColor( .secondary )
+         HStack
+         {
+            Text( name )
+               .font( .headline )
+               .allowsTightening( /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/ )
+            if let type = serviceProvider.type
+            {
+               Spacer()
+               Text( type )
+                  .font( .subheadline )
+                  .foregroundColor( .secondary )
+            }
+         }
       }
    }
 }

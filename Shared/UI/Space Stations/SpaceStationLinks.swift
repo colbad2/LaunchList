@@ -38,11 +38,12 @@ struct SpaceStationLink: View
    {
       let context = PersistenceController.shared.container.viewContext
       if let spaceStationID = spaceStationID,
-         let spaceStation = getSpaceStation( by: spaceStationID, context: context )
+         let spaceStation = getSpaceStation( by: spaceStationID, context: context ),
+         let name = spaceStation.name
       {
          NavigationLink( destination: SpaceStationDetail( spaceStation: spaceStation ) )
          {
-            Text( "\( spaceStation.name! )" )
+            Text( name )
                .font( .subheadline )
             Spacer()
          }

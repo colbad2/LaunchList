@@ -9,13 +9,14 @@ struct AgencyLink: View
    {
       let context = PersistenceController.shared.container.viewContext
       if let agencyID = agencyID,
-         let agency = getAgency( by: agencyID, context: context )
+         let agency = getAgency( by: agencyID, context: context ),
+         let name = agency.name
       {
          HStack
          {
             NavigationLink( destination: AgencyDetail( agency: agency ) )
             {
-               Text( "\( agency.name! )" )
+               Text( name )
                   .font( .subheadline )
             }
             Spacer()

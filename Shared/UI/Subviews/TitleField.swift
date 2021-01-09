@@ -6,11 +6,11 @@ struct TitleField: View
 
    var body: some View
    {
-      if s != nil
+      if let title = s
       {
          HStack
          {
-            Text( "\(s!)" )
+            Text( title )
                .font( .title3 )
                .bold()
                .foregroundColor( .primary )

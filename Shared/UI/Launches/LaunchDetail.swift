@@ -28,20 +28,26 @@ struct LaunchDetail: View
                TwoFields( leftString: launch.serviceProvider?.type,
                           rightString: launch.mission?.type )
                LeftField( s: launch.mission?.orbitName )
-               HStack
+               if let start = launch.windowStart
                {
-                  // TODO if start and end same, skip end
-                  // TODO if no end, then blank
-                  // TODO if now past end,
-                  Text( "\(launch.windowStart!, formatter: LaunchRow.taskDateFormat)" )
-                     .font( .subheadline )
-                     .foregroundColor( .secondary )
-                     .textCase( .uppercase )
-                  Spacer()
-                  Text( "\(launch.windowEnd!, formatter: LaunchRow.taskDateFormat)" )
-                     .font( .subheadline )
-                     .foregroundColor( .secondary )
-                     .textCase( .uppercase )
+                  HStack
+                  {
+                     Text( "\(start, formatter: LaunchRow.taskDateFormat)" )
+                        .font( .subheadline )
+                        .foregroundColor( .secondary )
+                        .textCase( .uppercase )
+                     if let end = launch.windowEnd
+                     {
+                        if start != end
+                        {
+                           Spacer()
+                           Text( "\(end, formatter: LaunchRow.taskDateFormat)" )
+                              .font( .subheadline )
+                              .foregroundColor( .secondary )
+                              .textCase( .uppercase )
+                        }
+                     }
+                  }
                }
                NavigationLink( destination: PadDetail( pad: launch.pad! ) )
                {
@@ -69,8 +75,11 @@ struct LaunchDetail: View
                   {
                      Text( "HOLD" )
                         .foregroundColor( .orange )
-                     Spacer()
-                     Text( "\(launch.holdReason ?? "")" )
+                     if let holdReason = launch.holdReason
+                     {
+                        Spacer()
+                        Text( holdReason )
+                     }
                   }
                }
 
@@ -80,8 +89,11 @@ struct LaunchDetail: View
                   {
                      Text( "FAIL" )
                         .foregroundColor( .red )
-                     Spacer()
-                     Text( "\(launch.failReason ?? "")" )
+                     if let failReason = launch.failReason
+                     {
+                        Spacer()
+                        Text( failReason )
+                     }
                   }
                }
             }

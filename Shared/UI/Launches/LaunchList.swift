@@ -104,11 +104,11 @@ struct LaunchRow: View
          HStack
          {
             let providerName = launch.getProviderName()
-            Text( "\(providerName)" )
+            Text( providerName )
                .font( .subheadline )
                .lineLimit( 2 )
             Spacer()
-            Text( "\(launch.rocket?.name ?? launch.name!)" )
+            Text( launch.rocket?.name ?? launch.name! )
                .font( .subheadline )
                .lineLimit( 2 )
          }

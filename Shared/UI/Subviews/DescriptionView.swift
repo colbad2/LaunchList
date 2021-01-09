@@ -7,17 +7,17 @@ struct DescriptionView: View
 
    var body: some View
    {
-      if desc != nil
+      if let d = desc
       {
          VStack( alignment: .leading )
          {
-         Divider()
+            Divider()
 
-         Text( "\(desc!)" )
-            .lineLimit( 50 )
-            .layoutPriority( 200 )
-            .fixedSize( horizontal: false, vertical: true )
-               // here to force last line to draw, may be fixed in later SwiftUI releases
+            Text( d )
+               .lineLimit( 50 )
+               .layoutPriority( 200 )
+               .fixedSize( horizontal: false, vertical: true )
+            // here to force last line to draw, may be fixed in later SwiftUI releases
          }
       }
    }

@@ -80,7 +80,6 @@ struct PersistenceController
          let forceFill = false
          if getAgencyCount( context: container.viewContext ) == 0 || forceFill
          {
-            // TODO shouldn't have to do this, but launches seemed to be duplicating
             deleteAllData( entityName: "Agency", context: container.viewContext )
             deleteAllData( entityName: "Astronaut", context: container.viewContext )
             deleteAllData( entityName: "Docking", context: container.viewContext )
@@ -164,7 +163,7 @@ func fillStore( viewContext: NSManagedObjectContext )
    {
       _ = fetchLiveStream( liveStream: liveStream, context: viewContext )
    }
-   // TODO
+   // Not used
 //   for roadClosure in starshipData?.roadClosures ?? []
 //   {
 //      _ = fetchRoadClosure( roadClosure: roadClosure, context: viewContext )

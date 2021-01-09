@@ -30,13 +30,16 @@ struct PadRow: View
 
    var body: some View
    {
-      Text( "\(pad.name ?? "")" )
-         .font( .headline )
-         .lineLimit( 3 )
-      if let countryCode = pad.location?.countryCode
+      if let name = pad.name
       {
-         Spacer()
-         Text( flags( for: countryCode )! )
+         Text( name )
+            .font( .headline )
+            .lineLimit( 3 )
+         if let countryCode = pad.location?.countryCode
+         {
+            Spacer()
+            Text( flags( for: countryCode )! )
+         }
       }
    }
 }

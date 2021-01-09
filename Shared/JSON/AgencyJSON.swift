@@ -91,7 +91,16 @@ struct AgencyJSON: Decodable
       if entity.name == "Canadian Space Agency" { entity.countryCodes?.append( "CAN" ) }
       if entity.name == "National Aeronautics and Space Administration" { entity.countryCodes?.append( "USA" ) }
       if entity.name == "China National Space Administration" { entity.countryCodes?.append( "CHN" ) }
-      // TODO go through the agency list and fill in holes
+      if entity.name == "Arianespace" { entity.countryCodes?.append( "FRA" ) } // also US, Japan, Singapore?
+      if entity.name == "Boeing" { entity.countryCodes?.append( "USA" ) }
+      if entity.name == "European Space Agency" { entity.countryCodes?.append( "EU" ) } // TODO two char?
+      if entity.name == "Japan Aerospace Exploration Agency" { entity.countryCodes?.append( "JPN" ) }
+      if entity.name == "North American Aviation" { entity.countryCodes?.append( "USA" ) }
+      if entity.name == "Northrop Grumman Innovation Systems" { entity.countryCodes?.append( "USA" ) }
+      if entity.name == "Russian Federal Space Agency (ROSCOSMOS)" { entity.countryCodes?.append( "RUS" ) }
+      if entity.name == "Sierra Nevada Corporation" { entity.countryCodes?.append( "USA" ) }
+      if entity.name == "Soviet Space Program" { entity.countryCodes?.append( "SUN" ) }
+      if entity.name == "SpaceX" { entity.countryCodes?.append( "USA" ) }
       // TODO do this with a dictionary
 
       // TODO same for programs

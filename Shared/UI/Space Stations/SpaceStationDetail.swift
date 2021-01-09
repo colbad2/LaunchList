@@ -98,19 +98,26 @@ struct ExpeditionLink: View
    {
       let context = PersistenceController.shared.container.viewContext
       if let expeditionID = expeditionID,
-         let expedition = getExpedition( by: expeditionID, context: context )
+         let expedition = getExpedition( by: expeditionID, context: context ),
+         let name = expedition.name
       {
          HStack
          {
-            Text( "\( expedition.name! )" )
+            Text( name )
                .font( .subheadline )
             Spacer()
             VStack
             {
-               Text( "\(expedition.start ?? "")" )
-                  .font( .subheadline )
-               Text( "\(expedition.end ?? "")" )
-                  .font( .subheadline )
+               if let start = expedition.start
+               {
+                  Text( start )
+                     .font( .subheadline )
+               }
+               if let end = expedition.end
+               {
+                  Text( end )
+                     .font( .subheadline )
+               }
             }
          }
          .padding( 4 )
@@ -126,13 +133,14 @@ struct EventLink: View
    {
       let context = PersistenceController.shared.container.viewContext
       if let eventID = eventID,
-         let event = getEvent( by: eventID, context: context )
+         let event = getEvent( by: eventID, context: context ),
+         let name = event.name
       {
          HStack
          {
             NavigationLink( destination: EventDetail( event: event ) )
             {
-               Text( "\( event.name! )" )
+               Text( name )
                   .font( .subheadline )
             }
             .padding( 4 )

@@ -40,7 +40,6 @@ happy with the UI.
 -- error: regular expression substitution string doesn't start with 's': '‘s/(.+)/expr'
 -- nw_protocol_get_quic_image_block_invoke dlopen libquic failed
 - any code TODOs
-- remove any unneeded wrappers around strings in Text views: Text( "\(string)" )
 ### UI Features
 - pare down the dataset lists to useful stuff only
 - settings (notifications, update schedule, force update)

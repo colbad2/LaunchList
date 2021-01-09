@@ -1,7 +1,5 @@
 /**
  List of records returned from a URL.
-
- TODO genericize this
  */
 public struct PadListJSON: Decodable
 {

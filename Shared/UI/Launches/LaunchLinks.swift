@@ -41,11 +41,12 @@ struct LaunchLink: View
    {
       let context = PersistenceController.shared.container.viewContext
       if let launchID = launchID,
-         let launch = getLaunch( by: launchID, context: context )
+         let launch = getLaunch( by: launchID, context: context ),
+         let name = launch.name
       {
          NavigationLink( destination: LaunchDetail( launch: launch ) )
          {
-            Text( "\( launch.name! )" )
+            Text( name )
                .font( .subheadline )
             Spacer()
          }

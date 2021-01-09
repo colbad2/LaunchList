@@ -37,40 +37,22 @@ struct AgencyRow: View
 
    var body: some View
    {
-      HStack( alignment: .top )
+      if let name = agency.name
       {
-         Text( "\(agency.name ?? "")" )
-            .font( .headline )
-            .fixedSize( horizontal: false, vertical: true )
-         if let codes = agency.countryCodes
+         HStack( alignment: .top )
          {
-            Spacer()
-            Text( flagsFromCodeArray( codes ) ?? "" )
+            Text( name )
+               .font( .headline )
+               .fixedSize( horizontal: false, vertical: true )
+            if let codes = agency.countryCodes
+            {
+               Spacer()
+               Text( flagsFromCodeArray( codes ) ?? "" )
+            }
          }
       }
    }
 }
-
-//struct BasicAgencyRow: View
-//{
-//   var agency: Agency
-//
-//   var body: some View
-//   {
-//      HStack( alignment: .top )
-//      {
-//         Text( "\(agency.name ?? "")" )
-//            .font( .headline )
-//            .fixedSize( horizontal: false, vertical: true )
-//         if let codes = agency.countryCodes
-//         {
-//            Spacer()
-//            // Text( "\(flags( for: agency.countryCode ) ?? "")" )
-//            Text( flagsFromCodeArray( codes ) ?? "" )
-//         }
-//      }
-//   }
-//}
 
 #if DEBUG
 struct AgencyListPreviews: PreviewProvider

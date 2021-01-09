@@ -49,7 +49,7 @@ public struct SpacecraftConfigJSON: Decodable, Identifiable
       {
          let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
          entity.agency = agencyEntity
-         agencyEntity.addToSpacecraftConfigs( entity ) // TODO don't add if it already in flightVehicles!! All have this problem
+         agencyEntity.addToSpacecraftConfigs( entity )
       }
    }
 }

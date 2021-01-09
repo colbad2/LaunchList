@@ -30,9 +30,17 @@ struct ProgramRow: View
 
    var body: some View
    {
-      Text( "\(program.name ?? "")" )
-         .font( .headline )
-         .lineLimit( 2 )
+      RowImage( imageURL: program.imageURL, drawSpace: false, w: 50, h: 50 )
+
+      if let name = program.name
+      {
+         VStack( alignment: .leading )
+         {
+            Text( name )
+               .font( .headline )
+               .lineLimit( 2 )
+         }
+      }
    }
 }
 

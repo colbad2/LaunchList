@@ -58,16 +58,15 @@ struct AgencyDetail: View
             LeftField( prefix: "Parent: ", s: agency.parent )
          }
 
-
             // TODO long list of countries
 //            if let countryCode = agency.countryCode
 //            {
-//               Text( "\(countryCode)" )
+//               Text( countryCode )
 //            }
 
 //            if let abbreviation = agency.abbreviation
 //            {
-//               Text( "\(abbreviation)" )
+//               Text( abbreviation )
 //            }
 
          DescriptionView( desc: agency.agencyDescription )

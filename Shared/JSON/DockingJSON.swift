@@ -53,7 +53,7 @@ public struct DockingJSON: Decodable, Identifiable
       {
          let flightVehicleEntity: FlightVehicle = fetchFlightVehicle( flightVehicle: flightVehicle, context: context )
          entity.flightVehicle = flightVehicleEntity
-         flightVehicleEntity.addToDockings( entity ) // TODO don't add if it already in dockings!! All have this problem
+         flightVehicleEntity.addToDockings( entity )
       }
 
       entity.dockingLocationName = self.dockingLocation?.name

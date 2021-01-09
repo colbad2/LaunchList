@@ -82,25 +82,26 @@ struct HoldFailCountdownView: View
    {
       if launch.inHold == true || launch.failReason != nil
       {
-         if launch.inHold == true
+         if launch.inHold == true,
+            let holdReason = launch.holdReason
          {
             HStack
             {
                Text( "HOLD" )
                   .foregroundColor( .orange )
                Spacer()
-               Text( "\(launch.holdReason ?? "")" )
+               Text( holdReason )
             }
          }
 
-         if launch.failReason != nil
+         if let failReason = launch.failReason
          {
             HStack( alignment: .top )
             {
                Text( "FAIL" )
                   .foregroundColor( .red )
                Spacer()
-               Text( "\(launch.failReason ?? "")" )
+               Text( failReason )
             }
          }
       }

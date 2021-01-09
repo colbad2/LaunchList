@@ -39,11 +39,12 @@ struct ProgramLink: View
    {
       let context = PersistenceController.shared.container.viewContext
       if let programID = programID,
-         let program = getProgram( by: programID, context: context )
+         let program = getProgram( by: programID, context: context ),
+         let name = program.name
       {
          NavigationLink( destination: ProgramDetail( program: program ) )
          {
-            Text( "\( program.name! )" )
+            Text( name )
                .font( .subheadline )
             Spacer()
          }
