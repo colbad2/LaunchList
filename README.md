@@ -37,7 +37,7 @@ Things that need to happen for a good app
 ### navigation
 - Any JSON with a mirror list of containers should have a nav link to that list (pad link to list of launches on that pad for example)
 - Programmatically go to databse details pages from links in the next launch home page
-- tap on tab icon should return nav to home
+- tap on home/timeline icons should return nav to home, just like datasets
 ### Code
 - switch tab tags to enum values
 - fix console messages
@@ -65,9 +65,13 @@ Things that need to happen for a good app
 - search for all datasets
 - search keys for all searches
 - info sheet for each search field with search keys, examples, etc.
+- shortcuts for search keys (agency: -> a:)
+- search builder sheet
+- searches between dates (start:1998,end:2010)
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"
+- navigationLInk hit area seems too tall to match string
 
 
 ## Xcode TODOs
@@ -110,6 +114,7 @@ Things that need addressing that aren't the app itself.
 - better name?
 - contact SpaceDevs?
 - send data corrections to SpaceDevs (country code formats, missing country codes, bad chars in descriptions, …)
+- see if https://go4liftoff.com/launches has any additional info we can use
 
 
 ## Articles that address issues
@@ -124,6 +129,13 @@ Articles that address particular features/problems that I haven't dealt with yet
 - https://fluffy.es/store-image-coredata/
 - https://www.i18nqa.com/debug/utf8-debug.html
 - https://stackoverflow.com/questions/60690933/swiftui-pop-to-root-view-when-selected-tab-is-tapped-again/60691250#60691250
+- https://www.appcoda.com/core-data-preload-sqlite-database/
+- https://developer.apple.com/library/archive/technotes/tn2350/_index.html
+- https://developer.apple.com/forums/thread/61745
+- https://developer.apple.com/forums/thread/117655
+- https://fuckingswiftui.com/#tabview
+- https://developer.apple.com/tutorials/swiftui/building-lists-and-navigation
+- https://developer.apple.com/videos/play/wwdc2020/10037
 
 
 ## To Read
@@ -132,6 +144,7 @@ Good sites that I just found, but haven't explored
 - https://www.simpleswiftguide.com
 - https://www.hackingwithswift.com/100/swiftui
 - https://www.hackingwithswift.com/quick-start/swiftui
+- https://nshipster.com
 
 
 ## Maintenence Checks

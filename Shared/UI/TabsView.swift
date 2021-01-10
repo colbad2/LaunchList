@@ -3,15 +3,22 @@ import SwiftUI
 struct TabsView: View
 {
    @State private var selection = 0
+   @State private var resetTimelineNavigationID = UUID()
+   @State private var resetDatasetsNavigationID = UUID()
 
    var body: some View
    {
-      if showPaths()
-      {
-         LazyHStack{}.frame( width: 0, height: 0 )
-      }
-      
-      TabView( selection: $selection )
+      let selectable = Binding(        // << proxy binding to catch tab tap
+                  get: { self.selection },
+                  set: { self.selection = $0
+
+                      // set new ID to recreate NavigationView, so put it
+                      // in root state, same as is on change tab and back
+                     self.resetTimelineNavigationID = UUID()
+                     self.resetDatasetsNavigationID = UUID()
+              })
+
+      TabView( selection: selectable )
       {
          NavigationView
          {
@@ -39,6 +46,7 @@ struct TabsView: View
             Text( "Timeline" )
          }
          .tag( 1 )
+//         .id( self.resetTimelineNavigationID )
 
          NavigationView
          {
@@ -51,6 +59,7 @@ struct TabsView: View
             Text( "Datasets" )
          }
          .tag( 2 )
+         .id( self.resetDatasetsNavigationID ) // << making id modifiable
 
          NavigationView
          {
@@ -62,18 +71,9 @@ struct TabsView: View
             Image( systemName: "gear" )
             Text( "Settings" )
          }
-         .tag( 2 )
+         .tag( 3 )
       }
    }
 }
-
-func showPaths() -> Bool
-{
-   print( "app folder path is \(NSHomeDirectory())" )
-   print( "support dir is: \(NSSearchPathForDirectoriesInDomains( .applicationSupportDirectory, .userDomainMask, true ).last!)" )
-
-   return true
-}
-
 
 // TODO preview

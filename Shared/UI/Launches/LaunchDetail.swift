@@ -36,11 +36,11 @@ struct LaunchDetail: View
                         .font( .subheadline )
                         .foregroundColor( .secondary )
                         .textCase( .uppercase )
+                     Spacer()
                      if let end = launch.windowEnd
                      {
                         if start != end
                         {
-                           Spacer()
                            Text( "\(end, formatter: LaunchRow.taskDateFormat)" )
                               .font( .subheadline )
                               .foregroundColor( .secondary )

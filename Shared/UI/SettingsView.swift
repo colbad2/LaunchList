@@ -19,6 +19,11 @@ struct SettingsView: View
                Text( "Stats" )
                Text( "Image loading" )
             }
+            Section( header: Text( "JSON" ) )
+            {
+               Text( "Stats" )
+               Text( "Image loading" )
+            }
          }
       }
       .navigationBarTitleDisplayMode( .inline )

@@ -40,7 +40,7 @@ struct TimelineView: View
       .navigationBarTitleDisplayMode( .inline )
       .toolbar( content:
       {
-         ToolbarItem( placement: .navigationBarLeading, content: { Text( "Events" ).font( .title ) } )
+         ToolbarItem( placement: .navigationBarLeading, content: { Text( "Timeline" ).font( .title ) } )
          ToolbarItem( placement: .navigationBarTrailing, content:
                         {
                            HStack

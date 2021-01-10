@@ -26,7 +26,11 @@ struct DatasetList: View
 
          ListItemRow( listItem: listItem )
       }
-      .navigationViewStyle( StackNavigationViewStyle() )
+      .navigationBarTitleDisplayMode( .inline )
+      .toolbar( content:
+      {
+         ToolbarItem( placement: .navigationBarLeading, content: { Text( "Datasets" ).font( .title ) } )
+      })
    }
 }
 

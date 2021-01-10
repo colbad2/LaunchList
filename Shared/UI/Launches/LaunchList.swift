@@ -19,7 +19,7 @@ struct LaunchList: View
          proxy in
 
          let nextLaunchID = getNextLaunch( context: PersistenceController.shared.container.viewContext )!.id!
-         SearchBar( text: $searchText )
+         SearchBar( prompt: "launch name", text: $searchText )
             .padding( .top, 10 )
          List( launches.filter( { filterLaunch( launch: $0, searchText: searchText ) } ) )
          {

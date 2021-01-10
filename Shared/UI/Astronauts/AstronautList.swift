@@ -13,7 +13,7 @@ struct AstronautList: View
 
    var body: some View
    {
-      SearchBar( text: $searchText )
+      SearchBar( prompt: "name,agency:NASA,status:active,nationality:american,bio:NASA" , text: $searchText)
          .padding( .top, 10 )
       List( astronauts.filter( { filterAstronaut( astronaut: $0, searchText: searchText ) } ) )
       {

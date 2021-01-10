@@ -7,11 +7,24 @@ struct LaunchListApp: App
    {
       WindowGroup
       {
+         if showPaths()
+         {
+            LazyHStack{}.frame( width: 0, height: 0 )
+         }
+
          TabsView()
             .environment( \.managedObjectContext,
                           PersistenceController.shared.container.viewContext )
       }
    }
+}
+
+func showPaths() -> Bool
+{
+   print( "app folder path is \(NSHomeDirectory())" )
+   print( "support dir is: \(NSSearchPathForDirectoriesInDomains( .applicationSupportDirectory, .userDomainMask, true ).last!)" )
+
+   return true
 }
 
 // TODO fill in with data

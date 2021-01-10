@@ -4,6 +4,7 @@ import SwiftUI
 
 struct SearchBar: View
 {
+   var prompt: String = "search..."
    @Binding var text: String
 
    @State private var isEditing = false
@@ -12,7 +13,7 @@ struct SearchBar: View
    {
       HStack
       {
-         TextField( "Search...", text: $text )
+         TextField( prompt, text: $text )
             .padding( 7 )
             .padding( .horizontal, 25 )
             .background( Color(.systemGray6 ) )
