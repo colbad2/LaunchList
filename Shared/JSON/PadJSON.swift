@@ -94,8 +94,8 @@ struct PadJSON: Decodable
       }
 
       entity.mapImage = self.mapImage
-      
-      let mapURL = self.mapURL?.trimmingCharacters( in: .whitespacesAndNewlines )
+
+      let mapURL = self.mapURL?.trim()
       if mapURL != nil && mapURL!.count > 0
       {
          entity.mapURL = mapURL!.fixBadUTF()
@@ -107,8 +107,8 @@ struct PadJSON: Decodable
       
       entity.name = self.name
       entity.totalLaunchCount = self.totalLaunchCount ?? -1
-      
-      let wikiURL = self.wikiURL?.trimmingCharacters( in: .whitespacesAndNewlines )
+
+      let wikiURL = self.wikiURL?.trim()
       if wikiURL != nil && wikiURL!.count > 0
       {
          entity.wikiURL = wikiURL

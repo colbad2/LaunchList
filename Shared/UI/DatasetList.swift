@@ -3,14 +3,14 @@ import CoreData
 
 struct DatasetList: View
 {
-   let listItems: [ListItem] = [ ListItem( title: "Launches", entity: "Launch" ),
+   let listItems: [ListItem] = [ ListItem( title: "Launches", entity: "Launch", iconName: "AppIcon" ),
                                  ListItem( title: "Agencies", entity: "Agency" ),
 //                                 ListItem( title: "Service Providers", entity: "ServiceProvider" ),
                                  ListItem( title: "Pads", entity: "Pad" ),
                                  ListItem( title: "Missions", entity: "Mission" ),
                                  ListItem( title: "Programs", entity: "Program" ),
 //                                 ListItem( title: "Rockets", entity: "Rocket" ),
-                                 ListItem( title: "Astronauts", entity: "Astronaut" ),
+                                 ListItem( title: "Astronauts", entity: "Astronaut", iconName: "AstronautColor" ),
                                  ListItem( title: "Events", entity: "Event" ),
                                  ListItem( title: "Live Streams", entity: "LiveStream" ),
                                  ListItem( title: "Starship Vehicles", entity: "Vehicle" ),
@@ -41,14 +41,22 @@ struct ListItemRow: View
       {
          NavigationLink( destination: getListItemView( title: listItem.title )! )
          {
-            VStack( alignment: .leading )
+            HStack
             {
-               TitleField( s: listItem.title )
+               if let name = listItem.iconName
+               {
+                  RowImage( defaultImage: UIImage( named: name ), w: 50, h: 60 )
+               }
 
-               let launchCount = getRecordsCount( entityName: listItem.entity, context: context )!
-               Text( "\(launchCount) \(listItem.title.lowercased())" )
-                  .font( .subheadline )
-                  .foregroundColor( .secondary )
+               VStack( alignment: .leading )
+               {
+                  TitleField( s: listItem.title )
+
+                  let launchCount = getRecordsCount( entityName: listItem.entity, context: context )!
+                  Text( "\(launchCount) \(listItem.title.lowercased())" )
+                     .font( .subheadline )
+                     .foregroundColor( .secondary )
+               }
             }
          }
          Spacer()
@@ -61,12 +69,14 @@ struct ListItem: Identifiable
    var id: String
    var title: String
    var entity: String
+   var iconName: String?
 
-   init( title: String, entity: String )
+   init( title: String, entity: String, iconName: String? = nil )
    {
       self.id = title
       self.title = title
       self.entity = entity
+      self.iconName = iconName
    }
 }
 

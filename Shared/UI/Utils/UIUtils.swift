@@ -7,7 +7,7 @@ public func missionName( _ launch: Launch? ) -> String
    let parts = launch.name?.components( separatedBy: "|" )
    let missionPart = parts?.last
 
-   return missionPart?.trimmingCharacters( in: .whitespacesAndNewlines ) ?? launch.name ?? ""
+   return missionPart?.trim() ?? launch.name ?? ""
 }
 
 

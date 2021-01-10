@@ -22,7 +22,7 @@ func dateString( _ d: Date? ) -> String?
 
 func wrapURL( _ url: String? ) -> URL?
 {
-   if url == nil || url!.trimmingCharacters( in: .whitespacesAndNewlines ) == "" { return nil }
+   if url == nil || url!.trim() == "" { return nil }
    return URL( string: url! )
 }
 

@@ -36,6 +36,10 @@
 		A225763C25A4FA99009AAEAD /* SpaceStationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A225763B25A4FA99009AAEAD /* SpaceStationList.swift */; };
 		A225764A25A4FBEB009AAEAD /* SpaceStationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A225764925A4FBEB009AAEAD /* SpaceStationDetail.swift */; };
 		A225765225A4FF95009AAEAD /* ExpeditionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A225765125A4FF95009AAEAD /* ExpeditionDetail.swift */; };
+		A22B936A25AB742500918643 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22B936925AB742500918643 /* SettingsView.swift */; };
+		A22B936B25AB742500918643 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22B936925AB742500918643 /* SettingsView.swift */; };
+		A22B937925AB880D00918643 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22B937825AB880D00918643 /* SearchBar.swift */; };
+		A22B937A25AB880D00918643 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22B937825AB880D00918643 /* SearchBar.swift */; };
 		A22CDE18259697FF00E3F96B /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CDE17259697FF00E3F96B /* JSONUtils.swift */; };
 		A22CDE19259697FF00E3F96B /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CDE17259697FF00E3F96B /* JSONUtils.swift */; };
 		A22CDE1A259697FF00E3F96B /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CDE17259697FF00E3F96B /* JSONUtils.swift */; };
@@ -327,6 +331,8 @@
 		A225763B25A4FA99009AAEAD /* SpaceStationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceStationList.swift; sourceTree = "<group>"; };
 		A225764925A4FBEB009AAEAD /* SpaceStationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceStationDetail.swift; sourceTree = "<group>"; };
 		A225765125A4FF95009AAEAD /* ExpeditionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpeditionDetail.swift; sourceTree = "<group>"; };
+		A22B936925AB742500918643 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A22B937825AB880D00918643 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		A22CDE17259697FF00E3F96B /* JSONUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
 		A232F6B1259E8ACE00B05FA0 /* VehicleJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleJSON.swift; sourceTree = "<group>"; };
 		A232F6B8259E8B0700B05FA0 /* StarshipEventsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipEventsJSON.swift; sourceTree = "<group>"; };
@@ -533,6 +539,7 @@
 				A2206402259E41E900A27B93 /* AgencyLink.swift */,
 				A2732B2725A2C17E00A11CE6 /* RowImage.swift */,
 				A24B48B525A597A4008CC72D /* ImageViewer.swift */,
+				A22B937825AB880D00918643 /* SearchBar.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -640,6 +647,7 @@
 				A2206409259E492C00A27B93 /* HomeView.swift */,
 				A2BB773E25A92DA2004FFFB3 /* TimelineView.swift */,
 				A2BBFF59259D53BF00BBC605 /* DatasetList.swift */,
+				A22B936925AB742500918643 /* SettingsView.swift */,
 				A22063BB259D71A200A27B93 /* Astronauts */,
 				A2732B0625A2BBEF00A11CE6 /* Docking */,
 				A2732ABF25A1594900A11CE6 /* Live Streams */,
@@ -1136,6 +1144,7 @@
 				A2DA72352595AF8F009405E6 /* LaunchList.swift in Sources */,
 				A270A8F6259F893A0078F1D2 /* AstronautListJSON.swift in Sources */,
 				A2D6D7A92597BA1C003D5401 /* AgenciesListJSON.swift in Sources */,
+				A22B937925AB880D00918643 /* SearchBar.swift in Sources */,
 				A2DEA292259ADFE9009D5B4B /* UIUtils.swift in Sources */,
 				A24B486E25A51B3D008CC72D /* SpaceStationLinks.swift in Sources */,
 				A24B488125A51C1B008CC72D /* ExpeditionLinks.swift in Sources */,
@@ -1185,6 +1194,7 @@
 				A2DEA29A259AE9BE009D5B4B /* CountdownView.swift in Sources */,
 				A2DA728B2595AFF3009405E6 /* StatusJSON.swift in Sources */,
 				A2168D7125A03CB6000D401F /* EventListJSON.swift in Sources */,
+				A22B936A25AB742500918643 /* SettingsView.swift in Sources */,
 				A254CF46259F7A7B002CD844 /* EventJSON.swift in Sources */,
 				A232F6B2259E8ACE00B05FA0 /* VehicleJSON.swift in Sources */,
 				A2DA72812595AFF3009405E6 /* LaunchJSON.swift in Sources */,
@@ -1277,6 +1287,7 @@
 				A2DA72782595AFF3009405E6 /* MissionJSON.swift in Sources */,
 				A2DA727E2595AFF3009405E6 /* PadJSON.swift in Sources */,
 				A24B488225A51C1B008CC72D /* ExpeditionLinks.swift in Sources */,
+				A22B937A25AB880D00918643 /* SearchBar.swift in Sources */,
 				A2732A9C25A0E40B00A11CE6 /* EventList.swift in Sources */,
 				A232F6FE259E8C6F00B05FA0 /* RoadClosureJSON.swift in Sources */,
 				A2732AF125A18A3C00A11CE6 /* VehicleList.swift in Sources */,
@@ -1285,6 +1296,7 @@
 				A2732A8425A0E26700A11CE6 /* LocationListJSON.swift in Sources */,
 				A270A90E25A0203D0078F1D2 /* DockingJSON.swift in Sources */,
 				A254CF50259F7CA0002CD844 /* ExpeditionJSON.swift in Sources */,
+				A22B936B25AB742500918643 /* SettingsView.swift in Sources */,
 				A2BBFF3E259D03A500BBC605 /* PadListJSON.swift in Sources */,
 				A2DEA27B259ADF38009D5B4B /* IconView.swift in Sources */,
 				A2BBFF5B259D53BF00BBC605 /* DatasetList.swift in Sources */,

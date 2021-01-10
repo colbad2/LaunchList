@@ -154,3 +154,12 @@ func flags( for country3CodeList: String? ) -> String?
 
    return result
 }
+
+
+extension String
+{
+   func trim() -> String
+   {
+      return self.trimmingCharacters( in: .whitespacesAndNewlines )
+   }
+}

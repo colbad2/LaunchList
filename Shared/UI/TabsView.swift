@@ -43,12 +43,24 @@ struct TabsView: View
          NavigationView
          {
             DatasetList()
-               .navigationBarHidden( true )
+//               .navigationBarHidden( true )
          }
          .tabItem
          {
             Image( systemName: "list.dash" )
             Text( "Datasets" )
+         }
+         .tag( 2 )
+
+         NavigationView
+         {
+            SettingsView()
+//               .navigationBarHidden( true )
+         }
+         .tabItem
+         {
+            Image( systemName: "gear" )
+            Text( "Settings" )
          }
          .tag( 2 )
       }

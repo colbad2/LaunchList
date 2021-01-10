@@ -107,6 +107,12 @@ struct AstronautJSON: Decodable
       entity.lastFlight = self.lastFlight
       entity.profileImage = self.profileImage
       entity.profileImageThumbnail = self.profileImageThumbnail
+
+      let nameParts = name?.split( separator: " " )
+      if let lastPart = nameParts?.last
+      {
+         entity.sortingName = String( lastPart )
+      }
    }
 }
 

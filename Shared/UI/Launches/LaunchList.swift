@@ -10,6 +10,7 @@ struct LaunchList: View
    private var launches: FetchedResults< Launch >
 
    @State private var indexPathToSetVisible: IndexPath?
+   @State var searchText: String = ""
 
    var body: some View
    {
@@ -18,7 +19,9 @@ struct LaunchList: View
          proxy in
 
          let nextLaunchID = getNextLaunch( context: PersistenceController.shared.container.viewContext )!.id!
-         List( launches )
+         SearchBar( text: $searchText )
+            .padding( .top, 10 )
+         List( launches.filter( { filterLaunch( launch: $0, searchText: searchText ) } ) )
          {
             ( launch: Launch ) in
 
@@ -71,6 +74,14 @@ struct LaunchList: View
    }
 }
 
+func filterLaunch( launch: Launch, searchText: String? ) -> Bool
+{
+   guard let text = searchText else { return true }
+   if text.trim().count == 0 { return true }
+   guard let name = launch.name else { return true }
+   return name.contains( text )
+}
+
 struct LaunchRow: View
 {
    var launch: Launch
@@ -78,7 +89,7 @@ struct LaunchRow: View
 
    var body: some View
    {
-      RowImage( imageURL: launch.image, defaultImage: UIImage( named: "LaunchListItemPlaceholder" ) )
+      RowImage( imageURL: launch.image, defaultImage: UIImage( named: "LaunchB&W" ) )
 
       VStack( alignment: .leading )
       {

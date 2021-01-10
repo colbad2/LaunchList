@@ -88,7 +88,7 @@ public struct LaunchJSON: Decodable, Identifiable
    {
       guard let entity = entity else { return }
 
-      let fail = self.failReason?.trimmingCharacters( in: .whitespacesAndNewlines )
+      let fail = self.failReason?.trim()
       if fail != nil && fail!.count > 0
       {
          entity.failReason = self.failReason

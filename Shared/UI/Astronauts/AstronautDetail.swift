@@ -21,7 +21,7 @@ struct AstronautDetail: View
          {
             HStack( alignment: .top )
             {
-               RowImage( imageURL: astronaut.profileImage, drawSpace: false )
+               RowImage( imageURL: astronaut.profileImage, drawSpace: false, w: 100, h: 120 )
 
                VStack
                {

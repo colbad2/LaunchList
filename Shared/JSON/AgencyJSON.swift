@@ -128,7 +128,7 @@ func getCountryCodes( countryCode: String? ) -> [String]
       let codeList = agencyCodes.split( separator: "," )
       for code in codeList
       {
-         let country = String( code ).trimmingCharacters( in: .whitespacesAndNewlines )
+         let country = String( code ).trim()
          if country.count == 6
          {
             codes.append( String( country.prefix( 3 ) ) )
