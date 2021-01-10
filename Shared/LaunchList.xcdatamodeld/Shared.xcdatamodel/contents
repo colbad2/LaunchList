@@ -76,6 +76,10 @@
         <relationship name="dockings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Docking" inverseName="flightVehicle" inverseEntity="Docking"/>
         <relationship name="spacecraft" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spacecraft" inverseName="flightVehicle" inverseEntity="Spacecraft"/>
     </entity>
+    <entity name="ImageData" representedClassName="ImageData" syncable="YES" codeGenerationType="class">
+        <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="url" attributeType="String"/>
+    </entity>
     <entity name="Launch" representedClassName=".Launch" parentEntity="TimelineEntry" syncable="YES" codeGenerationType="class">
         <attribute name="failReason" optional="YES" attributeType="String"/>
         <attribute name="hashtag" optional="YES" attributeType="String"/>
@@ -247,7 +251,7 @@
         <element name="Agency" positionX="61.236083984375" positionY="656.6265563964844" width="128" height="283"/>
         <element name="Astronaut" positionX="-144.2052001953125" positionY="524.5830078125" width="128" height="298"/>
         <element name="Docking" positionX="-378.0781860351562" positionY="144.6569976806641" width="128" height="133"/>
-        <element name="Event" positionX="101.7413330078125" positionY="113.76171875" width="128" height="238"/>
+        <element name="Event" positionX="101.7413330078125" positionY="113.76171875" width="128" height="224"/>
         <element name="Expedition" positionX="-191.8400268554688" positionY="84.94784545898438" width="128" height="119"/>
         <element name="FlightVehicle" positionX="-367.2220458984375" positionY="363.9052124023438" width="128" height="133"/>
         <element name="Launch" positionX="338.7611083984375" positionY="325.97216796875" width="128" height="418"/>
@@ -265,5 +269,6 @@
         <element name="SpaceStation" positionX="-213.0076904296875" positionY="253.9388885498047" width="128" height="193"/>
         <element name="TimelineEntry" positionX="192.3109130859375" positionY="-57.77613830566406" width="128" height="58"/>
         <element name="Vehicle" positionX="720.8387451171875" positionY="679.8338623046875" width="128" height="208"/>
+        <element name="ImageData" positionX="-180" positionY="99" width="128" height="59"/>
     </elements>
 </model>

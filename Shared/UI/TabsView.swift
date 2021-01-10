@@ -57,7 +57,9 @@ struct TabsView: View
 
 func showPaths() -> Bool
 {
-   // print("app folder path is \(NSHomeDirectory())")
+   print( "app folder path is \(NSHomeDirectory())" )
+   print( "support dir is: \(NSSearchPathForDirectoriesInDomains( .applicationSupportDirectory, .userDomainMask, true ).last!)" )
+
    return true
 }
 

@@ -5,9 +5,11 @@ class ImageLoader: ObservableObject
 {
    @Published var image: UIImage?
 
-   init( urlString: String )
+   init( urlString: String? )
    {
-      RemoteImageCache.shared.downloadImage( with: urlString )
+      guard let url = urlString else { return }
+
+      RemoteImageCache.shared.downloadImage( with: url )
       {
          (fetchedImage, done) in
 

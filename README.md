@@ -14,6 +14,7 @@ happy with the UI.
 ## App TODOs
 ### Core Data/JSON
 - load all JSON files into db when db is empty for that entity type
+- prefilled Core Data default data store
 ### API loading
 - Load db regularly
 - All API loads

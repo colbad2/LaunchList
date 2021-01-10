@@ -3,9 +3,6 @@ import SwiftUI
 @main
 struct LaunchListApp: App
 {
-   // @Environment( \.managedObjectContext ) private var viewContext
-   // let persistenceController = PersistenceController.shared
-
    var body: some Scene
    {
       WindowGroup

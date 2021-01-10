@@ -8,7 +8,7 @@ struct IconView: View
    init( withURL url: String? )
    {
       self.url = url
-      imageLoader = ImageLoader( urlString: url ?? "" )
+      imageLoader = ImageLoader( urlString: url )
    }
 
    var body: some View

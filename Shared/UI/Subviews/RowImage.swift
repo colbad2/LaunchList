@@ -5,6 +5,7 @@ import SwiftUI
 struct RowImage: View
 {
    var imageURL: String?
+   var defaultImage: UIImage? = nil
    var drawSpace: Bool = true
    var w: CGFloat?
    var h: CGFloat?
@@ -23,9 +24,15 @@ struct RowImage: View
       {
          if drawSpace
          {
-            Spacer()
-               .frame( width: 75 )
+            // TODO remove?
          }
+            Image( uiImage: defaultImage ?? UIImage() )
+               .resizable()
+               .aspectRatio( contentMode: .fill )
+               .frame( width: w ?? 50, height: h ?? 60 )
+            Spacer()
+               .frame( width: 15 )
+//         }
       }
    }
 }

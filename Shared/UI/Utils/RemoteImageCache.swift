@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 /**
  Singleton for fetching images from URLs and holding them for future use.
@@ -123,16 +124,21 @@ class RemoteImageCache
    func downloadImage( with urlString: String?,
                        completionHandler: @escaping ( UIImage?, Bool ) -> Void  )
    {
-      // return n il if the URL was nil
-      if urlString == nil
+      // return n il if the URL was nil or empty
+      if urlString == nil || urlString?.count == 0
       {
          completionHandler( nil, true )
-         print( "nil image URL" )
          return
       }
 
       // return the image if it had been cached
       if let image = getCachedImageFrom( url: urlString! )
+      {
+         completionHandler( image, true )
+         return
+      }
+
+      if let image = getStoredImage( for: urlString, context: PersistenceController.shared.container.viewContext )
       {
          completionHandler( image, true )
          return
@@ -168,10 +174,73 @@ class RemoteImageCache
          let image = UIImage( data: data! )
          self.storeImage( url: urlString!, image: image )
          self.removeTaskFromList( url: urlString! )
-         DispatchQueue.main.async { completionHandler( image, false ) }
+         DispatchQueue.main.async
+         {
+            saveToCoreData( url: urlString!, image: image! )
+            completionHandler( image, false )
+         }
       }
 
       addTaskToList( url: urlString!, task: task )
       task.resume()
    }
+}
+
+func getStoredImage( for url: String?, context: NSManagedObjectContext ) -> UIImage?
+{
+   guard let url = url else { return nil }
+
+   do
+   {
+      let request = NSFetchRequest<NSFetchRequestResult>( entityName: "ImageData" )
+      request.predicate = NSPredicate( format: "url = %@", url )
+      let entities: [ImageData] = try context.fetch( request ) as! [ImageData]
+      if let data = entities.first?.data
+      {
+         return UIImage( data: data )
+      }
+   }
+   catch
+   {
+      let nsError = error as NSError
+      fatalError( "Failed to fetch image: \(url) \(error), \(nsError.userInfo)" )
+   }
+
+   return nil
+}
+
+/*
+func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
+{
+ 
+   do
+   {
+      let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Launch" )
+      request.predicate = NSPredicate( format: "windowEnd > %@", NSDate() )
+      request.sortDescriptors = [ NSSortDescriptor( key: "windowStart", ascending: true ) ]
+      request.fetchLimit = count
+      let entities: [Launch] = try context.fetch( request ) as! [Launch]
+      if entities.count > 0 { return entities }
+   }
+   catch
+   {
+      let nsError = error as NSError
+      fatalError( "Failed to fetch next launch: \(error), \(nsError.userInfo)" )
+   }
+
+   return []
+}
+ */
+
+func saveToCoreData( url: String, image: UIImage )
+{
+   let imageData = image.pngData()
+   let context = PersistenceController.shared.container.viewContext
+
+   guard let imageDataEntity = NSEntityDescription.insertNewObject( forEntityName: "ImageData",
+                                                              into: context ) as? ImageData else { return }
+
+   imageDataEntity.url = url
+   imageDataEntity.data = imageData
+   saveContext( context )
 }

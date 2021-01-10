@@ -78,7 +78,7 @@ struct LaunchRow: View
 
    var body: some View
    {
-      RowImage( imageURL: launch.image )
+      RowImage( imageURL: launch.image, defaultImage: UIImage( named: "LaunchListItemPlaceholder" ) )
 
       VStack( alignment: .leading )
       {
