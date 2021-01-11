@@ -3,7 +3,7 @@ import SwiftUI
 
 struct HomeView: View
 {
-   @Binding var tabSelection: Int
+   @Binding var tabSelection: AppTab
    
    var body: some View
    {

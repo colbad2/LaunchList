@@ -34,11 +34,14 @@ struct PadRow: View
       {
          Text( name )
             .font( .headline )
-            .lineLimit( 3 )
+            .layoutPriority( 2 )
          if let countryCode = pad.location?.countryCode
          {
-            Spacer()
-            Text( flags( for: countryCode )! )
+//            Spacer()
+            if countryCode != "UNK"
+            {
+               Text( flags( for: countryCode )! )
+            }
          }
       }
    }
@@ -58,8 +61,8 @@ struct PadListPreviews: PreviewProvider
          NavigationView
          {
             PadList()
-         .environment( \.managedObjectContext,
-                       PersistenceController.preview.container.viewContext )
+               .environment( \.managedObjectContext,
+                             PersistenceController.preview.container.viewContext )
          }
          .environment( \.colorScheme, .light )
 
@@ -67,8 +70,8 @@ struct PadListPreviews: PreviewProvider
          NavigationView
          {
             PadList()
-            .environment( \.managedObjectContext,
-                          PersistenceController.preview.container.viewContext )
+               .environment( \.managedObjectContext,
+                             PersistenceController.preview.container.viewContext )
          }
          .environment( \.colorScheme, .dark )
 
@@ -76,8 +79,8 @@ struct PadListPreviews: PreviewProvider
          NavigationView
          {
             PadList()
-            .environment( \.managedObjectContext,
-                          PersistenceController.preview.container.viewContext )
+               .environment( \.managedObjectContext,
+                             PersistenceController.preview.container.viewContext )
          }
          .environment( \.sizeCategory, .accessibilityExtraExtraExtraLarge )
       }

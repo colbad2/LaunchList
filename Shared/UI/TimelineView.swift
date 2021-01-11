@@ -5,7 +5,7 @@ import CoreData
 
 struct TimelineView: View
 {
-   @Binding var tabSelection: Int
+   @Binding var tabSelection: AppTab
 
    @FetchRequest( entity: TimelineEntry.entity(),
                   sortDescriptors: [ NSSortDescriptor( keyPath: \TimelineEntry.sortingDate,

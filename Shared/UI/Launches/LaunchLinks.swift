@@ -18,7 +18,7 @@ struct LaunchLinks: View
             Divider()
             HStack
             {
-               Text( "Launches \(launches.count)" )
+               Text( "Launches (\(launches.count))" )
                   .font( .headline )
                   .foregroundColor( .secondary )
                Spacer()

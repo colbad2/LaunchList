@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TabsView: View
 {
-   @State private var selection = 0
+   @State private var selection = AppTab.home
    @State private var resetTimelineNavigationID = UUID()
    @State private var resetDatasetsNavigationID = UUID()
 
@@ -25,54 +25,53 @@ struct TabsView: View
             HomeView( tabSelection: $selection )
                .navigationBarHidden( true )
          }
-         .tabItem
-         {
-            Image( systemName: "house" )
-            Text( "Home" )
-         }
-         .tag( 0 )
+         .tabItem { TabInfo( iconName: "house", title: "Home" ) }
+         .tag( AppTab.home )
 
          NavigationView
          {
             TimelineView( tabSelection: $selection )
          }
-         .onAppear()
-         {
-            UINavigationBar.appearance().isTranslucent = true
-         }
-         .tabItem
-         {
-            Image( systemName: "calendar" )
-            Text( "Timeline" )
-         }
-         .tag( 1 )
+         .tabItem { TabInfo( iconName: "calendar", title: "Timeline" ) }
+         .tag( AppTab.timeline )
 //         .id( self.resetTimelineNavigationID )
 
          NavigationView
          {
             DatasetList()
-//               .navigationBarHidden( true )
          }
-         .tabItem
-         {
-            Image( systemName: "list.dash" )
-            Text( "Datasets" )
-         }
-         .tag( 2 )
+         .tabItem { TabInfo( iconName: "list.dash", title: "Datasets" ) }
+         .tag( AppTab.datasets )
          .id( self.resetDatasetsNavigationID ) // << making id modifiable
 
          NavigationView
          {
             SettingsView()
-//               .navigationBarHidden( true )
          }
-         .tabItem
-         {
-            Image( systemName: "gear" )
-            Text( "Settings" )
-         }
-         .tag( 3 )
+         .tabItem { TabInfo( iconName: "gear", title: "Settings" ) }
+         .tag( AppTab.settings ) //3 )
       }
+   }
+}
+
+//extension ContentView {
+enum AppTab: Hashable
+{
+   case home
+   case timeline
+   case datasets
+   case settings
+}
+//}
+
+struct TabInfo: View
+{
+   var iconName: String
+   var title: String
+   var body: some View
+   {
+      Image( systemName: iconName )
+      Text( title )
    }
 }
 

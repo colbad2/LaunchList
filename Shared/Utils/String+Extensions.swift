@@ -107,6 +107,7 @@ func emojiFlag( for countryCode: String? ) -> String?
 func flag( for countryCode3: String? ) -> String?
 {
    guard let code3 = countryCode3 else { return nil }
+   if code3 == "UNK" { return nil }
    let code2 = CountryUtility.shared.getCountryCode2( code3 )
    if code2 == nil { return countryCode3 }
    return emojiFlag( for: code2 )

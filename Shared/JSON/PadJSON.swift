@@ -101,11 +101,16 @@ struct PadJSON: Decodable
          entity.mapURL = mapURL!.fixBadUTF()
          // TODO Pad at Guam International Airport has a map URL like "https://www.google.com/maps/place/35Â°03'34.0"N+118Â°09'06.0"W/"
          // I fix it to "https://www.google.com/maps/place/35°03'34.0"N+118°09'06.0"W/", which works in a browser, but URL() fails
-         // to convert it to a URL. So, the pad doesn't have a map link it could have. Try to fix the link to it works.
+         // to convert it to a URL. So, the pad doesn't have a map link it could have. Try to fix the link so it works.
          // A number of other map links have the issue
       }
-      
-      entity.name = self.name
+
+      var name = self.name ?? ""
+      if name.first != nil && name.first!.isNumber
+      {
+         name = "Pad " + name
+      }
+      entity.name = name
       entity.totalLaunchCount = self.totalLaunchCount ?? -1
 
       let wikiURL = self.wikiURL?.trim()

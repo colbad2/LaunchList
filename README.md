@@ -17,6 +17,7 @@ Things that need to happen for a good app
 ### Core Data/JSON
 - load all JSON files into db when db is empty for that entity type
 - prefilled Core Data default data store
+- some duplicate Pads/ unknown pads with no info/ lat lons with extra zeros (west texas)/pas with no launches, no countries
 ### API loading
 - Load db regularly
 - All API loads
@@ -39,14 +40,12 @@ Things that need to happen for a good app
 - Programmatically go to databse details pages from links in the next launch home page
 - tap on home/timeline icons should return nav to home, just like datasets
 ### Code
-- switch tab tags to enum values
 - fix console messages
 -- error: regular expression substitution string doesn't start with 's': '‘s/(.+)/expr'
 -- nw_protocol_get_quic_image_block_invoke dlopen libquic failed
 -- displayModeButtonItem is internally managed and not exposed for DoubleColumn style. Returning an empty, disconnected UIBarButtonItem to fulfill the non-null contract.
 - any code TODOs
 ### UI Features
-- bigger astronaut images in details 
 - some images need a detailed image view (astronaut portraits, etc.)
 - pare down the dataset lists to useful stuff only
 - settings (notifications, update schedule, force update)
