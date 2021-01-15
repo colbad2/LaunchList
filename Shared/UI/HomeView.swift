@@ -11,8 +11,8 @@ struct HomeView: View
       {
          HStack
          {
-            Text( "Next Launch" )
-               .font( .title )
+            Text( "Next" )
+               .font( .title ).bold()
             Spacer()
          }
 
@@ -48,8 +48,9 @@ struct HomeView: View
 
          VStack
          {
-            Text( "Upcoming Launches" )
+            Text( "Upcoming" )
                .font( .title2 )
+               .bold()
                .padding()
             List( getUpcomingLaunches() )
             {

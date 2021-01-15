@@ -32,7 +32,7 @@ Things that need to happen for a good app
 - save loaded images in db? pre-fill image cache with images from db?
 - can we include the external file dir alongside the default data db files?
 ### Beauty
-- tab icons, db section icons
+- tab icons
 - use a common date format
 ### navigation
 - Any JSON with a mirror list of containers should have a nav link to that list (pad link to list of launches on that pad for example)
@@ -46,6 +46,7 @@ Things that need to happen for a good app
 - any code TODOs
 - mark any change from the API data with // DATABASE CHANGE, and gather those changes to a single class
 ### UI Features
+- use timeline event list for home screen, not just launches.
 - some images need a detailed image view (astronaut portraits, etc.)
 - pare down the dataset lists to useful stuff only
 - settings (notifications, update schedule, force update)
@@ -80,6 +81,7 @@ Things that Xcode does that need changing
 - remove big headers from new file template
 - write app that clears devicedata, removes elements from coredata files, locates template files
 - remove "import Foundation" from templates
+
 
 ## Waiting on SwiftUI
 Things that Apple might improve on in the future

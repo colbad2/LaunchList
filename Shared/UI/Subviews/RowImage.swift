@@ -17,6 +17,7 @@ struct RowImage: View
          IconView( withURL: url )
             .frame( width: w ?? 50, height: h ?? 60 )
             .clipped()
+            .cornerRadius( 8 )
          Spacer()
             .frame( width: 15 )
       }
@@ -30,6 +31,7 @@ struct RowImage: View
                .resizable()
                .aspectRatio( contentMode: .fill )
                .frame( width: w ?? 50, height: h ?? 60 )
+               .cornerRadius( 8 )
             Spacer()
                .frame( width: 15 )
 //         }

@@ -164,10 +164,24 @@ func getNextLaunch( context: NSManagedObjectContext ) -> Launch?
    return getNextLaunches( count: 1, context: context ).first
 }
 
+/**
+ Returns a list of events after the current date.
+
+ - Parameter count: {Int} number of records to return
+ - Parameter context: {NSManagedObjectContext} Core Data database context
+ */
 func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
 {
    do
    {
+      /*
+       TODO use full timeline list, not just launches
+       let request: NSFetchRequest<TimelineEntry> = TimelineEntry.fetchRequest()
+       request.predicate = NSPredicate( format: "sortingDate > %@", NSDate() )
+       request.sortDescriptors = [ NSSortDescriptor( key: "sortingDate", ascending: true ) ]
+       request.fetchLimit = count
+       let entities: [TimelineEntry] = try context.fetch( request )
+       */
       let request: NSFetchRequest<Launch> = Launch.fetchRequest()
       request.predicate = NSPredicate( format: "windowEnd > %@", NSDate() )
       request.sortDescriptors = [ NSSortDescriptor( key: "windowStart", ascending: true ) ]
@@ -178,7 +192,7 @@ func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
    catch
    {
       let nsError = error as NSError
-      fatalError( "Failed to fetch next launch: \(error), \(nsError.userInfo)" )
+      fatalError( "Failed to fetch next entity: \(error), \(nsError.userInfo)" )
    }
 
    return []

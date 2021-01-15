@@ -63,7 +63,7 @@ struct MissionJSON: Decodable
       entity.missionDescription = self.description?.fixBadUTF()
       entity.id = self.id
       entity.launchDesignator = self.launchDesignator
-      entity.name = self.name?.fixBadUTF()
+      entity.name = self.name?.fixBadUTF().trim()
 
       if let orbitName = self.orbit?.name
       {
