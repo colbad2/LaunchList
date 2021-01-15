@@ -7,12 +7,12 @@ struct DatasetList: View
                                  ListItem( title: "Agencies", entity: "Agency", iconName: "Agency" ),
 //                                 ListItem( title: "Service Providers", entity: "ServiceProvider" ),
                                  ListItem( title: "Pads", entity: "Pad", iconName: "Pad" ),
-                                 ListItem( title: "Missions", entity: "Mission" ),
-                                 ListItem( title: "Programs", entity: "Program" ),
+                                 ListItem( title: "Missions", entity: "Mission", iconName: "Mission" ),
+                                 ListItem( title: "Programs", entity: "Program", iconName: "Program" ),
 //                                 ListItem( title: "Rockets", entity: "Rocket" ),
                                  ListItem( title: "Astronauts", entity: "Astronaut", iconName: "AstronautColor" ),
-                                 ListItem( title: "Events", entity: "Event" ),
-                                 ListItem( title: "Live Streams", entity: "LiveStream" ),
+                                 ListItem( title: "Events", entity: "Event", iconName: "Event" ),
+                                 ListItem( title: "Live Streams", entity: "LiveStream", iconName: "LiveStream" ),
                                  ListItem( title: "Starship Vehicles", entity: "Vehicle", iconName: "Starship" ),
                                  ListItem( title: "Docking", entity: "Docking", iconName: "Docking" ),
                                  ListItem( title: "Space Stations", entity: "SpaceStation", iconName: "Station" ) ]
@@ -49,7 +49,7 @@ struct ListItemRow: View
             {
                if let name = listItem.iconName
                {
-                  RowImage( defaultImage: UIImage( named: name ), w: 50, h: 60 )
+                  RowImage( defaultImage: UIImage( named: name ), w: 40, h: 40 )
                }
 
                VStack( alignment: .leading )
