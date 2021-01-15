@@ -21,7 +21,8 @@ extension String
 
    func fixBadUTF() -> String
    {
-//      return self
+      if !self.contains( "Ã" ) { return self }
+
       return self.replacingOccurrences( of: "Ã©", with: "é" )
          .replacingOccurrences( of: "Ã«", with: "ë" )
          .replacingOccurrences( of: "Ã¬", with: "ì" )
@@ -163,4 +164,15 @@ extension String
    {
       return self.trimmingCharacters( in: .whitespacesAndNewlines )
    }
+
+   func stableHash() -> Int64
+   {
+       var result = UInt64( 2040 )
+       let buf = [UInt8]( self.utf8 )
+       for b in buf
+       {
+           result = 127 * (result & 0x00ffffffffffffff) + UInt64( b )
+       }
+       return Int64( result )
+    }
 }

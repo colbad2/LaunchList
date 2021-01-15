@@ -32,7 +32,7 @@ struct LaunchDetail: View
                {
                   HStack
                   {
-                     Text( "\(start, formatter: LaunchRow.taskDateFormat)" )
+                     Text( tightDateString( start ) )
                         .font( .subheadline )
                         .foregroundColor( .secondary )
                         .textCase( .uppercase )
@@ -41,7 +41,7 @@ struct LaunchDetail: View
                      {
                         if start != end
                         {
-                           Text( "\(end, formatter: LaunchRow.taskDateFormat)" )
+                           Text( tightDateString( end ) )
                               .font( .subheadline )
                               .foregroundColor( .secondary )
                               .textCase( .uppercase )

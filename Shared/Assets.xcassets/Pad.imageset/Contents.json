@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Astronaut60x60.png",
+      "filename" : "Pads60x60.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Astronaut120x120.png",
+      "filename" : "Pads120x120.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Astronaut180x180.png",
+      "filename" : "Pads180x180.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

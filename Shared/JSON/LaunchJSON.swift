@@ -39,6 +39,7 @@ public struct LaunchJSON: Decodable, Identifiable
       case hashtag, id, image, infographic, mission, name, program,
          net, pad, probability, rocket, slug, status, url, webcastLive, windowEnd, windowStart
 
+//      case idString = "id"
       case failReason = "failreason"
       case holdReason = "holdreason"
       case inHold = "inhold"
@@ -168,9 +169,15 @@ func getLaunch( by id: String, context: NSManagedObjectContext ) -> Launch?
 
 func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -> Launch
 {
-   let launchEntity = getLaunch( by: launch.id, context: context )
-   launch.updateEntity( entity: launchEntity, context: context )
-   return launchEntity ?? launch.addToCoreData( context: context )
+   if let launchEntity = getLaunch( by: launch.id, context: context )
+   {
+      launch.updateEntity( entity: launchEntity, context: context )
+      return launchEntity
+   }
+   else
+   {
+      return launch.addToCoreData( context: context )
+   }
 }
 
 func getLaunchCount( context: NSManagedObjectContext ) -> Int?

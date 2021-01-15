@@ -4,18 +4,18 @@ import CoreData
 struct DatasetList: View
 {
    let listItems: [ListItem] = [ ListItem( title: "Launches", entity: "Launch", iconName: "AppIcon" ),
-                                 ListItem( title: "Agencies", entity: "Agency" ),
+                                 ListItem( title: "Agencies", entity: "Agency", iconName: "Agency" ),
 //                                 ListItem( title: "Service Providers", entity: "ServiceProvider" ),
-                                 ListItem( title: "Pads", entity: "Pad" ),
+                                 ListItem( title: "Pads", entity: "Pad", iconName: "Pad" ),
                                  ListItem( title: "Missions", entity: "Mission" ),
                                  ListItem( title: "Programs", entity: "Program" ),
 //                                 ListItem( title: "Rockets", entity: "Rocket" ),
                                  ListItem( title: "Astronauts", entity: "Astronaut", iconName: "AstronautColor" ),
                                  ListItem( title: "Events", entity: "Event" ),
                                  ListItem( title: "Live Streams", entity: "LiveStream" ),
-                                 ListItem( title: "Starship Vehicles", entity: "Vehicle" ),
-                                 ListItem( title: "Docking", entity: "Docking" ),
-                                 ListItem( title: "Space Stations", entity: "SpaceStation" ) ]
+                                 ListItem( title: "Starship Vehicles", entity: "Vehicle", iconName: "Starship" ),
+                                 ListItem( title: "Docking", entity: "Docking", iconName: "Docking" ),
+                                 ListItem( title: "Space Stations", entity: "SpaceStation", iconName: "Station" ) ]
 
 // TODO launchers
    var body: some View
@@ -29,7 +29,7 @@ struct DatasetList: View
       .navigationBarTitleDisplayMode( .inline )
       .toolbar( content:
       {
-         ToolbarItem( placement: .navigationBarLeading, content: { Text( "Datasets" ).font( .title ) } )
+         ToolbarItem( placement: .navigationBarLeading, content: { Text( "Datasets" ).font( .title ).bold() } )
       })
    }
 }

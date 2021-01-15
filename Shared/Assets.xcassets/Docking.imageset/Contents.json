@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Astronaut60x60.png",
+      "filename" : "Docking60x60.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Astronaut120x120.png",
+      "filename" : "Docking120x120.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Astronaut180x180.png",
+      "filename" : "Docking180x180.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

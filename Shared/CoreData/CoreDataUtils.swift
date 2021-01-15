@@ -24,11 +24,11 @@ func saveContext( _ context: NSManagedObjectContext )
 }
 
 /**
- Gets an entity of the given name and ID from Core Data.
+ Gets an entity of the given name and int ID.
 
- - Parameter id: id of the entity to fetch
- - Parameter context: the Core Data context to ge tthe entity from
- - Parameter entityName: the name of the entity type to fetch
+ - Parameter id: ID of the entity to fetch
+ - Parameter context: Core Data context to get the entity from
+ - Parameter entityName: type of the entity type to fetch
  - Returns: the first entity with the given parameters, or nil otherwise
  */
 func getEntityByID( id: Int64, context: NSManagedObjectContext, entityName: String ) -> Any?
@@ -49,6 +49,16 @@ func getEntityByID( id: Int64, context: NSManagedObjectContext, entityName: Stri
    return nil
 }
 
+/**
+ Gets the entity of the given type and string ID.
+
+ Needed to ID live streams.
+
+ - Parameter id: ID of the entity to fetch
+ - Parameter context: Core Data context to fetch the entity from
+ - Parameter entityName- type of the entity to fetch
+ - Returns: first entity with the given parameters, nil otherwise
+ */
 func getEntityByID( id: String, context: NSManagedObjectContext, entityName: String ) -> Any?
 {
    do
@@ -69,10 +79,14 @@ func getEntityByID( id: String, context: NSManagedObjectContext, entityName: Str
 
 
 /**
- Gets the first entity of the given name from Core Data.
+ Gets the first entity of the given type from Core Data.
 
- - Parameter context: the Core Data context to get the entity from
- - Parameter entityName: the name of the entity type to fetch
+ Used to get a random record for previews
+
+ TODO remove, use fixed records for previews
+
+ - Parameter context: Core Data context to get the entity from
+ - Parameter entityName: type of the entity type to fetch
  - Returns: the first entity with the given parameters, or nil otherwise
  */
 func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> Any?
@@ -89,6 +103,13 @@ func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> An
    }
 }
 
+/**
+ Gets the number of records of the given type.
+
+ - Parameter entityName: type of entities to count
+ - Parameter context: Core Data context to get the entity from
+ - Returns: number of records of the given type
+ */
 func getRecordsCount( entityName: String, context: NSManagedObjectContext ) -> Int?
 {
    let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
@@ -147,11 +168,11 @@ func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
 {
    do
    {
-      let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Launch" )
+      let request: NSFetchRequest<Launch> = Launch.fetchRequest()
       request.predicate = NSPredicate( format: "windowEnd > %@", NSDate() )
       request.sortDescriptors = [ NSSortDescriptor( key: "windowStart", ascending: true ) ]
       request.fetchLimit = count
-      let entities: [Launch] = try context.fetch( request ) as! [Launch]
+      let entities: [Launch] = try context.fetch( request )
       if entities.count > 0 { return entities }
    }
    catch

@@ -1,23 +1,45 @@
 import Foundation
 
+// use on main thread only
+struct ISOParser
+{
+   static var shared = ISOParser()
+   var dateFormatter: DateFormatter
+   var tightDateFormatter: DateFormatter
+   var timeFormatter: DateFormatter
+
+   init()
+   {
+      dateFormatter = DateFormatter()
+      dateFormatter.locale = Locale( identifier: "en_US_POSIX" ) // set locale to reliable US_POSIX
+      dateFormatter.dateFormat = "yyyy-MM-dd"
+
+      tightDateFormatter = DateFormatter()
+      tightDateFormatter.locale = Locale( identifier: "en_US_POSIX" ) // set locale to reliable US_POSIX
+      tightDateFormatter.dateFormat = "ddMMMyy HH:mm z"
+
+      timeFormatter = DateFormatter()
+      timeFormatter.locale = Locale( identifier: "en_US_POSIX" ) // set locale to reliable US_POSIX
+      timeFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+   }
+}
+
 func parseISODate( isoDate: String? ) -> Date?
 {
    guard let isoDate = isoDate else { return nil }
-   
-   let dateFormatter = DateFormatter() // TODO don't make these every time
-   dateFormatter.locale = Locale( identifier: "en_US_POSIX" ) // set locale to reliable US_POSIX
-   dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-   return dateFormatter.date( from: isoDate )
+   return ISOParser.shared.timeFormatter.date( from: isoDate )
 }
 
-func dateString( _ d: Date? ) -> String?
+func dateString( _ d: Date? ) -> String
 {
-   guard let d = d else { return nil }
+   guard let d = d else { return "" }
+   return ISOParser.shared.dateFormatter.string( from: d )
+}
 
-   let dateFormatter = DateFormatter() // TODO don't make these every time
-   dateFormatter.locale = Locale( identifier: "en_US_POSIX" ) // set locale to reliable US_POSIX
-   dateFormatter.dateFormat = "yyyy-MM-dd"
-   return dateFormatter.string( from: d )
+func tightDateString( _ d: Date? ) -> String
+{
+   guard let d = d else { return "" }
+   return ISOParser.shared.tightDateFormatter.string( from: d )
 }
 
 func wrapURL( _ url: String? ) -> URL?

@@ -34,7 +34,7 @@ struct EventRow: View
       VStack( alignment: .leading )
       {
          TitleField( s: event.name! )
-         Text( dateString( event.date )! )
+         Text( dateString( event.date ) )
             .font( .subheadline )
             .foregroundColor( .secondary )
       }

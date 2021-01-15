@@ -32,12 +32,13 @@ struct PadRow: View
    {
       if let name = pad.name
       {
+         RowImage( imageURL: pad.mapImage, defaultImage: UIImage( named: "AstronautB&W" ), w: 100, h: 60 )
+
          Text( name )
             .font( .headline )
             .layoutPriority( 2 )
          if let countryCode = pad.location?.countryCode
          {
-//            Spacer()
             if countryCode != "UNK"
             {
                Text( flags( for: countryCode )! )

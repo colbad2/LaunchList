@@ -80,25 +80,25 @@ struct PersistenceController
          let forceFill = false
          if getAgencyCount( context: container.viewContext ) == 0 || forceFill
          {
-            deleteAllData( entityName: "Agency", context: container.viewContext )
-            deleteAllData( entityName: "Astronaut", context: container.viewContext )
-            deleteAllData( entityName: "Docking", context: container.viewContext )
-            deleteAllData( entityName: "Event", context: container.viewContext )
-            deleteAllData( entityName: "Expedition", context: container.viewContext )
-            deleteAllData( entityName: "FlightVehicle", context: container.viewContext )
-            deleteAllData( entityName: "Launch", context: container.viewContext )
-            deleteAllData( entityName: "LauncherConfig", context: container.viewContext )
-            deleteAllData( entityName: "LiveStream", context: container.viewContext )
-            deleteAllData( entityName: "Location", context: container.viewContext )
-            deleteAllData( entityName: "Mission", context: container.viewContext )
-            deleteAllData( entityName: "Pad", context: container.viewContext )
-            deleteAllData( entityName: "Program", context: container.viewContext )
-            deleteAllData( entityName: "Rocket", context: container.viewContext )
-            deleteAllData( entityName: "ServiceProvider", context: container.viewContext )
-            deleteAllData( entityName: "Spacecraft", context: container.viewContext )
-            deleteAllData( entityName: "SpacecraftConfig", context: container.viewContext )
-            deleteAllData( entityName: "SpaceStation", context: container.viewContext )
-            deleteAllData( entityName: "Vehicle", context: container.viewContext )
+//            deleteAllData( entityName: "Agency", context: container.viewContext )
+//            deleteAllData( entityName: "Astronaut", context: container.viewContext )
+//            deleteAllData( entityName: "Docking", context: container.viewContext )
+//            deleteAllData( entityName: "Event", context: container.viewContext )
+//            deleteAllData( entityName: "Expedition", context: container.viewContext )
+//            deleteAllData( entityName: "FlightVehicle", context: container.viewContext )
+//            deleteAllData( entityName: "Launch", context: container.viewContext )
+//            deleteAllData( entityName: "LauncherConfig", context: container.viewContext )
+//            deleteAllData( entityName: "LiveStream", context: container.viewContext )
+//            deleteAllData( entityName: "Location", context: container.viewContext )
+//            deleteAllData( entityName: "Mission", context: container.viewContext )
+//            deleteAllData( entityName: "Pad", context: container.viewContext )
+//            deleteAllData( entityName: "Program", context: container.viewContext )
+//            deleteAllData( entityName: "Rocket", context: container.viewContext )
+//            deleteAllData( entityName: "ServiceProvider", context: container.viewContext )
+//            deleteAllData( entityName: "Spacecraft", context: container.viewContext )
+//            deleteAllData( entityName: "SpacecraftConfig", context: container.viewContext )
+//            deleteAllData( entityName: "SpaceStation", context: container.viewContext )
+//            deleteAllData( entityName: "Vehicle", context: container.viewContext )
             fillStore( viewContext: container.viewContext )
          }
       }
@@ -106,118 +106,245 @@ struct PersistenceController
 }
 
 /**
- Adds the app's stored data to Core Data.
+ Load entities from the agencies.json file
 
- - Parameter viewContext: the Core Data context to add the data to
+ - Parameter context: Core Data context to store/update the entities in
  */
-func fillStore( viewContext: NSManagedObjectContext )
+func loadAgencies( context: NSManagedObjectContext )
 {
-   // agencies.json
+   print( "loading agencies.json" )
    let agencies: AgenciesListJSON? = parseJSONFile( filename: "agencies" )
+   print( "parsing agencies.json" )
    for agency in agencies?.sublist ?? []
    {
-      if agency.name == "Unknown" { continue }
-      _ = fetchAgency( agency: agency, context: viewContext )
+      if agency.name == "Unknown" { continue } // DATABASE CHANGE
+      _ = fetchAgency( agency: agency, context: context )
    }
+   print( "done agencies.json" )
+}
 
-   // launches.json
+/**
+ Load entities from the launches.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadLaunches( context: NSManagedObjectContext )
+{
+   print( "loading launches.json" )
    let launches: LaunchListJSON? = parseJSONFile( filename: "launches" )
+   print( "parsing launches.json" )
    for launch in launches?.sublist ?? []
    {
-      _ = fetchLaunch( launch: launch, context: viewContext )
+      _ = fetchLaunch( launch: launch, context: context )
    }
+   print( "done launches.json" )
+}
 
-   // pads.json
+/**
+ Load entities from the pads.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadPads( context: NSManagedObjectContext )
+{
+   print( "loading pads.json" )
    let pads: PadListJSON? = parseJSONFile( filename: "pads" )
+   print( "parsing pads.json" )
    for pad in pads?.sublist ?? []
    {
-      _ = fetchPad( pad: pad, context: viewContext )
+      _ = fetchPad( pad: pad, context: context )
    }
+   print( "done pads.json" )
+}
 
-   // astronauts.json
+/**
+ Load entities from the astronauts.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadAstronauts( context: NSManagedObjectContext )
+{
+   print( "loading astronauts.json" )
    let astronauts: AstronautListJSON? = parseJSONFile( filename: "astronauts" )
+   print( "parsing astronauts.json" )
    for astronaut in astronauts?.sublist ?? []
    {
-      _ = fetchAstronaut( astronaut: astronaut, context: viewContext )
+      _ = fetchAstronaut( astronaut: astronaut, context: context )
    }
+   print( "done astronauts.json" )
+}
 
-   // startshipTests.json
+/**
+ Load entities from the starshipTests.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadStarshipTests( context: NSManagedObjectContext )
+{
+   print( "loading starshipTests.json" )
    let starshipData: StarshipListJSON? = parseJSONFile( filename: "starshipTests" )
+   print( "parsing upcoming events" )
    for event in starshipData?.upcoming?.events ?? []
    {
-      _ = fetchEvent( event: event, context: viewContext )
+      _ = fetchEvent( event: event, context: context )
    }
+   print( "parsing upcominglaunches" )
    for launch in starshipData?.upcoming?.launches ?? []
    {
-      _ = fetchLaunch( launch: launch, context: viewContext )
+      _ = fetchLaunch( launch: launch, context: context )
    }
+   print( "parsing previous events" )
    for event in starshipData?.previous?.events ?? []
    {
-      _ = fetchEvent( event: event, context: viewContext )
+      _ = fetchEvent( event: event, context: context )
    }
+   print( "parsing previous launches" )
    for launch in starshipData?.previous?.launches ?? []
    {
-      _ = fetchLaunch( launch: launch, context: viewContext )
+      _ = fetchLaunch( launch: launch, context: context )
    }
+   print( "parsing live streams" )
    for liveStream in starshipData?.liveStreams ?? []
    {
-      _ = fetchLiveStream( liveStream: liveStream, context: viewContext )
+      _ = fetchLiveStream( liveStream: liveStream, context: context )
    }
    // Not used
 //   for roadClosure in starshipData?.roadClosures ?? []
 //   {
-//      _ = fetchRoadClosure( roadClosure: roadClosure, context: viewContext )
+//      _ = fetchRoadClosure( roadClosure: roadClosure, context: context )
 //   }
 //   for notice in starshipData?.notices ?? []
 //   {
-//      _ = fetchNotice( notice: notice, context: viewContext )
+//      _ = fetchNotice( notice: notice, context: context )
 //   }
+   print( "parsing vehicles" )
    for vehicle in starshipData?.vehicles ?? []
    {
-      _ = fetchVehicle( vehicle: vehicle, context: viewContext )
+      _ = fetchVehicle( vehicle: vehicle, context: context )
    }
+   print( "done starshipTests.json" )
+}
 
-   // docking.json
+/**
+ Load entities from the docking.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadDockings( context: NSManagedObjectContext )
+{
+   print( "loading docking.json" )
    let dockingList: DockingListJSON? = parseJSONFile( filename: "docking" )
+   print( "parsing dockings" )
    for docking in dockingList?.sublist ?? []
    {
-      _ = fetchDocking( docking: docking, context: viewContext )
+      _ = fetchDocking( docking: docking, context: context )
    }
+   print( "done docking.json" )
+}
 
-   // events.json
+/**
+ Load entities from the events.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadEvents( context: NSManagedObjectContext )
+{
+   print( "loading events.json" )
    let eventList: EventListJSON? = parseJSONFile( filename: "events" )
+   print( "parsing events" )
    for event in eventList?.sublist ?? []
    {
-      _ = fetchEvent( event: event, context: viewContext )
+      _ = fetchEvent( event: event, context: context )
    }
+   print( "done events.json" )
+}
 
-   // expeditions.json
+/**
+ Load entities from the expeditions.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadExpeditions( context: NSManagedObjectContext )
+{
+   print( "loading expeditions.json" )
    let expeditionList: ExpeditionListJSON? = parseJSONFile( filename: "expeditions" )
+   print( "parsing expeditions" )
    for expedition in expeditionList?.sublist ?? []
    {
-      _ = fetchExpedition( expedition: expedition, context: viewContext )
+      _ = fetchExpedition( expedition: expedition, context: context )
    }
+   print( "done expeditions.json" )
+}
 
-   // launchers.json
+/**
+ Load entities from the launchers.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadLaunchers( context: NSManagedObjectContext )
+{
+   print( "loading launchers.json" )
    let launchersList: LauncherListJSON? = parseJSONFile( filename: "launchers" )
+   print( "parsing launchers" )
    for launcher in launchersList?.sublist ?? []
    {
-      _ = fetchLauncher( launcher: launcher, context: viewContext )
+      _ = fetchLauncher( launcher: launcher, context: context )
    }
+   print( "done launchers.json" )
+}
 
-   // locations.json
+/**
+ Load entities from the locations.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadLocations( context: NSManagedObjectContext )
+{
+   print( "loading locations.json" )
    let locationList: LocationListJSON? = parseJSONFile( filename: "locations" )
+   print( "parsing locations" )
    for location in locationList?.sublist ?? []
    {
-      _ = fetchLocation( location: location, context: viewContext )
+      _ = fetchLocation( location: location, context: context )
    }
+   print( "done locations.json" )
+}
 
-   // programs.json
+/**
+ Load entities from the programs.json file
+
+ - Parameter context: Core Data context to store/update the entities in
+ */
+func loadPrograms( context: NSManagedObjectContext )
+{
+   print( "loading programs.json" )
    let programList: ProgramListJSON? = parseJSONFile( filename: "programs" )
+   print( "parsing programs" )
    for program in programList?.sublist ?? []
    {
-      _ = fetchProgram( program: program, context: viewContext )
+      _ = fetchProgram( program: program, context: context )
    }
+   print( "done programs.json" )
+}
+
+/**
+ Adds the app's stored data to Core Data.
+
+ - Parameter viewContext: the Core Data context to add the entities to
+ */
+func fillStore( viewContext: NSManagedObjectContext )
+{
+   loadAgencies( context: viewContext )
+   loadLaunches( context: viewContext )
+   loadPads( context: viewContext )
+   loadAstronauts( context: viewContext )
+   loadStarshipTests( context: viewContext )
+   loadDockings( context: viewContext )
+   loadEvents( context: viewContext )
+   loadExpeditions( context: viewContext )
+   loadLaunchers( context: viewContext )
+   loadLocations( context: viewContext )
+   loadPrograms( context: viewContext )
 
    saveContext( viewContext )
 }

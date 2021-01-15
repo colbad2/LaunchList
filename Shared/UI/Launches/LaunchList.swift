@@ -18,7 +18,7 @@ struct LaunchList: View
       {
          proxy in
 
-         let nextLaunchID = getNextLaunch( context: PersistenceController.shared.container.viewContext )!.id!
+         let nextLaunchID = getNextLaunch( context: PersistenceController.shared.container.viewContext )!.id
          SearchBar( prompt: "launch name", text: $searchText )
             .padding( .top, 10 )
          List( launches.filter( { filterLaunch( launch: $0, searchText: searchText ) } ) )
@@ -34,7 +34,7 @@ struct LaunchList: View
              ScrollManagerView( indexPathToSetVisible: $indexPathToSetVisible )
                  .allowsHitTesting( false ).frame( width: 0, height: 0 )
          )
-         .navigationBarTitleDisplayMode( .inline )
+         .navigationBarTitle( "Launches", displayMode: .inline )
          .toolbar( content:
          {
          ToolbarItem( placement: .navigationBarTrailing, content:
@@ -123,20 +123,12 @@ struct LaunchRow: View
                .font( .subheadline )
                .lineLimit( 2 )
          }
-         Text( "\(launch.windowStart!, formatter: Self.taskDateFormat)" )
+         Text( tightDateString( launch.windowStart ) )
             .font( .subheadline )
             .foregroundColor( .secondary )
             .textCase( .uppercase )
       }
    }
-
-   static let taskDateFormat: DateFormatter =
-   {
-       let formatter = DateFormatter()
-       formatter.dateFormat = "ddMMMyy HH:mm z"
-
-       return formatter
-   }()
 }
 
 #if DEBUG

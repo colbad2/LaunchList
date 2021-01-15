@@ -15,7 +15,6 @@ happy with the UI.
 Things that need to happen for a good app 
 
 ### Core Data/JSON
-- load all JSON files into db when db is empty for that entity type
 - prefilled Core Data default data store
 - some duplicate Pads/ unknown pads with no info/ lat lons with extra zeros (west texas)/pas with no launches, no countries
 ### API loading
@@ -45,6 +44,7 @@ Things that need to happen for a good app
 -- nw_protocol_get_quic_image_block_invoke dlopen libquic failed
 -- displayModeButtonItem is internally managed and not exposed for DoubleColumn style. Returning an empty, disconnected UIBarButtonItem to fulfill the non-null contract.
 - any code TODOs
+- mark any change from the API data with // DATABASE CHANGE, and gather those changes to a single class
 ### UI Features
 - some images need a detailed image view (astronaut portraits, etc.)
 - pare down the dataset lists to useful stuff only
@@ -67,6 +67,7 @@ Things that need to happen for a good app
 - shortcuts for search keys (agency: -> a:)
 - search builder sheet
 - searches between dates (start:1998,end:2010)
+- the Roci/Bowman
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"

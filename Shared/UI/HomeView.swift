@@ -17,7 +17,7 @@ struct HomeView: View
          }
 
          let launch = getNextLaunch( context: PersistenceController.shared.container.viewContext )!
-         let nextLaunchID = launch.id!
+         let nextLaunchID = launch.id
 
          VStack
          {

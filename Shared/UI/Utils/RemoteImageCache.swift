@@ -172,6 +172,12 @@ class RemoteImageCache
          }
 
          let image = UIImage( data: data! )
+         if image == nil
+         {
+            completionHandler( nil, true )
+            print( "cannot parse image URL: \"\(urlString ?? "nil")\"" )
+            return
+         }
          self.storeImage( url: urlString!, image: image )
          self.removeTaskFromList( url: urlString! )
          DispatchQueue.main.async
@@ -192,9 +198,9 @@ func getStoredImage( for url: String?, context: NSManagedObjectContext ) -> UIIm
 
    do
    {
-      let request = NSFetchRequest<NSFetchRequestResult>( entityName: "ImageData" )
+      let request: NSFetchRequest<ImageData> = ImageData.fetchRequest()
       request.predicate = NSPredicate( format: "url = %@", url )
-      let entities: [ImageData] = try context.fetch( request ) as! [ImageData]
+      let entities: [ImageData] = try context.fetch( request )
       if let data = entities.first?.data
       {
          return UIImage( data: data )
@@ -215,11 +221,11 @@ func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
  
    do
    {
-      let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Launch" )
+ let request: NSFetchRequest<Launch> = Launch.fetchRequest()
       request.predicate = NSPredicate( format: "windowEnd > %@", NSDate() )
       request.sortDescriptors = [ NSSortDescriptor( key: "windowStart", ascending: true ) ]
       request.fetchLimit = count
-      let entities: [Launch] = try context.fetch( request ) as! [Launch]
+      let entities: [Launch] = try context.fetch( request )
       if entities.count > 0 { return entities }
    }
    catch
@@ -238,7 +244,7 @@ func saveToCoreData( url: String, image: UIImage )
    let context = PersistenceController.shared.container.viewContext
 
    guard let imageDataEntity = NSEntityDescription.insertNewObject( forEntityName: "ImageData",
-                                                              into: context ) as? ImageData else { return }
+                                                                    into: context ) as? ImageData else { return }
 
    imageDataEntity.url = url
    imageDataEntity.data = imageData

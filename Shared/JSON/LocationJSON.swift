@@ -88,13 +88,13 @@ func getSampleLocation() -> LocationJSON?
 
 private let sampleLocationJSON =
 """
-         {
-           "id": 10,
-           "url": "https://ll.thespacedevs.com/2.1.0/location/10/",
-           "name": "Onenui Station, Mahia Peninsula, New Zealand",
-           "country_code": "NZL",
-           "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_10_20200803142509.jpg",
-           "total_launch_count": 17,
-           "total_landing_count": 1
-         }
+{
+  "id": 10,
+  "url": "https://ll.thespacedevs.com/2.1.0/location/10/",
+  "name": "Onenui Station, Mahia Peninsula, New Zealand",
+  "country_code": "NZL",
+  "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_10_20200803142509.jpg",
+  "total_launch_count": 17,
+  "total_landing_count": 1
+}
 """

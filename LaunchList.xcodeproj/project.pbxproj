@@ -622,6 +622,7 @@
 		A2A637C125965EFC00D58415 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				A2DA72052595AF8D009405E6 /* LaunchList.xcdatamodeld */,
 				A2DA72092595AF8D009405E6 /* Persistence.swift */,
 				A2D6D7BA2597C1CC003D5401 /* CoreDataUtils.swift */,
 				A2F5CE90259C537E0050DF06 /* Launch+Extensions.swift */,
@@ -693,7 +694,6 @@
 				A2A637C125965EFC00D58415 /* CoreData */,
 				A2DA72682595AFF3009405E6 /* JSON */,
 				A2DA720A2595AF8F009405E6 /* Assets.xcassets */,
-				A2DA72052595AF8D009405E6 /* LaunchList.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

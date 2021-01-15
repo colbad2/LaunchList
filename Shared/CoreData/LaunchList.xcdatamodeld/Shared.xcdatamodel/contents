@@ -256,7 +256,7 @@
         <element name="Expedition" positionX="-191.8400268554688" positionY="84.94784545898438" width="128" height="119"/>
         <element name="FlightVehicle" positionX="-367.2220458984375" positionY="363.9052124023438" width="128" height="133"/>
         <element name="ImageData" positionX="-180" positionY="99" width="128" height="59"/>
-        <element name="Launch" positionX="338.7611083984375" positionY="325.97216796875" width="128" height="418"/>
+        <element name="Launch" positionX="338.7611083984375" positionY="325.97216796875" width="128" height="404"/>
         <element name="Launcher" positionX="664.83203125" positionY="136.1828002929688" width="128" height="14"/>
         <element name="LauncherConfig" positionX="707.714599609375" positionY="353.9044342041016" width="128" height="104"/>
         <element name="LiveStream" positionX="511.0220947265625" positionY="140.5800323486328" width="128" height="104"/>

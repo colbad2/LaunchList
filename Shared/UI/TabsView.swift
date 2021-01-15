@@ -3,7 +3,7 @@ import SwiftUI
 struct TabsView: View
 {
    @State private var selection = AppTab.home
-   @State private var resetTimelineNavigationID = UUID()
+//   @State private var resetTimelineNavigationID = UUID()
    @State private var resetDatasetsNavigationID = UUID()
 
    var body: some View
@@ -14,7 +14,7 @@ struct TabsView: View
 
                       // set new ID to recreate NavigationView, so put it
                       // in root state, same as is on change tab and back
-                     self.resetTimelineNavigationID = UUID()
+//                     self.resetTimelineNavigationID = UUID()
                      self.resetDatasetsNavigationID = UUID()
               })
 
@@ -49,12 +49,11 @@ struct TabsView: View
             SettingsView()
          }
          .tabItem { TabInfo( iconName: "gear", title: "Settings" ) }
-         .tag( AppTab.settings ) //3 )
+         .tag( AppTab.settings )
       }
    }
 }
 
-//extension ContentView {
 enum AppTab: Hashable
 {
    case home
@@ -62,7 +61,6 @@ enum AppTab: Hashable
    case datasets
    case settings
 }
-//}
 
 struct TabInfo: View
 {
