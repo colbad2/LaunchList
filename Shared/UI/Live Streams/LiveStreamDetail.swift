@@ -21,7 +21,7 @@ struct LiveStreamDetail: View
       {
          ScrollView
          {
-            TitleField( s: liveStream.title )
+            TitleField( text: liveStream.title )
             IconView( withURL: liveStream.image )
             DescriptionView( desc: liveStream.liveStreamDescription )
             if liveStream.url != nil
@@ -52,9 +52,9 @@ struct LiveStreamPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let liveStream = getEntityByID( id: 276,
-                                     context: context,
-                                     entityName: "LiveStream" ) as? LiveStream
+      let liveStream = getEntityByID( entityID: 276,
+                                      context: context,
+                                      entityName: "LiveStream" ) as? LiveStream
       LiveStreamDetail( liveStream: liveStream! )
    }
 }

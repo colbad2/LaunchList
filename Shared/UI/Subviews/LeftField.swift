@@ -1,17 +1,19 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 
 struct LeftField: View
 {
    var prefix: String = ""
-   var s: String?
+   var text: String?
 
    var body: some View
    {
-      if s != nil
+      if text != nil
       {
          HStack
          {
-            Text( "\(prefix)\(s!)" )
+            Text( "\(prefix)\(text!)" )
                .font( .subheadline )
                .foregroundColor( .secondary )
                .lineLimit( 2 )
@@ -28,9 +30,9 @@ struct LeftFieldPreviews: PreviewProvider
    {
       Group
       {
-         LeftField( prefix: "Orbit:  ", s: "Low Earth Orbit" )
+         LeftField( prefix: "Orbit:  ", text: "Low Earth Orbit" )
             .padding()
-         LeftField( prefix: "", s: "Low Earth Orbit" )
+         LeftField( prefix: "", text: "Low Earth Orbit" )
             .padding()
       }
    }

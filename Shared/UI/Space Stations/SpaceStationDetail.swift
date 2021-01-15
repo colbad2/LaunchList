@@ -23,9 +23,9 @@ struct SpaceStationDetail: View
          {
             VStack
             {
-               TitleField( s: spaceStation.name! )
-               LeftField( s: spaceStation.status )
-               LeftField( s: spaceStation.orbit )
+               TitleField( text: spaceStation.name! )
+               LeftField( text: spaceStation.status )
+               LeftField( text: spaceStation.orbit )
             }
 
             IconView( withURL: spaceStation.imageURL )
@@ -78,14 +78,14 @@ struct SpaceStationDetail: View
 
 func getEventArray( events: NSSet ) -> [Event]
 {
-   var spaceStationEvents = Array( events as Set ) as! [Event]
+   var spaceStationEvents = Array( events as Set ) as? [Event] ?? []
    spaceStationEvents.sort( by: { ($0 as Event).name! < ($1 as Event).name! } )
    return spaceStationEvents
 }
 
 func getExpeditionsArray( expeditions: NSSet ) -> [Expedition]
 {
-   var spaceStationExpeditions = Array( expeditions as Set ) as! [Expedition]
+   var spaceStationExpeditions = Array( expeditions as Set ) as? [Expedition] ?? []
    spaceStationExpeditions.sort( by: { ($0 as Expedition).start! < ($1 as Expedition).start! } )
    return spaceStationExpeditions
 }
@@ -159,7 +159,7 @@ struct SpaceStationPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let spaceStation = getEntityByID( id: 4,
+      let spaceStation = getEntityByID( entityID: 4,
                                         context: context,
                                         entityName: "SpaceStation" ) as? SpaceStation
       SpaceStationDetail( spaceStation: spaceStation! )

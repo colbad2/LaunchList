@@ -1,3 +1,4 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
  List of records returned from a URL.

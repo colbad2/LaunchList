@@ -1,10 +1,12 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
 import SwiftUI
 
 struct HomeView: View
 {
    @Binding var tabSelection: AppTab
-   
+
    var body: some View
    {
       ScrollView
@@ -21,15 +23,15 @@ struct HomeView: View
 
          VStack
          {
-            TitleField( s: missionName( launch ) )
+            TitleField( text: missionName( launch ) )
             TwoFields( leftString: launch.getProviderName(),
                        rightString: launch.rocket?.name ?? launch.name )
             TwoFields( leftString: launch.serviceProvider?.type,
                        rightString: launch.mission?.type )
-            LeftField( s: launch.mission?.orbitName )
+            LeftField( text: launch.mission?.orbitName )
             NavigationLink( destination: PadDetail( pad: launch.pad! ) )
             {
-               LeftField( s: launch.pad?.name )
+               LeftField( text: launch.pad?.name )
             }
             // TODO open correct details page in nav view (may not be possible yet)
             //                  Button( action: { self.tabSelection = 1 } )

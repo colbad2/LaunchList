@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
  Agency involved in the launch program.
@@ -58,7 +63,7 @@ struct AgencyJSON: Decodable
       return newAgency
    }
 
-   func updateEntity( entity: Agency?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Agency?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -88,24 +93,32 @@ struct AgencyJSON: Decodable
       entity.imageURL = self.imageURL
 
       // add flags for holes in the API
-      if entity.name == "Canadian Space Agency" { entity.countryCodes?.append( "CAN" ) }
-      if entity.name == "National Aeronautics and Space Administration" { entity.countryCodes?.append( "USA" ) }
-      if entity.name == "China National Space Administration" { entity.countryCodes?.append( "CHN" ) }
-      if entity.name == "Arianespace" { entity.countryCodes?.append( "FRA" ) } // also US, Japan, Singapore?
-      if entity.name == "Boeing" { entity.countryCodes?.append( "USA" ) }
-      if entity.name == "European Space Agency" { entity.countryCodes?.append( "EU" ) } // TODO two char?
-      if entity.name == "Japan Aerospace Exploration Agency" { entity.countryCodes?.append( "JPN" ) }
-      if entity.name == "North American Aviation" { entity.countryCodes?.append( "USA" ) }
-      if entity.name == "Northrop Grumman Innovation Systems" { entity.countryCodes?.append( "USA" ) }
-      if entity.name == "Russian Federal Space Agency (ROSCOSMOS)" { entity.countryCodes?.append( "RUS" ) }
-      if entity.name == "Sierra Nevada Corporation" { entity.countryCodes?.append( "USA" ) }
-      if entity.name == "Soviet Space Program" { entity.countryCodes?.append( "SUN" ) }
-      if entity.name == "SpaceX" { entity.countryCodes?.append( "USA" ) }
-      // TODO do this with a dictionary
+      if let name = entity.name,
+         let correction = countryCodeCorrections[ name ]
+      {
+         entity.countryCodes?.append( correction )
+      }
 
       // TODO same for programs
    }
 }
+
+let countryCodeCorrections: [ String: String ] =
+[
+   "Canadian Space Agency": "CAN",
+   "National Aeronautics and Space Administration": "USA",
+   "China National Space Administration": "CHN",
+   "Arianespace": "FRA",  // TODO also US, Japan, Singapore?
+   "Boeing": "USA",
+   "European Space Agency": "EU", // TODO two char?
+   "Japan Aerospace Exploration Agency": "JPN",
+   "North American Aviation": "USA",
+   "Northrop Grumman Innovation Systems": "USA",
+   "Russian Federal Space Agency (ROSCOSMOS)": "RUS",
+   "Sierra Nevada Corporation": "USA",
+   "Soviet Space Program": "SUN",
+   "SpaceX": "USA"
+]
 
 func isBasic( agency: Agency ) -> Bool
 {
@@ -121,7 +134,7 @@ func isBasic( agency: Agency ) -> Bool
 func getCountryCodes( countryCode: String? ) -> [String]
 {
    if countryCode == nil { return [] }
-   
+
    var codes: [String] = []
    if let agencyCodes = countryCode
    {
@@ -136,9 +149,9 @@ func getCountryCodes( countryCode: String? ) -> [String]
          }
          else if country.contains( "/" )
          {
-            let c = country.split( separator: "/" )
-            codes.append( String( c[ 0 ] ) )
-            codes.append( String( c[ 1 ] ) )
+            let countryParts = country.split( separator: "/" )
+            codes.append( String( countryParts[ 0 ] ) )
+            codes.append( String( countryParts[ 1 ] ) )
          }
          else
          {
@@ -154,9 +167,9 @@ func getCountryCodes( countryCode: String? ) -> [String]
 
 // Core Data search/update
 
-func getAgency( by id: Int64, context: NSManagedObjectContext ) -> Agency?
+func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> Agency?
 {
-   return getEntityByID( id: id, context: context, entityName: "Agency" ) as? Agency
+   return getEntityByID( entityID: entityID, context: context, entityName: "Agency" ) as? Agency
 }
 
 func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agency
@@ -176,22 +189,23 @@ func getSampleAgency() -> AgencyJSON?
    return parseJSONString( json: sampleAgencyJSON )
 }
 
+// swiftlint:disable line_length
 private let sampleAgencyJSON =
 """
-     {
-       "id": 63,
-       "url": "https://ll.thespacedevs.com/2.1.0/agencies/63/",
-       "name": "Russian Federal Space Agency (ROSCOSMOS)",
-       "featured": true,
-       "type": "Government",
-       "country_code": "RUS",
-       "abbrev": "RFSA",
-       "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
-       "administrator": "Administrator: Dmitry Rogozin",
-       "founding_year": "1992",
-       "launchers": "Soyuz",
-       "spacecraft": "Soyuz",
-       "parent": null,
-       "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg"
-     }
+{
+   "id": 63,
+   "url": "https://ll.thespacedevs.com/2.1.0/agencies/63/",
+   "name": "Russian Federal Space Agency (ROSCOSMOS)",
+   "featured": true,
+   "type": "Government",
+   "country_code": "RUS",
+   "abbrev": "RFSA",
+   "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
+   "administrator": "Administrator: Dmitry Rogozin",
+   "founding_year": "1992",
+   "launchers": "Soyuz",
+   "spacecraft": "Soyuz",
+   "parent": null,
+   "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg"
+}
 """

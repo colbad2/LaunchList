@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -9,8 +11,8 @@ struct RocketDetail: View
    {
       ScrollView
       {
-         TitleField( s: rocket?.family )
-         LeftField( s: rocket?.variant )
+         TitleField( text: rocket?.family )
+         LeftField( text: rocket?.variant )
       }
       .padding()
       .navigationBarTitle( "Rocket", displayMode: .inline )
@@ -24,10 +26,10 @@ struct RocketPreview: PreviewProvider
    {
       // TODO doesn't work
       let context = PersistenceController.preview.container.viewContext
-      let rocket = getEntityByID( id: 2663,
+      let rocket = getEntityByID( entityID: 2663,
                                   context: context,
                                   entityName: "Rocket") as? Rocket
-      Text(rocket?.fullName ?? "")
+      Text( rocket?.fullName ?? "" )
       RocketDetail( rocket: rocket )
    }
 }

@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
    Mission being serviced by a launch.
@@ -56,7 +61,7 @@ struct MissionJSON: Decodable
       return newMission
    }
 
-   func updateEntity( entity: Mission?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Mission?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -75,13 +80,13 @@ struct MissionJSON: Decodable
    }
 }
 
-func normalizedOrbitName( _ n: String?, abbreviation: String? = nil ) -> String?
+func normalizedOrbitName( _ name: String?, abbreviation: String? = nil ) -> String?
 {
-   guard var orbitName = n else { return nil }
+   guard var orbitName = name else { return nil }
 
    if !orbitName.contains( " Orbit" )
    {
-      orbitName = orbitName + " Orbit"
+      orbitName += " Orbit"
    }
 
    if let abbreviation = abbreviation
@@ -94,9 +99,9 @@ func normalizedOrbitName( _ n: String?, abbreviation: String? = nil ) -> String?
 
 // Core Data search/update
 
-func getMission( by id: Int64, context: NSManagedObjectContext ) -> Mission?
+func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Mission?
 {
-   return getEntityByID( id: id, context: context, entityName: "Mission" ) as? Mission
+   return getEntityByID( entityID: entityID, context: context, entityName: "Mission" ) as? Mission
 }
 
 func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mission
@@ -118,17 +123,17 @@ func getSampleMission() -> MissionJSON?
 
 private let sampleMissionJSON =
 """
-      {
-        "id": 1087,
-        "launch_library_id": 1284,
-        "name": "Europa Clipper",
-        "description": "Europa Clipper is the first dedicated mission to study Jupiter's moon Europa. Mission is developed by NASA and comprises of an orbiter spacecraft, which, while in orbit around Jupiter, will perform numerous flybys over Europa. Europa Clipper payload suit included high-resolution cameras and spectrometers for imaging Europa's surface and thin atmosphere, an ice-penetrating radar to search for subsurface water, and a magnetometer and gravity measurements to measure the moon's magnetic field and unlock clues about its ocean and deep interior.",
-        "launch_designator": null,
-        "type": "Planetary Science",
-        "orbit": {
-          "id": 6,
-          "name": "Heliocentric N/A",
-          "abbrev": "Helio-N/A"
-        }
-      }
+{
+  "id": 1087,
+  "launch_library_id": 1284,
+  "name": "Europa Clipper",
+  "description": "Europa Clipper is the first dedicated mission to study Jupiter's moon Europa. Mission is developed by NASA and comprises of an orbiter spacecraft, which, while in orbit around Jupiter, will perform numerous flybys over Europa. Europa Clipper payload suit included high-resolution cameras and spectrometers for imaging Europa's surface and thin atmosphere, an ice-penetrating radar to search for subsurface water, and a magnetometer and gravity measurements to measure the moon's magnetic field and unlock clues about its ocean and deep interior.",
+  "launch_designator": null,
+  "type": "Planetary Science",
+  "orbit": {
+    "id": 6,
+    "name": "Heliocentric N/A",
+    "abbrev": "Helio-N/A"
+  }
+}
 """

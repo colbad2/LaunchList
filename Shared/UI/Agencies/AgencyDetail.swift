@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
 import SwiftUI
 
@@ -11,7 +13,7 @@ struct AgencyDetail: View
       {
          HStack( alignment: .top )
          {
-            TitleField( s: agency.name )
+            TitleField( text: agency.name )
             if let countryCodes = agency.countryCodes
             {
                Spacer()
@@ -25,7 +27,7 @@ struct AgencyDetail: View
             TwoFields( leftString: agency.type,
                        rightPrefix: "Founded ", rightString: agency.foundingYear )
 
-            LeftField( prefix: "Admin: ", s: agency.administrator )
+            LeftField( prefix: "Admin: ", text: agency.administrator )
 
             if let launchers = agency.launchers
             {
@@ -55,7 +57,7 @@ struct AgencyDetail: View
                }
             }
 
-            LeftField( prefix: "Parent: ", s: agency.parent )
+            LeftField( prefix: "Parent: ", text: agency.parent )
          }
 
             // TODO long list of countries
@@ -82,7 +84,7 @@ struct AgencyPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let agency = getEntityByID( id: 63,
+      let agency = getEntityByID( entityID: 63,
                                   context: context,
                                   entityName: "Agency" ) as? Agency
       AgencyDetail( agency: agency! )

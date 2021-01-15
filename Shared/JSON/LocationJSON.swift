@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
  The larger location of the launch, that contains the launch pad itself. For example, the Kennedy
@@ -48,7 +53,7 @@ struct LocationJSON: Decodable
       return newLocation
    }
 
-   func updateEntity( entity: Location?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Location?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -61,12 +66,11 @@ struct LocationJSON: Decodable
    }
 }
 
-
 // Core Data search/update
 
-func getLocation( by id: Int64, context: NSManagedObjectContext ) -> Location?
+func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -> Location?
 {
-   return getEntityByID( id: id, context: context, entityName: "Location" ) as? Location
+   return getEntityByID( entityID: entityID, context: context, entityName: "Location" ) as? Location
 }
 
 func fetchLocation( location: LocationJSON, context: NSManagedObjectContext ) -> Location

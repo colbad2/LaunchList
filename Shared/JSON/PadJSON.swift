@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
 
@@ -76,7 +81,7 @@ struct PadJSON: Decodable
       return newPad
    }
 
-   func updateEntity( entity: Pad?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Pad?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -123,9 +128,9 @@ struct PadJSON: Decodable
 
 // Core Data search/update
 
-func getPad( by id: Int64, context: NSManagedObjectContext ) -> Pad?
+func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad?
 {
-   return getEntityByID( id: id, context: context, entityName: "Pad" ) as? Pad
+   return getEntityByID( entityID: entityID, context: context, entityName: "Pad" ) as? Pad
 }
 
 func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
@@ -140,12 +145,12 @@ func getPadCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: "Pad", context: context )
 }
 
-func getSamplePadEntity() -> Pad
+func getSamplePadEntity() -> Pad?
 {
    let context = PersistenceController.preview.container.viewContext
-   let pad = getEntityByID( id: 87,
+   let pad = getEntityByID( entityID: 87,
                             context: context,
-                            entityName: "Pad" ) as! Pad
+                            entityName: "Pad" ) as? Pad
 
    return pad
 }
@@ -157,26 +162,26 @@ func getSamplePad() -> PadJSON?
 
 private let samplePadJSON =
 """
-    {
-      "id": 87,
-      "url": "https://ll.thespacedevs.com/2.1.0/pad/87/",
-      "agency_id": null,
-      "name": "Launch Complex 39A",
-      "info_url": null,
-      "wiki_url": "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A",
-      "map_url": "http://maps.google.com/maps?q=28.608+N,+80.604+W",
-      "latitude": "28.60822681",
-      "longitude": "-80.60428186",
-      "location": {
-        "id": 27,
-        "url": "https://ll.thespacedevs.com/2.1.0/location/27/",
-        "name": "Kennedy Space Center, FL, USA",
-        "country_code": "USA",
-        "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
-        "total_launch_count": 182,
-        "total_landing_count": 0
-      },
-      "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
-      "total_launch_count": 125
-    }
+{
+   "id": 87,
+   "url": "https://ll.thespacedevs.com/2.1.0/pad/87/",
+   "agency_id": null,
+   "name": "Launch Complex 39A",
+   "info_url": null,
+   "wiki_url": "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A",
+   "map_url": "http://maps.google.com/maps?q=28.608+N,+80.604+W",
+   "latitude": "28.60822681",
+   "longitude": "-80.60428186",
+   "location": {
+     "id": 27,
+     "url": "https://ll.thespacedevs.com/2.1.0/location/27/",
+     "name": "Kennedy Space Center, FL, USA",
+     "country_code": "USA",
+     "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
+     "total_launch_count": 182,
+     "total_landing_count": 0
+   },
+   "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
+   "total_launch_count": 125
+}
 """

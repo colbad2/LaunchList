@@ -2,6 +2,8 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+
 /**
  {
      "id": 169,
@@ -39,7 +41,7 @@ struct LauncherConfigJSON: Decodable
       return newLauncherConfig
    }
 
-   func updateEntity( entity: LauncherConfig?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: LauncherConfig?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -52,9 +54,9 @@ struct LauncherConfigJSON: Decodable
 
 // Core Data search/update
 
-func getLauncherConfig( by id: Int64, context: NSManagedObjectContext ) -> LauncherConfig?
+func getLauncherConfig( by entityID: Int64, context: NSManagedObjectContext ) -> LauncherConfig?
 {
-   return getEntityByID( id: id, context: context, entityName: "LauncherConfig" ) as? LauncherConfig
+   return getEntityByID( entityID: entityID, context: context, entityName: "LauncherConfig" ) as? LauncherConfig
 }
 
 func fetchLauncherConfig( launcherConfig: LauncherConfigJSON, context: NSManagedObjectContext ) -> LauncherConfig

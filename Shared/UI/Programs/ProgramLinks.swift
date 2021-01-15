@@ -2,7 +2,6 @@
 
 import SwiftUI
 
-
 struct ProgramLinks: View
 {
    var programs: NSSet?
@@ -55,7 +54,7 @@ struct ProgramLink: View
 
 func getProgramsArray( programs: NSSet ) -> [Program]
 {
-   var eventPrograms = Array( programs as Set ) as! [Program]
+   var eventPrograms = Array( programs as Set ) as? [Program] ?? []
    eventPrograms.sort( by: { ($0 as Program).name! < ($1 as Program).name! } )
    return eventPrograms
 }

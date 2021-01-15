@@ -12,19 +12,19 @@ import Foundation
 struct CountryUtility
 {
    public static var shared: CountryUtility = CountryUtility()
-   private var countryCodeMap2To3: Dictionary<String, String> = [:]
-   private var countryCodeMap3To2: Dictionary<String, String> = [:]
+   private var countryCodeMap2To3: [ String: String ] = [:]
+   private var countryCodeMap3To2: [ String: String ] = [:]
 
    init()
    {
       let pListFilePath = Bundle.main.path( forResource: "iso3166_1_2_to_iso3166_1_3", ofType: "plist" )
       let data = NSData( contentsOfFile: pListFilePath! )!
-      countryCodeMap2To3 = try! PropertyListSerialization.propertyList( from: data as Data,
-                                                                        format: nil ) as! Dictionary<String, String>
+      let propertyList: Any? = try? PropertyListSerialization.propertyList( from: data as Data, format: nil )
+      countryCodeMap2To3 = propertyList as? [ String: String ] ?? [:]
 
-      for (c2, c3) in countryCodeMap2To3
+      for ( country2, country3 ) in countryCodeMap2To3
       {
-         countryCodeMap3To2[ c3 ] = c2
+         countryCodeMap3To2[ country3 ] = country2
       }
 
       // alternates

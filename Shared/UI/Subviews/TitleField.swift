@@ -1,12 +1,14 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 
 struct TitleField: View
 {
-   var s: String?
+   var text: String?
 
    var body: some View
    {
-      if let title = s
+      if let title = text
       {
          HStack
          {
@@ -30,13 +32,13 @@ struct TitleFieldPreview: PreviewProvider
       {
          NavigationView
          {
-            TitleField( s: "Title" )
+            TitleField( text: "Title" )
          }
          .environment( \.colorScheme, .light )
 
          NavigationView
          {
-            TitleField( s: "Title" )
+            TitleField( text: "Title" )
          }
          .environment( \.colorScheme, .dark )
       }

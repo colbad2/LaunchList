@@ -1,4 +1,8 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable identifier_name
 
 /**
  ### Example
@@ -29,22 +33,4 @@ struct RoadClosureJSON: Decodable
    var statusDescription: String?
    let windowStart: String?
    let windowEnd: String?
-
-   // TODO not used
-//   func addToCoreData( context: NSManagedObjectContext ) -> RoadClosure
-//   {
-//      let newRoadClosure: RoadClosure = RoadClosure( context: context )
-//      updateEntity( entity: newRoadClosure, context: context )
-//
-//      return newRoadClosure
-//   }
-//
-//   func updateEntity( entity: RoadClosure?, context: NSManagedObjectContext ) -> Void
-//   {
-//      if entity == nil { return }
-//
-//      entity?.statusName = self.status?.name
-//      entity?.statusAbbreviation = self.status?.abbreviation
-//      entity?.statusDescription = self.status?.description
-//   }
 }

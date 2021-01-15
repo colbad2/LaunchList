@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import UIKit
 
@@ -11,7 +13,7 @@ class ImageLoader: ObservableObject
 
       RemoteImageCache.shared.downloadImage( with: url )
       {
-         (fetchedImage, done) in
+         ( fetchedImage, _ ) in
 
          self.image = fetchedImage
       }

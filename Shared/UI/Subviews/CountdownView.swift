@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 
 struct Countdown: View
@@ -10,7 +12,7 @@ struct Countdown: View
    {
       HStack
       {
-         TimerPiece( top: countdownSign( d: targetTime ), bottom: " " )
+         TimerPiece( top: countdownSign( countdownDate: targetTime ), bottom: " " )
          TimerPiece( top: countdownString( self.parts?.day ), bottom: "days" )
          TimerPiece( top: ":", bottom: " " )
          TimerPiece( top: countdownString( self.parts?.hour ), bottom: "hours" )
@@ -21,7 +23,7 @@ struct Countdown: View
       }
       .onReceive( timer )
       {
-         input in
+         _ in // input
 
          if targetTime == nil { targetTime = Date() }
          parts = Calendar.current.dateComponents( [ .day, .hour, .minute, .second ], from: Date(), to: targetTime! )
@@ -47,10 +49,10 @@ struct TimerPiece: View
    }
 }
 
-func countdownSign( d: Date? ) -> String
+func countdownSign( countdownDate: Date? ) -> String
 {
-   if d == nil { return "T " }
-   if d! < Date()
+   if countdownDate == nil { return "T " }
+   if countdownDate! < Date()
    {
       return "T+"
 
@@ -58,14 +60,14 @@ func countdownSign( d: Date? ) -> String
    return "T-"
 }
 
-func countdownString( _ n: Int? ) -> String
+func countdownString( _ count: Int? ) -> String
 {
-   if n == nil { return "--" }
-   var t = n!
-   if t < 0 { t = -t }
-   if t < 10 { return "0\(t)" }
+   if count == nil { return "--" }
+   var countdownTimeString = count!
+   if countdownTimeString < 0 { countdownTimeString = -countdownTimeString }
+   if countdownTimeString < 10 { return "0\(countdownTimeString)" }
 
-   return "\(t)"
+   return "\(countdownTimeString)"
 }
 
 #if DEBUG

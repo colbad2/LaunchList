@@ -447,6 +447,8 @@
 		A2F5B1B2259CE2EF009DC2D4 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		A2F5CE90259C537E0050DF06 /* Launch+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Launch+Extensions.swift"; sourceTree = "<group>"; };
 		A2F5CE99259C59A10050DF06 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		A2F8B33625B1514B00C917D0 /* LaunchList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LaunchList.entitlements; sourceTree = "<group>"; };
+		A2F8B34425B1570700C917D0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -656,7 +658,7 @@
 				A2F5B1CA259CEBAC009DC2D4 /* Rockets */,
 				A2732AE025A1669B00A11CE6 /* Starship Vehicle */,
 				A2F5B1C9259CEBA0009DC2D4 /* Programs */,
-				A2F5B1C8259CEB94009DC2D4 /* MIssions */,
+				A2F5B1C8259CEB94009DC2D4 /* Missions */,
 				A2F5B1C4259CEB52009DC2D4 /* Launches */,
 				A2F5B1C6259CEB6B009DC2D4 /* Agencies */,
 				A2F5B1C5259CEB60009DC2D4 /* Pads */,
@@ -672,6 +674,8 @@
 		A2DA71FF2595AF8C009405E6 = {
 			isa = PBXGroup;
 			children = (
+				A2F8B34425B1570700C917D0 /* .swiftlint.yml */,
+				A2F8B33625B1514B00C917D0 /* LaunchList.entitlements */,
 				A2BB770A25A7916F004FFFB3 /* README.md */,
 				A2DA72042595AF8D009405E6 /* Shared */,
 				A2DA72112595AF8F009405E6 /* iOS */,
@@ -846,13 +850,13 @@
 			path = "Service Providers";
 			sourceTree = "<group>";
 		};
-		A2F5B1C8259CEB94009DC2D4 /* MIssions */ = {
+		A2F5B1C8259CEB94009DC2D4 /* Missions */ = {
 			isa = PBXGroup;
 			children = (
 				A2E540FB259BB43200AD7BF8 /* MissionList.swift */,
 				A2E54108259BB51000AD7BF8 /* MissionDetail.swift */,
 			);
-			path = MIssions;
+			path = Missions;
 			sourceTree = "<group>";
 		};
 		A2F5B1C9259CEBA0009DC2D4 /* Programs */ = {
@@ -912,6 +916,7 @@
 				A2DA720C2595AF8F009405E6 /* Frameworks */,
 				A2DA720D2595AF8F009405E6 /* Resources */,
 				A2732B5325A2CE7800A11CE6 /* Embed App Extensions */,
+				A2F8B33D25B1564300C917D0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1121,6 +1126,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A2F8B33D25B1564300C917D0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A2732B3A25A2CE7600A11CE6 /* Sources */ = {
@@ -1584,6 +1609,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LaunchList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z3JGPQE589;
 				ENABLE_PREVIEWS = YES;
@@ -1607,6 +1633,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LaunchList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z3JGPQE589;
 				ENABLE_PREVIEWS = YES;

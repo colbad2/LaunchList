@@ -32,7 +32,7 @@ struct VehicleRow: View
 
    var body: some View
    {
-      TitleField( s: "\(vehicle.launcher?.fullName ?? "") \(vehicle.serialNumber!)" )
+      TitleField( text: "\(vehicle.launcher?.fullName ?? "") \(vehicle.serialNumber!)" )
    }
 }
 

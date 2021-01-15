@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
  ### Example
@@ -46,7 +51,7 @@ struct ExpeditionJSON: Decodable
       return newExpedition
    }
 
-   func updateEntity( entity: Expedition?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Expedition?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -66,9 +71,9 @@ struct ExpeditionJSON: Decodable
 
 // Core Data search/update
 
-func getExpedition( by id: Int64, context: NSManagedObjectContext ) -> Expedition?
+func getExpedition( by entityID: Int64, context: NSManagedObjectContext ) -> Expedition?
 {
-   return getEntityByID( id: id, context: context, entityName: "Expedition" ) as? Expedition
+   return getEntityByID( entityID: entityID, context: context, entityName: "Expedition" ) as? Expedition
 }
 
 func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjectContext ) -> Expedition
@@ -109,4 +114,3 @@ private let sampleExpeditionJSON =
       }
     }
 """
-

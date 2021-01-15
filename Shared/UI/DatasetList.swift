@@ -1,15 +1,17 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
+
+// swiftlint:disable identifier_name
 
 struct DatasetList: View
 {
    let listItems: [ListItem] = [ ListItem( title: "Launches", entity: "Launch", iconName: "AppIcon" ),
                                  ListItem( title: "Agencies", entity: "Agency", iconName: "Agency" ),
-//                                 ListItem( title: "Service Providers", entity: "ServiceProvider" ),
                                  ListItem( title: "Pads", entity: "Pad", iconName: "Pad" ),
                                  ListItem( title: "Missions", entity: "Mission", iconName: "Mission" ),
                                  ListItem( title: "Programs", entity: "Program", iconName: "Program" ),
-//                                 ListItem( title: "Rockets", entity: "Rocket" ),
                                  ListItem( title: "Astronauts", entity: "Astronaut", iconName: "AstronautColor" ),
                                  ListItem( title: "Events", entity: "Event", iconName: "Event" ),
                                  ListItem( title: "Live Streams", entity: "LiveStream", iconName: "LiveStream" ),
@@ -17,7 +19,7 @@ struct DatasetList: View
                                  ListItem( title: "Docking", entity: "Docking", iconName: "Docking" ),
                                  ListItem( title: "Space Stations", entity: "SpaceStation", iconName: "Station" ) ]
 
-// TODO launchers
+   // TODO launchers
    var body: some View
    {
       List( listItems )
@@ -49,12 +51,12 @@ struct ListItemRow: View
             {
                if let name = listItem.iconName
                {
-                  RowImage( defaultImage: UIImage( named: name ), w: 40, h: 40 )
+                  RowImage( defaultImage: UIImage( named: name ), imageWidth: 40, imageHeight: 40 )
                }
 
                VStack( alignment: .leading )
                {
-                  TitleField( s: listItem.title )
+                  TitleField( text: listItem.title )
 
                   let launchCount = getRecordsCount( entityName: listItem.entity, context: context )!
                   Text( "\(launchCount) \(listItem.title.lowercased())" )
@@ -84,13 +86,13 @@ struct ListItem: Identifiable
    }
 }
 
+// swiftlint:disable cyclomatic_complexity
 func getListItemView( title: String ) -> AnyView?
 {
    switch title
    {
       case "Launches": return AnyView( LaunchList() )
       case "Agencies": return AnyView( AgencyList() )
-//      case "Service Providers": return AnyView( ServiceProviderList() )
       case "Pads": return AnyView( PadList() )
       case "Missions": return AnyView( MissionList() )
       case "Programs": return AnyView( ProgramList() )
@@ -104,5 +106,6 @@ func getListItemView( title: String ) -> AnyView?
       default: return nil
    }
 }
+// swiftlint:enable cyclomatic_complexity
 
 // TODO preview

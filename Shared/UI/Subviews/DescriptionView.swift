@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
 import SwiftUI
 
@@ -7,13 +9,13 @@ struct DescriptionView: View
 
    var body: some View
    {
-      if let d = desc
+      if let description = desc
       {
          VStack( alignment: .leading )
          {
             Divider()
 
-            Text( d )
+            Text( description )
                .lineLimit( 50 )
                .layoutPriority( 200 )
                .fixedSize( horizontal: false, vertical: true )
@@ -23,7 +25,6 @@ struct DescriptionView: View
    }
 }
 
-
 #if DEBUG
 struct DescriptionViewPreview: PreviewProvider
 {
@@ -31,6 +32,7 @@ struct DescriptionViewPreview: PreviewProvider
    {
       Group
       {
+         // swiftlint:disable line_length
          DescriptionView( desc: "The Shuttle–Mir program was a collaborative 11-mission space program between Russia and the United States that involved American Space Shuttles visiting the Russian space station Mir, Russian cosmonauts flying on the Shuttle, and an American astronaut flying aboard a Soyuz spacecraft to engage in long-duration expeditions aboard Mir." )
                .padding()
 

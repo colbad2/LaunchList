@@ -2,6 +2,9 @@
 
 import CoreData
 
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
+
 /**
  {
    "id": 220,
@@ -51,13 +54,11 @@ public struct FlightVehicleJSON: Decodable, Identifiable
    }
 }
 
-
-
 // Core Data search/update
 
-func getFlightVehicle( by id: Int64, context: NSManagedObjectContext ) -> FlightVehicle?
+func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> FlightVehicle?
 {
-   return getEntityByID( id: id, context: context, entityName: "FlightVehicle" ) as? FlightVehicle
+   return getEntityByID( entityID: entityID, context: context, entityName: "FlightVehicle" ) as? FlightVehicle
 }
 
 func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSManagedObjectContext ) -> FlightVehicle

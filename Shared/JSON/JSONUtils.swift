@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import Foundation
 
 // use on main thread only
@@ -30,16 +32,16 @@ func parseISODate( isoDate: String? ) -> Date?
    return ISOParser.shared.timeFormatter.date( from: isoDate )
 }
 
-func dateString( _ d: Date? ) -> String
+func dateString( _ date: Date? ) -> String
 {
-   guard let d = d else { return "" }
-   return ISOParser.shared.dateFormatter.string( from: d )
+   guard let date = date else { return "" }
+   return ISOParser.shared.dateFormatter.string( from: date )
 }
 
-func tightDateString( _ d: Date? ) -> String
+func tightDateString( _ date: Date? ) -> String
 {
-   guard let d = d else { return "" }
-   return ISOParser.shared.tightDateFormatter.string( from: d )
+   guard let date = date else { return "" }
+   return ISOParser.shared.tightDateFormatter.string( from: date )
 }
 
 func wrapURL( _ url: String? ) -> URL?

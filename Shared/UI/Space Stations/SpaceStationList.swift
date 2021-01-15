@@ -36,7 +36,7 @@ struct SpaceStationRow: View
 
       VStack( alignment: .leading )
       {
-         TitleField( s: spaceStation.name! )
+         TitleField( text: spaceStation.name! )
       }
    }
 }

@@ -1,9 +1,4 @@
-//
-//  DockingList.swift
-//  LaunchList
-//
-//  Created by Bradford Holcombe on 1/1/21.
-//  Copyright © 2021 Bradford Holcombe. All rights reserved.
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
  List of launches returned from a URL.

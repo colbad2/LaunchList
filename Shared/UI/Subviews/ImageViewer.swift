@@ -12,7 +12,7 @@ struct ImageViewer: View
 
    @ObservedObject var imageLoader: ImageLoader
 
-   private var url: String? = nil
+   private var url: String?
 
    init( withURL url: String? )
    {
@@ -32,7 +32,7 @@ struct ImageViewer: View
             Image( uiImage: image )
                .resizable()
                .aspectRatio( contentMode: .fill )
-               .position( x: geometry.size.width / 2.0, y:  geometry.size.height / 2.0 ) // center the image initially
+               .position( x: geometry.size.width / 2.0, y: geometry.size.height / 2.0 ) // center the image initially
                .offset( x: self.currentOffset.width, y: self.currentOffset.height ) // apply the offset
                .scaleEffect( max( self.currentScale, 0.2 ) )
                .gesture( DragGesture()
@@ -46,18 +46,20 @@ struct ImageViewer: View
                               self.previousOffset.height = value.translation.height
 
                               let newOffsetWidth = self.currentOffset.width + deltaX / self.currentScale
-                              if abs( newOffsetWidth ) <= ( image.size.width - geometry.size.width ) / ( 2.0 * self.currentScale  )
+                              if abs( newOffsetWidth ) <=
+                                    ( image.size.width - geometry.size.width ) / ( 2.0 * self.currentScale  )
                               {
                                  self.currentOffset.width = newOffsetWidth
                               }
 
                               let newOffsetHeight = self.currentOffset.height + deltaY / self.currentScale
-                              if abs( newOffsetHeight ) <= ( image.size.height - geometry.size.height ) / ( 2.0 * self.currentScale )
+                              if abs( newOffsetHeight ) <=
+                                    ( image.size.height - geometry.size.height ) / ( 2.0 * self.currentScale )
                               {
                                  self.currentOffset.height = newOffsetHeight
                               }
                            }
-                           .onEnded { value in self.previousOffset = CGSize.zero }
+                           .onEnded { _ in self.previousOffset = CGSize.zero }
                )
 
                .gesture( MagnificationGesture()
@@ -66,23 +68,24 @@ struct ImageViewer: View
                               value in
                               let delta = value / self.previousScale
                               self.previousScale = value
-                              self.currentScale = self.currentScale * delta
+                              self.currentScale *= delta
                            }
-                           .onEnded { value in self.previousScale = 1.0 }
+                           .onEnded { _ in self.previousScale = 1.0 }
                )
          }
       }
    }
 }
 
-
 #if DEBUG
 struct ImageViewPreview: PreviewProvider
 {
    static var previews: some View
    {
+      // swiftlint:disable line_length
       let url1 = "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/soyuz2520sta_image_20191210133244.jpg"
       let url2 = "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg"
+      // swiftlint:enable line_length
 
       Group
       {

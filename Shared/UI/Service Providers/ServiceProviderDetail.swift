@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
 import SwiftUI
 
@@ -10,8 +12,8 @@ struct ServiceProviderDetail: View
    {
       ScrollView
       {
-         TitleField( s: serviceProvider?.name )
-         LeftField( s: serviceProvider?.type )
+         TitleField( text: serviceProvider?.name )
+         LeftField( text: serviceProvider?.type )
       }
       .padding()
    }

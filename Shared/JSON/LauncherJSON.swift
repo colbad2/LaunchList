@@ -2,6 +2,9 @@
 
 import CoreData
 
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
+
 /**
  {
    "id": 8,
@@ -55,7 +58,7 @@ struct LauncherJSON: Decodable
       return newLauncher
    }
 
-   func updateEntity( entity: Launcher?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Launcher?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -80,9 +83,9 @@ struct LauncherJSON: Decodable
 
 // Core Data search/update
 
-func getLauncher( by id: Int64, context: NSManagedObjectContext ) -> Launcher?
+func getLauncher( by entityID: Int64, context: NSManagedObjectContext ) -> Launcher?
 {
-   return getEntityByID( id: id, context: context, entityName: "Launcher" ) as? Launcher
+   return getEntityByID( entityID: entityID, context: context, entityName: "Launcher" ) as? Launcher
 }
 
 func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectContext ) -> Launcher

@@ -13,9 +13,9 @@ struct ExpeditionDetail: View
       {
          ScrollView
          {
-            TitleField( s: expedition.name )
-            LeftField( prefix: "began: ", s: expedition.start )
-            LeftField( prefix: "ended: ", s: expedition.end )
+            TitleField( text: expedition.name )
+            LeftField( prefix: "began: ", text: expedition.start )
+            LeftField( prefix: "ended: ", text: expedition.end )
          }
          .padding()
       }
@@ -29,10 +29,12 @@ struct ExpeditionPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let expedition = getEntityByID( id: 81,
+      if let expedition = getEntityByID( entityID: 81,
                                       context: context,
-                                      entityName: "Expedition" ) as! Expedition
-      ExpeditionDetail( expedition: expedition )
+                                      entityName: "Expedition" ) as? Expedition
+      {
+         ExpeditionDetail( expedition: expedition )
+      }
    }
 }
 #endif

@@ -57,7 +57,7 @@ struct LaunchLink: View
 
 func getLaunchesArray( launches: NSSet ) -> [Launch]
 {
-   var eventLaunches = Array( launches as Set ) as! [Launch]
+   var eventLaunches = Array( launches as Set ) as? [Launch] ?? []
    eventLaunches.sort( by: { ($0 as Launch).windowStart! < ($1 as Launch).windowStart! } )
    return eventLaunches
 }

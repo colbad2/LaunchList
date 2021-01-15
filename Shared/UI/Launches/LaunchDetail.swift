@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -15,7 +17,7 @@ struct LaunchDetail: View
             {
                HStack( alignment: .top )
                {
-                  TitleField( s: missionName( launch ) )
+                  TitleField( text: missionName( launch ) )
                   let flags: String? = allProgramFlags( launch: launch )
                   if flags != nil
                   {
@@ -27,7 +29,7 @@ struct LaunchDetail: View
                           rightString: launch.rocket?.name ?? launch.name )
                TwoFields( leftString: launch.serviceProvider?.type,
                           rightString: launch.mission?.type )
-               LeftField( s: launch.mission?.orbitName )
+               LeftField( text: launch.mission?.orbitName )
                if let start = launch.windowStart
                {
                   HStack
@@ -51,7 +53,7 @@ struct LaunchDetail: View
                }
                NavigationLink( destination: PadDetail( pad: launch.pad! ) )
                {
-                  LeftField( s: launch.pad?.name )
+                  LeftField( text: launch.pad?.name )
                }
             }
 
@@ -120,7 +122,7 @@ func allProgramFlags( launch: Launch ) -> String?
    if launch.programs == nil { return nil }
 
    var codes = Set< String >()
-   for program in launch.programs! as! Set<Program>
+   for program in launch.programs! as? Set<Program> ?? []
    {
       for code in getAllAgencyFlags( program: program ) { codes.insert(code ) }
 //      if let agencies = program.agencies
@@ -142,9 +144,9 @@ func allProgramFlags( launch: Launch ) -> String?
    var result = ""
    for code in codes
    {
-      if let f = flag( for: code )
+      if let flag = flag( for: code )
       {
-         result += f
+         result += flag
       }
    }
 
@@ -157,7 +159,7 @@ struct LaunchPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let launch = getEntityByID( id: "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
+      let launch = getEntityByID( entityID: "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
                                   context: context,
                                   entityName: "Launch" ) as? Launch
 
@@ -169,7 +171,7 @@ struct LaunchPreview: PreviewProvider
 //               .border( Color.blue )
          }
          .environment( \.colorScheme, .light )
-         
+
          NavigationView
          {
             LaunchDetail( launch: launch! )

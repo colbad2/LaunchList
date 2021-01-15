@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -21,14 +23,14 @@ struct AstronautDetail: View
          {
             HStack( alignment: .top )
             {
-               RowImage( imageURL: astronaut.profileImage, drawSpace: false, w: 100, h: 120 )
+               RowImage( imageURL: astronaut.profileImage, drawSpace: false, imageWidth: 100, imageHeight: 120 )
 
                VStack
                {
-                  TitleField( s: astronaut.name! )
-                  LeftField( s: astronaut.nationality! )
-                  LeftField( s: astronaut.type! )
-                  LeftField( s: astronaut.status! )
+                  TitleField( text: astronaut.name! )
+                  LeftField( text: astronaut.nationality! )
+                  LeftField( text: astronaut.type! )
+                  LeftField( text: astronaut.status! )
                   AgencyLink( agencyID: astronaut.agency?.id )
 
                   HStack( alignment: .top )
@@ -145,7 +147,7 @@ struct AstronautPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let astronaut = getEntityByID( id: 276,
+      let astronaut = getEntityByID( entityID: 276,
                                      context: context,
                                      entityName: "Astronaut" ) as? Astronaut
       AstronautDetail( astronaut: astronaut! )

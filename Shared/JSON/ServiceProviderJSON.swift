@@ -1,4 +1,8 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable identifier_name
 
 /**
  Organization providing services for the launch.
@@ -28,7 +32,7 @@ struct ServiceProviderJSON: Decodable
       return newServiceProvider
    }
 
-   func updateEntity( entity: ServiceProvider? ) -> Void
+   func updateEntity( entity: ServiceProvider? )
    {
       guard let entity = entity else { return }
 
@@ -40,9 +44,9 @@ struct ServiceProviderJSON: Decodable
 
 // Core Data search/update
 
-func getProvider( by id: Int64, context: NSManagedObjectContext ) -> ServiceProvider?
+func getProvider( by entityID: Int64, context: NSManagedObjectContext ) -> ServiceProvider?
 {
-   return getEntityByID( id: id, context: context, entityName: "ServiceProvider" ) as? ServiceProvider
+   return getEntityByID( entityID: entityID, context: context, entityName: "ServiceProvider" ) as? ServiceProvider
 }
 
 func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObjectContext ) -> ServiceProvider
@@ -56,7 +60,6 @@ func getServiceProviderCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "ServiceProvider", context: context )
 }
-
 
 func getSampleServiceProvider() -> ServiceProviderJSON?
 {

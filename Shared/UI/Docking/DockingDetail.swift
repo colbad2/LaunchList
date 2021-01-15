@@ -17,11 +17,11 @@ struct DockingDetail: View
 
             VStack
             {
-               TitleField( s: "\(docking.flightVehicle?.spacecraft?.name ?? "") with the" )
-               TitleField( s: docking.flightVehicle?.destination )
-               LeftField( prefix: "Docking:", s: docking.docking )
-               LeftField( prefix: "Departure:", s: docking.docking )
-               LeftField( prefix: "Location:", s: docking.dockingLocationName )
+               TitleField( text: "\(docking.flightVehicle?.spacecraft?.name ?? "") with the" )
+               TitleField( text: docking.flightVehicle?.destination )
+               LeftField( prefix: "Docking:", text: docking.docking )
+               LeftField( prefix: "Departure:", text: docking.docking )
+               LeftField( prefix: "Location:", text: docking.dockingLocationName )
 
                AgencyLink( agencyID: docking.flightVehicle?.spacecraft?.spacecraftConfig?.agency?.id )
             }
@@ -39,10 +39,13 @@ struct DockingDetailPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let docking = getEntityByID( id: 100,
-                                   context: context,
-                                   entityName: "Docking") as! Docking
-      DockingDetail( docking: docking )
+
+      if let docking = getEntityByID( entityID: 100,
+                                      context: context,
+                                      entityName: "Docking") as? Docking
+      {
+         DockingDetail( docking: docking )
+      }
    }
 }
 #endif

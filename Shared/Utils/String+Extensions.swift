@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 extension String
 {
    func utf8DecodedString() -> String
@@ -53,7 +55,6 @@ extension String
          .replacingOccurrences( of: "Ã´", with: "ô" )
          .replacingOccurrences( of: "Â°", with: "°" )
 
-
       // TODO https://www.i18nqa.com/debug/utf8-debug.html
    }
 
@@ -99,7 +100,10 @@ func emojiFlag( for countryCode: String? ) -> String?
    guard let code = countryCode else { return nil }
    let lowercasedCode = code.lowercased()
    guard lowercasedCode.count == 2 else { return nil }
-   guard lowercasedCode.unicodeScalars.reduce( true, { accum, scalar in accum && isLowercaseASCIIScalar( scalar ) } ) else { return nil }
+   let codeLowercased = lowercasedCode.unicodeScalars.reduce( true,
+                                                              { accum,
+                                                                scalar in accum && isLowercaseASCIIScalar( scalar ) } )
+   guard codeLowercased else { return nil }
 
    let indicatorSymbols = lowercasedCode.unicodeScalars.map( { regionalIndicatorSymbol( for: $0 ) } )
    return String(indicatorSymbols.map( { Character( $0 ) } ) )
@@ -135,18 +139,18 @@ func flags( for country3CodeList: String? ) -> String?
       let country = String( code ).trimmingCharacters( in: .whitespacesAndNewlines )
       if country.count == 6
       {
-         let c0 = String( country.prefix( 3 ) )
-         let c1 = String( country.suffix( 3 ) )
-         result += flag( for: c0 ) ?? c0
-         result += flag( for: c1 ) ?? c1
+         let country0 = String( country.prefix( 3 ) )
+         let country1 = String( country.suffix( 3 ) )
+         result += flag( for: country0 ) ?? country0
+         result += flag( for: country1 ) ?? country1
       }
       else if country.contains( "/" )
       {
-         let c = country.split( separator: "/" )
-         let c0 = String( c[ 0 ] )
-         let c1 = String( c[ 1 ] )
-         result += flag( for: c0 ) ?? c0
-         result += flag( for: c1 ) ?? c1
+         let country = country.split( separator: "/" )
+         let country0 = String( country[ 0 ] )
+         let country1 = String( country[ 1 ] )
+         result += flag( for: country0 ) ?? country0
+         result += flag( for: country1 ) ?? country1
       }
       else
       {
@@ -156,7 +160,6 @@ func flags( for country3CodeList: String? ) -> String?
 
    return result
 }
-
 
 extension String
 {
@@ -169,9 +172,9 @@ extension String
    {
        var result = UInt64( 2040 )
        let buf = [UInt8]( self.utf8 )
-       for b in buf
+       for byte in buf
        {
-           result = 127 * (result & 0x00ffffffffffffff) + UInt64( b )
+           result = 127 * (result & 0x00ffffffffffffff) + UInt64( byte )
        }
        return Int64( result )
     }

@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -33,7 +35,7 @@ struct EventRow: View
       RowImage( imageURL: event.featureImage )
       VStack( alignment: .leading )
       {
-         TitleField( s: event.name! )
+         TitleField( text: event.name! )
          Text( dateString( event.date ) )
             .font( .subheadline )
             .foregroundColor( .secondary )

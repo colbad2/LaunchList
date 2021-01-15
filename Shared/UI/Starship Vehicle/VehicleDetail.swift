@@ -11,12 +11,12 @@ struct VehicleDetail: View
    {
       ScrollView
       {
-         TitleField( s: "\(vehicle.launcher?.fullName ?? "Starship") \(vehicle.serialNumber!)" )
-         LeftField( prefix: "Flight proven: ", s: "\(vehicle.flightProven ? "yes" : "no")" )
-         LeftField( prefix: "Status: ", s: vehicle.status )
-         LeftField( prefix: "Flights: ", s: "\(vehicle.flights)" )
-         LeftField( prefix: "First flight: ", s: vehicle.firstLaunchDate )
-         LeftField( prefix: "Last flight: ", s: vehicle.lastLaunchDate )
+         TitleField( text: "\(vehicle.launcher?.fullName ?? "Starship") \(vehicle.serialNumber!)" )
+         LeftField( prefix: "Flight proven: ", text: "\(vehicle.flightProven ? "yes" : "no")" )
+         LeftField( prefix: "Status: ", text: vehicle.status )
+         LeftField( prefix: "Flights: ", text: "\(vehicle.flights)" )
+         LeftField( prefix: "First flight: ", text: vehicle.firstLaunchDate )
+         LeftField( prefix: "Last flight: ", text: vehicle.lastLaunchDate )
          IconView( withURL: vehicle.imageURL )
          DescriptionView( desc: vehicle.details )
       }
@@ -31,22 +31,24 @@ struct VehiclePreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let vehicle = getEntityByID( id: 75,
+      if let vehicle = getEntityByID( entityID: 75,
                                    context: context,
-                                   entityName: "Vehicle" ) as! Vehicle
-      Group
+                                   entityName: "Vehicle" ) as? Vehicle
       {
-         NavigationView
+         Group
          {
-            VehicleDetail( vehicle: vehicle )
-         }
-         .environment( \.colorScheme, .light )
+            NavigationView
+            {
+               VehicleDetail( vehicle: vehicle )
+            }
+            .environment( \.colorScheme, .light )
 
-         NavigationView
-         {
-            VehicleDetail( vehicle: vehicle )
+            NavigationView
+            {
+               VehicleDetail( vehicle: vehicle )
+            }
+            .environment( \.colorScheme, .dark )
          }
-         .environment( \.colorScheme, .dark )
       }
    }
 }

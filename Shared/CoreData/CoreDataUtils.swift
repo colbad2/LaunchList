@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
 
 /**
@@ -17,7 +19,8 @@ func saveContext( _ context: NSManagedObjectContext )
    catch
    {
       // Replace this implementation with code to handle the error appropriately.
-      // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+      // fatalError() causes the application to generate a crash log and terminate. You should not use this
+      // function in a shipping application, although it may be useful during development.
       let nsError = error as NSError
       fatalError( "Unresolved error \(nsError), \(nsError.userInfo)" )
    }
@@ -26,24 +29,24 @@ func saveContext( _ context: NSManagedObjectContext )
 /**
  Gets an entity of the given name and int ID.
 
- - Parameter id: ID of the entity to fetch
+ - Parameter entityID: ID of the entity to fetch
  - Parameter context: Core Data context to get the entity from
  - Parameter entityName: type of the entity type to fetch
  - Returns: the first entity with the given parameters, or nil otherwise
  */
-func getEntityByID( id: Int64, context: NSManagedObjectContext, entityName: String ) -> Any?
+func getEntityByID( entityID: Int64, context: NSManagedObjectContext, entityName: String ) -> Any?
 {
    do
    {
       let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
-      request.predicate = NSPredicate( format: "id == %d", id )
+      request.predicate = NSPredicate( format: "id == %d", entityID )
       let entities: [Any] = try context.fetch( request )
       if entities.count > 0 { return entities.first }
    }
    catch
    {
       let nsError = error as NSError
-      fatalError( "Failed to fetch entity \(entityName) with ID \(id): \(error), \(nsError.userInfo)" )
+      fatalError( "Failed to fetch entity \(entityName) with ID \(entityID): \(error), \(nsError.userInfo)" )
    }
 
    return nil
@@ -54,29 +57,28 @@ func getEntityByID( id: Int64, context: NSManagedObjectContext, entityName: Stri
 
  Needed to ID live streams.
 
- - Parameter id: ID of the entity to fetch
+ - Parameter entityID: ID of the entity to fetch
  - Parameter context: Core Data context to fetch the entity from
  - Parameter entityName- type of the entity to fetch
  - Returns: first entity with the given parameters, nil otherwise
  */
-func getEntityByID( id: String, context: NSManagedObjectContext, entityName: String ) -> Any?
+func getEntityByID( entityID: String, context: NSManagedObjectContext, entityName: String ) -> Any?
 {
    do
    {
       let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
-      request.predicate = NSPredicate( format: "id == %@", id )
+      request.predicate = NSPredicate( format: "id == %@", entityID )
       let entities: [Any] = try context.fetch( request )
       if entities.count > 0 { return entities.first }
    }
    catch
    {
       let nsError = error as NSError
-      fatalError( "Failed to fetch entity \(entityName) with ID \(id): \(error), \(nsError.userInfo)" )
+      fatalError( "Failed to fetch entity \(entityName) with ID \(entityID): \(error), \(nsError.userInfo)" )
    }
 
    return nil
 }
-
 
 /**
  Gets the first entity of the given type from Core Data.
@@ -144,20 +146,19 @@ func deleteAllData( entityName: String, context: NSManagedObjectContext )
 }
 
 // TODO get this to work
-//func deleteAllData( entityName: String, context: NSManagedObjectContext )
-//{
-//   let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
-//   let deleteRequest = NSBatchDeleteRequest( fetchRequest: fetchRequest)
-//   do
-//   {
-//      try context.execute( deleteRequest )
-//   }
-//   catch
-//   {
-//      print( "Delete all data of type \(entityName) error :", error)
-//   }
-//}
-
+// func deleteAllData( entityName: String, context: NSManagedObjectContext )
+// {
+//    let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+//    let deleteRequest = NSBatchDeleteRequest( fetchRequest: fetchRequest)
+//    do
+//    {
+//       try context.execute( deleteRequest )
+//    }
+//    catch
+//    {
+//       print( "Delete all data of type \(entityName) error :", error)
+//    }
+// }
 
 func getNextLaunch( context: NSManagedObjectContext ) -> Launch?
 {

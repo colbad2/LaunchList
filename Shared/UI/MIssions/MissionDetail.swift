@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
 import SwiftUI
 
@@ -11,9 +13,9 @@ struct MissionDetail: View
       {
          VStack
          {
-            TitleField( s: mission?.name )
-            LeftField( s: mission?.type )
-            LeftField( s: mission?.orbitName  )
+            TitleField( text: mission?.name )
+            LeftField( text: mission?.type )
+            LeftField( text: mission?.orbitName  )
             DescriptionView( desc: mission?.missionDescription )
          }
       }
@@ -27,7 +29,7 @@ struct MissionDetailPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let mission = getEntityByID( id: 1087,
+      let mission = getEntityByID( entityID: 1087,
                                    context: context,
                                    entityName: "Mission") as? Mission
       NavigationView

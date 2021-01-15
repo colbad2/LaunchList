@@ -34,9 +34,9 @@ struct DockingRow: View
    {
       VStack( alignment: .leading )
       {
-         TitleField( s: "\(docking.flightVehicle?.spacecraft?.name ?? "") with the" )
-         TitleField( s: docking.flightVehicle?.destination )
-         LeftField( s: docking.docking )
+         TitleField( text: "\(docking.flightVehicle?.spacecraft?.name ?? "") with the" )
+         TitleField( text: docking.flightVehicle?.destination )
+         LeftField( text: docking.docking )
       }
    }
 }

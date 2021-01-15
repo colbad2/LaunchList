@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 
 @main
@@ -22,7 +24,8 @@ struct LaunchListApp: App
 func showPaths() -> Bool
 {
    print( "app folder path is \(NSHomeDirectory())" )
-   print( "support dir is: \(NSSearchPathForDirectoriesInDomains( .applicationSupportDirectory, .userDomainMask, true ).last!)" )
+   let dir = NSSearchPathForDirectoriesInDomains( .applicationSupportDirectory, .userDomainMask, true ).last!
+   print( "support dir is: \(dir)" )
 
    return true
 }

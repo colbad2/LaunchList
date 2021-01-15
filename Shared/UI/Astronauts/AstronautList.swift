@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -8,12 +10,12 @@ struct AstronautList: View
                                                        ascending: true ) ],
                   animation: .default )
    private var astronauts: FetchedResults< Astronaut >
-   
+
    @State var searchText: String = ""
 
    var body: some View
    {
-      SearchBar( prompt: "name,agency:NASA,status:active,nationality:american,bio:NASA" , text: $searchText)
+      SearchBar( prompt: "name,agency:NASA,status:active,nationality:american,bio:NASA", text: $searchText)
          .padding( .top, 10 )
       List( astronauts.filter( { filterAstronaut( astronaut: $0, searchText: searchText ) } ) )
       {
@@ -29,11 +31,11 @@ struct AstronautList: View
 }
 
 // Keys for astronaut search constraint fields
-let StatusSearchKey = "status:"
-let AgencySearchKey = "agency:"
-let NationalitySearchKey = "nationality:"
-let NameSearchKey = "name:"
-let BioSearchKey = "bio:"
+let statusSearchKey = "status:"
+let agencySearchKey = "agency:"
+let nationalitySearchKey = "nationality:"
+let nameSearchKey = "name:"
+let bioSearchKey = "bio:"
 
 /**
  Returns true if the astronaut conforms to the search text.
@@ -51,38 +53,38 @@ func filterAstronaut( astronaut: Astronaut, searchText: String? ) -> Bool
    let fields = text.split( separator: "," )
    for field in fields
    {
-      let f = String( field ).trim().lowercased()
-      if f.hasPrefix( StatusSearchKey ) && astronaut.status != nil
+      let searchTerm = String( field ).trim().lowercased()
+      if searchTerm.hasPrefix( statusSearchKey ) && astronaut.status != nil
       {
          // active, retired, deceased
-         let status = f.removePrefix( StatusSearchKey ).trim()
+         let status = searchTerm.removePrefix( statusSearchKey ).trim()
          accept = accept && astronaut.status!.lowercased().contains( status )
       }
-      else if f.hasPrefix( AgencySearchKey ) && astronaut.agency != nil
+      else if searchTerm.hasPrefix( agencySearchKey ) && astronaut.agency != nil
       {
          // TODO NASA doesn't seem to work
          // NASA, Aeronautics
          let agency = astronaut.agency!
-         let a = f.removePrefix( AgencySearchKey ).trim()
-         let nameContainsAgency = agency.name?.lowercased().contains( a ) ?? false
-         let abbreviationContainsAgency = agency.abbreviation?.lowercased().contains( a ) ?? false
+         let agencyTerm = searchTerm.removePrefix( agencySearchKey ).trim()
+         let nameContainsAgency = agency.name?.lowercased().contains( agencyTerm ) ?? false
+         let abbreviationContainsAgency = agency.abbreviation?.lowercased().contains( agencyTerm ) ?? false
          accept = accept && ( nameContainsAgency || abbreviationContainsAgency )
       }
-      else if f.hasPrefix( NationalitySearchKey ) && astronaut.nationality != nil
+      else if searchTerm.hasPrefix( nationalitySearchKey ) && astronaut.nationality != nil
       {
          // American, Chinese
-         let n = f.removePrefix( NationalitySearchKey ).trim()
-         accept = accept && astronaut.nationality!.lowercased().contains( n )
+         let nationality = searchTerm.removePrefix( nationalitySearchKey ).trim()
+         accept = accept && astronaut.nationality!.lowercased().contains( nationality )
       }
-      else if f.hasPrefix( BioSearchKey ) && astronaut.bio != nil
+      else if searchTerm.hasPrefix( bioSearchKey ) && astronaut.bio != nil
       {
-         let n = f.removePrefix( BioSearchKey ).trim()
-         accept = accept && astronaut.bio!.lowercased().contains( n )
+         let bio = searchTerm.removePrefix( bioSearchKey ).trim()
+         accept = accept && astronaut.bio!.lowercased().contains( bio )
       }
       else if astronaut.name != nil // use this for no prefix too
       {
-         let n = f.hasPrefix( NameSearchKey ) ? f.removePrefix( NameSearchKey ).trim() : f
-         accept = accept && astronaut.name!.lowercased().contains( n )
+         let name = searchTerm.hasPrefix( nameSearchKey ) ? searchTerm.removePrefix( nameSearchKey ).trim() : searchTerm
+         accept = accept && astronaut.name!.lowercased().contains( name )
       }
    }
 
@@ -99,8 +101,8 @@ struct AstronautRow: View
 
       VStack( alignment: .leading )
       {
-         TitleField( s: astronaut.name! )
-         LeftField( s: astronaut.nationality! )
+         TitleField( text: astronaut.name! )
+         LeftField( text: astronaut.nationality! )
       }
    }
 }

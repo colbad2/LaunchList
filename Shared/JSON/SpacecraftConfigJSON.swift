@@ -2,6 +2,9 @@
 
 import CoreData
 
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
+
 /**
  {
    "id": 1,
@@ -54,13 +57,11 @@ public struct SpacecraftConfigJSON: Decodable, Identifiable
    }
 }
 
-
-
 // Core Data search/update
 
-func getSpacecraftConfig( by id: Int64, context: NSManagedObjectContext ) -> SpacecraftConfig?
+func getSpacecraftConfig( by entityID: Int64, context: NSManagedObjectContext ) -> SpacecraftConfig?
 {
-   return getEntityByID( id: id, context: context, entityName: "SpacecraftConfig" ) as? SpacecraftConfig
+   return getEntityByID( entityID: entityID, context: context, entityName: "SpacecraftConfig" ) as? SpacecraftConfig
 }
 
 func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, context: NSManagedObjectContext ) -> SpacecraftConfig

@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import UIKit
 import CoreData
 
@@ -51,7 +53,7 @@ class RemoteImageCache
     - Parameter url: source URL for the image
     - Parameter image: image to store
     */
-   private func storeImage( url: String, image: UIImage? ) -> Void
+   private func storeImage( url: String, image: UIImage? )
    {
       serialQueueForImages.sync( flags: .barrier ) { cachedImages[ url ] = image }
    }
@@ -61,7 +63,7 @@ class RemoteImageCache
 
     - Parameter url: image to clear
     */
-   private func removeImageFromList( url: String ) -> Void
+   private func removeImageFromList( url: String )
    {
       _ = serialQueueForImages.sync( flags: .barrier ) { cachedImages.removeValue( forKey: url ) }
    }
@@ -83,7 +85,7 @@ class RemoteImageCache
     - Parameter url: URL the task is fetching
     - Parameter task; image fetching task for URL
     */
-   private func addTaskToList( url: String, task: URLSessionDataTask ) -> Void
+   private func addTaskToList( url: String, task: URLSessionDataTask )
    {
       serialQueueForDataTasks.sync( flags: .barrier ) { imagesDownloadTasks[ url ] = task }
    }
@@ -93,7 +95,7 @@ class RemoteImageCache
 
     - Parameter url: task to clear
     */
-   private func removeTaskFromList( url: String ) -> Void
+   private func removeTaskFromList( url: String )
    {
       serialQueueForDataTasks.sync( flags: .barrier )
       {
@@ -107,7 +109,7 @@ class RemoteImageCache
 
     - Parameter url: image/task to clear
     */
-   public func clearURL( url: String ) -> Void
+   public func clearURL( url: String )
    {
       removeTaskFromList( url: url )
       removeImageFromList( url: url )
@@ -161,7 +163,7 @@ class RemoteImageCache
       // create the image fetch task, returns some image on the main thread
       let task = URLSession.shared.dataTask( with: url )
       {
-         ( data, response, error ) in
+         ( data, _, error ) in
 
          if data == nil { return }
          if error != nil

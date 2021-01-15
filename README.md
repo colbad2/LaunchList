@@ -50,7 +50,7 @@ Things that need to happen for a good app
 - some images need a detailed image view (astronaut portraits, etc.)
 - pare down the dataset lists to useful stuff only
 - settings (notifications, update schedule, force update)
-- today buttons in all dated list item lists
+- today buttons in all dated list item lists, there may be more than one on a given day
 - search tab/search element in lists/filter lists (filter by dates, countries, company, etc)
 - instead of scrolling to today in list, scroll to date given in a sheet/date picker
 - notification of launches

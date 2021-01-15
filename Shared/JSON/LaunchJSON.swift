@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
  Data that describe a launch.
@@ -85,7 +90,7 @@ public struct LaunchJSON: Decodable, Identifiable
       return newLaunch
    }
 
-   func updateEntity( entity: Launch?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Launch?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -158,13 +163,11 @@ public struct LaunchJSON: Decodable, Identifiable
    }
 }
 
-
-
 // Core Data search/update
 
-func getLaunch( by id: String, context: NSManagedObjectContext ) -> Launch?
+func getLaunch( by entityID: String, context: NSManagedObjectContext ) -> Launch?
 {
-   return getEntityByID( id: id, context: context, entityName: "Launch" ) as? Launch
+   return getEntityByID( entityID: entityID, context: context, entityName: "Launch" ) as? Launch
 }
 
 func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -> Launch

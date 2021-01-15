@@ -1,5 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
 
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 /**
  ### Example
  {
@@ -42,7 +46,7 @@ struct SpaceStationJSON: Decodable
       return newSpaceStation
    }
 
-   func updateEntity( entity: SpaceStation?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: SpaceStation?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -61,9 +65,9 @@ struct SpaceStationJSON: Decodable
 
 // Core Data search/update
 
-func getSpaceStation( by id: Int64, context: NSManagedObjectContext ) -> SpaceStation?
+func getSpaceStation( by entityID: Int64, context: NSManagedObjectContext ) -> SpaceStation?
 {
-   return getEntityByID( id: id, context: context, entityName: "SpaceStation" ) as? SpaceStation
+   return getEntityByID( entityID: entityID, context: context, entityName: "SpaceStation" ) as? SpaceStation
 }
 
 func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManagedObjectContext ) -> SpaceStation
@@ -97,4 +101,3 @@ private let sampleSpaceStationJSON =
   "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/international2520space2520station_image_20190220215716.jpeg"
 }
 """
-

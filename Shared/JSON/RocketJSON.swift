@@ -1,4 +1,8 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable identifier_name
 
 /**
  Rocket being used for the launch.
@@ -32,7 +36,7 @@ struct RocketJSON: Decodable
       return newRocket
    }
 
-   func updateEntity( entity: Rocket?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Rocket?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -88,12 +92,11 @@ struct ConfigurationJSON: Decodable
    var variant: String?
 }
 
-
 // Core Data search/update
 
 func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket?
 {
-   return getEntityByID( id: id, context: context, entityName: "Rocket" ) as? Rocket
+   return getEntityByID( entityID: id, context: context, entityName: "Rocket" ) as? Rocket
 }
 
 func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket?
@@ -117,17 +120,16 @@ func getSampleRocket() -> RocketJSON?
 
 private let sampleRocketJSON =
 """
-      {
-        "id": 2663,
-        "configuration": {
-          "id": 143,
-          "launch_library_id": 144,
-          "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/143/",
-          "name": "Space Launch System (SLS)",
-          "family": "SLS",
-          "full_name": "Space Launch System (SLS)",
-          "variant": ""
-        }
-      }
+{
+  "id": 2663,
+  "configuration": {
+    "id": 143,
+    "launch_library_id": 144,
+    "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/143/",
+    "name": "Space Launch System (SLS)",
+    "family": "SLS",
+    "full_name": "Space Launch System (SLS)",
+    "variant": ""
+  }
+}
 """
-

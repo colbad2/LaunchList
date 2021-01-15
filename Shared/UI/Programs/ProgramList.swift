@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -14,7 +16,7 @@ struct ProgramList: View
       List( programs )
       {
          ( program: Program ) in
-         
+
          NavigationLink( destination: ProgramDetail( program: program ) )
          {
             ProgramRow( program: program )
@@ -30,7 +32,7 @@ struct ProgramRow: View
 
    var body: some View
    {
-      RowImage( imageURL: program.imageURL, drawSpace: false, w: 50, h: 50 )
+      RowImage( imageURL: program.imageURL, drawSpace: false, imageWidth: 50, imageHeight: 50 )
 
       if let name = program.name
       {

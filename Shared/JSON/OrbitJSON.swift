@@ -1,4 +1,8 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable identifier_name
 
 /**
  Mission orbit.

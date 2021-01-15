@@ -54,7 +54,7 @@ struct SpaceStationLink: View
 
 func getSpaceStationsArray( spaceStations: NSSet ) -> [SpaceStation]
 {
-   var eventSpaceStations = Array( spaceStations as Set ) as! [SpaceStation]
+   var eventSpaceStations = Array( spaceStations as Set ) as? [SpaceStation] ?? []
    eventSpaceStations.sort( by: { ($0 as SpaceStation).name! < ($1 as SpaceStation).name! } )
    return eventSpaceStations
 }

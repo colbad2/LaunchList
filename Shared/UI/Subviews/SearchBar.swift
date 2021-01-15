@@ -21,7 +21,7 @@ struct SearchBar: View
             .overlay(
                HStack
                {
-                  Image( systemName: "magnifyingglass")
+                  Image( systemName: "magnifyingglass" )
                      .foregroundColor( .gray )
 //                     .frame( minWidth: 0, maxWidth: .infinity )
                      .padding( .leading, 8 )
@@ -32,13 +32,15 @@ struct SearchBar: View
                               {
                                  self.isEditing = false
                                  self.text = ""
-                                 UIApplication.shared.sendAction( #selector( UIResponder.resignFirstResponder ), to: nil, from: nil, for: nil  )
+                                 UIApplication.shared.sendAction( #selector( UIResponder.resignFirstResponder ),
+                                                                  to: nil, from: nil, for: nil  )
+                              },
+                             label:
+                              {
+                                 Image( systemName: "multiply.circle" )
+                                    .foregroundColor( .gray )
+                                    .padding( .trailing, 8 )
                               } )
-                     {
-                        Image( systemName: "multiply.circle" )
-                           .foregroundColor( .gray )
-                           .padding( .trailing, 8 )
-                     }
                   }
                }
             )
@@ -53,14 +55,16 @@ struct SearchBar: View
                      {
                         self.isEditing = false
                         self.text = ""
-                        UIApplication.shared.sendAction( #selector( UIResponder.resignFirstResponder ), to: nil, from: nil, for: nil  )
+                        UIApplication.shared.sendAction( #selector( UIResponder.resignFirstResponder ),
+                                                         to: nil, from: nil, for: nil  )
+                     },
+                    label:
+                     {
+                        Text( "Cancel" )
                      } )
-            {
-               Text( "Cancel" )
-            }
-            .padding( .trailing, 10 )
-            .transition( .move( edge: .trailing ) )
-            .animation( .default )
+               .padding( .trailing, 10 )
+               .transition( .move( edge: .trailing ) )
+               .animation( .default )
          }
       }
    }

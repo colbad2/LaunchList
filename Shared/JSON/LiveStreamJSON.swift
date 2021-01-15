@@ -1,4 +1,8 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
 
 /**
  Part of the starship API.
@@ -35,7 +39,7 @@ struct LiveStreamJSON: Decodable
       return newLiveStream
    }
 
-   func updateEntity( entity: LiveStream?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: LiveStream?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -49,9 +53,9 @@ struct LiveStreamJSON: Decodable
 
 // Core Data search/update
 
-func getLiveStream( by id: String, context: NSManagedObjectContext ) -> LiveStream?
+func getLiveStream( by entityID: String, context: NSManagedObjectContext ) -> LiveStream?
 {
-   return getEntityByID( id: id, context: context, entityName: "LiveStream" ) as? LiveStream
+   return getEntityByID( entityID: entityID, context: context, entityName: "LiveStream" ) as? LiveStream
 }
 
 func fetchLiveStream( liveStream: LiveStreamJSON, context: NSManagedObjectContext ) -> LiveStream

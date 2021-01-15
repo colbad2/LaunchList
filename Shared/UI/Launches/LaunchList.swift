@@ -1,6 +1,11 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
+/**
+ List of launches.
+ */
 struct LaunchList: View
 {
    @FetchRequest( entity: Launch.entity(),
@@ -16,7 +21,7 @@ struct LaunchList: View
    {
       ScrollViewReader
       {
-         proxy in
+         _ in // proxy
 
          let nextLaunchID = getNextLaunch( context: PersistenceController.shared.container.viewContext )!.id
          SearchBar( prompt: "launch name", text: $searchText )
@@ -37,38 +42,34 @@ struct LaunchList: View
          .navigationBarTitle( "Launches", displayMode: .inline )
          .toolbar( content:
          {
-         ToolbarItem( placement: .navigationBarTrailing, content:
-                        {
-                           HStack
+            ToolbarItem( placement: .navigationBarTrailing )
+            {
+               HStack
+               {
+                  Button( action: { self.indexPathToSetVisible = IndexPath( row: 0, section: 0 ) },
+                          label: { Image( systemName: "arrow.up.to.line" ) } )
+
+                  Button( action:
                            {
-                              Button( action: { self.indexPathToSetVisible = IndexPath( row: 0, section: 0 ) } )
+                              var entityIndex = 0
+                              for entity in launches
                               {
-                                 Image( systemName: "arrow.up.to.line" )
+                                 if entity.sortingDate! < Date()
+                                 {
+                                    entityIndex -= 1
+                                    if entityIndex < 0 { entityIndex = 0 }
+                                    break
+                                 }
+                                 entityIndex += 1
                               }
-                              Button( action:
-                                       {
-                                          var i = 0
-                                          for entity in launches
-                                          {
-                                             if entity.sortingDate! < Date()
-                                             {
-                                                i -= 1
-                                                if i < 0 { i = 0 }
-                                                break
-                                             }
-                                             i += 1
-                                          }
-                                          self.indexPathToSetVisible = IndexPath( row: i, section: 0 )
-                                       })
-                              {
-                                 Image( systemName: "calendar" )
-                              }
-                              Button( action: { self.indexPathToSetVisible = IndexPath( row: launches.count - 1, section: 0 ) })
-                              {
-                                 Image( systemName: "arrow.down.to.line" )
-                              }
-                           }
-                        })
+                              self.indexPathToSetVisible = IndexPath( row: entityIndex, section: 0 )
+                           },
+                          label: { Image( systemName: "calendar" ) } )
+                  Button( action: { self.indexPathToSetVisible = IndexPath( row: launches.count - 1, section: 0 ) },
+                          label: { Image( systemName: "arrow.down.to.line" ) } )
+
+               }
+            }
          })
       }
    }

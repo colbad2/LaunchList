@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
  ### Example
@@ -52,7 +57,7 @@ struct VehicleJSON: Decodable
       return newVehicle
    }
 
-   func updateEntity( entity: Vehicle?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Vehicle?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -75,12 +80,11 @@ struct VehicleJSON: Decodable
    }
 }
 
-
 // Core Data search/update
 
-func getVehicle( by id: Int64, context: NSManagedObjectContext ) -> Vehicle?
+func getVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> Vehicle?
 {
-   return getEntityByID( id: id, context: context, entityName: "Vehicle" ) as? Vehicle
+   return getEntityByID( entityID: entityID, context: context, entityName: "Vehicle" ) as? Vehicle
 }
 
 func fetchVehicle( vehicle: VehicleJSON, context: NSManagedObjectContext ) -> Vehicle

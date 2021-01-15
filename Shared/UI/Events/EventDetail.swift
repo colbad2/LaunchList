@@ -20,10 +20,10 @@ struct EventDetail: View
       {
          VStack
          {
-            TitleField( s: event.name )
-            LeftField( s: dateString( event.date ) )
-            LeftField( s: event.location )
-            LeftField( s: event.type )
+            TitleField( text: event.name )
+            LeftField( text: dateString( event.date ) )
+            LeftField( text: event.location )
+            LeftField( text: event.type )
             IconView( withURL: event.featureImage )
             DescriptionView( desc: event.eventDescription )
 
@@ -59,6 +59,5 @@ struct EventDetail: View
       .padding()
    }
 }
-
 
 // TODO preview

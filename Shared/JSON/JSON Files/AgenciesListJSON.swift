@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 public struct AgenciesListJSON: Decodable
 {
    // translate API attribute names into better var names

@@ -2,6 +2,9 @@
 
 import CoreData
 
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
+
 /**
  {
    "id": 77,
@@ -50,7 +53,7 @@ public struct SpacecraftJSON: Decodable, Identifiable
       entity.url = self.url
       entity.name = self.name
       entity.serialNumber = self.serialNumber
-      
+
       entity.status = self.status?.name
       entity.statusName = self.status?.name
       entity.statusAbbreviation = self.status?.abbreviation
@@ -60,7 +63,8 @@ public struct SpacecraftJSON: Decodable, Identifiable
 
       if let spacecraftConfig = self.spacecraftConfig
       {
-         let spacecraftConfigEntity: SpacecraftConfig = fetchSpacecraftConfig( spacecraftConfig: spacecraftConfig, context: context )
+         let spacecraftConfigEntity: SpacecraftConfig =
+            fetchSpacecraftConfig( spacecraftConfig: spacecraftConfig, context: context )
          entity.spacecraftConfig = spacecraftConfigEntity
          spacecraftConfigEntity.spacecraft = entity
       }
@@ -69,9 +73,9 @@ public struct SpacecraftJSON: Decodable, Identifiable
 
 // Core Data search/update
 
-func getSpacecraft( by id: Int64, context: NSManagedObjectContext ) -> Spacecraft?
+func getSpacecraft( by entityID: Int64, context: NSManagedObjectContext ) -> Spacecraft?
 {
-   return getEntityByID( id: id, context: context, entityName: "Spacecraft" ) as? Spacecraft
+   return getEntityByID( entityID: entityID, context: context, entityName: "Spacecraft" ) as? Spacecraft
 }
 
 func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjectContext ) -> Spacecraft

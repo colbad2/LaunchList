@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
  ### Example
@@ -82,7 +87,7 @@ struct EventJSON: Decodable
       return newEvent
    }
 
-   func updateEntity( entity: Event?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Event?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -94,7 +99,7 @@ struct EventJSON: Decodable
       entity.newsURL = self.newsURL
       entity.videoURL = self.videoURL
       entity.featureImage = self.featureImage
-      entity.date = parseISODate( isoDate:self.date )
+      entity.date = parseISODate( isoDate: self.date )
 
       for launch in launches!
       {
@@ -156,7 +161,7 @@ struct EventTypeJSON: Decodable
 
 func getEvent( by id: Int64, context: NSManagedObjectContext ) -> Event?
 {
-   return getEntityByID( id: id, context: context, entityName: "Event" ) as? Event
+   return getEntityByID( entityID: id, context: context, entityName: "Event" ) as? Event
 }
 
 func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> Event
@@ -219,4 +224,3 @@ private let sampleEventJSON =
     ]
   }
 """
-

@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -31,24 +33,28 @@ struct AgencyLinkPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let agency = getEntityByID( id: 63,
+      let agency = getEntityByID( entityID: 63,
                                   context: context,
-                                  entityName: "Agency" ) as! Agency
-      Group
-      {
-         NavigationView
-         {
-            AgencyLink( agencyID: agency.id )
-               .border( Color.accentColor )
-         }
-         .environment( \.colorScheme, .light )
+                                  entityName: "Agency" ) as? Agency
 
-         NavigationView
+      if let agencyID = agency?.id
+      {
+         Group
          {
-            AgencyLink( agencyID: agency.id )
-               .border( Color.blue )
+            NavigationView
+            {
+               AgencyLink( agencyID: agencyID )
+                  .border( Color.accentColor )
+            }
+            .environment( \.colorScheme, .light )
+
+            NavigationView
+            {
+               AgencyLink( agencyID: agencyID )
+                  .border( Color.blue )
+            }
+            .environment( \.colorScheme, .dark )
          }
-         .environment( \.colorScheme, .dark )
       }
    }
 }

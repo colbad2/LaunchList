@@ -25,20 +25,20 @@ struct SettingsView: View
                // TODO this crashes the app after the load completes
                Group // only to get past the ten limit
                {
-                  LoadJSONButton( filename: "agencies.json" , loader: loadAgencies )
-                  LoadJSONButton( filename: "launches.json" , loader: loadLaunches )
-                  LoadJSONButton( filename: "pads.json" , loader: loadPads )
-                  LoadJSONButton( filename: "astronauts.json" , loader: loadAstronauts )
-                  LoadJSONButton( filename: "starshipTests.json" , loader: loadStarshipTests )
+                  LoadJSONButton( filename: "agencies.json", loader: loadAgencies )
+                  LoadJSONButton( filename: "launches.json", loader: loadLaunches )
+                  LoadJSONButton( filename: "pads.json", loader: loadPads )
+                  LoadJSONButton( filename: "astronauts.json", loader: loadAstronauts )
+                  LoadJSONButton( filename: "starshipTests.json", loader: loadStarshipTests )
                }
                Group
                {
-                  LoadJSONButton( filename: "docking.json" , loader: loadDockings )
-                  LoadJSONButton( filename: "events.json" , loader: loadEvents )
-                  LoadJSONButton( filename: "expeditions.json" , loader: loadExpeditions )
-                  LoadJSONButton( filename: "launchers.json" , loader: loadLaunchers )
-                  LoadJSONButton( filename: "locations.json" , loader: loadLocations )
-                  LoadJSONButton( filename: "programs.json" , loader: loadPrograms )
+                  LoadJSONButton( filename: "docking.json", loader: loadDockings )
+                  LoadJSONButton( filename: "events.json", loader: loadEvents )
+                  LoadJSONButton( filename: "expeditions.json", loader: loadExpeditions )
+                  LoadJSONButton( filename: "launchers.json", loader: loadLaunchers )
+                  LoadJSONButton( filename: "locations.json", loader: loadLocations )
+                  LoadJSONButton( filename: "programs.json", loader: loadPrograms )
                }
             }
          }

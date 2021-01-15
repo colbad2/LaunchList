@@ -1,4 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import CoreData
+
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 
 /**
  Astronaut.
@@ -80,7 +85,7 @@ struct AstronautJSON: Decodable
       return newAstronaut
    }
 
-   func updateEntity( entity: Astronaut?, context: NSManagedObjectContext ) -> Void
+   func updateEntity( entity: Astronaut?, context: NSManagedObjectContext )
    {
       guard let entity = entity else { return }
 
@@ -140,13 +145,11 @@ struct AstronautTypeJSON: Decodable
    var name: String?
 }
 
-
-
 // Core Data search/update
 
 func getAstronaut( by id: Int64, context: NSManagedObjectContext ) -> Astronaut?
 {
-   return getEntityByID( id: id, context: context, entityName: "Astronaut" ) as? Astronaut
+   return getEntityByID( entityID: id, context: context, entityName: "Astronaut" ) as? Astronaut
 }
 
 func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectContext ) -> Astronaut

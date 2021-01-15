@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -14,7 +16,7 @@ struct PadList: View
       List( pads )
       {
          ( pad: Pad ) in
-         
+
          NavigationLink( destination: PadDetail( pad: pad ) )
          {
             PadRow( pad: pad )
@@ -32,7 +34,8 @@ struct PadRow: View
    {
       if let name = pad.name
       {
-         RowImage( imageURL: pad.mapImage, defaultImage: UIImage( named: "AstronautB&W" ), w: 100, h: 60 )
+         RowImage( imageURL: pad.mapImage, defaultImage: UIImage( named: "AstronautB&W" ),
+                   imageWidth: 100, imageHeight: 60 )
 
          Text( name )
             .font( .headline )
@@ -48,10 +51,10 @@ struct PadRow: View
    }
 }
 
+#if DEBUG
 /**
  Preview layouts.
  */
-#if DEBUG
 struct PadListPreviews: PreviewProvider
 {
    static var previews: some View

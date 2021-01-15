@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 
@@ -19,7 +21,7 @@ struct ProgramDetail: View
       {
          HStack( alignment: .top )
          {
-            RowImage( imageURL: program.imageURL, drawSpace: false, w: 100, h: 100 )
+            RowImage( imageURL: program.imageURL, drawSpace: false, imageWidth: 100, imageHeight: 100 )
 
             if let programName = program.name
             {
@@ -42,8 +44,8 @@ struct ProgramDetail: View
             Spacer()
          }
 
-         LeftField( prefix: "Began: ", s: dateString( program.startDate ) )
-         LeftField( prefix: "Ended: ", s: dateString( program.endDate ) )
+         LeftField( prefix: "Began: ", text: dateString( program.startDate ) )
+         LeftField( prefix: "Ended: ", text: dateString( program.endDate ) )
 
          DescriptionView( desc: program.programDescription )
 //            .border(Color.black)
@@ -79,7 +81,7 @@ struct ProgramDetail: View
 
 func getAgenciesArray( agencies: NSSet ) -> [Agency]
 {
-   var programAgencies = Array( agencies as Set ) as! [Agency]
+   var programAgencies = Array( agencies as Set ) as? [Agency] ?? []
    programAgencies.sort( by: { ($0 as Agency).name! < ($1 as Agency).name! } )
    return programAgencies
 }
@@ -93,31 +95,40 @@ struct ProgramPreview: PreviewProvider
    static var previews: some View
    {
       let context = PersistenceController.preview.container.viewContext
-      let issProgram = getEntityByID( id: 17,
+      let issProgram = getEntityByID( entityID: 17,
                                       context: context,
-                                      entityName: "Program") as! Program
-      let artemisProgram = getEntityByID( id: 15,
+                                      entityName: "Program") as? Program
+      let artemisProgram = getEntityByID( entityID: 15,
                                           context: context,
-                                          entityName: "Program") as! Program
+                                          entityName: "Program") as? Program
       Group
       {
-         NavigationView
+         if let iss = issProgram
          {
-            ProgramDetail( program: issProgram )
+            NavigationView
+            {
+               ProgramDetail( program: iss )
+            }
+            .environment( \.colorScheme, .light )
          }
-         .environment( \.colorScheme, .light )
 
-         NavigationView
+         if let artemis = artemisProgram
          {
-            ProgramDetail( program: artemisProgram )
+            NavigationView
+            {
+               ProgramDetail( program: artemis )
+            }
+            .environment( \.colorScheme, .light )
          }
-         .environment( \.colorScheme, .light )
 
-         NavigationView
+         if let iss = issProgram
          {
-            ProgramDetail( program: issProgram )
+            NavigationView
+            {
+               ProgramDetail( program: iss )
+            }
+            .environment( \.colorScheme, .dark )
          }
-         .environment( \.colorScheme, .dark )
       }
    }
 }

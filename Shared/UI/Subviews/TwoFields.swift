@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 
 struct TwoFields: View
@@ -40,7 +42,8 @@ struct TwoFieldsPreview: PreviewProvider
       {
          NavigationView
          {
-            TwoFields( leftPrefix: "prefix1: ", leftString: "string1", rightPrefix: "prefix2: ", rightString: "string2" )
+            TwoFields( leftPrefix: "prefix1: ", leftString: "string1",
+                       rightPrefix: "prefix2: ", rightString: "string2" )
                .padding()
          }
          .environment( \.colorScheme, .light )

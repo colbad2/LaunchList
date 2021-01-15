@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import SwiftUI
 import CoreData
 import MapKit
@@ -14,18 +16,16 @@ struct PadDetail: View
          {
             HStack( alignment: .top )
             {
-               TitleField( s: pad.name )
+               TitleField( text: pad.name )
                if let countryCode = pad.location?.countryCode
                {
                   Spacer()
                   Text( flags( for: countryCode )! )
                }
             }
-            LeftField( s: pad.location?.name )
-            Button( action: { openInMaps( name: pad.location?.name, lat: pad.latitude, lon: pad.longitude ) } )
-            {
-               LeftField( s: "\(pad.latitude!), \(pad.longitude!)" )
-            }
+            LeftField( text: pad.location?.name )
+            Button( action: { openInMaps( name: pad.location?.name, lat: pad.latitude, lon: pad.longitude ) },
+                    label: { LeftField( text: "\(pad.latitude!), \(pad.longitude!)" ) } )
             AgencyLink( agencyID: pad.agencyID )
             IconView( withURL: pad.mapImage )
             LinkBarView( infoURL: pad.infoURL, wikiURL: pad.wikiURL, mapURL: pad.mapURL )
@@ -58,7 +58,7 @@ struct PadPreview: PreviewProvider
 {
    static var previews: some View
    {
-      PadDetail( pad: getSamplePadEntity() )
+      PadDetail( pad: getSamplePadEntity()! )
    }
 }
 #endif

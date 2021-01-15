@@ -35,7 +35,7 @@ struct LiveStreamRow: View
       RowImage( imageURL: liveStream.image )
       VStack( alignment: .leading )
       {
-         TitleField( s: liveStream.title! )
+         TitleField( text: liveStream.title! )
       }
    }
 }
