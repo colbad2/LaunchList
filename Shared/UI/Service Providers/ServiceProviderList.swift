@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct ServiceProviderList: View
 {
@@ -32,14 +32,14 @@ struct ServiceProviderRow: View
 
    var body: some View
    {
-      if let name = serviceProvider.name
+      if let name: String = serviceProvider.name
       {
          HStack
          {
             Text( name )
                .font( .headline )
                .allowsTightening( /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/ )
-            if let type = serviceProvider.type
+            if let type: String = serviceProvider.type
             {
                Spacer()
                Text( type )

@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import UIKit
 import CoreData
+import UIKit
 
 /**
  Singleton for fetching images from URLs and holding them for future use.
@@ -13,7 +13,7 @@ import CoreData
 class RemoteImageCache
 {
    /** Singleton of this class. */
-   static let shared = RemoteImageCache()
+   static let shared: RemoteImageCache = RemoteImageCache()
 
    /** List of cached images, indexed by URL string. */
    private var cachedImages: [ String: UIImage ]
@@ -22,10 +22,10 @@ class RemoteImageCache
    private var imagesDownloadTasks: [ String: URLSessionDataTask ]
 
    // A serial queue to be able to write the non-thread-safe image dictionary
-   private let serialQueueForImages = DispatchQueue( label: "images.queue", attributes: .concurrent )
+   private let serialQueueForImages: DispatchQueue = DispatchQueue( label: "images.queue", attributes: .concurrent )
 
    // A serial queue to be able to write the non-thread-safe task dictionary
-   private let serialQueueForDataTasks = DispatchQueue( label: "dataTasks.queue", attributes: .concurrent )
+   private let serialQueueForDataTasks: DispatchQueue = DispatchQueue( label: "dataTasks.queue", attributes: .concurrent )
 
    /**
     Private constructor.
@@ -99,8 +99,11 @@ class RemoteImageCache
    {
       serialQueueForDataTasks.sync( flags: .barrier )
       {
-         let removedTask: URLSessionDataTask = imagesDownloadTasks.removeValue( forKey: url )! as URLSessionDataTask
-         removedTask.cancel()
+         let removedTask: URLSessionDataTask? = imagesDownloadTasks.removeValue( forKey: url ) as URLSessionDataTask?
+         if let task: URLSessionDataTask = removedTask
+         {
+            task.cancel()
+         }
       }
    }
 
@@ -109,7 +112,7 @@ class RemoteImageCache
 
     - Parameter url: image/task to clear
     */
-   public func clearURL( url: String )
+   func clearURL( url: String )
    {
       removeTaskFromList( url: url )
       removeImageFromList( url: url )
@@ -120,97 +123,111 @@ class RemoteImageCache
 
     To be called from the main thread.
 
-    - Parameter urlString: {String?} URL to fetch
+    - Parameter imageURLString: {String?} URL to fetch
     - Parameter completionHandler: {( UIImage?, Bool ) -> Void} callback when image loading has stopped (good or bad)
     */
-   func downloadImage( with urlString: String?,
+   func downloadImage( with imageURLString: String?,
                        completionHandler: @escaping ( UIImage?, Bool ) -> Void  )
    {
+      guard let urlString: String = imageURLString else
+      {
+         completionHandler( nil, true )
+         return
+      }
+
       // return n il if the URL was nil or empty
-      if urlString == nil || urlString?.count == 0
+      if urlString.isEmpty
       {
          completionHandler( nil, true )
          return
       }
 
       // return the image if it had been cached
-      if let image = getCachedImageFrom( url: urlString! )
+      if let image: UIImage = getCachedImageFrom( url: urlString )
       {
          completionHandler( image, true )
          return
       }
 
-      if let image = getStoredImage( for: urlString, context: PersistenceController.shared.container.viewContext )
+      if let image: UIImage = getStoredImage( for: urlString, context: PersistenceController.shared.container.viewContext )
       {
          completionHandler( image, true )
          return
       }
 
       // return nil if the URL cannot be parsed
-      guard let url = URL( string: urlString! ) else
+      guard let url = URL( string: urlString ) else
       {
          completionHandler( nil, true )
-         print( "cannot parse image URL: \"\(urlString ?? "nil")\"" )
+         print( "cannot parse image URL: \"\(urlString)\"" )
          return
       }
 
       // return if there is a fetch task for the URL and the fetch task is still operating
-      if getDataTaskFrom( url: urlString! ) != nil
+      if getDataTaskFrom( url: urlString ) != nil
       {
          return
       }
 
       // create the image fetch task, returns some image on the main thread
-      let task = URLSession.shared.dataTask( with: url )
+      let task: URLSessionDataTask = URLSession.shared.dataTask( with: url )
       {
-         ( data, _, error ) in
+         fetchedData, _, fetchError in
 
-         if data == nil { return }
-         if error != nil
+         guard let data = fetchedData else { return }
+
+         if let error: Error = fetchError
          {
             DispatchQueue.main.async { completionHandler( nil, true ) }
-            print( "load image URL fail: \(error!)" )
+            print( "load image URL fail: \(error)" )
             return
          }
 
-         let image = UIImage( data: data! )
-         if image == nil
+         guard let image: UIImage = UIImage( data: data ) else
          {
             completionHandler( nil, true )
-            print( "cannot parse image URL: \"\(urlString ?? "nil")\"" )
+            print( "cannot parse image URL: \"\(urlString)\"" )
             return
          }
-         self.storeImage( url: urlString!, image: image )
-         self.removeTaskFromList( url: urlString! )
+
+         self.storeImage( url: urlString, image: image )
+         self.removeTaskFromList( url: urlString )
          DispatchQueue.main.async
          {
-            saveToCoreData( url: urlString!, image: image! )
+            saveToCoreData( url: urlString, image: image )
             completionHandler( image, false )
          }
       }
 
-      addTaskToList( url: urlString!, task: task )
+      addTaskToList( url: urlString, task: task )
       task.resume()
    }
 }
 
-func getStoredImage( for url: String?, context: NSManagedObjectContext ) -> UIImage?
+/**
+ Fetches any image stored in the context under the given URL.
+
+ - Parameter url: {String} where the image will come from
+ - Parameter context: {NSManagedObejctContext} context where to search for the image
+ - Returns: any image found with the given URL, or nil if not found
+ */
+func getStoredImage( for imageURL: String?, context: NSManagedObjectContext ) -> UIImage?
 {
-   guard let url = url else { return nil }
+   guard let url = imageURL else { return nil }
 
    do
    {
       let request: NSFetchRequest<ImageData> = ImageData.fetchRequest()
       request.predicate = NSPredicate( format: "url = %@", url )
       let entities: [ImageData] = try context.fetch( request )
-      if let data = entities.first?.data
+      if let data: Data = entities.first?.data
       {
          return UIImage( data: data )
       }
    }
    catch
    {
-      let nsError = error as NSError
+      let nsError: NSError = error as NSError
       fatalError( "Failed to fetch image: \(url) \(error), \(nsError.userInfo)" )
    }
 
@@ -240,10 +257,16 @@ func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
 }
  */
 
+/**
+ Save the image's data to the object store, identified by the URL where it was fetched from.
+
+ - Parameter url: {String} where the image came from
+ - Parameter image: {UIImage} fetched image
+ */
 func saveToCoreData( url: String, image: UIImage )
 {
-   let imageData = image.pngData()
-   let context = PersistenceController.shared.container.viewContext
+   let imageData: Data? = image.pngData()
+   let context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
 
    guard let imageDataEntity = NSEntityDescription.insertNewObject( forEntityName: "ImageData",
                                                                     into: context ) as? ImageData else { return }

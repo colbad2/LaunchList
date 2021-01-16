@@ -1,3 +1,5 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import XCTest
 
 // swiftlint:disable line_length
@@ -5,9 +7,9 @@ import XCTest
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 
-class JSONTests: XCTestCase
+class LaunchListUnitTests: XCTestCase
 {
-   private var decoder: JSONDecoder!
+   private var decoder: JSONDecoder
 
    override func setUp()
    {
@@ -30,7 +32,7 @@ class JSONTests: XCTestCase
 
    func testPadJSON() throws
    {
-      let jsonData = padJSON1.data( using: .utf8 )!
+      guard let jsonData: Data = padJSON1.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let pad: PadJSON? = try? decoder.decode( PadJSON.self, from: jsonData )
       checkPad( pad: pad, id: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
@@ -46,7 +48,7 @@ class JSONTests: XCTestCase
 
    func testPadJSON2() throws
    {
-      let jsonData = padJSON2.data( using: .utf8 )!
+      gurad let jsonData: Data = padJSON2.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let pad: PadJSON? = try? decoder.decode( PadJSON.self, from: jsonData )
       checkPad( pad: pad, id: 54, lat: "0.0", lon: "0.0",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_54_20200803143536.jpg",
@@ -56,7 +58,6 @@ class JSONTests: XCTestCase
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
                      name: "Unknown Location", landingCount: 0, lauchCount: 0,
                      url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
-
    }
 
    func testLocationJSON1() throws
@@ -74,7 +75,7 @@ class JSONTests: XCTestCase
       }
       """
 
-      let jsonData = json.data( using: .utf8 )!
+      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let location: LocationJSON = try? decoder.decode( LocationJSON.self, from: jsonData )
       checkLocation( location: location, id: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
@@ -97,7 +98,7 @@ class JSONTests: XCTestCase
       }
       """
 
-      let jsonData = json.data( using: .utf8 )!
+      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let location: LocationJSON = try? decoder.decode( LocationJSON.self, from: jsonData )
       checkLocation( location: location, id: 22, countryCode: "UNK",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
@@ -120,7 +121,7 @@ class JSONTests: XCTestCase
        }
       """
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let rocketConfiguration: ConfigurationJSON = try? decoder.decode( ConfigurationJSON.self, from: jsonData )
       checkConfiguration( config: rocketConfiguration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
@@ -139,7 +140,7 @@ class JSONTests: XCTestCase
         }
       """
 
-      let jsonData = json.data( using: .utf8 )!
+      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let orbit: OrbitJSON = try? decoder.decode( OrbitJSON.self, from: jsonData )
 
       XCTAssertNotNil( orbit )
@@ -167,7 +168,7 @@ class JSONTests: XCTestCase
       }
       """#
 
-      let jsonData = json.data( using: .utf8 )!
+      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let mission: MissionJSON = try? decoder.decode( MissionJSON.self, from: jsonData )
       checkMission( mission: mission, id: 1222,
                     description: "T\u{00fc}rksat 5A is the first of two Turkish next generation communications satellites, which will be operated by T\u{00fc}rksat for commercial and military purposes.",
@@ -190,7 +191,7 @@ class JSONTests: XCTestCase
         }
       """#
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let mission: MissionJSON = try? decoder.decode( MissionJSON.self, from: jsonData )
       checkMission( mission: mission, id: 1045,
                     description: "SXM-8 is a large high power broadcasting satellite for SiriusXM's digital audio radio service (DARS).\n\nSpace Systems/Loral (SS/L) got in July 2016 the contract to build the two satellites based on their SSL-1300 bus - SXM-7 and SXM-8. Both operate in the S-band spectrum. Each satellite will generate more than 20-kW of power and will have a large unfurlable antenna reflector, which enables broadcast to radios without the need for large dish-type antennas on the ground.\n\nSXM-8 is meant to replace the XM-4 satellite.",
@@ -209,13 +210,14 @@ class JSONTests: XCTestCase
        }
       """
 
-      let jsonData = json.data( using: .utf8 )!
+      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let serviceProvider: ServiceProviderJSON = try? decoder.decode( ServiceProviderJSON.self, from: jsonData )
       checkServiceProvider( provider: serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                           url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )! )
+                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
    }
 
-   func checkServiceProvider( provider: ServiceProviderJSON?, providerID: Int64, name: String, type: String, url: URL )
+   // TODO move to the check class
+   private func checkServiceProvider( provider: ServiceProviderJSON?, providerID: Int64, name: String, type: String, url: URL )
    {
       XCTAssertNotNil( provider )
       XCTAssertEqual( provider?.id, providerID )
@@ -236,7 +238,7 @@ class JSONTests: XCTestCase
        }
       """
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let status: StatusJSON = try? decoder.decode( StatusJSON.self, from: jsonData )
       checkStatus( status: status, abbreviation: "TBC",
                    description: "Awaiting official confirmation - current date is known with some certainty.",
@@ -261,7 +263,7 @@ class JSONTests: XCTestCase
        }
       """
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let rocket: RocketJSON = try? decoder.decode( RocketJSON.self, from: jsonData )
 
       XCTAssertNotNil( rocket )
@@ -284,7 +286,7 @@ class JSONTests: XCTestCase
         }
       """
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let agency: AgencyJSON = try? decoder.decode( AgencyJSON.self, from: jsonData )
       checkAgency( agency: agency, id: 44, name: "National Aeronautics and Space Administration",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
@@ -292,7 +294,7 @@ class JSONTests: XCTestCase
 
    func testProgramJSON() throws
    {
-      let jsonData = programJSON1.data( using: .utf8 )!
+      guard let jsonData: Data = programJSON1.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let program: ProgramJSON = try? decoder.decode( ProgramJSON.self, from: jsonData )
       checkProgram( program: program, id: 11,
                     description: "Commercial Resupply Services (CRS) are a series of flights awarded by NASA for the delivery of cargo and supplies to the International Space Station.The first CRS contracts were signed in 2008 and awarded $1.6 billion to SpaceX for twelve cargo Dragon and $1.9 billion to Orbital Sciences for eight Cygnus flights, covering deliveries to 2016. The Falcon 9 and Antares rockets were also developed under the CRS program to deliver cargo spacecraft to the ISS.",
@@ -320,7 +322,7 @@ class JSONTests: XCTestCase
 
    func testLaunchJSON1() throws
    {
-      let jsonData = launchJSON1.data( using: .utf8 )!
+      guard let jsonData: Data = launchJSON1.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
 
       checkLaunch( launch: launch, id: "d5d607b7-05ed-4142-8703-14b553c195e0", failReason: "", holdReason: "",
@@ -332,7 +334,7 @@ class JSONTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-01-05T05:29:00Z",
                    windowStart: "2021-01-05T01:27:00Z" )
       checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                           url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )! )
+                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
       checkMission( mission: launch.mission, id: 1222,
                     description: "T\u{00fc}rksat 5A is the first of two Turkish next generation communications satellites, which will be operated by T\u{00fc}rksat for commercial and military purposes.",
                     name: "T\u{00fc}rksat 5A", type: "Communications",
@@ -361,7 +363,7 @@ class JSONTests: XCTestCase
 
    func testLaunchParse()
    {
-      let json =
+      let json: String =
       """
       {
         "id": "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
@@ -531,7 +533,7 @@ class JSONTests: XCTestCase
       }
       """#
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
 
       checkLaunch( launch: launch, id: "f213a5df-579a-4682-8143-df228e463049", failReason: "", holdReason: "",
@@ -544,7 +546,7 @@ class JSONTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-01-14T00:00:00Z",
                    windowStart: "2021-01-14T00:00:00Z" )
       checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                           url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )! )
+                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
       XCTAssertNil( launch.mission )
       checkPad( pad: launch.pad, id: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
@@ -650,7 +652,7 @@ class JSONTests: XCTestCase
        }
       """#
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
 
       checkLaunch( launch: launch, id: "edaf9a8d-d67c-4e0e-8452-a37b111581d5", failReason: "", holdReason: "",
@@ -662,7 +664,7 @@ class JSONTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-01-31T00:00:00Z",
                    windowStart: "2021-01-31T00:00:00Z" )
       checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                           url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )! )
+                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
       checkMission( mission: launch.mission, id: 1045,
                     description: "SXM-8 is a large high power broadcasting satellite for SiriusXM's digital audio radio service (DARS).\n\nSpace Systems/Loral (SS/L) got in July 2016 the contract to build the two satellites based on their SSL-1300 bus - SXM-7 and SXM-8. Both operate in the S-band spectrum. Each satellite will generate more than 20-kW of power and will have a large unfurlable antenna reflector, which enables broadcast to radios without the need for large dish-type antennas on the ground.\n\nSXM-8 is meant to replace the XM-4 satellite.",
                     designator: nil, libraryID: 1245, name: "SXM-8", type: "Communications",
@@ -762,7 +764,7 @@ class JSONTests: XCTestCase
           }
       """#
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
 
       checkLaunch( launch: launch, id: "0098c032-73de-4c6f-8d73-5d68b9a12fdf",
@@ -774,7 +776,7 @@ class JSONTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-03-01T00:00:00Z",
                    windowStart: "2021-03-01T00:00:00Z" )
       checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                           url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )! )
+                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
       XCTAssertNil( launch.mission )
       checkPad( pad: launch.pad, id: 87, lat: "28.60822681", lon: "-80.60428186",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
@@ -910,7 +912,7 @@ class JSONTests: XCTestCase
        }
       """#
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
 
       checkLaunch( launch: launch, id: "89a150ea-6e4b-489f-853c-3603ae684611",
@@ -922,7 +924,7 @@ class JSONTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-03-12T00:00:00Z",
                    windowStart: "2021-03-12T00:00:00Z" )
       checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                           url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )! )
+                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
       XCTAssertNil( launch.mission )
       checkPad( pad: launch.pad, id: 87, lat: "28.60822681", lon: "-80.60428186",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
@@ -1130,7 +1132,7 @@ class JSONTests: XCTestCase
           }
       """#
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
 
       checkLaunch( launch: launch, id: "32dcb5ad-7609-4fc0-8094-768ee5c2ebe0", failReason: "", holdReason: "",
@@ -1142,7 +1144,7 @@ class JSONTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-03-30T00:00:00Z",
                    windowStart: "2021-03-30T00:00:00Z" )
       checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                           url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )! )
+                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
       checkMission( mission: launch.mission, id: 1137,
                     description: "SpaceX Crew-2 will be the second crewed operational flight of a Crew Dragon spacecraft, and the third overall crewed orbital flight. It will use the same Falcon 9 first stage as the Crew-1 mission and the same Crew Dragon capsule as the Demo-2 mission (Endeavour).",
                     libraryID: 1330, name: "SpX USCV-2 (NASA Crew Flight 2)", type: "Human Exploration",
@@ -1291,7 +1293,7 @@ class JSONTests: XCTestCase
            }
       """#
 
-      let jsonData = json.data( using: .utf8 )!
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
       let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
 
       checkLaunch( launch: launch, id: "572dbb78-06f5-47dd-be8c-593967333d81",
@@ -1303,7 +1305,7 @@ class JSONTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-04-01T00:00:00Z",
                    windowStart: "2021-04-01T00:00:00Z" )
       checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                           url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )! )
+                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
       XCTAssertNil( launch.mission )
       checkPad( pad: launch.pad, id: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",

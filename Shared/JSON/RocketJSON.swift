@@ -2,8 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable identifier_name
-
 /**
  Rocket being used for the launch.
  
@@ -103,7 +101,7 @@ func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocke
 {
    guard let id = rocket.configuration?.id else { return nil }
 
-   let rocketEntity = getRocket( by: id, context: context )
+   let rocketEntity: Rocket? = getRocket( by: id, context: context )
    rocket.updateEntity( entity: rocketEntity, context: context )
    return rocketEntity ?? rocket.addToCoreData( context: context )
 }

@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct AgencyList: View
 {
@@ -39,14 +39,14 @@ struct AgencyRow: View
 
    var body: some View
    {
-      if let name = agency.name
+      if let name: String = agency.name
       {
          HStack( alignment: .top )
          {
             Text( name )
                .font( .headline )
                .fixedSize( horizontal: false, vertical: true )
-            if let codes = agency.countryCodes
+            if let codes: [String] = agency.countryCodes
             {
                Spacer()
                Text( flagsFromCodeArray( codes ) ?? "" )

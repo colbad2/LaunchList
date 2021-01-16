@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  Agency involved in the launch program.
@@ -74,7 +73,7 @@ struct AgencyJSON: Decodable
       entity.countryCodes = getCountryCodes( countryCode: self.countryCode )
 
       entity.abbreviation = self.abbreviation
-      if var admin = self.administrator
+      if var admin: String = self.administrator
       {
          admin = admin.removePrefix( "Administrator: " )
          entity.administrator = admin
@@ -93,95 +92,12 @@ struct AgencyJSON: Decodable
       entity.imageURL = self.imageURL
 
       // add flags for holes in the API
-      if let name = entity.name,
-         let correction = countryCodeCorrections[ name ]
+      if let name: String = entity.name,
+         let correction: String = countryCodeCorrections[ name ]
       {
          entity.countryCodes?.append( correction )
       }
-
-      // TODO same for programs
    }
-}
-
-let countryCodeCorrections: [ String: String ] =
-[
-   "Canadian Space Agency": "CAN",
-   "National Aeronautics and Space Administration": "USA",
-   "China National Space Administration": "CHN",
-   "Arianespace": "FRA",  // TODO also US, Japan, Singapore?
-   "Boeing": "USA",
-   "European Space Agency": "EU", // TODO two char?
-   "Japan Aerospace Exploration Agency": "JPN",
-   "North American Aviation": "USA",
-   "Northrop Grumman Innovation Systems": "USA",
-   "Russian Federal Space Agency (ROSCOSMOS)": "RUS",
-   "Sierra Nevada Corporation": "USA",
-   "Soviet Space Program": "SUN",
-   "SpaceX": "USA"
-]
-
-func isBasic( agency: Agency ) -> Bool
-{
-   return agency.name != nil &&
-      agency.agencyDescription == nil &&
-      agency.administrator == nil &&
-      agency.foundingYear == nil &&
-      agency.launchers == nil &&
-      agency.spacecraft == nil &&
-      agency.imageURL == nil
-}
-
-func getCountryCodes( countryCode: String? ) -> [String]
-{
-   if countryCode == nil { return [] }
-
-   var codes: [String] = []
-   if let agencyCodes = countryCode
-   {
-      let codeList = agencyCodes.split( separator: "," )
-      for code in codeList
-      {
-         let country = String( code ).trim()
-         if country.count == 6
-         {
-            codes.append( String( country.prefix( 3 ) ) )
-            codes.append( String( country.suffix( 3 ) ) )
-         }
-         else if country.contains( "/" )
-         {
-            let countryParts = country.split( separator: "/" )
-            codes.append( String( countryParts[ 0 ] ) )
-            codes.append( String( countryParts[ 1 ] ) )
-         }
-         else
-         {
-            codes.append( country )
-         }
-      }
-   }
-
-   if codes.count == 0 { return [] }
-
-   return codes
-}
-
-// Core Data search/update
-
-func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> Agency?
-{
-   return getEntityByID( entityID: entityID, context: context, entityName: "Agency" ) as? Agency
-}
-
-func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agency
-{
-   let agencyEntity = getAgency( by: agency.id, context: context )
-   agency.updateEntity( entity: agencyEntity, context: context )
-   return agencyEntity ?? agency.addToCoreData( context: context )
-}
-
-func getAgencyCount( context: NSManagedObjectContext ) -> Int?
-{
-   return getRecordsCount( entityName: "Agency", context: context )
 }
 
 func getSampleAgency() -> AgencyJSON?

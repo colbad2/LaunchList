@@ -2,8 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable identifier_name
-
 /**
  Organization providing services for the launch.
 
@@ -26,7 +24,7 @@ struct ServiceProviderJSON: Decodable
 
    func addToCoreData( context: NSManagedObjectContext ) -> ServiceProvider
    {
-      let newServiceProvider = ServiceProvider( context: context )
+      let newServiceProvider: ServiceProvider = ServiceProvider( context: context )
       updateEntity( entity: newServiceProvider )
 
       return newServiceProvider
@@ -51,7 +49,7 @@ func getProvider( by entityID: Int64, context: NSManagedObjectContext ) -> Servi
 
 func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObjectContext ) -> ServiceProvider
 {
-   let providerEntity = getProvider( by: provider.id, context: context )
+   let providerEntity: ServiceProvider? = getProvider( by: provider.id, context: context )
    provider.updateEntity( entity: providerEntity )
    return providerEntity ?? provider.addToCoreData( context: context )
 }
@@ -68,10 +66,10 @@ func getSampleServiceProvider() -> ServiceProviderJSON?
 
 private let sampleServiceProviderJSON =
 """
- {
-     "id": 121,
-     "name": "SpaceX",
-     "type": "Commercial",
-     "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
- }
+{
+   "id": 121,
+   "name": "SpaceX",
+   "type": "Commercial",
+   "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
+}
 """

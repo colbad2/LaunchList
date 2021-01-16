@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  {
@@ -52,7 +51,7 @@ public struct DockingJSON: Decodable, Identifiable
       entity.docking = self.docking
       entity.departure = self.departure
 
-      if let flightVehicle = self.flightVehicle
+      if let flightVehicle: FlightVehicleJSON = self.flightVehicle
       {
          let flightVehicleEntity: FlightVehicle = fetchFlightVehicle( flightVehicle: flightVehicle, context: context )
          entity.flightVehicle = flightVehicleEntity
@@ -93,7 +92,7 @@ func getDocking( by entityID: Int64, context: NSManagedObjectContext ) -> Dockin
 
 func fetchDocking( docking: DockingJSON, context: NSManagedObjectContext ) -> Docking
 {
-   let dockingEntity = getDocking( by: docking.id, context: context )
+   let dockingEntity: Docking? = getDocking( by: docking.id, context: context )
    docking.updateEntity( entity: dockingEntity, context: context )
    return dockingEntity ?? docking.addToCoreData( context: context )
 }

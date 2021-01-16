@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct AgencyLink: View
 {
@@ -9,10 +9,10 @@ struct AgencyLink: View
 
    var body: some View
    {
-      let context = PersistenceController.shared.container.viewContext
-      if let agencyID = agencyID,
-         let agency = getAgency( by: agencyID, context: context ),
-         let name = agency.name
+      let context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
+      if let agencyID: Int64 = agencyID,
+         let agency: Agency = getAgency( by: agencyID, context: context ),
+         let name: String = agency.name
       {
          HStack
          {
@@ -32,13 +32,12 @@ struct AgencyLinkPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      let agency = getEntityByID( entityID: 63,
-                                  context: context,
-                                  entityName: "Agency" ) as? Agency
-
-      if let agencyID = agency?.id
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let agency: Agency = getEntityByID( entityID: 63,
+                                             context: context,
+                                             entityName: "Agency" ) as? Agency
       {
+         let agencyID: Int64 = agency.id
          Group
          {
             NavigationView

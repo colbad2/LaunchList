@@ -60,7 +60,7 @@ func getLiveStream( by entityID: String, context: NSManagedObjectContext ) -> Li
 
 func fetchLiveStream( liveStream: LiveStreamJSON, context: NSManagedObjectContext ) -> LiveStream
 {
-   let liveStreamEntity = getLiveStream( by: liveStream.url, context: context )
+   let liveStreamEntity: LiveStream? = getLiveStream( by: liveStream.url, context: context )
    liveStream.updateEntity( entity: liveStreamEntity, context: context )
    return liveStreamEntity ?? liveStream.addToCoreData( context: context )
 }

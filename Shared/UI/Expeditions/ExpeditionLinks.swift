@@ -4,27 +4,24 @@ import SwiftUI
 
 struct ExpeditionLinks: View
 {
-   var expeditions: NSSet?
+   var expeditions: Set< Expedition >
 
    var body: some View
    {
-      if let expeditions = expeditions
+      if !expeditions.isEmpty
       {
-         if expeditions.count > 0
+         Divider()
+         HStack
          {
-            Divider()
-            HStack
-            {
-               Text( "Expeditions" )
-                  .font( .headline )
-                  .foregroundColor( .secondary )
-               Spacer()
-            }
-            ForEach( getExpeditionsArray( expeditions: expeditions ), id: \.self )
-            {
-               expedition in
-               ExpeditionLink( expeditionID: expedition.id )
-            }
+            Text( "Expeditions" )
+               .font( .headline )
+               .foregroundColor( .secondary )
+            Spacer()
+         }
+         ForEach( sortExpeditionsByName( expeditionArray: Array( expeditions ) ), id: \.self )
+         {
+            expedition in
+            ExpeditionLink( expeditionID: expedition.id )
          }
       }
    }

@@ -1,6 +1,9 @@
+// Copyright © 2021 Bradford Holcombe. All rights reserved.
+
 import XCTest
 
 // swiftlint:disable function_parameter_count
+// swiftlint:disable function_default_parameter_at_end
 
 func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: String? = nil, lat: String, lon: String,
                mapImage: String? = nil, mapURL: String? = nil, name: String, totalLaunchCount: Int64,

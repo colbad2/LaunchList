@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct VehicleDetail: View
 {
@@ -11,7 +11,7 @@ struct VehicleDetail: View
    {
       ScrollView
       {
-         TitleField( text: "\(vehicle.launcher?.fullName ?? "Starship") \(vehicle.serialNumber!)" )
+         TitleField( text: "\(vehicle.launcher?.fullName ?? "Starship") \(vehicle.serialNumber ?? "")" )
          LeftField( prefix: "Flight proven: ", text: "\(vehicle.flightProven ? "yes" : "no")" )
          LeftField( prefix: "Status: ", text: vehicle.status )
          LeftField( prefix: "Flights: ", text: "\(vehicle.flights)" )
@@ -30,10 +30,10 @@ struct VehiclePreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      if let vehicle = getEntityByID( entityID: 75,
-                                   context: context,
-                                   entityName: "Vehicle" ) as? Vehicle
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let vehicle: Vehicle = getEntityByID( entityID: 75,
+                                               context: context,
+                                               entityName: "Vehicle" ) as? Vehicle
       {
          Group
          {

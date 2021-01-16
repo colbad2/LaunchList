@@ -34,30 +34,22 @@ struct EventDetail: View
                {
                   HStack
                   {
-                     if let news = wrapURL( event.newsURL )
-                     {
-                        Link( "News", destination: news )
-                           .font( .subheadline )
-                     }
-
-                     if let video = wrapURL( event.videoURL )
-                     {
-                        Link( "Video", destination: video )
-                           .font( .subheadline )
-                     }
+                     SocialMediaLink( linkURL: event.newsURL, title: "News" )
+                     SocialMediaLink( linkURL: event.videoURL, title: "Video" )
                   }
                   .padding()
                }
 
-               LaunchLinks( launches: event.launches )
-               ProgramLinks( programs: event.programs )
-               ExpeditionLinks( expeditions: event.expeditions )
-               SpaceStationLinks( spaceStations: event.spaceStations )
+               LaunchLinks( launches: event.launchesSet )
+               ProgramLinks( programs: event.programsSet )
+               ExpeditionLinks( expeditions: event.expeditionsSet )
+               if event.hasSpaceStations()
+               {
+                  SpaceStationLinks( spaceStations: event.spaceStationsSet )
+               }
             }
          }
       }
       .padding()
    }
 }
-
-// TODO preview

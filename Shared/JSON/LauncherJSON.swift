@@ -2,9 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable line_length
-// swiftlint:disable identifier_name
-
 /**
  {
    "id": 8,
@@ -68,7 +65,7 @@ struct LauncherJSON: Decodable
       entity.status = self.status
       entity.details = self.details
 
-      if let config = self.launcherConfig
+      if let config: LauncherConfigJSON = self.launcherConfig
       {
          entity.launcherConfig = fetchLauncherConfig( launcherConfig: config, context: context )
          entity.launcherConfig?.launcher = entity
@@ -90,7 +87,7 @@ func getLauncher( by entityID: Int64, context: NSManagedObjectContext ) -> Launc
 
 func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectContext ) -> Launcher
 {
-   let launcherEntity = getLauncher( by: launcher.id, context: context )
+   let launcherEntity: Launcher? = getLauncher( by: launcher.id, context: context )
    launcher.updateEntity( entity: launcherEntity, context: context )
    return launcherEntity ?? launcher.addToCoreData( context: context )
 }

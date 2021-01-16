@@ -2,11 +2,14 @@
 
 import SwiftUI
 
-struct Countdown: View
+// swiftlint:disable explicit_type_interface
+
+struct CountdownView: View
 {
    @State var targetTime: Date?
    @State private var parts: DateComponents?
-   let timer = Timer.publish( every: 1, on: .main, in: .common ).autoconnect()
+   let timer =
+      Timer.publish( every: 1, on: .main, in: .common ).autoconnect()
 
    var body: some View
    {
@@ -25,8 +28,7 @@ struct Countdown: View
       {
          _ in // input
 
-         if targetTime == nil { targetTime = Date() }
-         parts = Calendar.current.dateComponents( [ .day, .hour, .minute, .second ], from: Date(), to: targetTime! )
+         parts = Calendar.current.dateComponents( [ .day, .hour, .minute, .second ], from: Date(), to: targetTime ?? Date() )
       }
    }
 }
@@ -51,19 +53,17 @@ struct TimerPiece: View
 
 func countdownSign( countdownDate: Date? ) -> String
 {
-   if countdownDate == nil { return "T " }
-   if countdownDate! < Date()
+   guard let date = countdownDate else { return "T " }
+   if date < Date()
    {
       return "T+"
-
    }
    return "T-"
 }
 
 func countdownString( _ count: Int? ) -> String
 {
-   if count == nil { return "--" }
-   var countdownTimeString = count!
+   guard var countdownTimeString = count else { return "--" }
    if countdownTimeString < 0 { countdownTimeString = -countdownTimeString }
    if countdownTimeString < 10 { return "0\(countdownTimeString)" }
 
@@ -79,21 +79,21 @@ struct CountdownPreview: PreviewProvider
       {
          NavigationView
          {
-            Countdown( targetTime: Date().addingTimeInterval( -360000 ) )
+            CountdownView( targetTime: Date().addingTimeInterval( -360000 ) )
                .border( Color.blue )
          }
          .environment( \.colorScheme, .light )
 
          NavigationView
          {
-            Countdown( targetTime: Date().addingTimeInterval( -360000 ) )
+            CountdownView( targetTime: Date().addingTimeInterval( -360000 ) )
                .border( Color.blue )
          }
          .environment( \.colorScheme, .dark )
 
          NavigationView
          {
-            Countdown( targetTime: Date().addingTimeInterval( -360000 ) )
+            CountdownView( targetTime: Date().addingTimeInterval( -360000 ) )
                .environment( \.sizeCategory, .accessibilityExtraExtraExtraLarge )
          }
       }

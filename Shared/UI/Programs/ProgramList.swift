@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct ProgramList: View
 {
@@ -34,7 +34,7 @@ struct ProgramRow: View
    {
       RowImage( imageURL: program.imageURL, drawSpace: false, imageWidth: 50, imageHeight: 50 )
 
-      if let name = program.name
+      if let name: String = program.name
       {
          VStack( alignment: .leading )
          {

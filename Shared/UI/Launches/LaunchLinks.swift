@@ -1,5 +1,6 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+import CoreData
 import SwiftUI
 
 /**
@@ -7,13 +8,11 @@ import SwiftUI
  */
 struct LaunchLinks: View
 {
-   var launches: NSSet?
+   var launches: Set< Launch >
 
    var body: some View
    {
-      if let launches = launches
-      {
-         if launches.count > 0
+         if !launches.isEmpty
          {
             Divider()
             HStack
@@ -23,13 +22,12 @@ struct LaunchLinks: View
                   .foregroundColor( .secondary )
                Spacer()
             }
-            ForEach( getLaunchesArray( launches: launches ), id: \.self )
+            ForEach( sortLaunchesByName( launchArray: Array( launches ) ), id: \.self )
             {
                launch in
                LaunchLink( launchID: launch.id )
             }
          }
-      }
    }
 }
 
@@ -39,10 +37,10 @@ struct LaunchLink: View
 
    var body: some View
    {
-      let context = PersistenceController.shared.container.viewContext
-      if let launchID = launchID,
-         let launch = getLaunch( by: launchID, context: context ),
-         let name = launch.name
+      let context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
+      if let launchID: String = launchID,
+         let launch: Launch = getLaunch( by: launchID, context: context ),
+         let name: String = launch.name
       {
          NavigationLink( destination: LaunchDetail( launch: launch ) )
          {
@@ -53,11 +51,4 @@ struct LaunchLink: View
          .padding( 4 )
       }
    }
-}
-
-func getLaunchesArray( launches: NSSet ) -> [Launch]
-{
-   var eventLaunches = Array( launches as Set ) as? [Launch] ?? []
-   eventLaunches.sort( by: { ($0 as Launch).windowStart! < ($1 as Launch).windowStart! } )
-   return eventLaunches
 }

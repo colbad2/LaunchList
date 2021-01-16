@@ -2,9 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable line_length
-// swiftlint:disable identifier_name
-
 /**
 
  example JSON:
@@ -92,7 +89,7 @@ struct PadJSON: Decodable
       entity.longitude = self.longitude ?? ""
 
       // TODO all of these kinds of assignments should be extension funcs on the CD entity
-      if let loc = self.location
+      if let loc: LocationJSON = self.location
       {
          entity.location = fetchLocation( location: loc, context: context )
          entity.location?.pad = entity
@@ -100,28 +97,36 @@ struct PadJSON: Decodable
 
       entity.mapImage = self.mapImage
 
-      let mapURL = self.mapURL?.trim()
-      if mapURL != nil && mapURL!.count > 0
+      if let mapURL: String = self.mapURL?.trim()
       {
-         entity.mapURL = mapURL!.fixBadUTF()
-         // TODO Pad at Guam International Airport has a map URL like "https://www.google.com/maps/place/35Â°03'34.0"N+118Â°09'06.0"W/"
-         // I fix it to "https://www.google.com/maps/place/35°03'34.0"N+118°09'06.0"W/", which works in a browser, but URL() fails
-         // to convert it to a URL. So, the pad doesn't have a map link it could have. Try to fix the link so it works.
-         // A number of other map links have the issue
+         if !mapURL.isEmpty
+         {
+            entity.mapURL = mapURL.fixBadUTF()
+            // TODO Pad at Guam International Airport has a map URL like "https://www.google.com/maps/place/35Â°03'34.0"N+118Â°09'06.0"W/"
+            // I fix it to "https://www.google.com/maps/place/35°03'34.0"N+118°09'06.0"W/", which works in a browser, but URL() fails
+            // to convert it to a URL. So, the pad doesn't have a map link it could have. Try to fix the link so it works.
+            // A number of other map links have the issue
+         }
       }
 
-      var name = self.name ?? ""
-      if name.first != nil && name.first!.isNumber
+      if let padName: String = self.name
       {
-         name = "Pad " + name
+         var name: String = padName
+         if !name.isEmpty && name.first?.isNumber ?? false
+         {
+            name = "Pad " + name
+         }
+         entity.name = name
       }
-      entity.name = name
+
       entity.totalLaunchCount = self.totalLaunchCount ?? -1
 
-      let wikiURL = self.wikiURL?.trim()
-      if wikiURL != nil && wikiURL!.count > 0
+      if let wikiURL: String = self.wikiURL?.trim()
       {
-         entity.wikiURL = wikiURL
+         if !wikiURL.isEmpty
+         {
+            entity.wikiURL = wikiURL
+         }
       }
    }
 }
@@ -135,7 +140,7 @@ func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad?
 
 func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
 {
-   let padEntity = getPad( by: pad.id, context: context )
+   let padEntity: Pad? = getPad( by: pad.id, context: context )
    pad.updateEntity( entity: padEntity, context: context )
    return padEntity ?? pad.addToCoreData( context: context )
 }
@@ -147,12 +152,10 @@ func getPadCount( context: NSManagedObjectContext ) -> Int?
 
 func getSamplePadEntity() -> Pad?
 {
-   let context = PersistenceController.preview.container.viewContext
-   let pad = getEntityByID( entityID: 87,
-                            context: context,
-                            entityName: "Pad" ) as? Pad
-
-   return pad
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 87,
+                         context: context,
+                         entityName: "Pad" ) as? Pad
 }
 
 func getSamplePad() -> PadJSON?

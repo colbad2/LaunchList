@@ -9,7 +9,7 @@ struct DescriptionView: View
 
    var body: some View
    {
-      if let description = desc
+      if let description: String = desc
       {
          VStack( alignment: .leading )
          {

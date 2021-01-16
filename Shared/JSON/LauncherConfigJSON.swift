@@ -2,8 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable identifier_name
-
 /**
  {
      "id": 169,
@@ -61,7 +59,7 @@ func getLauncherConfig( by entityID: Int64, context: NSManagedObjectContext ) ->
 
 func fetchLauncherConfig( launcherConfig: LauncherConfigJSON, context: NSManagedObjectContext ) -> LauncherConfig
 {
-   let launcherConfigEntity = getLauncherConfig( by: launcherConfig.id, context: context )
+   let launcherConfigEntity: LauncherConfig? = getLauncherConfig( by: launcherConfig.id, context: context )
    launcherConfig.updateEntity( entity: launcherConfigEntity, context: context )
    return launcherConfigEntity ?? launcherConfig.addToCoreData( context: context )
 }

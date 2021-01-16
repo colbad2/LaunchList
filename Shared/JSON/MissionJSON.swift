@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
    Mission being serviced by a launch.
@@ -70,7 +69,7 @@ struct MissionJSON: Decodable
       entity.launchDesignator = self.launchDesignator
       entity.name = self.name?.fixBadUTF().trim()
 
-      if let orbitName = self.orbit?.name
+      if let orbitName: String = self.orbit?.name
       {
          entity.orbitName = normalizedOrbitName( orbitName, abbreviation: self.orbit?.abbreviation )
       }
@@ -89,7 +88,7 @@ func normalizedOrbitName( _ name: String?, abbreviation: String? = nil ) -> Stri
       orbitName += " Orbit"
    }
 
-   if let abbreviation = abbreviation
+   if let abbreviation: String = abbreviation
    {
       orbitName += " (\(abbreviation))"
    }
@@ -106,7 +105,7 @@ func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Missio
 
 func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mission
 {
-   let missionEntity = getMission( by: mission.id, context: context )
+   let missionEntity: Mission? = getMission( by: mission.id, context: context )
    mission.updateEntity( entity: missionEntity, context: context )
    return missionEntity ?? mission.addToCoreData( context: context )
 }

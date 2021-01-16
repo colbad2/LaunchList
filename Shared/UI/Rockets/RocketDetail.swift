@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct RocketDetail: View
 {
@@ -25,12 +25,14 @@ struct RocketPreview: PreviewProvider
    static var previews: some View
    {
       // TODO doesn't work
-      let context = PersistenceController.preview.container.viewContext
-      let rocket = getEntityByID( entityID: 2663,
-                                  context: context,
-                                  entityName: "Rocket") as? Rocket
-      Text( rocket?.fullName ?? "" )
-      RocketDetail( rocket: rocket )
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let rocket: Rocket = getEntityByID( entityID: 2663,
+                                             context: context,
+                                             entityName: "Rocket") as? Rocket
+      {
+         Text( rocket.fullName ?? "" )
+         RocketDetail( rocket: rocket )
+      }
    }
 }
 #endif

@@ -5,7 +5,7 @@ import Foundation
 // use on main thread only
 struct ISOParser
 {
-   static var shared = ISOParser()
+   static var shared: ISOParser = ISOParser()
    var dateFormatter: DateFormatter
    var tightDateFormatter: DateFormatter
    var timeFormatter: DateFormatter
@@ -44,37 +44,42 @@ func tightDateString( _ date: Date? ) -> String
    return ISOParser.shared.tightDateFormatter.string( from: date )
 }
 
-func wrapURL( _ url: String? ) -> URL?
+func wrapURL( _ urlString: String? ) -> URL?
 {
-   if url == nil || url!.trim() == "" { return nil }
-   return URL( string: url! )
+   guard let url = urlString else { return nil }
+   if url.trim() == "" { return nil }
+   return URL( string: url )
 }
+
+// swiftlint:disable pattern_matching_keywords
 
 func parseJSONFile<T: Decodable>( filename: String ) -> T?
 {
-   let decoder = JSONDecoder()
+   let decoder: JSONDecoder = JSONDecoder()
    decoder.keyDecodingStrategy = .convertFromSnakeCase
 
    do
    {
-      let jsonData = readBundleJSONFile( forName: filename )!
-      return try decoder.decode( T.self, from: jsonData )
+      if let jsonData: Data = readBundleJSONFile( forName: filename )
+      {
+         return try decoder.decode( T.self, from: jsonData )
+      }
    }
-   catch DecodingError.dataCorrupted( let context ) { print( context ) }
-   catch DecodingError.keyNotFound( let key, let context )
+   catch let error as DecodingError
    {
-       print( "Key '\(key)' not found:", context.debugDescription )
-       print( "codingPath:", context.codingPath )
-   }
-   catch DecodingError.valueNotFound( let value, let context )
-   {
-       print( "Value '\(value)' not found:", context.debugDescription )
-       print( "codingPath:", context.codingPath )
-   }
-   catch DecodingError.typeMismatch(let type, let context )
-   {
-       print( "Type '\(type)' mismatch:", context.debugDescription )
-       print( "codingPath:", context.codingPath )
+      switch error
+      {
+         case .typeMismatch( let key, let value ):
+            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+         case .valueNotFound( let key, let value ):
+            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+         case .keyNotFound( let key, let value ):
+            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+         case .dataCorrupted( let key ):
+            print( "ERROR \(key): \(error.localizedDescription)" )
+         default:
+            print( "ERROR: \(error.localizedDescription)" )
+      }
    }
    catch { print( "error: ", error ) }
 
@@ -83,31 +88,84 @@ func parseJSONFile<T: Decodable>( filename: String ) -> T?
 
 func parseJSONString<T: Decodable>( json: String ) -> T?
 {
-   let decoder = JSONDecoder()
+   let decoder: JSONDecoder = JSONDecoder()
    decoder.keyDecodingStrategy = .convertFromSnakeCase
 
    do
    {
-      let jsonData = json.data( using: .utf8 )!
-      return try decoder.decode( T.self, from: jsonData )
+      if let jsonData: Data = json.data( using: .utf8 )
+      {
+         return try decoder.decode( T.self, from: jsonData )
+      }
    }
-   catch DecodingError.dataCorrupted( let context ) { print( context ) }
-   catch DecodingError.keyNotFound( let key, let context )
+   catch let error as DecodingError
    {
-       print( "Key '\(key)' not found:", context.debugDescription )
-       print( "codingPath:", context.codingPath )
-   }
-   catch DecodingError.valueNotFound( let value, let context )
-   {
-       print( "Value '\(value)' not found:", context.debugDescription )
-       print( "codingPath:", context.codingPath )
-   }
-   catch DecodingError.typeMismatch(let type, let context )
-   {
-       print( "Type '\(type)' mismatch:", context.debugDescription )
-       print( "codingPath:", context.codingPath )
+      switch error
+      {
+         case .typeMismatch( let key, let value ):
+            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+         case .valueNotFound( let key, let value ):
+            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+         case .keyNotFound( let key, let value ):
+            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+         case .dataCorrupted( let key ):
+            print( "ERROR \(key): \(error.localizedDescription)" )
+         default:
+            print( "ERROR: \(error.localizedDescription)" )
+      }
    }
    catch { print( "error: ", error ) }
 
    return nil
+}
+
+let countryCodeCorrections: [ String: String ] =
+   [
+      "Canadian Space Agency": "CAN",
+      "National Aeronautics and Space Administration": "USA",
+      "China National Space Administration": "CHN",
+      "Arianespace": "FRA",
+      "Boeing": "USA",
+      "European Space Agency": "EU",
+      "Japan Aerospace Exploration Agency": "JPN",
+      "North American Aviation": "USA",
+      "Northrop Grumman Innovation Systems": "USA",
+      "Russian Federal Space Agency (ROSCOSMOS)": "RUS",
+      "Sierra Nevada Corporation": "USA",
+      "Soviet Space Program": "SUN",
+      "SpaceX": "USA"
+   ]
+
+func getCountryCodes( countryCode: String? ) -> [String]
+{
+   if countryCode == nil { return [] }
+
+   var codes: [String] = []
+   if let agencyCodes: String = countryCode
+   {
+      let codeList: [Substring] = agencyCodes.split( separator: "," )
+      for code in codeList
+      {
+         let country: String = String( code ).trim()
+         if country.count == 6
+         {
+            codes.append( String( country.prefix( 3 ) ) )
+            codes.append( String( country.suffix( 3 ) ) )
+         }
+         else if country.contains( "/" )
+         {
+            let countryParts: [Substring] = country.split( separator: "/" )
+            codes.append( String( countryParts[ 0 ] ) )
+            codes.append( String( countryParts[ 1 ] ) )
+         }
+         else
+         {
+            codes.append( country )
+         }
+      }
+   }
+
+   if codes.isEmpty { return [] }
+
+   return codes
 }

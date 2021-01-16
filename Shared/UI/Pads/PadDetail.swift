@@ -1,8 +1,8 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
 import MapKit
+import SwiftUI
 
 struct PadDetail: View
 {
@@ -17,19 +17,19 @@ struct PadDetail: View
             HStack( alignment: .top )
             {
                TitleField( text: pad.name )
-               if let countryCode = pad.location?.countryCode
+               if let countryCode: String = pad.location?.countryCode
                {
                   Spacer()
-                  Text( flags( for: countryCode )! )
+                  Text( flags( for: countryCode ) ?? "" )
                }
             }
             LeftField( text: pad.location?.name )
             Button( action: { openInMaps( name: pad.location?.name, lat: pad.latitude, lon: pad.longitude ) },
-                    label: { LeftField( text: "\(pad.latitude!), \(pad.longitude!)" ) } )
+                    label: { LeftField( text: "\(pad.latitude ?? "?"), \(pad.longitude ?? "?")" ) } )
             AgencyLink( agencyID: pad.agencyID )
             IconView( withURL: pad.mapImage )
             LinkBarView( infoURL: pad.infoURL, wikiURL: pad.wikiURL, mapURL: pad.mapURL )
-            LaunchLinks( launches: pad.launches )
+            LaunchLinks( launches: pad.launchSet )
          }
          .padding()
       }
@@ -39,13 +39,11 @@ struct PadDetail: View
 
 func openInMaps( name: String?, lat: String?, lon: String? )
 {
-   if lat == nil || lon == nil { return }
+   guard let lat = lat, let lon = lon else { return }
 
-   let latitude = Double( lat! )
-   let longitude = Double( lon! )
-   if latitude == nil || longitude == nil { return }
-
-   let coordinate = CLLocationCoordinate2D( latitude: latitude!, longitude: longitude! )
+   let latitude: Double = Double( lat ) ?? 0.0
+   let longitude: Double = Double( lon ) ?? 0.0
+   let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D( latitude: latitude, longitude: longitude )
    let placemark: MKPlacemark = MKPlacemark( coordinate: coordinate )
    let source: MKMapItem = MKMapItem( placemark: placemark )
    if name != nil { source.name = name }
@@ -58,7 +56,10 @@ struct PadPreview: PreviewProvider
 {
    static var previews: some View
    {
-      PadDetail( pad: getSamplePadEntity()! )
+      if let pad: Pad = getSamplePadEntity()
+      {
+         PadDetail( pad: pad )
+      }
    }
 }
 #endif

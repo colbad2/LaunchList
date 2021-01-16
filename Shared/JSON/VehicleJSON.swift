@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  ### Example
@@ -67,7 +66,7 @@ struct VehicleJSON: Decodable
       entity.status = self.status
       entity.details = self.details
 
-      if let launcher = self.launcherConfig
+      if let launcher: RocketJSON = self.launcherConfig
       {
          entity.launcher = fetchRocket( rocket: launcher, context: context )
          entity.launcher?.addToVehicles( entity )
@@ -89,7 +88,7 @@ func getVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> Vehicl
 
 func fetchVehicle( vehicle: VehicleJSON, context: NSManagedObjectContext ) -> Vehicle
 {
-   let vehicleEntity = getVehicle( by: vehicle.id, context: context )
+   let vehicleEntity: Vehicle? = getVehicle( by: vehicle.id, context: context )
    vehicle.updateEntity( entity: vehicleEntity, context: context )
    return vehicleEntity ?? vehicle.addToCoreData( context: context )
 }

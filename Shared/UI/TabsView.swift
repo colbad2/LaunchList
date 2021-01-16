@@ -4,21 +4,22 @@ import SwiftUI
 
 struct TabsView: View
 {
-   @State private var selection = AppTab.home
-//   @State private var resetTimelineNavigationID = UUID()
-   @State private var resetDatasetsNavigationID = UUID()
+   @State private var selection: AppTab = AppTab.home
+//   @State private var resetTimelineNavigationID: UUID = UUID()
+   @State private var resetDatasetsNavigationID: UUID = UUID()
 
    var body: some View
    {
-      let selectable = Binding(        // << proxy binding to catch tab tap
-                  get: { self.selection },
-                  set: { self.selection = $0
+      let selectable: Binding =
+         Binding(        // << proxy binding to catch tab tap
+            get: { self.selection },
+            set: { self.selection = $0
 
-                      // set new ID to recreate NavigationView, so put it
-                      // in root state, same as is on change tab and back
-//                     self.resetTimelineNavigationID = UUID()
-                     self.resetDatasetsNavigationID = UUID()
-              })
+               // set new ID to recreate NavigationView, so put it
+               // in root state, same as is on change tab and back
+               //                     self.resetTimelineNavigationID = UUID()
+               self.resetDatasetsNavigationID = UUID()
+            })
 
       TabView( selection: selectable )
       {
@@ -74,5 +75,3 @@ struct TabInfo: View
       Text( title )
    }
 }
-
-// TODO preview

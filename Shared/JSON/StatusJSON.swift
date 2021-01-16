@@ -2,8 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable identifier_name
-
 /**
  Part of [LaunchJSON], [SpacecraftJSON], and [SpaceStationJSON] objects
 

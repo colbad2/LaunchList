@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct VehicleList: View
 {
@@ -32,7 +32,7 @@ struct VehicleRow: View
 
    var body: some View
    {
-      TitleField( text: "\(vehicle.launcher?.fullName ?? "") \(vehicle.serialNumber!)" )
+      TitleField( text: "\(vehicle.launcher?.fullName ?? "") \(vehicle.serialNumber ?? "")" )
    }
 }
 

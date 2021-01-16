@@ -1,8 +1,8 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import WidgetKit
-import SwiftUI
 import Intents
+import SwiftUI
+import WidgetKit
 
 struct Provider: IntentTimelineProvider
 {
@@ -15,7 +15,7 @@ struct Provider: IntentTimelineProvider
                      in context: Context,
                      completion: @escaping (SimpleEntry) -> Void )
    {
-      let entry = SimpleEntry( date: Date(), configuration: configuration )
+      let entry: SimpleEntry = SimpleEntry( date: Date(), configuration: configuration )
       completion( entry )
    }
 
@@ -26,16 +26,18 @@ struct Provider: IntentTimelineProvider
       var entries: [SimpleEntry] = []
 
       // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-      let currentDate = Date()
+      let currentDate: Date = Date()
       for hourOffset in 0 ..< 5
       {
-         let entryDate = Calendar.current.date( byAdding: .hour, value: hourOffset, to: currentDate )!
-         let entry = SimpleEntry( date: entryDate, configuration: configuration )
-         entries.append( entry )
+         if let entryDate: Date = Calendar.current.date( byAdding: .hour, value: hourOffset, to: currentDate )
+         {
+            let entry: SimpleEntry = SimpleEntry( date: entryDate, configuration: configuration )
+            entries.append( entry )
+         }
       }
 
-      let timeline = Timeline( entries: entries, policy: .atEnd )
-      completion(timeline)
+      let timeline: Timeline = Timeline( entries: entries, policy: .atEnd )
+      completion( timeline )
    }
 }
 
@@ -76,7 +78,7 @@ struct LaunchListWidget_Previews: PreviewProvider
 {
    static var previews: some View
    {
-      let entry = SimpleEntry( date: Date(), configuration: ConfigurationIntent() )
+      let entry: SimpleEntry = SimpleEntry( date: Date(), configuration: ConfigurationIntent() )
       LaunchListWidgetEntryView( entry: entry )
          .previewContext(WidgetPreviewContext( family: .systemSmall ) )
    }

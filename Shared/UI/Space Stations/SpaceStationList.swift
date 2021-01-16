@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct SpaceStationList: View
 {
@@ -36,7 +36,7 @@ struct SpaceStationRow: View
 
       VStack( alignment: .leading )
       {
-         TitleField( text: spaceStation.name! )
+         TitleField( text: spaceStation.name )
       }
    }
 }

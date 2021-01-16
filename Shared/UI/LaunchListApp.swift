@@ -15,16 +15,18 @@ struct LaunchListApp: App
          }
 
          TabsView()
-            .environment( \.managedObjectContext,
-                          PersistenceController.shared.container.viewContext )
+            .environment( \.managedObjectContext, PersistenceController.shared.container.viewContext )
       }
    }
 }
 
-func showPaths() -> Bool
+/**
+ Print out useful disk locations for simulator runs.
+ */
+public func showPaths() -> Bool
 {
    print( "app folder path is \(NSHomeDirectory())" )
-   let dir = NSSearchPathForDirectoriesInDomains( .applicationSupportDirectory, .userDomainMask, true ).last!
+   let dir: String = NSSearchPathForDirectoriesInDomains( .applicationSupportDirectory, .userDomainMask, true ).last ?? "unknown"
    print( "support dir is: \(dir)" )
 
    return true
@@ -32,13 +34,12 @@ func showPaths() -> Bool
 
 // TODO fill in with data
 #if DEBUG
-struct AppPreviews: PreviewProvider
+public struct AppPreviews: PreviewProvider
 {
-   static var previews: some View
+   public static var previews: some View
    {
       TabsView()
-         .environment( \.managedObjectContext,
-                       PersistenceController.preview.container.viewContext )
+         .environment( \.managedObjectContext, PersistenceController.preview.container.viewContext )
    }
 }
 #endif

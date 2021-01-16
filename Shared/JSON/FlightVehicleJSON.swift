@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  {
@@ -45,7 +44,7 @@ public struct FlightVehicleJSON: Decodable, Identifiable
       entity.destination = self.destination
       entity.missionEnd = self.missionEnd
 
-      if let spacecraft = self.spacecraft
+      if let spacecraft: SpacecraftJSON = self.spacecraft
       {
          let spacecraftEntity: Spacecraft = fetchSpacecraft( spacecraft: spacecraft, context: context )
          entity.spacecraft = spacecraftEntity
@@ -63,7 +62,7 @@ func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> 
 
 func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSManagedObjectContext ) -> FlightVehicle
 {
-   let flightVehicleEntity = getFlightVehicle( by: flightVehicle.id, context: context )
+   let flightVehicleEntity: FlightVehicle? = getFlightVehicle( by: flightVehicle.id, context: context )
    flightVehicle.updateEntity( entity: flightVehicleEntity, context: context )
    return flightVehicleEntity ?? flightVehicle.addToCoreData( context: context )
 }

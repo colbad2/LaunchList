@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  Astronaut.
@@ -101,7 +100,7 @@ struct AstronautJSON: Decodable
       entity.instagram = self.instagram
       entity.wiki = self.wiki
 
-      if let agency = self.agency
+      if let agency: AgencyJSON = self.agency
       {
          let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
          entity.agency = agencyEntity
@@ -113,8 +112,8 @@ struct AstronautJSON: Decodable
       entity.profileImage = self.profileImage
       entity.profileImageThumbnail = self.profileImageThumbnail
 
-      let nameParts = name?.split( separator: " " )
-      if let lastPart = nameParts?.last
+      let nameParts: [Substring]? = name?.split( separator: " " )
+      if let lastPart: Substring = nameParts?.last
       {
          entity.sortingName = String( lastPart )
       }
@@ -154,7 +153,7 @@ func getAstronaut( by id: Int64, context: NSManagedObjectContext ) -> Astronaut?
 
 func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectContext ) -> Astronaut
 {
-   let astronautEntity = getAstronaut( by: astronaut.id, context: context )
+   let astronautEntity: Astronaut? = getAstronaut( by: astronaut.id, context: context )
    astronaut.updateEntity( entity: astronautEntity, context: context )
    return astronautEntity ?? astronaut.addToCoreData( context: context )
 }

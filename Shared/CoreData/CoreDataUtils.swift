@@ -21,7 +21,7 @@ func saveContext( _ context: NSManagedObjectContext )
       // Replace this implementation with code to handle the error appropriately.
       // fatalError() causes the application to generate a crash log and terminate. You should not use this
       // function in a shipping application, although it may be useful during development.
-      let nsError = error as NSError
+      let nsError: NSError = error as NSError
       fatalError( "Unresolved error \(nsError), \(nsError.userInfo)" )
    }
 }
@@ -38,14 +38,14 @@ func getEntityByID( entityID: Int64, context: NSManagedObjectContext, entityName
 {
    do
    {
-      let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+      let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
       request.predicate = NSPredicate( format: "id == %d", entityID )
       let entities: [Any] = try context.fetch( request )
-      if entities.count > 0 { return entities.first }
+      if !entities.isEmpty { return entities.first }
    }
    catch
    {
-      let nsError = error as NSError
+      let nsError: NSError = error as NSError
       fatalError( "Failed to fetch entity \(entityName) with ID \(entityID): \(error), \(nsError.userInfo)" )
    }
 
@@ -66,14 +66,14 @@ func getEntityByID( entityID: String, context: NSManagedObjectContext, entityNam
 {
    do
    {
-      let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+      let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
       request.predicate = NSPredicate( format: "id == %@", entityID )
       let entities: [Any] = try context.fetch( request )
-      if entities.count > 0 { return entities.first }
+      if !entities.isEmpty { return entities.first }
    }
    catch
    {
-      let nsError = error as NSError
+      let nsError: NSError = error as NSError
       fatalError( "Failed to fetch entity \(entityName) with ID \(entityID): \(error), \(nsError.userInfo)" )
    }
 
@@ -95,12 +95,12 @@ func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> An
 {
    do
    {
-      let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+      let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
       return try context.fetch( request ).first
    }
    catch
    {
-      let nsError = error as NSError
+      let nsError: NSError = error as NSError
       fatalError( "Failed to fetch first entity \(entityName): \(error), \(nsError.userInfo)" )
    }
 }
@@ -114,7 +114,7 @@ func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> An
  */
 func getRecordsCount( entityName: String, context: NSManagedObjectContext ) -> Int?
 {
-   let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+   let fetchRequest: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
    do
    {
       return try context.count( for: fetchRequest )
@@ -129,7 +129,7 @@ func getRecordsCount( entityName: String, context: NSManagedObjectContext ) -> I
 
 func deleteAllData( entityName: String, context: NSManagedObjectContext )
 {
-   let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+   let fetchRequest: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
    fetchRequest.returnsObjectsAsFaults = false
    do
    {
@@ -188,11 +188,11 @@ func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
       request.sortDescriptors = [ NSSortDescriptor( key: "windowStart", ascending: true ) ]
       request.fetchLimit = count
       let entities: [Launch] = try context.fetch( request )
-      if entities.count > 0 { return entities }
+      if !entities.isEmpty { return entities }
    }
    catch
    {
-      let nsError = error as NSError
+      let nsError: NSError = error as NSError
       fatalError( "Failed to fetch next entity: \(error), \(nsError.userInfo)" )
    }
 

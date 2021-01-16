@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct PadList: View
 {
@@ -32,7 +32,7 @@ struct PadRow: View
 
    var body: some View
    {
-      if let name = pad.name
+      if let name: String = pad.name
       {
          RowImage( imageURL: pad.mapImage, defaultImage: UIImage( named: "AstronautB&W" ),
                    imageWidth: 100, imageHeight: 60 )
@@ -40,11 +40,11 @@ struct PadRow: View
          Text( name )
             .font( .headline )
             .layoutPriority( 2 )
-         if let countryCode = pad.location?.countryCode
+         if let countryCode: String = pad.location?.countryCode
          {
             if countryCode != "UNK"
             {
-               Text( flags( for: countryCode )! )
+               Text( flags( for: countryCode ) ?? "" )
             }
          }
       }

@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  Data that describe a launch.
@@ -94,10 +93,12 @@ public struct LaunchJSON: Decodable, Identifiable
    {
       guard let entity = entity else { return }
 
-      let fail = self.failReason?.trim()
-      if fail != nil && fail!.count > 0
+      if let fail: String = self.failReason?.trim()
       {
-         entity.failReason = self.failReason
+         if !fail.isEmpty
+         {
+            entity.failReason = fail
+         }
       }
       entity.hashtag = self.hashtag
       entity.holdReason = self.holdReason
@@ -106,13 +107,13 @@ public struct LaunchJSON: Decodable, Identifiable
       entity.infographic = self.infographic
       entity.inHold = self.inHold ?? false
 
-      if let provider = self.serviceProvider
+      if let provider: ServiceProviderJSON = self.serviceProvider
       {
          entity.serviceProvider = fetchProvider( provider: provider, context: context )
          entity.serviceProvider?.addToLaunches( entity )
       }
 
-      if let mission = self.mission
+      if let mission: MissionJSON = self.mission
       {
          entity.mission = fetchMission( mission: mission, context: context )
          entity.mission?.launch = entity
@@ -122,7 +123,7 @@ public struct LaunchJSON: Decodable, Identifiable
 
       entity.net = parseISODate( isoDate: self.net )
 
-      if let pad = self.pad
+      if let pad: PadJSON = self.pad
       {
          entity.pad = fetchPad( pad: pad, context: context )
          entity.pad?.addToLaunches( entity )
@@ -130,17 +131,17 @@ public struct LaunchJSON: Decodable, Identifiable
 
       entity.probability = self.probability ?? -1
 
-      if self.program != nil
+      if let programs: [ProgramJSON] = self.program
       {
-         for program in self.program!
+         for program in programs
          {
-            let programEntity = fetchProgram( program: program, context: context )
+            let programEntity: Program = fetchProgram( program: program, context: context )
             entity.addToPrograms( programEntity )
             programEntity.addToLaunches( entity )
          }
       }
 
-      if let rocket = self.rocket
+      if let rocket: RocketJSON = self.rocket
       {
          entity.rocket = fetchRocket( rocket: rocket, context: context )
          entity.rocket?.addToLaunches( entity )
@@ -172,7 +173,7 @@ func getLaunch( by entityID: String, context: NSManagedObjectContext ) -> Launch
 
 func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -> Launch
 {
-   if let launchEntity = getLaunch( by: launch.id, context: context )
+   if let launchEntity: Launch = getLaunch( by: launch.id, context: context )
    {
       launch.updateEntity( entity: launchEntity, context: context )
       return launchEntity

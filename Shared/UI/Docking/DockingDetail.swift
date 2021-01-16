@@ -38,11 +38,10 @@ struct DockingDetailPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-
-      if let docking = getEntityByID( entityID: 100,
-                                      context: context,
-                                      entityName: "Docking") as? Docking
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let docking: Docking = getEntityByID( entityID: 100,
+                                               context: context,
+                                               entityName: "Docking") as? Docking
       {
          DockingDetail( docking: docking )
       }

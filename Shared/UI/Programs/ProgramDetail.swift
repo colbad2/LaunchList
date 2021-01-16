@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 /**
  View of the details of a [Program].
@@ -23,7 +23,7 @@ struct ProgramDetail: View
          {
             RowImage( imageURL: program.imageURL, drawSpace: false, imageWidth: 100, imageHeight: 100 )
 
-            if let programName = program.name
+            if let programName: String = program.name
             {
                VStack( alignment: .leading )
                {
@@ -34,11 +34,8 @@ struct ProgramDetail: View
                      .layoutPriority( 200 )
                      .fixedSize( horizontal: false, vertical: true )
                   // here to force last line to draw, may be fixed in later SwiftUI releases
-                  let codes = getAllAgencyFlags( program: program )
-                  if let countryCodes = codes
-                  {
-                     Text( flagsFromCodeArray( countryCodes ) ?? "" )
-                  }
+                  let countryCodes: [String] = getAllAgencyFlags( program: program )
+                  Text( flagsFromCodeArray( countryCodes ) ?? "" )
                }
             }
             Spacer()
@@ -50,26 +47,7 @@ struct ProgramDetail: View
          DescriptionView( desc: program.programDescription )
 //            .border(Color.black)
 
-         if let agencies: NSSet = program.agencies
-         {
-            if agencies.count > 0
-            {
-               Divider()
-               HStack
-               {
-                  Text( "Agencies" )
-                     .font( .headline )
-                     .foregroundColor( .secondary )
-                  Spacer()
-               }
-               ForEach( getAgenciesArray( agencies: agencies ), id: \.self )
-               {
-                  agency in
-                  AgencyLink( agencyID: agency.id )
-                     .padding( 3 )
-               }
-            }
-         }
+         ProgramAgencyList( program: program )
 
          Divider()
          LinkBarView( infoURL: program.infoURL, wikiURL: program.wikiURL )
@@ -79,11 +57,31 @@ struct ProgramDetail: View
    }
 }
 
-func getAgenciesArray( agencies: NSSet ) -> [Agency]
+struct ProgramAgencyList: View
 {
-   var programAgencies = Array( agencies as Set ) as? [Agency] ?? []
-   programAgencies.sort( by: { ($0 as Agency).name! < ($1 as Agency).name! } )
-   return programAgencies
+   var program: Program
+
+   /** View contents. */
+   var body: some View
+   {
+      if program.hasAgencies
+      {
+         Divider()
+         HStack
+         {
+            Text( "Agencies" )
+               .font( .headline )
+               .foregroundColor( .secondary )
+            Spacer()
+         }
+         ForEach( program.sortedAgencies, id: \.self )
+         {
+            agency in
+            AgencyLink( agencyID: agency.id )
+               .padding( 3 )
+         }
+      }
+   }
 }
 
 /**
@@ -94,16 +92,16 @@ struct ProgramPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      let issProgram = getEntityByID( entityID: 17,
-                                      context: context,
-                                      entityName: "Program") as? Program
-      let artemisProgram = getEntityByID( entityID: 15,
-                                          context: context,
-                                          entityName: "Program") as? Program
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      let issProgram: Program? = getEntityByID( entityID: 17,
+                                                context: context,
+                                                entityName: "Program") as? Program
+      let artemisProgram: Program? = getEntityByID( entityID: 15,
+                                                    context: context,
+                                                    entityName: "Program") as? Program
       Group
       {
-         if let iss = issProgram
+         if let iss: Program = issProgram
          {
             NavigationView
             {
@@ -112,7 +110,7 @@ struct ProgramPreview: PreviewProvider
             .environment( \.colorScheme, .light )
          }
 
-         if let artemis = artemisProgram
+         if let artemis: Program = artemisProgram
          {
             NavigationView
             {
@@ -121,7 +119,7 @@ struct ProgramPreview: PreviewProvider
             .environment( \.colorScheme, .light )
          }
 
-         if let iss = issProgram
+         if let iss: Program = issProgram
          {
             NavigationView
             {

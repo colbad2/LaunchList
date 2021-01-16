@@ -182,8 +182,8 @@
 		A2D6D7BD2597C1CC003D5401 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7BA2597C1CC003D5401 /* CoreDataUtils.swift */; };
 		A2D6D7DE25982616003D5401 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7DD25982616003D5401 /* RemoteImageCache.swift */; };
 		A2D6D7DF25982616003D5401 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7DD25982616003D5401 /* RemoteImageCache.swift */; };
-		A2DA72242595AF8F009405E6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72232595AF8F009405E6 /* Tests_iOS.swift */; };
-		A2DA722F2595AF8F009405E6 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA722E2595AF8F009405E6 /* Tests_macOS.swift */; };
+		A2DA72242595AF8F009405E6 /* TestsIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72232595AF8F009405E6 /* TestsIOS.swift */; };
+		A2DA722F2595AF8F009405E6 /* TestsMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA722E2595AF8F009405E6 /* TestsMacOS.swift */; };
 		A2DA72312595AF8F009405E6 /* LaunchList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72052595AF8D009405E6 /* LaunchList.xcdatamodeld */; };
 		A2DA72322595AF8F009405E6 /* LaunchList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72052595AF8D009405E6 /* LaunchList.xcdatamodeld */; };
 		A2DA72332595AF8F009405E6 /* LaunchListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72072595AF8D009405E6 /* LaunchListApp.swift */; };
@@ -273,6 +273,14 @@
 		A2F5CE92259C537E0050DF06 /* Launch+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5CE90259C537E0050DF06 /* Launch+Extensions.swift */; };
 		A2F5CE9A259C59A10050DF06 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5CE99259C59A10050DF06 /* String+Extensions.swift */; };
 		A2F5CE9B259C59A10050DF06 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5CE99259C59A10050DF06 /* String+Extensions.swift */; };
+		A2F8B3AC25B1FB5500C917D0 /* Program+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F8B3AB25B1FB5400C917D0 /* Program+Extensions.swift */; };
+		A2F8B3BA25B2061900C917D0 /* Event+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F8B3B925B2061800C917D0 /* Event+Extensions.swift */; };
+		A2F8B3C225B2096200C917D0 /* Pad+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F8B3C125B2096200C917D0 /* Pad+Extensions.swift */; };
+		A2F8B3CA25B20AD900C917D0 /* Agency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F8B3C925B20AD900C917D0 /* Agency+Extensions.swift */; };
+		A2F8B3D225B2169400C917D0 /* Expedition+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F8B3D125B2169400C917D0 /* Expedition+Extensions.swift */; };
+		A2F8B3DA25B219D900C917D0 /* SpaceStation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F8B3D925B219D900C917D0 /* SpaceStation+Extensions.swift */; };
+		A2F8B3F425B2824E00C917D0 /* Astronaut+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F8B3F325B2824D00C917D0 /* Astronaut+Extensions.swift */; };
+		A2F8B3FC25B283B700C917D0 /* SpacecraftConfig+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F8B3FB25B283B700C917D0 /* SpacecraftConfig+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,10 +409,10 @@
 		A2DA72192595AF8F009405E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2DA721A2595AF8F009405E6 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		A2DA721F2595AF8F009405E6 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2DA72232595AF8F009405E6 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		A2DA72232595AF8F009405E6 /* TestsIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsIOS.swift; sourceTree = "<group>"; };
 		A2DA72252595AF8F009405E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2DA722A2595AF8F009405E6 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2DA722E2595AF8F009405E6 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		A2DA722E2595AF8F009405E6 /* TestsMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsMacOS.swift; sourceTree = "<group>"; };
 		A2DA72302595AF8F009405E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2DA72512595AFC4009405E6 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DA72532595AFC4009405E6 /* LaunchListUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListUnitTests.swift; sourceTree = "<group>"; };
@@ -449,6 +457,14 @@
 		A2F5CE99259C59A10050DF06 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A2F8B33625B1514B00C917D0 /* LaunchList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LaunchList.entitlements; sourceTree = "<group>"; };
 		A2F8B34425B1570700C917D0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		A2F8B3AB25B1FB5400C917D0 /* Program+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Program+Extensions.swift"; sourceTree = "<group>"; };
+		A2F8B3B925B2061800C917D0 /* Event+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Extensions.swift"; sourceTree = "<group>"; };
+		A2F8B3C125B2096200C917D0 /* Pad+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pad+Extensions.swift"; sourceTree = "<group>"; };
+		A2F8B3C925B20AD900C917D0 /* Agency+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Agency+Extensions.swift"; sourceTree = "<group>"; };
+		A2F8B3D125B2169400C917D0 /* Expedition+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expedition+Extensions.swift"; sourceTree = "<group>"; };
+		A2F8B3D925B219D900C917D0 /* SpaceStation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpaceStation+Extensions.swift"; sourceTree = "<group>"; };
+		A2F8B3F325B2824D00C917D0 /* Astronaut+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Astronaut+Extensions.swift"; sourceTree = "<group>"; };
+		A2F8B3FB25B283B700C917D0 /* SpacecraftConfig+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpacecraftConfig+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,6 +644,14 @@
 				A2DA72092595AF8D009405E6 /* Persistence.swift */,
 				A2D6D7BA2597C1CC003D5401 /* CoreDataUtils.swift */,
 				A2F5CE90259C537E0050DF06 /* Launch+Extensions.swift */,
+				A2F8B3AB25B1FB5400C917D0 /* Program+Extensions.swift */,
+				A2F8B3B925B2061800C917D0 /* Event+Extensions.swift */,
+				A2F8B3C125B2096200C917D0 /* Pad+Extensions.swift */,
+				A2F8B3C925B20AD900C917D0 /* Agency+Extensions.swift */,
+				A2F8B3D125B2169400C917D0 /* Expedition+Extensions.swift */,
+				A2F8B3D925B219D900C917D0 /* SpaceStation+Extensions.swift */,
+				A2F8B3F325B2824D00C917D0 /* Astronaut+Extensions.swift */,
+				A2F8B3FB25B283B700C917D0 /* SpacecraftConfig+Extensions.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -735,7 +759,7 @@
 		A2DA72222595AF8F009405E6 /* Tests iOS */ = {
 			isa = PBXGroup;
 			children = (
-				A2DA72232595AF8F009405E6 /* Tests_iOS.swift */,
+				A2DA72232595AF8F009405E6 /* TestsIOS.swift */,
 				A2DA72252595AF8F009405E6 /* Info.plist */,
 			);
 			path = "Tests iOS";
@@ -744,7 +768,7 @@
 		A2DA722D2595AF8F009405E6 /* Tests macOS */ = {
 			isa = PBXGroup;
 			children = (
-				A2DA722E2595AF8F009405E6 /* Tests_macOS.swift */,
+				A2DA722E2595AF8F009405E6 /* TestsMacOS.swift */,
 				A2DA72302595AF8F009405E6 /* Info.plist */,
 			);
 			path = "Tests macOS";
@@ -1161,6 +1185,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2F8B3DA25B219D900C917D0 /* SpaceStation+Extensions.swift in Sources */,
+				A2F8B3F425B2824E00C917D0 /* Astronaut+Extensions.swift in Sources */,
 				A2A638CA259675D300D58415 /* AgencyJSON.swift in Sources */,
 				A220640A259E492C00A27B93 /* HomeView.swift in Sources */,
 				A225765225A4FF95009AAEAD /* ExpeditionDetail.swift in Sources */,
@@ -1217,11 +1243,16 @@
 				A2732A9B25A0E40B00A11CE6 /* EventList.swift in Sources */,
 				A2DA72872595AFF3009405E6 /* ProgramJSON.swift in Sources */,
 				A2DEA29A259AE9BE009D5B4B /* CountdownView.swift in Sources */,
+				A2F8B3AC25B1FB5500C917D0 /* Program+Extensions.swift in Sources */,
 				A2DA728B2595AFF3009405E6 /* StatusJSON.swift in Sources */,
 				A2168D7125A03CB6000D401F /* EventListJSON.swift in Sources */,
 				A22B936A25AB742500918643 /* SettingsView.swift in Sources */,
+				A2F8B3BA25B2061900C917D0 /* Event+Extensions.swift in Sources */,
 				A254CF46259F7A7B002CD844 /* EventJSON.swift in Sources */,
 				A232F6B2259E8ACE00B05FA0 /* VehicleJSON.swift in Sources */,
+				A2F8B3CA25B20AD900C917D0 /* Agency+Extensions.swift in Sources */,
+				A2F8B3FC25B283B700C917D0 /* SpacecraftConfig+Extensions.swift in Sources */,
+				A2F8B3D225B2169400C917D0 /* Expedition+Extensions.swift in Sources */,
 				A2DA72812595AFF3009405E6 /* LaunchJSON.swift in Sources */,
 				A2DEA26A259ADE2E009D5B4B /* PadDetail.swift in Sources */,
 				A2F5CE9A259C59A10050DF06 /* String+Extensions.swift in Sources */,
@@ -1238,6 +1269,7 @@
 				A254CF4F259F7CA0002CD844 /* ExpeditionJSON.swift in Sources */,
 				A270A93625A028460078F1D2 /* SpacecraftConfigJSON.swift in Sources */,
 				A22063D0259D766200A27B93 /* LeftField.swift in Sources */,
+				A2F8B3C225B2096200C917D0 /* Pad+Extensions.swift in Sources */,
 				A2DA72752595AFF3009405E6 /* LocationJSON.swift in Sources */,
 				A232F6B9259E8B0700B05FA0 /* StarshipEventsJSON.swift in Sources */,
 				A2D6D7DE25982616003D5401 /* RemoteImageCache.swift in Sources */,
@@ -1359,7 +1391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2DA72242595AF8F009405E6 /* Tests_iOS.swift in Sources */,
+				A2DA72242595AF8F009405E6 /* TestsIOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1367,7 +1399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2DA722F2595AF8F009405E6 /* Tests_macOS.swift in Sources */,
+				A2DA722F2595AF8F009405E6 /* TestsMacOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

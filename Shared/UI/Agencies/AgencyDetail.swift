@@ -14,7 +14,7 @@ struct AgencyDetail: View
          HStack( alignment: .top )
          {
             TitleField( text: agency.name )
-            if let countryCodes = agency.countryCodes
+            if let countryCodes: [String] = agency.countryCodes
             {
                Spacer()
                Text( flagsFromCodeArray( countryCodes ) ?? "" )
@@ -29,7 +29,7 @@ struct AgencyDetail: View
 
             LeftField( prefix: "Admin: ", text: agency.administrator )
 
-            if let launchers = agency.launchers
+            if let launchers: String = agency.launchers
             {
                HStack( alignment: .top )
                {
@@ -43,7 +43,7 @@ struct AgencyDetail: View
                }
             }
 
-            if let spacecraft = agency.spacecraft
+            if let spacecraft: String = agency.spacecraft
             {
                HStack( alignment: .top )
                {
@@ -83,11 +83,13 @@ struct AgencyPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      let agency = getEntityByID( entityID: 63,
-                                  context: context,
-                                  entityName: "Agency" ) as? Agency
-      AgencyDetail( agency: agency! )
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let agency: Agency = getEntityByID( entityID: 63,
+                                             context: context,
+                                             entityName: "Agency" ) as? Agency
+      {
+         AgencyDetail( agency: agency )
+      }
    }
 }
 #endif

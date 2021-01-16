@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct LaunchDetail: View
 {
@@ -9,8 +9,6 @@ struct LaunchDetail: View
 
    var body: some View
    {
-      VStack
-      {
          ScrollView
          {
             VStack
@@ -18,11 +16,10 @@ struct LaunchDetail: View
                HStack( alignment: .top )
                {
                   TitleField( text: missionName( launch ) )
-                  let flags: String? = allProgramFlags( launch: launch )
-                  if flags != nil
+                  if let flags: String = allProgramFlags( launch: launch )
                   {
                      Spacer()
-                     Text( flags! )
+                     Text( flags )
                   }
                }
                TwoFields( leftString: launch.getProviderName(),
@@ -30,7 +27,7 @@ struct LaunchDetail: View
                TwoFields( leftString: launch.serviceProvider?.type,
                           rightString: launch.mission?.type )
                LeftField( text: launch.mission?.orbitName )
-               if let start = launch.windowStart
+               if let start: Date = launch.windowStart
                {
                   HStack
                   {
@@ -39,7 +36,7 @@ struct LaunchDetail: View
                         .foregroundColor( .secondary )
                         .textCase( .uppercase )
                      Spacer()
-                     if let end = launch.windowEnd
+                     if let end: Date = launch.windowEnd
                      {
                         if start != end
                         {
@@ -51,78 +48,86 @@ struct LaunchDetail: View
                      }
                   }
                }
-               NavigationLink( destination: PadDetail( pad: launch.pad! ) )
+               if let pad: Pad = launch.pad
                {
-                  LeftField( text: launch.pad?.name )
+                  NavigationLink( destination: PadDetail( pad: pad ) )
+                  {
+                     LeftField( text: pad.name )
+                  }
                }
             }
 
-            if let windowStart = launch.windowStart
+            if let windowStart: Date = launch.windowStart
             {
-               let stopShowingCountdown = windowStart + ( 60 * 60 * 5 )
+               let stopShowingCountdown: Date = windowStart + ( 60 * 60 * 5 )
                if Date() < stopShowingCountdown
                {
                   Divider()
-                  Countdown( targetTime: windowStart )
+                  CountdownView( targetTime: windowStart )
                }
             }
 
-            if launch.inHold == true || launch.failReason != nil
-            {
-               Divider()
-
-               if launch.inHold == true
-               {
-                  HStack
-                  {
-                     Text( "HOLD" )
-                        .foregroundColor( .orange )
-                     if let holdReason = launch.holdReason
-                     {
-                        Spacer()
-                        Text( holdReason )
-                     }
-                  }
-               }
-
-               if launch.failReason != nil
-               {
-                  HStack( alignment: .top )
-                  {
-                     Text( "FAIL" )
-                        .foregroundColor( .red )
-                     if let failReason = launch.failReason
-                     {
-                        Spacer()
-                        Text( failReason )
-                     }
-                  }
-               }
-            }
-
+            HoldFailView( launch: launch )
             DescriptionView( desc: launch.mission?.missionDescription )
             // IconView( withURL: launch.image )
-
             NavigationLink( destination: ImageViewer( withURL: launch.image ) )
             {
                IconView( withURL: launch.image )
             }
             IconView( withURL: launch.infographic )
 
-            ProgramLinks( programs: launch.programs )
+            ProgramLinks( programs: launch.programsSet )
          }
          .padding()
-      }
       .navigationBarTitle( "Launch", displayMode: .inline )
+   }
+}
+
+struct HoldFailView: View
+{
+   var launch: Launch
+
+   var body: some View
+   {
+      if launch.inHold == true || launch.failReason != nil
+      {
+         Divider()
+
+         if launch.inHold == true
+         {
+            HStack
+            {
+               Text( "HOLD" )
+                  .foregroundColor( .orange )
+               if let holdReason: String = launch.holdReason
+               {
+                  Spacer()
+                  Text( holdReason )
+               }
+            }
+         }
+
+         if launch.failReason != nil
+         {
+            HStack( alignment: .top )
+            {
+               Text( "FAIL" )
+                  .foregroundColor( .red )
+               if let failReason: String = launch.failReason
+               {
+                  Spacer()
+                  Text( failReason )
+               }
+            }
+         }
+      }
    }
 }
 
 func allProgramFlags( launch: Launch ) -> String?
 {
-   if launch.programs == nil { return nil }
-
-   var codes = Set< String >()
-   for program in launch.programs! as? Set<Program> ?? []
+   var codes: Set< String > = Set< String >()
+   for program in launch.programsSet
    {
       for code in getAllAgencyFlags( program: program ) { codes.insert(code ) }
 //      if let agencies = program.agencies
@@ -140,11 +145,11 @@ func allProgramFlags( launch: Launch ) -> String?
 //      }
    }
 
-   if codes.count == 0 { return nil }
-   var result = ""
+   if codes.isEmpty { return nil }
+   var result: String = ""
    for code in codes
    {
-      if let flag = flag( for: code )
+      if let flag: String = flag( for: code )
       {
          result += flag
       }
@@ -158,26 +163,29 @@ struct LaunchPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      let launch = getEntityByID( entityID: "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
-                                  context: context,
-                                  entityName: "Launch" ) as? Launch
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      let launch: Launch? = getEntityByID( entityID: "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
+                                           context: context,
+                                           entityName: "Launch" ) as? Launch
 
-      Group
+      if let previewLaunch: Launch = launch
       {
-         NavigationView
+         Group
          {
-            LaunchDetail( launch: launch! )
-//               .border( Color.blue )
-         }
-         .environment( \.colorScheme, .light )
+            NavigationView
+            {
+               LaunchDetail( launch: previewLaunch )
+               //               .border( Color.blue )
+            }
+            .environment( \.colorScheme, .light )
 
-         NavigationView
-         {
-            LaunchDetail( launch: launch! )
-//               .border( Color.blue )
+            NavigationView
+            {
+               LaunchDetail( launch: previewLaunch )
+               //               .border( Color.blue )
+            }
+            .environment( \.colorScheme, .dark )
          }
-         .environment( \.colorScheme, .dark )
       }
    }
 }

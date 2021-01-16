@@ -12,7 +12,7 @@ struct RowImage: View
 
    var body: some View
    {
-      if let url = imageURL
+      if let url: String = imageURL
       {
          IconView( withURL: url )
             .frame( width: imageWidth ?? 50, height: imageHeight ?? 60 )
@@ -39,10 +39,8 @@ struct RowImagePreview: PreviewProvider
 {
    static var previews: some View
    {
-      // swiftlint:disable line_length
-      let url1 = "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/soyuz2520sta_image_20191210133244.jpg"
-      let url2 = "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg"
-      // swiftlint:enable line_length
+      let url1: String = "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/soyuz2520sta_image_20191210133244.jpg"
+      let url2: String = "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg"
 
       HStack
       {

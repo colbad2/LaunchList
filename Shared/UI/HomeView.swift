@@ -18,51 +18,54 @@ struct HomeView: View
             Spacer()
          }
 
-         let launch = getNextLaunch( context: PersistenceController.shared.container.viewContext )!
-         let nextLaunchID = launch.id
-
-         VStack
+         if let launch: Launch = getNextLaunch( context: PersistenceController.shared.container.viewContext )
          {
-            TitleField( text: missionName( launch ) )
-            TwoFields( leftString: launch.getProviderName(),
-                       rightString: launch.rocket?.name ?? launch.name )
-            TwoFields( leftString: launch.serviceProvider?.type,
-                       rightString: launch.mission?.type )
-            LeftField( text: launch.mission?.orbitName )
-            NavigationLink( destination: PadDetail( pad: launch.pad! ) )
+            VStack
             {
-               LeftField( text: launch.pad?.name )
-            }
-            // TODO open correct details page in nav view (may not be possible yet)
-            //                  Button( action: { self.tabSelection = 1 } )
-            //                  {
-            //                     LeftField( s: launch.pad?.name )
-            //                  }
-         }
-         Divider()
-         HoldFailCountdownView( launch: launch )
-//         NavigationLink( destination: ImageViewer( withURL: launch.image ) )
-//         {
-            IconView( withURL: launch.image )
-//         }
-         DescriptionView( desc: launch.mission?.missionDescription )
-         IconView( withURL: launch.infographic )
-
-         VStack
-         {
-            Text( "Upcoming" )
-               .font( .title2 )
-               .bold()
-               .padding()
-            List( getUpcomingLaunches() )
-            {
-               launch in
-               NavigationLink( destination: LaunchDetail( launch: launch ) )
+               TitleField( text: missionName( launch ) )
+               TwoFields( leftString: launch.getProviderName(),
+                          rightString: launch.rocket?.name ?? launch.name )
+               TwoFields( leftString: launch.serviceProvider?.type,
+                          rightString: launch.mission?.type )
+               LeftField( text: launch.mission?.orbitName )
+               if let pad: Pad = launch.pad
                {
-                  LaunchRow( launch: launch, nextLaunchID: nextLaunchID )
+                  NavigationLink( destination: PadDetail( pad: pad ) )
+                  {
+                     LeftField( text: pad.name )
+                  }
                }
+               // TODO open correct details page in nav view (may not be possible yet)
+               //                  Button( action: { self.tabSelection = 1 } )
+               //                  {
+               //                     LeftField( s: launch.pad?.name )
+               //                  }
             }
-            .frame( height: 450 )
+            Divider()
+            HoldFailCountdownView( launch: launch )
+            //         NavigationLink( destination: ImageViewer( withURL: launch.image ) )
+            //         {
+            IconView( withURL: launch.image )
+            //         }
+            DescriptionView( desc: launch.mission?.missionDescription )
+            IconView( withURL: launch.infographic )
+
+            VStack
+            {
+               Text( "Upcoming" )
+                  .font( .title2 )
+                  .bold()
+                  .padding()
+               List( getUpcomingLaunches() )
+               {
+                  launch in
+                  NavigationLink( destination: LaunchDetail( launch: launch ) )
+                  {
+                     LaunchRow( launch: launch, nextLaunchID: launch.id )
+                  }
+               }
+               .frame( height: 450 )
+            }
          }
       }
       .padding()
@@ -72,11 +75,12 @@ struct HomeView: View
 
 func getUpcomingLaunches() -> [Launch]
 {
-   var upcomingLaunches = getNextLaunches( count: 6, context: PersistenceController.shared.container.viewContext )
+   var upcomingLaunches: [Launch] = getNextLaunches( count: 6, context: PersistenceController.shared.container.viewContext )
    upcomingLaunches.remove( at: 0 )
    return upcomingLaunches
 }
 
+// TODO there is a similar view in the launch details
 struct HoldFailCountdownView: View
 {
    var launch: Launch
@@ -86,7 +90,7 @@ struct HoldFailCountdownView: View
       if launch.inHold == true || launch.failReason != nil
       {
          if launch.inHold == true,
-            let holdReason = launch.holdReason
+            let holdReason: String = launch.holdReason
          {
             HStack
             {
@@ -97,7 +101,7 @@ struct HoldFailCountdownView: View
             }
          }
 
-         if let failReason = launch.failReason
+         if let failReason: String = launch.failReason
          {
             HStack( alignment: .top )
             {
@@ -110,9 +114,7 @@ struct HoldFailCountdownView: View
       }
       else
       {
-         Countdown( targetTime: launch.windowStart )
+         CountdownView( targetTime: launch.windowStart )
       }
    }
 }
-
-// TODO preview

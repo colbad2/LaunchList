@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 /**
  View of the details of an [Astronaut].
@@ -27,10 +27,10 @@ struct AstronautDetail: View
 
                VStack
                {
-                  TitleField( text: astronaut.name! )
-                  LeftField( text: astronaut.nationality! )
-                  LeftField( text: astronaut.type! )
-                  LeftField( text: astronaut.status! )
+                  TitleField( text: astronaut.name )
+                  LeftField( text: astronaut.nationality )
+                  LeftField( text: astronaut.type )
+                  LeftField( text: astronaut.status )
                   AgencyLink( agencyID: astronaut.agency?.id )
 
                   HStack( alignment: .top )
@@ -59,25 +59,8 @@ struct AstronautDetail: View
                      Spacer()
                   }
 
-                  if let twitter = wrapURL( astronaut.twitter )
-                  {
-                     HStack
-                     {
-                        Link( "Twitter", destination: twitter )
-                           .font( .subheadline )
-                        Spacer()
-                     }
-                  }
-
-                  if let instagram = wrapURL( astronaut.instagram )
-                  {
-                     HStack
-                     {
-                        Link( "Instagram", destination: instagram )
-                           .font( .subheadline )
-                        Spacer()
-                     }
-                  }
+                  SocialMediaLink( linkURL: astronaut.twitter, title: "Twitter" )
+                  SocialMediaLink( linkURL: astronaut.instagram, title: "Instagram" )
                }
             }
 
@@ -87,6 +70,27 @@ struct AstronautDetail: View
          .padding()
       }
       .navigationBarTitle( "Astronaut", displayMode: .inline )
+   }
+}
+
+// TODO move to separate file
+struct SocialMediaLink: View
+{
+   var linkURL: String?
+   var title: String
+
+   var body: some View
+   {
+      if let url: String = linkURL,
+         let socialMediaURL: URL = wrapURL( url )
+      {
+         HStack
+         {
+            Link( title, destination: socialMediaURL )
+               .font( .subheadline )
+            // Spacer()
+         }
+      }
    }
 }
 
@@ -118,11 +122,11 @@ func lifeDates( astronaut: Astronaut ) -> String
  */
 func flightDates( astronaut: Astronaut ) -> String
 {
-   let firstFlightDate = parseISODate( isoDate: astronaut.firstFlight )
-   let firstFlightString = dateString( firstFlightDate )
-   let lastFlightDate = parseISODate( isoDate: astronaut.lastFlight )
-   let lastFlightString = dateString( lastFlightDate )
-   var flightDates = dates( first: firstFlightString, second: lastFlightString )
+   let firstFlightDate: Date? = parseISODate( isoDate: astronaut.firstFlight )
+   let firstFlightString: String = dateString( firstFlightDate )
+   let lastFlightDate: Date? = parseISODate( isoDate: astronaut.lastFlight )
+   let lastFlightString: String = dateString( lastFlightDate )
+   var flightDates: String = dates( first: firstFlightString, second: lastFlightString )
    if firstFlightString == lastFlightString
    {
       flightDates = firstFlightString
@@ -133,9 +137,9 @@ func flightDates( astronaut: Astronaut ) -> String
 
 func dates( first: String, second: String? ) -> String
 {
-   if second == nil { return first }
+   guard let second = second else { return first }
 
-   return "\(first) to \(second!)"
+   return "\(first) to \(second)"
 }
 
 /**
@@ -146,11 +150,13 @@ struct AstronautPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      let astronaut = getEntityByID( entityID: 276,
-                                     context: context,
-                                     entityName: "Astronaut" ) as? Astronaut
-      AstronautDetail( astronaut: astronaut! )
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let astronaut: Astronaut = getEntityByID( entityID: 276,
+                                                   context: context,
+                                                   entityName: "Astronaut" ) as? Astronaut
+      {
+         AstronautDetail( astronaut: astronaut )
+      }
    }
 }
 #endif

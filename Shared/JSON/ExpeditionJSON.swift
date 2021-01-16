@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  ### Example
@@ -60,7 +59,7 @@ struct ExpeditionJSON: Decodable
       entity.start = self.start
       entity.end = self.end
 
-      if let station = self.spaceStation
+      if let station: SpaceStationJSON = self.spaceStation
       {
          let newSpaceStation: SpaceStation = fetchSpaceStation( spaceStation: station, context: context )
          entity.spaceStation = newSpaceStation
@@ -69,7 +68,7 @@ struct ExpeditionJSON: Decodable
    }
 }
 
-// Core Data search/update
+// Core Data search/update TODO move these to CD extensions, along with all others
 
 func getExpedition( by entityID: Int64, context: NSManagedObjectContext ) -> Expedition?
 {
@@ -78,7 +77,7 @@ func getExpedition( by entityID: Int64, context: NSManagedObjectContext ) -> Exp
 
 func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjectContext ) -> Expedition
 {
-   let expeditionEntity = getExpedition( by: expedition.id, context: context )
+   let expeditionEntity: Expedition? = getExpedition( by: expedition.id, context: context )
    expedition.updateEntity( entity: expeditionEntity, context: context )
    return expeditionEntity ?? expedition.addToCoreData( context: context )
 }
@@ -95,22 +94,22 @@ func getSampleExpedition() -> ExpeditionJSON?
 
 private let sampleExpeditionJSON =
 """
-    {
-      "id": 81,
-      "url": "https://ll.thespacedevs.com/2.1.0/expedition/81/",
-      "name": "Expedition 47",
-      "start": "2016-03-02T01:02:00Z",
-      "end": "2016-06-18T05:52:00Z",
-      "spacestation": {
-        "id": 4,
-        "url": "https://ll.thespacedevs.com/2.1.0/spacestation/4/",
-        "name": "International Space Station",
-        "status": {
-          "id": 1,
-          "name": "Active"
-        },
-        "orbit": "Low Earth Orbit",
-        "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/international2520space2520station_image_20190220215716.jpeg"
-      }
-    }
+ {
+   "id": 81,
+   "url": "https://ll.thespacedevs.com/2.1.0/expedition/81/",
+   "name": "Expedition 47",
+   "start": "2016-03-02T01:02:00Z",
+   "end": "2016-06-18T05:52:00Z",
+   "spacestation": {
+     "id": 4,
+     "url": "https://ll.thespacedevs.com/2.1.0/spacestation/4/",
+     "name": "International Space Station",
+     "status": {
+       "id": 1,
+       "name": "Active"
+     },
+     "orbit": "Low Earth Orbit",
+     "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/international2520space2520station_image_20190220215716.jpeg"
+   }
+ }
 """

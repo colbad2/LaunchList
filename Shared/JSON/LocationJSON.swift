@@ -2,9 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable line_length
-// swiftlint:disable identifier_name
-
 /**
  The larger location of the launch, that contains the launch pad itself. For example, the Kennedy
  Space Center would be the locaton for Launch Complex 39A.
@@ -75,7 +72,7 @@ func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -> Locat
 
 func fetchLocation( location: LocationJSON, context: NSManagedObjectContext ) -> Location
 {
-   let locationEntity = getLocation( by: location.id, context: context )
+   let locationEntity: Location? = getLocation( by: location.id, context: context )
    location.updateEntity( entity: locationEntity, context: context )
    return locationEntity ?? location.addToCoreData( context: context )
 }

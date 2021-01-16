@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct SettingsView: View
 {
@@ -44,10 +44,13 @@ struct SettingsView: View
          }
       }
       .navigationBarTitleDisplayMode( .inline )
-      .toolbar( content:
+      .toolbar
       {
-         ToolbarItem( placement: .navigationBarLeading, content: { Text( "Settings" ).font( .title ).bold() } )
-      })
+         ToolbarItem( placement: .navigationBarLeading )
+         {
+            Text( "Settings" ).font( .title ).bold()
+         }
+      }
    }
 }
 

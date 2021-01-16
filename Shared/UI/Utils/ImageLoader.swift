@@ -13,7 +13,7 @@ class ImageLoader: ObservableObject
 
       RemoteImageCache.shared.downloadImage( with: url )
       {
-         ( fetchedImage, _ ) in
+         fetchedImage, _ in
 
          self.image = fetchedImage
       }

@@ -1,11 +1,13 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+import Foundation
+
 extension String
 {
    func utf8DecodedString() -> String
    {
-      let data = self.data( using: .utf8 )
-      if let message = String( data: data!, encoding: .nonLossyASCII )
+      if let data: Data = self.data( using: .utf8 ),
+         let message: String = String( data: data, encoding: .nonLossyASCII )
       {
          return message
       }
@@ -15,10 +17,13 @@ extension String
 
    func utf8EncodedString() -> String
    {
-      let messageData = self.data( using: .nonLossyASCII )
-      let text = String( data: messageData!, encoding: .utf8 )!
+      if let messageData: Data = self.data( using: .nonLossyASCII ),
+         let endcodedString: String = String( data: messageData, encoding: .utf8 )
+      {
+         return endcodedString
+      }
 
-      return text
+      return ""
    }
 
    func fixBadUTF() -> String
@@ -54,8 +59,6 @@ extension String
          .replacingOccurrences( of: "Â´", with: "´" )
          .replacingOccurrences( of: "Ã´", with: "ô" )
          .replacingOccurrences( of: "Â°", with: "°" )
-
-      // TODO https://www.i18nqa.com/debug/utf8-debug.html
    }
 
    func removePrefix( _ prefix: String ) -> String
@@ -88,7 +91,7 @@ private func regionalIndicatorSymbol( for scalar: Unicode.Scalar ) -> Unicode.Sc
 
    // 0x1F1E6 marks the start of the Regional Indicator Symbol range and corresponds to 'A'
    // 0x61 marks the start of the lowercase ASCII alphabet: 'a'
-   return Unicode.Scalar( scalar.value + ( 0x1F1E6 - 0x61 ) )!
+   return Unicode.Scalar( scalar.value + ( 0x1F1E6 - 0x61 ) ) ?? "?"
 }
 
 /**
@@ -98,29 +101,32 @@ private func regionalIndicatorSymbol( for scalar: Unicode.Scalar ) -> Unicode.Sc
 func emojiFlag( for countryCode: String? ) -> String?
 {
    guard let code = countryCode else { return nil }
-   let lowercasedCode = code.lowercased()
+
+   if countryCode == "EU" { return "🇪🇺" }
+   let lowercasedCode: String = code.lowercased()
    guard lowercasedCode.count == 2 else { return nil }
-   let codeLowercased = lowercasedCode.unicodeScalars.reduce( true,
-                                                              { accum,
-                                                                scalar in accum && isLowercaseASCIIScalar( scalar ) } )
+   let codeLowercased: Bool = lowercasedCode.unicodeScalars.reduce( true )
+                                   { accum, scalar in accum && isLowercaseASCIIScalar( scalar ) }
    guard codeLowercased else { return nil }
 
-   let indicatorSymbols = lowercasedCode.unicodeScalars.map( { regionalIndicatorSymbol( for: $0 ) } )
-   return String(indicatorSymbols.map( { Character( $0 ) } ) )
+   let indicatorSymbols: [Unicode.Scalar] = lowercasedCode.unicodeScalars.map { regionalIndicatorSymbol( for: $0 ) }
+   return String( indicatorSymbols.map { Character( $0 ) } )
 }
 
 func flag( for countryCode3: String? ) -> String?
 {
    guard let code3 = countryCode3 else { return nil }
+
+   if code3 == "EU" { return "🇪🇺" }
    if code3 == "UNK" { return nil }
-   let code2 = CountryUtility.shared.getCountryCode2( code3 )
+   let code2: String? = CountryUtility.shared.getCountryCode2( code3 )
    if code2 == nil { return countryCode3 }
    return emojiFlag( for: code2 )
 }
 
 func flagsFromCodeArray( _ array: [String] ) -> String?
 {
-   var result = ""
+   var result: String = ""
    for code in array
    {
       result += flag( for: code ) ?? code
@@ -132,23 +138,23 @@ func flagsFromCodeArray( _ array: [String] ) -> String?
 func flags( for country3CodeList: String? ) -> String?
 {
    guard let codes = country3CodeList else { return nil }
-   let codeList = codes.split( separator: "," )
-   var result = ""
+   let codeList: [Substring] = codes.split( separator: "," )
+   var result: String = ""
    for code in codeList
    {
-      let country = String( code ).trimmingCharacters( in: .whitespacesAndNewlines )
+      let country: String = String( code ).trimmingCharacters( in: .whitespacesAndNewlines )
       if country.count == 6
       {
-         let country0 = String( country.prefix( 3 ) )
-         let country1 = String( country.suffix( 3 ) )
+         let country0: String = String( country.prefix( 3 ) )
+         let country1: String = String( country.suffix( 3 ) )
          result += flag( for: country0 ) ?? country0
          result += flag( for: country1 ) ?? country1
       }
       else if country.contains( "/" )
       {
-         let country = country.split( separator: "/" )
-         let country0 = String( country[ 0 ] )
-         let country1 = String( country[ 1 ] )
+         let country: [Substring] = country.split( separator: "/" )
+         let country0: String = String( country[ 0 ] )
+         let country1: String = String( country[ 1 ] )
          result += flag( for: country0 ) ?? country0
          result += flag( for: country1 ) ?? country1
       }
@@ -170,8 +176,8 @@ extension String
 
    func stableHash() -> Int64
    {
-       var result = UInt64( 2040 )
-       let buf = [UInt8]( self.utf8 )
+      var result: UInt64 = UInt64( 2040 )
+      let buf: [UInt8] = [UInt8]( self.utf8 )
        for byte in buf
        {
            result = 127 * (result & 0x00ffffffffffffff) + UInt64( byte )

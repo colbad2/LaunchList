@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 /**
  View of the details of an [LiveStream].
@@ -28,7 +28,7 @@ struct LiveStreamDetail: View
             {
                HStack
                {
-                  if let streamURL = wrapURL( liveStream.url )
+                  if let streamURL: URL = wrapURL( liveStream.url )
                   {
                      Link( "Live Stream", destination: streamURL )
                         .font( .subheadline )
@@ -51,11 +51,13 @@ struct LiveStreamPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      let liveStream = getEntityByID( entityID: 276,
-                                      context: context,
-                                      entityName: "LiveStream" ) as? LiveStream
-      LiveStreamDetail( liveStream: liveStream! )
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let liveStream: LiveStream = getEntityByID( entityID: 276,
+                                                     context: context,
+                                                     entityName: "LiveStream" ) as? LiveStream
+      {
+         LiveStreamDetail( liveStream: liveStream )
+      }
    }
 }
 #endif

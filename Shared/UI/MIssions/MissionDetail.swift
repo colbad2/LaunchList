@@ -28,13 +28,15 @@ struct MissionDetailPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      let mission = getEntityByID( entityID: 1087,
-                                   context: context,
-                                   entityName: "Mission") as? Mission
-      NavigationView
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let mission: Mission = getEntityByID( entityID: 1087,
+                                               context: context,
+                                               entityName: "Mission") as? Mission
       {
-         MissionDetail( mission: mission )
+         NavigationView
+         {
+            MissionDetail( mission: mission )
+         }
       }
    }
 }

@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct RocketList: View
 {
@@ -32,7 +32,7 @@ struct RocketRow: View
 
    var body: some View
    {
-      TitleField( text: rocket.fullName! )
+      TitleField( text: rocket.fullName )
 //      TitleField( text: rocket?.family )
 //      LeftField( text: rocket?.variant )
    }

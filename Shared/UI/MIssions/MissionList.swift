@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct MissionList: View
 {
@@ -32,7 +32,7 @@ struct MissionRow: View
 
    var body: some View
    {
-      if let name = mission.name
+      if let name: String = mission.name
       {
          Text( name )
             .font( .headline )

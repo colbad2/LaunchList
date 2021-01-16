@@ -1,31 +1,26 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+import CoreData
 import SwiftUI
 
 struct SpaceStationLinks: View
 {
-   var spaceStations: NSSet?
+   var spaceStations: Set< SpaceStation >
 
    var body: some View
    {
-      if let spaceStations = spaceStations
+      Divider()
+      HStack
       {
-         if spaceStations.count > 0
-         {
-            Divider()
-            HStack
-            {
-               Text( "Space Stations" )
-                  .font( .headline )
-                  .foregroundColor( .secondary )
-               Spacer()
-            }
-            ForEach( getSpaceStationsArray( spaceStations: spaceStations ), id: \.self )
-            {
-               spaceStation in
-               SpaceStationLink( spaceStationID: spaceStation.id )
-            }
-         }
+         Text( "Space Stations" )
+            .font( .headline )
+            .foregroundColor( .secondary )
+         Spacer()
+      }
+      ForEach( sortSpaceStationsByName( spaceStationArray: Array( spaceStations ) ), id: \.self )
+      {
+         spaceStation in
+         SpaceStationLink( spaceStationID: spaceStation.id )
       }
    }
 }
@@ -36,10 +31,10 @@ struct SpaceStationLink: View
 
    var body: some View
    {
-      let context = PersistenceController.shared.container.viewContext
-      if let spaceStationID = spaceStationID,
-         let spaceStation = getSpaceStation( by: spaceStationID, context: context ),
-         let name = spaceStation.name
+      let context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
+      if let spaceStationID: Int64 = spaceStationID,
+         let spaceStation: SpaceStation = getSpaceStation( by: spaceStationID, context: context ),
+         let name: String = spaceStation.name
       {
          NavigationLink( destination: SpaceStationDetail( spaceStation: spaceStation ) )
          {
@@ -50,11 +45,4 @@ struct SpaceStationLink: View
          .padding( 4 )
       }
    }
-}
-
-func getSpaceStationsArray( spaceStations: NSSet ) -> [SpaceStation]
-{
-   var eventSpaceStations = Array( spaceStations as Set ) as? [SpaceStation] ?? []
-   eventSpaceStations.sort( by: { ($0 as SpaceStation).name! < ($1 as SpaceStation).name! } )
-   return eventSpaceStations
 }

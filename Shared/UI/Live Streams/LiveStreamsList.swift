@@ -1,14 +1,14 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
-struct LiveStreamList: View
+struct LiveStreamsList: View
 {
    @FetchRequest( entity: LiveStream.entity(),
-                  sortDescriptors: [ NSSortDescriptor( keyPath: \LiveStream.title,
-                                                       ascending: true ) ],
+                  sortDescriptors: [ NSSortDescriptor( keyPath: \LiveStream.title, ascending: true ) ],
                   animation: .default )
+
    private var liveStreams: FetchedResults< LiveStream >
 
    var body: some View
@@ -35,7 +35,7 @@ struct LiveStreamRow: View
       RowImage( imageURL: liveStream.image )
       VStack( alignment: .leading )
       {
-         TitleField( text: liveStream.title! )
+         TitleField( text: liveStream.title )
       }
    }
 }
@@ -47,7 +47,7 @@ struct LiveStreamPreviews: PreviewProvider
     {
 //      NavigationView
 //      {
-        LiveStreamList()
+        LiveStreamsList()
          .environment( \.managedObjectContext,
                        PersistenceController.preview.container.viewContext )
 //      }

@@ -8,13 +8,13 @@ import CoreData
 struct PersistenceController
 {
    /** Singleton access to the datastore. */
-   static let shared = PersistenceController()
+   static let shared: PersistenceController = PersistenceController()
 
    /** Datastore for previews. */
    static var preview: PersistenceController =
    {
-      let result = PersistenceController( inMemory: true )
-      let viewContext = result.container.viewContext
+      let result: PersistenceController = PersistenceController( inMemory: true )
+      let viewContext: NSManagedObjectContext = result.container.viewContext
 
       // add single records to the store, so previews don't take too long to start
       _ = getSampleAgency()?.addToCoreData( context: viewContext )
@@ -53,13 +53,16 @@ struct PersistenceController
       container = NSPersistentContainer( name: "LaunchList" )
       if inMemory
       {
-         container.persistentStoreDescriptions.first!.url = URL( fileURLWithPath: "/dev/null" )
+         if let firstDescription: NSPersistentStoreDescription = container.persistentStoreDescriptions.first
+         {
+            firstDescription.url = URL( fileURLWithPath: "/dev/null" )
+         }
       }
       container.loadPersistentStores
       {
-         ( _, error ) in
+         _, error in
 
-         if let error = error as NSError?
+         if let error: NSError = error as NSError?
          {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use
@@ -80,7 +83,7 @@ struct PersistenceController
       // install the fixed content, if the db has never been filled
       if inMemory == false
       {
-         let forceFill = false
+         let forceFill: Bool = false
          if getAgencyCount( context: container.viewContext ) == 0 || forceFill
          {
 //            deleteAllData( entityName: "Agency", context: container.viewContext )
@@ -355,15 +358,15 @@ func fillStore( viewContext: NSManagedObjectContext )
 /**
  Reads the JSON in a bundle file, and returns it as [Data]
 
- - Parameter name: name of the nundle file to load
- - Returns: content of the bundle file
+ - Parameter name: name of the bundle file to load
+ - Returns: content of the bundle file, if it could be loaded, nil otherwise
  */
 func readBundleJSONFile( forName name: String ) -> Data?
 {
    do
    {
-      if let bundlePath = Bundle.main.path( forResource: name, ofType: "json" ),
-         let jsonData = try String( contentsOfFile: bundlePath ).data( using: .utf8 )
+      if let bundlePath: String = Bundle.main.path( forResource: name, ofType: "json" ),
+         let jsonData: Data = try String( contentsOfFile: bundlePath ).data( using: .utf8 )
       {
          return jsonData
       }

@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 /**
  ### Example
  {
@@ -72,7 +71,7 @@ func getSpaceStation( by entityID: Int64, context: NSManagedObjectContext ) -> S
 
 func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManagedObjectContext ) -> SpaceStation
 {
-   let spaceStationEntity = getSpaceStation( by: spaceStation.id, context: context )
+   let spaceStationEntity: SpaceStation? = getSpaceStation( by: spaceStation.id, context: context )
    spaceStation.updateEntity( entity: spaceStationEntity, context: context )
    return spaceStationEntity ?? spaceStation.addToCoreData( context: context )
 }

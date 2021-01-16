@@ -9,11 +9,11 @@ struct LeftField: View
 
    var body: some View
    {
-      if text != nil
+      if let fieldText: String = text
       {
          HStack
          {
-            Text( "\(prefix)\(text!)" )
+            Text( "\(prefix)\(fieldText)" )
                .font( .subheadline )
                .foregroundColor( .secondary )
                .lineLimit( 2 )

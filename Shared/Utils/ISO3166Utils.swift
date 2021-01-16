@@ -11,14 +11,14 @@ import Foundation
  */
 struct CountryUtility
 {
-   public static var shared: CountryUtility = CountryUtility()
+   static var shared: CountryUtility = CountryUtility()
    private var countryCodeMap2To3: [ String: String ] = [:]
    private var countryCodeMap3To2: [ String: String ] = [:]
 
    init()
    {
-      let pListFilePath = Bundle.main.path( forResource: "iso3166_1_2_to_iso3166_1_3", ofType: "plist" )
-      let data = NSData( contentsOfFile: pListFilePath! )!
+      guard let pListFilePath: String = Bundle.main.path( forResource: "iso3166_1_2_to_iso3166_1_3", ofType: "plist" ),
+            let data: NSData = NSData( contentsOfFile: pListFilePath ) else { return }
       let propertyList: Any? = try? PropertyListSerialization.propertyList( from: data as Data, format: nil )
       countryCodeMap2To3 = propertyList as? [ String: String ] ?? [:]
 
@@ -44,14 +44,14 @@ struct CountryUtility
    /// E.g: PT to PRT
    func getCountryCode3( _ countryCode2: String ) -> String?
    {
-      let count = countryCode2.count
+      let count: Int = countryCode2.count
       if count == 3 { return countryCode2 }
       return countryCodeMap2To3[ countryCode2 ]
    }
 
    func getCountryCode2( _ countryCode3: String ) -> String?
    {
-      let count = countryCode3.count
+      let count: Int = countryCode3.count
       if count == 2 { return countryCode3 }
       return countryCodeMap3To2[ countryCode3 ]
    }

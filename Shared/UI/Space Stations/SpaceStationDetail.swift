@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 /**
  View of the details of an [SpaceStation].
@@ -23,16 +23,16 @@ struct SpaceStationDetail: View
          {
             VStack
             {
-               TitleField( text: spaceStation.name! )
+               TitleField( text: spaceStation.name )
                LeftField( text: spaceStation.status )
                LeftField( text: spaceStation.orbit )
             }
 
             IconView( withURL: spaceStation.imageURL )
 
-            if let events: NSSet = spaceStation.events
+            if let events: Set< Event > = spaceStation.eventsSet
             {
-               if events.count > 0
+               if !events.isEmpty
                {
                   Divider()
                   HStack
@@ -42,7 +42,7 @@ struct SpaceStationDetail: View
                         .foregroundColor( .secondary )
                      Spacer()
                   }
-                  ForEach( getEventArray( events: events ), id: \.self )
+                  ForEach( sortEventsByName( eventArray: Array( events ) ), id: \.self )
                   {
                      event in
                      EventLink( eventID: event.id )
@@ -62,7 +62,7 @@ struct SpaceStationDetail: View
 //                        .foregroundColor( .secondary )
 //                     Spacer()
 //                  }
-//                  ForEach( getExpeditionsArray( expeditions: expeditions ), id: \.self )
+//                  ForEach( sortExpeditionsByName( expeditionArray: Array( expeditions ) ), id: \.self )
 //                  {
 //                     expedition in
 //                     ExpeditionLink( expeditionID: expedition.id )
@@ -76,18 +76,14 @@ struct SpaceStationDetail: View
    }
 }
 
-func getEventArray( events: NSSet ) -> [Event]
+func getEventArray( events: Set< Event > ) -> [Event]
 {
-   var spaceStationEvents = Array( events as Set ) as? [Event] ?? []
-   spaceStationEvents.sort( by: { ($0 as Event).name! < ($1 as Event).name! } )
-   return spaceStationEvents
+   return sortEventsByName( eventArray: Array( events ) )
 }
 
-func getExpeditionsArray( expeditions: NSSet ) -> [Expedition]
+func getExpeditionsArray( expeditions: Set< Expedition > ) -> [Expedition]
 {
-   var spaceStationExpeditions = Array( expeditions as Set ) as? [Expedition] ?? []
-   spaceStationExpeditions.sort( by: { ($0 as Expedition).start! < ($1 as Expedition).start! } )
-   return spaceStationExpeditions
+   return sortExpeditionsByName( expeditionArray: Array( expeditions ) )
 }
 
 struct ExpeditionLink: View
@@ -96,10 +92,10 @@ struct ExpeditionLink: View
 
    var body: some View
    {
-      let context = PersistenceController.shared.container.viewContext
-      if let expeditionID = expeditionID,
-         let expedition = getExpedition( by: expeditionID, context: context ),
-         let name = expedition.name
+      let context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
+      if let expeditionID: Int64 = expeditionID,
+         let expedition: Expedition = getExpedition( by: expeditionID, context: context ),
+         let name: String = expedition.name
       {
          HStack
          {
@@ -108,12 +104,12 @@ struct ExpeditionLink: View
             Spacer()
             VStack
             {
-               if let start = expedition.start
+               if let start: String = expedition.start
                {
                   Text( start )
                      .font( .subheadline )
                }
-               if let end = expedition.end
+               if let end: String = expedition.end
                {
                   Text( end )
                      .font( .subheadline )
@@ -131,10 +127,10 @@ struct EventLink: View
 
    var body: some View
    {
-      let context = PersistenceController.shared.container.viewContext
-      if let eventID = eventID,
-         let event = getEvent( by: eventID, context: context ),
-         let name = event.name
+      let context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
+      if let eventID: Int64 = eventID,
+         let event: Event = getEvent( by: eventID, context: context ),
+         let name: String = event.name
       {
          HStack
          {
@@ -158,11 +154,13 @@ struct SpaceStationPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      let spaceStation = getEntityByID( entityID: 4,
-                                        context: context,
-                                        entityName: "SpaceStation" ) as? SpaceStation
-      SpaceStationDetail( spaceStation: spaceStation! )
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let spaceStation: SpaceStation = getEntityByID( entityID: 4,
+                                                         context: context,
+                                                         entityName: "SpaceStation" ) as? SpaceStation
+      {
+         SpaceStationDetail( spaceStation: spaceStation )
+      }
 
       // TODO add expedition and event to preview CD to get all UI elements
    }

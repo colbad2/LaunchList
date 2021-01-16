@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct ExpeditionDetail: View
 {
@@ -28,10 +28,10 @@ struct ExpeditionPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context = PersistenceController.preview.container.viewContext
-      if let expedition = getEntityByID( entityID: 81,
-                                      context: context,
-                                      entityName: "Expedition" ) as? Expedition
+      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+      if let expedition: Expedition = getEntityByID( entityID: 81,
+                                                     context: context,
+                                                     entityName: "Expedition" ) as? Expedition
       {
          ExpeditionDetail( expedition: expedition )
       }

@@ -14,19 +14,19 @@ struct LinkBarView: View
       {
          HStack
          {
-            if let info = wrapURL( infoURL )
+            if let info: URL = wrapURL( infoURL )
             {
                Link( "Info", destination: info )
                   .font( .headline )
             }
 
-            if let wiki = wrapURL( wikiURL )
+            if let wiki: URL = wrapURL( wikiURL )
             {
                Link( "Wiki", destination: wiki )
                   .font( .headline )
             }
 
-            if let map = wrapURL( mapURL )
+            if let map: URL = wrapURL( mapURL )
             {
                Link( "Map", destination: map )
                   .font( .headline )

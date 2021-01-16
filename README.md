@@ -45,6 +45,8 @@ Things that need to happen for a good app
 -- displayModeButtonItem is internally managed and not exposed for DoubleColumn style. Returning an empty, disconnected UIBarButtonItem to fulfill the non-null contract.
 - any code TODOs
 - mark any change from the API data with // DATABASE CHANGE, and gather those changes to a single class
+- remvoe swiftlint diables if possible
+- missing_docs swiftlint violation should include all methods, not jsut public ones
 ### UI Features
 - use timeline event list for home screen, not just launches.
 - some images need a detailed image view (astronaut portraits, etc.)
@@ -69,6 +71,10 @@ Things that need to happen for a good app
 - search builder sheet
 - searches between dates (start:1998,end:2010)
 - the Roci/Bowman
+- settings tools: clear memory image cache, clear CoreData images
+- periodically refetch images, incase they have changed, or been updated
+- previews for every view, working
+- add launchers to the dataset list
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"
@@ -138,6 +144,15 @@ Articles that address particular features/problems that I haven't dealt with yet
 - https://fuckingswiftui.com/#tabview
 - https://developer.apple.com/tutorials/swiftui/building-lists-and-navigation
 - https://developer.apple.com/videos/play/wwdc2020/10037
+- https://developer.apple.com/forums/thread/658828
+- https://useyourloaf.com/blog/sharing-data-with-a-widget/
+- https://www.raywenderlich.com/14958063-modern-efficient-core-data
+- https://stackoverflow.com/questions/63759921/progressview-in-swiftui-2-0-how-to-display-the-progressview-during-an-operation
+- https://www.answertopia.com/swiftui/working-with-gesture-recognizers-in-swiftui/
+- https://www.raywenderlich.com/5824937-swiftui-tutorial-navigation#toc-anchor-006
+- https://developer.apple.com/documentation/combine/receiving-and-handling-events-with-combine
+- https://realm.github.io/SwiftLint/pattern_matching_keywords.html
+- https://www.i18nqa.com/debug/utf8-debug.html
 
 
 ## To Read

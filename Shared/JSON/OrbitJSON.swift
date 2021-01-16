@@ -2,8 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable identifier_name
-
 /**
  Mission orbit.
 

@@ -8,7 +8,7 @@ struct TitleField: View
 
    var body: some View
    {
-      if let title = text
+      if let title: String = text
       {
          HStack
          {

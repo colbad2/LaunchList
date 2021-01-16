@@ -17,14 +17,14 @@ struct TwoFields: View
          {
             if leftString != nil
             {
-               Text( "\(leftPrefix ?? "")\(leftString!)" )
+               Text( "\(leftPrefix ?? "")\(leftString ?? "")" )
                   .font( .subheadline )
                   .foregroundColor( .secondary )
             }
             Spacer()
             if rightString != nil
             {
-               Text( "\(rightPrefix ?? "")\(rightString!)" )
+               Text( "\(rightPrefix ?? "")\(rightString ?? "")" )
                   .font( .subheadline )
                   .foregroundColor( .secondary )
             }

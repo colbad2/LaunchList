@@ -7,7 +7,7 @@ struct SearchBar: View
    var prompt: String = "search..."
    @Binding var text: String
 
-   @State private var isEditing = false
+   @State private var isEditing: Bool = false
 
    var body: some View
    {

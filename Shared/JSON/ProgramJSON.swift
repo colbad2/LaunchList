@@ -3,14 +3,14 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  Part of a [LaunchJSON] object
 
 example JSON:
  {
-     "agencies": [
+     "agencies":
+     [
          {
              "id": 44,
              "name": "National Aeronautics and Space Administration",
@@ -87,14 +87,7 @@ struct ProgramJSON: Decodable
       entity.id = self.id
       entity.name = self.name
       entity.programDescription = self.description
-
-      for agency in self.agencies
-      {
-         let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
-         entity.addToAgencies( agencyEntity )
-         agencyEntity.addToPrograms( entity )
-      }
-
+      addAgencies( entity: entity, agencies: self.agencies, context: context )
       entity.imageURL = self.imageURL
       entity.startDate = parseISODate( isoDate: self.startDate )
       entity.endDate = parseISODate( isoDate: self.endDate )
@@ -103,12 +96,34 @@ struct ProgramJSON: Decodable
    }
 }
 
+/**
+ Add the given agencies to the given program, and link them back to the program.
+
+ ### Example
+ ````
+ addAgencies( entity: entity, agencies: self.agencies, context: context )
+ ````
+
+ - Parameter entity - [Program] program to add the agencies to
+ - Parameter agencies - [AgencyJSON] list of agencies to add
+ - Parameter context - [NSManagedObjectContext] contenxt in which the linking takes place
+ */
+func addAgencies( entity: Program, agencies: [AgencyJSON], context: NSManagedObjectContext )
+{
+   for agency in agencies
+   {
+      let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
+      entity.addToAgencies( agencyEntity )
+      agencyEntity.addToPrograms( entity )
+   }
+}
+
 func getAllAgencyFlags( program: Program? ) -> [String]
 {
-   if program == nil { return [] }
+   guard let program = program else { return [] }
 
-   var codes = Set< String >()
-   for agency in program!.agencies as? Set<Agency> ?? Set()
+   var codes: Set< String > = Set< String >()
+   for agency in program.agencies as? Set<Agency> ?? Set()
    {
       for countryCode in agency.countryCodes ?? []
       {
@@ -117,25 +132,6 @@ func getAllAgencyFlags( program: Program? ) -> [String]
    }
 
    return Array( codes )
-}
-
-// Core Data search/update
-
-func getProgram( by programID: Int64, context: NSManagedObjectContext ) -> Program?
-{
-   return getEntityByID( entityID: programID, context: context, entityName: "Program" ) as? Program
-}
-
-func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext ) -> Program
-{
-   let programEntity = getProgram( by: program.id, context: context )
-   program.updateEntity( entity: programEntity, context: context )
-   return programEntity ?? program.addToCoreData( context: context )
-}
-
-func getProgramCount( context: NSManagedObjectContext ) -> Int?
-{
-   return getRecordsCount( entityName: "Program", context: context )
 }
 
 func getSampleProgram() -> ProgramJSON?
@@ -189,4 +185,3 @@ private let sampleProgramJSON =
    "wiki_url": "https://en.wikipedia.org/wiki/International_Space_Station_programme"
  }
 """
-// swiftlint:enable line_length

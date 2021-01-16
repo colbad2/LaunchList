@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct EventList: View
 {
@@ -35,7 +35,7 @@ struct EventRow: View
       RowImage( imageURL: event.featureImage )
       VStack( alignment: .leading )
       {
-         TitleField( text: event.name! )
+         TitleField( text: event.name )
          Text( dateString( event.date ) )
             .font( .subheadline )
             .foregroundColor( .secondary )

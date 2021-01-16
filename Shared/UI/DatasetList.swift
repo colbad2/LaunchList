@@ -1,9 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
-
-// swiftlint:disable identifier_name
+import SwiftUI
 
 struct DatasetList: View
 {
@@ -19,7 +17,6 @@ struct DatasetList: View
                                  ListItem( title: "Docking", entity: "Docking", iconName: "Docking" ),
                                  ListItem( title: "Space Stations", entity: "SpaceStation", iconName: "Station" ) ]
 
-   // TODO launchers
    var body: some View
    {
       List( listItems )
@@ -29,27 +26,27 @@ struct DatasetList: View
          ListItemRow( listItem: listItem )
       }
       .navigationBarTitleDisplayMode( .inline )
-      .toolbar( content:
+      .toolbar
       {
-         ToolbarItem( placement: .navigationBarLeading, content: { Text( "Datasets" ).font( .title ).bold() } )
-      })
+         ToolbarItem( placement: .navigationBarLeading ) { Text( "Datasets" ).font( .title ).bold() }
+      }
    }
 }
 
 struct ListItemRow: View
 {
    var listItem: ListItem
-   let context = PersistenceController.shared.container.viewContext
+   let context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
 
    var body: some View
    {
       HStack
       {
-         NavigationLink( destination: getListItemView( title: listItem.title )! )
+         NavigationLink( destination: getListItemView( title: listItem.title ) )
          {
             HStack
             {
-               if let name = listItem.iconName
+               if let name: String = listItem.iconName
                {
                   RowImage( defaultImage: UIImage( named: name ), imageWidth: 40, imageHeight: 40 )
                }
@@ -58,10 +55,12 @@ struct ListItemRow: View
                {
                   TitleField( text: listItem.title )
 
-                  let launchCount = getRecordsCount( entityName: listItem.entity, context: context )!
-                  Text( "\(launchCount) \(listItem.title.lowercased())" )
-                     .font( .subheadline )
-                     .foregroundColor( .secondary )
+                  if let launchCount: Int = getRecordsCount( entityName: listItem.entity, context: context )
+                  {
+                     Text( "\(launchCount) \(listItem.title.lowercased())" )
+                        .font( .subheadline )
+                        .foregroundColor( .secondary )
+                  }
                }
             }
          }
@@ -86,8 +85,7 @@ struct ListItem: Identifiable
    }
 }
 
-// swiftlint:disable cyclomatic_complexity
-func getListItemView( title: String ) -> AnyView?
+func getListItemView( title: String ) -> AnyView
 {
    switch title
    {
@@ -99,13 +97,10 @@ func getListItemView( title: String ) -> AnyView?
       case "Rockets": return AnyView( RocketList() )
       case "Astronauts": return AnyView( AstronautList() )
       case "Events": return AnyView( EventList() )
-      case "Live Streams": return AnyView( LiveStreamList() )
+      case "Live Streams": return AnyView( LiveStreamsList() )
       case "Starship Vehicles": return AnyView( VehicleList() )
       case "Docking": return AnyView( DockingList() )
       case "Space Stations": return AnyView( SpaceStationList() )
-      default: return nil
+      default: return AnyView( Text( "" ) ) // shouldn't happen
    }
 }
-// swiftlint:enable cyclomatic_complexity
-
-// TODO preview

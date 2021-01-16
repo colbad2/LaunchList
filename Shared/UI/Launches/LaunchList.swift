@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 /**
  List of launches.
@@ -23,10 +23,10 @@ struct LaunchList: View
       {
          _ in // proxy
 
-         let nextLaunchID = getNextLaunch( context: PersistenceController.shared.container.viewContext )!.id
+         let nextLaunchID: String? = getNextLaunch( context: PersistenceController.shared.container.viewContext )?.id
          SearchBar( prompt: "launch name", text: $searchText )
             .padding( .top, 10 )
-         List( launches.filter( { filterLaunch( launch: $0, searchText: searchText ) } ) )
+         List( launches.filter { filterLaunch( launch: $0, searchText: searchText ) } )
          {
             ( launch: Launch ) in
 
@@ -40,7 +40,7 @@ struct LaunchList: View
                  .allowsHitTesting( false ).frame( width: 0, height: 0 )
          )
          .navigationBarTitle( "Launches", displayMode: .inline )
-         .toolbar( content:
+         .toolbar
          {
             ToolbarItem( placement: .navigationBarTrailing )
             {
@@ -51,34 +51,40 @@ struct LaunchList: View
 
                   Button( action:
                            {
-                              var entityIndex = 0
-                              for entity in launches
-                              {
-                                 if entity.sortingDate! < Date()
-                                 {
-                                    entityIndex -= 1
-                                    if entityIndex < 0 { entityIndex = 0 }
-                                    break
-                                 }
-                                 entityIndex += 1
-                              }
-                              self.indexPathToSetVisible = IndexPath( row: entityIndex, section: 0 )
+                              self.indexPathToSetVisible = IndexPath( row: getNowIndex( launches: launches ), section: 0 )
                            },
                           label: { Image( systemName: "calendar" ) } )
                   Button( action: { self.indexPathToSetVisible = IndexPath( row: launches.count - 1, section: 0 ) },
                           label: { Image( systemName: "arrow.down.to.line" ) } )
-
                }
             }
-         })
+         }
       }
    }
+}
+
+private func getNowIndex( launches: FetchedResults< Launch > ) -> Int
+{
+   var entityIndex: Int = 0
+   for entity in launches
+   {
+      guard let sortingDate = entity.sortingDate else { continue }
+      if sortingDate < Date()
+      {
+         entityIndex -= 1
+         if entityIndex < 0 { entityIndex = 0 }
+         break
+      }
+      entityIndex += 1
+   }
+
+   return entityIndex
 }
 
 func filterLaunch( launch: Launch, searchText: String? ) -> Bool
 {
    guard let text = searchText else { return true }
-   if text.trim().count == 0 { return true }
+   if text.trim().isEmpty { return true }
    guard let name = launch.name else { return true }
    return name.contains( text )
 }
@@ -115,12 +121,12 @@ struct LaunchRow: View
          }
          HStack
          {
-            let providerName = launch.getProviderName()
+            let providerName: String = launch.getProviderName()
             Text( providerName )
                .font( .subheadline )
                .lineLimit( 2 )
             Spacer()
-            Text( launch.rocket?.name ?? launch.name! )
+            Text( launch.rocket?.name ?? launch.name ?? "" )
                .font( .subheadline )
                .lineLimit( 2 )
          }

@@ -3,7 +3,6 @@
 import CoreData
 
 // swiftlint:disable line_length
-// swiftlint:disable identifier_name
 
 /**
  ### Example
@@ -101,28 +100,28 @@ struct EventJSON: Decodable
       entity.featureImage = self.featureImage
       entity.date = parseISODate( isoDate: self.date )
 
-      for launch in launches!
+      for launch in launches ?? []
       {
          let newLaunch: Launch = fetchLaunch( launch: launch, context: context )
          entity.addToLaunches( newLaunch )
          newLaunch.addToEvents( entity )
       }
 
-      for expedition in expeditions!
+      for expedition in expeditions ?? []
       {
          let newExpedition: Expedition = fetchExpedition( expedition: expedition, context: context )
          entity.addToExpeditions( newExpedition )
          newExpedition.addToEvents( entity )
       }
 
-      for spaceStation in spaceStations!
+      for spaceStation in spaceStations ?? []
       {
          let newSpaceStations: SpaceStation = fetchSpaceStation( spaceStation: spaceStation, context: context )
          entity.addToSpaceStations( newSpaceStations )
          newSpaceStations.addToEvents( entity )
       }
 
-      for program in programs!
+      for program in programs ?? []
       {
          let newProgram: Program = fetchProgram( program: program, context: context )
          entity.addToPrograms( newProgram )
@@ -166,7 +165,7 @@ func getEvent( by id: Int64, context: NSManagedObjectContext ) -> Event?
 
 func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> Event
 {
-   let eventEntity = getEvent( by: event.id, context: context )
+   let eventEntity: Event? = getEvent( by: event.id, context: context )
    event.updateEntity( entity: eventEntity, context: context )
    return eventEntity ?? event.addToCoreData( context: context )
 }

@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct TimelineView: View
 {
@@ -38,45 +38,45 @@ struct TimelineView: View
          return entryView
       }
       .navigationBarTitleDisplayMode( .inline )
-      .toolbar( content:
-      {
-         ToolbarItem( placement: .navigationBarLeading, content: { Text( "Timeline" ).font( .title ).bold() } )
-         ToolbarItem( placement: .navigationBarTrailing, content:
-                        {
-                           HStack
-                           {
-                              Button( action: { self.indexPathToSetVisible = IndexPath( row: 0, section: 0 ) },
-                                      label: { Image( systemName: "arrow.up.to.line" ) } )
-                              Button( action:
-                                       {
-                                          var entityIndex = 0
-                                          for entity in timelineEntities
-                                          {
-                                             if entity.sortingDate! < Date()
-                                             {
-                                                entityIndex -= 1
-                                                if entityIndex < 0 { entityIndex = 0 }
-                                                break
-                                             }
-                                             entityIndex += 1
-                                          }
-                                          self.indexPathToSetVisible = IndexPath( row: entityIndex, section: 0 )
-                                       },
-                                      label:
-                                       {
-                                          Image( systemName: "calendar" )
-                                       } )
-                              Button( action: { self.indexPathToSetVisible =
-                                                   IndexPath( row: timelineEntities.count - 1, section: 0 ) },
-                                      label: { Image( systemName: "arrow.down.to.line" ) } )
-                           }
-                        })
-      } )
       .overlay(
-          ScrollManagerView( indexPathToSetVisible: $indexPathToSetVisible )
-              .allowsHitTesting( false ).frame( width: 0, height: 0 )
+         ScrollManagerView( indexPathToSetVisible: $indexPathToSetVisible )
+            .allowsHitTesting( false ).frame( width: 0, height: 0 )
       )
+      .toolbar
+      {
+         ToolbarItem( placement: .navigationBarLeading ) { Text( "Timeline" ).font( .title ).bold() }
+         ToolbarItem( placement: .navigationBarTrailing )
+         {
+            HStack
+            {
+               Button( action: { self.indexPathToSetVisible = IndexPath( row: 0, section: 0 ) },
+                       label: { Image( systemName: "arrow.up.to.line" ) } )
+               Button( action: { self.indexPathToSetVisible = IndexPath( row: getNowIndex( launches: timelineEntities ), section: 0 ) },
+                       label: { Image( systemName: "calendar" ) } )
+               Button( action: { self.indexPathToSetVisible = IndexPath( row: timelineEntities.count - 1, section: 0 ) },
+                       label: { Image( systemName: "arrow.down.to.line" ) } )
+            }
+         }
+      }
    }
+}
+
+private func getNowIndex( launches: FetchedResults< TimelineEntry > ) -> Int
+{
+   var entityIndex: Int = 0
+   for entity in launches
+   {
+      guard let sortingDate = entity.sortingDate else { continue }
+      if sortingDate < Date()
+      {
+         entityIndex -= 1
+         if entityIndex < 0 { entityIndex = 0 }
+         break
+      }
+      entityIndex += 1
+   }
+
+   return entityIndex
 }
 
 struct TimelineLaunchItem: View
@@ -85,7 +85,7 @@ struct TimelineLaunchItem: View
 
    var body: some View
    {
-      if let launch = launchEntry as? Launch
+      if let launch: Launch = launchEntry as? Launch
       {
          NavigationLink( destination: LaunchDetail( launch: launch ) )
          {
@@ -102,7 +102,7 @@ struct TimelineEventItem: View
 
    var body: some View
    {
-      if let event = eventEntry as? Event
+      if let event: Event = eventEntry as? Event
       {
          NavigationLink( destination: EventDetail( event: event ) )
          {
@@ -119,7 +119,7 @@ struct TimelineDockingItem: View
 
    var body: some View
    {
-      if let docking = dockingEntry as? Docking
+      if let docking: Docking = dockingEntry as? Docking
       {
          NavigationLink( destination: DockingDetail( docking: docking ) )
          {
