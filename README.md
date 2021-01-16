@@ -34,6 +34,7 @@ Things that need to happen for a good app
 ### Beauty
 - tab icons
 - use a common date format
+- launch screen
 ### navigation
 - Any JSON with a mirror list of containers should have a nav link to that list (pad link to list of launches on that pad for example)
 - Programmatically go to databse details pages from links in the next launch home page
@@ -176,3 +177,8 @@ These have been completed, but tend to creep back in if not vigilant
 - check indents, spaces
 - public/private keywords
 - code line length
+
+## External Tools
+
+- [swift-code-metrics]{https://github.com/matsoftware/swift-code-metrics}
+- [swiftlint]{}

@@ -1,0 +1,44 @@
+{
+   "libraries": [
+      {
+         "name": "iOS",
+         "path": "iOS",
+         "is_test": false
+      },
+      {
+         "name": "macOS",
+         "path": "macOS",
+         "is_test": false
+      },
+      {
+         "name": "LaunchListWidget",
+         "path": "LaunchListWidget",
+         "is_test": false
+      },
+      {
+         "name": "Tests iOS",
+         "path": "Tests iOS",
+         "is_test": true
+      },
+      {
+         "name": "Tests macOS",
+         "path": "Tests macOS",
+         "is_test": true
+      },
+      {
+         "name": "UnitTests",
+         "path": "UnitTests",
+         "is_test": true
+      }
+   ],
+   "shared": [
+      {
+         "path": "Shared",
+         "is_test": false
+      },
+      {
+         "path": "Utils",
+         "is_test": false
+      }
+   ]
+}
