@@ -3,15 +3,16 @@
 import CoreData
 
 /**
- {
-   "id": 1,
-   "url": "https://ll.thespacedevs.com/2.1.0/config/spacecraft/1/",
-   "name": "Soyuz",
-   "type": { … },
-   "agency": { … },
-   "in_use": true,
-   "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/soyuz_image_20201015191152.jpg"
- }
+ ### Example JSON
+       {
+         "id": 1,
+         "url": "https://ll.thespacedevs.com/2.1.0/config/spacecraft/1/",
+         "name": "Soyuz",
+         "type": { … },
+         "agency": { … },
+         "in_use": true,
+         "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/soyuz_image_20201015191152.jpg"
+       }
  */
 public struct SpacecraftConfigJSON: Decodable, Identifiable
 {

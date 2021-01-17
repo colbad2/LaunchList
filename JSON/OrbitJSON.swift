@@ -5,14 +5,14 @@ import CoreData
 /**
  Mission orbit.
 
- Used in [MissionJSON]
+ Used in `MissionJSON`
 
- example JSON:
- {
-     "abbrev": "GTO",
-     "id": 2,
-     "name": "Geostationary Transfer Orbit"
- }
+ ### example JSON:
+       {
+           "abbrev": "GTO",
+           "id": 2,
+           "name": "Geostationary Transfer Orbit"
+       }
  */
 public struct OrbitJSON: Decodable
 {

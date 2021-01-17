@@ -2,14 +2,15 @@
 
 import SwiftUI
 
-// swiftlint:disable explicit_type_interface
-
 struct CountdownView: View
 {
    @State var targetTime: Date?
    @State private var parts: DateComponents?
+   // swiftlint:disable explicit_type_interface
    let timer =
       Timer.publish( every: 1, on: .main, in: .common ).autoconnect()
+   // swiftlint:enable explicit_type_interface
+
 
    var body: some View
    {

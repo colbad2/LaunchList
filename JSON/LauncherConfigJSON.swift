@@ -3,16 +3,17 @@
 import CoreData
 
 /**
- {
-     "id": 169,
-     "launch_library_id": 90,
-     "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/169/",
-     "name": "Falcon 9 v1.0",
-     "family": "Falcon",
-     "full_name": "Falcon 9 v1.0",
-     "variant": "v1.0"
-   }
- }
+ ### Example JSON
+       {
+           "id": 169,
+           "launch_library_id": 90,
+           "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/169/",
+           "name": "Falcon 9 v1.0",
+           "family": "Falcon",
+           "full_name": "Falcon 9 v1.0",
+           "variant": "v1.0"
+         }
+       }
  */
 public struct LauncherConfigJSON: Decodable
 {

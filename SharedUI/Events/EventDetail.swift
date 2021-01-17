@@ -3,10 +3,10 @@
 import SwiftUI
 
 /**
- View of the details of an [Event].
+ View of the details of an `Event`.
 
  ### Usage
- EventDetail( event: eventEntity )
+     EventDetail( event: eventEntity )
  */
 struct EventDetail: View
 {

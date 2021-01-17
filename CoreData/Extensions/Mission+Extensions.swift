@@ -3,12 +3,12 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Mission]. */
+/** Core Data entity name for `Mission`. */
 public let MISSION_ENTITY_NAME: String = "Mission"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Mission] entity.
+ Extensions to the Core Data generated `Mission` entity.
  */
 extension Mission
 {
@@ -16,16 +16,14 @@ extension Mission
 }
 
 /**
- Gets a [Mission] with the given ID in the given context.
+ Gets a `Mission` with the given ID in the given context.
 
  ### Example
- ````
- let mission: Mission = getMission( by: 2345, context: context )
- ````
+     let mission: Mission = getMission( by: 2345, context: context )
 
- - parameter entityID - [Int64] ID of the [Mission] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [Mission] from
- - returns: [Mission?] mission with the given ID in the context, nil if not found
+ - parameter entityID: `Int64` ID of the `Mission` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `Mission` from
+ - returns: `Mission?` mission with the given ID in the context, nil if not found
  */
 func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Mission?
 {
@@ -33,11 +31,11 @@ func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Missio
 }
 
 /**
- Fetches, updates, or creates a [Mission] from the context, given the data.
+ Fetches, updates, or creates a `Mission` from the context, given the data.
 
- - parameter agency: JSON data about the mission
- - parameter context: Core Data object context
- - returns: updated [Mission]
+ - parameter mission: `MissionJSON` JSON data about the mission
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: updated `Mission`
  */
 func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mission
 {
@@ -47,10 +45,10 @@ func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mi
 }
 
 /**
- Returns the number of [Mission] records in the given context.
+ Returns the number of `Mission` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [Mission] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `Mission` records in the context
  */
 func getMissionCount( context: NSManagedObjectContext ) -> Int?
 {

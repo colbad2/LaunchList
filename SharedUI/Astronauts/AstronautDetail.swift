@@ -3,10 +3,10 @@
 import SwiftUI
 
 /**
- View of the details of an [Astronaut].
+ View of the details of an `Astronaut`.
 
  ### Usage
- AstronautDetail( astronaut: astronautEntity )
+     AstronautDetail( astronaut: astronautEntity )
  */
 struct AstronautDetail: View
 {
@@ -73,14 +73,14 @@ struct AstronautDetail: View
 }
 
 /**
- Format the time range string for an [Astronaut]s life. If there is no death date,
+ Format the time range string for an `Astronaut`s life. If there is no death date,
  provide "present" for the death value.
 
- - parameter astronaut: astronaut to calculate the string for
- - returns: string of the birth-death range
+ - parameter astronaut: `Astronaut` astronaut to calculate the string for
+ - returns:             `String` string of the birth-death range
 
  ### Usage
- let birthDeath: String = dates( astronaut: astronautEntity )
+     let birthDeath: String = dates( astronaut: astronautEntity )
  */
 func lifeDates( astronaut: Astronaut ) -> String
 {
@@ -89,14 +89,14 @@ func lifeDates( astronaut: Astronaut ) -> String
 }
 
 /**
- Format the time range string for an [Astronaut]s flight career. If there is no end date,
+ Format the time range string for an `Astronaut`s flight career. If there is no end date,
  provide "present" for the end value.
 
- - parameter astronaut: astronaut to calculate the string for
- - returns: string of the birth-death range
+ - parameter astronaut: `Astronaut` astronaut to calculate the string for
+ - returns:             `String` birth-death range
 
  ### Usage
- let birthDeath: String = dates( astronaut: astronautEntity )
+     let birthDeath: String = dates( astronaut: astronautEntity )
  */
 func flightDates( astronaut: Astronaut ) -> String
 {
@@ -121,7 +121,7 @@ func dates( first: String, second: String? ) -> String
 }
 
 /**
- Preview view of the [AstronautDetail]
+ Preview view of the `AstronautDetail`
  */
 #if DEBUG
 struct AstronautPreview: PreviewProvider

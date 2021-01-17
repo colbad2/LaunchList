@@ -2,16 +2,15 @@
 
 import CoreData
 
-// swiftlint:disable line_length
-
 /**
- {
-   "id": 220,
-   "url": "https://ll.thespacedevs.com/2.1.0/spacecraft/flight/220/",
-   "destination": "International Space Station",
-   "mission_end": "2010-03-18T11:24:00Z",
-   "spacecraft": { … }
- }
+ ### Example JSON
+       {
+         "id": 220,
+         "url": "https://ll.thespacedevs.com/2.1.0/spacecraft/flight/220/",
+         "destination": "International Space Station",
+         "mission_end": "2010-03-18T11:24:00Z",
+         "spacecraft": { … }
+       }
  */
 public struct FlightVehicleJSON: Decodable, Identifiable
 {

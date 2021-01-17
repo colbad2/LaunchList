@@ -3,17 +3,17 @@
 import CoreData
 
 /**
- ### Example
- {
-   "id": 82,
-   "title": "Secondary Date",
-   "status": {
-     "id": 1,
-     "name": "Scheduled"
-   },
-   "window_start": "2020-12-30T14:00:00Z",
-   "window_end": "2020-12-30T23:00:00Z"
- }
+ ### Example JSON
+       {
+         "id": 82,
+         "title": "Secondary Date",
+         "status": {
+           "id": 1,
+           "name": "Scheduled"
+         },
+         "window_start": "2020-12-30T14:00:00Z",
+         "window_end": "2020-12-30T23:00:00Z"
+       }
  */
 public struct RoadClosureJSON: Decodable
 {

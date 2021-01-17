@@ -1,15 +1,15 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
- Status of an [EventJSON].
+ Status of an `EventJSON`.
 
- Used in parsing [EventJSON]. Flattened into the [Event] CoreData entity.
+ Used in parsing `EventJSON`. Flattened into the `Event` CoreData entity.
 
- ### Example
- {
-    "id": 21,
-    "name": "Cryoproof Test"
- }
+ ### Example JSON
+       {
+          "id": 21,
+          "name": "Cryoproof Test"
+       }
  */
 public struct EventTypeJSON: Decodable
 {

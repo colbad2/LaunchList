@@ -3,12 +3,12 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Spacecraft]. */
+/** Core Data entity name for `Spacecraft`. */
 public let SPACECRAFT_ENTITY_NAME: String = "Spacecraft"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Spacecraft] entity.
+ Extensions to the Core Data generated `Spacecraft` entity.
  */
 extension Spacecraft
 {
@@ -16,16 +16,14 @@ extension Spacecraft
 }
 
 /**
- Gets a [Spacecraft] with the given ID in the given context.
+ Gets a `Spacecraft` with the given ID in the given context.
 
  ### Example
- ````
- let spacecraft: Spacecraft = getSpacecraft( by: 2345, context: context )
- ````
+     let spacecraft: Spacecraft = getSpacecraft( by: 2345, context: context )
 
- - parameter entityID - ID of the [Spacecraft] to fetch
- - parameter context - context to get the [Spacecraft] from
- - returns: [Spacecraft] with the given ID in the context, nil if not found
+ - parameter entityID: `Int64` ID of the `Spacecraft` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `Spacecraft` from
+ - returns: `Spacecraft` with the given ID in the context, nil if not found
  */
 public func getSpacecraft( by entityID: Int64, context: NSManagedObjectContext ) -> Spacecraft?
 {
@@ -33,11 +31,11 @@ public func getSpacecraft( by entityID: Int64, context: NSManagedObjectContext )
 }
 
 /**
- Fetches, updates, or creates a [Spacecraft] from the context, given the data.
+ Fetches, updates, or creates a `Spacecraft` from the context, given the data.
 
- - parameter agency: JSON data about the spacecraft
- - parameter context: Core Data object context
- - returns: updated [Spacecraft]
+ - parameter spacecraft: `SpacecraftJSON` JSON data about the spacecraft
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Spacecraft` updated entity
  */
 public func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjectContext ) -> Spacecraft
 {
@@ -47,10 +45,10 @@ public func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjec
 }
 
 /**
- Returns the number of [Spacecraft] records in the given context.
+ Returns the number of `Spacecraft` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [Spacecraft] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `Spacecraft` records in the context
  */
 public func getSpacecraftCount( context: NSManagedObjectContext ) -> Int?
 {

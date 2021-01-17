@@ -3,48 +3,48 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Program]. */
+/** Core Data entity name for `Program`. */
 public let PROGRAM_ENTITY_NAME: String = "Program"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Program] entity.
+ Extensions to the Core Data generated `Program` entity.
  */
 extension Program
 {
-   /** Set< Agency > wrapper for the generated NSSet of {Agency}s. */
+   /** `Set< Agency >` wrapper for the generated `NSSet` of `Agency`s. */
    var agenciesSet: Set< Agency > { self.agencies as? Set< Agency > ?? Set< Agency >() }
 
-   /** Set< Event > wrapper for the generated NSSet of {Event}s. */
+   /** `Set< Event >` wrapper for the generated `NSSet` of `Event`s. */
    var eventsSet: Set< Event > { self.events as? Set< Event > ?? Set< Event >() }
 
-   /** Set< Launch > wrapper for the generated NSSet of {Launch}s. */
+   /** `Set< Launch >` wrapper for the generated `NSSet` of `Launch`s. */
    var launchesSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
 
-   /** Array of {Agency}s, sorted by name. */
+   /** Array of `Agency`s, sorted by name. */
    var sortedAgencies: [Agency] { sortAgenciesByName( agencyArray: Array( self.agenciesSet ) ) }
 
-   /** True if the {Program} has any {Agency}s. */
+   /** True if the `Program` has any `Agency`s. */
    var hasAgencies: Bool { !agenciesSet.isEmpty }
 
-   /** Array of {Event}s, sorted by name. */
+   /** Array of `Event`s, sorted by name. */
    var sortedEvent: [Event] { sortEventsByName( eventArray: Array( self.eventsSet ) ) }
 
-   /** True if the {Program} has any {Event}s. */
+   /** True if the `Program` has any `Event`s. */
    var hasEvents: Bool { !eventsSet.isEmpty }
 
-   /** Array of {Launch}s, sorted by name. */
+   /** Array of `Launch`s, sorted by name. */
    var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchesSet ) ) }
 
-   /** True if the {Program} has any {Launch}s. */
+   /** True if the `Program` has any `Launch`s. */
    var hasLaunches: Bool { !launchesSet.isEmpty }
 }
 
 /**
- Returns a sorted version of the given {Program} array.
+ Returns a sorted version of the given `Program` array.
 
- - parameter programArray - list of {Program}s to sort
- - returns: sorted version of the given {Program} list
+ - parameter programArray: `[Program]?` list of `Program`s to sort
+ - returns: `[Program] sorted version of the given `Program` list
  */
 public func sortProgramsByName( programArray: [Program]? ) -> [Program]
 {
@@ -73,13 +73,11 @@ public func sortProgramsByName( programArray: [Program]? ) -> [Program]
  Add the given agencies to the given program, and link them back to the program.
 
  ### Example
- ````
- addAgencies( entity: entity, agencies: self.agencies, context: context )
- ````
+     addAgencies( entity: entity, agencies: self.agencies, context: context )
 
- - parameter entity - [Program] program to add the agencies to
- - parameter agencies - [AgencyJSON] list of agencies to add
- - parameter context - [NSManagedObjectContext] contenxt in which the linking takes place
+ - parameter entity: `Program` program to add the agencies to
+ - parameter agencies: `[AgencyJSON]` list of agencies to add
+ - parameter context: `NSManagedObjectContext` contenxt in which the linking takes place
  */
 public func addAgencies( entity: Program, agencies: [AgencyJSON], context: NSManagedObjectContext )
 {
@@ -92,15 +90,15 @@ public func addAgencies( entity: Program, agencies: [AgencyJSON], context: NSMan
 }
 
 /**
- Gets all the agency country codes for all the agencies in this [Program].
+ Gets all the agency country codes for all the agencies in this `Program`.
 
  ### Example
  ```
  let agencyCountries: [String] = getAllAgencyFlags( program: program )
  ```
 
- - parameter program - [Program] program to search for agencies and countries in those agencies
- - returns: [String] list of countries in a program's agency list
+ - parameter program: `Program` program to search for agencies and countries in those agencies
+ - returns: `[String]` list of countries in a program's agency list
  */
 public func getAllAgencyFlags( program: Program? ) -> [String]
 {
@@ -119,16 +117,16 @@ public func getAllAgencyFlags( program: Program? ) -> [String]
 }
 
 /**
- Gets a [Program] with the given ID in the given context.
+ Gets a `Program` with the given ID in the given context.
 
  ### Example
  ````
  let program: Program = getProgram( by: 2345, context: context )
  ````
 
- - parameter entityID - ID of the [Program] to fetch
- - parameter context - context to get the [Program] from
- - returns: [Program] with the given ID in the context, nil if not found
+ - parameter programID: `Int64` ID of the `Program` to fetch
+ - parameter context: `NSManagedObjectContext context to get the `Program` from
+ - returns: `Program?` with the given ID in the context, nil if not found
  */
 public func getProgram( by programID: Int64, context: NSManagedObjectContext ) -> Program?
 {
@@ -136,11 +134,11 @@ public func getProgram( by programID: Int64, context: NSManagedObjectContext ) -
 }
 
 /**
- Fetches, updates, or creates a [Program] from the context, given the data.
+ Fetches, updates, or creates a `Program` from the context, given the data.
 
- - parameter program: JSON data about the program
- - parameter context: Core Data object context
- - returns: updated [Program]
+ - parameter program: `ProgramJSON` JSON data about the program
+ - parameter context: `NSManagedObjectContext Core Data object context
+ - returns: updated `Program`
  */
 public func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext ) -> Program
 {
@@ -150,10 +148,10 @@ public func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext 
 }
 
 /**
- Returns the number of [Program] records in the given context.
+ Returns the number of `Program` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [Program] records in the context
+ - parameter context: `NSManagedObjectContext Core Data object context
+ - returns: `Int?` Number of `Program` records in the context
  */
 public func getProgramCount( context: NSManagedObjectContext ) -> Int?
 {

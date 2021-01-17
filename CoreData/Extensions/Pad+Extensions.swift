@@ -3,30 +3,30 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Pad]. */
+/** Core Data entity name for `Pad`. */
 public let PAD_ENTITY_NAME: String = "Pad"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Pad] entity.
+ Extensions to the Core Data generated `Pad` entity.
  */
 extension Pad
 {
-   /** Set< Launch > wrapper for the generated NSSet of [Launch]s. */
+   /** Set< Launch > wrapper for the generated NSSet of `Launch`s. */
    var launchSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
 
-   /** Array of [Launch]s, sorted by name. */
+   /** Array of `Launch`s, sorted by name. */
    var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchSet ) ) }
 
-   /** True if the [Pad] has any [Launch]s. */
+   /** True if the `Pad` has any `Launch`s. */
    var hasLaunches: Bool { return !launchSet.isEmpty }
 }
 
 /**
- Returns a sorted version of the given [Pad] array.
+ Returns a sorted version of the given `Pad` array.
 
- - parameter padArray - list of [Pad]s to sort
- - returns: sorted version of the given [Pad] list
+ - parameter padArray - list of `Pad`s to sort
+ - returns: sorted version of the given `Pad` list
  */
 public func sortPadsByName( padArray: [Pad]? ) -> [Pad]
 {
@@ -52,16 +52,14 @@ public func sortPadsByName( padArray: [Pad]? ) -> [Pad]
 }
 
 /**
- Gets a [Pad] with the given ID in the given context.
+ Gets a `Pad` with the given ID in the given context.
 
  ### Example
- ````
- let pad: Pad = getPad( by: 2345, context: context )
- ````
+     let pad: Pad = getPad( by: 2345, context: context )
 
- - parameter entityID - [Int64] ID of the [Pad] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [Pad] from
- - returns: [Pad?] pad with the given ID in the context, nil if not found
+ - parameter entityID - `Int64` ID of the `Pad` to fetch
+ - parameter context - `NSManagedObjectContext` context to get the `Pad` from
+ - returns: `Pad?` pad with the given ID in the context, nil if not found
  */
 public func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad?
 {
@@ -69,11 +67,11 @@ public func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad
 }
 
 /**
- Fetches, updates, or creates a [Pad] from the context, given the data.
+ Fetches, updates, or creates a `Pad` from the context, given the data.
 
  - parameter agency: JSON data about the pad
  - parameter context: Core Data object context
- - returns: updated [Pad]
+ - returns: updated `Pad`
  */
 public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
 {
@@ -83,10 +81,10 @@ public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
 }
 
 /**
- Returns the number of [Pad] records in the given context.
+ Returns the number of `Pad` records in the given context.
 
  - parameter context: Core Data object context
- - returns: [Int?] Number of [Pad] records in the context
+ - returns: `Int?` Number of `Pad` records in the context
  */
 public func getPadCount( context: NSManagedObjectContext ) -> Int?
 {

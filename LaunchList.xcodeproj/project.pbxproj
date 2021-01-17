@@ -288,7 +288,6 @@
 		A280D1CF25B34B7F00CF6E33 /* AstronautList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14125B34B7F00CF6E33 /* AstronautList.swift */; };
 		A280D1D025B34B7F00CF6E33 /* AstronautDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14225B34B7F00CF6E33 /* AstronautDetail.swift */; };
 		A280D1D125B34B7F00CF6E33 /* AstronautDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14225B34B7F00CF6E33 /* AstronautDetail.swift */; };
-		A280D1D225B34B7F00CF6E33 /* AstronautDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14225B34B7F00CF6E33 /* AstronautDetail.swift */; };
 		A280D1D325B34B7F00CF6E33 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14425B34B7F00CF6E33 /* EventList.swift */; };
 		A280D1D425B34B7F00CF6E33 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14425B34B7F00CF6E33 /* EventList.swift */; };
 		A280D1D525B34B7F00CF6E33 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14425B34B7F00CF6E33 /* EventList.swift */; };
@@ -372,6 +371,7 @@
 		A2A416AA25B3BE1C005143D6 /* Mission+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A416A825B3BE1C005143D6 /* Mission+Extensions.swift */; };
 		A2A416B125B3BFF0005143D6 /* ConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A416B025B3BFF0005143D6 /* ConfigurationJSON.swift */; };
 		A2A416B225B3BFF0005143D6 /* ConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A416B025B3BFF0005143D6 /* ConfigurationJSON.swift */; };
+		A2B75C1F25B403D1002E95A0 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851F25B3BB440075B128 /* Samples.swift */; };
 		A2D6D7942597B8CC003D5401 /* AgenciesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7932597B8CC003D5401 /* AgenciesUnitTests.swift */; };
 		A2D6D7B42597BD7D003D5401 /* Checkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7B12597BD7D003D5401 /* Checkers.swift */; };
 		A2DA72242595AF8F009405E6 /* TestsIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72232595AF8F009405E6 /* TestsIOS.swift */; };
@@ -1550,7 +1550,6 @@
 				A280D0B325B34AF400CF6E33 /* PadJSON.swift in Sources */,
 				A280D16625B34B7F00CF6E33 /* MissionDetail.swift in Sources */,
 				A280D19925B34B7F00CF6E33 /* TwoFields.swift in Sources */,
-				A280D1D225B34B7F00CF6E33 /* AstronautDetail.swift in Sources */,
 				A280D15725B34B7F00CF6E33 /* LaunchListApp.swift in Sources */,
 				A280D18125B34B7F00CF6E33 /* ImageLoader.swift in Sources */,
 				A25584E025B36D170075B128 /* SocialMediaLink.swift in Sources */,
@@ -1586,6 +1585,7 @@
 				A25584E925B374450075B128 /* Docking+Extensions.swift in Sources */,
 				A280D1D525B34B7F00CF6E33 /* EventList.swift in Sources */,
 				A280D17525B34B7F00CF6E33 /* HomeView.swift in Sources */,
+				A2B75C1F25B403D1002E95A0 /* Samples.swift in Sources */,
 				A280D19C25B34B7F00CF6E33 /* CountdownView.swift in Sources */,
 				A280D0F825B34AF400CF6E33 /* DockingJSON.swift in Sources */,
 				A280D0C225B34AF400CF6E33 /* EventListJSON.swift in Sources */,

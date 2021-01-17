@@ -3,24 +3,26 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [ServiceProvider]. */
+/** Core Data entity name for `ServiceProvider]. */
 public let SERVICE_PROVIDER_ENTITY_NAME: String = "ServiceProvider"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [ServiceProvider] entity.
+ Extensions to the Core Data generated `ServiceProvider` entity.
  */
 extension ServiceProvider
 {
-   /** Set< Launch > wrapper for the generated NSSet of [Launch]s. */
+   /** Set< Launch > wrapper for the generated NSSet of `Launch`s. */
    var launchesSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
+
+   // TODO
 }
 
 /**
- Returns a sorted version of the given [ServiceProvider] array.
+ Returns a sorted version of the given `ServiceProvider` array.
 
- - parameter serviceProviderArray - list of [ServiceProvider]s to sort
- - returns: sorted version of the given [ServiceProvider] list
+ - parameter serviceProviderArray: `[ServiceProvider]?` list of `ServiceProvider`s to sort
+ - returns: `[ServiceProvider]` sorted version of the given `ServiceProvider` list, never nil
  */
 func sortServiceProvidersByName( serviceProviderArray: [ServiceProvider]? ) -> [ServiceProvider]
 {
@@ -46,16 +48,14 @@ func sortServiceProvidersByName( serviceProviderArray: [ServiceProvider]? ) -> [
 }
 
 /**
- Gets a [ServiceProvider] with the given ID in the given context.
+ Gets a `ServiceProvider` with the given ID in the given context.
 
  ### Example
- ````
- let provider: ServiceProvider = getServiceProvider( by: 2345, context: context )
- ````
+     let provider: ServiceProvider = getServiceProvider( by: 2345, context: context )
 
- - parameter entityID - ID of the [ServiceProvider] to fetch
- - parameter context - context to get the [ServiceProvider] from
- - returns: [ServiceProvider] with the given ID in the context, nil if not found
+ - parameter entityID: `Int64` ID of the `ServiceProvider` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `ServiceProvider` from
+ - returns: `ServiceProvider` with the given ID in the context, nil if not found
  */
 public func getProvider( by entityID: Int64, context: NSManagedObjectContext ) -> ServiceProvider?
 {
@@ -63,11 +63,11 @@ public func getProvider( by entityID: Int64, context: NSManagedObjectContext ) -
 }
 
 /**
- Fetches, updates, or creates a [ServiceProvider] from the context, given the data.
+ Fetches, updates, or creates a `ServiceProvider` from the context, given the data.
 
- - parameter agency: JSON data about the service provider
- - parameter context: Core Data object context
- - returns: updated [ServiceProvider]
+ - parameter provider: `ServiceProviderJSON` JSON data about the service provider
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `ServiceProvider` updated
  */
 public func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObjectContext ) -> ServiceProvider
 {
@@ -77,10 +77,10 @@ public func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObje
 }
 
 /**
- Returns the number of [ServiceProvider] records in the given context.
+ Returns the number of `ServiceProvider` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [ServiceProvider] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `ServiceProvider` records in the context
  */
 public func getServiceProviderCount( context: NSManagedObjectContext ) -> Int?
 {

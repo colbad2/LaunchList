@@ -3,12 +3,12 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [LiveStream]. */
+/** Core Data entity name for `LiveStream`. */
 public let LIVE_STREAM_ENTITY_NAME: String = "LiveStream"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [LiveStream] entity.
+ Extensions to the Core Data generated `LiveStream` entity.
  */
 extension LiveStream
 {
@@ -16,16 +16,14 @@ extension LiveStream
 }
 
 /**
- Gets a [LiveStream] with the given ID in the given context.
+ Gets a `LiveStream` with the given ID in the given context.
 
  ### Example
- ````
- let liveStream: LiveStream = getLiveStream( by: 2345, context: context )
- ````
+     let liveStream: LiveStream = getLiveStream( by: 2345, context: context )
 
- - parameter entityID - [Int64] ID of the [LiveStream] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [LiveStream] from
- - returns: [LiveStream?] live stream with the given ID in the context, nil if not found
+ - parameter entityID - `Int64` ID of the `LiveStream` to fetch
+ - parameter context - `NSManagedObjectContext` context to get the `LiveStream` from
+ - returns: `LiveStream?` live stream with the given ID in the context, nil if not found
  */
 public func getLiveStream( by entityID: String, context: NSManagedObjectContext ) -> LiveStream?
 {
@@ -33,11 +31,11 @@ public func getLiveStream( by entityID: String, context: NSManagedObjectContext 
 }
 
 /**
- Fetches, updates, or creates a [LiveStream] from the context, given the data
+ Fetches, updates, or creates a `LiveStream` from the context, given the data
 
- - parameter agency: JSON data about the live stream
- - parameter context: Core Data object context
- - returns: updated [LiveStream]
+ - parameter liveStream: `LiveStreamJSON` JSON data about the live stream
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: updated `LiveStream`
  */
 public func fetchLiveStream( liveStream: LiveStreamJSON, context: NSManagedObjectContext ) -> LiveStream
 {
@@ -47,16 +45,15 @@ public func fetchLiveStream( liveStream: LiveStreamJSON, context: NSManagedObjec
 }
 
 /**
- Returns the number of [LiveStream] records in the given context.
+ Returns the number of `LiveStream` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [LiveStream] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `LiveStream` records in the context
  */
 public func getLiveStreamCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: LIVE_STREAM_ENTITY_NAME, context: context )
 }
-
 
 /**
  Gets the `LiveStream` with the given URL.

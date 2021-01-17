@@ -3,30 +3,30 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Expedition]. */
+/** Core Data entity name for `Expedition`. */
 public let EXPEDITION_ENTITY_NAME: String = "Expedition"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Expedition] entity.
+ Extensions to the Core Data generated `Expedition` entity.
  */
 extension Expedition
 {
-   /** Set< Event > wrapper for the generated NSSet of [Event]s. */
+   /** `Set< Event >` wrapper for the generated `NSSet` of `Event`s. */
    var eventsSet: Set< Event > { self.events as? Set< Event > ?? Set< Event >() }
 
-   /** Array of [Event]s, sorted by name. */
+   /** Array of `Event`s, sorted by name. */
    var sortedAgencies: [Event] { return sortEventsByName( eventArray: Array( self.eventsSet ) ) }
 
-   /** True if the [Expedition] has any [Event]s. */
+   /** True if the `Expedition` has any `Event`s. */
    var hasAgencies: Bool { return !eventsSet.isEmpty }
 }
 
 /**
- Returns a sorted version of the given [Expedition] array.
+ Returns a sorted version of the given `Expedition` array.
 
- - parameter expeditionArray - list of [Expedition]s to sort
- - returns: sorted version of the given [Expedition] list
+ - parameter expeditionArray: `[Expedition]?` list of `Expedition`s to sort
+ - returns: `[Expedition]` sorted version of the given `Expedition` list, never nil
  */
 public func sortExpeditionsByName( expeditionArray: [Expedition]? ) -> [Expedition]
 {
@@ -52,16 +52,14 @@ public func sortExpeditionsByName( expeditionArray: [Expedition]? ) -> [Expediti
 }
 
 /**
- Gets an [Expedition] with the given ID in the given context.
+ Gets an `Expedition` with the given ID in the given context.
 
  ### Example
- ````
- let expedition: Expedition = getExpedition( by: 2345, context: context )
- ````
+     let expedition: Expedition = getExpedition( by: 2345, context: context )
 
- - parameter entityID - [Int64] ID of the [Expedition] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [Expedition] from
- - returns: [Expedition?] expedition with the given ID in the context, nil if not found
+ - parameter entityID: `Int64` ID of the `Expedition` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `Expedition` from
+ - returns: `Expedition?` expedition with the given ID in the context, nil if not found
  */
 public func getExpedition( by entityID: Int64, context: NSManagedObjectContext ) -> Expedition?
 {
@@ -69,11 +67,11 @@ public func getExpedition( by entityID: Int64, context: NSManagedObjectContext )
 }
 
 /**
- Fetches, updates, or creates a [Expedition] from the context, given the data
+ Fetches, updates, or creates a `Expedition` from the context, given the data
 
- - parameter agency: JSON data about the expedition
- - parameter context: Core Data object context
- - returns: updated [Expedition]
+ - parameter expedition: `ExpeditionJSON` JSON data about the expedition
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Expedition` updated entity
  */
 public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjectContext ) -> Expedition
 {
@@ -83,10 +81,10 @@ public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjec
 }
 
 /**
- Returns the number of [Expedition] records in the given context.
+ Returns the number of `Expedition` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [Expedition] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `Expedition` records in the context
  */
 public func getExpeditionCount( context: NSManagedObjectContext ) -> Int?
 {

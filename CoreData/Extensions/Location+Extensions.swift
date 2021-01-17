@@ -3,12 +3,12 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Location]. */
+/** Core Data entity name for `Location`. */
 public let LOCATION_ENTITY_NAME: String = "Location"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Location] entity.
+ Extensions to the Core Data generated `Location` entity.
  */
 extension Location
 {
@@ -16,16 +16,14 @@ extension Location
 }
 
 /**
- Gets a [Location] with the given ID in the given context.
+ Gets a `Location` with the given ID in the given context.
 
  ### Example
- ````
- let location: Location = getLocation( by: 2345, context: context )
- ````
+     let location: Location = getLocation( by: 2345, context: context )
 
- - parameter entityID - [Int64] ID of the [Location] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [Location] from
- - returns: [Location?] location with the given ID in the context, nil if not found
+ - parameter entityID: `Int64` ID of the `Location` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `Location` from
+ - returns: `Location?` location with the given ID in the context, nil if not found
  */
 public func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -> Location?
 {
@@ -33,11 +31,11 @@ public func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -
 }
 
 /**
- Fetches, updates, or creates a [Location] from the context, given the data
+ Fetches, updates, or creates a `Location` from the context, given the data
 
- - parameter agency: JSON data about the location
- - parameter context: Core Data object context
- - returns: updated [Location]
+ - parameter location: `LocationJSON` JSON data about the location
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: updated `Location`
  */
 public func fetchLocation( location: LocationJSON, context: NSManagedObjectContext ) -> Location
 {
@@ -47,10 +45,10 @@ public func fetchLocation( location: LocationJSON, context: NSManagedObjectConte
 }
 
 /**
- Returns the number of [Location] records in the given context.
+ Returns the number of `Location` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [Location] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `Location` records in the context
  */
 public func getLocationCount( context: NSManagedObjectContext ) -> Int?
 {

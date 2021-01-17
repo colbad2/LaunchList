@@ -3,25 +3,25 @@
 import CoreData
 
 /**
- ### Example
- {
-   "id": 2,
-   "url": "https://ll.thespacedevs.com/2.1.0/expedition/2/",
-   "name": "Skylab 2",
-   "start": "1973-05-25T13:00:00Z",
-   "end": "1973-06-22T13:49:48Z",
-   "spacestation": {
-     "id": 6,
-     "url": "https://ll.thespacedevs.com/2.1.0/spacestation/6/",
-     "name": "Skylab",
-     "status": {
-       "id": 2,
-       "name": "De-Orbited"
-     },
-     "orbit": "Low Earth Orbit",
-     "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/skylab_image_20190215230143.jpeg"
-   }
- }
+ ### Example JSON
+       {
+         "id": 2,
+         "url": "https://ll.thespacedevs.com/2.1.0/expedition/2/",
+         "name": "Skylab 2",
+         "start": "1973-05-25T13:00:00Z",
+         "end": "1973-06-22T13:49:48Z",
+         "spacestation": {
+           "id": 6,
+           "url": "https://ll.thespacedevs.com/2.1.0/spacestation/6/",
+           "name": "Skylab",
+           "status": {
+             "id": 2,
+             "name": "De-Orbited"
+           },
+           "orbit": "Low Earth Orbit",
+           "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/skylab_image_20190215230143.jpeg"
+         }
+       }
  */
 public struct ExpeditionJSON: Decodable
 {

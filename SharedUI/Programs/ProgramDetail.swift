@@ -3,7 +3,7 @@
 import SwiftUI
 
 /**
- View of the details of a [Program].
+ View of the details of a `Program`.
 
  ### Usage
      ProgramDetail( program: programEntity )
@@ -84,7 +84,7 @@ struct ProgramAgencyList: View
 }
 
 /**
- Preview view of the [ProgramDetail]
+ Preview view of the `ProgramDetail`
  */
 #if DEBUG
 struct ProgramPreview: PreviewProvider

@@ -3,18 +3,18 @@
 import CoreData
 
 /**
- ### Example
- {
-   "id": 14,
-   "url": "https://ll.thespacedevs.com/2.1.0/spacestation/14/",
-   "name": "Salyut 6",
-   "status": {
-     "id": 2,
-     "name": "De-Orbited"
-   },
-   "orbit": "Low Earth Orbit",
-   "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/salyut25206_image_20190318095930.jpg"
- }
+ ### Example JSON
+       {
+         "id": 14,
+         "url": "https://ll.thespacedevs.com/2.1.0/spacestation/14/",
+         "name": "Salyut 6",
+         "status": {
+           "id": 2,
+           "name": "De-Orbited"
+         },
+         "orbit": "Low Earth Orbit",
+         "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/salyut25206_image_20190318095930.jpg"
+       }
  */
 public struct SpaceStationJSON: Decodable
 {

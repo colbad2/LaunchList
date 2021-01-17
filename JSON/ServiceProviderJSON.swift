@@ -5,15 +5,15 @@ import CoreData
 /**
  Organization providing services for the launch.
 
- Part of a [LaunchJSON] object
+ Part of a `LaunchJSON` object
 
- example JSON:
- {
-     "id": 121,
-     "name": "SpaceX",
-     "type": "Commercial",
-     "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
- }
+ ### Example JSON:
+       {
+           "id": 121,
+           "name": "SpaceX",
+           "type": "Commercial",
+           "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
+       }
  */
 public struct ServiceProviderJSON: Decodable
 {

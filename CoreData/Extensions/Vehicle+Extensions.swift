@@ -19,12 +19,10 @@ extension Vehicle
  Gets a `Vehicle` with the given ID in the given context.
 
  ### Example
- ```
- let vehicle: Vehicle = getVehicle( by: 2345, context: context )
- ```
+     let vehicle: Vehicle = getVehicle( by: 2345, context: context )
 
- - parameter entityID - ID of the `Vehicle` to fetch
- - parameter context - context to get the `Vehicle` from
+ - parameter entityID: `Int64` ID of the `Vehicle` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `Vehicle` from
  - returns: `Vehicle?` with the given ID in the context, nil if not found
  */
 public func getVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> Vehicle?
@@ -35,9 +33,9 @@ public func getVehicle( by entityID: Int64, context: NSManagedObjectContext ) ->
 /**
  Fetches, updates, or creates a `Vehicle` from the context, given the data.
 
- - parameter agency: JSON data about the vehicle
- - parameter context: Core Data object context
- - returns: updated `Vehicle`
+ - parameter vehicle: `VehicleJSON` JSON data about the vehicle
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Vehicle` updated entity
  */
 public func fetchVehicle( vehicle: VehicleJSON, context: NSManagedObjectContext ) -> Vehicle
 {
@@ -49,7 +47,7 @@ public func fetchVehicle( vehicle: VehicleJSON, context: NSManagedObjectContext 
 /**
  Returns the number of `Vehicle` records in the given context.
 
- - parameter context: Core Data object context
+ - parameter context: `NSManagedObjectContext` Core Data object context
  - returns: `Int?` Number of `Vehicle` records in the context
  */
 public func getVehicleCount( context: NSManagedObjectContext ) -> Int?

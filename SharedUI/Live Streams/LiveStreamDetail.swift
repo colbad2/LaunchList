@@ -6,7 +6,7 @@ import SwiftUI
  View of the details of a `LiveStream`.
 
  ### Usage
- LiveStreamDetail( liveStream: liveStreamEntity )
+     LiveStreamDetail( liveStream: liveStreamEntity )
  */
 struct LiveStreamDetail: View
 {

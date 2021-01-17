@@ -34,8 +34,8 @@ extension SpaceStation
 /**
  Returns a sorted version of the given `SpaceStation` array.
 
- - parameter spaceStationArray - list of `SpaceStation`s to sort
- - returns: sorted version of the given `SpaceStation` list
+ - parameter spaceStationArray: `[SpaceStation]?` list of `SpaceStation`s to sort
+ - returns: `[SpaceStation]` sorted version of the given `SpaceStation` list
  */
 public func sortSpaceStationsByName( spaceStationArray: [SpaceStation]? ) -> [SpaceStation]
 {
@@ -64,12 +64,10 @@ public func sortSpaceStationsByName( spaceStationArray: [SpaceStation]? ) -> [Sp
  Gets a `SpaceStation` with the given ID in the given context.
 
  ### Example
- ```
- let spaceStation: SpaceStation = getSpaceStation( by: 2345, context: context )
- ```
+     let spaceStation: SpaceStation = getSpaceStation( by: 2345, context: context )
 
- - parameter entityID - ID of the `SpaceStation` to fetch
- - parameter context - context to get the `SpaceStation` from
+ - parameter entityID: `Int64` ID of the `SpaceStation` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `SpaceStation` from
  - returns: `SpaceStation?` with the given ID in the context, nil if not found
  */
 public func getSpaceStation( by entityID: Int64, context: NSManagedObjectContext ) -> SpaceStation?
@@ -80,9 +78,9 @@ public func getSpaceStation( by entityID: Int64, context: NSManagedObjectContext
 /**
  Fetches, updates, or creates a `SpaceStation` from the context, given the data.
 
- - parameter agency: JSON data about the space station
- - parameter context: Core Data object context
- - returns: updated `SpaceStation`
+ - parameter spaceStation: `SpaceStationJSON` JSON data about the space station
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `SpaceStation` updated entity
  */
 public func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManagedObjectContext ) -> SpaceStation
 {
@@ -94,7 +92,7 @@ public func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManage
 /**
  Returns the number of `SpaceStation` records in the given context.
 
- - parameter context: Core Data object context
+ - parameter context: `NSManagedObjectContext` Core Data object context
  - returns: `Int?` Number of `SpaceStation` records in the context
  */
 public func getSpaceStationCount( context: NSManagedObjectContext ) -> Int?

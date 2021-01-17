@@ -3,18 +3,18 @@
 /**
  Specific configuration of a rocket.
 
- Part of a [RocketJSON]. Merged with a [RocketJSON] to make a [Rocket] entity.
+ Part of a `RocketJSON`. Merged with a `RocketJSON` to make a `Rocket` entity.
 
- example JSON:
- {
- "family": "Falcon",
- "full_name": "Falcon 9 Block 5",
- "id": 164,
- "launch_library_id": 188,
- "name": "Falcon 9 Block 5",
- "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
- "variant": "Block 5"
- }
+ ### Example JSON:
+       {
+          "family": "Falcon",
+          "full_name": "Falcon 9 Block 5",
+          "id": 164,
+          "launch_library_id": 188,
+          "name": "Falcon 9 Block 5",
+          "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+          "variant": "Block 5"
+       }
  */
 public struct ConfigurationJSON: Decodable
 {
@@ -34,7 +34,7 @@ public struct ConfigurationJSON: Decodable
    var id: Int64
    /** Old API database record ID */
    var launchLibraryID: Int64?
-   /** TODO Same as "fullName"? */
+   /** Same as "fullName"? */
    var name: String?
    /** API URI for this location. */
    var url: String?

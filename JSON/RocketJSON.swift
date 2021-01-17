@@ -5,13 +5,13 @@ import CoreData
 /**
  Rocket being used for the launch.
  
- Part of a [LaunchJSON] object
+ Part of a `LaunchJSON` object
 
- example JSON:
- {
-     "configuration": { … },
-     "id": 136
- }
+ ### Example JSON:
+       {
+           "configuration": { … },
+           "id": 136
+       }
  */
 public struct RocketJSON: Decodable
 {
@@ -21,7 +21,7 @@ public struct RocketJSON: Decodable
    var id: Int64
 
    /**
-    Add this rocket to Core Data as a [Rocket] entity. The context still needs to be saved after the add.
+    Add this rocket to Core Data as a `Rocket` entity. The context still needs to be saved after the add.
 
     - parameter context: Core Data context to add the entity to.
     - returns: the added entity

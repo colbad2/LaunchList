@@ -3,30 +3,30 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [FlightVehicle]. */
+/** Core Data entity name for `FlightVehicle`. */
 public let FLIGHT_VEHICLE_ENTITY_NAME: String = "FlightVehicle"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Expedition] entity.
+ Extensions to the Core Data generated `Expedition` entity.
  */
 extension FlightVehicle
 {
-   /** Set< Docking > wrapper for the generated NSSet of {Docking}s. */
+   /** `Set< Docking >` wrapper for the generated `NSSet` of `Docking`s. */
    var dockingsSet: Set< Docking > { self.dockings as? Set< Docking > ?? Set< Docking >() }
 
-   /** Array of [Docking]s, sorted by name. */
+   /** Array of `Docking`s, sorted by name. */
    var sortedDockings: [Docking] { return sortDockingsByName( dockingArray: Array( self.dockingsSet ) ) }
 
-   /** True if the [FlightVehicle] has any [Docking]s. */
+   /** True if the `FlightVehicle` has any `Docking`s. */
    var hasDockings: Bool { return !dockingsSet.isEmpty }
 }
 
 /**
- Returns a sorted version of the given [FlightVehicle] array.
+ Returns a sorted version of the given `FlightVehicle` array.
 
- - parameter flightVehicleArray - list of [FlightVehicle]s to sort
- - returns: sorted version of the given [FlightVehicle] list
+ - parameter flightVehicleArray: `[FlightVehicle]?` list of `FlightVehicle`s to sort
+ - returns: `[FlightVehicle]` sorted version of the given `FlightVehicle` list, never nil
  */
 public func sortFlightVehiclesByName( flightVehicleArray: [FlightVehicle]? ) -> [FlightVehicle]
 {
@@ -52,16 +52,14 @@ public func sortFlightVehiclesByName( flightVehicleArray: [FlightVehicle]? ) -> 
 }
 
 /**
- Gets an [FlightVehicle] with the given ID in the given context.
+ Gets an `FlightVehicle` with the given ID in the given context.
 
  ### Example
- ````
- let flightVehicle: FlightVehicle = getFlightVehicle( by: 2345, context: context )
- ````
+     let flightVehicle: FlightVehicle = getFlightVehicle( by: 2345, context: context )
 
- - parameter entityID - [Int64] ID of the [FlightVehicle] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [FlightVehicle] from
- - returns: [FlightVehicle?] flightVehicle with the given ID in the context, nil if not found
+ - parameter entityID - `Int64` ID of the `FlightVehicle` to fetch
+ - parameter context - `NSManagedObjectContext` context to get the `FlightVehicle` from
+ - returns: `FlightVehicle?` flightVehicle with the given ID in the context, nil if not found
  */
 public func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> FlightVehicle?
 {
@@ -69,11 +67,11 @@ public func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContex
 }
 
 /**
- Fetches, updates, or creates a [FlightVehicle] from the context, given the data
+ Fetches, updates, or creates a `FlightVehicle` from the context, given the data
 
- - parameter agency: JSON data about the flight vehicle
- - parameter context: Core Data object context
- - returns: updated [FlightVehicle]
+ - parameter flightVehicle: `FlightVehicleJSON` JSON data about the flight vehicle
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: updated `FlightVehicle`
  */
 public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSManagedObjectContext ) -> FlightVehicle
 {
@@ -83,10 +81,10 @@ public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSMan
 }
 
 /**
- Returns the number of [FlightVehicle] records in the given context.
+ Returns the number of `FlightVehicle` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [FlightVehicle] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `FlightVehicle` records in the context
  */
 public func getFlightVehicleCount( context: NSManagedObjectContext ) -> Int?
 {

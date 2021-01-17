@@ -7,25 +7,25 @@ import CoreData
 /**
  Agency involved in the launch program.
 
- Part of a [Program] "agencies" list.
+ Part of a `Program` "agencies" list.
 
- Example JSON:
- {
-   "id": 136,
-   "url": "https://ll.thespacedevs.com/2.1.0/agencies/136/",
-   "name": "Ad Astra Rocket Company",
-   "featured": false,
-   "type": "Commercial",
-   "country_code": "USA",
-   "abbrev": "AARC",
-   "description": "Ad Astra Rocket Company is an American Space Company doing research and development in plasma propulsion technology. This involves using the technology of VASIMR developed in the late '70s, developed by the companies founder, Franklin Diaz. They have begun testing of their VF-200 model engine, built for interplanetary travel.",
-   "administrator": "Dr. Franklin Chang Diaz",
-   "founding_year": "2005",
-   "launchers": "None",
-   "spacecraft": "VX-200, VF-200",
-   "parent": null,
-   "image_url": null
- }
+ ### Example JSON:
+    {
+      "id": 136,
+      "url": "https://ll.thespacedevs.com/2.1.0/agencies/136/",
+      "name": "Ad Astra Rocket Company",
+      "featured": false,
+      "type": "Commercial",
+      "country_code": "USA",
+      "abbrev": "AARC",
+      "description": "Ad Astra Rocket Company is an American Space Company doing research and development in plasma propulsion technology. This involves using the technology of VASIMR developed in the late '70s, developed by the companies founder, Franklin Diaz. They have begun testing of their VF-200 model engine, built for interplanetary travel.",
+      "administrator": "Dr. Franklin Chang Diaz",
+      "founding_year": "2005",
+      "launchers": "None",
+      "spacecraft": "VX-200, VF-200",
+      "parent": null,
+      "image_url": null
+    }
  */
 public struct AgencyJSON: Decodable
 {

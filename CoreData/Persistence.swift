@@ -3,7 +3,7 @@
 import CoreData
 
 /**
- The Core Data datastore fo rthe app.
+ The Core Data datastore for the app.
  */
 public struct PersistenceController
 {
@@ -40,13 +40,13 @@ public struct PersistenceController
       return result
    }()
 
-   /** TODO */
+   /** Core Data persistent object container. */
    public let container: NSPersistentContainer
 
    /**
     Creates a datastore.
 
-    - parameter inMemory: if true, the datastore is memory-only
+    - parameter inMemory: `Bool` if true, the datastore is memory-only
     */
    init( inMemory: Bool = false )
    {
@@ -114,7 +114,7 @@ public struct PersistenceController
 /**
  Load entities from the agencies.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 public func loadAgencies( context: NSManagedObjectContext )
 {
@@ -132,7 +132,7 @@ public func loadAgencies( context: NSManagedObjectContext )
 /**
  Load entities from the launches.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 public func loadLaunches( context: NSManagedObjectContext )
 {
@@ -149,7 +149,7 @@ public func loadLaunches( context: NSManagedObjectContext )
 /**
  Load entities from the pads.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 public func loadPads( context: NSManagedObjectContext )
 {
@@ -166,7 +166,7 @@ public func loadPads( context: NSManagedObjectContext )
 /**
  Load entities from the astronauts.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 func loadAstronauts( context: NSManagedObjectContext )
 {
@@ -183,7 +183,7 @@ func loadAstronauts( context: NSManagedObjectContext )
 /**
  Load entities from the starshipTests.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 func loadStarshipTests( context: NSManagedObjectContext )
 {
@@ -234,7 +234,7 @@ func loadStarshipTests( context: NSManagedObjectContext )
 /**
  Load entities from the docking.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 func loadDockings( context: NSManagedObjectContext )
 {
@@ -251,7 +251,7 @@ func loadDockings( context: NSManagedObjectContext )
 /**
  Load entities from the events.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 func loadEvents( context: NSManagedObjectContext )
 {
@@ -268,7 +268,7 @@ func loadEvents( context: NSManagedObjectContext )
 /**
  Load entities from the expeditions.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 func loadExpeditions( context: NSManagedObjectContext )
 {
@@ -285,7 +285,7 @@ func loadExpeditions( context: NSManagedObjectContext )
 /**
  Load entities from the launchers.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext`  Core Data context to store/update the entities in
  */
 func loadLaunchers( context: NSManagedObjectContext )
 {
@@ -302,7 +302,7 @@ func loadLaunchers( context: NSManagedObjectContext )
 /**
  Load entities from the locations.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 func loadLocations( context: NSManagedObjectContext )
 {
@@ -319,7 +319,7 @@ func loadLocations( context: NSManagedObjectContext )
 /**
  Load entities from the programs.json file
 
- - parameter context: Core Data context to store/update the entities in
+ - parameter context: `NSManagedObjectContext` Core Data context to store/update the entities in
  */
 func loadPrograms( context: NSManagedObjectContext )
 {
@@ -336,7 +336,7 @@ func loadPrograms( context: NSManagedObjectContext )
 /**
  Adds the app's stored data to Core Data.
 
- - parameter viewContext: the Core Data context to add the entities to
+ - parameter viewContext: `NSManagedObjectContext` the Core Data context to add the entities to
  */
 func fillStore( viewContext: NSManagedObjectContext )
 {
@@ -358,8 +358,8 @@ func fillStore( viewContext: NSManagedObjectContext )
 /**
  Reads the JSON in a bundle file, and returns it as [Data]
 
- - parameter name: name of the bundle file to load
- - returns: content of the bundle file, if it could be loaded, nil otherwise
+ - parameter name: `String` name of the bundle file to load
+ - returns:        `Data?` content of the bundle file, if it could be loaded, nil otherwise
  */
 func readBundleJSONFile( forName name: String ) -> Data?
 {

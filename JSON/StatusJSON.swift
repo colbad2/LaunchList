@@ -3,15 +3,15 @@
 import CoreData
 
 /**
- Part of [LaunchJSON], [SpacecraftJSON], and [SpaceStationJSON] objects
+ Part of `LaunchJSON`, `SpacecraftJSON`, and `SpaceStationJSON` objects
 
- example JSON:
- {
-     "abbrev": "TBC",
-     "description": "Awaiting official confirmation - current date is known with some certainty.",
-     "id": 8,
-     "name": "To Be Confirmed"
- }
+ ### Example JSON:
+       {
+           "abbrev": "TBC",
+           "description": "Awaiting official confirmation - current date is known with some certainty.",
+           "id": 8,
+           "name": "To Be Confirmed"
+       }
  */
 public struct StatusJSON: Decodable
 {

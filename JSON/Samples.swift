@@ -12,9 +12,8 @@ import CoreData
  */
 public func getSampleAgencyEntity() -> Agency?
 {
-   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
    return getEntityByID( entityID: 63,
-                         context: context,
+                         context: PersistenceController.preview.container.viewContext,
                          entityName: AGENCY_ENTITY_NAME ) as? Agency
 }
 

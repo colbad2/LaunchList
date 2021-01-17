@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import MapKit
 import SwiftUI
 

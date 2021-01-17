@@ -1,10 +1,11 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
- {
- "id": 2,
- "name": "Zvezda aft"
- }
+ ### Example JSON:
+       {
+       "id": 2,
+       "name": "Zvezda aft"
+       }
  */
 public struct DockingLocationJSON: Decodable, Identifiable
 {

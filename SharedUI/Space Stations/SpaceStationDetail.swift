@@ -1,12 +1,13 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+import CoreData
 import SwiftUI
 
 /**
- View of the details of an [SpaceStation].
+ View of the details of a `SpaceStation`.
 
  ### Usage
- SpaceStationDetail( spaceStation: spaceStationEntity )
+     SpaceStationDetail( spaceStation: spaceStationEntity )
  */
 struct SpaceStationDetail: View
 {
@@ -165,7 +166,7 @@ struct EventLink: View
 }
 
 /**
- Preview of the [SpaceStationDetail]
+ Preview of the `SpaceStationDetail`
  */
 #if DEBUG
 struct SpaceStationPreview: PreviewProvider

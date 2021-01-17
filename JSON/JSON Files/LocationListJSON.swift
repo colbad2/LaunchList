@@ -14,14 +14,14 @@ public struct LocationListJSON: Decodable
       case sublist = "results"
    }
 
-   // total number of records that could be returned from exhaustive use of the URL
+   /** Total number of records that could be returned from exhaustive use of the URL */
    let totalCount: Int?
-   // URL that fetches the next group of records, as defined by the limit/offset URL attributes, if any. If there
-   // are no other records, then the string is "null"
+   /** URL that fetches the next group of records, as defined by the limit/offset URL attributes, if any. If there
+       are no other records, then the string is "null" */
    let nextGroupURL: String?
-   // URL that fetches the previous group of records, as defined by the limit/offset URL attributes, if any. If there
-   // are no previous records, then the string is "null"
+   /** URL that fetches the previous group of records, as defined by the limit/offset URL attributes, if any. If there
+       are no previous records, then the string is "null" */
    let previousGroupURL: String?
-   // Current sublist of records, as defined by the URL
+   /** Current sublist of records, as defined by the URL */
    let sublist: [LocationJSON]?
 }

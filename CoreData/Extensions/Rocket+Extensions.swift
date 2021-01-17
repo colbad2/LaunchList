@@ -3,27 +3,29 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Rocket]. */
+/** Core Data entity name for `Rocket`. */
 public let ROCKET_ENTITY_NAME: String = "Rocket"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Rocket] entity.
+ Extensions to the Core Data generated [Rocket` entity.
  */
 extension Rocket
 {
-   /** Set< Launch > wrapper for the generated NSSet of [Launch]s. */
+   /** `Set< Launch >` wrapper for the generated `NSSet` of `Launch`s. */
    var launchesSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
 
-   /** Set< Vehicle > wrapper for the generated NSSet of [Vehicle]s. */
+   /** `Set< Vehicle >` wrapper for the generated `NSSet` of `Vehicle`s. */
    var vehiclesSet: Set< Vehicle > { self.vehicles as? Set< Vehicle > ?? Set< Vehicle >() }
+
+   // TODO
 }
 
 /**
- Returns a sorted version of the given [Rocket] array.
+ Returns a sorted version of the given `Rocket` array.
 
- - parameter rocketArray - list of [Rocket]s to sort
- - returns: sorted version of the given [Rocket] list
+ - parameter rocketArray: `[Rocket]?` list of `Rocket`s to sort
+ - returns: `[Rocket]` sorted version of the given `Rocket` list, never nil
  */
 func sortRocketsByName( rocketArray: [Rocket]? ) -> [Rocket]
 {
@@ -49,16 +51,14 @@ func sortRocketsByName( rocketArray: [Rocket]? ) -> [Rocket]
 }
 
 /**
- Gets a [Rocket] with the given ID in the given context.
+ Gets a `Rocket` with the given ID in the given context.
 
  ### Example
- ````
- let rocket: Rocket = getRocket( by: 2345, context: context )
- ````
+     let rocket: Rocket = getRocket( by: 2345, context: context )
 
- - parameter entityID - ID of the [Rocket] to fetch
- - parameter context - context to get the [Rocket] from
- - returns: [Rocket] with the given ID in the context, nil if not found
+ - parameter id: `Int64` ID of the `Rocket` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `Rocket` from
+ - returns: `Rocket?` with the given ID in the context, nil if not found
  */
 public func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket?
 {
@@ -66,11 +66,11 @@ public func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket
 }
 
 /**
- Fetches, updates, or creates a [Rocket] from the context, given the data.
+ Fetches, updates, or creates a `Rocket` from the context, given the data.
 
- - parameter agency: JSON data about the rocket
- - parameter context: Core Data object context
- - returns: updated [Rocket]
+ - parameter rocket: `RocketJSON` JSON data about the rocket
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Rocket?` updated entity
  */
 public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket?
 {
@@ -82,10 +82,10 @@ public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -
 }
 
 /**
- Returns the number of [Rocket] records in the given context.
+ Returns the number of `Rocket` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [Rocket] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `Rocket` records in the context
  */
 public func getRocketCount( context: NSManagedObjectContext ) -> Int?
 {

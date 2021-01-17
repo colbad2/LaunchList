@@ -3,48 +3,48 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Agency]. */
+/** Core Data entity name for `Agency`. */
 public let AGENCY_ENTITY_NAME: String = "Agency"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Agency] entity.
+ Extensions to the Core Data generated `Agency` entity.
  */
 extension Agency
 {
-   /** Set< Astronaut > wrapper for the generated NSSet of {Astronaut}s. */
+   /** `Set< Astronaut >` wrapper for the generated `NSSet` of `Astronaut`s. */
    var astronautsSet: Set< Astronaut > { self.astronauts as? Set< Astronaut > ?? Set< Astronaut >() }
 
-   /** Set< Program > wrapper for the generated NSSet of {Program}s. */
+   /** `Set< Program >` wrapper for the generated `NSSet` of `Program`s. */
    var programsSet: Set< Program > { self.programs as? Set< Program > ?? Set< Program >() }
 
-   /** Set< SpacecraftConfig > wrapper for the generated NSSet of {SpacecraftConfig}s. */
+   /** `Set< SpacecraftConfig >` wrapper for the generated `NSSet` of `SpacecraftConfig`s. */
    var spacecraftConfigsSet: Set< SpacecraftConfig > { self.spacecraftConfigs as? Set< SpacecraftConfig > ?? Set< SpacecraftConfig >() }
 
-   /** Array of {Astronaut}s, sorted by name. */
+   /** Array of `Astronaut`s, sorted by name. */
    var sortedAstronauts: [Astronaut] { sortAstronautsByName( astronautArray: Array( self.astronautsSet ) ) }
 
-   /** True if the {Agency} has any {Astronaut}s. */
+   /** True if the `Agency` has any `Astronaut`s. */
    var hasAstronauts: Bool { !astronautsSet.isEmpty }
 
-   /** Array of {Program}s, sorted by name. */
+   /** Array of `Program`s, sorted by name. */
    var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( self.programsSet ) ) }
 
-   /** True if the {Agency} has any {Program}s. */
+   /** True if the `Agency` has any `Program`s. */
    var hasPrograms: Bool { !programsSet.isEmpty }
 
-   /** Array of {SpacecraftConfig}s, sorted by name. */
+   /** Array of `SpacecraftConfig`s, sorted by name. */
    var sortedSpacecraftConfigs: [SpacecraftConfig] { sortSpacecraftConfigsByName( spacecraftConfigArray: Array( self.spacecraftConfigsSet ) ) }
 
-   /** True if the {Agency} has any {SpacecraftConfig}s. */
+   /** True if the `Agency` has any `SpacecraftConfig`s. */
    var hasSpacecraftConfigs: Bool { !spacecraftConfigsSet.isEmpty }
 }
 
 /**
- Returns a sorted version of the given {Agency} array.
+ Returns a sorted version of the given `Agency` array.
 
- - parameter agencyArray - list of {Agency}s to sort
- - returns: sorted version of the given {Agency} list
+ - parameter agencyArray: `[Agency]?` list of `Agency`s to sort
+ - returns: `[Agency]` sorted version of the given `Agency` list, never nil
  */
 public func sortAgenciesByName( agencyArray: [Agency]? ) -> [Agency]
 {
@@ -70,16 +70,14 @@ public func sortAgenciesByName( agencyArray: [Agency]? ) -> [Agency]
 }
 
 /**
- Returns true if the {Agency} is a minimal Agency record. Used to determine if an {Agency} needs a
+ Returns true if the `Agency` is a minimal Agency record. Used to determine if an `Agency` needs a
  details view.
 
  ### Example
- ````
- let agencyIsBasic: Bool = isBasic( agency: agency )
- ````
+     let agencyIsBasic: Bool = isBasic( agency: agency )
 
- - parameter agency - {Agency} agency to check for details
- - returns: true if an {Agency} only has a name
+ - parameter agency: `Agency` agency to check for details
+ - returns: true if an `Agency` only has a name
  */
 public func isBasic( agency: Agency ) -> Bool
 {
@@ -93,16 +91,14 @@ public func isBasic( agency: Agency ) -> Bool
 }
 
 /**
- Gets an [Agency] with the given ID in the given context.
+ Gets an `Agency` with the given ID in the given context.
 
  ### Example
- ````
- let agency: Agency = getAgency( by: 2345, context: context )
- ````
+     let agency: Agency = getAgency( by: 2345, context: context )
 
- - parameter entityID - [Int64] ID of the [Agency] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [Agency] from
- - returns: [Agency?] agency with the given ID in the context, nil if not found
+ - parameter entityID: `Int64` ID of the `Agency` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `Agency` from
+ - returns: `Agency?` agency with the given ID in the context, nil if not found
  */
 public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> Agency?
 {
@@ -110,11 +106,11 @@ public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> 
 }
 
 /**
- Fetches, updates, or creates a [Agency] from the context, given the data
+ Fetches, updates, or creates a `Agency` from the context, given the data
 
- - parameter agency: JSON data about the agency
- - parameter context: Core Data object context
- - returns: updated [Agency]
+ - parameter agency: `AgencyJSON` JSON data about the agency
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: updated `Agency`
  */
 public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agency
 {
@@ -124,10 +120,10 @@ public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -
 }
 
 /**
- Returns the number of [Agency] records in the given context.
+ Returns the number of `Agency` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [Agency] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `Agency` records in the context
  */
 public func getAgencyCount( context: NSManagedObjectContext ) -> Int?
 {

@@ -5,7 +5,7 @@ import CoreData
 /**
  Saves the Core Data context, without having to handle any errors.
 
- - parameter context: the Core Data context to save
+ - parameter context: `NSManagedObjectContext` the Core Data context to save
  */
 func saveContext( _ context: NSManagedObjectContext )
 {
@@ -29,10 +29,10 @@ func saveContext( _ context: NSManagedObjectContext )
 /**
  Gets an entity of the given name and int ID.
 
- - parameter entityID: ID of the entity to fetch
- - parameter context: Core Data context to get the entity from
- - parameter entityName: type of the entity type to fetch
- - returns: the first entity with the given parameters, or nil otherwise
+ - parameter entityID:   `Int64` ID of the entity to fetch
+ - parameter context:    `NSManagedObjectContext` Core Data context to get the entity from
+ - parameter entityName: `String` type of the entity type to fetch
+ - returns:              `Any?` the first entity with the given parameters, or nil otherwise
  */
 func getEntityByID( entityID: Int64, context: NSManagedObjectContext, entityName: String ) -> Any?
 {
@@ -57,10 +57,10 @@ func getEntityByID( entityID: Int64, context: NSManagedObjectContext, entityName
 
  Needed to ID live streams.
 
- - parameter entityID: ID of the entity to fetch
- - parameter context: Core Data context to fetch the entity from
- - parameter entityName- type of the entity to fetch
- - returns: first entity with the given parameters, nil otherwise
+ - parameter entityID:   `String` ID of the entity to fetch
+ - parameter context:    `NSManagedObjectContext` Core Data context to fetch the entity from
+ - parameter entityName: `String` type of the entity to fetch
+ - returns:              `Any?` first entity with the given parameters, nil otherwise
  */
 func getEntityByID( entityID: String, context: NSManagedObjectContext, entityName: String ) -> Any?
 {
@@ -83,34 +83,30 @@ func getEntityByID( entityID: String, context: NSManagedObjectContext, entityNam
 /**
  Gets the first entity of the given type from Core Data.
 
- Used to get a random record for previews
-
- TODO remove, use fixed records for previews
-
- - parameter context: Core Data context to get the entity from
- - parameter entityName: type of the entity type to fetch
- - returns: the first entity with the given parameters, or nil otherwise
+ - parameter context:    `NSManagedObjectContext` Core Data context to get the entity from
+ - parameter entityName: `String` type of the entity type to fetch
+ - returns:              `Any?` the first entity with the given parameters, or nil otherwise
  */
-func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> Any?
-{
-   do
-   {
-      let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
-      return try context.fetch( request ).first
-   }
-   catch
-   {
-      let nsError: NSError = error as NSError
-      fatalError( "Failed to fetch first entity \(entityName): \(error), \(nsError.userInfo)" )
-   }
-}
+//func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> Any?
+//{
+//   do
+//   {
+//      let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+//      return try context.fetch( request ).first
+//   }
+//   catch
+//   {
+//      let nsError: NSError = error as NSError
+//      fatalError( "Failed to fetch first entity \(entityName): \(error), \(nsError.userInfo)" )
+//   }
+//}
 
 /**
  Gets the number of records of the given type.
 
- - parameter entityName: type of entities to count
- - parameter context: Core Data context to get the entity from
- - returns: number of records of the given type
+ - parameter entityName: `String` type of entities to count
+ - parameter context:    `NSManagedObjectContext` Core Data context to get the entity from
+ - returns:              `Int?` number of records of the given type
  */
 func getRecordsCount( entityName: String, context: NSManagedObjectContext ) -> Int?
 {
@@ -127,6 +123,12 @@ func getRecordsCount( entityName: String, context: NSManagedObjectContext ) -> I
    return nil
 }
 
+/**
+ Remove all entities from the context of the given entity type.
+
+ - parameter entityName: `String` name of the entities to remove
+ - parameter context:    `NSManagedObjectContext` context to remove entity from
+ */
 func deleteAllData( entityName: String, context: NSManagedObjectContext )
 {
    let fetchRequest: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
@@ -160,6 +162,12 @@ func deleteAllData( entityName: String, context: NSManagedObjectContext )
 //    }
 // }
 
+/**
+ Gets the next `Launch` after the current date.
+
+ - parameter context: `NSManagedObjectContext` context to get launches from
+ - returns:           `Launch?` next launch, if any
+ */
 func getNextLaunch( context: NSManagedObjectContext ) -> Launch?
 {
    return getNextLaunches( count: 1, context: context ).first
@@ -168,8 +176,9 @@ func getNextLaunch( context: NSManagedObjectContext ) -> Launch?
 /**
  Returns a list of events after the current date.
 
- - parameter count: {Int} number of records to return
- - parameter context: {NSManagedObjectContext} Core Data database context
+ - parameter count:   `Int` number of records to return
+ - parameter context: `NSManagedObjectContext`  Core Data database context
+ - returns:           `[Launch]` list of the next launches
  */
 func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
 {
@@ -191,11 +200,24 @@ func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
    return []
 }
 
+/**
+ Gets the next `TimelineEvent` after the current date.
+
+ - parameter context: `NSManagedObjectContext`  Core Data database context
+ - returns:           `TimelineEntry?` next timeline entry, if any
+ */
 func getNextTimelineEvent( context: NSManagedObjectContext ) -> TimelineEntry?
 {
    return getNextTimelineEvents( count: 1, context: context ).first
 }
 
+/**
+ Returns a list of timeline entries after the current date.
+
+ - parameter count:   `Int` number of records to return
+ - parameter context: `NSManagedObjectContext`  Core Data database context
+ - returns:           `[TimelineEntry]` list of the next timeline entries
+ */
 func getNextTimelineEvents( count: Int, context: NSManagedObjectContext ) -> [TimelineEntry]
 {
    do

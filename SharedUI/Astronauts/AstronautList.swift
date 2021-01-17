@@ -40,9 +40,9 @@ let bioSearchKey = "bio:"
 /**
  Returns true if the astronaut conforms to the search text.
 
- - parameter {Astronaut} astronaut to check against the cirteria
- - parameter {String?} criteria to check the astornaut against
- - returns: true if the astronaut met the cirteria
+ - parameter astronaut: `Astronaut` astronaut to check against the criteria
+ - parameter searchText: `String?` criteria to check the astornaut against
+ - returns: `Bool` true if the astronaut met the cirteria
 */
 func filterAstronaut( astronaut: Astronaut, searchText: String? ) -> Bool
 {

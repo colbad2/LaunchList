@@ -3,7 +3,7 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Astronaut]. */
+/** Core Data entity name for `Astronaut`. */
 public let ASTRONAUT_ENTITY_NAME: String = "Astronaut"
 // swiftlint:enable identifier_name
 
@@ -16,10 +16,10 @@ extension Astronaut
 }
 
 /**
- Returns a sorted version of the given [Astronaut] array.
+ Returns a sorted version of the given `Astronaut` array.
 
- - parameter astronautArray - list of [Astronaut]s to sort
- - returns: sorted version of the given [Astronaut] list
+ - parameter astronautArray: `[Astronaut]?` list of `Astronaut`s to sort
+ - returns: `[Astronaut]` sorted version of the given `Astronaut` list
  */
 public func sortAstronautsByName( astronautArray: [Astronaut]? ) -> [Astronaut]
 {
@@ -45,16 +45,14 @@ public func sortAstronautsByName( astronautArray: [Astronaut]? ) -> [Astronaut]
 }
 
 /**
- Gets an [Astronaut] with the given ID in the given context.
+ Gets an `Astronaut` with the given ID in the given context.
 
  ### Example
- ````
- let astronaut: Astronaut = getAstronaut( by: 2345, context: context )
- ````
+     let astronaut: Astronaut = getAstronaut( by: 2345, context: context )
 
- - parameter entityID - [Int64] ID of the [Astronaut] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [Astronaut] from
- - returns: [Astronaut?] astronaut with the given ID in the context, nil if not found
+ - parameter id: `Int64` ID of the `Astronaut` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `Astronaut` from
+ - returns: `Astronaut?` astronaut with the given ID in the context, nil if not found
  */
 public func getAstronaut( by id: Int64, context: NSManagedObjectContext ) -> Astronaut?
 {
@@ -62,11 +60,11 @@ public func getAstronaut( by id: Int64, context: NSManagedObjectContext ) -> Ast
 }
 
 /**
- Fetches, updates, or creates a [Astronaut] from the context, given the data
+ Fetches, updates, or creates a `Astronaut` from the context, given the data
 
- - parameter agency: JSON data about the astronaut
- - parameter context: Core Data object context
- - returns: updated [Astronaut]
+ - parameter astronaut: `AstronautJSON` JSON data about the astronaut
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: updated `Astronaut`
  */
 public func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectContext ) -> Astronaut
 {
@@ -76,10 +74,10 @@ public func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectCo
 }
 
 /**
- Returns the number of [Astronaut] records in the given context.
+ Returns the number of `Astronaut` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [Astronaut] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `Astronaut` records in the context
  */
 public func getAstronautCount( context: NSManagedObjectContext ) -> Int?
 {

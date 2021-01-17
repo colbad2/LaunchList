@@ -5,19 +5,19 @@ import CoreData
 /**
    Mission being serviced by a launch.
 
-   Part of a [LaunchJSON].
+   Part of a `LaunchJSON`.
 
-   example JSON:
-   {
-     "description": "T\u00fcrksat 5A is the first of two Turkish next generation communications satellites, which will be \
-                      operated by T\u00fcrksat for commercial and military purposes.",
-     "id": 1222,
-     "launch_designator": null,
-     "launch_library_id": null,
-     "name": "T\u00fcrksat 5A",
-     "orbit": { … },
-     "type": "Communications"
-   }
+   ### Example JSON:
+         {
+           "description": "T\u00fcrksat 5A is the first of two Turkish next generation communications satellites, which will be \
+                            operated by T\u00fcrksat for commercial and military purposes.",
+           "id": 1222,
+           "launch_designator": null,
+           "launch_library_id": null,
+           "name": "T\u00fcrksat 5A",
+           "orbit": { … },
+           "type": "Communications"
+         }
  */
 struct MissionJSON: Decodable
 {
@@ -33,7 +33,7 @@ struct MissionJSON: Decodable
    var description: String?
    /** ID of the mission within the API. */
    var id: Int64
-   /** TODO unknown*/
+   /** TODO unknown */
    var launchDesignator: String?
    /** ID from the previous API database. */
    var launchLibraryID: Int64?
@@ -47,8 +47,8 @@ struct MissionJSON: Decodable
    /**
     Add this mission to Core Data as a [Mission] entity. The context still needs to be saved after the add.
 
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
+    - parameter context: `NSManagedObjectContext` Core Data context to add the entity to.
+    - returns:           `Mission` the added entity
     */
    func addToCoreData( context: NSManagedObjectContext ) -> Mission
    {

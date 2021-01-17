@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 struct VehicleDetail: View
@@ -30,10 +29,7 @@ struct VehiclePreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      if let vehicle: Vehicle = getEntityByID( entityID: 75,
-                                               context: context,
-                                               entityName: VEHICLE_ENTITY_NAME ) as? Vehicle
+      if let vehicle: Vehicle = getSampleVehicleEntity()
       {
          Group
          {

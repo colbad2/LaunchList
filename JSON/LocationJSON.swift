@@ -6,18 +6,18 @@ import CoreData
  The larger location of the launch, that contains the launch pad itself. For example, the Kennedy
  Space Center would be the locaton for Launch Complex 39A.
 
- Part of a [PadJSON].
+ Part of a `PadJSON`.
 
- example JSON:
- {
-     "country_code": "USA",
-     "id": 12,
-     "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-     "name": "Cape Canaveral, FL, USA",
-     "total_landing_count": 20,
-     "total_launch_count": 208,
-     "url": "https://ll.thespacedevs.com/2.1.0/location/12/"
- }
+ ### Example JSON:
+       {
+           "country_code": "USA",
+           "id": 12,
+           "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
+           "name": "Cape Canaveral, FL, USA",
+           "total_landing_count": 20,
+           "total_launch_count": 208,
+           "url": "https://ll.thespacedevs.com/2.1.0/location/12/"
+       }
  */
 public struct LocationJSON: Decodable
 {
@@ -39,8 +39,8 @@ public struct LocationJSON: Decodable
    /**
     Add this location to Core Data as a [Location] entity. The context still needs to be saved after the add.
 
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
+    - parameter context: `NSManagedObjectContext` Core Data context to add the entity to.
+    - returns:           `Location` the added entity
     */
    public func addToCoreData( context: NSManagedObjectContext ) -> Location
    {

@@ -3,12 +3,12 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [SpacecraftConfig]. */
+/** Core Data entity name for `SpacecraftConfig`. */
 public let SPACECRAFT_CONFIG_ENTITY_NAME: String = "SpacecraftConfig"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [SpacecraftConfig] entity.
+ Extensions to the Core Data generated `SpacecraftConfig` entity.
  */
 extension SpacecraftConfig
 {
@@ -16,10 +16,10 @@ extension SpacecraftConfig
 }
 
 /**
- Returns a sorted version of the given [SpacecraftConfig] array.
+ Returns a sorted version of the given `SpacecraftConfig` array.
 
- - parameter spacecraftConfigArray - list of [SpacecraftConfig]s to sort
- - returns: sorted version of the given [SpacecraftConfig] list
+ - parameter spacecraftConfigArray: `[SpacecraftConfig]?` list of `SpacecraftConfig`s to sort
+ - returns: `[SpacecraftConfig]` sorted version of the given `SpacecraftConfig` list
  */
 func sortSpacecraftConfigsByName( spacecraftConfigArray: [SpacecraftConfig]? ) -> [SpacecraftConfig]
 {
@@ -45,16 +45,14 @@ func sortSpacecraftConfigsByName( spacecraftConfigArray: [SpacecraftConfig]? ) -
 }
 
 /**
- Gets a [SpacecraftConfig] with the given ID in the given context.
+ Gets a `SpacecraftConfig` with the given ID in the given context.
 
  ### Example
- ````
- let spacecraftConfig: SpacecraftConfig = getSpacecraftConfig( by: 2345, context: context )
- ````
+     let spacecraftConfig: SpacecraftConfig = getSpacecraftConfig( by: 2345, context: context )
 
- - parameter entityID - ID of the [SpacecraftConfig] to fetch
- - parameter context - context to get the [SpacecraftConfig] from
- - returns: [SpacecraftConfig?] with the given ID in the context, nil if not found
+ - parameter entityID: `Int64` ID of the `SpacecraftConfig` to fetch
+ - parameter context: `NSManagedObjectContext` context to get the `SpacecraftConfig` from
+ - returns: `SpacecraftConfig?` with the given ID in the context, nil if not found
  */
 public func getSpacecraftConfig( by entityID: Int64, context: NSManagedObjectContext ) -> SpacecraftConfig?
 {
@@ -62,11 +60,11 @@ public func getSpacecraftConfig( by entityID: Int64, context: NSManagedObjectCon
 }
 
 /**
- Fetches, updates, or creates a [SpacecraftConfig] from the context, given the data.
+ Fetches, updates, or creates a `SpacecraftConfig` from the context, given the data.
 
- - parameter agency: JSON data about the spacecraft config
- - parameter context: Core Data object context
- - returns: updated [SpacecraftConfig]
+ - parameter spacecraftConfig: `SpacecraftConfigJSON` JSON data about the spacecraft config
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `SpacecraftConfig` updated entity
  */
 public func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, context: NSManagedObjectContext ) -> SpacecraftConfig
 {
@@ -76,10 +74,10 @@ public func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, conte
 }
 
 /**
- Returns the number of [SpacecraftConfig] records in the given context.
+ Returns the number of `SpacecraftConfig` records in the given context.
 
- - parameter context: Core Data object context
- - returns: [Int?] Number of [SpacecraftConfig] records in the context
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: `Int?` Number of `SpacecraftConfig` records in the context
  */
 public func getSpacecraftConfigCount( context: NSManagedObjectContext ) -> Int?
 {

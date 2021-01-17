@@ -3,15 +3,16 @@
 import CoreData
 
 /**
- {
-   "id": 100,
-   "url": "https://ll.thespacedevs.com/2.1.0/docking_event/100/",
-   "launch_id": "349eb56f-50e8-4858-9977-e4b7121c40f5",
-   "docking": "2009-10-02T08:35:00Z",
-   "departure": "2010-03-18T08:03:00Z",
-   "flight_vehicle": { … },
-   "docking_location": { … }
- }
+ ### Example JSON
+       {
+         "id": 100,
+         "url": "https://ll.thespacedevs.com/2.1.0/docking_event/100/",
+         "launch_id": "349eb56f-50e8-4858-9977-e4b7121c40f5",
+         "docking": "2009-10-02T08:35:00Z",
+         "departure": "2010-03-18T08:03:00Z",
+         "flight_vehicle": { … },
+         "docking_location": { … }
+       }
  */
 public struct DockingJSON: Decodable, Identifiable
 {
