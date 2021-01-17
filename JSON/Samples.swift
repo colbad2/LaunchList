@@ -730,8 +730,6 @@ public func getSampleProgramEntity1() -> Program?
 /**
  Gets an example Core Data entity `Program` for use in previews.
 
- TODO make sure the second version is loaded in `Persistence`
-
  - returns: `Program` entity suitable for previewing
  */
 public func getSampleProgramEntity2() -> Program?
@@ -750,6 +748,16 @@ public func getSampleProgramEntity2() -> Program?
 public func getSampleProgram() -> ProgramJSON?
 {
    return parseJSONString( json: sampleProgramJSON )
+}
+
+/**
+ Returns a second [ProgramJSON] to use in generating UI previews.
+
+ - returns: Fixed program data
+ */
+public func getSampleProgram2() -> ProgramJSON?
+{
+   return parseJSONString( json: sampleProgramJSON2 )
 }
 
 private let sampleProgramJSON =
@@ -797,6 +805,29 @@ private let sampleProgramJSON =
    "info_url": "https://www.nasa.gov/mission_pages/station/main/index.html",
    "wiki_url": "https://en.wikipedia.org/wiki/International_Space_Station_programme"
  }
+"""
+
+private let sampleProgramJSON2 =
+"""
+{
+      "id": 15,
+      "url": "https://ll.thespacedevs.com/2.1.0/program/15/",
+      "name": "Artemis",
+      "description": "The Artemis program is a US government-funded crewed spaceflight program that has the goal of landing \"the first woman and the next man\" on the Moon, specifically at the lunar south pole region by 2024.",
+      "agencies": [
+        {
+          "id": 44,
+          "url": "https://ll.thespacedevs.com/2.1.0/agencies/44/",
+          "name": "National Aeronautics and Space Administration",
+          "type": "Government"
+        }
+      ],
+      "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/artemis_program_20200821091844.png",
+      "start_date": "2017-12-11T00:00:00Z",
+      "end_date": null,
+      "info_url": "https://www.nasa.gov/specials/artemis/",
+      "wiki_url": "https://en.wikipedia.org/wiki/Artemis_program"
+    }
 """
 
 /**

@@ -2,8 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable line_length
-
 /**
  Data that describe a launch.
 
@@ -40,7 +38,7 @@ public struct LaunchJSON: Decodable, Identifiable
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
    {
-      case hashtag, id, image, infographic, mission, name, program,
+      case hashtag, id, image, infographic, mission, name,
          net, pad, probability, rocket, slug, status, url, webcastLive, windowEnd, windowStart
 
 //      case idString = "id"
@@ -51,6 +49,7 @@ public struct LaunchJSON: Decodable, Identifiable
       case tbdDate = "tbddate"
       case tbdTime = "tbdtime"
       case serviceProvider = "launchServiceProvider"
+      case programs = "program"
    }
 
    var failReason: String?
@@ -67,7 +66,7 @@ public struct LaunchJSON: Decodable, Identifiable
    var net: String?
    var pad: PadJSON?
    var probability: Int16?
-   var program: [ProgramJSON]?
+   var programs: [ProgramJSON]?
    var rocket: RocketJSON?
    var slug: String?
    var status: StatusJSON?
@@ -91,75 +90,38 @@ public struct LaunchJSON: Decodable, Identifiable
 
    public func updateEntity( entity: Launch?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let launchEntity = entity else { return }
 
-      if let fail: String = self.failReason?.trim()
+      if let fail: String = failReason?.trim()
       {
          if !fail.isEmpty
          {
-            entity.failReason = fail
+            launchEntity.failReason = fail
          }
       }
-      entity.hashtag = self.hashtag
-      entity.holdReason = self.holdReason
-      entity.id = self.id
-      entity.image = self.image
-      entity.infographic = self.infographic
-      entity.inHold = self.inHold ?? false
-
-      if let provider: ServiceProviderJSON = self.serviceProvider
-      {
-         entity.serviceProvider = fetchProvider( provider: provider, context: context )
-         entity.serviceProvider?.addToLaunches( entity )
-      }
-
-      if let mission: MissionJSON = self.mission
-      {
-         entity.mission = fetchMission( mission: mission, context: context )
-         entity.mission?.launch = entity
-      }
-
-      entity.name = self.name?.fixBadUTF() // TODO fix Ã© -> é problems
-
-      entity.net = parseISODate( isoDate: self.net )
-
-      if let pad: PadJSON = self.pad
-      {
-         entity.pad = fetchPad( pad: pad, context: context )
-         entity.pad?.addToLaunches( entity )
-      }
-
-      entity.probability = self.probability ?? -1
-
-      if let programs: [ProgramJSON] = self.program
-      {
-         for program in programs
-         {
-            let programEntity: Program = fetchProgram( program: program, context: context )
-            entity.addToPrograms( programEntity )
-            programEntity.addToLaunches( entity )
-         }
-      }
-
-      if let rocket: RocketJSON = self.rocket
-      {
-         entity.rocket = fetchRocket( rocket: rocket, context: context )
-         entity.rocket?.addToLaunches( entity )
-      }
-
-      entity.slug = self.slug
-
-      entity.statusName = self.status?.name
-      entity.statusAbbreviation = self.status?.abbreviation
-      entity.statusDescription = self.status?.description
-
-      entity.tbdDate = self.tbdDate ?? false
-      entity.tbdTime = self.tbdTime ?? false
-      entity.webcastLive = self.webcastLive ?? false
-      entity.windowEnd = parseISODate( isoDate: self.windowEnd )
-      entity.windowStart = parseISODate( isoDate: self.windowStart )
-
-      // TimelineEntry
-      entity.sortingDate = parseISODate( isoDate: self.windowStart )
+      launchEntity.hashtag = hashtag
+      launchEntity.holdReason = holdReason
+      launchEntity.id = id
+      launchEntity.image = image
+      launchEntity.infographic = infographic
+      launchEntity.inHold = inHold ?? false
+      launchEntity.addServiceProviderFromJSON( provider: serviceProvider, context: context )
+      launchEntity.addMissionFromJSON( mission: mission, context: context )
+      launchEntity.name = name?.fixBadUTF()
+      launchEntity.net = parseISODate( isoDate: net )
+      launchEntity.addPadFromJSON( pad: pad, context: context )
+      launchEntity.probability = probability ?? -1
+      launchEntity.addProgramsFromJSON( programs: programs, context: context )
+      launchEntity.addRocketFromJSON( rocket: rocket, context: context )
+      launchEntity.slug = slug
+      launchEntity.statusName = status?.name
+      launchEntity.statusAbbreviation = status?.abbreviation
+      launchEntity.statusDescription = status?.description
+      launchEntity.tbdDate = tbdDate ?? false
+      launchEntity.tbdTime = tbdTime ?? false
+      launchEntity.webcastLive = webcastLive ?? false
+      launchEntity.windowEnd = parseISODate( isoDate: windowEnd )
+      launchEntity.windowStart = parseISODate( isoDate: windowStart )
+      launchEntity.sortingDate = parseISODate( isoDate: windowStart )
    }
 }

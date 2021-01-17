@@ -12,7 +12,19 @@ public let ASTRONAUT_ENTITY_NAME: String = "Astronaut"
  */
 extension Astronaut
 {
-   // no sets
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter agency:  `AgencyJSON?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addAgencyFromJSON( agency: AgencyJSON?, context: NSManagedObjectContext )
+   {
+      guard let json = agency else { return }
+      let agencyEntity: Agency = fetchAgency( agency: json, context: context )
+      self.agency = agencyEntity
+      agencyEntity.addToAstronauts( self )
+   }
 }
 
 /**

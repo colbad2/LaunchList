@@ -54,11 +54,11 @@ public struct LocationJSON: Decodable
    {
       guard let entity = entity else { return }
 
-      entity.countryCode = self.countryCode
-      entity.id = self.id
-      entity.mapImage = self.mapImage
-      entity.name = self.name
-      entity.totalLandingCount = self.totalLandingCount ?? -1
-      entity.totalLaunchCount = self.totalLaunchCount ?? -1
+      entity.countryCode = countryCode
+      entity.id = id
+      entity.mapImage = mapImage
+      entity.name = name
+      entity.totalLandingCount = totalLandingCount ?? -1
+      entity.totalLaunchCount = totalLaunchCount ?? -1
    }
 }

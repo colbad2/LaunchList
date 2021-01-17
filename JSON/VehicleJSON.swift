@@ -58,23 +58,17 @@ public struct VehicleJSON: Decodable
 
    public func updateEntity( entity: Vehicle?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let vehicleEntity = entity else { return }
 
-      entity.id = self.id
-      entity.flightProven = self.flightProven ?? false
-      entity.serialNumber = self.serialNumber
-      entity.status = self.status
-      entity.details = self.details
-
-      if let launcher: RocketJSON = self.launcherConfig
-      {
-         entity.launcher = fetchRocket( rocket: launcher, context: context )
-         entity.launcher?.addToVehicles( entity )
-      }
-
-      entity.imageURL = self.imageURL
-      entity.flights = self.flights
-      entity.lastLaunchDate = self.lastLaunchDate
-      entity.firstLaunchDate = self.firstLaunchDate
+      vehicleEntity.id = id
+      vehicleEntity.flightProven = flightProven ?? false
+      vehicleEntity.serialNumber = serialNumber
+      vehicleEntity.status = status
+      vehicleEntity.details = details
+      vehicleEntity.addRocketFromJSON( launcher: launcherConfig, context: context )
+      vehicleEntity.imageURL = imageURL
+      vehicleEntity.flights = flights
+      vehicleEntity.lastLaunchDate = lastLaunchDate
+      vehicleEntity.firstLaunchDate = firstLaunchDate
    }
 }

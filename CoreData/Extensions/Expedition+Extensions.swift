@@ -20,6 +20,22 @@ extension Expedition
 
    /** True if the `Expedition` has any `Event`s. */
    var hasAgencies: Bool { return !eventsSet.isEmpty }
+
+   /**
+    Adds the JSON struct, creating or updating if necessary.
+
+    - parameter spaceStation: `SpaceStationJSON?` JSON struct to add
+    - parameter context:      `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addSpaceStationFromJSON( spaceStation: SpaceStationJSON?, context: NSManagedObjectContext )
+   {
+      if let station: SpaceStationJSON = spaceStation
+      {
+         let newSpaceStation: SpaceStation = fetchSpaceStation( spaceStation: station, context: context )
+         self.spaceStation = newSpaceStation
+         newSpaceStation.addToExpeditions( self )
+      }
+   }
 }
 
 /**

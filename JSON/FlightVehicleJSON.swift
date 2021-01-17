@@ -36,18 +36,12 @@ public struct FlightVehicleJSON: Decodable, Identifiable
 
    public func updateEntity( entity: FlightVehicle?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let flightVehicleEntity = entity else { return }
 
-      entity.id = self.id
-      entity.url = self.url
-      entity.destination = self.destination
-      entity.missionEnd = self.missionEnd
-
-      if let spacecraft: SpacecraftJSON = self.spacecraft
-      {
-         let spacecraftEntity: Spacecraft = fetchSpacecraft( spacecraft: spacecraft, context: context )
-         entity.spacecraft = spacecraftEntity
-         spacecraftEntity.flightVehicle = entity
-      }
+      flightVehicleEntity.id = id
+      flightVehicleEntity.url = url
+      flightVehicleEntity.destination = destination
+      flightVehicleEntity.missionEnd = missionEnd
+      flightVehicleEntity.addSpacecraftFromJSON( spacecraft: spacecraft, context: context )
    }
 }

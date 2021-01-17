@@ -20,6 +20,22 @@ extension FlightVehicle
 
    /** True if the `FlightVehicle` has any `Docking`s. */
    var hasDockings: Bool { return !dockingsSet.isEmpty }
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter spacecraft: `SpacecraftJSON?` JSON struct to add
+    - parameter context:    `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addSpacecraftFromJSON( spacecraft: SpacecraftJSON?, context: NSManagedObjectContext )
+   {
+      if let spacecraft: SpacecraftJSON = spacecraft
+      {
+         let spacecraftEntity: Spacecraft = fetchSpacecraft( spacecraft: spacecraft, context: context )
+         self.spacecraft = spacecraftEntity
+         spacecraftEntity.flightVehicle = self
+      }
+   }
 }
 
 /**

@@ -87,47 +87,21 @@ public struct EventJSON: Decodable
 
    public func updateEntity( entity: Event?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let eventEntity = entity else { return }
 
-      entity.id = self.id
-      entity.name = self.name
-      entity.type = self.type?.name
-      entity.eventDescription = self.eventDescription
-      entity.location = self.location
-      entity.newsURL = self.newsURL
-      entity.videoURL = self.videoURL
-      entity.featureImage = self.featureImage
-      entity.date = parseISODate( isoDate: self.date )
-
-      for launch in launches ?? []
-      {
-         let newLaunch: Launch = fetchLaunch( launch: launch, context: context )
-         entity.addToLaunches( newLaunch )
-         newLaunch.addToEvents( entity )
-      }
-
-      for expedition in expeditions ?? []
-      {
-         let newExpedition: Expedition = fetchExpedition( expedition: expedition, context: context )
-         entity.addToExpeditions( newExpedition )
-         newExpedition.addToEvents( entity )
-      }
-
-      for spaceStation in spaceStations ?? []
-      {
-         let newSpaceStations: SpaceStation = fetchSpaceStation( spaceStation: spaceStation, context: context )
-         entity.addToSpaceStations( newSpaceStations )
-         newSpaceStations.addToEvents( entity )
-      }
-
-      for program in programs ?? []
-      {
-         let newProgram: Program = fetchProgram( program: program, context: context )
-         entity.addToPrograms( newProgram )
-         newProgram.addToEvents( entity )
-      }
-
-      // TimelineEntry
-      entity.sortingDate = parseISODate( isoDate: self.date )
+      eventEntity.id = id
+      eventEntity.name = name
+      eventEntity.type = type?.name
+      eventEntity.eventDescription = eventDescription
+      eventEntity.location = location
+      eventEntity.newsURL = newsURL
+      eventEntity.videoURL = videoURL
+      eventEntity.featureImage = featureImage
+      eventEntity.date = parseISODate( isoDate: date )
+      eventEntity.addLaunchesFromJSONList( launches: launches, context: context )
+      eventEntity.addExpeditionsFromJSONList( expeditions: expeditions, context: context )
+      eventEntity.addSpaceStationsFromJSONList( spaceStations: spaceStations, context: context )
+      eventEntity.addProgramsFromJSONList( programs: programs, context: context )
+      eventEntity.sortingDate = parseISODate( isoDate: self.date )
    }
 }

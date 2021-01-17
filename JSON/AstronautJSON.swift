@@ -86,36 +86,29 @@ public struct AstronautJSON: Decodable
 
    public func updateEntity( entity: Astronaut?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let astronautEntity = entity else { return }
 
-      entity.id = self.id
-      entity.name = self.name
-      entity.status = self.status?.name
-      entity.type = self.type?.name
-      entity.dateOfBirth = self.dateOfBirth
-      entity.dateOfDeath = self.dateOfDeath
-      entity.nationality = self.nationality
-      entity.bio = self.bio
-      entity.twitter = self.twitter
-      entity.instagram = self.instagram
-      entity.wiki = self.wiki
+      astronautEntity.id = id
+      astronautEntity.name = name
+      astronautEntity.status = status?.name
+      astronautEntity.type = type?.name
+      astronautEntity.dateOfBirth = dateOfBirth
+      astronautEntity.dateOfDeath = dateOfDeath
+      astronautEntity.nationality = nationality
+      astronautEntity.bio = bio
+      astronautEntity.twitter = twitter
+      astronautEntity.instagram = instagram
+      astronautEntity.wiki = wiki
+      astronautEntity.addAgencyFromJSON( agency: agency, context: context )
+      astronautEntity.firstFlight = firstFlight
+      astronautEntity.lastFlight = lastFlight
+      astronautEntity.profileImage = profileImage
+      astronautEntity.profileImageThumbnail = profileImageThumbnail
 
-      if let agency: AgencyJSON = self.agency
+      // sort by last name
+      if let lastPart: Substring = name?.split( separator: " " ).last
       {
-         let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
-         entity.agency = agencyEntity
-         agencyEntity.addToAstronauts( entity )
-      }
-
-      entity.firstFlight = self.firstFlight
-      entity.lastFlight = self.lastFlight
-      entity.profileImage = self.profileImage
-      entity.profileImageThumbnail = self.profileImageThumbnail
-
-      let nameParts: [Substring]? = name?.split( separator: " " )
-      if let lastPart: Substring = nameParts?.last
-      {
-         entity.sortingName = String( lastPart )
+         astronautEntity.sortingName = String( lastPart )
       }
    }
 }

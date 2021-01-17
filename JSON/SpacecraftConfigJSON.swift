@@ -40,17 +40,11 @@ public struct SpacecraftConfigJSON: Decodable, Identifiable
 
    public func updateEntity( entity: SpacecraftConfig?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let spacecraftConfigEntity = entity else { return }
 
-      entity.id = self.id
-      entity.url = self.url
-      entity.type = self.type?.name
-
-      if let agency: AgencyJSON = self.agency
-      {
-         let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
-         entity.agency = agencyEntity
-         agencyEntity.addToSpacecraftConfigs( entity )
-      }
+      spacecraftConfigEntity.id = id
+      spacecraftConfigEntity.url = url
+      spacecraftConfigEntity.type = type?.name
+      spacecraftConfigEntity.addAgencyFromJSON( agency: agency, context: context )
    }
 }

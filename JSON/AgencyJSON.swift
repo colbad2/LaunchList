@@ -64,38 +64,41 @@ public struct AgencyJSON: Decodable
 
    public func updateEntity( entity: Agency?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let agencyEntity = entity else { return }
 
-      entity.id = self.id
-      entity.name = self.name
-      entity.type = self.type
+      agencyEntity.id = id
+      agencyEntity.name = name
+      agencyEntity.type = type
+      agencyEntity.countryCodes = getCountryCodes( countryCode: countryCode )
+      agencyEntity.abbreviation = abbreviation
 
-      entity.countryCodes = getCountryCodes( countryCode: self.countryCode )
+      if var admin: String = administrator
+      {
+         admin = admin.removePrefix( "Administrator: " ) // DATABASE CORRECTION
+         agencyEntity.administrator = admin
+      }
 
-      entity.abbreviation = self.abbreviation
-      if var admin: String = self.administrator
+      agencyEntity.agencyDescription = agencyDescription
+      agencyEntity.foundingYear = foundingYear
+
+      if launchers?.count ?? 0 > 0 && launchers != "None" // DATABASE CORRECTION
       {
-         admin = admin.removePrefix( "Administrator: " )
-         entity.administrator = admin
+         agencyEntity.launchers = self.launchers
       }
-      entity.agencyDescription = self.agencyDescription
-      entity.foundingYear = self.foundingYear
-      if self.launchers?.count ?? 0 > 0 && self.launchers != "None"
+
+      if spacecraft?.count ?? 0 > 0 && spacecraft != "None" // DATABASE CORRECTION
       {
-         entity.launchers = self.launchers
+         agencyEntity.spacecraft = spacecraft
       }
-      if self.spacecraft?.count ?? 0 > 0 && self.spacecraft != "None"
-      {
-         entity.spacecraft = self.spacecraft
-      }
-      entity.parent = self.parent
-      entity.imageURL = self.imageURL
+
+      agencyEntity.parent = parent
+      agencyEntity.imageURL = imageURL
 
       // add flags for holes in the API
-      if let name: String = entity.name,
+      if let name: String = agencyEntity.name,
          let correction: String = countryCodeCorrections[ name ]
       {
-         entity.countryCodes?.append( correction )
+         agencyEntity.countryCodes?.append( correction ) // DATABASE CORRECTION
       }
    }
 }

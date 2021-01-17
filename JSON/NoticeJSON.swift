@@ -2,8 +2,6 @@
 
 /**
  Structure in starship test API data.
- 
- TODO ???
  */
 public struct NoticeJSON: Decodable
 {

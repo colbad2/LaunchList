@@ -27,7 +27,7 @@ public struct DockingJSON: Decodable, Identifiable
    public var id: Int64
    var url: String? // unused
    var launchID: String?
-   var docking: String?
+   var docking: String?  // docking name
    var dockingLocationName: String?
    var departure: String?
    var flightVehicle: FlightVehicleJSON?
@@ -43,23 +43,14 @@ public struct DockingJSON: Decodable, Identifiable
 
    public func updateEntity( entity: Docking?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let dockingEntity = entity else { return }
 
-      entity.id = self.id
-      entity.launchID = self.launchID
-      entity.docking = self.docking
-      entity.departure = self.departure
-
-      if let flightVehicle: FlightVehicleJSON = self.flightVehicle
-      {
-         let flightVehicleEntity: FlightVehicle = fetchFlightVehicle( flightVehicle: flightVehicle, context: context )
-         entity.flightVehicle = flightVehicleEntity
-         flightVehicleEntity.addToDockings( entity )
-      }
-
-      entity.dockingLocationName = self.dockingLocation?.name
-
-      // TimelineEntry
-      entity.sortingDate = parseISODate( isoDate: self.docking )
+      dockingEntity.id = id
+      dockingEntity.launchID = launchID
+      dockingEntity.docking = docking
+      dockingEntity.departure = departure
+      dockingEntity.addEntityFromJSON( json: flightVehicle, context: context )
+      dockingEntity.dockingLocationName = dockingLocation?.name
+      dockingEntity.sortingDate = parseISODate( isoDate: docking )
    }
 }

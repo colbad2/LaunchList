@@ -38,12 +38,12 @@ public struct RocketJSON: Decodable
    {
       guard let entity = entity else { return }
 
-      entity.id = self.configuration?.id ?? -1
-      entity.rocketID = self.id
-      entity.family = self.configuration?.family
-      entity.fullName = self.configuration?.fullName
-      entity.configurationID = self.configuration?.id ?? -1
-      entity.name = self.configuration?.name
-      entity.variant = self.configuration?.variant
+      entity.id = configuration?.id ?? -1
+      entity.rocketID = id
+      entity.family = configuration?.family
+      entity.fullName = configuration?.fullName
+      entity.configurationID = configuration?.id ?? -1
+      entity.name = configuration?.name
+      entity.variant = configuration?.variant
    }
 }

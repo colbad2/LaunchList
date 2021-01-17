@@ -50,18 +50,12 @@ public struct ExpeditionJSON: Decodable
 
    public func updateEntity( entity: Expedition?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let expeditionEntity = entity else { return }
 
-      entity.id = self.id
-      entity.name = self.name
-      entity.start = self.start
-      entity.end = self.end
-
-      if let station: SpaceStationJSON = self.spaceStation
-      {
-         let newSpaceStation: SpaceStation = fetchSpaceStation( spaceStation: station, context: context )
-         entity.spaceStation = newSpaceStation
-         newSpaceStation.addToExpeditions( entity )
-      }
+      expeditionEntity.id = id
+      expeditionEntity.name = name
+      expeditionEntity.start = start
+      expeditionEntity.end = end
+      expeditionEntity.addSpaceStationFromJSON( spaceStation: spaceStation, context: context )
    }
 }

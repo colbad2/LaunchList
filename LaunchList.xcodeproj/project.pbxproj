@@ -377,6 +377,8 @@
 		A2DA72242595AF8F009405E6 /* TestsIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72232595AF8F009405E6 /* TestsIOS.swift */; };
 		A2DA722F2595AF8F009405E6 /* TestsMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA722E2595AF8F009405E6 /* TestsMacOS.swift */; };
 		A2DA72542595AFC4009405E6 /* LaunchListUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA72532595AFC4009405E6 /* LaunchListUnitTests.swift */; };
+		A2DC6AC025B48B660059E89E /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC6ABF25B48B660059E89E /* Dictionary+Extensions.swift */; };
+		A2DC6AC125B48B660059E89E /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC6ABF25B48B660059E89E /* Dictionary+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -566,6 +568,7 @@
 		A2DA72512595AFC4009405E6 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DA72532595AFC4009405E6 /* LaunchListUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListUnitTests.swift; sourceTree = "<group>"; };
 		A2DA72552595AFC4009405E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2DC6ABF25B48B660059E89E /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		A2F8B33625B1514B00C917D0 /* LaunchList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LaunchList.entitlements; sourceTree = "<group>"; };
 		A2F8B34425B1570700C917D0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -898,6 +901,7 @@
 				A293E4A925B343F500232408 /* ISO3166Utils.swift */,
 				A293E4A725B343F500232408 /* Regex+Extensions.swift */,
 				A293E4A825B343F500232408 /* String+Extensions.swift */,
+				A2DC6ABF25B48B660059E89E /* Dictionary+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1353,6 +1357,7 @@
 				A280D15825B34B7F00CF6E33 /* SettingsView.swift in Sources */,
 				A280D19425B34B7F00CF6E33 /* SearchBar.swift in Sources */,
 				A280D0D225B34AF400CF6E33 /* ServiceProviderListJSON.swift in Sources */,
+				A2DC6AC025B48B660059E89E /* Dictionary+Extensions.swift in Sources */,
 				A280D17025B34B7F00CF6E33 /* DatasetList.swift in Sources */,
 				A280D0B125B34AF400CF6E33 /* PadJSON.swift in Sources */,
 				A293E4FE25B344DE00232408 /* Event+Extensions.swift in Sources */,
@@ -1483,6 +1488,7 @@
 				A280D15925B34B7F00CF6E33 /* SettingsView.swift in Sources */,
 				A280D19525B34B7F00CF6E33 /* SearchBar.swift in Sources */,
 				A280D08825B34AF300CF6E33 /* ProgramJSON.swift in Sources */,
+				A2DC6AC125B48B660059E89E /* Dictionary+Extensions.swift in Sources */,
 				A280D17125B34B7F00CF6E33 /* DatasetList.swift in Sources */,
 				A293E51125B344DE00232408 /* SpacecraftConfig+Extensions.swift in Sources */,
 				A280D0D325B34AF400CF6E33 /* ServiceProviderListJSON.swift in Sources */,

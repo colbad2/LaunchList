@@ -68,15 +68,6 @@ extension String
    }
 }
 
-// TODO move to a Dictionary extension
-extension Dictionary where Value: Equatable
-{
-    func key( forValue value: Value ) -> Key?
-    {
-        return first { $0.1 == value }?.0
-    }
-}
-
 // Country code to emoji feature
 // https://www.timekl.com/blog/2017/08/31/swift-tricks-emoji-flags/
 

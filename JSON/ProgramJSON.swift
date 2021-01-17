@@ -103,14 +103,14 @@ public struct ProgramJSON: Decodable
    {
       guard let entity = entity else { return }
 
-      entity.id = self.id
-      entity.name = self.name
-      entity.programDescription = self.description
-      addAgencies( entity: entity, agencies: self.agencies, context: context )
-      entity.imageURL = self.imageURL
-      entity.startDate = parseISODate( isoDate: self.startDate )
-      entity.endDate = parseISODate( isoDate: self.endDate )
-      entity.infoURL = self.infoURL
-      entity.wikiURL = self.wikiURL
+      entity.id = id
+      entity.name = name
+      entity.programDescription = description
+      addAgencies( entity: entity, agencies: agencies, context: context )
+      entity.imageURL = imageURL
+      entity.startDate = parseISODate( isoDate: startDate )
+      entity.endDate = parseISODate( isoDate: endDate )
+      entity.infoURL = infoURL
+      entity.wikiURL = wikiURL
    }
 }

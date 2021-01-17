@@ -80,52 +80,41 @@ public struct PadJSON: Decodable
 
    public func updateEntity( entity: Pad?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let padEntity = entity else { return }
 
-      entity.agencyID = self.agencyID ?? -1
-      entity.id = self.id
-      entity.infoURL = self.infoURL
-      entity.latitude = self.latitude ?? ""
-      entity.longitude = self.longitude ?? ""
+      padEntity.agencyID = agencyID ?? -1
+      padEntity.id = id
+      padEntity.infoURL = infoURL
+      padEntity.latitude = latitude ?? ""
+      padEntity.longitude = longitude ?? ""
+      padEntity.addEntityFromJSON( location: location, context: context )
+      padEntity.mapImage = mapImage
 
-      // TODO all of these kinds of assignments should be extension funcs on the CD entity
-      if let loc: LocationJSON = self.location
-      {
-         entity.location = fetchLocation( location: loc, context: context )
-         entity.location?.pad = entity
-      }
-
-      entity.mapImage = self.mapImage
-
-      if let mapURL: String = self.mapURL?.trim()
+      if let mapURL: String = mapURL?.trim()
       {
          if !mapURL.isEmpty
          {
-            entity.mapURL = mapURL.fixBadUTF()
-            // TODO Pad at Guam International Airport has a map URL like "https://www.google.com/maps/place/35Â°03'34.0"N+118Â°09'06.0"W/"
-            // I fix it to "https://www.google.com/maps/place/35°03'34.0"N+118°09'06.0"W/", which works in a browser, but URL() fails
-            // to convert it to a URL. So, the pad doesn't have a map link it could have. Try to fix the link so it works.
-            // A number of other map links have the issue
+            padEntity.mapURL = mapURL.fixBadUTF()
          }
       }
 
-      if let padName: String = self.name
+      if let padName: String = name
       {
          var name: String = padName
          if !name.isEmpty && name.first?.isNumber ?? false
          {
             name = "Pad " + name
          }
-         entity.name = name
+         padEntity.name = name
       }
 
-      entity.totalLaunchCount = self.totalLaunchCount ?? -1
+      padEntity.totalLaunchCount = totalLaunchCount ?? -1
 
-      if let wikiURL: String = self.wikiURL?.trim()
+      if let wikiURL: String = wikiURL?.trim()
       {
          if !wikiURL.isEmpty
          {
-            entity.wikiURL = wikiURL
+            padEntity.wikiURL = wikiURL
          }
       }
    }

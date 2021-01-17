@@ -2,7 +2,9 @@
 
 import Foundation
 
-// use on main thread only
+/**
+ Parser for ISO dates. Use on main thread only.
+ */
 public struct ISOParser
 {
    static var shared: ISOParser = ISOParser()
@@ -26,24 +28,48 @@ public struct ISOParser
    }
 }
 
+/**
+ Parse an ISO date string into a `Date`.
+
+ - parameter isoDate: `String? ` date to parse
+ - returns: `Date?` parsed date, if possible, nil otherwise
+ */
 public func parseISODate( isoDate: String? ) -> Date?
 {
    guard let isoDate = isoDate else { return nil }
    return ISOParser.shared.timeFormatter.date( from: isoDate )
 }
 
+/**
+ Format a `Date` into a full string.
+
+ - parameter date: `Date?` date to format
+ - returns: `String` formatted date if possible, empty string if not
+ */
 public func dateString( _ date: Date? ) -> String
 {
    guard let date = date else { return "" }
    return ISOParser.shared.dateFormatter.string( from: date )
 }
 
+/**
+ Format a `Date` into a small string.
+
+ - parameter date: `Date?` date to format
+ - returns: `String` formatted date if possible, empty string if not
+ */
 public func tightDateString( _ date: Date? ) -> String
 {
    guard let date = date else { return "" }
    return ISOParser.shared.tightDateFormatter.string( from: date )
 }
 
+/**
+ Get a `URL` for a URL string, if possible.
+
+ - parameter urlString: `String?` URL string to make a `URL` from
+ - returns: `URL?` `URL` if possible, nil otherwise
+ */
 public func wrapURL( _ urlString: String? ) -> URL?
 {
    guard let url = urlString else { return nil }
@@ -53,6 +79,12 @@ public func wrapURL( _ urlString: String? ) -> URL?
 
 // swiftlint:disable pattern_matching_keywords
 
+/**
+ Produce a JSON structure of the given type `T` from a file. `T` is determined from context.
+
+ - parameter filename: `String` filename of bundle JSON file to parse
+ - returns: `T?` parsed JSON struct, if possible
+ */
 public func parseJSONFile<T: Decodable>( filename: String ) -> T?
 {
    let decoder: JSONDecoder = JSONDecoder()
@@ -86,6 +118,12 @@ public func parseJSONFile<T: Decodable>( filename: String ) -> T?
    return nil
 }
 
+/**
+ Produce a JSON structure of the given type `T` from a string. `T` is determined from context.
+
+ - parameter json: `String`  JSON to parse
+ - returns: `T?` parsed JSON struct, if possible
+ */
 public func parseJSONString<T: Decodable>( json: String ) -> T?
 {
    let decoder: JSONDecoder = JSONDecoder()
@@ -119,7 +157,8 @@ public func parseJSONString<T: Decodable>( json: String ) -> T?
    return nil
 }
 
-public let countryCodeCorrections: [ String: String ] =
+/** Map of agencies to their country codes. */
+public let countryCodeCorrections: [ String: String ] = // DATABASE CORRECTION
    [
       "Canadian Space Agency": "CAN",
       "National Aeronautics and Space Administration": "USA",
@@ -136,6 +175,14 @@ public let countryCodeCorrections: [ String: String ] =
       "SpaceX": "USA"
    ]
 
+/**
+ Gets an array of ISO 3166 country codes from a comma-delimited string of them. There is a bunch
+ of error correction, because the API database has errors. Errors include: missing commas, using a
+ slash instead of a comma.
+
+ - parameter countryCode: `String?` comma-separated list of ISO 3166 country codes
+ - returns:               `[String]` array of country codes parsed from the input, never nil
+ */
 public func getCountryCodes( countryCode: String? ) -> [String]
 {
    if countryCode == nil { return [] }
@@ -147,7 +194,7 @@ public func getCountryCodes( countryCode: String? ) -> [String]
       for code in codeList
       {
          let country: String = String( code ).trim()
-         if country.count == 6
+         if country.count == 6 // DATABASE CORRECTION
          {
             codes.append( String( country.prefix( 3 ) ) )
             codes.append( String( country.suffix( 3 ) ) )

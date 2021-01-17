@@ -48,15 +48,13 @@ public struct SpaceStationJSON: Decodable
    {
       guard let entity = entity else { return }
 
-      entity.id = self.id
-      entity.name = self.name
-
-      entity.status = self.status?.name
-      entity.statusName = self.status?.name
-      entity.statusAbbreviation = self.status?.abbreviation
-      entity.statusDescription = self.status?.description
-
-      entity.orbit = self.orbit
-      entity.imageURL = self.imageURL
+      entity.id = id
+      entity.name = name
+      entity.status = status?.name
+      entity.statusName = status?.name
+      entity.statusAbbreviation = status?.abbreviation
+      entity.statusDescription = status?.description
+      entity.orbit = orbit
+      entity.imageURL = imageURL
    }
 }

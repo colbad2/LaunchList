@@ -13,6 +13,21 @@ public let LAUNCHER_ENTITY_NAME: String = "Launcher"
 extension Launcher
 {
    // no sets
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter config:  `LauncherConfigJSON?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addLauncherConfigFromJSON( config: LauncherConfigJSON?, context: NSManagedObjectContext )
+   {
+      if let config: LauncherConfigJSON = config
+      {
+         self.launcherConfig = fetchLauncherConfig( launcherConfig: config, context: context )
+         self.launcherConfig?.launcher = self
+      }
+   }
 }
 
 /**

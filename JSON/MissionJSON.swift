@@ -33,7 +33,7 @@ struct MissionJSON: Decodable
    var description: String?
    /** ID of the mission within the API. */
    var id: Int64
-   /** TODO unknown */
+   /** unknown */
    var launchDesignator: String?
    /** ID from the previous API database. */
    var launchLibraryID: Int64?
@@ -62,22 +62,22 @@ struct MissionJSON: Decodable
    {
       guard let entity = entity else { return }
 
-      entity.missionDescription = self.description?.fixBadUTF()
-      entity.id = self.id
-      entity.launchDesignator = self.launchDesignator
-      entity.name = self.name?.fixBadUTF().trim()
+      entity.missionDescription = description?.fixBadUTF()
+      entity.id = id
+      entity.launchDesignator = launchDesignator
+      entity.name = name?.fixBadUTF().trim()
 
-      if let orbitName: String = self.orbit?.name
+      if let orbitName: String = orbit?.name
       {
-         entity.orbitName = normalizedOrbitName( orbitName, abbreviation: self.orbit?.abbreviation )
+         entity.orbitName = normalizedOrbitName( orbitName, abbreviation: orbit?.abbreviation )
       }
-      entity.orbitAbbreviation = self.orbit?.abbreviation
+      entity.orbitAbbreviation = orbit?.abbreviation
 
-      entity.type = self.type
+      entity.type = type
    }
 }
 
-func normalizedOrbitName( _ name: String?, abbreviation: String? = nil ) -> String?
+private func normalizedOrbitName( _ name: String?, abbreviation: String? = nil ) -> String?
 {
    guard var orbitName = name else { return nil }
 

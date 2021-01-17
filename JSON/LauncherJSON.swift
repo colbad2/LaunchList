@@ -59,23 +59,17 @@ public struct LauncherJSON: Decodable
 
    public func updateEntity( entity: Launcher?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let launcherEntity = entity else { return }
 
-      entity.id = self.id
-      entity.flightProven = self.flightProven ?? false
-      entity.serialNumber = self.serialNumber
-      entity.status = self.status
-      entity.details = self.details
-
-      if let config: LauncherConfigJSON = self.launcherConfig
-      {
-         entity.launcherConfig = fetchLauncherConfig( launcherConfig: config, context: context )
-         entity.launcherConfig?.launcher = entity
-      }
-
-      entity.imageURL = self.imageURL
-      entity.flights = self.flights
-      entity.lastLaunchDate = self.lastLaunchDate
-      entity.firstLaunchDate = self.firstLaunchDate
+      launcherEntity.id = id
+      launcherEntity.flightProven = flightProven ?? false
+      launcherEntity.serialNumber = serialNumber
+      launcherEntity.status = status
+      launcherEntity.details = details
+      launcherEntity.addLauncherConfigFromJSON( config: launcherConfig, context: context )
+      launcherEntity.imageURL = imageURL
+      launcherEntity.flights = flights
+      launcherEntity.lastLaunchDate = lastLaunchDate
+      launcherEntity.firstLaunchDate = firstLaunchDate
    }
 }

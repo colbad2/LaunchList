@@ -32,10 +32,10 @@ public struct ServiceProviderJSON: Decodable
 
    public func updateEntity( entity: ServiceProvider? )
    {
-      guard let entity = entity else { return }
+      guard let serviceProviderEntity = entity else { return }
 
-      entity.id = self.id
-      entity.name = self.name
-      entity.type = self.type
+      serviceProviderEntity.id = id
+      serviceProviderEntity.name = name
+      serviceProviderEntity.type = type
    }
 }

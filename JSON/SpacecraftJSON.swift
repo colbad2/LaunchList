@@ -49,24 +49,15 @@ public struct SpacecraftJSON: Decodable, Identifiable
    {
       guard let entity = entity else { return }
 
-      entity.id = self.id
-      entity.url = self.url
-      entity.name = self.name
-      entity.serialNumber = self.serialNumber
-
-      entity.status = self.status?.name
-      entity.statusName = self.status?.name
-      entity.statusAbbreviation = self.status?.abbreviation
-      entity.statusDescription = self.status?.description
-
-      entity.spacecraftDescription = self.spacecraftDescription
-
-      if let spacecraftConfig: SpacecraftConfigJSON = self.spacecraftConfig
-      {
-         let spacecraftConfigEntity: SpacecraftConfig =
-            fetchSpacecraftConfig( spacecraftConfig: spacecraftConfig, context: context )
-         entity.spacecraftConfig = spacecraftConfigEntity
-         spacecraftConfigEntity.spacecraft = entity
-      }
+      entity.id = id
+      entity.url = url
+      entity.name = name
+      entity.serialNumber = serialNumber
+      entity.status = status?.name
+      entity.statusName = status?.name
+      entity.statusAbbreviation = status?.abbreviation
+      entity.statusDescription = status?.description
+      entity.spacecraftDescription = spacecraftDescription
+      entity.addSpacecraftConfigFromJSON( spacecraftConfig: spacecraftConfig, context: context )
    }
 }

@@ -20,6 +20,19 @@ extension Pad
 
    /** True if the `Pad` has any `Launch`s. */
    var hasLaunches: Bool { return !launchSet.isEmpty }
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter location: `LocationJSON?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addEntityFromJSON( location: LocationJSON?, context: NSManagedObjectContext )
+   {
+      guard let location = location else { return }
+      self.location = fetchLocation( location: location, context: context )
+      self.location?.pad = self
+   }
 }
 
 /**

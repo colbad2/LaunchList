@@ -47,6 +47,70 @@ extension Event
 
    /** True if the `Event` has any `SpaceStation`s. */
    var hasSpaceStations: Bool { !spaceStationsSet.isEmpty }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter launches: `[LaunchJSON]?` JSON structs to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addLaunchesFromJSONList( launches: [LaunchJSON]?, context: NSManagedObjectContext )
+   {
+      for launch in launches ?? []
+      {
+         let newLaunch: Launch = fetchLaunch( launch: launch, context: context )
+         self.addToLaunches( newLaunch )
+         newLaunch.addToEvents( self )
+      }
+   }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter expeditions: `[ExpeditionJSON]?` JSON structs to add
+    - parameter context:     `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addExpeditionsFromJSONList( expeditions: [ExpeditionJSON]?, context: NSManagedObjectContext )
+   {
+      for expedition in expeditions ?? []
+      {
+         let newExpedition: Expedition = fetchExpedition( expedition: expedition, context: context )
+         self.addToExpeditions( newExpedition )
+         newExpedition.addToEvents( self )
+      }
+   }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter spaceStations: `[SpaceStationJSON]?` JSON structs to add
+    - parameter context:       `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addSpaceStationsFromJSONList( spaceStations: [SpaceStationJSON]?, context: NSManagedObjectContext )
+   {
+      for spaceStation in spaceStations ?? []
+      {
+         let newSpaceStations: SpaceStation = fetchSpaceStation( spaceStation: spaceStation, context: context )
+         self.addToSpaceStations( newSpaceStations )
+         newSpaceStations.addToEvents( self )
+      }
+   }
+
+   /**
+    Adds the JSON structs , creating or updating as necessary.
+
+    - parameter programs: `[ProgramJSON]?` JSON structs to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addProgramsFromJSONList( programs: [ProgramJSON]?, context: NSManagedObjectContext )
+   {
+      for program in programs ?? []
+      {
+         let newProgram: Program = fetchProgram( program: program, context: context )
+         self.addToPrograms( newProgram )
+         newProgram.addToEvents( self )
+      }
+   }
 }
 
 /**

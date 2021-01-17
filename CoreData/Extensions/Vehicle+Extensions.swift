@@ -13,6 +13,21 @@ public let VEHICLE_ENTITY_NAME: String = "Vehicle"
 extension Vehicle
 {
    // no sets
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter launcher: `RocketJSON?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addRocketFromJSON( launcher: RocketJSON?, context: NSManagedObjectContext )
+   {
+      if let launcher: RocketJSON = launcher
+      {
+         self.launcher = fetchRocket( rocket: launcher, context: context )
+         self.launcher?.addToVehicles( self )
+      }
+   }
 }
 
 /**

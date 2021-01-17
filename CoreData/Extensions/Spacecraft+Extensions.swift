@@ -13,6 +13,22 @@ public let SPACECRAFT_ENTITY_NAME: String = "Spacecraft"
 extension Spacecraft
 {
    // no sets
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter spacecraftConfig: `SpacecraftConfigJSON?` JSON struct to add
+    - parameter context:          `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addSpacecraftConfigFromJSON( spacecraftConfig: SpacecraftConfigJSON?, context: NSManagedObjectContext )
+   {
+      if let spacecraftConfig: SpacecraftConfigJSON = spacecraftConfig
+      {
+         let spacecraftConfigEntity: SpacecraftConfig = fetchSpacecraftConfig( spacecraftConfig: spacecraftConfig, context: context )
+         self.spacecraftConfig = spacecraftConfigEntity
+         spacecraftConfigEntity.spacecraft = self
+      }
+   }
 }
 
 /**

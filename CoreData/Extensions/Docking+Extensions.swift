@@ -13,6 +13,20 @@ public let DOCKING_ENTITY_NAME: String = "Docking"
 extension Docking
 {
    // no sets
+
+   /**
+    Adds the JSON struct, creating or updating it if necessary.
+
+    - parameter json:    `FlightVehicleJSON?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addEntityFromJSON( json: FlightVehicleJSON?, context: NSManagedObjectContext )
+   {
+      guard let json = json else { return }
+      let flightVehicleEntity: FlightVehicle = fetchFlightVehicle( flightVehicle: json, context: context )
+      self.flightVehicle = flightVehicleEntity
+      flightVehicleEntity.addToDockings( self )
+   }
 }
 
 /**

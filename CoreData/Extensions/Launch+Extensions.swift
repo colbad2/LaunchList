@@ -42,6 +42,82 @@ extension Launch
 
       return providerName ?? ""
    }
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter provider: `ServiceProviderJSON?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addServiceProviderFromJSON( provider: ServiceProviderJSON?, context: NSManagedObjectContext )
+   {
+      if let provider: ServiceProviderJSON = provider
+      {
+         self.serviceProvider = fetchProvider( provider: provider, context: context )
+         self.serviceProvider?.addToLaunches( self )
+      }
+   }
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter mission: `MissionJSON?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addMissionFromJSON( mission: MissionJSON?, context: NSManagedObjectContext )
+   {
+      if let mission: MissionJSON = mission
+      {
+         self.mission = fetchMission( mission: mission, context: context )
+         self.mission?.launch = self
+      }
+   }
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter pad:     `PadJSON?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addPadFromJSON( pad: PadJSON?, context: NSManagedObjectContext )
+   {
+      if let pad: PadJSON = pad
+      {
+         self.pad = fetchPad( pad: pad, context: context )
+         self.pad?.addToLaunches( self )
+      }
+   }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter programs: `[ProgramJSON]?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addProgramsFromJSON( programs: [ProgramJSON]?, context: NSManagedObjectContext )
+   {
+      for program in programs ?? []
+      {
+         let programEntity: Program = fetchProgram( program: program, context: context )
+         self.addToPrograms( programEntity )
+         programEntity.addToLaunches( self )
+      }
+   }
+
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter rocket:  `RocketJSON?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addRocketFromJSON( rocket: RocketJSON?, context: NSManagedObjectContext )
+   {
+      if let rocket: RocketJSON = rocket
+      {
+         self.rocket = fetchRocket( rocket: rocket, context: context )
+         self.rocket?.addToLaunches( self )
+      }
+   }
 }
 
 /**

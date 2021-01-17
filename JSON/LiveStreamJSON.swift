@@ -42,10 +42,10 @@ public struct LiveStreamJSON: Decodable
    {
       guard let entity = entity else { return }
 
-      entity.id = self.url // use the URL as an ID
-      entity.url = self.url
-      entity.liveStreamDescription = self.liveStreamDescription
-      entity.title = self.title
-      entity.image = self.image
+      entity.id = url // use the URL as an ID
+      entity.url = url
+      entity.liveStreamDescription = liveStreamDescription
+      entity.title = title
+      entity.image = image
    }
 }

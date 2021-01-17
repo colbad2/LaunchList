@@ -42,11 +42,11 @@ public struct LauncherConfigJSON: Decodable
 
    public func updateEntity( entity: LauncherConfig?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let launcherConfigEntity = entity else { return }
 
-      entity.id = self.id
-      entity.name = self.name
-      entity.family = self.family
-      entity.fullName = self.fullName
+      launcherConfigEntity.id = id
+      launcherConfigEntity.name = name
+      launcherConfigEntity.family = family
+      launcherConfigEntity.fullName = fullName
    }
 }

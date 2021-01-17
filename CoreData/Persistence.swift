@@ -19,6 +19,7 @@ public struct PersistenceController
       // add single records to the store, so previews don't take too long to start
       _ = getSampleAgency()?.addToCoreData( context: viewContext )
       _ = getSampleProgram()?.addToCoreData( context: viewContext )
+      _ = getSampleProgram2()?.addToCoreData( context: viewContext )
       _ = getSampleMission()?.addToCoreData( context: viewContext )
       _ = getSamplePad()?.addToCoreData( context: viewContext )
       _ = getSampleRocket()?.addToCoreData( context: viewContext )
