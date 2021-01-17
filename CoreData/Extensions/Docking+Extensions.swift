@@ -48,6 +48,12 @@ public func fetchDocking( docking: DockingJSON, context: NSManagedObjectContext 
    return dockingEntity ?? docking.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Docking] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Docking] records in the context
+ */
 public func getDockingCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Docking", context: context )

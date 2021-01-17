@@ -118,6 +118,12 @@ public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -
    return agencyEntity ?? agency.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Agency] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Agency] records in the context
+ */
 public func getAgencyCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Agency", context: context )

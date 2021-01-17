@@ -103,6 +103,12 @@ public func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -
    }
 }
 
+/**
+ Returns the number of [Launch] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Launch] records in the context
+ */
 public func getLaunchCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Launch", context: context )

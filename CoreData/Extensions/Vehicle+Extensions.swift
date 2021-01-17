@@ -19,6 +19,12 @@ public func fetchVehicle( vehicle: VehicleJSON, context: NSManagedObjectContext 
    return vehicleEntity ?? vehicle.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Vehicle] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Vehicle] records in the context
+ */
 public func getVehicleCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Vehicle", context: context )

@@ -19,6 +19,12 @@ public func fetchLiveStream( liveStream: LiveStreamJSON, context: NSManagedObjec
    return liveStreamEntity ?? liveStream.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [LiveStream] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [LiveStream] records in the context
+ */
 public func getLiveStreamCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "LiveStream", context: context )

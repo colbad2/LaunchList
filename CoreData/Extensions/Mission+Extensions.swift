@@ -19,6 +19,12 @@ func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mi
    return missionEntity ?? mission.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Mission] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Mission] records in the context
+ */
 func getMissionCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Mission", context: context )

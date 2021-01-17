@@ -54,6 +54,12 @@ public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -
    return rocketEntity ?? rocket.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Rocket] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Rocket] records in the context
+ */
 public func getRocketCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Rocket", context: context )

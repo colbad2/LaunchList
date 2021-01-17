@@ -51,6 +51,12 @@ public func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, conte
    return spacecraftConfigEntity ?? spacecraftConfig.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [SpacecraftConfig] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [SpacecraftConfig] records in the context
+ */
 public func getSpacecraftConfigCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "SpacecraftConfig", context: context )

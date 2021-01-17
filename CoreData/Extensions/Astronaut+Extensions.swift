@@ -52,6 +52,12 @@ public func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectCo
    return astronautEntity ?? astronaut.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Astronaut] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Astronaut] records in the context
+ */
 public func getAstronautCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Astronaut", context: context )

@@ -58,6 +58,12 @@ public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjec
    return expeditionEntity ?? expedition.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Expedition] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Expedition] records in the context
+ */
 public func getExpeditionCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Expedition", context: context )

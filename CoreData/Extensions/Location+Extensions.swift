@@ -19,6 +19,12 @@ public func fetchLocation( location: LocationJSON, context: NSManagedObjectConte
    return locationEntity ?? location.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Location] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Location] records in the context
+ */
 public func getLocationCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Location", context: context )

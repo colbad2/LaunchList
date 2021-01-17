@@ -58,6 +58,12 @@ public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
    return padEntity ?? pad.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Pad] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Pad] records in the context
+ */
 public func getPadCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Pad", context: context )

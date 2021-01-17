@@ -85,6 +85,12 @@ public func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> E
    return eventEntity ?? event.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Event] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Event] records in the context
+ */
 public func getEventCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Event", context: context )

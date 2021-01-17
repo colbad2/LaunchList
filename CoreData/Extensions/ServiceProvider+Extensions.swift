@@ -49,6 +49,12 @@ public func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObje
    return providerEntity ?? provider.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [ServiceProvider] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [ServiceProvider] records in the context
+ */
 public func getServiceProviderCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "ServiceProvider", context: context )

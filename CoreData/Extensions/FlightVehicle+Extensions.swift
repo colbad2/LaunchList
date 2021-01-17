@@ -55,6 +55,12 @@ public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSMan
    return flightVehicleEntity ?? flightVehicle.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [FlightVehicle] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [FlightVehicle] records in the context
+ */
 public func getFlightVehicleCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "FlightVehicle", context: context )

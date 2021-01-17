@@ -865,6 +865,33 @@
 			path = "Starship Vehicle";
 			sourceTree = "<group>";
 		};
+		A28F7EED25B3C370007C6C03 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A293E4EC25B344DE00232408 /* Agency+Extensions.swift */,
+				A293E4F625B344DE00232408 /* Astronaut+Extensions.swift */,
+				A25584E625B374450075B128 /* Docking+Extensions.swift */,
+				A293E4ED25B344DE00232408 /* Event+Extensions.swift */,
+				A293E4F525B344DE00232408 /* Expedition+Extensions.swift */,
+				A25584EF25B374B60075B128 /* FlightVehicle+Extensions.swift */,
+				A293E4EF25B344DE00232408 /* Launch+Extensions.swift */,
+				A255854725B3BCA70075B128 /* Launcher+Extensions.swift */,
+				A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */,
+				A255854F25B3BD100075B128 /* LiveStream+Extensions.swift */,
+				A255855725B3BD770075B128 /* Location+Extensions.swift */,
+				A2A416A825B3BE1C005143D6 /* Mission+Extensions.swift */,
+				A293E4F025B344DE00232408 /* Pad+Extensions.swift */,
+				A293E4F125B344DE00232408 /* Program+Extensions.swift */,
+				A25584FD25B375510075B128 /* Rocket+Extensions.swift */,
+				A255850525B375890075B128 /* ServiceProvider+Extensions.swift */,
+				A28F7ED325B3C15D007C6C03 /* Spacecraft+Extensions.swift */,
+				A293E4F425B344DE00232408 /* SpacecraftConfig+Extensions.swift */,
+				A293E4EB25B344DE00232408 /* SpaceStation+Extensions.swift */,
+				A28F7EDB25B3C1D6007C6C03 /* Vehicle+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A293E4A625B343F500232408 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -897,29 +924,10 @@
 		A293E4EA25B344DE00232408 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				A293E4EC25B344DE00232408 /* Agency+Extensions.swift */,
-				A293E4F625B344DE00232408 /* Astronaut+Extensions.swift */,
+				A28F7EED25B3C370007C6C03 /* Extensions */,
 				A293E4F725B344DE00232408 /* CoreDataUtils.swift */,
-				A25584E625B374450075B128 /* Docking+Extensions.swift */,
-				A293E4ED25B344DE00232408 /* Event+Extensions.swift */,
-				A293E4F525B344DE00232408 /* Expedition+Extensions.swift */,
-				A25584EF25B374B60075B128 /* FlightVehicle+Extensions.swift */,
-				A293E4EF25B344DE00232408 /* Launch+Extensions.swift */,
-				A255854725B3BCA70075B128 /* Launcher+Extensions.swift */,
-				A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */,
 				A293E4F225B344DE00232408 /* LaunchList.xcdatamodeld */,
-				A255854F25B3BD100075B128 /* LiveStream+Extensions.swift */,
-				A293E4F025B344DE00232408 /* Pad+Extensions.swift */,
 				A293E4EE25B344DE00232408 /* Persistence.swift */,
-				A293E4F125B344DE00232408 /* Program+Extensions.swift */,
-				A25584FD25B375510075B128 /* Rocket+Extensions.swift */,
-				A255850525B375890075B128 /* ServiceProvider+Extensions.swift */,
-				A293E4F425B344DE00232408 /* SpacecraftConfig+Extensions.swift */,
-				A293E4EB25B344DE00232408 /* SpaceStation+Extensions.swift */,
-				A255855725B3BD770075B128 /* Location+Extensions.swift */,
-				A2A416A825B3BE1C005143D6 /* Mission+Extensions.swift */,
-				A28F7ED325B3C15D007C6C03 /* Spacecraft+Extensions.swift */,
-				A28F7EDB25B3C1D6007C6C03 /* Vehicle+Extensions.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";

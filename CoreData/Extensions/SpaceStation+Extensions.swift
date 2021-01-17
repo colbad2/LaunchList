@@ -75,6 +75,12 @@ public func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManage
    return spaceStationEntity ?? spaceStation.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [SpaceStation] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [SpaceStation] records in the context
+ */
 public func getSpaceStationCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "SpaceStation", context: context )

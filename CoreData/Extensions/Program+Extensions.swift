@@ -144,6 +144,12 @@ public func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext 
    return programEntity ?? program.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Program] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Program] records in the context
+ */
 public func getProgramCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Program", context: context )

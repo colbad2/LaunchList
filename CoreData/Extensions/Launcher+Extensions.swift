@@ -19,6 +19,12 @@ public func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectConte
    return launcherEntity ?? launcher.addToCoreData( context: context )
 }
 
+/**
+ Returns the number of [Launcher] records in the given context.
+
+ - parameter context: Core Data object context
+ - returns: [Int?] Number of [Launcher] records in the context
+ */
 public func getLauncherCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: "Launcher", context: context )
