@@ -27,7 +27,6 @@ class LaunchListUnitTests: XCTestCase
       XCTAssertEqual( launchProvider.launches.nextLaunchGroupURL, "https://ll.thespacedevs.com/2.1.0/launch/upcoming/?limit=10&offset=10&search=SpaceX" )
       XCTAssertNil( launchProvider.launches.previousLaunchGroupURL )
       XCTAssertEqual( launchProvider.launches.launchSublist?.count, 10 )
-      // TODO test launchSublist
    }
 
    func testPadJSON() throws
@@ -214,16 +213,6 @@ class LaunchListUnitTests: XCTestCase
       let serviceProvider: ServiceProviderJSON = try? decoder.decode( ServiceProviderJSON.self, from: jsonData )
       checkServiceProvider( provider: serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
                             url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-   }
-
-   // TODO move to the check class
-   private func checkServiceProvider( provider: ServiceProviderJSON?, providerID: Int64, name: String, type: String, url: URL )
-   {
-      XCTAssertNotNil( provider )
-      XCTAssertEqual( provider?.id, providerID )
-      XCTAssertEqual( provider?.name, name )
-      XCTAssertEqual( provider?.type, type )
-      XCTAssertEqual( provider?.url, url )
    }
 
    func testStatusJSON() throws

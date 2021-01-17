@@ -24,6 +24,15 @@ func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: Str
    XCTAssertEqual( pad?.wikiURL, wikiURL )
 }
 
+func checkServiceProvider( provider: ServiceProviderJSON?, providerID: Int64, name: String, type: String, url: URL )
+{
+   XCTAssertNotNil( provider )
+   XCTAssertEqual( provider?.id, providerID )
+   XCTAssertEqual( provider?.name, name )
+   XCTAssertEqual( provider?.type, type )
+   XCTAssertEqual( provider?.url, url )
+}
+
 func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: String, mapImage: String? = nil,
                     name: String, landingCount: Int64, lauchCount: Int64, url: String? = nil )
 {

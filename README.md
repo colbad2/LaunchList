@@ -76,6 +76,8 @@ Things that need to happen for a good app
 - periodically refetch images, incase they have changed, or been updated
 - previews for every view, working
 - add launchers to the dataset list
+- settings button to clear the image cache entirely, or images that are past a certain lifetime
+- home page stuff deep links to datasets (can't be done yet in SwiftUI)
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"
@@ -108,6 +110,7 @@ Things that would make the app perform better, more robustly
 - run in profiler
 - run analyze
 - better handling of test data (gather test strings/files)
+- make sure the previews have access to full data
 
 
 ## Other TODOs

@@ -5,6 +5,7 @@ disabled_rules: # rule identifiers turned on by default to exclude from running
   - closure_parameter_position
   - statement_position
   - switch_case_alignment
+  - force_cast
 
 opt_in_rules:
   - anyobject_protocol
@@ -131,7 +132,7 @@ file_header:
   required_pattern: |
                     \/\/ Copyright © \d{4} Bradford Holcombe\. All rights reserved\.
 
-force_cast: warning
+#force_cast: warning
 force_try: warning
 
 #conditional_returns_on_newline:
