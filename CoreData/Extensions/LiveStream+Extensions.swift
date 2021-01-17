@@ -56,6 +56,16 @@ public func getLiveStreamCount( context: NSManagedObjectContext ) -> Int?
 }
 
 /**
+ Delete all `LiveStream` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllLiveStreamEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: LIVE_STREAM_ENTITY_NAME, context: context )
+}
+
+/**
  Gets the `LiveStream` with the given URL.
 
  - parameter liveStreamURL: `String` URL of the `LiveStream` to fetch

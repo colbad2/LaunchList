@@ -158,6 +158,16 @@ public func getProgramCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: PROGRAM_ENTITY_NAME, context: context )
 }
 
+/**
+ Delete all `Program` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllProgramEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: PROGRAM_ENTITY_NAME, context: context )
+}
+
 /*
  Generated
 

@@ -24,8 +24,7 @@ extension Launch
    /** True if the `Launch` has any `Program`s. */
    var hasPrograms: Bool { !programsSet.isEmpty }
 
-   // TODO instead of this, use the abbreviation, if available
-   func getProviderName() -> String
+   func getProviderName() -> String // DATABASE CHANGE
    {
       var providerName: String? = self.serviceProvider?.name
       if providerName == "National Aeronautics and Space Administration"
@@ -136,4 +135,14 @@ public func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -
 public func getLaunchCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: LAUNCH_ENTITY_NAME, context: context )
+}
+
+/**
+ Delete all `Launch` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllLaunchEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: LAUNCH_ENTITY_NAME, context: context )
 }

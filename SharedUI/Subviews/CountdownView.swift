@@ -11,7 +11,6 @@ struct CountdownView: View
       Timer.publish( every: 1, on: .main, in: .common ).autoconnect()
    // swiftlint:enable explicit_type_interface
 
-
    var body: some View
    {
       HStack

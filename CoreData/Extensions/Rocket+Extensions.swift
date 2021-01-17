@@ -18,7 +18,17 @@ extension Rocket
    /** `Set< Vehicle >` wrapper for the generated `NSSet` of `Vehicle`s. */
    var vehiclesSet: Set< Vehicle > { self.vehicles as? Set< Vehicle > ?? Set< Vehicle >() }
 
-   // TODO
+   /** Array of `Launch`s, sorted by name. */
+   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchesSet ) ) }
+
+   /** True if the `Rocket` has any `Launch`s. */
+   var hasLaunches: Bool { !launchesSet.isEmpty }
+
+   /** Array of `Vehicle`s, sorted by name. */
+   var sortedVehicles: [Vehicle] { sortVehiclesByName( vehicleArray: Array( self.vehiclesSet ) ) }
+
+   /** True if the `Rocket` has any `Vehicle`s. */
+   var hasVehicles: Bool { !vehiclesSet.isEmpty }
 }
 
 /**
@@ -90,4 +100,14 @@ public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -
 public func getRocketCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: ROCKET_ENTITY_NAME, context: context )
+}
+
+/**
+ Delete all `Rocket` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllRocketEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: ROCKET_ENTITY_NAME, context: context )
 }

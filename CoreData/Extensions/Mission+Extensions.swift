@@ -54,3 +54,13 @@ func getMissionCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: MISSION_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `Mission` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllMissionEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: MISSION_ENTITY_NAME, context: context )
+}

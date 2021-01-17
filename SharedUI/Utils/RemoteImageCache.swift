@@ -37,8 +37,8 @@ class RemoteImageCache
    /**
     Gets a cached image by source URL, thread-safe.
 
-    - parameter url: source URL to fetch image from
-    - returns: image for URL, if cached, nil otherwise
+    - parameter url: `String` source URL to fetch image from
+    - returns:       `UIImage?` image for URL, if cached, nil otherwise
     */
    private func getCachedImageFrom( url: String ) -> UIImage?
    {
@@ -48,8 +48,8 @@ class RemoteImageCache
    /**
     Saves an image in our cache, indexed by source URL, thread-safe
 
-    - parameter url: source URL for the image
-    - parameter image: image to store
+    - parameter url: `String` source URL for the image
+    - parameter image: `UIImage?` image to store
     */
    private func storeImage( url: String, image: UIImage? )
    {
@@ -59,7 +59,7 @@ class RemoteImageCache
    /**
     Removes a cahched image from the cache.
 
-    - parameter url: image to clear
+    - parameter url: `String` image to clear
     */
    private func removeImageFromList( url: String )
    {
@@ -69,8 +69,8 @@ class RemoteImageCache
    /**
     Gets image fetch task by fetch URL, thread-safe.
 
-    - parameter url: 
-    - returns: task for the given URL
+    - parameter url: `String`
+    - returns: `URLSessionTask?` task for the given URL
     */
    private func getDataTaskFrom( url: String ) -> URLSessionTask?
    {
@@ -80,8 +80,8 @@ class RemoteImageCache
    /**
     Adds a task to the task list, thread-safe.
 
-    - parameter url: URL the task is fetching
-    - parameter task; image fetching task for URL
+    - parameter url: `String` URL the task is fetching
+    - parameter task: `URLSessionDataTask` image fetching task for URL
     */
    private func addTaskToList( url: String, task: URLSessionDataTask )
    {
@@ -91,7 +91,7 @@ class RemoteImageCache
    /**
     Clears out a finished task from download tasks container by fetch URL, thread-safe.
 
-    - parameter url: task to clear
+    - parameter url: `String` task to clear
     */
    private func removeTaskFromList( url: String )
    {
@@ -108,7 +108,7 @@ class RemoteImageCache
    /**
     Clears the cache of a single image, by source URL.
 
-    - parameter url: image/task to clear
+    - parameter url: `String` image/task to clear
     */
    func clearURL( url: String )
    {
@@ -121,8 +121,8 @@ class RemoteImageCache
 
     To be called from the main thread.
 
-    - parameter imageURLString: {String?} URL to fetch
-    - parameter completionHandler: {( UIImage?, Bool ) -> Void} callback when image loading has stopped (good or bad)
+    - parameter imageURLString: `String?` URL to fetch
+    - parameter completionHandler: `( UIImage?, Bool ) -> Void` callback when image loading has stopped (good or bad)
     */
    func downloadImage( with imageURLString: String?,
                        completionHandler: @escaping ( UIImage?, Bool ) -> Void  )
@@ -205,9 +205,9 @@ class RemoteImageCache
 /**
  Fetches any image stored in the context under the given URL.
 
- - parameter url: {String} where the image will come from
- - parameter context: {NSManagedObejctContext} context where to search for the image
- - returns: any image found with the given URL, or nil if not found
+ - parameter url: `String?` where the image will come from
+ - parameter context: `NSManagedObejctContext` context where to search for the image
+ - returns: `UIImage?` any image found with the given URL, or nil if not found
  */
 func getStoredImage( for imageURL: String?, context: NSManagedObjectContext ) -> UIImage?
 {
@@ -258,8 +258,8 @@ func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
 /**
  Save the image's data to the object store, identified by the URL where it was fetched from.
 
- - parameter url: {String} where the image came from
- - parameter image: {UIImage} fetched image
+ - parameter url: `String` where the image came from
+ - parameter image: `UIImage` fetched image
  */
 func saveToCoreData( url: String, image: UIImage )
 {

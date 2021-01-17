@@ -130,6 +130,16 @@ public func getAgencyCount( context: NSManagedObjectContext ) -> Int?
    return getRecordsCount( entityName: AGENCY_ENTITY_NAME, context: context )
 }
 
+/**
+ Delete all `Agency` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllAgencyEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: AGENCY_ENTITY_NAME, context: context )
+}
+
 /*
 extension Agency: Identifiable
 {

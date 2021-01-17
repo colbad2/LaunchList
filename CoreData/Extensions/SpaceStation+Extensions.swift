@@ -99,3 +99,13 @@ public func getSpaceStationCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: SPACESTATION_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `SpaceStation` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllSpaceStationConfigEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: SPACESTATION_ENTITY_NAME, context: context )
+}

@@ -90,3 +90,13 @@ public func getPadCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: PAD_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `Pad` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllPadEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: PAD_ENTITY_NAME, context: context )
+}

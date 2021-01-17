@@ -54,3 +54,13 @@ public func getLocationCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: LOCATION_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `Location` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllLocationEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: LOCATION_ENTITY_NAME, context: context )
+}

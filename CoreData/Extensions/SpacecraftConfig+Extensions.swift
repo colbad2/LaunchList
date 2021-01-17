@@ -83,3 +83,13 @@ public func getSpacecraftConfigCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `SpacecraftConfig` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllSpacecraftConfigEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: SPACECRAFT_CONFIG_ENTITY_NAME, context: context )
+}

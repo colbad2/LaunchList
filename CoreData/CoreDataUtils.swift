@@ -83,12 +83,14 @@ func getEntityByID( entityID: String, context: NSManagedObjectContext, entityNam
 /**
  Gets the first entity of the given type from Core Data.
 
+ Unused.
+
  - parameter context:    `NSManagedObjectContext` Core Data context to get the entity from
  - parameter entityName: `String` type of the entity type to fetch
  - returns:              `Any?` the first entity with the given parameters, or nil otherwise
  */
-//func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> Any?
-//{
+// func getFirstEntity( context: NSManagedObjectContext, entityName: String ) -> Any?
+// {
 //   do
 //   {
 //      let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
@@ -99,7 +101,7 @@ func getEntityByID( entityID: String, context: NSManagedObjectContext, entityNam
 //      let nsError: NSError = error as NSError
 //      fatalError( "Failed to fetch first entity \(entityName): \(error), \(nsError.userInfo)" )
 //   }
-//}
+// }
 
 /**
  Gets the number of records of the given type.
@@ -147,20 +149,25 @@ func deleteAllData( entityName: String, context: NSManagedObjectContext )
    }
 }
 
-// TODO get this to work
-// func deleteAllData( entityName: String, context: NSManagedObjectContext )
-// {
-//    let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
-//    let deleteRequest = NSBatchDeleteRequest( fetchRequest: fetchRequest)
-//    do
-//    {
-//       try context.execute( deleteRequest )
-//    }
-//    catch
-//    {
-//       print( "Delete all data of type \(entityName) error :", error)
-//    }
-// }
+/**
+ Delete all entities in the given context.
+
+ - parameter entityType: `String` type of entity to remove
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllEntities( entityType: String, context: NSManagedObjectContext )
+{
+   let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>( entityName: entityType )
+   let deleteRequest: NSBatchDeleteRequest = NSBatchDeleteRequest( fetchRequest: fetchRequest )
+   do
+   {
+      try context.execute( deleteRequest )
+   }
+   catch
+   {
+      print( "Cannot delete all \(entityType) entities, error :", error)
+   }
+}
 
 /**
  Gets the next `Launch` after the current date.

@@ -83,3 +83,13 @@ public func getDockingCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: DOCKING_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `Docking` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllDockingEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: DOCKING_ENTITY_NAME, context: context )
+}

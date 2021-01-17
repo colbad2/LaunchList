@@ -3,7 +3,7 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for `ServiceProvider]. */
+/** Core Data entity name for `ServiceProvider`. */
 public let SERVICE_PROVIDER_ENTITY_NAME: String = "ServiceProvider"
 // swiftlint:enable identifier_name
 
@@ -15,7 +15,11 @@ extension ServiceProvider
    /** Set< Launch > wrapper for the generated NSSet of `Launch`s. */
    var launchesSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
 
-   // TODO
+   /** Array of `Launch`s, sorted by name. */
+   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchesSet ) ) }
+
+   /** True if the `ServiceProvider` has any `Launch`s. */
+   var hasLaunches: Bool { !launchesSet.isEmpty }
 }
 
 /**
@@ -85,4 +89,14 @@ public func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObje
 public func getServiceProviderCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: SERVICE_PROVIDER_ENTITY_NAME, context: context )
+}
+
+/**
+ Delete all `ServiceProvider` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllServiceProviderEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: SERVICE_PROVIDER_ENTITY_NAME, context: context )
 }

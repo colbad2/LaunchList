@@ -54,3 +54,13 @@ public func getLauncherConfigCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: LAUNCHER_CONFIG_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `LauncherConfig` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllLauncherConfigEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: LAUNCHER_CONFIG_ENTITY_NAME, context: context )
+}

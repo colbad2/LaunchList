@@ -16,6 +16,35 @@ extension Vehicle
 }
 
 /**
+ Returns a sorted version of the given `Vehicle` array.
+
+ - parameter vehicleArray: `[Vehicle]?` list of `Vehicle`s to sort
+ - returns: `[Vehicle]` sorted version of the given `Vehicle` list, never nil
+ */
+func sortVehiclesByName( vehicleArray: [Vehicle]? ) -> [Vehicle]
+{
+   guard let vehicleArray = vehicleArray else { return [] }
+
+   var vehicles: [Vehicle] = Array( vehicleArray )
+   vehicles.sort
+   {
+      vehicle1, vehicle2 in
+
+      if let serialNumber1: String = vehicle1.serialNumber,
+         let serialNumber2: String = vehicle2.serialNumber
+      {
+         return serialNumber1 < serialNumber2
+      }
+      else
+      {
+         return false
+      }
+   }
+
+   return vehicles
+}
+
+/**
  Gets a `Vehicle` with the given ID in the given context.
 
  ### Example
@@ -53,4 +82,14 @@ public func fetchVehicle( vehicle: VehicleJSON, context: NSManagedObjectContext 
 public func getVehicleCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: VEHICLE_ENTITY_NAME, context: context )
+}
+
+/**
+ Delete all `Vehicle` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllVehicleEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: VEHICLE_ENTITY_NAME, context: context )
 }

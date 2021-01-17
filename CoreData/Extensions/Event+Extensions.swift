@@ -117,3 +117,13 @@ public func getEventCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: EVENT_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `Event` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllEventEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: EVENT_ENTITY_NAME, context: context )
+}

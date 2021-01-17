@@ -83,3 +83,13 @@ public func getAstronautCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: ASTRONAUT_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `Astronaut` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllAstronautEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: ASTRONAUT_ENTITY_NAME, context: context )
+}

@@ -90,3 +90,13 @@ public func getFlightVehicleCount( context: NSManagedObjectContext ) -> Int?
 {
    return getRecordsCount( entityName: FLIGHT_VEHICLE_ENTITY_NAME, context: context )
 }
+
+/**
+ Delete all `FlightVehicle` entities in the given context.
+
+ - parameter context: `NSManagedObjectContext` context to remove entities from
+ */
+func deleteAllFlightVehicleEntities( context: NSManagedObjectContext )
+{
+   deleteAllEntities( entityType: FLIGHT_VEHICLE_ENTITY_NAME, context: context )
+}
