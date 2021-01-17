@@ -3,13 +3,31 @@
 import CoreData
 
 // swiftlint:disable line_length
+// swiftlint:disable file_length
 
+/**
+ Gets an example Core Data entity `Agency` for use in previews.
+
+ - returns: `Agency` entity suitable for previewing
+ */
+public func getSampleAgencyEntity() -> Agency?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 63,
+                         context: context,
+                         entityName: AGENCY_ENTITY_NAME ) as? Agency
+}
+
+/**
+ Gets an example `AgencyJSON` struct for previews.
+
+ - returns: `AgencyJSON` struct suitable for previewing
+ */
 public func getSampleAgency() -> AgencyJSON?
 {
    return parseJSONString( json: sampleAgencyJSON )
 }
 
-// swiftlint:disable line_length
 private let sampleAgencyJSON =
    """
 {
@@ -30,6 +48,24 @@ private let sampleAgencyJSON =
 }
 """
 
+/**
+ Gets an example Core Data entity `Astronaut` for use in previews.
+
+ - returns: `Astronaut` entity suitable for previewing
+ */
+public func getSampleAstronautEntity() -> Astronaut?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 276,
+                         context: context,
+                         entityName: ASTRONAUT_ENTITY_NAME ) as? Astronaut
+}
+
+/**
+ Gets an example `AstronautJSON` struct for previews.
+
+ - returns: `AstronautJSON` struct suitable for previewing
+ */
 public func getSampleAstronaut() -> AstronautJSON?
 {
    return parseJSONString( json: sampleAstronautJSON )
@@ -79,6 +115,24 @@ private let sampleAstronautJSON =
  }
 """
 
+/**
+ Gets an example Core Data entity `Docking` for use in previews.
+
+ - returns: `Docking` entity suitable for previewing
+ */
+public func getSampleDockingEntity() -> Docking?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 100,
+                         context: context,
+                         entityName: DOCKING_ENTITY_NAME ) as? Docking
+}
+
+/**
+ Gets an example `DockingJSON` struct for previews.
+
+ - returns: `DockingJSON` struct suitable for previewing
+ */
 public func getSampleDocking() -> DockingJSON?
 {
    return parseJSONString( json: sampleDockingJSON )
@@ -133,6 +187,24 @@ private let sampleDockingJSON =
  }
 """
 
+/**
+ Gets an example Core Data entity `Event` for use in previews.
+
+ - returns: `Event` entity suitable for previewing
+ */
+public func getSampleEventEntity() -> Event?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 206,
+                         context: context,
+                         entityName: EVENT_ENTITY_NAME ) as? Event
+}
+
+/**
+ Gets an example `EventJSON` struct for previews.
+
+ - returns: `EventJSON` struct suitable for previewing
+ */
 public func getSampleEvent() -> EventJSON?
 {
    return parseJSONString( json: sampleEventJSON )
@@ -182,6 +254,24 @@ private let sampleEventJSON =
   }
 """
 
+/**
+ Gets an example Core Data entity `Expedition` for use in previews.
+
+ - returns: `Expedition` entity suitable for previewing
+ */
+public func getSampleExpeditionEntity() -> Expedition?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 81,
+                         context: context,
+                         entityName: EXPEDITION_ENTITY_NAME ) as? Expedition
+}
+
+/**
+ Gets an example `ExpeditionJSON` struct for previews.
+
+ - returns: `ExpeditionJSON` struct suitable for previewing
+ */
 public func getSampleExpedition() -> ExpeditionJSON?
 {
    return parseJSONString( json: sampleExpeditionJSON )
@@ -209,6 +299,24 @@ private let sampleExpeditionJSON =
  }
 """
 
+/**
+ Gets an example Core Data entity `FlightVehicle` for use in previews.
+
+ - returns: `FlightVehicle` entity suitable for previewing
+ */
+public func getSampleFlightVehicleEntity() -> FlightVehicle?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 220,
+                         context: context,
+                         entityName: FLIGHT_VEHICLE_ENTITY_NAME ) as? FlightVehicle
+}
+
+/**
+ Gets an example `FlightVehicleJSON` struct for previews.
+
+ - returns: `FlightVehicleJSON` struct suitable for previewing
+ */
 public func getSampleFlightVehicle() -> FlightVehicleJSON?
 {
    return parseJSONString( json: sampleFlightVehicleJSON )
@@ -252,6 +360,24 @@ private let sampleFlightVehicleJSON =
 }
 """
 
+/**
+ Gets an example Core Data entity `LauncherConfig` for use in previews.
+
+ - returns: `LauncherConfig` entity suitable for previewing
+ */
+public func getSampleLauncherConfigEntity() -> LauncherConfig?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 169,
+                         context: context,
+                         entityName: LAUNCHER_CONFIG_ENTITY_NAME ) as? LauncherConfig
+}
+
+/**
+ Gets an example `LauncherConfigJSON` struct for previews.
+
+ - returns: `LauncherConfigJSON` struct suitable for previewing
+ */
 public func getSampleLauncherConfig() -> LauncherConfigJSON?
 {
    return parseJSONString( json: sampleLauncherConfigJSON )
@@ -270,7 +396,24 @@ private let sampleLauncherConfigJSON =
    }
 """
 
+/**
+ Gets an example Core Data entity `Launcher` for use in previews.
 
+ - returns: `Launcher` entity suitable for previewing
+ */
+public func getSampleLauncherEntity() -> Launcher?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 8,
+                         context: context,
+                         entityName: LAUNCHER_ENTITY_NAME ) as? Launcher
+}
+
+/**
+ Gets an example `LauncherJSON` struct for previews.
+
+ - returns: `LauncherJSON` struct suitable for previewing
+ */
 public func getSampleLauncher() -> LauncherJSON?
 {
    return parseJSONString( json: sampleLauncherJSON )
@@ -301,6 +444,24 @@ private let sampleLauncherJSON =
  }
 """
 
+/**
+ Gets an example Core Data entity `Launch` for use in previews.
+
+ - returns: `Launch` entity suitable for previewing
+ */
+public func getSampleLaunchEntity() -> Launch?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
+                         context: context,
+                         entityName: LAUNCH_ENTITY_NAME ) as? Launch
+}
+
+/**
+ Gets an example `LaunchJSON` struct for previews.
+
+ - returns: `LaunchJSON` struct suitable for previewing
+ */
 public func getSampleLaunch() -> LaunchJSON?
 {
    return parseJSONString( json: sampleLaunchJSON )
@@ -398,13 +559,29 @@ private let sampleLaunchJSON =
 }
 """
 
+/**
+ Gets an example Core Data entity `LiveStream` for use in previews.
+
+ - returns: `LiveStream` entity suitable for previewing
+ */
+public func getSampleLiveStreamEntity() -> LiveStream?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getLiveStreamByURL( liveStreamURL: "https://www.youtube.com/watch?v=Ky5l9ZxsG9M", context: context )
+}
+
+/**
+ Gets an example `LiveStreamJSON` struct for previews.
+
+ - returns: `LiveStreamJSON` struct suitable for previewing
+ */
 public func getSampleLiveStream() -> LiveStreamJSON?
 {
    return parseJSONString( json: sampleLiveStreamJSON )
 }
 
 private let sampleLiveStreamJSON =
-   """
+"""
  {
    "title": "LabPadre 24/7 Livestream",
    "description": "LabPadre is a free 24/7 live stream of the SpaceX Starship construction and testing site in Boca Chica, Texas. Multi camera views placed in several locations capture every moment of the Starship's construction and testing. LabPadre is devoted to supporting and growing the amazing community surrounding SpaceX and their fascinating developments.",
@@ -413,6 +590,24 @@ private let sampleLiveStreamJSON =
  }
 """
 
+/**
+ Gets an example Core Data entity `Location` for use in previews.
+
+ - returns: `Location` entity suitable for previewing
+ */
+public func getSampleLocationEntity() -> Location?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 10,
+                         context: context,
+                         entityName: LOCATION_ENTITY_NAME ) as? Location
+}
+
+/**
+ Gets an example `LocationJSON` struct for previews.
+
+ - returns: `LocationJSON` struct suitable for previewing
+ */
 public func getSampleLocation() -> LocationJSON?
 {
    return parseJSONString( json: sampleLocationJSON )
@@ -431,6 +626,24 @@ private let sampleLocationJSON =
 }
 """
 
+/**
+ Gets an example Core Data entity `Mission` for use in previews.
+
+ - returns: `Mission` entity suitable for previewing
+ */
+public func getSampleMissionEntity() -> Mission?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 1087,
+                         context: context,
+                         entityName: MISSION_ENTITY_NAME ) as? Mission
+}
+
+/**
+ Gets an example `MissionJSON` struct for previews.
+
+ - returns: `MissionJSON` struct suitable for previewing
+ */
 func getSampleMission() -> MissionJSON?
 {
    return parseJSONString( json: sampleMissionJSON )
@@ -453,7 +666,11 @@ private let sampleMissionJSON =
 }
 """
 
-// TODO more like this
+/**
+ Gets an example Core Data entity `Pad` for use in previews.
+
+ - returns: `Pad` entity suitable for previewing
+ */
 public func getSamplePadEntity() -> Pad?
 {
    let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
@@ -462,6 +679,11 @@ public func getSamplePadEntity() -> Pad?
                          entityName: PAD_ENTITY_NAME ) as? Pad
 }
 
+/**
+ Gets an example `PadJSON` struct for previews.
+
+ - returns: `PadJSON` struct suitable for previewing
+ */
 public func getSamplePad() -> PadJSON?
 {
    return parseJSONString( json: samplePadJSON )
@@ -492,6 +714,34 @@ private let samplePadJSON =
    "total_launch_count": 125
 }
 """
+
+/**
+ Gets an example Core Data entity `Program` for use in previews.
+
+ - returns: `Program` entity suitable for previewing
+ */
+public func getSampleProgramEntity1() -> Program?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 17,
+                         context: context,
+                         entityName: PROGRAM_ENTITY_NAME ) as? Program
+}
+
+/**
+ Gets an example Core Data entity `Program` for use in previews.
+
+ TODO make sure the second version is loaded in `Persistence`
+
+ - returns: `Program` entity suitable for previewing
+ */
+public func getSampleProgramEntity2() -> Program?
+{
+   let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
+   return getEntityByID( entityID: 15,
+                         context: context,
+                         entityName: PROGRAM_ENTITY_NAME ) as? Program
+}
 
 /**
  Returns a [ProgramJSON] to use in generating UI previews.
@@ -550,6 +800,23 @@ private let sampleProgramJSON =
  }
 """
 
+/**
+ Gets an example Core Data entity `Rocket` for use in previews.
+
+ - returns: `Rocket` entity suitable for previewing
+ */
+public func getSampleRocketEntity() -> Rocket?
+{
+   return getEntityByID( entityID: 2663,
+                         context: PersistenceController.preview.container.viewContext,
+                         entityName: ROCKET_ENTITY_NAME ) as? Rocket
+}
+
+/**
+ Gets an example `RocketJSON` struct for previews.
+
+ - returns: `RocketJSON` struct suitable for previewing
+ */
 public func getSampleRocket() -> RocketJSON?
 {
    return parseJSONString( json: sampleRocketJSON )
@@ -571,6 +838,23 @@ private let sampleRocketJSON =
 }
 """
 
+/**
+ Gets an example Core Data entity `ServiceProvider` for use in previews.
+
+ - returns: `ServiceProvider` entity suitable for previewing
+ */
+public func getSampleServiceProviderEntity() -> ServiceProvider?
+{
+   return getEntityByID( entityID: 121,
+                         context: PersistenceController.preview.container.viewContext,
+                         entityName: SERVICE_PROVIDER_ENTITY_NAME ) as? ServiceProvider
+}
+
+/**
+ Gets an example `ServiceProviderJSON` struct for previews.
+
+ - returns: `ServiceProviderJSON` struct suitable for previewing
+ */
 public func getSampleServiceProvider() -> ServiceProviderJSON?
 {
    return parseJSONString( json: sampleServiceProviderJSON )
@@ -586,6 +870,23 @@ private let sampleServiceProviderJSON =
 }
 """
 
+/**
+ Gets an example Core Data entity `SpacecraftConfig` for use in previews.
+
+ - returns: `SpacecraftConfig` entity suitable for previewing
+ */
+public func getSampleSpacecraftConfigEntity() -> SpacecraftConfig?
+{
+   return getEntityByID( entityID: 1,
+                         context: PersistenceController.preview.container.viewContext,
+                         entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftConfig
+}
+
+/**
+ Gets an example `SpacecraftConfigJSON` struct for previews.
+
+ - returns: `SpacecraftConfigJSON` struct suitable for previewing
+ */
 public func getSampleSpacecraftConfig() -> SpacecraftConfigJSON?
 {
    return parseJSONString( json: sampleSpacecraftConfigJSON )
@@ -612,25 +913,77 @@ private let sampleSpacecraftConfigJSON =
  }
 """
 
+/**
+ Gets an example Core Data entity `Spacecraft` for use in previews.
+
+ - returns: `Spacecraft` entity suitable for previewing
+ */
+public func getSampleSpacecraftEntity() -> Spacecraft?
+{
+   return getEntityByID( entityID: 77,
+                         context: PersistenceController.preview.container.viewContext,
+                         entityName: SPACECRAFT_ENTITY_NAME ) as? Spacecraft
+}
+
+/**
+ Gets an example `SpacecraftJSON` struct for previews.
+
+ - returns: `SpacecraftJSON` struct suitable for previewing
+ */
 public func getSampleSpacecraft() -> SpacecraftJSON?
 {
    return parseJSONString( json: sampleSpacecraftJSON )
 }
 
-// TODO need expanded subparts
 private let sampleSpacecraftJSON =
-   """
+"""
 {
-   "id": 77,
-   "url": "https://ll.thespacedevs.com/2.1.0/spacecraft/77/",
-   "name": "Soyuz TMA-16",
-   "serial_number": "Soyuz TMA 11F732A17 #226",
-   "status": { … },
-   "description": "Soyuz TMA-16 was a Soyuz spacecraft which launched on September 30 2009 07:14 UTC. It transported two members of the Expedition 21 crew and one participant to the International Space Station. The Expedition 21 crew consisted of Maksim Surayev and Jeffrey Williams. The spaceflight participant was tourist Guy Laliberté.",
-   "spacecraft_config": { … }
+ "id": 77,
+ "url": "https://ll.thespacedevs.com/2.1.0/spacecraft/77/",
+ "name": "Soyuz TMA-16",
+ "serial_number": "Soyuz TMA 11F732A17 #226",
+ "status": {
+   "id": 4,
+   "name": "Single Use"
+ },
+ "description": "Soyuz TMA-16 was a Soyuz spacecraft which launched on September 30 2009 07:14 UTC. It transported two members of the Expedition 21 crew and one participant to the International Space Station. The Expedition 21 crew consisted of Maksim Surayev and Jeffrey Williams. The spaceflight participant was tourist Guy Laliberté.",
+ "spacecraft_config": {
+   "id": 1,
+   "url": "https://ll.thespacedevs.com/2.1.0/config/spacecraft/1/",
+   "name": "Soyuz",
+   "type": {
+     "id": 1,
+     "name": "Unknown"
+   },
+   "agency": {
+     "id": 63,
+     "url": "https://ll.thespacedevs.com/2.1.0/agencies/63/",
+     "name": "Russian Federal Space Agency (ROSCOSMOS)",
+     "type": "Government"
+   },
+   "in_use": true,
+   "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/soyuz_image_20201015191152.jpg"
+ }
 }
 """
 
+/**
+ Gets an example Core Data entity `SpaceStation` for use in previews.
+
+ - returns: `SpaceStation` entity suitable for previewing
+ */
+public func getSampleSpaceStationEntity() -> SpaceStation?
+{
+   return getEntityByID( entityID: 4,
+                         context: PersistenceController.preview.container.viewContext,
+                         entityName: SPACESTATION_ENTITY_NAME ) as? SpaceStation
+}
+
+/**
+ Gets an example `SpaceStationJSON` struct for previews.
+
+ - returns: `SpaceStationJSON` struct suitable for previewing
+ */
 public func getSampleSpaceStation() -> SpaceStationJSON?
 {
    return parseJSONString( json: sampleSpaceStationJSON )
@@ -651,6 +1004,23 @@ private let sampleSpaceStationJSON =
 }
 """
 
+/**
+ Gets an example Core Data entity `Vehicle` for use in previews.
+
+ - returns: `Vehicle` entity suitable for previewing
+ */
+public func getSampleVehicleEntity() -> Vehicle?
+{
+   return getEntityByID( entityID: 75,
+                         context: PersistenceController.preview.container.viewContext,
+                         entityName: VEHICLE_ENTITY_NAME ) as? Vehicle
+}
+
+/**
+ Gets an example `VehicleJSON` struct for previews.
+
+ - returns: `VehicleJSON` struct suitable for previewing
+ */
 public func getSampleVehicle() -> VehicleJSON?
 {
    return parseJSONString( json: sampleVehicleJSON )
@@ -680,4 +1050,3 @@ private let sampleVehicleJSON =
    "first_launch_date": null
  }
 """
-

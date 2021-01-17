@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 struct MissionDetail: View
@@ -28,10 +27,7 @@ struct MissionDetailPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      if let mission: Mission = getEntityByID( entityID: 1087,
-                                               context: context,
-                                               entityName: MISSION_ENTITY_NAME ) as? Mission
+      if let mission: Mission = getSampleMissionEntity()
       {
          NavigationView
          {

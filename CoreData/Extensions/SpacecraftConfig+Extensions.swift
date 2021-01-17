@@ -44,11 +44,30 @@ func sortSpacecraftConfigsByName( spacecraftConfigArray: [SpacecraftConfig]? ) -
    return spacecraftConfigs
 }
 
+/**
+ Gets a [SpacecraftConfig] with the given ID in the given context.
+
+ ### Example
+ ````
+ let spacecraftConfig: SpacecraftConfig = getSpacecraftConfig( by: 2345, context: context )
+ ````
+
+ - parameter entityID - ID of the [SpacecraftConfig] to fetch
+ - parameter context - context to get the [SpacecraftConfig] from
+ - returns: [SpacecraftConfig?] with the given ID in the context, nil if not found
+ */
 public func getSpacecraftConfig( by entityID: Int64, context: NSManagedObjectContext ) -> SpacecraftConfig?
 {
    return getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftConfig
 }
 
+/**
+ Fetches, updates, or creates a [SpacecraftConfig] from the context, given the data.
+
+ - parameter agency: JSON data about the spacecraft config
+ - parameter context: Core Data object context
+ - returns: updated [SpacecraftConfig]
+ */
 public func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, context: NSManagedObjectContext ) -> SpacecraftConfig
 {
    let spacecraftConfigEntity: SpacecraftConfig? = getSpacecraftConfig( by: spacecraftConfig.id, context: context )

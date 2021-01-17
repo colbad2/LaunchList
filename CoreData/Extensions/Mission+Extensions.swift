@@ -15,11 +15,30 @@ extension Mission
    // no sets
 }
 
+/**
+ Gets a [Mission] with the given ID in the given context.
+
+ ### Example
+ ````
+ let mission: Mission = getMission( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [Mission] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Mission] from
+ - returns: [Mission?] mission with the given ID in the context, nil if not found
+ */
 func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Mission?
 {
    return getEntityByID( entityID: entityID, context: context, entityName: MISSION_ENTITY_NAME ) as? Mission
 }
 
+/**
+ Fetches, updates, or creates a [Mission] from the context, given the data.
+
+ - parameter agency: JSON data about the mission
+ - parameter context: Core Data object context
+ - returns: updated [Mission]
+ */
 func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mission
 {
    let missionEntity: Mission? = getMission( by: mission.id, context: context )

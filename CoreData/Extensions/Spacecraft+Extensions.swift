@@ -15,11 +15,30 @@ extension Spacecraft
    // no sets
 }
 
+/**
+ Gets a [Spacecraft] with the given ID in the given context.
+
+ ### Example
+ ````
+ let spacecraft: Spacecraft = getSpacecraft( by: 2345, context: context )
+ ````
+
+ - parameter entityID - ID of the [Spacecraft] to fetch
+ - parameter context - context to get the [Spacecraft] from
+ - returns: [Spacecraft] with the given ID in the context, nil if not found
+ */
 public func getSpacecraft( by entityID: Int64, context: NSManagedObjectContext ) -> Spacecraft?
 {
    return getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_ENTITY_NAME ) as? Spacecraft
 }
 
+/**
+ Fetches, updates, or creates a [Spacecraft] from the context, given the data.
+
+ - parameter agency: JSON data about the spacecraft
+ - parameter context: Core Data object context
+ - returns: updated [Spacecraft]
+ */
 public func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjectContext ) -> Spacecraft
 {
    let spacecraftEntity: Spacecraft? = getSpacecraft( by: spacecraft.id, context: context )

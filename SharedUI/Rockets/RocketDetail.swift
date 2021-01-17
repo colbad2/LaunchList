@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 struct RocketDetail: View
@@ -24,10 +23,7 @@ struct RocketPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      if let rocket: Rocket = getEntityByID( entityID: 2663,
-                                             context: context,
-                                             entityName: ROCKET_ENTITY_NAME ) as? Rocket
+      if let rocket: Rocket = getSampleRocketEntity()
       {
          Text( rocket.fullName ?? "" )
          RocketDetail( rocket: rocket )

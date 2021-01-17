@@ -68,6 +68,13 @@ public func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContex
    return getEntityByID( entityID: entityID, context: context, entityName: FLIGHT_VEHICLE_ENTITY_NAME ) as? FlightVehicle
 }
 
+/**
+ Fetches, updates, or creates a [FlightVehicle] from the context, given the data
+
+ - parameter agency: JSON data about the flight vehicle
+ - parameter context: Core Data object context
+ - returns: updated [FlightVehicle]
+ */
 public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSManagedObjectContext ) -> FlightVehicle
 {
    let flightVehicleEntity: FlightVehicle? = getFlightVehicle( by: flightVehicle.id, context: context )

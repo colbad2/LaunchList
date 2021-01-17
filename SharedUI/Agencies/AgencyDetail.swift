@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 struct AgencyDetail: View
@@ -45,10 +44,7 @@ struct AgencyPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      if let agency: Agency = getEntityByID( entityID: 63,
-                                             context: context,
-                                             entityName: AGENCY_ENTITY_NAME ) as? Agency
+      if let agency: Agency = getSampleAgencyEntity()
       {
          AgencyDetail( agency: agency )
       }

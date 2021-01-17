@@ -58,6 +58,13 @@ public func getDocking( by entityID: Int64, context: NSManagedObjectContext ) ->
    return getEntityByID( entityID: entityID, context: context, entityName: DOCKING_ENTITY_NAME ) as? Docking
 }
 
+/**
+ Fetches, updates, or creates a [Docking] from the context, given the data
+
+ - parameter agency: JSON data about the docking
+ - parameter context: Core Data object context
+ - returns: updated [Docking]
+ */
 public func fetchDocking( docking: DockingJSON, context: NSManagedObjectContext ) -> Docking
 {
    let dockingEntity: Docking? = getDocking( by: docking.id, context: context )

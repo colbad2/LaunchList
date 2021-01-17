@@ -2,7 +2,6 @@
 
 import CoreData
 
-// swiftlint:disable line_length
 /**
  ### Example
  {

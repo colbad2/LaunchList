@@ -95,6 +95,13 @@ public func getEvent( by id: Int64, context: NSManagedObjectContext ) -> Event?
    return getEntityByID( entityID: id, context: context, entityName: EVENT_ENTITY_NAME ) as? Event
 }
 
+/**
+ Fetches, updates, or creates a [Event] from the context, given the data
+
+ - parameter agency: JSON data about the event
+ - parameter context: Core Data object context
+ - returns: updated [Event]
+ */
 public func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> Event
 {
    let eventEntity: Event? = getEvent( by: event.id, context: context )

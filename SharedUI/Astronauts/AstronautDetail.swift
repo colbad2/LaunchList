@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 /**
@@ -129,10 +128,7 @@ struct AstronautPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      if let astronaut: Astronaut = getEntityByID( entityID: 276,
-                                                   context: context,
-                                                   entityName: ASTRONAUT_ENTITY_NAME ) as? Astronaut
+      if let astronaut: Astronaut = getSampleAstronautEntity()
       {
          AstronautDetail( astronaut: astronaut )
       }

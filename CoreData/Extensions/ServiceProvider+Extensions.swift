@@ -45,11 +45,30 @@ func sortServiceProvidersByName( serviceProviderArray: [ServiceProvider]? ) -> [
    return serviceProviders
 }
 
+/**
+ Gets a [ServiceProvider] with the given ID in the given context.
+
+ ### Example
+ ````
+ let provider: ServiceProvider = getServiceProvider( by: 2345, context: context )
+ ````
+
+ - parameter entityID - ID of the [ServiceProvider] to fetch
+ - parameter context - context to get the [ServiceProvider] from
+ - returns: [ServiceProvider] with the given ID in the context, nil if not found
+ */
 public func getProvider( by entityID: Int64, context: NSManagedObjectContext ) -> ServiceProvider?
 {
    return getEntityByID( entityID: entityID, context: context, entityName: SERVICE_PROVIDER_ENTITY_NAME ) as? ServiceProvider
 }
 
+/**
+ Fetches, updates, or creates a [ServiceProvider] from the context, given the data.
+
+ - parameter agency: JSON data about the service provider
+ - parameter context: Core Data object context
+ - returns: updated [ServiceProvider]
+ */
 public func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObjectContext ) -> ServiceProvider
 {
    let providerEntity: ServiceProvider? = getProvider( by: provider.id, context: context )

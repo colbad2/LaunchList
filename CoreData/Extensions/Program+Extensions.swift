@@ -136,7 +136,7 @@ public func getProgram( by programID: Int64, context: NSManagedObjectContext ) -
 }
 
 /**
- Fetches, updates, or creates a [Program] from the context, given the data
+ Fetches, updates, or creates a [Program] from the context, given the data.
 
  - parameter program: JSON data about the program
  - parameter context: Core Data object context

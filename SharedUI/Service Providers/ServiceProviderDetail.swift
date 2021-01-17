@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 struct ServiceProviderDetail: View
@@ -23,9 +22,7 @@ struct ServiceProviderPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      if let provider: ServiceProvider = getFirstEntity( context: context,
-                                                         entityName: SERVICE_PROVIDER_ENTITY_NAME ) as? ServiceProvider
+      if let provider: ServiceProvider = getSampleServiceProviderEntity()
       {
          Group
          {

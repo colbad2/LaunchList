@@ -25,8 +25,8 @@
 		A255850725B375890075B128 /* ServiceProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255850525B375890075B128 /* ServiceProvider+Extensions.swift */; };
 		A255851825B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */; };
 		A255851925B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */; };
-		A255852025B3BB440075B128 /* JSONSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851F25B3BB440075B128 /* JSONSamples.swift */; };
-		A255852125B3BB440075B128 /* JSONSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851F25B3BB440075B128 /* JSONSamples.swift */; };
+		A255852025B3BB440075B128 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851F25B3BB440075B128 /* Samples.swift */; };
+		A255852125B3BB440075B128 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851F25B3BB440075B128 /* Samples.swift */; };
 		A255852825B3BB8D0075B128 /* AstronautStatusJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */; };
 		A255852925B3BB8D0075B128 /* AstronautStatusJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */; };
 		A255853025B3BBB10075B128 /* AstronautTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852F25B3BBB10075B128 /* AstronautTypeJSON.swift */; };
@@ -417,7 +417,7 @@
 		A25584FD25B375510075B128 /* Rocket+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rocket+Extensions.swift"; sourceTree = "<group>"; };
 		A255850525B375890075B128 /* ServiceProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceProvider+Extensions.swift"; sourceTree = "<group>"; };
 		A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LauncherConfig+Extensions.swift"; sourceTree = "<group>"; };
-		A255851F25B3BB440075B128 /* JSONSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSamples.swift; sourceTree = "<group>"; };
+		A255851F25B3BB440075B128 /* Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Samples.swift; sourceTree = "<group>"; };
 		A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautStatusJSON.swift; sourceTree = "<group>"; };
 		A255852F25B3BBB10075B128 /* AstronautTypeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautTypeJSON.swift; sourceTree = "<group>"; };
 		A255853725B3BBDC0075B128 /* DockingLocationJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockingLocationJSON.swift; sourceTree = "<group>"; };
@@ -633,7 +633,7 @@
 				A255853F25B3BC300075B128 /* EventTypeJSON.swift */,
 				A280D06225B34AF300CF6E33 /* ExpeditionJSON.swift */,
 				A280D06D25B34AF300CF6E33 /* FlightVehicleJSON.swift */,
-				A255851F25B3BB440075B128 /* JSONSamples.swift */,
+				A255851F25B3BB440075B128 /* Samples.swift */,
 				A280D06525B34AF300CF6E33 /* JSONUtils.swift */,
 				A280D08325B34AF300CF6E33 /* LauncherConfigJSON.swift */,
 				A280D06925B34AF300CF6E33 /* LauncherJSON.swift */,
@@ -1257,7 +1257,7 @@
 				A280D1A925B34B7F00CF6E33 /* PadDetail.swift in Sources */,
 				A280D18225B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */,
 				A280D09925B34AF400CF6E33 /* SpaceStationJSON.swift in Sources */,
-				A255852025B3BB440075B128 /* JSONSamples.swift in Sources */,
+				A255852025B3BB440075B128 /* Samples.swift in Sources */,
 				A280D09325B34AF400CF6E33 /* ServiceProviderJSON.swift in Sources */,
 				A280D14C25B34B7F00CF6E33 /* LaunchList.swift in Sources */,
 				A25584E725B374450075B128 /* Docking+Extensions.swift in Sources */,
@@ -1387,7 +1387,7 @@
 				A280D1AA25B34B7F00CF6E33 /* PadDetail.swift in Sources */,
 				A280D18325B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */,
 				A293E4FC25B344DE00232408 /* Agency+Extensions.swift in Sources */,
-				A255852125B3BB440075B128 /* JSONSamples.swift in Sources */,
+				A255852125B3BB440075B128 /* Samples.swift in Sources */,
 				A280D09125B34AF400CF6E33 /* NoticeJSON.swift in Sources */,
 				A280D14D25B34B7F00CF6E33 /* LaunchList.swift in Sources */,
 				A25584E825B374450075B128 /* Docking+Extensions.swift in Sources */,

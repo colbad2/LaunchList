@@ -68,6 +68,13 @@ public func getExpedition( by entityID: Int64, context: NSManagedObjectContext )
    return getEntityByID( entityID: entityID, context: context, entityName: EXPEDITION_ENTITY_NAME ) as? Expedition
 }
 
+/**
+ Fetches, updates, or creates a [Expedition] from the context, given the data
+
+ - parameter agency: JSON data about the expedition
+ - parameter context: Core Data object context
+ - returns: updated [Expedition]
+ */
 public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjectContext ) -> Expedition
 {
    let expeditionEntity: Expedition? = getExpedition( by: expedition.id, context: context )

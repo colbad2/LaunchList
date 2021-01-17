@@ -16,7 +16,7 @@ extension Launcher
 }
 
 /**
- Gets an [Launcher] with the given ID in the given context.
+ Gets a [Launcher] with the given ID in the given context.
 
  ### Example
  ````
@@ -32,6 +32,13 @@ public func getLauncher( by entityID: Int64, context: NSManagedObjectContext ) -
    return getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_ENTITY_NAME ) as? Launcher
 }
 
+/**
+ Fetches, updates, or creates a [Launcher] from the context, given the data
+
+ - parameter agency: JSON data about the launcher
+ - parameter context: Core Data object context
+ - returns: updated [Launcher]
+ */
 public func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectContext ) -> Launcher
 {
    let launcherEntity: Launcher? = getLauncher( by: launcher.id, context: context )

@@ -1,10 +1,9 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 /**
- View of the details of an [LiveStream].
+ View of the details of a `LiveStream`.
 
  ### Usage
  LiveStreamDetail( liveStream: liveStreamEntity )
@@ -44,17 +43,14 @@ struct LiveStreamDetail: View
 }
 
 /**
- Preview view of the [LiveStreamDetail]
+ Preview view of the `LiveStreamDetail`
  */
 #if DEBUG
 struct LiveStreamPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      if let liveStream: LiveStream = getEntityByID( entityID: 276,
-                                                     context: context,
-                                                     entityName: LIVE_STREAM_ENTITY_NAME ) as? LiveStream
+      if let liveStream: LiveStream = getSampleLiveStreamEntity()
       {
          LiveStreamDetail( liveStream: liveStream )
       }

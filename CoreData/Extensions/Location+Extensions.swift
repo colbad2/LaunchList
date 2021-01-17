@@ -15,11 +15,30 @@ extension Location
    // no sets
 }
 
+/**
+ Gets a [Location] with the given ID in the given context.
+
+ ### Example
+ ````
+ let location: Location = getLocation( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [Location] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Location] from
+ - returns: [Location?] location with the given ID in the context, nil if not found
+ */
 public func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -> Location?
 {
    return getEntityByID( entityID: entityID, context: context, entityName: LOCATION_ENTITY_NAME ) as? Location
 }
 
+/**
+ Fetches, updates, or creates a [Location] from the context, given the data
+
+ - parameter agency: JSON data about the location
+ - parameter context: Core Data object context
+ - returns: updated [Location]
+ */
 public func fetchLocation( location: LocationJSON, context: NSManagedObjectContext ) -> Location
 {
    let locationEntity: Location? = getLocation( by: location.id, context: context )

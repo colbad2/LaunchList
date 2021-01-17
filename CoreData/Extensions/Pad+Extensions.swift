@@ -51,11 +51,30 @@ public func sortPadsByName( padArray: [Pad]? ) -> [Pad]
    return pads
 }
 
+/**
+ Gets a [Pad] with the given ID in the given context.
+
+ ### Example
+ ````
+ let pad: Pad = getPad( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [Pad] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Pad] from
+ - returns: [Pad?] pad with the given ID in the context, nil if not found
+ */
 public func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad?
 {
    return getEntityByID( entityID: entityID, context: context, entityName: PAD_ENTITY_NAME ) as? Pad
 }
 
+/**
+ Fetches, updates, or creates a [Pad] from the context, given the data.
+
+ - parameter agency: JSON data about the pad
+ - parameter context: Core Data object context
+ - returns: updated [Pad]
+ */
 public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
 {
    let padEntity: Pad? = getPad( by: pad.id, context: context )

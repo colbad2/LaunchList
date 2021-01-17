@@ -15,11 +15,30 @@ extension LauncherConfig
    // no sets
 }
 
+/**
+ Gets a [LauncherConfig] with the given ID in the given context.
+
+ ### Example
+ ````
+ let launcherConfig: LauncherConfig = getLauncherConfig( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [LauncherConfig] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [LauncherConfig] from
+ - returns: [LauncherConfig?] launcher configuration with the given ID in the context, nil if not found
+ */
 public func getLauncherConfig( by entityID: Int64, context: NSManagedObjectContext ) -> LauncherConfig?
 {
    return getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_CONFIG_ENTITY_NAME ) as? LauncherConfig
 }
 
+/**
+ Fetches, updates, or creates a [LauncherConfig] from the context, given the data
+
+ - parameter agency: JSON data about the launcher configuration
+ - parameter context: Core Data object context
+ - returns: updated [LauncherConfig]
+ */
 public func fetchLauncherConfig( launcherConfig: LauncherConfigJSON, context: NSManagedObjectContext ) -> LauncherConfig
 {
    let launcherConfigEntity: LauncherConfig? = getLauncherConfig( by: launcherConfig.id, context: context )

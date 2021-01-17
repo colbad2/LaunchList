@@ -48,11 +48,30 @@ func sortRocketsByName( rocketArray: [Rocket]? ) -> [Rocket]
    return rockets
 }
 
+/**
+ Gets a [Rocket] with the given ID in the given context.
+
+ ### Example
+ ````
+ let rocket: Rocket = getRocket( by: 2345, context: context )
+ ````
+
+ - parameter entityID - ID of the [Rocket] to fetch
+ - parameter context - context to get the [Rocket] from
+ - returns: [Rocket] with the given ID in the context, nil if not found
+ */
 public func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket?
 {
    return getEntityByID( entityID: id, context: context, entityName: ROCKET_ENTITY_NAME ) as? Rocket
 }
 
+/**
+ Fetches, updates, or creates a [Rocket] from the context, given the data.
+
+ - parameter agency: JSON data about the rocket
+ - parameter context: Core Data object context
+ - returns: updated [Rocket]
+ */
 public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket?
 {
    guard let id = rocket.configuration?.id else { return nil }

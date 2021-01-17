@@ -3,20 +3,26 @@
 import CoreData
 
 // swiftlint:disable identifier_name
-/** Core Data entity name for [Launch]. */
+/** Core Data entity name for `Launch`. */
 public let LAUNCH_ENTITY_NAME: String = "Launch"
 // swiftlint:enable identifier_name
 
 /**
- Extensions to the Core Data generated [Launch] entity.
+ Extensions to the Core Data generated `Launch` entity.
  */
 extension Launch
 {
-   /** Set< Event > wrapper for the generated NSSet of [Event]s. */
+   /** Set< Event > wrapper for the generated NSSet of `Event`s. */
    var eventsSet: Set< Event > { self.events as? Set< Event > ?? Set< Event >() }
 
-   /** Set< Program > wrapper for the generated NSSet of [Program]s. */
+   /** Set< Program > wrapper for the generated NSSet of `Program`s. */
    var programsSet: Set< Program > { self.programs as? Set< Program > ?? Set< Program >() }
+
+   /** Array of `Program`s, sorted by name. */
+   var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( self.programsSet ) ) }
+
+   /** True if the `Launch` has any `Program`s. */
+   var hasPrograms: Bool { !programsSet.isEmpty }
 
    // TODO instead of this, use the abbreviation, if available
    func getProviderName() -> String
@@ -37,19 +43,13 @@ extension Launch
 
       return providerName ?? ""
    }
-
-   /** Array of [Program]s, sorted by name. */
-   var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( self.programsSet ) ) }
-
-   /** True if the [Launch] has any [Program]s. */
-   var hasPrograms: Bool { !programsSet.isEmpty }
 }
 
 /**
- Returns a sorted version of the given [Launch] array.
+ Returns a sorted version of the given `Launch` array.
 
- - parameter launchArray - list of [Launch]s to sort
- - returns: sorted version of the given [Launch] list
+ - parameter launchArray - list of `Launch`s to sort
+ - returns: sorted version of the given `Launch` list
  */
 public func sortLaunchesByName( launchArray: [Launch]? ) -> [Launch]
 {
@@ -91,24 +91,31 @@ public func missionName( _ launch: Launch? ) -> String
 }
 
 /**
- Gets an [Launch] with the given ID in the given context.
+ Gets an `Launch` with the given ID in the given context.
 
  ### Example
  ````
  let launch: Launch = getLaunch( by: "aksjhdfabsdbcjk", context: context )
  ````
 
- NOTE: this is the only entity to use a [String} ID instead of an [Int64] ID. PITA
+ NOTE: this is the only entity to use a `String` ID instead of an `Int64` ID. PITA
 
- - parameter entityID - [String] ID of the [Launch] to fetch
- - parameter context - [NSManagedObjectContext] context to get the [Launch] from
- - returns: [Launch?] launch with the given ID in the context, nil if not found
+ - parameter entityID - `String` ID of the `Launch` to fetch
+ - parameter context - `NSManagedObjectContext` context to get the `Launch` from
+ - returns: `Launch?` launch with the given ID in the context, nil if not found
  */
 public func getLaunch( by entityID: String, context: NSManagedObjectContext ) -> Launch?
 {
    return getEntityByID( entityID: entityID, context: context, entityName: LAUNCH_ENTITY_NAME ) as? Launch
 }
 
+/**
+ Fetches, updates, or creates a `Launch` from the context, given the data
+
+ - parameter agency: JSON data about the launch
+ - parameter context: Core Data object context
+ - returns: updated `Launch`
+ */
 public func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -> Launch
 {
    if let launchEntity: Launch = getLaunch( by: launch.id, context: context )
@@ -123,10 +130,10 @@ public func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -
 }
 
 /**
- Returns the number of [Launch] records in the given context.
+ Returns the number of `Launch` records in the given context.
 
  - parameter context: Core Data object context
- - returns: [Int?] Number of [Launch] records in the context
+ - returns: `Int?` Number of `Launch` records in the context
  */
 public func getLaunchCount( context: NSManagedObjectContext ) -> Int?
 {

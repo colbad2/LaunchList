@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 struct DockingDetail: View
@@ -38,10 +37,7 @@ struct DockingDetailPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      if let docking: Docking = getEntityByID( entityID: 100,
-                                               context: context,
-                                               entityName: DOCKING_ENTITY_NAME ) as? Docking
+      if let docking: Docking = getSampleDockingEntity()
       {
          DockingDetail( docking: docking )
       }

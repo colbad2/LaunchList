@@ -47,6 +47,7 @@ Things that need to happen for a good app
 - any code TODOs
 - mark any change from the API data with // DATABASE CHANGE, and gather those changes to a single class
 - missing_docs swiftlint violation should include all methods, not just public ones
+- consider using backticks (`) around struct names in comments istead of [] or [], not sure what docs generators use these days
 ### UI Features
 - use timeline event list for home screen, not just launches.
 - some images need a detailed image view (astronaut portraits, etc.)

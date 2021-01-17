@@ -1,6 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
 import SwiftUI
 
 /**
@@ -92,13 +91,8 @@ struct ProgramPreview: PreviewProvider
 {
    static var previews: some View
    {
-      let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
-      let issProgram: Program? = getEntityByID( entityID: 17,
-                                                context: context,
-                                                entityName: PROGRAM_ENTITY_NAME ) as? Program
-      let artemisProgram: Program? = getEntityByID( entityID: 15,
-                                                    context: context,
-                                                    entityName: PROGRAM_ENTITY_NAME ) as? Program
+      let issProgram: Program? = getSampleProgramEntity1()
+      let artemisProgram: Program? = getSampleProgramEntity2()
       Group
       {
          if let iss: Program = issProgram

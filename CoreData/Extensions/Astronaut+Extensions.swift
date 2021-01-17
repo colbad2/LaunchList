@@ -61,6 +61,13 @@ public func getAstronaut( by id: Int64, context: NSManagedObjectContext ) -> Ast
    return getEntityByID( entityID: id, context: context, entityName: ASTRONAUT_ENTITY_NAME ) as? Astronaut
 }
 
+/**
+ Fetches, updates, or creates a [Astronaut] from the context, given the data
+
+ - parameter agency: JSON data about the astronaut
+ - parameter context: Core Data object context
+ - returns: updated [Astronaut]
+ */
 public func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectContext ) -> Astronaut
 {
    let astronautEntity: Astronaut? = getAstronaut( by: astronaut.id, context: context )

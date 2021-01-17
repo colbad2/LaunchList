@@ -41,3 +41,16 @@ struct EventDetail: View
       .padding()
    }
 }
+
+#if DEBUG
+struct EventDetailPreview: PreviewProvider
+{
+   static var previews: some View
+   {
+      if let event: Event = getSampleEventEntity()
+      {
+         EventDetail( event: event )
+      }
+   }
+}
+#endif
