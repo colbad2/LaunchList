@@ -2,6 +2,14 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Spacecraft]. */
+public let SPACECRAFT_ENTITY_NAME: String = "Spacecraft"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [Spacecraft] entity.
+ */
 extension Spacecraft
 {
    // no sets
@@ -9,7 +17,7 @@ extension Spacecraft
 
 public func getSpacecraft( by entityID: Int64, context: NSManagedObjectContext ) -> Spacecraft?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Spacecraft" ) as? Spacecraft
+   return getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_ENTITY_NAME ) as? Spacecraft
 }
 
 public func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjectContext ) -> Spacecraft
@@ -27,5 +35,5 @@ public func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjec
  */
 public func getSpacecraftCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Spacecraft", context: context )
+   return getRecordsCount( entityName: SPACECRAFT_ENTITY_NAME, context: context )
 }

@@ -46,8 +46,7 @@ Things that need to happen for a good app
 -- displayModeButtonItem is internally managed and not exposed for DoubleColumn style. Returning an empty, disconnected UIBarButtonItem to fulfill the non-null contract.
 - any code TODOs
 - mark any change from the API data with // DATABASE CHANGE, and gather those changes to a single class
-- remvoe swiftlint diables if possible
-- missing_docs swiftlint violation should include all methods, not jsut public ones
+- missing_docs swiftlint violation should include all methods, not just public ones
 ### UI Features
 - use timeline event list for home screen, not just launches.
 - some images need a detailed image view (astronaut portraits, etc.)
@@ -78,6 +77,7 @@ Things that need to happen for a good app
 - add launchers to the dataset list
 - settings button to clear the image cache entirely, or images that are past a certain lifetime
 - home page stuff deep links to datasets (can't be done yet in SwiftUI)
+- I18N, translation?
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"

@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Pad]. */
+public let PAD_ENTITY_NAME: String = "Pad"
+// swiftlint:enable identifier_name
+
 /**
  Extensions to the Core Data generated [Pad] entity.
  */
@@ -48,7 +53,7 @@ public func sortPadsByName( padArray: [Pad]? ) -> [Pad]
 
 public func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Pad" ) as? Pad
+   return getEntityByID( entityID: entityID, context: context, entityName: PAD_ENTITY_NAME ) as? Pad
 }
 
 public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
@@ -66,5 +71,5 @@ public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
  */
 public func getPadCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Pad", context: context )
+   return getRecordsCount( entityName: PAD_ENTITY_NAME, context: context )
 }

@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Docking]. */
+public let DOCKING_ENTITY_NAME: String = "Docking"
+// swiftlint:enable identifier_name
+
 extension Docking
 {
    // no sets
@@ -36,9 +41,21 @@ public func sortDockingsByName( dockingArray: [Docking]? ) -> [Docking]
    return dockings
 }
 
+/**
+ Gets a [Docking] with the given ID in the given context.
+
+ ### Example
+ ````
+ let docking: Docking = getDocking( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [Docking] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Docking] from
+ - returns: [Docking?] docking with the given ID in the context, nil if not found
+ */
 public func getDocking( by entityID: Int64, context: NSManagedObjectContext ) -> Docking?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Docking" ) as? Docking
+   return getEntityByID( entityID: entityID, context: context, entityName: DOCKING_ENTITY_NAME ) as? Docking
 }
 
 public func fetchDocking( docking: DockingJSON, context: NSManagedObjectContext ) -> Docking
@@ -56,5 +73,5 @@ public func fetchDocking( docking: DockingJSON, context: NSManagedObjectContext 
  */
 public func getDockingCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Docking", context: context )
+   return getRecordsCount( entityName: DOCKING_ENTITY_NAME, context: context )
 }

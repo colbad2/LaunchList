@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Expedition]. */
+public let EXPEDITION_ENTITY_NAME: String = "Expedition"
+// swiftlint:enable identifier_name
+
 /**
  Extensions to the Core Data generated [Expedition] entity.
  */
@@ -46,9 +51,21 @@ public func sortExpeditionsByName( expeditionArray: [Expedition]? ) -> [Expediti
    return expeditions
 }
 
+/**
+ Gets an [Expedition] with the given ID in the given context.
+
+ ### Example
+ ````
+ let expedition: Expedition = getExpedition( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [Expedition] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Expedition] from
+ - returns: [Expedition?] expedition with the given ID in the context, nil if not found
+ */
 public func getExpedition( by entityID: Int64, context: NSManagedObjectContext ) -> Expedition?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Expedition" ) as? Expedition
+   return getEntityByID( entityID: entityID, context: context, entityName: EXPEDITION_ENTITY_NAME ) as? Expedition
 }
 
 public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjectContext ) -> Expedition
@@ -66,5 +83,5 @@ public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjec
  */
 public func getExpeditionCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Expedition", context: context )
+   return getRecordsCount( entityName: EXPEDITION_ENTITY_NAME, context: context )
 }

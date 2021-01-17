@@ -2,6 +2,14 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Vehicle]. */
+public let VEHICLE_ENTITY_NAME: String = "Vehicle"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [Vehicle] entity.
+ */
 extension Vehicle
 {
    // no sets
@@ -9,7 +17,7 @@ extension Vehicle
 
 public func getVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> Vehicle?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Vehicle" ) as? Vehicle
+   return getEntityByID( entityID: entityID, context: context, entityName: VEHICLE_ENTITY_NAME ) as? Vehicle
 }
 
 public func fetchVehicle( vehicle: VehicleJSON, context: NSManagedObjectContext ) -> Vehicle
@@ -27,5 +35,5 @@ public func fetchVehicle( vehicle: VehicleJSON, context: NSManagedObjectContext 
  */
 public func getVehicleCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Vehicle", context: context )
+   return getRecordsCount( entityName: VEHICLE_ENTITY_NAME, context: context )
 }

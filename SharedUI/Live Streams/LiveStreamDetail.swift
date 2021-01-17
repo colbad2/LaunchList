@@ -54,7 +54,7 @@ struct LiveStreamPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let liveStream: LiveStream = getEntityByID( entityID: 276,
                                                      context: context,
-                                                     entityName: "LiveStream" ) as? LiveStream
+                                                     entityName: LIVE_STREAM_ENTITY_NAME ) as? LiveStream
       {
          LiveStreamDetail( liveStream: liveStream )
       }

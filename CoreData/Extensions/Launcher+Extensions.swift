@@ -2,14 +2,34 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Launcher]. */
+public let LAUNCHER_ENTITY_NAME: String = "Launcher"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [Launcher] entity.
+ */
 extension Launcher
 {
    // no sets
 }
 
+/**
+ Gets an [Launcher] with the given ID in the given context.
+
+ ### Example
+ ````
+ let launcher: Launcher = getLauncher( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [Launcher] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Launcher] from
+ - returns: [Launcher?] launcher with the given ID in the context, nil if not found
+ */
 public func getLauncher( by entityID: Int64, context: NSManagedObjectContext ) -> Launcher?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Launcher" ) as? Launcher
+   return getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_ENTITY_NAME ) as? Launcher
 }
 
 public func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectContext ) -> Launcher
@@ -27,5 +47,5 @@ public func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectConte
  */
 public func getLauncherCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Launcher", context: context )
+   return getRecordsCount( entityName: LAUNCHER_ENTITY_NAME, context: context )
 }

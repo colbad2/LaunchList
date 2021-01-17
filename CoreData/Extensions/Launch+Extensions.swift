@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Launch]. */
+public let LAUNCH_ENTITY_NAME: String = "Launch"
+// swiftlint:enable identifier_name
+
 /**
  Extensions to the Core Data generated [Launch] entity.
  */
@@ -85,9 +90,23 @@ public func missionName( _ launch: Launch? ) -> String
    return missionPart?.trim() ?? launch.name ?? ""
 }
 
+/**
+ Gets an [Launch] with the given ID in the given context.
+
+ ### Example
+ ````
+ let launch: Launch = getLaunch( by: "aksjhdfabsdbcjk", context: context )
+ ````
+
+ NOTE: this is the only entity to use a [String} ID instead of an [Int64] ID. PITA
+
+ - parameter entityID - [String] ID of the [Launch] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Launch] from
+ - returns: [Launch?] launch with the given ID in the context, nil if not found
+ */
 public func getLaunch( by entityID: String, context: NSManagedObjectContext ) -> Launch?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Launch" ) as? Launch
+   return getEntityByID( entityID: entityID, context: context, entityName: LAUNCH_ENTITY_NAME ) as? Launch
 }
 
 public func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -> Launch
@@ -111,5 +130,5 @@ public func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -
  */
 public func getLaunchCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Launch", context: context )
+   return getRecordsCount( entityName: LAUNCH_ENTITY_NAME, context: context )
 }

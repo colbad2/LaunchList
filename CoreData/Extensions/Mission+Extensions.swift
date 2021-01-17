@@ -2,6 +2,14 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Mission]. */
+public let MISSION_ENTITY_NAME: String = "Mission"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [Mission] entity.
+ */
 extension Mission
 {
    // no sets
@@ -9,7 +17,7 @@ extension Mission
 
 func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Mission?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Mission" ) as? Mission
+   return getEntityByID( entityID: entityID, context: context, entityName: MISSION_ENTITY_NAME ) as? Mission
 }
 
 func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mission
@@ -27,5 +35,5 @@ func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mi
  */
 func getMissionCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Mission", context: context )
+   return getRecordsCount( entityName: MISSION_ENTITY_NAME, context: context )
 }

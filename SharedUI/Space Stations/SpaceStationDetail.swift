@@ -176,7 +176,7 @@ struct SpaceStationPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let spaceStation: SpaceStation = getEntityByID( entityID: 4,
                                                          context: context,
-                                                         entityName: "SpaceStation" ) as? SpaceStation
+                                                         entityName: SPACESTATION_ENTITY_NAME ) as? SpaceStation
       {
          SpaceStationDetail( spaceStation: spaceStation )
       }

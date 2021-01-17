@@ -125,6 +125,7 @@ opt_in_rules:
 indentation: 3
 
 identifier_name:
+  allowed_symbols: "_"
   excluded:
     - id
 

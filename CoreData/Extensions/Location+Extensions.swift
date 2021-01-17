@@ -2,6 +2,14 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Location]. */
+public let LOCATION_ENTITY_NAME: String = "Location"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [Location] entity.
+ */
 extension Location
 {
    // no sets
@@ -9,7 +17,7 @@ extension Location
 
 public func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -> Location?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Location" ) as? Location
+   return getEntityByID( entityID: entityID, context: context, entityName: LOCATION_ENTITY_NAME ) as? Location
 }
 
 public func fetchLocation( location: LocationJSON, context: NSManagedObjectContext ) -> Location
@@ -27,5 +35,5 @@ public func fetchLocation( location: LocationJSON, context: NSManagedObjectConte
  */
 public func getLocationCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Location", context: context )
+   return getRecordsCount( entityName: LOCATION_ENTITY_NAME, context: context )
 }

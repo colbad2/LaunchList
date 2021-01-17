@@ -95,10 +95,10 @@ struct ProgramPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       let issProgram: Program? = getEntityByID( entityID: 17,
                                                 context: context,
-                                                entityName: "Program") as? Program
+                                                entityName: PROGRAM_ENTITY_NAME ) as? Program
       let artemisProgram: Program? = getEntityByID( entityID: 15,
                                                     context: context,
-                                                    entityName: "Program") as? Program
+                                                    entityName: PROGRAM_ENTITY_NAME ) as? Program
       Group
       {
          if let iss: Program = issProgram

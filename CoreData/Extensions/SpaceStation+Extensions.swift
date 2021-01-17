@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [SpaceStation]. */
+public let SPACESTATION_ENTITY_NAME: String = "SpaceStation"
+// swiftlint:enable identifier_name
+
 /**
  Extensions to the Core Data generated [SpaceStation] entity.
  */
@@ -65,7 +70,7 @@ public func sortSpaceStationsByName( spaceStationArray: [SpaceStation]? ) -> [Sp
 
 public func getSpaceStation( by entityID: Int64, context: NSManagedObjectContext ) -> SpaceStation?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "SpaceStation" ) as? SpaceStation
+   return getEntityByID( entityID: entityID, context: context, entityName: SPACESTATION_ENTITY_NAME ) as? SpaceStation
 }
 
 public func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManagedObjectContext ) -> SpaceStation
@@ -83,5 +88,5 @@ public func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManage
  */
 public func getSpaceStationCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "SpaceStation", context: context )
+   return getRecordsCount( entityName: SPACESTATION_ENTITY_NAME, context: context )
 }

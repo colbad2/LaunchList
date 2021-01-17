@@ -25,7 +25,7 @@ struct ServiceProviderPreview: PreviewProvider
    {
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let provider: ServiceProvider = getFirstEntity( context: context,
-                                                         entityName: "ServiceProvider" ) as? ServiceProvider
+                                                         entityName: SERVICE_PROVIDER_ENTITY_NAME ) as? ServiceProvider
       {
          Group
          {

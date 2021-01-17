@@ -31,7 +31,7 @@ struct ExpeditionPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let expedition: Expedition = getEntityByID( entityID: 81,
                                                      context: context,
-                                                     entityName: "Expedition" ) as? Expedition
+                                                     entityName: EXPEDITION_ENTITY_NAME ) as? Expedition
       {
          ExpeditionDetail( expedition: expedition )
       }

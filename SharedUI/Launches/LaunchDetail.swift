@@ -129,7 +129,7 @@ struct LaunchPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       let launch: Launch? = getEntityByID( entityID: "724dd8ce-78ec-4dad-b17c-ff66c257fab7",
                                            context: context,
-                                           entityName: "Launch" ) as? Launch
+                                           entityName: LAUNCH_ENTITY_NAME ) as? Launch
 
       if let previewLaunch: Launch = launch
       {

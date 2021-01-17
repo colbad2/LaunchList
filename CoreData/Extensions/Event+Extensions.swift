@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Event]. */
+public let EVENT_ENTITY_NAME: String = "Event"
+// swiftlint:enable identifier_name
+
 /**
  Extensions to the Core Data generated [Event] entity.
  */
@@ -73,9 +78,21 @@ public func sortEventsByName( eventArray: [Event]? ) -> [Event]
    return events
 }
 
+/**
+ Gets an [Event] with the given ID in the given context.
+
+ ### Example
+ ````
+ let event: Event = getEvent( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [Event] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Event] from
+ - returns: [Event?] event with the given ID in the context, nil if not found
+ */
 public func getEvent( by id: Int64, context: NSManagedObjectContext ) -> Event?
 {
-   return getEntityByID( entityID: id, context: context, entityName: "Event" ) as? Event
+   return getEntityByID( entityID: id, context: context, entityName: EVENT_ENTITY_NAME ) as? Event
 }
 
 public func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> Event
@@ -93,5 +110,5 @@ public func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> E
  */
 public func getEventCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Event", context: context )
+   return getRecordsCount( entityName: EVENT_ENTITY_NAME, context: context )
 }

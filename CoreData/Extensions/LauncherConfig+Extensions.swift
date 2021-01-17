@@ -2,6 +2,14 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [LauncherConfig]. */
+public let LAUNCHER_CONFIG_ENTITY_NAME: String = "LauncherConfig"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [LauncherConfig] entity.
+ */
 extension LauncherConfig
 {
    // no sets
@@ -9,7 +17,7 @@ extension LauncherConfig
 
 public func getLauncherConfig( by entityID: Int64, context: NSManagedObjectContext ) -> LauncherConfig?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "LauncherConfig" ) as? LauncherConfig
+   return getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_CONFIG_ENTITY_NAME ) as? LauncherConfig
 }
 
 public func fetchLauncherConfig( launcherConfig: LauncherConfigJSON, context: NSManagedObjectContext ) -> LauncherConfig
@@ -27,5 +35,5 @@ public func fetchLauncherConfig( launcherConfig: LauncherConfigJSON, context: NS
  */
 public func getLauncherConfigCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "LauncherConfig", context: context )
+   return getRecordsCount( entityName: LAUNCHER_CONFIG_ENTITY_NAME, context: context )
 }

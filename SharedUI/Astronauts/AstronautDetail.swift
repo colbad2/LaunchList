@@ -132,7 +132,7 @@ struct AstronautPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let astronaut: Astronaut = getEntityByID( entityID: 276,
                                                    context: context,
-                                                   entityName: "Astronaut" ) as? Astronaut
+                                                   entityName: ASTRONAUT_ENTITY_NAME ) as? Astronaut
       {
          AstronautDetail( astronaut: astronaut )
       }

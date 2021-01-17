@@ -459,7 +459,7 @@ public func getSamplePadEntity() -> Pad?
    let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
    return getEntityByID( entityID: 87,
                          context: context,
-                         entityName: "Pad" ) as? Pad
+                         entityName: PAD_ENTITY_NAME ) as? Pad
 }
 
 public func getSamplePad() -> PadJSON?

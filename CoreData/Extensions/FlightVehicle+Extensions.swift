@@ -2,6 +2,14 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [FlightVehicle]. */
+public let FLIGHT_VEHICLE_ENTITY_NAME: String = "FlightVehicle"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [Expedition] entity.
+ */
 extension FlightVehicle
 {
    /** Set< Docking > wrapper for the generated NSSet of {Docking}s. */
@@ -43,9 +51,21 @@ public func sortFlightVehiclesByName( flightVehicleArray: [FlightVehicle]? ) -> 
    return flightVehicles
 }
 
+/**
+ Gets an [FlightVehicle] with the given ID in the given context.
+
+ ### Example
+ ````
+ let flightVehicle: FlightVehicle = getFlightVehicle( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [FlightVehicle] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [FlightVehicle] from
+ - returns: [FlightVehicle?] flightVehicle with the given ID in the context, nil if not found
+ */
 public func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> FlightVehicle?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "FlightVehicle" ) as? FlightVehicle
+   return getEntityByID( entityID: entityID, context: context, entityName: FLIGHT_VEHICLE_ENTITY_NAME ) as? FlightVehicle
 }
 
 public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSManagedObjectContext ) -> FlightVehicle
@@ -63,5 +83,5 @@ public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSMan
  */
 public func getFlightVehicleCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "FlightVehicle", context: context )
+   return getRecordsCount( entityName: FLIGHT_VEHICLE_ENTITY_NAME, context: context )
 }

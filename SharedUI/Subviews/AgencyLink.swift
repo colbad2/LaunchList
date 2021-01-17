@@ -35,7 +35,7 @@ struct AgencyLinkPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let agency: Agency = getEntityByID( entityID: 63,
                                              context: context,
-                                             entityName: "Agency" ) as? Agency
+                                             entityName: AGENCY_ENTITY_NAME ) as? Agency
       {
          let agencyID: Int64 = agency.id
          Group

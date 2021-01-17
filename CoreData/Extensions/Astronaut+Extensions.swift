@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Astronaut]. */
+public let ASTRONAUT_ENTITY_NAME: String = "Astronaut"
+// swiftlint:enable identifier_name
+
 /**
  Extensions to the Core Data generated {Astronaut} entity.
  */
@@ -39,10 +44,21 @@ public func sortAstronautsByName( astronautArray: [Astronaut]? ) -> [Astronaut]
    return astronauts
 }
 
+/**
+ Gets an [Astronaut] with the given ID in the given context.
 
+ ### Example
+ ````
+ let astronaut: Astronaut = getAstronaut( by: 2345, context: context )
+ ````
+
+ - parameter entityID - [Int64] ID of the [Astronaut] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Astronaut] from
+ - returns: [Astronaut?] astronaut with the given ID in the context, nil if not found
+ */
 public func getAstronaut( by id: Int64, context: NSManagedObjectContext ) -> Astronaut?
 {
-   return getEntityByID( entityID: id, context: context, entityName: "Astronaut" ) as? Astronaut
+   return getEntityByID( entityID: id, context: context, entityName: ASTRONAUT_ENTITY_NAME ) as? Astronaut
 }
 
 public func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectContext ) -> Astronaut
@@ -60,5 +76,5 @@ public func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectCo
  */
 public func getAstronautCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Astronaut", context: context )
+   return getRecordsCount( entityName: ASTRONAUT_ENTITY_NAME, context: context )
 }

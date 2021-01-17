@@ -2,8 +2,13 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Agency]. */
+public let AGENCY_ENTITY_NAME: String = "Agency"
+// swiftlint:enable identifier_name
+
 /**
- Extensions to the Core Data generated {Agency} entity.
+ Extensions to the Core Data generated [Agency] entity.
  */
 extension Agency
 {
@@ -88,20 +93,20 @@ public func isBasic( agency: Agency ) -> Bool
 }
 
 /**
- Gets a {Agency} with the given ID in the given context.
+ Gets an [Agency] with the given ID in the given context.
 
  ### Example
  ````
  let agency: Agency = getAgency( by: 2345, context: context )
  ````
 
- - parameter entityID - ID of the {Agency} to fetch
- - parameter context - context to get the {Agency} from
- - returns: agency with the given ID in the context, nil if not found
+ - parameter entityID - [Int64] ID of the [Agency] to fetch
+ - parameter context - [NSManagedObjectContext] context to get the [Agency] from
+ - returns: [Agency?] agency with the given ID in the context, nil if not found
  */
 public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> Agency?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "Agency" ) as? Agency
+   return getEntityByID( entityID: entityID, context: context, entityName: AGENCY_ENTITY_NAME ) as? Agency
 }
 
 /**
@@ -126,7 +131,7 @@ public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -
  */
 public func getAgencyCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Agency", context: context )
+   return getRecordsCount( entityName: AGENCY_ENTITY_NAME, context: context )
 }
 
 /*

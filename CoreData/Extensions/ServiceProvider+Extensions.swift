@@ -2,6 +2,14 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [ServiceProvider]. */
+public let SERVICE_PROVIDER_ENTITY_NAME: String = "ServiceProvider"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [ServiceProvider] entity.
+ */
 extension ServiceProvider
 {
    /** Set< Launch > wrapper for the generated NSSet of [Launch]s. */
@@ -39,7 +47,7 @@ func sortServiceProvidersByName( serviceProviderArray: [ServiceProvider]? ) -> [
 
 public func getProvider( by entityID: Int64, context: NSManagedObjectContext ) -> ServiceProvider?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "ServiceProvider" ) as? ServiceProvider
+   return getEntityByID( entityID: entityID, context: context, entityName: SERVICE_PROVIDER_ENTITY_NAME ) as? ServiceProvider
 }
 
 public func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObjectContext ) -> ServiceProvider
@@ -57,5 +65,5 @@ public func fetchProvider( provider: ServiceProviderJSON, context: NSManagedObje
  */
 public func getServiceProviderCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "ServiceProvider", context: context )
+   return getRecordsCount( entityName: SERVICE_PROVIDER_ENTITY_NAME, context: context )
 }

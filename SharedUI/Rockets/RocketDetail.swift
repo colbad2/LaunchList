@@ -27,7 +27,7 @@ struct RocketPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let rocket: Rocket = getEntityByID( entityID: 2663,
                                              context: context,
-                                             entityName: "Rocket") as? Rocket
+                                             entityName: ROCKET_ENTITY_NAME ) as? Rocket
       {
          Text( rocket.fullName ?? "" )
          RocketDetail( rocket: rocket )

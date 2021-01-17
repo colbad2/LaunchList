@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Program]. */
+public let PROGRAM_ENTITY_NAME: String = "Program"
+// swiftlint:enable identifier_name
+
 /**
  Extensions to the Core Data generated [Program] entity.
  */
@@ -127,7 +132,7 @@ public func getAllAgencyFlags( program: Program? ) -> [String]
  */
 public func getProgram( by programID: Int64, context: NSManagedObjectContext ) -> Program?
 {
-   return getEntityByID( entityID: programID, context: context, entityName: "Program" ) as? Program
+   return getEntityByID( entityID: programID, context: context, entityName: PROGRAM_ENTITY_NAME ) as? Program
 }
 
 /**
@@ -152,7 +157,7 @@ public func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext 
  */
 public func getProgramCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Program", context: context )
+   return getRecordsCount( entityName: PROGRAM_ENTITY_NAME, context: context )
 }
 
 /*

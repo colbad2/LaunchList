@@ -41,7 +41,7 @@ struct DockingDetailPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let docking: Docking = getEntityByID( entityID: 100,
                                                context: context,
-                                               entityName: "Docking") as? Docking
+                                               entityName: DOCKING_ENTITY_NAME ) as? Docking
       {
          DockingDetail( docking: docking )
       }

@@ -2,6 +2,14 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [Rocket]. */
+public let ROCKET_ENTITY_NAME: String = "Rocket"
+// swiftlint:enable identifier_name
+
+/**
+ Extensions to the Core Data generated [Rocket] entity.
+ */
 extension Rocket
 {
    /** Set< Launch > wrapper for the generated NSSet of [Launch]s. */
@@ -42,7 +50,7 @@ func sortRocketsByName( rocketArray: [Rocket]? ) -> [Rocket]
 
 public func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket?
 {
-   return getEntityByID( entityID: id, context: context, entityName: "Rocket" ) as? Rocket
+   return getEntityByID( entityID: id, context: context, entityName: ROCKET_ENTITY_NAME ) as? Rocket
 }
 
 public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket?
@@ -62,5 +70,5 @@ public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -
  */
 public func getRocketCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "Rocket", context: context )
+   return getRecordsCount( entityName: ROCKET_ENTITY_NAME, context: context )
 }

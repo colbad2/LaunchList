@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for [SpacecraftConfig]. */
+public let SPACECRAFT_CONFIG_ENTITY_NAME: String = "SpacecraftConfig"
+// swiftlint:enable identifier_name
+
 /**
  Extensions to the Core Data generated [SpacecraftConfig] entity.
  */
@@ -41,7 +46,7 @@ func sortSpacecraftConfigsByName( spacecraftConfigArray: [SpacecraftConfig]? ) -
 
 public func getSpacecraftConfig( by entityID: Int64, context: NSManagedObjectContext ) -> SpacecraftConfig?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: "SpacecraftConfig" ) as? SpacecraftConfig
+   return getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftConfig
 }
 
 public func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, context: NSManagedObjectContext ) -> SpacecraftConfig
@@ -59,5 +64,5 @@ public func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, conte
  */
 public func getSpacecraftConfigCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: "SpacecraftConfig", context: context )
+   return getRecordsCount( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context )
 }

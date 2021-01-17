@@ -31,7 +31,7 @@ struct MissionDetailPreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let mission: Mission = getEntityByID( entityID: 1087,
                                                context: context,
-                                               entityName: "Mission") as? Mission
+                                               entityName: MISSION_ENTITY_NAME ) as? Mission
       {
          NavigationView
          {

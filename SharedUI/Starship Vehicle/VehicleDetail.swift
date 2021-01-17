@@ -33,7 +33,7 @@ struct VehiclePreview: PreviewProvider
       let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
       if let vehicle: Vehicle = getEntityByID( entityID: 75,
                                                context: context,
-                                               entityName: "Vehicle" ) as? Vehicle
+                                               entityName: VEHICLE_ENTITY_NAME ) as? Vehicle
       {
          Group
          {
