@@ -41,6 +41,17 @@ extension Agency
 }
 
 /**
+ Gets all the `Agency` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Agency`s from
+ - returns: `[Agency]?` list of agencies, nil if not possible
+ */
+public func fetchAllAgencies( context: NSManagedObjectContext ) -> [Agency]?
+{
+   return fetchAllEntities( entityName: AGENCY_ENTITY_NAME, context: context ) as? [Agency]
+}
+
+/**
  Returns a sorted version of the given `Agency` array.
 
  - parameter agencyArray: `[Agency]?` list of `Agency`s to sort

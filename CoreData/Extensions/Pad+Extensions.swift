@@ -36,6 +36,17 @@ extension Pad
 }
 
 /**
+ Gets all the `Pad` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Pad`s from
+ - returns: `[Pad]?` list of pads, nil if not possible
+ */
+public func fetchAllPads( context: NSManagedObjectContext ) -> [Pad]?
+{
+   return fetchAllEntities( entityName: PAD_ENTITY_NAME, context: context ) as? [Pad]
+}
+
+/**
  Returns a sorted version of the given `Pad` array.
 
  - parameter padArray - list of `Pad`s to sort

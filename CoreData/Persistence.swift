@@ -59,6 +59,7 @@ public struct PersistenceController
             firstDescription.url = URL( fileURLWithPath: "/dev/null" )
          }
       }
+
       container.loadPersistentStores
       {
          _, error in

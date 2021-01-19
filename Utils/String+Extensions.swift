@@ -2,8 +2,16 @@
 
 import Foundation
 
+/**
+ Utility functions on `String`s.
+ */
 extension String
 {
+   /**
+    Returns a `String` with the UTF-8 escapes decoded.
+
+    - returns: `String` decoded string
+    */
    func utf8DecodedString() -> String
    {
       if let data: Data = self.data( using: .utf8 ),
@@ -15,6 +23,11 @@ extension String
       return ""
    }
 
+   /**
+    Returns a `String` with the UTF-8 escapes encoded.
+
+    - returns: `String` encoded string
+    */
    func utf8EncodedString() -> String
    {
       if let messageData: Data = self.data( using: .nonLossyASCII ),
@@ -26,6 +39,11 @@ extension String
       return ""
    }
 
+   /**
+    Replace bad UTF encodings.
+
+    - returns: `String` string with bad UTF encodings converted to real UTF characters
+    */
    func fixBadUTF() -> String
    {
       if !self.contains( "Ã" ) { return self }
@@ -61,6 +79,12 @@ extension String
          .replacingOccurrences( of: "Â°", with: "°" )
    }
 
+   /**
+    Remove the given prefix from a string.
+
+    - parameter prefix: `String` prefix to remove
+    - returns: `String` string with prefix removed, if necessary
+    */
    func removePrefix( _ prefix: String ) -> String
    {
       guard self.hasPrefix( prefix ) else { return self }
@@ -71,7 +95,7 @@ extension String
 // Country code to emoji feature
 // https://www.timekl.com/blog/2017/08/31/swift-tricks-emoji-flags/
 
-private func isLowercaseASCIIScalar(_ scalar: Unicode.Scalar) -> Bool
+private func isLowercaseASCIIScalar( _ scalar: Unicode.Scalar ) -> Bool
 {
    return scalar.value >= 0x61 && scalar.value <= 0x7A
 }

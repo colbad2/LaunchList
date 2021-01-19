@@ -122,42 +122,44 @@ class RemoteImageCache
     To be called from the main thread.
 
     - parameter imageURLString: `String?` URL to fetch
-    - parameter completionHandler: `( UIImage?, Bool ) -> Void` callback when image loading has stopped (good or bad)
+    - parameter completionHandler: `( String?, UIImage?, Bool ) -> Void` callback when image loading has stopped (good or bad)
     */
    func downloadImage( with imageURLString: String?,
-                       completionHandler: @escaping ( UIImage?, Bool ) -> Void  )
+                       completionHandler: @escaping ( String?, UIImage?, Bool ) -> Void  )
    {
       guard let urlString: String = imageURLString else
       {
-         completionHandler( nil, true )
+         print( "Couldn't load nil URL" )
+         completionHandler( imageURLString, nil, true )
          return
       }
 
-      // return n il if the URL was nil or empty
+      // return nil if the URL was nil or empty
       if urlString.isEmpty
       {
-         completionHandler( nil, true )
+         print( "Couldn't load empty URL" )
+         completionHandler( imageURLString, nil, true )
          return
       }
 
       // return the image if it had been cached
       if let image: UIImage = getCachedImageFrom( url: urlString )
       {
-         completionHandler( image, true )
+         completionHandler( imageURLString, image, true )
          return
       }
 
       if let image: UIImage = getStoredImage( for: urlString, context: PersistenceController.shared.container.viewContext )
       {
-         completionHandler( image, true )
+         completionHandler( imageURLString, image, true )
          return
       }
 
       // return nil if the URL cannot be parsed
       guard let url = URL( string: urlString ) else
       {
-         completionHandler( nil, true )
          print( "cannot parse image URL: \"\(urlString)\"" )
+         completionHandler( imageURLString, nil, true )
          return
       }
 
@@ -176,14 +178,14 @@ class RemoteImageCache
 
          if let error: Error = fetchError
          {
-            DispatchQueue.main.async { completionHandler( nil, true ) }
+            DispatchQueue.main.async { completionHandler( imageURLString, nil, true ) }
             print( "load image URL fail: \(error)" )
             return
          }
 
          guard let image: UIImage = UIImage( data: data ) else
          {
-            completionHandler( nil, true )
+            completionHandler( imageURLString, nil, true )
             print( "cannot parse image URL: \"\(urlString)\"" )
             return
          }
@@ -193,7 +195,7 @@ class RemoteImageCache
          DispatchQueue.main.async
          {
             saveToCoreData( url: urlString, image: image )
-            completionHandler( image, false )
+            completionHandler( imageURLString, image, false )
          }
       }
 

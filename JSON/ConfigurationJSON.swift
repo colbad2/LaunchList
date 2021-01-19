@@ -37,7 +37,7 @@ public struct ConfigurationJSON: Decodable
    /** Same as "fullName"? */
    var name: String?
    /** API URI for this location. */
-   var url: String?
+   var url: String? // unused
    /** Specific type of the family, like "Block 5". */
    var variant: String?
 }

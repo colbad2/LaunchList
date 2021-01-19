@@ -12,8 +12,6 @@ public let LAUNCHER_ENTITY_NAME: String = "Launcher"
  */
 extension Launcher
 {
-   // no sets
-
    /**
     Adds the JSON struct, creating or updating as necessary.
 
@@ -28,6 +26,17 @@ extension Launcher
          self.launcherConfig?.launcher = self
       }
    }
+}
+
+/**
+ Gets all the `Launcher` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Launcher`s from
+ - returns: `[Launcher]?` list of launchers, nil if not possible
+ */
+public func fetchAllLaunchers( context: NSManagedObjectContext ) -> [Launcher]?
+{
+   return fetchAllEntities( entityName: LAUNCHER_ENTITY_NAME, context: context ) as? [Launcher]
 }
 
 /**

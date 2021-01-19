@@ -3,18 +3,29 @@
 import Foundation
 
 /**
- # Example
- if let alpha3 = CountryUtility.shared.getCountryCode2( countryCode )
- {
-   print(alpha3) ///result: PRT
- }
+ Utility for working with ISO3166 country codes. Codes are mostly loaded from bundle file, but
+ some codes are added for API -specific mappings.
+
+ ### Example
+    if let alpha3 = CountryUtility.shared.getCountryCode2( countryCode )
+    {
+      print(alpha3) ///result: PRT
+    }
  */
 struct CountryUtility
 {
+   /** Singleton. */
    static var shared: CountryUtility = CountryUtility()
+
+   /** Map of alpha 2 codes to alpha 3 codes. */
    private var countryCodeMap2To3: [ String: String ] = [:]
+
+   /** Map of alpha 3 codes to alpha 2 codes. */
    private var countryCodeMap3To2: [ String: String ] = [:]
 
+   /**
+    Makes a new utility.
+    */
    init()
    {
       guard let pListFilePath: String = Bundle.main.path( forResource: "iso3166_1_2_to_iso3166_1_3", ofType: "plist" ),
@@ -27,7 +38,7 @@ struct CountryUtility
          countryCodeMap3To2[ country3 ] = country2
       }
 
-      // alternates
+      // alternates, DATABASE CORRECTION
       countryCodeMap3To2[ "GER" ] = "DE" // Germany
       countryCodeMap3To2[ "DEU" ] = "DE" // Germany
       countryCodeMap3To2[ "EUR" ] = "EU" // European Union
@@ -39,9 +50,12 @@ struct CountryUtility
       countryCodeMap2To3[ "EU" ] = "EUR" // European Union
    }
 
-   /// Convertion ISO 3166-1-Alpha2 to Alpha3
-   /// Country code of 2 letters to 3 letters code
-   /// E.g: PT to PRT
+   /**
+    Converts ISO 3166-1 alpha2 to alpha3.
+
+    ### Example
+        list alpha3: String = getCountryCode3( "PT" )  // returns "PRT"
+    */
    func getCountryCode3( _ countryCode2: String ) -> String?
    {
       let count: Int = countryCode2.count
@@ -49,24 +63,16 @@ struct CountryUtility
       return countryCodeMap2To3[ countryCode2 ]
    }
 
+   /**
+    Converts ISO 3166-1 alpha3 to alpha2.
+
+    ### Example
+         list alpha2: String = getCountryCode3( "PRT" )  // returns "PT"
+    */
    func getCountryCode2( _ countryCode3: String ) -> String?
    {
       let count: Int = countryCode3.count
       if count == 2 { return countryCode3 }
       return countryCodeMap3To2[ countryCode3 ]
    }
-
-//   static func getLocalCountryCode() -> String?
-//   {
-//      return NSLocale.current.regionCode
-//   }
-//
-//   /// This function will get full country name based on the phone Locale
-//   /// E.g. Portugal
-//   static func getLocalCountry() -> String?
-//   {
-//      let countryLocale = NSLocale.current
-//      guard let countryCode = countryLocale.regionCode else { return nil }
-//      return (countryLocale as NSLocale).displayName( forKey: NSLocale.Key.countryCode, value: countryCode )
-//   }
 }

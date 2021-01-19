@@ -12,7 +12,18 @@ public let LIVE_STREAM_ENTITY_NAME: String = "LiveStream"
  */
 extension LiveStream
 {
-   // no sets
+   //
+}
+
+/**
+ Gets all the `LiveStream` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `LiveStream`s from
+ - returns: `[LiveStream]?` list of live streams, nil if not possible
+ */
+public func fetchAllLiveStreams( context: NSManagedObjectContext ) -> [LiveStream]?
+{
+   return fetchAllEntities( entityName: LIVE_STREAM_ENTITY_NAME, context: context ) as? [LiveStream]
 }
 
 /**

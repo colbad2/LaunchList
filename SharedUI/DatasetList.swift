@@ -15,7 +15,14 @@ struct DatasetList: View
                                  ListItem( title: "Live Streams", entity: LIVE_STREAM_ENTITY_NAME, iconName: "LiveStream" ),
                                  ListItem( title: "Starship Vehicles", entity: VEHICLE_ENTITY_NAME, iconName: "Starship" ),
                                  ListItem( title: "Docking", entity: DOCKING_ENTITY_NAME, iconName: "Docking" ),
-                                 ListItem( title: "Space Stations", entity: SPACESTATION_ENTITY_NAME, iconName: "Station" ) ]
+                                 ListItem( title: "Space Stations", entity: SPACESTATION_ENTITY_NAME, iconName: "Station" ),
+
+                                 // the following are experimental
+                                 ListItem( title: "Expeditions", entity: SPACESTATION_ENTITY_NAME ),
+                                 ListItem( title: "Service Providers", entity: SERVICE_PROVIDER_ENTITY_NAME ),
+                                 ListItem( title: "Flight Vehicles", entity: FLIGHT_VEHICLE_ENTITY_NAME ),
+                                 ListItem( title: "Spacecrafts", entity: SPACECRAFT_ENTITY_NAME ),
+                                 ListItem( title: "Launchers", entity: LAUNCHER_ENTITY_NAME ) ]
 
    var body: some View
    {
@@ -101,6 +108,12 @@ func getListItemView( title: String ) -> AnyView
       case "Starship Vehicles": return AnyView( VehicleList() )
       case "Docking": return AnyView( DockingList() )
       case "Space Stations": return AnyView( SpaceStationList() )
+
+      case "Expeditions": return AnyView( ExpeditionList() )
+      case "Service Providers": return AnyView( ServiceProviderList() )
+      case "Flight Vehicles": return AnyView( FlightVehicleList() )
+      case "Spacecrafts": return AnyView( SpacecraftList() )
+      case "Launchers": return AnyView( LauncherList() )
       default: return AnyView( Text( "" ) ) // shouldn't happen
    }
 }

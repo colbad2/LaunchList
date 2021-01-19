@@ -41,6 +41,17 @@ extension Program
 }
 
 /**
+ Gets all the `Program` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Program`s from
+ - returns: `[Program]?` list of programs, nil if not possible
+ */
+public func fetchAllPrograms( context: NSManagedObjectContext ) -> [Program]?
+{
+   return fetchAllEntities( entityName: PROGRAM_ENTITY_NAME, context: context ) as? [Program]
+}
+
+/**
  Returns a sorted version of the given `Program` array.
 
  - parameter programArray: `[Program]?` list of `Program`s to sort

@@ -16,7 +16,7 @@ Things that need to happen for a good app
 
 ### Core Data/JSON
 - prefilled Core Data default data store
-- some duplicate Pads/ unknown pads with no info/ lat lons with extra zeros (west texas)/pas with no launches, no countries
+- some duplicate Pads/ unknown pads with no info/ lat lons with extra zeros (west texas)/pads with no launches, no countries
 ### API loading
 - Load db regularly
 - All API loads
@@ -29,7 +29,7 @@ Things that need to happen for a good app
 - Program/Agency logos if not provided by the API
 - Alternative internal logos for slow loading ones (ISS)
 ### Performance/efficiency
-- save loaded images in db? pre-fill image cache with images from db?
+- pre-fill image cache with images from db?
 - can we include the external file dir alongside the default data db files?
 ### Beauty
 - tab icons
@@ -37,17 +37,13 @@ Things that need to happen for a good app
 - launch screen
 ### navigation
 - Any JSON with a mirror list of containers should have a nav link to that list (pad link to list of launches on that pad for example)
-- Programmatically go to databse details pages from links in the next launch home page
 - tap on home/timeline icons should return nav to home, just like datasets
 ### Code
 - fix console messages
 -- error: regular expression substitution string doesn't start with 's': '‘s/(.+)/expr'
 -- nw_protocol_get_quic_image_block_invoke dlopen libquic failed
 -- displayModeButtonItem is internally managed and not exposed for DoubleColumn style. Returning an empty, disconnected UIBarButtonItem to fulfill the non-null contract.
-- any code TODOs
 - mark any change from the API data with // DATABASE CHANGE, and gather those changes to a single class
-- missing_docs swiftlint violation should include all methods, not just public ones
-- consider using backticks (`) around struct names in comments istead of [] or [], not sure what docs generators use these days
 ### UI Features
 - use timeline event list for home screen, not just launches.
 - some images need a detailed image view (astronaut portraits, etc.)
@@ -104,6 +100,7 @@ Things that Apple might improve on in the future
 - search bar
 - text area placeholders fro search fields
 - use SwiftUI scrollTo proxy when it works in List
+- Programmatically go to databse details pages from links in the next launch home page (not possible yet with SwiftUI)
 
 
 ## Test/Profile/Analyse
@@ -123,7 +120,7 @@ Things that would make the app perform better, more robustly
 Things that need addressing that aren't the app itself.
 
 - project license/copyrights
-- docs
+- docs/code-generated docs
 - other online dbs?
 - watch SwiftUI WWDC vids
 - research GitHUb licenses

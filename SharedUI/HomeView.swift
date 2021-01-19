@@ -28,6 +28,7 @@ struct HomeView: View
                TwoFields( leftString: launch.serviceProvider?.type,
                           rightString: launch.mission?.type )
                LeftField( text: launch.mission?.orbitName )
+               LeftField( text: dateString( launch.windowStart ) )
                if let pad: Pad = launch.pad
                {
                   NavigationLink( destination: PadDetail( pad: pad ) )

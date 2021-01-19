@@ -121,6 +121,17 @@ extension Launch
 }
 
 /**
+ Gets all the `Launch` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Launch`s from
+ - returns: `[Launch]?` list of launches, nil if not possible
+ */
+public func fetchAllLaunches( context: NSManagedObjectContext ) -> [Launch]?
+{
+   return fetchAllEntities( entityName: LAUNCH_ENTITY_NAME, context: context ) as? [Launch]
+}
+
+/**
  Returns a sorted version of the given `Launch` array.
 
  - parameter launchArray - list of `Launch`s to sort

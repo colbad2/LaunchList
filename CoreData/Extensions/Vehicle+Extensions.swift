@@ -12,8 +12,6 @@ public let VEHICLE_ENTITY_NAME: String = "Vehicle"
  */
 extension Vehicle
 {
-   // no sets
-
    /**
     Adds the JSON struct, creating or updating as necessary.
 
@@ -28,6 +26,17 @@ extension Vehicle
          self.launcher?.addToVehicles( self )
       }
    }
+}
+
+/**
+ Gets all the `Vehicle` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Vehicle`s from
+ - returns: `[Vehicle]?` list of vehicles, nil if not possible
+ */
+public func fetchAllVehicles( context: NSManagedObjectContext ) -> [Vehicle]?
+{
+   return fetchAllEntities( entityName: VEHICLE_ENTITY_NAME, context: context ) as? [Vehicle]
 }
 
 /**

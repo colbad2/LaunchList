@@ -12,8 +12,6 @@ public let SPACECRAFT_CONFIG_ENTITY_NAME: String = "SpacecraftConfig"
  */
 extension SpacecraftConfig
 {
-   // no sets
-
    /**
     Adds the JSON struct, creating or updating as necessary.
 
@@ -29,6 +27,17 @@ extension SpacecraftConfig
          agencyEntity.addToSpacecraftConfigs( self )
       }
    }
+}
+
+/**
+ Gets all the `SpacecraftConfig` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `SpacecraftConfig`s from
+ - returns: `[SpacecraftConfig]?` list of spacecraft configs, nil if not possible
+ */
+public func fetchAllSpacecraftConfigs( context: NSManagedObjectContext ) -> [SpacecraftConfig]?
+{
+   return fetchAllEntities( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context ) as? [SpacecraftConfig]
 }
 
 /**

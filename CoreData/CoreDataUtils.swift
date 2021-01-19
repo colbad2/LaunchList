@@ -81,6 +81,26 @@ func getEntityByID( entityID: String, context: NSManagedObjectContext, entityNam
 }
 
 /**
+ Gets all the `entities of the given type in the context
+
+ - parameter context: `NSManagedObjectContext` context to get the entities from
+ - returns: `[Any]?` list of entities, nil if not possible
+ */
+public func fetchAllEntities( entityName: String, context: NSManagedObjectContext ) -> [Any]?
+{
+   do
+   {
+      let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: entityName )
+      return try context.fetch( request )
+   }
+   catch
+   {
+      let nsError: NSError = error as NSError
+      fatalError( "Failed to fetch entity \(entityName): \(error), \(nsError.userInfo)" )
+   }
+}
+
+/**
  Gets the first entity of the given type from Core Data.
 
  Unused.

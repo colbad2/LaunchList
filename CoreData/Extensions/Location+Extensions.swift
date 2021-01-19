@@ -12,7 +12,18 @@ public let LOCATION_ENTITY_NAME: String = "Location"
  */
 extension Location
 {
-   // no sets
+   //
+}
+
+/**
+ Gets all the `Location` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Location`s from
+ - returns: `[Location]?` list of location, nil if not possible
+ */
+public func fetchAllLocations( context: NSManagedObjectContext ) -> [Location]?
+{
+   return fetchAllEntities( entityName: LOCATION_ENTITY_NAME, context: context ) as? [Location]
 }
 
 /**

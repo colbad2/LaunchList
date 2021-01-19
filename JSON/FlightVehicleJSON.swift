@@ -21,7 +21,7 @@ public struct FlightVehicleJSON: Decodable, Identifiable
    }
 
    public var id: Int64
-   var url: String?
+   var url: String? // unused
    var destination: String?
    var missionEnd: String?
    var spacecraft: SpacecraftJSON?

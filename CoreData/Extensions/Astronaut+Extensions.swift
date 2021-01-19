@@ -28,6 +28,17 @@ extension Astronaut
 }
 
 /**
+ Gets all the `Agency` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Astronaut`s from
+ - returns: `[Astronaut]?` list of astronauts, nil if not possible
+ */
+public func fetchAllAstronauts( context: NSManagedObjectContext ) -> [Astronaut]?
+{
+   return fetchAllEntities( entityName: ASTRONAUT_ENTITY_NAME, context: context ) as? [Astronaut]
+}
+
+/**
  Returns a sorted version of the given `Astronaut` array.
 
  - parameter astronautArray: `[Astronaut]?` list of `Astronaut`s to sort

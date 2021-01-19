@@ -17,10 +17,10 @@ struct ServiceProviderList: View
       {
          ( provider: ServiceProvider ) in
 
-         NavigationLink( destination: ServiceProviderDetail( serviceProvider: provider ) )
-         {
+//         NavigationLink( destination: ServiceProviderDetail( serviceProvider: provider ) )
+//         {
             ServiceProviderRow( serviceProvider: provider )
-         }
+//         }
       }
       .navigationBarTitle( "Service Providers", displayMode: .inline )
    }

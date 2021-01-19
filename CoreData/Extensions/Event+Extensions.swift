@@ -114,6 +114,17 @@ extension Event
 }
 
 /**
+ Gets all the `Event` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `Event`s from
+ - returns: `[Event]?` list of events, nil if not possible
+ */
+public func fetchAllEvents( context: NSManagedObjectContext ) -> [Event]?
+{
+   return fetchAllEntities( entityName: EVENT_ENTITY_NAME, context: context ) as? [Event]
+}
+
+/**
  Returns a sorted version of the given `Event` array.
 
  - parameter eventArray: `[Event]?` list of `Event`s to sort

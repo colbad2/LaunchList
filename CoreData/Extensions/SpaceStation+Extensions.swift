@@ -32,6 +32,17 @@ extension SpaceStation
 }
 
 /**
+ Gets all the `SpaceStation` entities in the context
+
+ - parameter context:  `NSManagedObjectContext` context to get the `SpaceStation`s from
+ - returns: `[SpaceStation]?` list of space stations, nil if not possible
+ */
+public func fetchAllSpaceStations( context: NSManagedObjectContext ) -> [SpaceStation]?
+{
+   return fetchAllEntities( entityName: SPACESTATION_ENTITY_NAME, context: context ) as? [SpaceStation]
+}
+
+/**
  Returns a sorted version of the given `SpaceStation` array.
 
  - parameter spaceStationArray: `[SpaceStation]?` list of `SpaceStation`s to sort
