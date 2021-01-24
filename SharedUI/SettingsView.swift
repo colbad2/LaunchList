@@ -105,7 +105,9 @@ func updateAgencies( _ context: NSManagedObjectContext )
       agency.wikiURL = AgencyData.shared.getWiki( agency )
       agency.twitterURL = AgencyData.shared.getTwitter( agency )
       agency.logoName = AgencyData.shared.getLogo( agency )
-      // TODO countries agency.websiteURL = AgencyData.shared.getWebsite( agency )
+      agency.youTubeURL = AgencyData.shared.getYouTube( agency )
+      // only replace if there is a hole
+      agency.agencyDescription = agency.agencyDescription ?? AgencyData.shared.getDescription( agency )
    }
 }
 

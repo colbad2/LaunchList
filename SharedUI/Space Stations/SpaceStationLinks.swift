@@ -12,14 +12,8 @@ struct SpaceStationLinks: View
       if !spaceStations.isEmpty
       {
          Divider()
-         HStack
-         {
-            Text( "Space Stations" )
-               .font( .headline )
-               .foregroundColor( .secondary )
-            Spacer()
-         }
-         ForEach( sortSpaceStationsByName( spaceStationArray: Array( spaceStations ) ), id: \.self )
+         GrayHeadlineText( text: "Space Stations" )
+         ForEach( sortSpaceStationsByName( spaceStationArray: Array( spaceStations ) ) )
          {
             spaceStation in
             SpaceStationLink( spaceStationID: spaceStation.id )
@@ -41,8 +35,7 @@ struct SpaceStationLink: View
       {
          NavigationLink( destination: SpaceStationDetail( spaceStation: spaceStation ) )
          {
-            Text( name )
-               .font( .subheadline )
+            BlackSubheadlineText( text: name )
             Spacer()
          }
          .padding( 4 )

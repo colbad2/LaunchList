@@ -18,8 +18,7 @@ struct AgencyLink: View
          {
             NavigationLink( destination: AgencyDetail( agency: agency ) )
             {
-               Text( name )
-                  .font( .subheadline )
+               BlackSubheadlineText( text: name )
             }
             Spacer()
          }

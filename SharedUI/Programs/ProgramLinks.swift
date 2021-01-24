@@ -12,14 +12,8 @@ struct ProgramLinks: View
       if !programs.isEmpty
       {
          Divider()
-         HStack
-         {
-            Text( "Programs" )
-               .font( .headline )
-               .foregroundColor( .secondary )
-            Spacer()
-         }
-         ForEach( sortProgramsByName( programArray: Array( programs ) ), id: \.self )
+         GrayHeadlineText( text: "Programs" )
+         ForEach( sortProgramsByName( programArray: Array( programs ) ) )
          {
             program in
             ProgramLink( programID: program.id )
@@ -41,8 +35,7 @@ struct ProgramLink: View
       {
          NavigationLink( destination: ProgramDetail( program: program ) )
          {
-            Text( name )
-               .font( .subheadline )
+            BlackSubheadlineText( text: name )
             Spacer()
          }
          .padding( 4 )

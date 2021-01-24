@@ -66,14 +66,8 @@ struct ProgramAgencyList: View
       if program.hasAgencies
       {
          Divider()
-         HStack
-         {
-            Text( "Agencies" )
-               .font( .headline )
-               .foregroundColor( .secondary )
-            Spacer()
-         }
-         ForEach( program.sortedAgencies, id: \.self )
+         GrayHeadlineText( text: "Agencies" )
+         ForEach( program.sortedAgencies )
          {
             agency in
             AgencyLink( agencyID: agency.id )

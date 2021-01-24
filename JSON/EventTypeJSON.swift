@@ -11,7 +11,7 @@
           "name": "Cryoproof Test"
        }
  */
-public struct EventTypeJSON: Decodable, JSONElement
+public struct EventTypeJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -19,6 +19,6 @@ public struct EventTypeJSON: Decodable, JSONElement
       case id, name
    }
 
-   let id: Int64
+   public let id: Int64
    let name: String?
 }

@@ -23,7 +23,7 @@ import CoreData
          }
        }
  */
-public struct ExpeditionJSON: Decodable, JSONElement
+public struct ExpeditionJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -33,7 +33,7 @@ public struct ExpeditionJSON: Decodable, JSONElement
       case spaceStation = "spacestation"
    }
 
-   let id: Int64
+   public let id: Int64
    let url: String? // unused
    let name: String?
    let start: String?

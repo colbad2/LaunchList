@@ -23,11 +23,19 @@ struct AgencyData
       return twitter[ serviceProvider.id ]
    }
 
+   func getDescription( _ serviceProvider: Agency ) -> String?
+   {
+      return descriptions[ serviceProvider.id ]
+   }
+
+   func getYouTube( _ serviceProvider: Agency ) -> String?
+   {
+      return youTube[ serviceProvider.id ]
+   }
+
    func getLogo( _ serviceProvider: Agency ) -> String?
    {
       return logos[ serviceProvider.id ]
-//      guard let logoName: String = logos[ serviceProvider.id ] else { return nil }
-//      return UIImage( named: logoName )
    }
 
    func getFlags( _ serviceProvider: Agency ) -> String?
@@ -36,7 +44,13 @@ struct AgencyData
    }
 }
 
-// TODO descriptions, youtube
+let descriptions: [ Int64: String ] =
+   [:
+   ]
+
+let youTube: [ Int64: String ] =
+   [:
+   ]
 
 let websites: [ Int64: String ] =
    [

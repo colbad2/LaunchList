@@ -27,7 +27,7 @@ import CoreData
          "first_launch_date": "2010-06-04T18:45:00Z"
        }
  */
-public struct LauncherJSON: Decodable, JSONElement
+public struct LauncherJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -37,7 +37,7 @@ public struct LauncherJSON: Decodable, JSONElement
       case imageURL = "imageUrl"
    }
 
-   var id: Int64
+   public var id: Int64
    var url: String? // unused
    var flightProven: Bool?
    var serialNumber: String?

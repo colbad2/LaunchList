@@ -25,6 +25,8 @@
 		A21AD13B25BE0D57007D9C42 /* AgencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80E525B736DD007F3501 /* AgencyData.swift */; };
 		A21AD14125BE0D5C007D9C42 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAAD25BCC4F0002B8953 /* APIRequest.swift */; };
 		A21AD14725BE0D5F007D9C42 /* LaunchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAA025BCA49E002B8953 /* LaunchRequest.swift */; };
+		A21AD14E25BE0FB3007D9C42 /* TextVIews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AD14D25BE0FB3007D9C42 /* TextVIews.swift */; };
+		A21AD14F25BE0FB3007D9C42 /* TextVIews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AD14D25BE0FB3007D9C42 /* TextVIews.swift */; };
 		A25584D525B3624C0075B128 /* HoldFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584D425B3624C0075B128 /* HoldFailView.swift */; };
 		A25584D625B3624C0075B128 /* HoldFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584D425B3624C0075B128 /* HoldFailView.swift */; };
 		A25584DE25B36D170075B128 /* SocialMediaLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584DD25B36D170075B128 /* SocialMediaLink.swift */; };
@@ -1919,6 +1921,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A21AD14D25BE0FB3007D9C42 /* TextVIews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextVIews.swift; sourceTree = "<group>"; };
 		A25584D425B3624C0075B128 /* HoldFailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldFailView.swift; sourceTree = "<group>"; };
 		A25584DD25B36D170075B128 /* SocialMediaLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaLink.swift; sourceTree = "<group>"; };
 		A25584E625B374450075B128 /* Docking+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Docking+Extensions.swift"; sourceTree = "<group>"; };
@@ -3065,6 +3068,7 @@
 				A280D12925B34B7E00CF6E33 /* TwoFields.swift */,
 				A25584D425B3624C0075B128 /* HoldFailView.swift */,
 				A25584DD25B36D170075B128 /* SocialMediaLink.swift */,
+				A21AD14D25BE0FB3007D9C42 /* TextVIews.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -5931,6 +5935,7 @@
 				A280D19125B34B7F00CF6E33 /* LeftField.swift in Sources */,
 				A255855825B3BD770075B128 /* Location+Extensions.swift in Sources */,
 				A293E51325B344DE00232408 /* Expedition+Extensions.swift in Sources */,
+				A21AD14E25BE0FB3007D9C42 /* TextVIews.swift in Sources */,
 				A2AEAAC125BDE349002B8953 /* JSONResponse.swift in Sources */,
 				A280D16725B34B7F00CF6E33 /* SpaceStationLinks.swift in Sources */,
 				A2EF80BC25B68839007F3501 /* LauncherList.swift in Sources */,
@@ -6072,6 +6077,7 @@
 				A280D19225B34B7F00CF6E33 /* LeftField.swift in Sources */,
 				A255855925B3BD770075B128 /* Location+Extensions.swift in Sources */,
 				A280D0AC25B34AF400CF6E33 /* EventJSON.swift in Sources */,
+				A21AD14F25BE0FB3007D9C42 /* TextVIews.swift in Sources */,
 				A280D16825B34B7F00CF6E33 /* SpaceStationLinks.swift in Sources */,
 				A280D1BF25B34B7F00CF6E33 /* ExpeditionLinks.swift in Sources */,
 				A280D0B825B34AF400CF6E33 /* LocationListJSON.swift in Sources */,

@@ -19,7 +19,7 @@ import CoreData
            "type": "Communications"
          }
  */
-struct MissionJSON: Decodable, JSONElement
+public struct MissionJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -32,7 +32,7 @@ struct MissionJSON: Decodable, JSONElement
    /** Description of the mission. Can contain encoded Unicode elements like /u00fc, which are translated correctly on parse of JSON. */
    var description: String?
    /** ID of the mission within the API. */
-   var id: Int64
+   public var id: Int64
    /** unknown */
    var launchDesignator: String?
    /** ID from the previous API database. */

@@ -19,6 +19,7 @@
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="websiteURL" optional="YES" attributeType="String"/>
         <attribute name="wikiURL" optional="YES" attributeType="String"/>
+        <attribute name="youTubeURL" optional="YES" attributeType="String"/>
         <relationship name="astronauts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Astronaut" inverseName="agency" inverseEntity="Astronaut"/>
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="agency" inverseEntity="Launch"/>
         <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="agencies" inverseEntity="Program"/>
@@ -252,7 +253,7 @@
         <relationship name="launcher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="vehicles" inverseEntity="Rocket"/>
     </entity>
     <elements>
-        <element name="Agency" positionX="61.236083984375" positionY="656.6265563964844" width="128" height="359"/>
+        <element name="Agency" positionX="61.236083984375" positionY="656.6265563964844" width="128" height="374"/>
         <element name="Astronaut" positionX="-93.00262451171875" positionY="507.2274169921875" width="128" height="299"/>
         <element name="Docking" positionX="-228.0156249999999" positionY="51.24028015136722" width="128" height="133"/>
         <element name="Event" positionX="101.7413330078125" positionY="113.76171875" width="128" height="238"/>

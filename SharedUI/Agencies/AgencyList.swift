@@ -41,9 +41,7 @@ struct AgencyRow: View
       {
          HStack( alignment: .top )
          {
-            Text( name )
-               .font( .headline )
-               .fixedSize( horizontal: false, vertical: true )
+            BlackHeadlineText( text: name )
             if let codes: [String] = agency.countryCodes
             {
                Spacer()

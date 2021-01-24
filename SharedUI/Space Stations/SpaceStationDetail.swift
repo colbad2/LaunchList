@@ -50,16 +50,8 @@ struct StationExpeditionList: View
          if !expeditions.isEmpty
          {
             Divider()
-            HStack
-            {
-               // TODO collect these
-               Text( "Expeditions" )
-                  .font( .headline )
-                  .foregroundColor( .secondary )
-               Spacer()
-            }
-            // TODO make Expeditions identifiable so the id: param isn't needed
-            ForEach( sortExpeditionsByDate( expeditionArray: Array( expeditions ) ), id: \.self )
+            GrayHeadlineText( text: "Expeditions" )
+            ForEach( sortExpeditionsByDate( expeditionArray: Array( expeditions ) ) )
             {
                expedition in
                ExpeditionLink( expeditionID: expedition.id )
@@ -80,14 +72,8 @@ struct StationEventList: View
          if !events.isEmpty
          {
             Divider()
-            HStack
-            {
-               Text( "Events" )
-                  .font( .headline )
-                  .foregroundColor( .secondary )
-               Spacer()
-            }
-            ForEach( sortEventsByName( eventArray: Array( events ) ), id: \.self )
+            GrayHeadlineText( text: "Events" )
+            ForEach( sortEventsByName( eventArray: Array( events ) ) )
             {
                event in
                EventLink( eventID: event.id )
@@ -122,8 +108,7 @@ struct ExpeditionLink: View
          {
             NavigationLink( destination: ExpeditionDetail( expedition: expedition ) )
             {
-               Text( name )
-               .font( .subheadline )
+               BlackSubheadlineText( text: name )
             }
             if let dates: String = expeditionDates( expedition: expedition )
             {

@@ -102,9 +102,7 @@ struct LaunchRow: View
       {
          HStack( alignment: .top )
          {
-            Text( "\(missionName( launch ))" )
-               .font( .headline )
-               .lineLimit( 2 )
+            BlackHeadlineText( text: missionName( launch ) )
             if launch.id == nextLaunchID
             {
                Spacer()
@@ -114,18 +112,11 @@ struct LaunchRow: View
          HStack
          {
             let providerName: String = launch.getProviderName()
-            Text( providerName )
-               .font( .subheadline )
-               .lineLimit( 2 )
+            BlackSubheadlineText( text: providerName )
             Spacer()
-            Text( launch.rocket?.name ?? launch.name ?? "" )
-               .font( .subheadline )
-               .lineLimit( 2 )
+            BlackSubheadlineText( text: launch.rocket?.name ?? launch.name ?? "" )
          }
-         Text( tightDateString( launch.windowStart ) )
-            .font( .subheadline )
-            .foregroundColor( .secondary )
-            .textCase( .uppercase )
+         BlackSubheadlineText( text: tightDateString( launch.windowStart ).uppercased() )
       }
    }
 }

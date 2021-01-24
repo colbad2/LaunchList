@@ -19,12 +19,12 @@ import CoreData
            "url": "https://ll.thespacedevs.com/2.1.0/location/12/"
        }
  */
-public struct LocationJSON: Decodable, JSONElement
+public struct LocationJSON: Decodable, Identifiable, JSONElement
 {
    /** Three-letter country code containing the location. */
    var countryCode: String?
    /** ID of the location within the API. */
-   var id: Int64
+   public var id: Int64
    /** URL to a map of the location. */
    var mapImage: String?
    /** Human-readable name for the location. */

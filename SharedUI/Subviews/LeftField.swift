@@ -13,10 +13,7 @@ struct LeftField: View
       {
          HStack
          {
-            Text( "\(prefix)\(fieldText)" )
-               .font( .subheadline )
-               .foregroundColor( .secondary )
-               .lineLimit( 2 )
+            GraySubheadlineText( text: "\(prefix)\(fieldText)" )
             Spacer()
          }
       }

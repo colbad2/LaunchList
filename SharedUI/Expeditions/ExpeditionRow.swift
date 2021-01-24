@@ -12,17 +12,7 @@ struct ExpeditionRow: View
       VStack( alignment: .leading )
       {
          TitleField( text: expeditionTitle( expedition: expedition ) )
-         //         HStack
-         //         {
-         if let dates: String = expeditionDates( expedition: expedition )
-         {
-            // TODO gather these as a common View
-            Text( dates )
-               .font( .subheadline )
-               .foregroundColor( .secondary )
-            //                  .textCase( .uppercase )
-         }
-         //         }
+         GraySubheadlineText( text: expeditionDates( expedition: expedition ) )
       }
    }
 }

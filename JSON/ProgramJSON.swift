@@ -50,7 +50,7 @@ import CoreData
  ### See
  [ProgramListJSON]
  */
-public struct ProgramJSON: Decodable, JSONElement
+public struct ProgramJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -64,7 +64,7 @@ public struct ProgramJSON: Decodable, JSONElement
       case wikiURL = "wikiUrl"
    }
 
-   var id: Int64
+   public var id: Int64
    var url: String? // unused
    var name: String?
    var description: String?

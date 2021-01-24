@@ -30,19 +30,13 @@ struct LaunchDetail: View
             {
                HStack
                {
-                  Text( tightDateString( start ) )
-                     .font( .subheadline )
-                     .foregroundColor( .secondary )
-                     .textCase( .uppercase )
+                  GraySubheadlineText( text: tightDateString( start ).uppercased() )
                   Spacer()
                   if let end: Date = launch.windowEnd
                   {
                      if start != end
                      {
-                        Text( tightDateString( end ) )
-                           .font( .subheadline )
-                           .foregroundColor( .secondary )
-                           .textCase( .uppercase )
+                        GraySubheadlineText( text: tightDateString( end ).uppercased() )
                      }
                   }
                }

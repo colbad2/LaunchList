@@ -1,6 +1,6 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-public struct AstronautTypeJSON: Decodable, JSONElement
+public struct AstronautTypeJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -8,6 +8,6 @@ public struct AstronautTypeJSON: Decodable, JSONElement
       case id, name
    }
 
-   var id: Int64
+   public var id: Int64
    var name: String?
 }

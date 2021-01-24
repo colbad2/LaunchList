@@ -47,7 +47,7 @@ import CoreData
          ]
        }
  */
-public struct EventJSON: Decodable, JSONElement
+public struct EventJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -61,7 +61,7 @@ public struct EventJSON: Decodable, JSONElement
       case programs = "program"
    }
 
-   let id: Int64
+   public let id: Int64
    let url: String? // unused
    let slug: String? // unused
    let name: String?

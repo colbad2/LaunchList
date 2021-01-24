@@ -34,27 +34,15 @@ struct AstronautDetail: View
 
                   HStack( alignment: .top )
                   {
-                     Text( "Life:" )
-                        .font( .subheadline )
-                        .foregroundColor( .secondary )
-                     Text( lifeDates( astronaut: astronaut ) )
-                        .font( .subheadline )
-                        .foregroundColor( .secondary )
-                        .lineLimit( 3 )
-                        .fixedSize( horizontal: false, vertical: true )
+                     GraySubheadlineText( text: "Life:" )
+                     GraySubheadlineText( text: lifeDates( astronaut: astronaut ) )
                      Spacer()
                   }
 
                   HStack( alignment: .top )
                   {
-                     Text( "Flew:" )
-                        .font( .subheadline )
-                        .foregroundColor( .secondary )
-                     Text( flightDates( astronaut: astronaut ) )
-                        .font( .subheadline )
-                        .foregroundColor( .secondary )
-                        .lineLimit( 3 )
-                        .fixedSize( horizontal: false, vertical: true )
+                     GraySubheadlineText( text: "Flew:" )
+                     GraySubheadlineText( text: flightDates( astronaut: astronaut ) )
                      Spacer()
                   }
 

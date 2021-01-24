@@ -46,7 +46,8 @@ struct AgencyDetail: View
 
          LinkBarView( links: [ "Website": AgencyData.shared.getWebsite( agency ) ?? "",
                                "Wiki": AgencyData.shared.getWiki( agency ) ?? "",
-                               "Twitter": AgencyData.shared.getTwitter( agency ) ?? "" ] )
+                               "Twitter": AgencyData.shared.getTwitter( agency ) ?? "",
+                               "YouTube": AgencyData.shared.getYouTube( agency ) ?? "" ] )
       }
       .padding()
       .navigationBarTitle( "Agency", displayMode: .inline )

@@ -37,9 +37,7 @@ struct PadRow: View
          RowImage( imageURL: pad.mapImage, defaultImage: UIImage( named: "AstronautB&W" ),
                    imageWidth: 100, imageHeight: 60 )
 
-         Text( name )
-            .font( .headline )
-            .layoutPriority( 2 )
+         BlackHeadlineText( text: name )
          if let countryCode: String = pad.location?.countryCode
          {
             if countryCode != "UNK"

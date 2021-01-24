@@ -45,9 +45,7 @@ struct EventRow: View
                NextCapsule()
             }
          }
-         Text( dateString( event.date ) )
-            .font( .subheadline )
-            .foregroundColor( .secondary )
+         GraySubheadlineText( text: dateString( event.date ) )
       }
    }
 }

@@ -32,11 +32,7 @@ struct MissionRow: View
 
    var body: some View
    {
-      if let name: String = mission.name
-      {
-         Text( name )
-            .font( .headline )
-      }
+      BlackHeadlineText( text: mission.name )
    }
 }
 

@@ -13,7 +13,7 @@ import CoreData
            "name": "To Be Confirmed"
        }
  */
-public struct StatusJSON: Decodable, JSONElement
+public struct StatusJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -25,6 +25,6 @@ public struct StatusJSON: Decodable, JSONElement
 
    var abbreviation: String?
    var description: String?
-   var id: Int64
+   public var id: Int64
    var name: String?
 }

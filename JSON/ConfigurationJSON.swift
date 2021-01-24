@@ -16,7 +16,7 @@
           "variant": "Block 5"
        }
  */
-public struct ConfigurationJSON: Decodable, JSONElement
+public struct ConfigurationJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -31,7 +31,7 @@ public struct ConfigurationJSON: Decodable, JSONElement
    /** Merged string of the "family" and "type" attributes. */
    var fullName: String?
    /** ID of the location within the API. */
-   var id: Int64
+   public var id: Int64
    /** Old API database record ID */
    var launchLibraryID: Int64?
    /** Same as "fullName"? */

@@ -50,8 +50,7 @@ struct FlightVehicleRow: View
          {
             if let missionEnd: String = flightVehicle.missionEnd
             {
-               Text( dateString( parseISODate( isoDate: missionEnd ) ) )
-                  .font( .subheadline )
+               BlackSubheadlineText( text: dateString( parseISODate( isoDate: missionEnd ) ) )
             }
          }
       }

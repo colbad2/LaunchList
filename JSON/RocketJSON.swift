@@ -13,12 +13,12 @@ import CoreData
            "id": 136
        }
  */
-public struct RocketJSON: Decodable, JSONElement
+public struct RocketJSON: Decodable, Identifiable, JSONElement
 {
    /** Details about the kind of rocket. */
    var configuration: ConfigurationJSON?
    /** ID of the rocket within the API. */
-   var id: Int64
+   public var id: Int64
 
    /**
     Add this rocket to Core Data as a `Rocket` entity. The context still needs to be saved after the add.

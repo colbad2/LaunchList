@@ -15,7 +15,7 @@ import CoreData
          "window_end": "2020-12-30T23:00:00Z"
        }
  */
-public struct RoadClosureJSON: Decodable, JSONElement
+public struct RoadClosureJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -23,7 +23,7 @@ public struct RoadClosureJSON: Decodable, JSONElement
       case id, title, status, windowStart, windowEnd
    }
 
-   let id: Int64
+   public let id: Int64
    let title: String?
    let status: StatusJSON?
    var statusName: String?

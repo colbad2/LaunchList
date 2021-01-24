@@ -18,8 +18,7 @@ struct EventLink: View
          {
             NavigationLink( destination: EventDetail( event: event ) )
             {
-               Text( name )
-                  .font( .subheadline )
+               BlackSubheadlineText( text: name )
             }
             .padding( 4 )
             Spacer()

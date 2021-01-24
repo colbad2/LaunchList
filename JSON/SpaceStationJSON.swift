@@ -16,7 +16,7 @@ import CoreData
          "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/salyut25206_image_20190318095930.jpg"
        }
  */
-public struct SpaceStationJSON: Decodable, JSONElement
+public struct SpaceStationJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -26,7 +26,7 @@ public struct SpaceStationJSON: Decodable, JSONElement
       case imageURL = "imageUrl"
    }
 
-   let id: Int64
+   public let id: Int64
    let url: String? // unused
    let name: String?
    let status: StatusJSON?

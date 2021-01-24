@@ -16,7 +16,6 @@ struct SocialMediaLink: View
          {
             Link( title, destination: socialMediaURL )
                .font( .subheadline )
-            // Spacer()
          }
       }
    }

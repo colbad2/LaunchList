@@ -49,7 +49,7 @@ import CoreData
          "first_flight": "1991-10-02T05:59:38Z"
        }
  */
-public struct AstronautJSON: Decodable, JSONElement
+public struct AstronautJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -58,7 +58,7 @@ public struct AstronautJSON: Decodable, JSONElement
            instagram, wiki, agency, profileImage, profileImageThumbnail, lastFlight, firstFlight
    }
 
-   var id: Int64
+   public var id: Int64
    var url: String? // unused
    var name: String?
    var status: AstronautStatusJSON?

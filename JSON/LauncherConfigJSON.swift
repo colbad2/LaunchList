@@ -15,7 +15,7 @@ import CoreData
          }
        }
  */
-public struct LauncherConfigJSON: Decodable, JSONElement
+public struct LauncherConfigJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -25,7 +25,7 @@ public struct LauncherConfigJSON: Decodable, JSONElement
       case launchLibraryID = "launchLibraryId"
    }
 
-   var id: Int64
+   public var id: Int64
    var url: String? // unused
    var launchLibraryID: Int64? // unused
    var name: String?

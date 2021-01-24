@@ -28,7 +28,7 @@ import CoreData
          "first_launch_date": null
        }
  */
-public struct VehicleJSON: Decodable, JSONElement
+public struct VehicleJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -36,7 +36,7 @@ public struct VehicleJSON: Decodable, JSONElement
       case id, url, flightProven, serialNumber, status, details, launcherConfig, imageURL, flights, lastLaunchDate, firstLaunchDate
    }
 
-   let id: Int64
+   public let id: Int64
    let url: String? // unused
    let flightProven: Bool?
    let serialNumber: String?

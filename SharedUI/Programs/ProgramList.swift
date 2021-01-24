@@ -33,16 +33,7 @@ struct ProgramRow: View
    var body: some View
    {
       RowImage( imageURL: program.imageURL, drawSpace: false, imageWidth: 50, imageHeight: 50 )
-
-      if let name: String = program.name
-      {
-         VStack( alignment: .leading )
-         {
-            Text( name )
-               .font( .headline )
-               .lineLimit( 2 )
-         }
-      }
+      BlackHeadlineText( text: program.name )
    }
 }
 

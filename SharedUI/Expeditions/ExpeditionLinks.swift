@@ -11,14 +11,8 @@ struct ExpeditionLinks: View
       if !expeditions.isEmpty
       {
          Divider()
-         HStack
-         {
-            Text( "Expeditions" )
-               .font( .headline )
-               .foregroundColor( .secondary )
-            Spacer()
-         }
-         ForEach( sortExpeditionsByName( expeditionArray: Array( expeditions ) ), id: \.self )
+         GrayHeadlineText( text: "Expeditions" )
+         ForEach( sortExpeditionsByName( expeditionArray: Array( expeditions ) ) )
          {
             expedition in
             ExpeditionLink( expeditionID: expedition.id )

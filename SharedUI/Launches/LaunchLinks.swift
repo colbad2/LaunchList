@@ -15,14 +15,8 @@ struct LaunchLinks: View
          if !launches.isEmpty
          {
             Divider()
-            HStack
-            {
-               Text( "Launches (\(launches.count))" )
-                  .font( .headline )
-                  .foregroundColor( .secondary )
-               Spacer()
-            }
-            ForEach( sortLaunchesByName( launchArray: Array( launches ) ), id: \.self )
+            GrayHeadlineText( text: "Launches (\(launches.count))" )
+            ForEach( sortLaunchesByName( launchArray: Array( launches ) ) )
             {
                launch in
                LaunchLink( launchID: launch.id )
@@ -44,8 +38,7 @@ struct LaunchLink: View
       {
          NavigationLink( destination: LaunchDetail( launch: launch ) )
          {
-            Text( name )
-               .font( .subheadline )
+            BlackSubheadlineText( text: name )
             Spacer()
          }
          .padding( 4 )

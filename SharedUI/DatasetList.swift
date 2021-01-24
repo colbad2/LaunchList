@@ -67,19 +67,10 @@ struct ListItemRow: View
                VStack( alignment: .leading )
                {
                   TitleField( text: listItem.title )
-
-                  if let blurb: String = listItem.blurb
-                  {
-                     Text( blurb )
-                        .font( .subheadline )
-                        .foregroundColor( .secondary )
-                  }
-
+                  GraySubheadlineText( text: listItem.blurb )
                   if let launchCount: Int = getRecordsCount( entityName: listItem.entity, context: context )
                   {
-                     Text( "\(launchCount) \(listItem.title.lowercased())" )
-                        .font( .subheadline )
-                        .foregroundColor( .secondary )
+                     GraySubheadlineText( text: "\(launchCount) \(listItem.title.lowercased())" )
                   }
                }
             }

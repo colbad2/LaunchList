@@ -27,7 +27,7 @@ import CoreData
       "image_url": null
     }
  */
-public struct AgencyJSON: Decodable, JSONElement
+public struct AgencyJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -39,7 +39,7 @@ public struct AgencyJSON: Decodable, JSONElement
       case imageURL = "imageUrl"
    }
 
-   var id: Int64
+   public var id: Int64
    var url: String? // unused
    var name: String?
    var featured: Bool?
