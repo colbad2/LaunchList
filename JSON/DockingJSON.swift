@@ -14,7 +14,7 @@ import CoreData
          "docking_location": { … }
        }
  */
-public struct DockingJSON: Decodable, Identifiable
+public struct DockingJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

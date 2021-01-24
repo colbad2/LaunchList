@@ -27,7 +27,7 @@ import CoreData
          "first_launch_date": "2010-06-04T18:45:00Z"
        }
  */
-public struct LauncherJSON: Decodable
+public struct LauncherJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

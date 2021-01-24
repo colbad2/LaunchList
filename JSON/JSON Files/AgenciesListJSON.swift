@@ -1,6 +1,6 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-public struct AgenciesListJSON: Decodable
+public struct AgenciesListJSON: Decodable, JSONResponse
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

@@ -27,7 +27,7 @@ import CoreData
       "image_url": null
     }
  */
-public struct AgencyJSON: Decodable
+public struct AgencyJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -101,6 +101,7 @@ public struct AgencyJSON: Decodable
          agencyEntity.countryCodes?.append( correction ) // DATABASE CORRECTION
       }
 
+      agencyEntity.sortableName = name?.lowercased()
       agencyEntity.fetched = Date()
    }
 }

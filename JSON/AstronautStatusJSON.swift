@@ -1,6 +1,6 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-public struct AstronautStatusJSON: Decodable
+public struct AstronautStatusJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

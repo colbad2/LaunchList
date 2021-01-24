@@ -14,7 +14,7 @@ import CoreData
          "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/soyuz_image_20201015191152.jpg"
        }
  */
-public struct SpacecraftConfigJSON: Decodable, Identifiable
+public struct SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

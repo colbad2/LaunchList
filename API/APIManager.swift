@@ -65,6 +65,8 @@ struct APIManager
 
 /*
  Fill the database with the results of an API call that returns a `LaunchListJSON`.
+
+ - parameter: apiRequest - {LaunchRequest} parameters for the API call
  */
 func getLaunches( with apiRequest: LaunchRequest )
 {

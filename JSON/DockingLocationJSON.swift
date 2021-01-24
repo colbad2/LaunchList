@@ -7,7 +7,7 @@
        "name": "Zvezda aft"
        }
  */
-public struct DockingLocationJSON: Decodable, Identifiable
+public struct DockingLocationJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

@@ -3,6 +3,6 @@
 /**
  Structure in starship test API data.
  */
-public struct NoticeJSON: Decodable
+public struct NoticeJSON: Decodable, JSONElement
 {
 }

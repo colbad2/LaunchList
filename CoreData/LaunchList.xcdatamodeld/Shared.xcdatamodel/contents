@@ -13,6 +13,7 @@
         <attribute name="logoName" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="parent" optional="YES" attributeType="String"/>
+        <attribute name="sortableName" optional="YES" attributeType="String"/>
         <attribute name="spacecraft" optional="YES" attributeType="String"/>
         <attribute name="twitterURL" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
@@ -251,7 +252,7 @@
         <relationship name="launcher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="vehicles" inverseEntity="Rocket"/>
     </entity>
     <elements>
-        <element name="Agency" positionX="61.236083984375" positionY="656.6265563964844" width="128" height="344"/>
+        <element name="Agency" positionX="61.236083984375" positionY="656.6265563964844" width="128" height="359"/>
         <element name="Astronaut" positionX="-93.00262451171875" positionY="507.2274169921875" width="128" height="299"/>
         <element name="Docking" positionX="-228.0156249999999" positionY="51.24028015136722" width="128" height="133"/>
         <element name="Event" positionX="101.7413330078125" positionY="113.76171875" width="128" height="238"/>

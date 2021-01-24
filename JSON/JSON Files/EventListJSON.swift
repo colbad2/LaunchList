@@ -3,7 +3,7 @@
 /**
  List of records returned from a URL.
  */
-public struct EventListJSON: Decodable
+public struct EventListJSON: Decodable, JSONResponse
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

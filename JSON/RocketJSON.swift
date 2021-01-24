@@ -13,7 +13,7 @@ import CoreData
            "id": 136
        }
  */
-public struct RocketJSON: Decodable
+public struct RocketJSON: Decodable, JSONElement
 {
    /** Details about the kind of rocket. */
    var configuration: ConfigurationJSON?

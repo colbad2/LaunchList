@@ -28,7 +28,7 @@ import CoreData
          "first_launch_date": null
        }
  */
-public struct VehicleJSON: Decodable
+public struct VehicleJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

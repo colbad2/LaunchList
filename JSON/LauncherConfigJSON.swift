@@ -15,7 +15,7 @@ import CoreData
          }
        }
  */
-public struct LauncherConfigJSON: Decodable
+public struct LauncherConfigJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

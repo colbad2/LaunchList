@@ -14,7 +14,7 @@ import CoreData
            "name": "Geostationary Transfer Orbit"
        }
  */
-public struct OrbitJSON: Decodable
+public struct OrbitJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

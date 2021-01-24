@@ -15,7 +15,7 @@ import CoreData
          "url": "https://www.youtube.com/watch?v=Ky5l9ZxsG9M"
        }
  */
-public struct LiveStreamJSON: Decodable
+public struct LiveStreamJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

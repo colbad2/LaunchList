@@ -7,18 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A21AD03C25BE0C3E007D9C42 /* LauncherList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80BB25B68839007F3501 /* LauncherList.swift */; };
+		A21AD08325BE0C77007D9C42 /* SpacecraftList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80A725B68694007F3501 /* SpacecraftList.swift */; };
+		A21AD08925BE0C7B007D9C42 /* SpacecraftRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80B325B6873B007F3501 /* SpacecraftRow.swift */; };
+		A21AD0E925BE0CDE007D9C42 /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAC025BDE349002B8953 /* JSONResponse.swift */; };
+		A21AD0EF25BE0CE2007D9C42 /* AstronautStatusJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */; };
+		A21AD0F525BE0CE7007D9C42 /* AstronautTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852F25B3BBB10075B128 /* AstronautTypeJSON.swift */; };
+		A21AD0FB25BE0CEA007D9C42 /* ConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A416B025B3BFF0005143D6 /* ConfigurationJSON.swift */; };
+		A21AD10125BE0CEF007D9C42 /* DockingLocationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255853725B3BBDC0075B128 /* DockingLocationJSON.swift */; };
+		A21AD10725BE0CF3007D9C42 /* EventTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255853F25B3BC300075B128 /* EventTypeJSON.swift */; };
+		A21AD11725BE0D30007D9C42 /* ISO3166Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A925B343F500232408 /* ISO3166Utils.swift */; };
+		A21AD11D25BE0D32007D9C42 /* Regex+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A725B343F500232408 /* Regex+Extensions.swift */; };
+		A21AD12325BE0D35007D9C42 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A825B343F500232408 /* String+Extensions.swift */; };
+		A21AD12925BE0D38007D9C42 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAB925BCC8FE002B8953 /* View+Extensions.swift */; };
+		A21AD12F25BE0D39007D9C42 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAB925BCC8FE002B8953 /* View+Extensions.swift */; };
+		A21AD13525BE0D3C007D9C42 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC6ABF25B48B660059E89E /* Dictionary+Extensions.swift */; };
+		A21AD13B25BE0D57007D9C42 /* AgencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80E525B736DD007F3501 /* AgencyData.swift */; };
+		A21AD14125BE0D5C007D9C42 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAAD25BCC4F0002B8953 /* APIRequest.swift */; };
+		A21AD14725BE0D5F007D9C42 /* LaunchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAA025BCA49E002B8953 /* LaunchRequest.swift */; };
 		A25584D525B3624C0075B128 /* HoldFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584D425B3624C0075B128 /* HoldFailView.swift */; };
 		A25584D625B3624C0075B128 /* HoldFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584D425B3624C0075B128 /* HoldFailView.swift */; };
-		A25584D725B3624C0075B128 /* HoldFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584D425B3624C0075B128 /* HoldFailView.swift */; };
 		A25584DE25B36D170075B128 /* SocialMediaLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584DD25B36D170075B128 /* SocialMediaLink.swift */; };
 		A25584DF25B36D170075B128 /* SocialMediaLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584DD25B36D170075B128 /* SocialMediaLink.swift */; };
-		A25584E025B36D170075B128 /* SocialMediaLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584DD25B36D170075B128 /* SocialMediaLink.swift */; };
 		A25584E725B374450075B128 /* Docking+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584E625B374450075B128 /* Docking+Extensions.swift */; };
 		A25584E825B374450075B128 /* Docking+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584E625B374450075B128 /* Docking+Extensions.swift */; };
-		A25584E925B374450075B128 /* Docking+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584E625B374450075B128 /* Docking+Extensions.swift */; };
 		A25584F025B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584EF25B374B60075B128 /* FlightVehicle+Extensions.swift */; };
 		A25584F125B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584EF25B374B60075B128 /* FlightVehicle+Extensions.swift */; };
-		A25584F225B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584EF25B374B60075B128 /* FlightVehicle+Extensions.swift */; };
 		A25584FE25B375510075B128 /* Rocket+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584FD25B375510075B128 /* Rocket+Extensions.swift */; };
 		A25584FF25B375510075B128 /* Rocket+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584FD25B375510075B128 /* Rocket+Extensions.swift */; };
 		A255851825B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */; };
@@ -149,148 +163,102 @@
 		A280D0F825B34AF400CF6E33 /* DockingJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D08625B34AF300CF6E33 /* DockingJSON.swift */; };
 		A280D14C25B34B7F00CF6E33 /* LaunchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10A25B34B7E00CF6E33 /* LaunchList.swift */; };
 		A280D14D25B34B7F00CF6E33 /* LaunchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10A25B34B7E00CF6E33 /* LaunchList.swift */; };
-		A280D14E25B34B7F00CF6E33 /* LaunchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10A25B34B7E00CF6E33 /* LaunchList.swift */; };
 		A280D14F25B34B7F00CF6E33 /* LaunchLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10B25B34B7E00CF6E33 /* LaunchLinks.swift */; };
 		A280D15025B34B7F00CF6E33 /* LaunchLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10B25B34B7E00CF6E33 /* LaunchLinks.swift */; };
-		A280D15125B34B7F00CF6E33 /* LaunchLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10B25B34B7E00CF6E33 /* LaunchLinks.swift */; };
 		A280D15225B34B7F00CF6E33 /* LaunchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10C25B34B7E00CF6E33 /* LaunchDetail.swift */; };
 		A280D15325B34B7F00CF6E33 /* LaunchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10C25B34B7E00CF6E33 /* LaunchDetail.swift */; };
-		A280D15425B34B7F00CF6E33 /* LaunchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10C25B34B7E00CF6E33 /* LaunchDetail.swift */; };
 		A280D15525B34B7F00CF6E33 /* LaunchListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10D25B34B7E00CF6E33 /* LaunchListApp.swift */; };
 		A280D15625B34B7F00CF6E33 /* LaunchListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10D25B34B7E00CF6E33 /* LaunchListApp.swift */; };
-		A280D15725B34B7F00CF6E33 /* LaunchListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10D25B34B7E00CF6E33 /* LaunchListApp.swift */; };
 		A280D15825B34B7F00CF6E33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10E25B34B7E00CF6E33 /* SettingsView.swift */; };
 		A280D15925B34B7F00CF6E33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10E25B34B7E00CF6E33 /* SettingsView.swift */; };
 		A280D15B25B34B7F00CF6E33 /* LiveStreamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11025B34B7E00CF6E33 /* LiveStreamDetail.swift */; };
 		A280D15C25B34B7F00CF6E33 /* LiveStreamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11025B34B7E00CF6E33 /* LiveStreamDetail.swift */; };
-		A280D15D25B34B7F00CF6E33 /* LiveStreamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11025B34B7E00CF6E33 /* LiveStreamDetail.swift */; };
 		A280D15E25B34B7F00CF6E33 /* LiveStreamsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11125B34B7E00CF6E33 /* LiveStreamsList.swift */; };
 		A280D15F25B34B7F00CF6E33 /* LiveStreamsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11125B34B7E00CF6E33 /* LiveStreamsList.swift */; };
-		A280D16025B34B7F00CF6E33 /* LiveStreamsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11125B34B7E00CF6E33 /* LiveStreamsList.swift */; };
 		A280D16125B34B7F00CF6E33 /* MissionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11325B34B7E00CF6E33 /* MissionList.swift */; };
 		A280D16225B34B7F00CF6E33 /* MissionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11325B34B7E00CF6E33 /* MissionList.swift */; };
-		A280D16325B34B7F00CF6E33 /* MissionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11325B34B7E00CF6E33 /* MissionList.swift */; };
 		A280D16425B34B7F00CF6E33 /* MissionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11425B34B7E00CF6E33 /* MissionDetail.swift */; };
 		A280D16525B34B7F00CF6E33 /* MissionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11425B34B7E00CF6E33 /* MissionDetail.swift */; };
-		A280D16625B34B7F00CF6E33 /* MissionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11425B34B7E00CF6E33 /* MissionDetail.swift */; };
 		A280D16725B34B7F00CF6E33 /* SpaceStationLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11625B34B7E00CF6E33 /* SpaceStationLinks.swift */; };
 		A280D16825B34B7F00CF6E33 /* SpaceStationLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11625B34B7E00CF6E33 /* SpaceStationLinks.swift */; };
-		A280D16925B34B7F00CF6E33 /* SpaceStationLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11625B34B7E00CF6E33 /* SpaceStationLinks.swift */; };
 		A280D16A25B34B7F00CF6E33 /* SpaceStationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11725B34B7E00CF6E33 /* SpaceStationDetail.swift */; };
 		A280D16B25B34B7F00CF6E33 /* SpaceStationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11725B34B7E00CF6E33 /* SpaceStationDetail.swift */; };
 		A280D16D25B34B7F00CF6E33 /* SpaceStationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11825B34B7E00CF6E33 /* SpaceStationList.swift */; };
 		A280D16E25B34B7F00CF6E33 /* SpaceStationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11825B34B7E00CF6E33 /* SpaceStationList.swift */; };
-		A280D16F25B34B7F00CF6E33 /* SpaceStationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11825B34B7E00CF6E33 /* SpaceStationList.swift */; };
 		A280D17025B34B7F00CF6E33 /* DatasetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11925B34B7E00CF6E33 /* DatasetList.swift */; };
 		A280D17125B34B7F00CF6E33 /* DatasetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11925B34B7E00CF6E33 /* DatasetList.swift */; };
-		A280D17225B34B7F00CF6E33 /* DatasetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11925B34B7E00CF6E33 /* DatasetList.swift */; };
 		A280D17325B34B7F00CF6E33 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11A25B34B7E00CF6E33 /* HomeView.swift */; };
 		A280D17425B34B7F00CF6E33 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11A25B34B7E00CF6E33 /* HomeView.swift */; };
-		A280D17525B34B7F00CF6E33 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11A25B34B7E00CF6E33 /* HomeView.swift */; };
 		A280D17625B34B7F00CF6E33 /* RocketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11C25B34B7E00CF6E33 /* RocketList.swift */; };
 		A280D17725B34B7F00CF6E33 /* RocketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11C25B34B7E00CF6E33 /* RocketList.swift */; };
-		A280D17825B34B7F00CF6E33 /* RocketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11C25B34B7E00CF6E33 /* RocketList.swift */; };
 		A280D17925B34B7F00CF6E33 /* RocketDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11D25B34B7E00CF6E33 /* RocketDetail.swift */; };
 		A280D17A25B34B7F00CF6E33 /* RocketDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11D25B34B7E00CF6E33 /* RocketDetail.swift */; };
-		A280D17B25B34B7F00CF6E33 /* RocketDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11D25B34B7E00CF6E33 /* RocketDetail.swift */; };
 		A280D17C25B34B7F00CF6E33 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11F25B34B7E00CF6E33 /* UIUtils.swift */; };
 		A280D17D25B34B7F00CF6E33 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11F25B34B7E00CF6E33 /* UIUtils.swift */; };
-		A280D17E25B34B7F00CF6E33 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11F25B34B7E00CF6E33 /* UIUtils.swift */; };
 		A280D17F25B34B7F00CF6E33 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12025B34B7E00CF6E33 /* ImageLoader.swift */; };
 		A280D18025B34B7F00CF6E33 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12025B34B7E00CF6E33 /* ImageLoader.swift */; };
-		A280D18125B34B7F00CF6E33 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12025B34B7E00CF6E33 /* ImageLoader.swift */; };
 		A280D18225B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12125B34B7E00CF6E33 /* RemoteImageCache.swift */; };
 		A280D18325B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12125B34B7E00CF6E33 /* RemoteImageCache.swift */; };
-		A280D18425B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12125B34B7E00CF6E33 /* RemoteImageCache.swift */; };
 		A280D18525B34B7F00CF6E33 /* LoadedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* LoadedImageView.swift */; };
 		A280D18625B34B7F00CF6E33 /* LoadedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* LoadedImageView.swift */; };
-		A280D18725B34B7F00CF6E33 /* LoadedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* LoadedImageView.swift */; };
 		A280D18825B34B7F00CF6E33 /* RowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12425B34B7E00CF6E33 /* RowImage.swift */; };
 		A280D18925B34B7F00CF6E33 /* RowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12425B34B7E00CF6E33 /* RowImage.swift */; };
-		A280D18A25B34B7F00CF6E33 /* RowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12425B34B7E00CF6E33 /* RowImage.swift */; };
 		A280D18B25B34B7F00CF6E33 /* LinkBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12525B34B7E00CF6E33 /* LinkBarView.swift */; };
 		A280D18C25B34B7F00CF6E33 /* LinkBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12525B34B7E00CF6E33 /* LinkBarView.swift */; };
-		A280D18D25B34B7F00CF6E33 /* LinkBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12525B34B7E00CF6E33 /* LinkBarView.swift */; };
 		A280D18E25B34B7F00CF6E33 /* AgencyLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12625B34B7E00CF6E33 /* AgencyLink.swift */; };
 		A280D18F25B34B7F00CF6E33 /* AgencyLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12625B34B7E00CF6E33 /* AgencyLink.swift */; };
-		A280D19025B34B7F00CF6E33 /* AgencyLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12625B34B7E00CF6E33 /* AgencyLink.swift */; };
 		A280D19125B34B7F00CF6E33 /* LeftField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12725B34B7E00CF6E33 /* LeftField.swift */; };
 		A280D19225B34B7F00CF6E33 /* LeftField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12725B34B7E00CF6E33 /* LeftField.swift */; };
-		A280D19325B34B7F00CF6E33 /* LeftField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12725B34B7E00CF6E33 /* LeftField.swift */; };
 		A280D19425B34B7F00CF6E33 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12825B34B7E00CF6E33 /* SearchBar.swift */; };
 		A280D19525B34B7F00CF6E33 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12825B34B7E00CF6E33 /* SearchBar.swift */; };
-		A280D19625B34B7F00CF6E33 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12825B34B7E00CF6E33 /* SearchBar.swift */; };
 		A280D19725B34B7F00CF6E33 /* TwoFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12925B34B7E00CF6E33 /* TwoFields.swift */; };
 		A280D19825B34B7F00CF6E33 /* TwoFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12925B34B7E00CF6E33 /* TwoFields.swift */; };
-		A280D19925B34B7F00CF6E33 /* TwoFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12925B34B7E00CF6E33 /* TwoFields.swift */; };
 		A280D19A25B34B7F00CF6E33 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12A25B34B7E00CF6E33 /* CountdownView.swift */; };
 		A280D19B25B34B7F00CF6E33 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12A25B34B7E00CF6E33 /* CountdownView.swift */; };
-		A280D19C25B34B7F00CF6E33 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12A25B34B7E00CF6E33 /* CountdownView.swift */; };
 		A280D19D25B34B7F00CF6E33 /* TitleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12B25B34B7E00CF6E33 /* TitleField.swift */; };
 		A280D19E25B34B7F00CF6E33 /* TitleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12B25B34B7E00CF6E33 /* TitleField.swift */; };
-		A280D19F25B34B7F00CF6E33 /* TitleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12B25B34B7E00CF6E33 /* TitleField.swift */; };
 		A280D1A025B34B7F00CF6E33 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12C25B34B7E00CF6E33 /* ImageViewer.swift */; };
 		A280D1A125B34B7F00CF6E33 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12C25B34B7E00CF6E33 /* ImageViewer.swift */; };
-		A280D1A225B34B7F00CF6E33 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12C25B34B7E00CF6E33 /* ImageViewer.swift */; };
 		A280D1A325B34B7F00CF6E33 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12D25B34B7E00CF6E33 /* DescriptionView.swift */; };
 		A280D1A425B34B7F00CF6E33 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12D25B34B7E00CF6E33 /* DescriptionView.swift */; };
-		A280D1A525B34B7F00CF6E33 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12D25B34B7E00CF6E33 /* DescriptionView.swift */; };
 		A280D1A625B34B7F00CF6E33 /* PadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12F25B34B7E00CF6E33 /* PadList.swift */; };
 		A280D1A725B34B7F00CF6E33 /* PadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12F25B34B7E00CF6E33 /* PadList.swift */; };
-		A280D1A825B34B7F00CF6E33 /* PadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12F25B34B7E00CF6E33 /* PadList.swift */; };
 		A280D1A925B34B7F00CF6E33 /* PadDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13025B34B7E00CF6E33 /* PadDetail.swift */; };
 		A280D1AA25B34B7F00CF6E33 /* PadDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13025B34B7E00CF6E33 /* PadDetail.swift */; };
-		A280D1AB25B34B7F00CF6E33 /* PadDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13025B34B7E00CF6E33 /* PadDetail.swift */; };
 		A280D1AC25B34B7F00CF6E33 /* ProgramLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13225B34B7E00CF6E33 /* ProgramLinks.swift */; };
 		A280D1AD25B34B7F00CF6E33 /* ProgramLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13225B34B7E00CF6E33 /* ProgramLinks.swift */; };
-		A280D1AE25B34B7F00CF6E33 /* ProgramLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13225B34B7E00CF6E33 /* ProgramLinks.swift */; };
 		A280D1AF25B34B7F00CF6E33 /* ProgramDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13325B34B7F00CF6E33 /* ProgramDetail.swift */; };
 		A280D1B025B34B7F00CF6E33 /* ProgramDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13325B34B7F00CF6E33 /* ProgramDetail.swift */; };
-		A280D1B125B34B7F00CF6E33 /* ProgramDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13325B34B7F00CF6E33 /* ProgramDetail.swift */; };
 		A280D1B225B34B7F00CF6E33 /* ProgramList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13425B34B7F00CF6E33 /* ProgramList.swift */; };
 		A280D1B325B34B7F00CF6E33 /* ProgramList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13425B34B7F00CF6E33 /* ProgramList.swift */; };
-		A280D1B425B34B7F00CF6E33 /* ProgramList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13425B34B7F00CF6E33 /* ProgramList.swift */; };
 		A280D1B525B34B7F00CF6E33 /* DockingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13625B34B7F00CF6E33 /* DockingList.swift */; };
 		A280D1B625B34B7F00CF6E33 /* DockingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13625B34B7F00CF6E33 /* DockingList.swift */; };
-		A280D1B725B34B7F00CF6E33 /* DockingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13625B34B7F00CF6E33 /* DockingList.swift */; };
 		A280D1B825B34B7F00CF6E33 /* DockingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13725B34B7F00CF6E33 /* DockingDetail.swift */; };
 		A280D1B925B34B7F00CF6E33 /* DockingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13725B34B7F00CF6E33 /* DockingDetail.swift */; };
-		A280D1BA25B34B7F00CF6E33 /* DockingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13725B34B7F00CF6E33 /* DockingDetail.swift */; };
 		A280D1BB25B34B7F00CF6E33 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13825B34B7F00CF6E33 /* TimelineView.swift */; };
 		A280D1BC25B34B7F00CF6E33 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13825B34B7F00CF6E33 /* TimelineView.swift */; };
-		A280D1BD25B34B7F00CF6E33 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13825B34B7F00CF6E33 /* TimelineView.swift */; };
 		A280D1BE25B34B7F00CF6E33 /* ExpeditionLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13A25B34B7F00CF6E33 /* ExpeditionLinks.swift */; };
 		A280D1BF25B34B7F00CF6E33 /* ExpeditionLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13A25B34B7F00CF6E33 /* ExpeditionLinks.swift */; };
-		A280D1C025B34B7F00CF6E33 /* ExpeditionLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13A25B34B7F00CF6E33 /* ExpeditionLinks.swift */; };
 		A280D1C125B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13B25B34B7F00CF6E33 /* ExpeditionDetail.swift */; };
 		A280D1C225B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13B25B34B7F00CF6E33 /* ExpeditionDetail.swift */; };
-		A280D1C325B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13B25B34B7F00CF6E33 /* ExpeditionDetail.swift */; };
 		A280D1CA25B34B7F00CF6E33 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13F25B34B7F00CF6E33 /* TabsView.swift */; };
 		A280D1CB25B34B7F00CF6E33 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13F25B34B7F00CF6E33 /* TabsView.swift */; };
-		A280D1CC25B34B7F00CF6E33 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13F25B34B7F00CF6E33 /* TabsView.swift */; };
 		A280D1CD25B34B7F00CF6E33 /* AstronautList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14125B34B7F00CF6E33 /* AstronautList.swift */; };
 		A280D1CE25B34B7F00CF6E33 /* AstronautList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14125B34B7F00CF6E33 /* AstronautList.swift */; };
-		A280D1CF25B34B7F00CF6E33 /* AstronautList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14125B34B7F00CF6E33 /* AstronautList.swift */; };
 		A280D1D025B34B7F00CF6E33 /* AstronautDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14225B34B7F00CF6E33 /* AstronautDetail.swift */; };
 		A280D1D125B34B7F00CF6E33 /* AstronautDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14225B34B7F00CF6E33 /* AstronautDetail.swift */; };
 		A280D1D325B34B7F00CF6E33 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14425B34B7F00CF6E33 /* EventList.swift */; };
 		A280D1D425B34B7F00CF6E33 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14425B34B7F00CF6E33 /* EventList.swift */; };
-		A280D1D525B34B7F00CF6E33 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14425B34B7F00CF6E33 /* EventList.swift */; };
 		A280D1D625B34B7F00CF6E33 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14525B34B7F00CF6E33 /* EventDetail.swift */; };
 		A280D1D725B34B7F00CF6E33 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14525B34B7F00CF6E33 /* EventDetail.swift */; };
-		A280D1D825B34B7F00CF6E33 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14525B34B7F00CF6E33 /* EventDetail.swift */; };
 		A280D1D925B34B7F00CF6E33 /* AgencyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14725B34B7F00CF6E33 /* AgencyDetail.swift */; };
 		A280D1DA25B34B7F00CF6E33 /* AgencyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14725B34B7F00CF6E33 /* AgencyDetail.swift */; };
-		A280D1DB25B34B7F00CF6E33 /* AgencyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14725B34B7F00CF6E33 /* AgencyDetail.swift */; };
 		A280D1DC25B34B7F00CF6E33 /* AgencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14825B34B7F00CF6E33 /* AgencyList.swift */; };
 		A280D1DD25B34B7F00CF6E33 /* AgencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14825B34B7F00CF6E33 /* AgencyList.swift */; };
-		A280D1DE25B34B7F00CF6E33 /* AgencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14825B34B7F00CF6E33 /* AgencyList.swift */; };
 		A280D1DF25B34B7F00CF6E33 /* VehicleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14A25B34B7F00CF6E33 /* VehicleList.swift */; };
 		A280D1E025B34B7F00CF6E33 /* VehicleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14A25B34B7F00CF6E33 /* VehicleList.swift */; };
-		A280D1E125B34B7F00CF6E33 /* VehicleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14A25B34B7F00CF6E33 /* VehicleList.swift */; };
 		A280D1E225B34B7F00CF6E33 /* VehicleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14B25B34B7F00CF6E33 /* VehicleDetail.swift */; };
 		A280D1E325B34B7F00CF6E33 /* VehicleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14B25B34B7F00CF6E33 /* VehicleDetail.swift */; };
-		A280D1E425B34B7F00CF6E33 /* VehicleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14B25B34B7F00CF6E33 /* VehicleDetail.swift */; };
 		A280D1F525B34BA900CF6E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A280D1F425B34BA900CF6E33 /* Assets.xcassets */; };
 		A280D1F625B34BA900CF6E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A280D1F425B34BA900CF6E33 /* Assets.xcassets */; };
 		A280D1F725B34BA900CF6E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A280D1F425B34BA900CF6E33 /* Assets.xcassets */; };
@@ -6076,6 +6044,7 @@
 				A280D18325B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */,
 				A293E4FC25B344DE00232408 /* Agency+Extensions.swift in Sources */,
 				A255852125B3BB440075B128 /* Samples.swift in Sources */,
+				A21AD14725BE0D5F007D9C42 /* LaunchRequest.swift in Sources */,
 				A2EF80E725B736DD007F3501 /* AgencyData.swift in Sources */,
 				A280D09125B34AF400CF6E33 /* NoticeJSON.swift in Sources */,
 				A280D14D25B34B7F00CF6E33 /* LaunchList.swift in Sources */,
@@ -6112,10 +6081,12 @@
 				A280D0C725B34AF400CF6E33 /* AstronautListJSON.swift in Sources */,
 				A293E51A25B344DE00232408 /* CoreDataUtils.swift in Sources */,
 				A293E4AB25B343F500232408 /* Regex+Extensions.swift in Sources */,
+				A21AD12F25BE0D39007D9C42 /* View+Extensions.swift in Sources */,
 				A293E4FF25B344DE00232408 /* Event+Extensions.swift in Sources */,
 				A25584F125B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */,
 				A280D16225B34B7F00CF6E33 /* MissionList.swift in Sources */,
 				A280D18625B34B7F00CF6E33 /* LoadedImageView.swift in Sources */,
+				A21AD08925BE0C7B007D9C42 /* SpacecraftRow.swift in Sources */,
 				A255851925B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */,
 				A25584FF25B375510075B128 /* Rocket+Extensions.swift in Sources */,
 				A280D0DF25B34AF400CF6E33 /* SpacecraftConfigJSON.swift in Sources */,
@@ -6145,6 +6116,7 @@
 				A280D15025B34B7F00CF6E33 /* LaunchLinks.swift in Sources */,
 				A280D1B925B34B7F00CF6E33 /* DockingDetail.swift in Sources */,
 				A280D18025B34B7F00CF6E33 /* ImageLoader.swift in Sources */,
+				A21AD03C25BE0C3E007D9C42 /* LauncherList.swift in Sources */,
 				A293E50E25B344DE00232408 /* LaunchList.xcdatamodeld in Sources */,
 				A280D18F25B34B7F00CF6E33 /* AgencyLink.swift in Sources */,
 				A2EF80D125B735AE007F3501 /* EventLink.swift in Sources */,
@@ -6164,6 +6136,7 @@
 				A293E50225B344DE00232408 /* Persistence.swift in Sources */,
 				A293E4AE25B343F500232408 /* String+Extensions.swift in Sources */,
 				A280D0EE25B34AF400CF6E33 /* LauncherConfigJSON.swift in Sources */,
+				A21AD08325BE0C77007D9C42 /* SpacecraftList.swift in Sources */,
 				A280D0F725B34AF400CF6E33 /* DockingJSON.swift in Sources */,
 				A280D0CD25B34AF400CF6E33 /* StarshipEventsJSON.swift in Sources */,
 				A280D1B025B34B7F00CF6E33 /* ProgramDetail.swift in Sources */,
@@ -6182,6 +6155,7 @@
 				A293E51725B344DE00232408 /* Astronaut+Extensions.swift in Sources */,
 				A2EF80D925B735F9007F3501 /* ExpeditionRow.swift in Sources */,
 				A2EF80C925B68944007F3501 /* LauncherDetail.swift in Sources */,
+				A21AD14125BE0D5C007D9C42 /* APIRequest.swift in Sources */,
 				A280D18925B34B7F00CF6E33 /* RowImage.swift in Sources */,
 				A280D1E025B34B7F00CF6E33 /* VehicleList.swift in Sources */,
 				A2AEAAC225BDE349002B8953 /* JSONResponse.swift in Sources */,
@@ -6218,95 +6192,57 @@
 			buildActionMask = 2147483647;
 			files = (
 				A280D0B025B34AF400CF6E33 /* FlightVehicleJSON.swift in Sources */,
-				A280D1E125B34B7F00CF6E33 /* VehicleList.swift in Sources */,
 				A280D0F525B34AF400CF6E33 /* StatusJSON.swift in Sources */,
 				A280D09225B34AF400CF6E33 /* NoticeJSON.swift in Sources */,
-				A280D18A25B34B7F00CF6E33 /* RowImage.swift in Sources */,
 				A2D6D7B42597BD7D003D5401 /* Checkers.swift in Sources */,
-				A280D1BA25B34B7F00CF6E33 /* DockingDetail.swift in Sources */,
-				A280D1E425B34B7F00CF6E33 /* VehicleDetail.swift in Sources */,
 				A280D0BF25B34AF400CF6E33 /* AgenciesListJSON.swift in Sources */,
 				A280D0CE25B34AF400CF6E33 /* StarshipEventsJSON.swift in Sources */,
 				A280D0C825B34AF400CF6E33 /* AstronautListJSON.swift in Sources */,
-				A280D15125B34B7F00CF6E33 /* LaunchLinks.swift in Sources */,
 				A280D0F225B34AF400CF6E33 /* LocationJSON.swift in Sources */,
+				A21AD13525BE0D3C007D9C42 /* Dictionary+Extensions.swift in Sources */,
+				A21AD0E925BE0CDE007D9C42 /* JSONResponse.swift in Sources */,
 				A280D09E25B34AF400CF6E33 /* AgencyJSON.swift in Sources */,
-				A280D1A225B34B7F00CF6E33 /* ImageViewer.swift in Sources */,
 				A280D0A725B34AF400CF6E33 /* VehicleJSON.swift in Sources */,
 				A280D0A125B34AF400CF6E33 /* OrbitJSON.swift in Sources */,
 				A280D0BC25B34AF400CF6E33 /* DockingListJSON.swift in Sources */,
-				A280D19025B34B7F00CF6E33 /* AgencyLink.swift in Sources */,
 				A280D0D125B34AF400CF6E33 /* PadListJSON.swift in Sources */,
 				A280D0AD25B34AF400CF6E33 /* EventJSON.swift in Sources */,
-				A280D1C325B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */,
 				A280D08C25B34AF300CF6E33 /* RoadClosureJSON.swift in Sources */,
 				A280D0B325B34AF400CF6E33 /* PadJSON.swift in Sources */,
-				A280D16625B34B7F00CF6E33 /* MissionDetail.swift in Sources */,
-				A280D19925B34B7F00CF6E33 /* TwoFields.swift in Sources */,
-				A280D15725B34B7F00CF6E33 /* LaunchListApp.swift in Sources */,
-				A280D18125B34B7F00CF6E33 /* ImageLoader.swift in Sources */,
-				A25584E025B36D170075B128 /* SocialMediaLink.swift in Sources */,
-				A280D1BD25B34B7F00CF6E33 /* TimelineView.swift in Sources */,
-				A280D16925B34B7F00CF6E33 /* SpaceStationLinks.swift in Sources */,
 				A280D0EC25B34AF400CF6E33 /* LaunchJSON.swift in Sources */,
-				A280D17825B34B7F00CF6E33 /* RocketList.swift in Sources */,
-				A280D16325B34B7F00CF6E33 /* MissionList.swift in Sources */,
-				A280D1AE25B34B7F00CF6E33 /* ProgramLinks.swift in Sources */,
-				A280D19325B34B7F00CF6E33 /* LeftField.swift in Sources */,
 				A280D0A425B34AF400CF6E33 /* LauncherJSON.swift in Sources */,
-				A280D1A525B34B7F00CF6E33 /* DescriptionView.swift in Sources */,
-				A280D1A825B34B7F00CF6E33 /* PadList.swift in Sources */,
+				A21AD0EF25BE0CE2007D9C42 /* AstronautStatusJSON.swift in Sources */,
 				A280D0E025B34AF400CF6E33 /* SpacecraftConfigJSON.swift in Sources */,
-				A280D15D25B34B7F00CF6E33 /* LiveStreamDetail.swift in Sources */,
 				A280D09825B34AF400CF6E33 /* JSONUtils.swift in Sources */,
-				A280D17E25B34B7F00CF6E33 /* UIUtils.swift in Sources */,
 				A280D08F25B34AF300CF6E33 /* ExpeditionJSON.swift in Sources */,
-				A280D16F25B34B7F00CF6E33 /* SpaceStationList.swift in Sources */,
-				A280D1CF25B34B7F00CF6E33 /* AstronautList.swift in Sources */,
 				A280D0B625B34AF400CF6E33 /* LiveStreamJSON.swift in Sources */,
-				A280D16025B34B7F00CF6E33 /* LiveStreamsList.swift in Sources */,
-				A280D1AB25B34B7F00CF6E33 /* PadDetail.swift in Sources */,
-				A280D1D825B34B7F00CF6E33 /* EventDetail.swift in Sources */,
 				A280D0DA25B34AF400CF6E33 /* LauncherListJSON.swift in Sources */,
+				A21AD11725BE0D30007D9C42 /* ISO3166Utils.swift in Sources */,
 				A280D0AA25B34AF400CF6E33 /* MissionJSON.swift in Sources */,
-				A280D1B125B34B7F00CF6E33 /* ProgramDetail.swift in Sources */,
 				A280D0D725B34AF400CF6E33 /* ExpeditionListJSON.swift in Sources */,
 				A280D0E625B34AF400CF6E33 /* RocketJSON.swift in Sources */,
-				A280D19F25B34B7F00CF6E33 /* TitleField.swift in Sources */,
 				A280D0E325B34AF400CF6E33 /* SpacecraftJSON.swift in Sources */,
 				A2D6D7942597B8CC003D5401 /* AgenciesUnitTests.swift in Sources */,
-				A25584E925B374450075B128 /* Docking+Extensions.swift in Sources */,
-				A280D1D525B34B7F00CF6E33 /* EventList.swift in Sources */,
-				A280D17525B34B7F00CF6E33 /* HomeView.swift in Sources */,
 				A2B75C1F25B403D1002E95A0 /* Samples.swift in Sources */,
-				A280D19C25B34B7F00CF6E33 /* CountdownView.swift in Sources */,
+				A21AD0F525BE0CE7007D9C42 /* AstronautTypeJSON.swift in Sources */,
 				A280D0F825B34AF400CF6E33 /* DockingJSON.swift in Sources */,
 				A280D0C225B34AF400CF6E33 /* EventListJSON.swift in Sources */,
-				A280D1C025B34B7F00CF6E33 /* ExpeditionLinks.swift in Sources */,
-				A280D1DB25B34B7F00CF6E33 /* AgencyDetail.swift in Sources */,
+				A21AD13B25BE0D57007D9C42 /* AgencyData.swift in Sources */,
 				A280D0B925B34AF400CF6E33 /* LocationListJSON.swift in Sources */,
+				A21AD12325BE0D35007D9C42 /* String+Extensions.swift in Sources */,
 				A280D08925B34AF300CF6E33 /* ProgramJSON.swift in Sources */,
+				A21AD12925BE0D38007D9C42 /* View+Extensions.swift in Sources */,
 				A280D0C525B34AF400CF6E33 /* StarshipListJSON.swift in Sources */,
-				A25584F225B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */,
-				A280D17225B34B7F00CF6E33 /* DatasetList.swift in Sources */,
-				A280D17B25B34B7F00CF6E33 /* RocketDetail.swift in Sources */,
-				A280D19625B34B7F00CF6E33 /* SearchBar.swift in Sources */,
-				A280D1DE25B34B7F00CF6E33 /* AgencyList.swift in Sources */,
+				A21AD0FB25BE0CEA007D9C42 /* ConfigurationJSON.swift in Sources */,
+				A21AD11D25BE0D32007D9C42 /* Regex+Extensions.swift in Sources */,
+				A21AD10125BE0CEF007D9C42 /* DockingLocationJSON.swift in Sources */,
 				A2DA72542595AFC4009405E6 /* LaunchListUnitTests.swift in Sources */,
-				A280D1B725B34B7F00CF6E33 /* DockingList.swift in Sources */,
-				A280D18425B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */,
-				A25584D725B3624C0075B128 /* HoldFailView.swift in Sources */,
-				A280D18D25B34B7F00CF6E33 /* LinkBarView.swift in Sources */,
-				A280D14E25B34B7F00CF6E33 /* LaunchList.swift in Sources */,
-				A280D1B425B34B7F00CF6E33 /* ProgramList.swift in Sources */,
 				A280D0EF25B34AF400CF6E33 /* LauncherConfigJSON.swift in Sources */,
-				A280D18725B34B7F00CF6E33 /* LoadedImageView.swift in Sources */,
 				A280D0CB25B34AF400CF6E33 /* LaunchListJSON.swift in Sources */,
-				A280D1CC25B34B7F00CF6E33 /* TabsView.swift in Sources */,
+				A21AD10725BE0CF3007D9C42 /* EventTypeJSON.swift in Sources */,
 				A280D0E925B34AF400CF6E33 /* AstronautJSON.swift in Sources */,
 				A280D0DD25B34AF400CF6E33 /* ProgramListJSON.swift in Sources */,
 				A280D09B25B34AF400CF6E33 /* SpaceStationJSON.swift in Sources */,
-				A280D15425B34B7F00CF6E33 /* LaunchDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,7 @@ import CoreData
          "spacecraft_config": { … }
        }
  */
-public struct SpacecraftJSON: Decodable, Identifiable
+public struct SpacecraftJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

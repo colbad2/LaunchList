@@ -47,7 +47,7 @@ import CoreData
          ]
        }
  */
-public struct EventJSON: Decodable
+public struct EventJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

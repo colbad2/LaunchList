@@ -44,7 +44,7 @@ import CoreData
               "wiki_url": ""
           }
  */
-public struct PadJSON: Decodable
+public struct PadJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

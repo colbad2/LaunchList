@@ -19,7 +19,7 @@ import CoreData
            "type": "Communications"
          }
  */
-struct MissionJSON: Decodable
+struct MissionJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

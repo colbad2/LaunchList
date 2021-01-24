@@ -14,7 +14,7 @@
           "results": [ … ]
        }
  */
-public struct DockingListJSON: Decodable
+public struct DockingListJSON: Decodable, JSONResponse
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

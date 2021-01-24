@@ -15,7 +15,7 @@ import CoreData
          "window_end": "2020-12-30T23:00:00Z"
        }
  */
-public struct RoadClosureJSON: Decodable
+public struct RoadClosureJSON: Decodable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
