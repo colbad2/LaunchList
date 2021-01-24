@@ -24,7 +24,7 @@ struct EventDetail: View
             LeftField( text: dateString( event.date ) )
             LeftField( text: event.location )
             LeftField( text: event.type )
-            IconView( withURL: event.featureImage )
+            LoadedImageView( withURL: event.featureImage )
             DescriptionView( desc: event.eventDescription )
 
             Group

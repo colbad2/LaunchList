@@ -25,7 +25,7 @@ struct HomeView: View
                TitleField( text: missionName( launch ) )
                TwoFields( leftString: launch.getProviderName(),
                           rightString: launch.rocket?.name ?? launch.name )
-               TwoFields( leftString: launch.serviceProvider?.type,
+               TwoFields( leftString: launch.agency?.type,
                           rightString: launch.mission?.type )
                LeftField( text: launch.mission?.orbitName )
                LeftField( text: dateString( launch.windowStart ) )
@@ -48,10 +48,10 @@ struct HomeView: View
             }
             //         NavigationLink( destination: ImageViewer( withURL: launch.image ) )
             //         {
-            IconView( withURL: launch.image )
+            LoadedImageView( withURL: launch.image )
             //         }
             DescriptionView( desc: launch.mission?.missionDescription )
-            IconView( withURL: launch.infographic )
+            LoadedImageView( withURL: launch.infographic )
 
             VStack
             {

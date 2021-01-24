@@ -75,6 +75,7 @@ Things that need to happen for a good app
 - settings button to clear the image cache entirely, or images that are past a certain lifetime
 - home page stuff deep links to datasets (can't be done yet in SwiftUI)
 - I18N, translation?
+- API fetch log in settings
 ### Bugs
 - some images aren't updating in rows when they finally load from cache
 - JSON can't be parsed with \" sequence in description strings"

@@ -15,7 +15,7 @@
      ]
  }
  */
-public struct LaunchListJSON: Decodable
+public struct LaunchListJSON: Decodable, JSONResponse
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey

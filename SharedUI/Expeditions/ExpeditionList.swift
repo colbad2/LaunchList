@@ -26,32 +26,50 @@ struct ExpeditionList: View
    }
 }
 
-struct ExpeditionRow: View
+func expeditionTitle( expedition: Expedition? ) -> String?
 {
-   var expedition: Expedition
+   guard let expedition = expedition else { return nil }
+   var result: String = ""
 
-   var body: some View
+   if let name: String = expedition.name
    {
-      RowImage( imageURL: expedition.spaceStation?.imageURL )
-      VStack( alignment: .leading )
-      {
-         TitleField( text: expedition.name )
-         HStack
-         {
-            if let start: String = expedition.start
-            {
-               Text( dateString( parseISODate( isoDate: start ) ) )
-                  .font( .subheadline )
-            }
-            if let end: String = expedition.end
-            {
-               Text( "- " ) +
-               Text( dateString( parseISODate( isoDate: end ) ) )
-                  .font( .subheadline )
-            }
-         }
-      }
+      result += name
    }
+   if let spaceStationName: String = expedition.spaceStation?.name
+   {
+      result += " to "
+      result += spaceStationName
+   }
+
+   return result
+}
+
+/**
+ Formats the dates of an `Expedition`.
+
+ - parameter expedition: `Expedition` where to get the dates
+ - returns: `String` with the foramtted dates, nil if not possible
+ */
+public func expeditionDates( expedition: Expedition? ) -> String?
+{
+   guard let expedition = expedition else { return nil }
+   var result: String = ""
+
+   if let start: String = expedition.start
+   {
+      result += dateString( parseISODate( isoDate: start ) )
+   }
+   if let end: String = expedition.end
+   {
+      result += " to "
+      result += dateString( parseISODate( isoDate: end ) )
+   }
+   else
+   {
+      result += " ongoing"
+   }
+
+   return result
 }
 
 #if DEBUG

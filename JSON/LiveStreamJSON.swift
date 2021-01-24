@@ -40,12 +40,14 @@ public struct LiveStreamJSON: Decodable
 
    public func updateEntity( entity: LiveStream?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let liveStreamEntity = entity else { return }
 
-      entity.id = url // use the URL as an ID
-      entity.url = url
-      entity.liveStreamDescription = liveStreamDescription
-      entity.title = title
-      entity.image = image
+      liveStreamEntity.id = url // use the URL as an ID
+      liveStreamEntity.url = url
+      liveStreamEntity.liveStreamDescription = liveStreamDescription
+      liveStreamEntity.title = title
+      liveStreamEntity.image = image
+
+      liveStreamEntity.fetched = Date()
    }
 }

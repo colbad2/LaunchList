@@ -71,5 +71,7 @@ public struct LauncherJSON: Decodable
       launcherEntity.flights = flights
       launcherEntity.lastLaunchDate = lastLaunchDate
       launcherEntity.firstLaunchDate = firstLaunchDate
+
+      launcherEntity.fetched = Date()
    }
 }

@@ -6,22 +6,28 @@ import SwiftUI
 struct DatasetList: View
 {
    let listItems: [ListItem] = [ ListItem( title: "Launches", entity: LAUNCH_ENTITY_NAME, iconName: "AppIcon" ),
-                                 ListItem( title: "Agencies", entity: AGENCY_ENTITY_NAME, iconName: "Agency" ),
-                                 ListItem( title: "Pads", entity: PAD_ENTITY_NAME, iconName: "Pad" ),
+                                 ListItem( title: "Agencies", entity: AGENCY_ENTITY_NAME, iconName: "Agency",
+                                           blurb: "organizations that run programs" ),
+                                 ListItem( title: "Pads", entity: PAD_ENTITY_NAME, iconName: "Pad", blurb: "launch locations" ),
                                  ListItem( title: "Missions", entity: MISSION_ENTITY_NAME, iconName: "Mission" ),
                                  ListItem( title: "Programs", entity: PROGRAM_ENTITY_NAME, iconName: "Program" ),
-                                 ListItem( title: "Astronauts", entity: ASTRONAUT_ENTITY_NAME, iconName: "AstronautColor" ),
-                                 ListItem( title: "Events", entity: EVENT_ENTITY_NAME, iconName: "Event" ),
-                                 ListItem( title: "Live Streams", entity: LIVE_STREAM_ENTITY_NAME, iconName: "LiveStream" ),
-                                 ListItem( title: "Starship Vehicles", entity: VEHICLE_ENTITY_NAME, iconName: "Starship" ),
-                                 ListItem( title: "Docking", entity: DOCKING_ENTITY_NAME, iconName: "Docking" ),
-                                 ListItem( title: "Space Stations", entity: SPACESTATION_ENTITY_NAME, iconName: "Station" ),
+                                 ListItem( title: "Astronauts", entity: ASTRONAUT_ENTITY_NAME, iconName: "AstronautColor",
+                                           blurb: "people who have flown to space" ),
+                                 ListItem( title: "Events", entity: EVENT_ENTITY_NAME, iconName: "Event",
+                                           blurb: "happenings, briefings, meetings, anniversaries" ),
+                                 ListItem( title: "Live Streams", entity: LIVE_STREAM_ENTITY_NAME, iconName: "LiveStream",
+                                           blurb: "video streams of Starship activities" ),
+                                 ListItem( title: "Starship Vehicles", entity: VEHICLE_ENTITY_NAME, iconName: "Starship",
+                                           blurb: "individual Starship instances" ),
+                                 ListItem( title: "Docking", entity: DOCKING_ENTITY_NAME, iconName: "Docking",
+                                           blurb: "meetings of vehicles and space stations" ),
+                                 ListItem( title: "Space Stations", entity: SPACESTATION_ENTITY_NAME, iconName: "Station",
+                                           blurb: "long-term space locations" ),
 
                                  // the following are experimental
-                                 ListItem( title: "Expeditions", entity: SPACESTATION_ENTITY_NAME ),
-                                 ListItem( title: "Service Providers", entity: SERVICE_PROVIDER_ENTITY_NAME ),
+                                 ListItem( title: "Expeditions", entity: SPACESTATION_ENTITY_NAME, blurb: "trips to space stations" ),
                                  ListItem( title: "Flight Vehicles", entity: FLIGHT_VEHICLE_ENTITY_NAME ),
-                                 ListItem( title: "Spacecrafts", entity: SPACECRAFT_ENTITY_NAME ),
+                                 ListItem( title: "Spacecraft", entity: SPACECRAFT_ENTITY_NAME ),
                                  ListItem( title: "Launchers", entity: LAUNCHER_ENTITY_NAME ) ]
 
    var body: some View
@@ -62,6 +68,13 @@ struct ListItemRow: View
                {
                   TitleField( text: listItem.title )
 
+                  if let blurb: String = listItem.blurb
+                  {
+                     Text( blurb )
+                        .font( .subheadline )
+                        .foregroundColor( .secondary )
+                  }
+
                   if let launchCount: Int = getRecordsCount( entityName: listItem.entity, context: context )
                   {
                      Text( "\(launchCount) \(listItem.title.lowercased())" )
@@ -82,13 +95,15 @@ struct ListItem: Identifiable
    var title: String
    var entity: String
    var iconName: String?
+   var blurb: String?
 
-   init( title: String, entity: String, iconName: String? = nil )
+   init( title: String, entity: String, iconName: String? = nil, blurb: String? = nil )
    {
       self.id = title
       self.title = title
       self.entity = entity
       self.iconName = iconName
+      self.blurb = blurb
    }
 }
 
@@ -110,9 +125,8 @@ func getListItemView( title: String ) -> AnyView
       case "Space Stations": return AnyView( SpaceStationList() )
 
       case "Expeditions": return AnyView( ExpeditionList() )
-      case "Service Providers": return AnyView( ServiceProviderList() )
       case "Flight Vehicles": return AnyView( FlightVehicleList() )
-      case "Spacecrafts": return AnyView( SpacecraftList() )
+      case "Spacecraft": return AnyView( SpacecraftList() )
       case "Launchers": return AnyView( LauncherList() )
       default: return AnyView( Text( "" ) ) // shouldn't happen
    }

@@ -26,7 +26,7 @@ struct PadDetail: View
             Button( action: { openInMaps( name: pad.location?.name, lat: pad.latitude, lon: pad.longitude ) },
                     label: { LeftField( text: "\(pad.latitude ?? "?"), \(pad.longitude ?? "?")" ) } )
             AgencyLink( agencyID: pad.agencyID )
-            IconView( withURL: pad.mapImage )
+            LoadedImageView( withURL: pad.mapImage )
             LinkBarView( links: [ "Info": pad.infoURL ?? "", "Wiki": pad.wikiURL ?? "", "Map": pad.mapURL ?? "" ] )
             LaunchLinks( launches: pad.launchSet )
          }

@@ -103,5 +103,7 @@ public struct EventJSON: Decodable
       eventEntity.addSpaceStationsFromJSONList( spaceStations: spaceStations, context: context )
       eventEntity.addProgramsFromJSONList( programs: programs, context: context )
       eventEntity.sortingDate = parseISODate( isoDate: self.date )
+
+      eventEntity.fetched = Date()
    }
 }

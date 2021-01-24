@@ -6,6 +6,7 @@ import SwiftUI
 struct SettingsView: View
 {
    @State var isPreloading: Bool = false
+   @State var isUpdating: Bool = false
 
    var body: some View
    {
@@ -21,6 +22,26 @@ struct SettingsView: View
             {
                Text( "Stats" )
                Text( "Image loading" )
+
+               HStack
+               {
+                  Button( "Update Agencies" )
+                  {
+                     isUpdating = true
+                     DispatchQueue.main.async
+                     {
+                        updateAgencies( PersistenceController.shared.container.viewContext )
+                        saveContext( PersistenceController.shared.container.viewContext )
+                        isUpdating = false
+                     }
+                  }
+
+                  if isUpdating
+                  {
+                     Spacer()
+                     ProgressView()
+                  }
+               }
 
                HStack
                {
@@ -72,6 +93,19 @@ struct SettingsView: View
             Text( "Settings" ).font( .title ).bold()
          }
       }
+   }
+}
+
+func updateAgencies( _ context: NSManagedObjectContext )
+{
+   let agencies: [Agency] = fetchAllAgencies( context: context ) ?? []
+   for agency in agencies
+   {
+      agency.websiteURL = AgencyData.shared.getWebsite( agency )
+      agency.wikiURL = AgencyData.shared.getWiki( agency )
+      agency.twitterURL = AgencyData.shared.getTwitter( agency )
+      agency.logoName = AgencyData.shared.getLogo( agency )
+      // TODO countries agency.websiteURL = AgencyData.shared.getWebsite( agency )
    }
 }
 

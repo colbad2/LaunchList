@@ -12,29 +12,29 @@ import SwiftUI
 struct SpaceStationDetail: View
 {
    /** Entity with details to show. */
-   var spaceStation: SpaceStation
+   var spaceStation: SpaceStation?
 
    /** View contents. */
    var body: some View
    {
-      VStack
-      {
+//      VStack
+//      {
          ScrollView
          {
             VStack
             {
-               TitleField( text: spaceStation.name )
-               LeftField( text: spaceStation.status )
-               LeftField( text: spaceStation.orbit )
+               TitleField( text: spaceStation?.name )
+               LeftField( text: spaceStation?.status )
+               LeftField( text: spaceStation?.orbit )
             }
 
-            IconView( withURL: spaceStation.imageURL )
+            LoadedImageView( withURL: spaceStation?.imageURL )
 
-            StationEventList( stationEvents: spaceStation.eventsSet )
-            StationExpeditionList( stationExpeditions: spaceStation.expeditionsSet )
+            StationEventList( stationEvents: spaceStation?.eventsSet )
+            StationExpeditionList( stationExpeditions: spaceStation?.expeditionsSet )
          }
          .padding()
-      }
+//      }
       .navigationBarTitle( "SpaceStation", displayMode: .inline )
    }
 }
@@ -52,12 +52,14 @@ struct StationExpeditionList: View
             Divider()
             HStack
             {
+               // TODO collect these
                Text( "Expeditions" )
                   .font( .headline )
                   .foregroundColor( .secondary )
                Spacer()
             }
-            ForEach( sortExpeditionsByName( expeditionArray: Array( expeditions ) ), id: \.self )
+            // TODO make Expeditions identifiable so the id: param isn't needed
+            ForEach( sortExpeditionsByDate( expeditionArray: Array( expeditions ) ), id: \.self )
             {
                expedition in
                ExpeditionLink( expeditionID: expedition.id )
@@ -118,49 +120,18 @@ struct ExpeditionLink: View
       {
          HStack
          {
-            Text( name )
-               .font( .subheadline )
-            Spacer()
-            VStack
+            NavigationLink( destination: ExpeditionDetail( expedition: expedition ) )
             {
-               if let start: String = expedition.start
-               {
-                  Text( start )
-                     .font( .subheadline )
-               }
-               if let end: String = expedition.end
-               {
-                  Text( end )
-                     .font( .subheadline )
-               }
+               Text( name )
+               .font( .subheadline )
+            }
+            if let dates: String = expeditionDates( expedition: expedition )
+            {
+               Spacer()
+               Text( dates )
             }
          }
          .padding( 4 )
-      }
-   }
-}
-
-struct EventLink: View
-{
-   var eventID: Int64?
-
-   var body: some View
-   {
-      let context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
-      if let eventID: Int64 = eventID,
-         let event: Event = getEvent( by: eventID, context: context ),
-         let name: String = event.name
-      {
-         HStack
-         {
-            NavigationLink( destination: EventDetail( event: event ) )
-            {
-               Text( name )
-                  .font( .subheadline )
-            }
-            .padding( 4 )
-            Spacer()
-         }
       }
    }
 }

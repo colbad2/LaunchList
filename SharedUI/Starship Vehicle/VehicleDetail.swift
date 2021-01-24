@@ -16,7 +16,7 @@ struct VehicleDetail: View
          LeftField( prefix: "Flights: ", text: "\(vehicle.flights)" )
          LeftField( prefix: "First flight: ", text: vehicle.firstLaunchDate )
          LeftField( prefix: "Last flight: ", text: vehicle.lastLaunchDate )
-         IconView( withURL: vehicle.imageURL )
+         LoadedImageView( withURL: vehicle.imageURL )
          DescriptionView( desc: vehicle.details )
       }
       .padding()

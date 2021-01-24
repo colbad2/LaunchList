@@ -110,5 +110,7 @@ public struct AstronautJSON: Decodable
       {
          astronautEntity.sortingName = String( lastPart )
       }
+
+      astronautEntity.fetched = Date()
    }
 }

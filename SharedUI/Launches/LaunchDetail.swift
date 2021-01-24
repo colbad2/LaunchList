@@ -23,7 +23,7 @@ struct LaunchDetail: View
             }
             TwoFields( leftString: launch.getProviderName(),
                        rightString: launch.rocket?.name ?? launch.name )
-            TwoFields( leftString: launch.serviceProvider?.type,
+            TwoFields( leftString: launch.agency?.type,
                        rightString: launch.mission?.type )
             LeftField( text: launch.mission?.orbitName )
             if let start: Date = launch.windowStart
@@ -75,9 +75,9 @@ struct LaunchDetail: View
          // IconView( withURL: launch.image )
          NavigationLink( destination: ImageViewer( withURL: launch.image ) )
          {
-            IconView( withURL: launch.image )
+            LoadedImageView( withURL: launch.image )
          }
-         IconView( withURL: launch.infographic )
+         LoadedImageView( withURL: launch.infographic )
 
          ProgramLinks( programs: launch.programsSet )
       }

@@ -46,15 +46,17 @@ public struct SpaceStationJSON: Decodable
 
    public func updateEntity( entity: SpaceStation?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let spaceStationEntity = entity else { return }
 
-      entity.id = id
-      entity.name = name
-      entity.status = status?.name
-      entity.statusName = status?.name
-      entity.statusAbbreviation = status?.abbreviation
-      entity.statusDescription = status?.description
-      entity.orbit = orbit
-      entity.imageURL = imageURL
+      spaceStationEntity.id = id
+      spaceStationEntity.name = name
+      spaceStationEntity.status = status?.name
+      spaceStationEntity.statusName = status?.name
+      spaceStationEntity.statusAbbreviation = status?.abbreviation
+      spaceStationEntity.statusDescription = status?.description
+      spaceStationEntity.orbit = orbit
+      spaceStationEntity.imageURL = imageURL
+
+      spaceStationEntity.fetched = Date()
    }
 }

@@ -21,7 +21,7 @@ struct LiveStreamDetail: View
          ScrollView
          {
             TitleField( text: liveStream.title )
-            IconView( withURL: liveStream.image )
+            LoadedImageView( withURL: liveStream.image )
             DescriptionView( desc: liveStream.liveStreamDescription )
             if liveStream.url != nil
             {

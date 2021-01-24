@@ -57,12 +57,12 @@ public struct AgencyJSON: Decodable
    public func addToCoreData( context: NSManagedObjectContext ) -> Agency
    {
       let newAgency: Agency = Agency( context: context )
-      updateEntity( entity: newAgency, context: context )
+      updateEntity( entity: newAgency )
 
       return newAgency
    }
 
-   public func updateEntity( entity: Agency?, context: NSManagedObjectContext )
+   public func updateEntity( entity: Agency? )
    {
       guard let agencyEntity = entity else { return }
 
@@ -100,5 +100,7 @@ public struct AgencyJSON: Decodable
       {
          agencyEntity.countryCodes?.append( correction ) // DATABASE CORRECTION
       }
+
+      agencyEntity.fetched = Date()
    }
 }

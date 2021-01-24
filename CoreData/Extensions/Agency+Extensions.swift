@@ -117,7 +117,7 @@ public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> 
 }
 
 /**
- Fetches, updates, or creates a `Agency` from the context, given the data
+ Fetches, updates, or creates a `Agency` from the context, given `AgencyJSON` data
 
  - parameter agency: `AgencyJSON` JSON data about the agency
  - parameter context: `NSManagedObjectContext` Core Data object context
@@ -126,7 +126,21 @@ public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> 
 public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agency
 {
    let agencyEntity: Agency? = getAgency( by: agency.id, context: context )
-   agency.updateEntity( entity: agencyEntity, context: context )
+   agency.updateEntity( entity: agencyEntity )
+   return agencyEntity ?? agency.addToCoreData( context: context )
+}
+
+/**
+ Fetches, updates, or creates a `Agency` from the context, given `AgencyJSON` data
+
+ - parameter agency: `ServiceProviderJSON` JSON data about the agency
+ - parameter context: `NSManagedObjectContext` Core Data object context
+ - returns: updated `Agency`
+ */
+public func fetchAgency( agency: ServiceProviderJSON, context: NSManagedObjectContext ) -> Agency
+{
+   let agencyEntity: Agency? = getAgency( by: agency.id, context: context )
+   agency.updateEntity( entity: agencyEntity )
    return agencyEntity ?? agency.addToCoreData( context: context )
 }
 

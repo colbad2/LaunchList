@@ -4,6 +4,7 @@ import SwiftUI
 
 struct RowImage: View
 {
+   var image: UIImage?
    var imageURL: String?
    var defaultImage: UIImage?
    var drawSpace: Bool = true
@@ -12,9 +13,18 @@ struct RowImage: View
 
    var body: some View
    {
-      if let url: String = imageURL
+      if let image: UIImage = image
       {
-         IconView( withURL: url )
+         BundleImageView( image: image )
+            .frame( width: imageWidth ?? 50, height: imageHeight ?? 60 )
+            .clipped()
+            .cornerRadius( 8 )
+         Spacer()
+            .frame( width: 15 )
+      }
+      else if let url: String = imageURL
+      {
+         LoadedImageView( withURL: url )
             .frame( width: imageWidth ?? 50, height: imageHeight ?? 60 )
             .clipped()
             .cornerRadius( 8 )

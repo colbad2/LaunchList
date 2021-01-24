@@ -5,6 +5,875 @@ import CoreData
 // swiftlint:disable line_length
 // swiftlint:disable file_length
 
+private let getLaunchListJSON =
+"""
+{
+"count": 170,
+"next": "https://ll.thespacedevs.com/2.1.0/launch/upcoming/?hide_recent_previous=false&include_suborbital=true&is_crewed=false&limit=10&offset=10&related=false",
+"previous": null,
+"results": [
+{
+"id": "f213a5df-579a-4682-8143-df228e463049",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/f213a5df-579a-4682-8143-df228e463049/",
+"launch_library_id": 1965,
+"slug": "falcon-9-block-5-transporter-1-dedicated-sso-rides",
+"name": "Falcon 9 Block 5 | Transporter 1 (Dedicated SSO Rideshare)",
+"status": {
+"id": 1,
+"name": "Go for Launch",
+"abbrev": "Go",
+"description": "Current T-0 confirmed by official or reliable sources."
+},
+"net": "2021-01-24T15:00:00Z",
+"window_end": "2021-01-24T15:22:00Z",
+"window_start": "2021-01-24T15:00:00Z",
+"inhold": false,
+"tbdtime": false,
+"tbddate": false,
+"probability": 70,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 121,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/121/",
+"name": "SpaceX",
+"type": "Commercial"
+},
+"rocket": {
+"id": 2518,
+"configuration": {
+"id": 164,
+"launch_library_id": 188,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+"name": "Falcon 9 Block 5",
+"family": "Falcon",
+"full_name": "Falcon 9 Block 5",
+"variant": "Block 5"
+}
+},
+"mission": {
+"id": 1223,
+"launch_library_id": null,
+"name": "Transporter 1 (Dedicated SSO Rideshare)",
+"description": "Transporter 1 mission is a dedicated rideshare flight to a sun-synchronous orbit with dozens of small microsatellites and nanosatellites for commercial and government customers.",
+"launch_designator": null,
+"type": "Dedicated Rideshare",
+"orbit": {
+"id": 17,
+"name": "Sun-Synchronous Orbit",
+"abbrev": "SSO"
+}
+},
+"pad": {
+"id": 80,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/80/",
+"agency_id": 121,
+"name": "Space Launch Complex 40",
+"info_url": null,
+"wiki_url": "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40",
+"map_url": "http://maps.google.com/maps?q=28.56194122,-80.57735736",
+"latitude": "28.56194122",
+"longitude": "-80.57735736",
+"location": {
+"id": 12,
+"url": "https://ll.thespacedevs.com/2.1.0/location/12/",
+"name": "Cape Canaveral, FL, USA",
+"country_code": "USA",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
+"total_launch_count": 209,
+"total_landing_count": 20
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
+"total_launch_count": 64
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/falcon2520925_image_20210122224307.jpeg",
+"infographic": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/falcon2520925_infographic_20210122005810.jpeg",
+"program": []
+},
+{
+"id": "44670393-85da-4504-99f3-e5b95d71cbb6",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/44670393-85da-4504-99f3-e5b95d71cbb6/",
+"launch_library_id": null,
+"slug": "starship-sn9-10-km-flight",
+"name": "Starship SN9 | 10 km Flight",
+"status": {
+"id": 8,
+"name": "To Be Confirmed",
+"abbrev": "TBC",
+"description": "Awaiting official confirmation - current date is known with some certainty."
+},
+"net": "2021-01-25T14:00:00Z",
+"window_end": "2021-01-25T23:59:00Z",
+"window_start": "2021-01-25T14:00:00Z",
+"inhold": false,
+"tbdtime": false,
+"tbddate": false,
+"probability": null,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 121,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/121/",
+"name": "SpaceX",
+"type": "Commercial"
+},
+"rocket": {
+"id": 2815,
+"configuration": {
+"id": 207,
+"launch_library_id": null,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/207/",
+"name": "Starship Prototype",
+"family": "Starship",
+"full_name": "Starship Prototype",
+"variant": "Prototype"
+}
+},
+"mission": {
+"id": 1224,
+"launch_library_id": null,
+"name": "10 km Flight",
+"description": "The SN9 Starship prototype will attempt a first flight similar to the one performed by SN8. It consists of a powered ascent to an altitude of 10 km or 32,800 ft, followed by a belly flop maneuver, controlled descent, landing flip maneuver and landing.",
+"launch_designator": null,
+"type": "Test Flight",
+"orbit": {
+"id": 15,
+"name": "Suborbital",
+"abbrev": "Sub"
+}
+},
+"pad": {
+"id": 187,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/187/",
+"agency_id": null,
+"name": "Launch Pad B",
+"info_url": null,
+"wiki_url": "https://en.wikipedia.org/wiki/SpaceX_South_Texas_Launch_Site",
+"map_url": "https://www.google.com/maps?q=25.997116+N,+97.15503099856647+W",
+"latitude": "25.997116",
+"longitude": "-97.15503099856647",
+"location": {
+"id": 143,
+"url": "https://ll.thespacedevs.com/2.1.0/location/143/",
+"name": "SpaceX Space Launch Facility, TX, USA",
+"country_code": "USA",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_143_20200803142438.jpg",
+"total_launch_count": 5,
+"total_landing_count": 5
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_launch_pad_b_20201211004226.jpg",
+"total_launch_count": 0
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/starship2520sn_image_20210107083733.jpeg",
+"infographic": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/starship2520sn_infographic_20210122053825.png",
+"program": [
+{
+"id": 1,
+"url": "https://ll.thespacedevs.com/2.1.0/program/1/",
+"name": "SpaceX Starship",
+"description": "The SpaceX Starship is a fully reusable super heavy-lift launch vehicle under development by SpaceX since 2012, as a self-funded private spaceflight project.  The second stage of the Starship — is designed as a long-duration cargo and passenger-carrying spacecraft. It is expected to be initially used without any booster stage at all, as part of an extensive development program to prove out launch-and-landing and iterate on a variety of design details, particularly with respect to the vehicle's atmospheric reentry.",
+"agencies": [
+{
+"id": 121,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/121/",
+"name": "SpaceX",
+"type": "Commercial"
+}
+],
+"image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/spacex2520star_program_20201129204513.png",
+"start_date": "2019-03-01T05:00:00Z",
+"end_date": null,
+"info_url": "https://www.spacex.com/vehicles/starship/",
+"wiki_url": "https://en.wikipedia.org/wiki/SpaceX_Starship"
+}
+]
+},
+{
+"id": "dfd4f0e0-0ab4-494d-bd88-1b93b934b269",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/dfd4f0e0-0ab4-494d-bd88-1b93b934b269/",
+"launch_library_id": null,
+"slug": "falcon-9-block-5-starlink-17",
+"name": "Falcon 9 Block 5 | Starlink 17",
+"status": {
+"id": 2,
+"name": "To Be Determined",
+"abbrev": "TBD",
+"description": "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources."
+},
+"net": "2021-01-29T12:30:00Z",
+"window_end": "2021-01-29T12:30:00Z",
+"window_start": "2021-01-29T12:30:00Z",
+"inhold": false,
+"tbdtime": false,
+"tbddate": false,
+"probability": null,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 121,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/121/",
+"name": "SpaceX",
+"type": "Commercial"
+},
+"rocket": {
+"id": 2820,
+"configuration": {
+"id": 164,
+"launch_library_id": 188,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+"name": "Falcon 9 Block 5",
+"family": "Falcon",
+"full_name": "Falcon 9 Block 5",
+"variant": "Block 5"
+}
+},
+"mission": {
+"id": 1229,
+"launch_library_id": null,
+"name": "Starlink 17",
+"description": "A batch of 60 satellites for Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
+"launch_designator": null,
+"type": "Communications",
+"orbit": {
+"id": 8,
+"name": "Low Earth Orbit",
+"abbrev": "LEO"
+}
+},
+"pad": {
+"id": 87,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/87/",
+"agency_id": null,
+"name": "Launch Complex 39A",
+"info_url": null,
+"wiki_url": "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A",
+"map_url": "http://maps.google.com/maps?q=28.608+N,+80.604+W",
+"latitude": "28.60822681",
+"longitude": "-80.60428186",
+"location": {
+"id": 27,
+"url": "https://ll.thespacedevs.com/2.1.0/location/27/",
+"name": "Kennedy Space Center, FL, USA",
+"country_code": "USA",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
+"total_launch_count": 183,
+"total_landing_count": 0
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
+"total_launch_count": 126
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/falcon2520925_image_20210121062346.png",
+"infographic": null,
+"program": []
+},
+{
+"id": "30412a48-cb4d-43d6-a304-6ae5f062504f",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/30412a48-cb4d-43d6-a304-6ae5f062504f/",
+"launch_library_id": 2098,
+"slug": "kuaizhou-1a-jilin-1-02d",
+"name": "Kuaizhou-1A | Jilin-1-02D",
+"status": {
+"id": 2,
+"name": "To Be Determined",
+"abbrev": "TBD",
+"description": "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources."
+},
+"net": "2021-01-31T00:00:00Z",
+"window_end": "2021-01-31T00:00:00Z",
+"window_start": "2021-01-31T00:00:00Z",
+"inhold": false,
+"tbdtime": true,
+"tbddate": true,
+"probability": -1,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 184,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/184/",
+"name": "China Aerospace Science and Industry Corporation",
+"type": "Government"
+},
+"rocket": {
+"id": 2758,
+"configuration": {
+"id": 135,
+"launch_library_id": 155,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/135/",
+"name": "Kuaizhou",
+"family": "Kuaizhou",
+"full_name": "Kuaizhou-1A",
+"variant": "1A"
+}
+},
+"mission": {
+"id": 1156,
+"launch_library_id": 1346,
+"name": "Jilin-1-02D",
+"description": "Jilin-1 is a series of Chinese commercial remote sensing satellites.",
+"launch_designator": null,
+"type": "Earth Science",
+"orbit": null
+},
+"pad": {
+"id": 71,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/71/",
+"agency_id": null,
+"name": "Unknown Pad",
+"info_url": null,
+"wiki_url": "",
+"map_url": "",
+"latitude": "40.958",
+"longitude": "100.291",
+"location": {
+"id": 17,
+"url": "https://ll.thespacedevs.com/2.1.0/location/17/",
+"name": "Jiuquan, People's Republic of China",
+"country_code": "CHN",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_17_20200803142429.jpg",
+"total_launch_count": 97,
+"total_landing_count": 0
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_71_20200803143610.jpg",
+"total_launch_count": 25
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/kuaizhou_image_20191027094423.jpeg",
+"infographic": null,
+"program": []
+},
+{
+"id": "708c2b85-50d6-4baa-bd3e-fdfb0257ea50",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/708c2b85-50d6-4baa-bd3e-fdfb0257ea50/",
+"launch_library_id": 2099,
+"slug": "kuaizhou-1a-jilin-1-02f",
+"name": "Kuaizhou-1A | Jilin-1-02F",
+"status": {
+"id": 2,
+"name": "To Be Determined",
+"abbrev": "TBD",
+"description": "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources."
+},
+"net": "2021-01-31T00:00:00Z",
+"window_end": "2021-01-31T00:00:00Z",
+"window_start": "2021-01-31T00:00:00Z",
+"inhold": false,
+"tbdtime": true,
+"tbddate": true,
+"probability": -1,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 184,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/184/",
+"name": "China Aerospace Science and Industry Corporation",
+"type": "Government"
+},
+"rocket": {
+"id": 2759,
+"configuration": {
+"id": 135,
+"launch_library_id": 155,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/135/",
+"name": "Kuaizhou",
+"family": "Kuaizhou",
+"full_name": "Kuaizhou-1A",
+"variant": "1A"
+}
+},
+"mission": {
+"id": 1157,
+"launch_library_id": 1347,
+"name": "Jilin-1-02F",
+"description": "Jilin-1 is a series of Chinese commercial remote sensing satellites.",
+"launch_designator": null,
+"type": "Earth Science",
+"orbit": null
+},
+"pad": {
+"id": 71,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/71/",
+"agency_id": null,
+"name": "Unknown Pad",
+"info_url": null,
+"wiki_url": "",
+"map_url": "",
+"latitude": "40.958",
+"longitude": "100.291",
+"location": {
+"id": 17,
+"url": "https://ll.thespacedevs.com/2.1.0/location/17/",
+"name": "Jiuquan, People's Republic of China",
+"country_code": "CHN",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_17_20200803142429.jpg",
+"total_launch_count": 97,
+"total_landing_count": 0
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_71_20200803143610.jpg",
+"total_launch_count": 25
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/kuaizhou_image_20191027094423.jpeg",
+"infographic": null,
+"program": []
+},
+{
+"id": "c179a24e-416b-4077-af8a-4670dfdb880a",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/c179a24e-416b-4077-af8a-4670dfdb880a/",
+"launch_library_id": 1595,
+"slug": "soyuz-21a-bars-m-no-3",
+"name": "Soyuz 2.1a | Bars-M No. 3",
+"status": {
+"id": 2,
+"name": "To Be Determined",
+"abbrev": "TBD",
+"description": "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources."
+},
+"net": "2021-01-31T00:00:00Z",
+"window_end": "2021-01-31T00:00:00Z",
+"window_start": "2021-01-31T00:00:00Z",
+"inhold": false,
+"tbdtime": true,
+"tbddate": true,
+"probability": -1,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 193,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/193/",
+"name": "Russian Space Forces",
+"type": "Government"
+},
+"rocket": {
+"id": 78,
+"configuration": {
+"id": 24,
+"launch_library_id": 49,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/24/",
+"name": "Soyuz 2.1A",
+"family": "Soyuz",
+"full_name": "Soyuz 2.1A",
+"variant": "2.1A"
+}
+},
+"mission": {
+"id": 836,
+"launch_library_id": 842,
+"name": "Bars-M No. 3",
+"description": "Bars-M is the second incarnation of the Bars project, which was started in the mid 1990ies to develop a successor for the Komtea class of area surveillance satellites. The original Bars project was halted in the early 2000s. In 2007, TsSKB-Progress was contracted for Bars-M, for which reportedly the Yantar-based service module was replaced by a new developed advanced service module.\n\nThe Bars-M satellites feature an electro-optical camera system called Karat, which is developed and built by the Leningrad Optical Mechanical Association (LOMO), and a dual laser altimeter instrument to deliver topographic imagery, stereo images, altimeter data and high-resolution images with a ground resolution around 1 meter.",
+"launch_designator": null,
+"type": "Government/Top Secret",
+"orbit": {
+"id": 17,
+"name": "Sun-Synchronous Orbit",
+"abbrev": "SSO"
+}
+},
+"pad": {
+"id": 85,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/85/",
+"agency_id": 163,
+"name": "43/4 (43R)",
+"info_url": null,
+"wiki_url": "",
+"map_url": "http://maps.google.com/maps?q=62.929+N,+40.457+E",
+"latitude": "62.92883",
+"longitude": "40.457098",
+"location": {
+"id": 6,
+"url": "https://ll.thespacedevs.com/2.1.0/location/6/",
+"name": "Plesetsk Cosmodrome, Russian Federation",
+"country_code": "RUS",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_6_20200803142434.jpg",
+"total_launch_count": 71,
+"total_landing_count": 0
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_85_20200803143554.jpg",
+"total_launch_count": 37
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/soyuz_2.1a_image_20201013143850.jpg",
+"infographic": null,
+"program": []
+},
+{
+"id": "19407719-d66c-492d-9288-e5e6ddbadbd6",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/19407719-d66c-492d-9288-e5e6ddbadbd6/",
+"launch_library_id": 2026,
+"slug": "soyuz-21a-progress-ms-16-77p",
+"name": "Soyuz 2.1a | Progress MS-16 (77P)",
+"status": {
+"id": 8,
+"name": "To Be Confirmed",
+"abbrev": "TBC",
+"description": "Awaiting official confirmation - current date is known with some certainty."
+},
+"net": "2021-02-15T04:45:00Z",
+"window_end": "2021-02-15T04:45:00Z",
+"window_start": "2021-02-15T04:45:00Z",
+"inhold": false,
+"tbdtime": true,
+"tbddate": true,
+"probability": -1,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 63,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/63/",
+"name": "Russian Federal Space Agency (ROSCOSMOS)",
+"type": "Government"
+},
+"rocket": {
+"id": 2613,
+"configuration": {
+"id": 24,
+"launch_library_id": 49,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/24/",
+"name": "Soyuz 2.1A",
+"family": "Soyuz",
+"full_name": "Soyuz 2.1A",
+"variant": "2.1A"
+}
+},
+"mission": {
+"id": 1213,
+"launch_library_id": null,
+"name": "Progress MS-16",
+"description": "The Progress MS-16 Spacecraft will resupply the International Space Station.",
+"launch_designator": null,
+"type": "Resupply",
+"orbit": {
+"id": 8,
+"name": "Low Earth Orbit",
+"abbrev": "LEO"
+}
+},
+"pad": {
+"id": 20,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/20/",
+"agency_id": null,
+"name": "31/6",
+"info_url": null,
+"wiki_url": "",
+"map_url": "http://maps.google.com/maps?q=45.996+N,+63.564+E",
+"latitude": "45.996034",
+"longitude": "63.564003",
+"location": {
+"id": 15,
+"url": "https://ll.thespacedevs.com/2.1.0/location/15/",
+"name": "Baikonur Cosmodrome, Republic of Kazakhstan",
+"country_code": "KAZ",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_15_20200803142517.jpg",
+"total_launch_count": 465,
+"total_landing_count": 0
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_20_20200803143516.jpg",
+"total_launch_count": 75
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/soyuz_2.1a_image_20201013143850.jpg",
+"infographic": null,
+"program": [
+{
+"id": 17,
+"url": "https://ll.thespacedevs.com/2.1.0/program/17/",
+"name": "International Space Station",
+"description": "The International Space Station programme is tied together by a complex set of legal, political and financial agreements between the sixteen nations involved in the project, governing ownership of the various components, rights to crewing and utilization, and responsibilities for crew rotation and resupply of the International Space Station. It was conceived in 1984 by President Ronald Reagan, during the Space Station Freedom project as it was originally called.",
+"agencies": [
+{
+"id": 16,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/16/",
+"name": "Canadian Space Agency",
+"type": "Government"
+},
+{
+"id": 27,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/27/",
+"name": "European Space Agency",
+"type": "Multinational"
+},
+{
+"id": 37,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/37/",
+"name": "Japan Aerospace Exploration Agency",
+"type": "Government"
+},
+{
+"id": 44,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/44/",
+"name": "National Aeronautics and Space Administration",
+"type": "Government"
+},
+{
+"id": 63,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/63/",
+"name": "Russian Federal Space Agency (ROSCOSMOS)",
+"type": "Government"
+}
+],
+"image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/international2_program_20201129184745.png",
+"start_date": "1998-11-20T06:40:00Z",
+"end_date": null,
+"info_url": "https://www.nasa.gov/mission_pages/station/main/index.html",
+"wiki_url": "https://en.wikipedia.org/wiki/International_Space_Station_programme"
+}
+]
+},
+{
+"id": "f1a8d62e-709d-4e89-ade9-a8779492c7a9",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/f1a8d62e-709d-4e89-ade9-a8779492c7a9/",
+"launch_library_id": 2044,
+"slug": "antares-230-cygnus-crs-2-ng-15",
+"name": "Antares 230+ | Cygnus CRS-2 NG-15",
+"status": {
+"id": 8,
+"name": "To Be Confirmed",
+"abbrev": "TBC",
+"description": "Awaiting official confirmation - current date is known with some certainty."
+},
+"net": "2021-02-20T17:36:00Z",
+"window_end": "2021-02-20T17:36:00Z",
+"window_start": "2021-02-20T17:36:00Z",
+"inhold": false,
+"tbdtime": true,
+"tbddate": true,
+"probability": -1,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 257,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/257/",
+"name": "Northrop Grumman Innovation Systems",
+"type": "Commercial"
+},
+"rocket": {
+"id": 2677,
+"configuration": {
+"id": 210,
+"launch_library_id": 241,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/210/",
+"name": "Antares 230+",
+"family": "Antares",
+"full_name": "Antares 230+",
+"variant": "230+"
+}
+},
+"mission": null,
+"pad": {
+"id": 76,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/76/",
+"agency_id": 44,
+"name": "Launch Area 0 A",
+"info_url": null,
+"wiki_url": "",
+"map_url": "http://maps.google.com/maps?q=37.8337+N,+75.4881+W",
+"latitude": "37.8337",
+"longitude": "-75.4881",
+"location": {
+"id": 21,
+"url": "https://ll.thespacedevs.com/2.1.0/location/21/",
+"name": "Wallops Island, Virginia, USA",
+"country_code": "USA",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_21_20200803142423.jpg",
+"total_launch_count": 20,
+"total_landing_count": 0
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_76_20200803143538.jpg",
+"total_launch_count": 13
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/antares2520230252b_image_20191102024633.jpeg",
+"infographic": null,
+"program": [
+{
+"id": 11,
+"url": "https://ll.thespacedevs.com/2.1.0/program/11/",
+"name": "Commercial Resupply Services",
+"description": "Commercial Resupply Services (CRS) are a series of flights awarded by NASA for the delivery of cargo and supplies to the International Space Station.The first CRS contracts were signed in 2008 and awarded $1.6 billion to SpaceX for twelve cargo Dragon and $1.9 billion to Orbital Sciences for eight Cygnus flights, covering deliveries to 2016. The Falcon 9 and Antares rockets were also developed under the CRS program to deliver cargo spacecraft to the ISS.",
+"agencies": [
+{
+"id": 44,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/44/",
+"name": "National Aeronautics and Space Administration",
+"type": "Government"
+},
+{
+"id": 257,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/257/",
+"name": "Northrop Grumman Innovation Systems",
+"type": "Commercial"
+},
+{
+"id": 1020,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/1020/",
+"name": "Sierra Nevada Corporation",
+"type": "Commercial"
+},
+{
+"id": 121,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/121/",
+"name": "SpaceX",
+"type": "Commercial"
+}
+],
+"image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/commercial2520_program_20201129212219.png",
+"start_date": "2008-12-23T00:00:00Z",
+"end_date": null,
+"info_url": null,
+"wiki_url": "https://en.wikipedia.org/wiki/Commercial_Resupply_Services#Commercial_Resupply_Services"
+}
+]
+},
+{
+"id": "6bd4d3d9-d76d-4348-99d3-fad749b6b863",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/6bd4d3d9-d76d-4348-99d3-fad749b6b863/",
+"launch_library_id": 1945,
+"slug": "soyuz-21bfregat-m-oneweb-5",
+"name": "Soyuz 2.1b/Fregat-M | OneWeb 5",
+"status": {
+"id": 2,
+"name": "To Be Determined",
+"abbrev": "TBD",
+"description": "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources."
+},
+"net": "2021-02-25T00:00:00Z",
+"window_end": "2021-02-25T00:00:00Z",
+"window_start": "2021-02-25T00:00:00Z",
+"inhold": false,
+"tbdtime": true,
+"tbddate": true,
+"probability": -1,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 115,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/115/",
+"name": "Arianespace",
+"type": "Commercial"
+},
+"rocket": {
+"id": 2601,
+"configuration": {
+"id": 134,
+"launch_library_id": 153,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/134/",
+"name": "Soyuz 2.1B",
+"family": "Soyuz",
+"full_name": "Soyuz 2.1B Fregat-M",
+"variant": "Fregat-M"
+}
+},
+"mission": null,
+"pad": {
+"id": 83,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/83/",
+"agency_id": 63,
+"name": "Cosmodrome Site 1S",
+"info_url": null,
+"wiki_url": "https://en.wikipedia.org/wiki/Vostochny_Cosmodrome",
+"map_url": "https://www.google.ee/maps/place/51Â°53'03.8\"N+128Â°20'02.2\"E/",
+"latitude": "51.884395",
+"longitude": "128.333932",
+"location": {
+"id": 18,
+"url": "https://ll.thespacedevs.com/2.1.0/location/18/",
+"name": "Vostochny Cosmodrome, Siberia, Russian Federation",
+"country_code": "RUS",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_18_20200803142401.jpg",
+"total_launch_count": 6,
+"total_landing_count": 0
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_83_20200803143544.jpg",
+"total_launch_count": 6
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/soyuz25202.1b_image_20190520165337.jpg",
+"infographic": null,
+"program": []
+},
+{
+"id": "495fe114-753d-48b1-9d23-eb9adaa3fb23",
+"url": "https://ll.thespacedevs.com/2.1.0/launch/495fe114-753d-48b1-9d23-eb9adaa3fb23/",
+"launch_library_id": 1347,
+"slug": "atlas-v-551-stp-3",
+"name": "Atlas V 551 | STP-3",
+"status": {
+"id": 2,
+"name": "To Be Determined",
+"abbrev": "TBD",
+"description": "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources."
+},
+"net": "2021-02-26T00:00:00Z",
+"window_end": "2021-02-26T00:00:00Z",
+"window_start": "2021-02-26T00:00:00Z",
+"inhold": false,
+"tbdtime": true,
+"tbddate": false,
+"probability": -1,
+"holdreason": "",
+"failreason": "",
+"hashtag": null,
+"launch_service_provider": {
+"id": 124,
+"url": "https://ll.thespacedevs.com/2.1.0/agencies/124/",
+"name": "United Launch Alliance",
+"type": "Commercial"
+},
+"rocket": {
+"id": 111,
+"configuration": {
+"id": 27,
+"launch_library_id": 37,
+"url": "https://ll.thespacedevs.com/2.1.0/config/launcher/27/",
+"name": "Atlas V 551",
+"family": "Atlas",
+"full_name": "Atlas V 551",
+"variant": "551"
+}
+},
+"mission": null,
+"pad": {
+"id": 29,
+"url": "https://ll.thespacedevs.com/2.1.0/pad/29/",
+"agency_id": null,
+"name": "Space Launch Complex 41",
+"info_url": null,
+"wiki_url": "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_41",
+"map_url": "http://maps.google.com/maps?q=28.58341025,-80.58303644",
+"latitude": "28.58341025",
+"longitude": "-80.58303644",
+"location": {
+"id": 12,
+"url": "https://ll.thespacedevs.com/2.1.0/location/12/",
+"name": "Cape Canaveral, FL, USA",
+"country_code": "USA",
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
+"total_launch_count": 209,
+"total_landing_count": 20
+},
+"map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_29_20200803143528.jpg",
+"total_launch_count": 71
+},
+"webcast_live": false,
+"image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/atlas2520v2520551_image_20190224012316.jpeg",
+"infographic": null,
+"program": []
+}
+]
+}
+"""
+
 /**
  Gets an example Core Data entity `Agency` for use in previews.
 
@@ -865,38 +1734,6 @@ private let sampleRocketJSON =
     "full_name": "Space Launch System (SLS)",
     "variant": ""
   }
-}
-"""
-
-/**
- Gets an example Core Data entity `ServiceProvider` for use in previews.
-
- - returns: `ServiceProvider` entity suitable for previewing
- */
-public func getSampleServiceProviderEntity() -> ServiceProvider?
-{
-   return getEntityByID( entityID: 121,
-                         context: PersistenceController.preview.container.viewContext,
-                         entityName: SERVICE_PROVIDER_ENTITY_NAME ) as? ServiceProvider
-}
-
-/**
- Gets an example `ServiceProviderJSON` struct for previews.
-
- - returns: `ServiceProviderJSON` struct suitable for previewing
- */
-public func getSampleServiceProvider() -> ServiceProviderJSON?
-{
-   return parseJSONString( json: sampleServiceProviderJSON )
-}
-
-private let sampleServiceProviderJSON =
-   """
-{
-   "id": 121,
-   "name": "SpaceX",
-   "type": "Commercial",
-   "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
 }
 """
 

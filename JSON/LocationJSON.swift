@@ -52,13 +52,15 @@ public struct LocationJSON: Decodable
 
    public func updateEntity( entity: Location?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let locationEntity = entity else { return }
 
-      entity.countryCode = countryCode
-      entity.id = id
-      entity.mapImage = mapImage
-      entity.name = name
-      entity.totalLandingCount = totalLandingCount ?? -1
-      entity.totalLaunchCount = totalLaunchCount ?? -1
+      locationEntity.countryCode = countryCode
+      locationEntity.id = id
+      locationEntity.mapImage = mapImage
+      locationEntity.name = name
+      locationEntity.totalLandingCount = totalLandingCount ?? -1
+      locationEntity.totalLaunchCount = totalLaunchCount ?? -1
+
+      locationEntity.fetched = Date()
    }
 }

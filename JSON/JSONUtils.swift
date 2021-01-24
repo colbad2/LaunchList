@@ -87,35 +87,8 @@ public func wrapURL( _ urlString: String? ) -> URL?
  */
 public func parseJSONFile<T: Decodable>( filename: String ) -> T?
 {
-   let decoder: JSONDecoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      if let jsonData: Data = readBundleJSONFile( forName: filename )
-      {
-         return try decoder.decode( T.self, from: jsonData )
-      }
-   }
-   catch let error as DecodingError
-   {
-      switch error
-      {
-         case .typeMismatch( let key, let value ):
-            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
-         case .valueNotFound( let key, let value ):
-            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
-         case .keyNotFound( let key, let value ):
-            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
-         case .dataCorrupted( let key ):
-            print( "ERROR \(key): \(error.localizedDescription)" )
-         default:
-            print( "ERROR: \(error.localizedDescription)" )
-      }
-   }
-   catch { print( "error: ", error ) }
-
-   return nil
+   guard let jsonData: Data = readBundleJSONFile( forName: filename ) else { return nil }
+   return parseJSONString( jsonData: jsonData )
 }
 
 /**
@@ -126,35 +99,49 @@ public func parseJSONFile<T: Decodable>( filename: String ) -> T?
  */
 public func parseJSONString<T: Decodable>( json: String ) -> T?
 {
+   guard let jsonData: Data = json.data( using: .utf8 ) else { return nil }
+   return parseJSONString( jsonData: jsonData )
+}
+
+/**
+ Produce a JSON structure of the given type `T` from data. `T` is determined from context.
+
+ - parameter json: `Data`  JSON to parse
+ - returns: `T?` parsed JSON struct, if possible
+ */
+public func parseJSONString< T: Decodable >( jsonData: Data ) -> T?
+{
    let decoder: JSONDecoder = JSONDecoder()
    decoder.keyDecodingStrategy = .convertFromSnakeCase
 
    do
    {
-      if let jsonData: Data = json.data( using: .utf8 )
-      {
-         return try decoder.decode( T.self, from: jsonData )
-      }
+      return try decoder.decode( T.self, from: jsonData )
    }
    catch let error as DecodingError
    {
-      switch error
-      {
-         case .typeMismatch( let key, let value ):
-            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
-         case .valueNotFound( let key, let value ):
-            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
-         case .keyNotFound( let key, let value ):
-            print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
-         case .dataCorrupted( let key ):
-            print( "ERROR \(key): \(error.localizedDescription)" )
-         default:
-            print( "ERROR: \(error.localizedDescription)" )
-      }
+      reportDecodingError( error: error )
    }
    catch { print( "error: ", error ) }
 
    return nil
+}
+
+func reportDecodingError( error: DecodingError )
+{
+   switch error
+   {
+      case .typeMismatch( let key, let value ):
+         print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+      case .valueNotFound( let key, let value ):
+         print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+      case .keyNotFound( let key, let value ):
+         print( "ERROR \(key), value \(value): \(error.localizedDescription)" )
+      case .dataCorrupted( let key ):
+         print( "ERROR \(key): \(error.localizedDescription)" )
+      default:
+         print( "ERROR: \(error.localizedDescription)" )
+   }
 }
 
 /** Map of agencies to their country codes. */

@@ -36,14 +36,16 @@ public struct RocketJSON: Decodable
 
    func updateEntity( entity: Rocket?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let rocketEntity = entity else { return }
 
-      entity.id = configuration?.id ?? -1
-      entity.rocketID = id
-      entity.family = configuration?.family
-      entity.fullName = configuration?.fullName
-      entity.configurationID = configuration?.id ?? -1
-      entity.name = configuration?.name
-      entity.variant = configuration?.variant
+      rocketEntity.id = configuration?.id ?? -1
+      rocketEntity.rocketID = id
+      rocketEntity.family = configuration?.family
+      rocketEntity.fullName = configuration?.fullName
+      rocketEntity.configurationID = configuration?.id ?? -1
+      rocketEntity.name = configuration?.name
+      rocketEntity.variant = configuration?.variant
+
+      rocketEntity.fetched = Date()
    }
 }

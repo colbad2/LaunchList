@@ -48,5 +48,7 @@ public struct LauncherConfigJSON: Decodable
       launcherConfigEntity.name = name
       launcherConfigEntity.family = family
       launcherConfigEntity.fullName = fullName
+
+      launcherConfigEntity.fetched = Date()
    }
 }

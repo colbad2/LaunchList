@@ -47,17 +47,19 @@ public struct SpacecraftJSON: Decodable, Identifiable
 
    public func updateEntity( entity: Spacecraft?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let spacecraftEntity = entity else { return }
 
-      entity.id = id
-      entity.url = url
-      entity.name = name
-      entity.serialNumber = serialNumber
-      entity.status = status?.name
-      entity.statusName = status?.name
-      entity.statusAbbreviation = status?.abbreviation
-      entity.statusDescription = status?.description
-      entity.spacecraftDescription = spacecraftDescription
-      entity.addSpacecraftConfigFromJSON( spacecraftConfig: spacecraftConfig, context: context )
+      spacecraftEntity.id = id
+      spacecraftEntity.url = url
+      spacecraftEntity.name = name
+      spacecraftEntity.serialNumber = serialNumber
+      spacecraftEntity.status = status?.name
+      spacecraftEntity.statusName = status?.name
+      spacecraftEntity.statusAbbreviation = status?.abbreviation
+      spacecraftEntity.statusDescription = status?.description
+      spacecraftEntity.spacecraftDescription = spacecraftDescription
+      spacecraftEntity.addSpacecraftConfigFromJSON( spacecraftConfig: spacecraftConfig, context: context )
+
+      spacecraftEntity.fetched = Date()
    }
 }

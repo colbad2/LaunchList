@@ -26,7 +26,7 @@ extension Launch
 
    func getProviderName() -> String // DATABASE CHANGE
    {
-      var providerName: String? = self.serviceProvider?.name
+      var providerName: String? = self.agency?.name
       if providerName == "National Aeronautics and Space Administration"
       {
          providerName = "NASA"
@@ -47,15 +47,14 @@ extension Launch
     Adds the JSON struct, creating or updating as necessary.
 
     - parameter provider: `ServiceProviderJSON?` JSON struct to add
-    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
     */
-   func addServiceProviderFromJSON( provider: ServiceProviderJSON?, context: NSManagedObjectContext )
+   func addAgencyFromJSON( provider: ServiceProviderJSON?, context: NSManagedObjectContext )
    {
-      if let provider: ServiceProviderJSON = provider
-      {
-         self.serviceProvider = fetchProvider( provider: provider, context: context )
-         self.serviceProvider?.addToLaunches( self )
-      }
+      guard let json = provider else { return }
+      let agencyEntity: Agency = fetchAgency( agency: json, context: context )
+      self.agency = agencyEntity
+      agencyEntity.addToLaunches( self )
    }
 
    /**

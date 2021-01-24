@@ -60,20 +60,22 @@ struct MissionJSON: Decodable
 
    func updateEntity( entity: Mission?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let missionEntity = entity else { return }
 
-      entity.missionDescription = description?.fixBadUTF()
-      entity.id = id
-      entity.launchDesignator = launchDesignator
-      entity.name = name?.fixBadUTF().trim()
+      missionEntity.missionDescription = description?.fixBadUTF()
+      missionEntity.id = id
+      missionEntity.launchDesignator = launchDesignator
+      missionEntity.name = name?.fixBadUTF().trim()
 
       if let orbitName: String = orbit?.name
       {
-         entity.orbitName = normalizedOrbitName( orbitName, abbreviation: orbit?.abbreviation )
+         missionEntity.orbitName = normalizedOrbitName( orbitName, abbreviation: orbit?.abbreviation )
       }
-      entity.orbitAbbreviation = orbit?.abbreviation
+      missionEntity.orbitAbbreviation = orbit?.abbreviation
 
-      entity.type = type
+      missionEntity.type = type
+
+      missionEntity.fetched = Date()
    }
 }
 

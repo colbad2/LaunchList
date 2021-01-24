@@ -57,5 +57,7 @@ public struct ExpeditionJSON: Decodable
       expeditionEntity.start = start
       expeditionEntity.end = end
       expeditionEntity.addSpaceStationFromJSON( spaceStation: spaceStation, context: context )
+
+      expeditionEntity.fetched = Date()
    }
 }

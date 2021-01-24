@@ -117,5 +117,7 @@ public struct PadJSON: Decodable
             padEntity.wikiURL = wikiURL
          }
       }
+
+      padEntity.fetched = Date()
    }
 }

@@ -43,5 +43,7 @@ public struct FlightVehicleJSON: Decodable, Identifiable
       flightVehicleEntity.destination = destination
       flightVehicleEntity.missionEnd = missionEnd
       flightVehicleEntity.addSpacecraftFromJSON( spacecraft: spacecraft, context: context )
+
+      flightVehicleEntity.fetched = Date()
    }
 }

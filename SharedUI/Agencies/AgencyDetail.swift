@@ -10,16 +10,26 @@ struct AgencyDetail: View
    {
       ScrollView
       {
-         HStack( alignment: .top )
+         HStack
          {
-            TitleField( text: agency.name )
-            if let countryCodes: [String] = agency.countryCodes
+            if let logoName: String = agency.logoName,
+               let logo: UIImage = UIImage( named: logoName )
             {
-               Spacer()
-               Text( flagsFromCodeArray( countryCodes ) ?? "" )
+               RowImage( image: logo, imageWidth: 100, imageHeight: 100 )
+            }
+
+            HStack( alignment: .top )
+            {
+               TitleField( text: agency.name )
+               if let countryCodes: [String] = agency.countryCodes
+               {
+                  Spacer()
+                  Text( flagsFromCodeArray( countryCodes ) ?? "" )
+               }
             }
          }
-         IconView( withURL: agency.imageURL )
+
+         LoadedImageView( withURL: agency.imageURL )
 
          VStack
          {
@@ -33,6 +43,10 @@ struct AgencyDetail: View
          }
 
          DescriptionView( desc: agency.agencyDescription )
+
+         LinkBarView( links: [ "Website": AgencyData.shared.getWebsite( agency ) ?? "",
+                               "Wiki": AgencyData.shared.getWiki( agency ) ?? "",
+                               "Twitter": AgencyData.shared.getTwitter( agency ) ?? "" ] )
       }
       .padding()
       .navigationBarTitle( "Agency", displayMode: .inline )

@@ -39,7 +39,7 @@ extension Expedition
 }
 
 /**
- Returns a sorted version of the given `Expedition` array.
+ Returns a name sorted version of the given `Expedition` array.
 
  - parameter expeditionArray: `[Expedition]?` list of `Expedition`s to sort
  - returns: `[Expedition]` sorted version of the given `Expedition` list, never nil
@@ -57,6 +57,35 @@ public func sortExpeditionsByName( expeditionArray: [Expedition]? ) -> [Expediti
          let name2: String = expedition2.name
       {
          return name1 < name2
+      }
+      else
+      {
+         return false
+      }
+   }
+
+   return expeditions
+}
+
+/**
+ Returns a date sorted version of the given `Expedition` array.
+
+ - parameter expeditionArray: `[Expedition]?` list of `Expedition`s to sort
+ - returns: `[Expedition]` sorted version of the given `Expedition` list, never nil
+ */
+public func sortExpeditionsByDate( expeditionArray: [Expedition]? ) -> [Expedition]
+{
+   guard let expeditionArray = expeditionArray else { return [] }
+
+   var expeditions: [Expedition] = Array( expeditionArray )
+   expeditions.sort
+   {
+      expedition1, expedition2 in
+
+      if let start1: String = expedition1.start,
+         let start2: String = expedition2.start
+      {
+         return start1 < start2
       }
       else
       {

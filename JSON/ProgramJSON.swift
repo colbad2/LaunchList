@@ -101,16 +101,18 @@ public struct ProgramJSON: Decodable
     */
    public func updateEntity( entity: Program?, context: NSManagedObjectContext )
    {
-      guard let entity = entity else { return }
+      guard let programEntity = entity else { return }
 
-      entity.id = id
-      entity.name = name
-      entity.programDescription = description
-      addAgencies( entity: entity, agencies: agencies, context: context )
-      entity.imageURL = imageURL
-      entity.startDate = parseISODate( isoDate: startDate )
-      entity.endDate = parseISODate( isoDate: endDate )
-      entity.infoURL = infoURL
-      entity.wikiURL = wikiURL
+      programEntity.id = id
+      programEntity.name = name
+      programEntity.programDescription = description
+      addAgencies( entity: programEntity, agencies: agencies, context: context )
+      programEntity.imageURL = imageURL
+      programEntity.startDate = parseISODate( isoDate: startDate )
+      programEntity.endDate = parseISODate( isoDate: endDate )
+      programEntity.infoURL = infoURL
+      programEntity.wikiURL = wikiURL
+
+      programEntity.fetched = Date()
    }
 }

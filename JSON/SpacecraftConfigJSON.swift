@@ -46,5 +46,7 @@ public struct SpacecraftConfigJSON: Decodable, Identifiable
       spacecraftConfigEntity.url = url
       spacecraftConfigEntity.type = type?.name
       spacecraftConfigEntity.addAgencyFromJSON( agency: agency, context: context )
+
+      spacecraftConfigEntity.fetched = Date()
    }
 }

@@ -33,7 +33,7 @@ import CoreData
      "window_start": "2021-01-05T01:27:00Z"
     }
  */
-public struct LaunchJSON: Decodable, Identifiable
+public struct LaunchJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
@@ -105,7 +105,10 @@ public struct LaunchJSON: Decodable, Identifiable
       launchEntity.image = image
       launchEntity.infographic = infographic
       launchEntity.inHold = inHold ?? false
-      launchEntity.addServiceProviderFromJSON( provider: serviceProvider, context: context )
+
+      // launchEntity.addServiceProviderFromJSON( provider: serviceProvider, context: context )
+      launchEntity.addAgencyFromJSON( provider: serviceProvider, context: context )
+
       launchEntity.addMissionFromJSON( mission: mission, context: context )
       launchEntity.name = name?.fixBadUTF()
       launchEntity.net = parseISODate( isoDate: net )
@@ -123,5 +126,44 @@ public struct LaunchJSON: Decodable, Identifiable
       launchEntity.windowEnd = parseISODate( isoDate: windowEnd )
       launchEntity.windowStart = parseISODate( isoDate: windowStart )
       launchEntity.sortingDate = parseISODate( isoDate: windowStart )
+
+      launchEntity.fetched = Date()
+   }
+}
+
+/**
+ Organization providing services for the launch. This is a subset of a full `Agency`.
+ 
+ Part of a `LaunchJSON` object
+ ### Example JSON:
+ {
+ "id": 121,
+ "name": "SpaceX",
+ "type": "Commercial",
+ "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
+ }
+ */
+public struct ServiceProviderJSON: Decodable
+{
+   var id: Int64
+   var name: String?
+   var type: String?
+   var url: URL? // unused
+
+   public func addToCoreData( context: NSManagedObjectContext ) -> Agency
+   {
+      let newServiceProvider: Agency = Agency( context: context )
+      updateEntity( entity: newServiceProvider )
+
+      return newServiceProvider
+   }
+
+   public func updateEntity( entity: Agency? )
+   {
+      guard let agencyEntity = entity else { return }
+
+      agencyEntity.id = id
+      agencyEntity.name = name
+      agencyEntity.type = type
    }
 }

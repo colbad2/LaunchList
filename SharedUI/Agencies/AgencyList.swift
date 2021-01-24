@@ -6,8 +6,33 @@ import SwiftUI
 struct AgencyList: View
 {
    @FetchRequest( entity: Agency.entity(),
-                  sortDescriptors: [ NSSortDescriptor( keyPath: \Agency.name,
-                                                       ascending: true ) ],
+                  sortDescriptors: [
+                     NSSortDescriptor( keyPath: \Agency.name,
+                                       ascending: true )
+                     // TODO without a case-insensitive name, the order is wrong
+//                     {
+//                        name1, name2 -> ComparisonResult in
+//
+//                        guard let string1: String = name1 as? String else { return ComparisonResult.orderedSame }
+//                        guard let string2: String = name2 as? String else { return ComparisonResult.orderedSame }
+//
+//                        let nameString1: String = string1.lowercased()
+//                        let nameString2: String = string2.lowercased()
+//
+//                        if nameString1 < nameString2
+//                        {
+//                           return ComparisonResult.orderedAscending
+//                        }
+//                        else if nameString1 == nameString2
+//                        {
+//                           return ComparisonResult.orderedSame
+//                        }
+//                        else
+//                        {
+//                           return ComparisonResult.orderedDescending
+//                        }
+//                     }
+                  ],
                   animation: .default )
    private var agencies: FetchedResults< Agency >
 
@@ -17,17 +42,23 @@ struct AgencyList: View
       {
          ( agency: Agency ) in
 
-         if isBasic( agency: agency )
+         if let logoName: String = agency.logoName,
+            let logo: UIImage = UIImage( named: logoName )
          {
-            AgencyRow( agency: agency )
+            RowImage( image: logo, imageWidth: 50, imageHeight: 50 )
          }
-         else
-         {
+
+//         if isBasic( agency: agency )
+//         {
+//            AgencyRow( agency: agency )
+//         }
+//         else
+//         {
             NavigationLink( destination: AgencyDetail( agency: agency ) )
             {
                AgencyRow( agency: agency )
             }
-         }
+//         }
       }
       .navigationBarTitle( "Agencies", displayMode: .inline )
    }

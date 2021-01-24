@@ -13,8 +13,15 @@ struct ExpeditionDetail: View
          ScrollView
          {
             TitleField( text: expedition.name )
-            LeftField( prefix: "began: ", text: expedition.start )
-            LeftField( prefix: "ended: ", text: expedition.end )
+            NavigationLink( destination: SpaceStationDetail( spaceStation: expedition.spaceStation ) )
+            {
+               LeftField( prefix: "destination: ", text: expedition.spaceStation?.name )
+            }
+            LeftField( prefix: "began: ", text: dateString( parseISODate( isoDate: expedition.start ) ) )
+            LeftField( prefix: "ended: ", text: dateString( parseISODate( isoDate: expedition.end ) ) )
+            LeftField( prefix: "orbit: ", text: expedition.spaceStation?.orbit )
+
+            LoadedImageView( withURL: expedition.spaceStation?.imageURL )
          }
          .padding()
       }

@@ -70,5 +70,7 @@ public struct VehicleJSON: Decodable
       vehicleEntity.flights = flights
       vehicleEntity.lastLaunchDate = lastLaunchDate
       vehicleEntity.firstLaunchDate = firstLaunchDate
+
+      vehicleEntity.fetched = Date()
    }
 }

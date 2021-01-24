@@ -52,5 +52,7 @@ public struct DockingJSON: Decodable, Identifiable
       dockingEntity.addEntityFromJSON( json: flightVehicle, context: context )
       dockingEntity.dockingLocationName = dockingLocation?.name
       dockingEntity.sortingDate = parseISODate( isoDate: docking )
+
+      dockingEntity.fetched = Date()
    }
 }

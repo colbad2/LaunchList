@@ -21,8 +21,6 @@
 		A25584F225B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584EF25B374B60075B128 /* FlightVehicle+Extensions.swift */; };
 		A25584FE25B375510075B128 /* Rocket+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584FD25B375510075B128 /* Rocket+Extensions.swift */; };
 		A25584FF25B375510075B128 /* Rocket+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584FD25B375510075B128 /* Rocket+Extensions.swift */; };
-		A255850625B375890075B128 /* ServiceProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255850525B375890075B128 /* ServiceProvider+Extensions.swift */; };
-		A255850725B375890075B128 /* ServiceProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255850525B375890075B128 /* ServiceProvider+Extensions.swift */; };
 		A255851825B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */; };
 		A255851925B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */; };
 		A255852025B3BB440075B128 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851F25B3BB440075B128 /* Samples.swift */; };
@@ -53,9 +51,6 @@
 		A280D09025B34AF300CF6E33 /* NoticeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06325B34AF300CF6E33 /* NoticeJSON.swift */; };
 		A280D09125B34AF400CF6E33 /* NoticeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06325B34AF300CF6E33 /* NoticeJSON.swift */; };
 		A280D09225B34AF400CF6E33 /* NoticeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06325B34AF300CF6E33 /* NoticeJSON.swift */; };
-		A280D09325B34AF400CF6E33 /* ServiceProviderJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06425B34AF300CF6E33 /* ServiceProviderJSON.swift */; };
-		A280D09425B34AF400CF6E33 /* ServiceProviderJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06425B34AF300CF6E33 /* ServiceProviderJSON.swift */; };
-		A280D09525B34AF400CF6E33 /* ServiceProviderJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06425B34AF300CF6E33 /* ServiceProviderJSON.swift */; };
 		A280D09625B34AF400CF6E33 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06525B34AF300CF6E33 /* JSONUtils.swift */; };
 		A280D09725B34AF400CF6E33 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06525B34AF300CF6E33 /* JSONUtils.swift */; };
 		A280D09825B34AF400CF6E33 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06525B34AF300CF6E33 /* JSONUtils.swift */; };
@@ -116,9 +111,6 @@
 		A280D0CF25B34AF400CF6E33 /* PadListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07925B34AF300CF6E33 /* PadListJSON.swift */; };
 		A280D0D025B34AF400CF6E33 /* PadListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07925B34AF300CF6E33 /* PadListJSON.swift */; };
 		A280D0D125B34AF400CF6E33 /* PadListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07925B34AF300CF6E33 /* PadListJSON.swift */; };
-		A280D0D225B34AF400CF6E33 /* ServiceProviderListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07A25B34AF300CF6E33 /* ServiceProviderListJSON.swift */; };
-		A280D0D325B34AF400CF6E33 /* ServiceProviderListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07A25B34AF300CF6E33 /* ServiceProviderListJSON.swift */; };
-		A280D0D425B34AF400CF6E33 /* ServiceProviderListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07A25B34AF300CF6E33 /* ServiceProviderListJSON.swift */; };
 		A280D0D525B34AF400CF6E33 /* ExpeditionListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07B25B34AF300CF6E33 /* ExpeditionListJSON.swift */; };
 		A280D0D625B34AF400CF6E33 /* ExpeditionListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07B25B34AF300CF6E33 /* ExpeditionListJSON.swift */; };
 		A280D0D725B34AF400CF6E33 /* ExpeditionListJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D07B25B34AF300CF6E33 /* ExpeditionListJSON.swift */; };
@@ -169,7 +161,6 @@
 		A280D15725B34B7F00CF6E33 /* LaunchListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10D25B34B7E00CF6E33 /* LaunchListApp.swift */; };
 		A280D15825B34B7F00CF6E33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10E25B34B7E00CF6E33 /* SettingsView.swift */; };
 		A280D15925B34B7F00CF6E33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10E25B34B7E00CF6E33 /* SettingsView.swift */; };
-		A280D15A25B34B7F00CF6E33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D10E25B34B7E00CF6E33 /* SettingsView.swift */; };
 		A280D15B25B34B7F00CF6E33 /* LiveStreamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11025B34B7E00CF6E33 /* LiveStreamDetail.swift */; };
 		A280D15C25B34B7F00CF6E33 /* LiveStreamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11025B34B7E00CF6E33 /* LiveStreamDetail.swift */; };
 		A280D15D25B34B7F00CF6E33 /* LiveStreamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D11025B34B7E00CF6E33 /* LiveStreamDetail.swift */; };
@@ -211,9 +202,9 @@
 		A280D18225B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12125B34B7E00CF6E33 /* RemoteImageCache.swift */; };
 		A280D18325B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12125B34B7E00CF6E33 /* RemoteImageCache.swift */; };
 		A280D18425B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12125B34B7E00CF6E33 /* RemoteImageCache.swift */; };
-		A280D18525B34B7F00CF6E33 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* IconView.swift */; };
-		A280D18625B34B7F00CF6E33 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* IconView.swift */; };
-		A280D18725B34B7F00CF6E33 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* IconView.swift */; };
+		A280D18525B34B7F00CF6E33 /* LoadedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* LoadedImageView.swift */; };
+		A280D18625B34B7F00CF6E33 /* LoadedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* LoadedImageView.swift */; };
+		A280D18725B34B7F00CF6E33 /* LoadedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12325B34B7E00CF6E33 /* LoadedImageView.swift */; };
 		A280D18825B34B7F00CF6E33 /* RowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12425B34B7E00CF6E33 /* RowImage.swift */; };
 		A280D18925B34B7F00CF6E33 /* RowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12425B34B7E00CF6E33 /* RowImage.swift */; };
 		A280D18A25B34B7F00CF6E33 /* RowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D12425B34B7E00CF6E33 /* RowImage.swift */; };
@@ -274,12 +265,6 @@
 		A280D1C125B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13B25B34B7F00CF6E33 /* ExpeditionDetail.swift */; };
 		A280D1C225B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13B25B34B7F00CF6E33 /* ExpeditionDetail.swift */; };
 		A280D1C325B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13B25B34B7F00CF6E33 /* ExpeditionDetail.swift */; };
-		A280D1C425B34B7F00CF6E33 /* ServiceProviderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13D25B34B7F00CF6E33 /* ServiceProviderDetail.swift */; };
-		A280D1C525B34B7F00CF6E33 /* ServiceProviderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13D25B34B7F00CF6E33 /* ServiceProviderDetail.swift */; };
-		A280D1C625B34B7F00CF6E33 /* ServiceProviderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13D25B34B7F00CF6E33 /* ServiceProviderDetail.swift */; };
-		A280D1C725B34B7F00CF6E33 /* ServiceProviderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13E25B34B7F00CF6E33 /* ServiceProviderList.swift */; };
-		A280D1C825B34B7F00CF6E33 /* ServiceProviderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13E25B34B7F00CF6E33 /* ServiceProviderList.swift */; };
-		A280D1C925B34B7F00CF6E33 /* ServiceProviderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13E25B34B7F00CF6E33 /* ServiceProviderList.swift */; };
 		A280D1CA25B34B7F00CF6E33 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13F25B34B7F00CF6E33 /* TabsView.swift */; };
 		A280D1CB25B34B7F00CF6E33 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13F25B34B7F00CF6E33 /* TabsView.swift */; };
 		A280D1CC25B34B7F00CF6E33 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D13F25B34B7F00CF6E33 /* TabsView.swift */; };
@@ -371,6 +356,13 @@
 		A2A416AA25B3BE1C005143D6 /* Mission+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A416A825B3BE1C005143D6 /* Mission+Extensions.swift */; };
 		A2A416B125B3BFF0005143D6 /* ConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A416B025B3BFF0005143D6 /* ConfigurationJSON.swift */; };
 		A2A416B225B3BFF0005143D6 /* ConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A416B025B3BFF0005143D6 /* ConfigurationJSON.swift */; };
+		A2AEAA9A25BC78DE002B8953 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAA9925BC78DE002B8953 /* APIManager.swift */; };
+		A2AEAAA125BCA49E002B8953 /* LaunchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAA025BCA49E002B8953 /* LaunchRequest.swift */; };
+		A2AEAAA725BCACC9002B8953 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAA9925BC78DE002B8953 /* APIManager.swift */; };
+		A2AEAAAE25BCC4F0002B8953 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAAD25BCC4F0002B8953 /* APIRequest.swift */; };
+		A2AEAABA25BCC8FE002B8953 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAB925BCC8FE002B8953 /* View+Extensions.swift */; };
+		A2AEAAC125BDE349002B8953 /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAC025BDE349002B8953 /* JSONResponse.swift */; };
+		A2AEAAC225BDE349002B8953 /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAC025BDE349002B8953 /* JSONResponse.swift */; };
 		A2B75C1F25B403D1002E95A0 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851F25B3BB440075B128 /* Samples.swift */; };
 		A2D6D7942597B8CC003D5401 /* AgenciesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7932597B8CC003D5401 /* AgenciesUnitTests.swift */; };
 		A2D6D7B42597BD7D003D5401 /* Checkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6D7B12597BD7D003D5401 /* Checkers.swift */; };
@@ -1918,6 +1910,14 @@
 		A2EF80BC25B68839007F3501 /* LauncherList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80BB25B68839007F3501 /* LauncherList.swift */; };
 		A2EF80C825B68944007F3501 /* LauncherDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80C725B68944007F3501 /* LauncherDetail.swift */; };
 		A2EF80C925B68944007F3501 /* LauncherDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80C725B68944007F3501 /* LauncherDetail.swift */; };
+		A2EF80D025B735AE007F3501 /* EventLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80CF25B735AE007F3501 /* EventLink.swift */; };
+		A2EF80D125B735AE007F3501 /* EventLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80CF25B735AE007F3501 /* EventLink.swift */; };
+		A2EF80D825B735F9007F3501 /* ExpeditionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80D725B735F9007F3501 /* ExpeditionRow.swift */; };
+		A2EF80D925B735F9007F3501 /* ExpeditionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80D725B735F9007F3501 /* ExpeditionRow.swift */; };
+		A2EF80E625B736DD007F3501 /* AgencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80E525B736DD007F3501 /* AgencyData.swift */; };
+		A2EF80E725B736DD007F3501 /* AgencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80E525B736DD007F3501 /* AgencyData.swift */; };
+		A2EF80EE25B7381F007F3501 /* AgencyLogos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2EF80ED25B7381F007F3501 /* AgencyLogos.xcassets */; };
+		A2EF80EF25B7381F007F3501 /* AgencyLogos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2EF80ED25B7381F007F3501 /* AgencyLogos.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1956,7 +1956,6 @@
 		A25584E625B374450075B128 /* Docking+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Docking+Extensions.swift"; sourceTree = "<group>"; };
 		A25584EF25B374B60075B128 /* FlightVehicle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlightVehicle+Extensions.swift"; sourceTree = "<group>"; };
 		A25584FD25B375510075B128 /* Rocket+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rocket+Extensions.swift"; sourceTree = "<group>"; };
-		A255850525B375890075B128 /* ServiceProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceProvider+Extensions.swift"; sourceTree = "<group>"; };
 		A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LauncherConfig+Extensions.swift"; sourceTree = "<group>"; };
 		A255851F25B3BB440075B128 /* Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Samples.swift; sourceTree = "<group>"; };
 		A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautStatusJSON.swift; sourceTree = "<group>"; };
@@ -1972,7 +1971,6 @@
 		A280D06125B34AF300CF6E33 /* RoadClosureJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoadClosureJSON.swift; sourceTree = "<group>"; };
 		A280D06225B34AF300CF6E33 /* ExpeditionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpeditionJSON.swift; sourceTree = "<group>"; };
 		A280D06325B34AF300CF6E33 /* NoticeJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeJSON.swift; sourceTree = "<group>"; };
-		A280D06425B34AF300CF6E33 /* ServiceProviderJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderJSON.swift; sourceTree = "<group>"; };
 		A280D06525B34AF300CF6E33 /* JSONUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
 		A280D06625B34AF300CF6E33 /* SpaceStationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceStationJSON.swift; sourceTree = "<group>"; };
 		A280D06725B34AF300CF6E33 /* AgencyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyJSON.swift; sourceTree = "<group>"; };
@@ -1993,7 +1991,6 @@
 		A280D07725B34AF300CF6E33 /* LaunchListJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchListJSON.swift; sourceTree = "<group>"; };
 		A280D07825B34AF300CF6E33 /* StarshipEventsJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipEventsJSON.swift; sourceTree = "<group>"; };
 		A280D07925B34AF300CF6E33 /* PadListJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadListJSON.swift; sourceTree = "<group>"; };
-		A280D07A25B34AF300CF6E33 /* ServiceProviderListJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderListJSON.swift; sourceTree = "<group>"; };
 		A280D07B25B34AF300CF6E33 /* ExpeditionListJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpeditionListJSON.swift; sourceTree = "<group>"; };
 		A280D07C25B34AF300CF6E33 /* LauncherListJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LauncherListJSON.swift; sourceTree = "<group>"; };
 		A280D07D25B34AF300CF6E33 /* ProgramListJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListJSON.swift; sourceTree = "<group>"; };
@@ -2025,7 +2022,7 @@
 		A280D11F25B34B7E00CF6E33 /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		A280D12025B34B7E00CF6E33 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		A280D12125B34B7E00CF6E33 /* RemoteImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteImageCache.swift; sourceTree = "<group>"; };
-		A280D12325B34B7E00CF6E33 /* IconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
+		A280D12325B34B7E00CF6E33 /* LoadedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedImageView.swift; sourceTree = "<group>"; };
 		A280D12425B34B7E00CF6E33 /* RowImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowImage.swift; sourceTree = "<group>"; };
 		A280D12525B34B7E00CF6E33 /* LinkBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkBarView.swift; sourceTree = "<group>"; };
 		A280D12625B34B7E00CF6E33 /* AgencyLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyLink.swift; sourceTree = "<group>"; };
@@ -2046,8 +2043,6 @@
 		A280D13825B34B7F00CF6E33 /* TimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		A280D13A25B34B7F00CF6E33 /* ExpeditionLinks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpeditionLinks.swift; sourceTree = "<group>"; };
 		A280D13B25B34B7F00CF6E33 /* ExpeditionDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpeditionDetail.swift; sourceTree = "<group>"; };
-		A280D13D25B34B7F00CF6E33 /* ServiceProviderDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderDetail.swift; sourceTree = "<group>"; };
-		A280D13E25B34B7F00CF6E33 /* ServiceProviderList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderList.swift; sourceTree = "<group>"; };
 		A280D13F25B34B7F00CF6E33 /* TabsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		A280D14125B34B7F00CF6E33 /* AstronautList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AstronautList.swift; sourceTree = "<group>"; };
 		A280D14225B34B7F00CF6E33 /* AstronautDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AstronautDetail.swift; sourceTree = "<group>"; };
@@ -2090,6 +2085,11 @@
 		A293E4F725B344DE00232408 /* CoreDataUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
 		A2A416A825B3BE1C005143D6 /* Mission+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mission+Extensions.swift"; sourceTree = "<group>"; };
 		A2A416B025B3BFF0005143D6 /* ConfigurationJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationJSON.swift; sourceTree = "<group>"; };
+		A2AEAA9925BC78DE002B8953 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		A2AEAAA025BCA49E002B8953 /* LaunchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRequest.swift; sourceTree = "<group>"; };
+		A2AEAAAD25BCC4F0002B8953 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIRequest.swift; path = ../../../../Desktop/APIRequest.swift; sourceTree = "<group>"; };
+		A2AEAAB925BCC8FE002B8953 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		A2AEAAC025BDE349002B8953 /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
 		A2BB770A25A7916F004FFFB3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A2D6D7932597B8CC003D5401 /* AgenciesUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgenciesUnitTests.swift; sourceTree = "<group>"; };
 		A2D6D7B12597BD7D003D5401 /* Checkers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkers.swift; sourceTree = "<group>"; };
@@ -2879,6 +2879,10 @@
 		A2EF80B325B6873B007F3501 /* SpacecraftRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacecraftRow.swift; sourceTree = "<group>"; };
 		A2EF80BB25B68839007F3501 /* LauncherList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherList.swift; sourceTree = "<group>"; };
 		A2EF80C725B68944007F3501 /* LauncherDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherDetail.swift; sourceTree = "<group>"; };
+		A2EF80CF25B735AE007F3501 /* EventLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLink.swift; sourceTree = "<group>"; };
+		A2EF80D725B735F9007F3501 /* ExpeditionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpeditionRow.swift; sourceTree = "<group>"; };
+		A2EF80E525B736DD007F3501 /* AgencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyData.swift; sourceTree = "<group>"; };
+		A2EF80ED25B7381F007F3501 /* AgencyLogos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AgencyLogos.xcassets; sourceTree = "<group>"; };
 		A2F8B33625B1514B00C917D0 /* LaunchList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LaunchList.entitlements; sourceTree = "<group>"; };
 		A2F8B34425B1570700C917D0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2960,7 +2964,6 @@
 				A280D06025B34AF300CF6E33 /* ProgramJSON.swift */,
 				A280D06125B34AF300CF6E33 /* RoadClosureJSON.swift */,
 				A280D08025B34AF300CF6E33 /* RocketJSON.swift */,
-				A280D06425B34AF300CF6E33 /* ServiceProviderJSON.swift */,
 				A280D07E25B34AF300CF6E33 /* SpacecraftConfigJSON.swift */,
 				A280D07F25B34AF300CF6E33 /* SpacecraftJSON.swift */,
 				A280D06625B34AF300CF6E33 /* SpaceStationJSON.swift */,
@@ -2982,10 +2985,10 @@
 				A280D07725B34AF300CF6E33 /* LaunchListJSON.swift */,
 				A280D07825B34AF300CF6E33 /* StarshipEventsJSON.swift */,
 				A280D07925B34AF300CF6E33 /* PadListJSON.swift */,
-				A280D07A25B34AF300CF6E33 /* ServiceProviderListJSON.swift */,
 				A280D07B25B34AF300CF6E33 /* ExpeditionListJSON.swift */,
 				A280D07C25B34AF300CF6E33 /* LauncherListJSON.swift */,
 				A280D07D25B34AF300CF6E33 /* ProgramListJSON.swift */,
+				A2AEAAC025BDE349002B8953 /* JSONResponse.swift */,
 			);
 			path = "JSON Files";
 			sourceTree = "<group>";
@@ -3012,7 +3015,6 @@
 				A280D12E25B34B7E00CF6E33 /* Pads */,
 				A280D13125B34B7E00CF6E33 /* Programs */,
 				A280D11B25B34B7E00CF6E33 /* Rockets */,
-				A280D13C25B34B7F00CF6E33 /* Service Providers */,
 				A280D11525B34B7E00CF6E33 /* Space Stations */,
 				A2EF80A625B68684007F3501 /* Spacecraft */,
 				A280D14925B34B7F00CF6E33 /* Starship Vehicle */,
@@ -3085,7 +3087,7 @@
 				A280D12625B34B7E00CF6E33 /* AgencyLink.swift */,
 				A280D12A25B34B7E00CF6E33 /* CountdownView.swift */,
 				A280D12D25B34B7E00CF6E33 /* DescriptionView.swift */,
-				A280D12325B34B7E00CF6E33 /* IconView.swift */,
+				A280D12325B34B7E00CF6E33 /* LoadedImageView.swift */,
 				A280D12C25B34B7E00CF6E33 /* ImageViewer.swift */,
 				A280D12725B34B7E00CF6E33 /* LeftField.swift */,
 				A280D12525B34B7E00CF6E33 /* LinkBarView.swift */,
@@ -3133,17 +3135,9 @@
 				A280D13B25B34B7F00CF6E33 /* ExpeditionDetail.swift */,
 				A280D13A25B34B7F00CF6E33 /* ExpeditionLinks.swift */,
 				A2DC73C325B60E0A0059E89E /* ExpeditionList.swift */,
+				A2EF80D725B735F9007F3501 /* ExpeditionRow.swift */,
 			);
 			path = Expeditions;
-			sourceTree = "<group>";
-		};
-		A280D13C25B34B7F00CF6E33 /* Service Providers */ = {
-			isa = PBXGroup;
-			children = (
-				A280D13D25B34B7F00CF6E33 /* ServiceProviderDetail.swift */,
-				A280D13E25B34B7F00CF6E33 /* ServiceProviderList.swift */,
-			);
-			path = "Service Providers";
 			sourceTree = "<group>";
 		};
 		A280D14025B34B7F00CF6E33 /* Astronauts */ = {
@@ -3158,6 +3152,7 @@
 		A280D14325B34B7F00CF6E33 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				A2EF80CF25B735AE007F3501 /* EventLink.swift */,
 				A280D14525B34B7F00CF6E33 /* EventDetail.swift */,
 				A280D14425B34B7F00CF6E33 /* EventList.swift */,
 			);
@@ -3200,7 +3195,6 @@
 				A293E4F025B344DE00232408 /* Pad+Extensions.swift */,
 				A293E4F125B344DE00232408 /* Program+Extensions.swift */,
 				A25584FD25B375510075B128 /* Rocket+Extensions.swift */,
-				A255850525B375890075B128 /* ServiceProvider+Extensions.swift */,
 				A28F7ED325B3C15D007C6C03 /* Spacecraft+Extensions.swift */,
 				A293E4F425B344DE00232408 /* SpacecraftConfig+Extensions.swift */,
 				A293E4EB25B344DE00232408 /* SpaceStation+Extensions.swift */,
@@ -3216,6 +3210,7 @@
 				A293E4A725B343F500232408 /* Regex+Extensions.swift */,
 				A293E4A825B343F500232408 /* String+Extensions.swift */,
 				A2DC6ABF25B48B660059E89E /* Dictionary+Extensions.swift */,
+				A2AEAAB925BCC8FE002B8953 /* View+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3251,9 +3246,21 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		A29CEE6925BC77ED0032F88A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A2AEAA9925BC78DE002B8953 /* APIManager.swift */,
+				A2AEAAA025BCA49E002B8953 /* LaunchRequest.swift */,
+				A2AEAAAD25BCC4F0002B8953 /* APIRequest.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		A2DA71FF2595AF8C009405E6 = {
 			isa = PBXGroup;
 			children = (
+				A29CEE6925BC77ED0032F88A /* API */,
+				A2EF80E425B736C3007F3501 /* AppData */,
 				A293E49F25B33E5A00232408 /* scm.json */,
 				A2F8B34425B1570700C917D0 /* .swiftlint.yml */,
 				A2F8B33625B1514B00C917D0 /* LaunchList.entitlements */,
@@ -4146,6 +4153,15 @@
 			path = Launchers;
 			sourceTree = "<group>";
 		};
+		A2EF80E425B736C3007F3501 /* AppData */ = {
+			isa = PBXGroup;
+			children = (
+				A2EF80E525B736DD007F3501 /* AgencyData.swift */,
+				A2EF80ED25B7381F007F3501 /* AgencyLogos.xcassets */,
+			);
+			path = AppData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4675,6 +4691,7 @@
 				A2DC728825B4FCEF0059E89E /* 8B5ECD9F-9F51-46FC-84B4-5B14327EA5C1 in Resources */,
 				A2DC6E1A25B4FCED0059E89E /* CFF4A9C8-D5CF-41AE-82C8-6E3849F300CB in Resources */,
 				A2DC718E25B4FCEF0059E89E /* 80D00233-A6C2-40A1-BFEF-EEB8B777C64E in Resources */,
+				A2EF80EE25B7381F007F3501 /* AgencyLogos.xcassets in Resources */,
 				A2DC6F7E25B4FCEE0059E89E /* 38352A47-3372-4813-9F31-2E9719814B75 in Resources */,
 				A2DC6FDC25B4FCEE0059E89E /* 9D937B17-BD96-4287-AF66-19CC23CEFF82 in Resources */,
 				A2DC6EC825B4FCEE0059E89E /* BBDCEC96-9D48-4C3D-9422-6D1B6D6359E9 in Resources */,
@@ -5459,6 +5476,7 @@
 				A2DC728925B4FCEF0059E89E /* 8B5ECD9F-9F51-46FC-84B4-5B14327EA5C1 in Resources */,
 				A2DC6E1B25B4FCED0059E89E /* CFF4A9C8-D5CF-41AE-82C8-6E3849F300CB in Resources */,
 				A2DC718F25B4FCEF0059E89E /* 80D00233-A6C2-40A1-BFEF-EEB8B777C64E in Resources */,
+				A2EF80EF25B7381F007F3501 /* AgencyLogos.xcassets in Resources */,
 				A2DC6F7F25B4FCEE0059E89E /* 38352A47-3372-4813-9F31-2E9719814B75 in Resources */,
 				A2DC6FDD25B4FCEE0059E89E /* 9D937B17-BD96-4287-AF66-19CC23CEFF82 in Resources */,
 				A2DC6EC925B4FCEE0059E89E /* BBDCEC96-9D48-4C3D-9422-6D1B6D6359E9 in Resources */,
@@ -5910,7 +5928,6 @@
 				A293E51625B344DE00232408 /* Astronaut+Extensions.swift in Sources */,
 				A280D0DE25B34AF400CF6E33 /* SpacecraftConfigJSON.swift in Sources */,
 				A280D0C625B34AF400CF6E33 /* AstronautListJSON.swift in Sources */,
-				A280D1C425B34B7F00CF6E33 /* ServiceProviderDetail.swift in Sources */,
 				A280D1CD25B34B7F00CF6E33 /* AstronautList.swift in Sources */,
 				A280D1C125B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */,
 				A280D18B25B34B7F00CF6E33 /* LinkBarView.swift in Sources */,
@@ -5920,7 +5937,6 @@
 				A280D18225B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */,
 				A280D09925B34AF400CF6E33 /* SpaceStationJSON.swift in Sources */,
 				A255852025B3BB440075B128 /* Samples.swift in Sources */,
-				A280D09325B34AF400CF6E33 /* ServiceProviderJSON.swift in Sources */,
 				A280D14C25B34B7F00CF6E33 /* LaunchList.swift in Sources */,
 				A25584E725B374450075B128 /* Docking+Extensions.swift in Sources */,
 				A280D1D625B34B7F00CF6E33 /* EventDetail.swift in Sources */,
@@ -5928,12 +5944,14 @@
 				A255853825B3BBDC0075B128 /* DockingLocationJSON.swift in Sources */,
 				A293E4FB25B344DE00232408 /* Agency+Extensions.swift in Sources */,
 				A280D19D25B34B7F00CF6E33 /* TitleField.swift in Sources */,
+				A2EF80D825B735F9007F3501 /* ExpeditionRow.swift in Sources */,
 				A280D09F25B34AF400CF6E33 /* OrbitJSON.swift in Sources */,
 				A280D09625B34AF400CF6E33 /* JSONUtils.swift in Sources */,
 				A25584DE25B36D170075B128 /* SocialMediaLink.swift in Sources */,
 				A280D0ED25B34AF400CF6E33 /* LauncherConfigJSON.swift in Sources */,
 				A280D17925B34B7F00CF6E33 /* RocketDetail.swift in Sources */,
 				A280D15225B34B7F00CF6E33 /* LaunchDetail.swift in Sources */,
+				A2EF80E625B736DD007F3501 /* AgencyData.swift in Sources */,
 				A280D0A825B34AF400CF6E33 /* MissionJSON.swift in Sources */,
 				A280D0AB25B34AF400CF6E33 /* EventJSON.swift in Sources */,
 				A280D0E725B34AF400CF6E33 /* AstronautJSON.swift in Sources */,
@@ -5945,6 +5963,7 @@
 				A280D19125B34B7F00CF6E33 /* LeftField.swift in Sources */,
 				A255855825B3BD770075B128 /* Location+Extensions.swift in Sources */,
 				A293E51325B344DE00232408 /* Expedition+Extensions.swift in Sources */,
+				A2AEAAC125BDE349002B8953 /* JSONResponse.swift in Sources */,
 				A280D16725B34B7F00CF6E33 /* SpaceStationLinks.swift in Sources */,
 				A2EF80BC25B68839007F3501 /* LauncherList.swift in Sources */,
 				A280D1BE25B34B7F00CF6E33 /* ExpeditionLinks.swift in Sources */,
@@ -5957,8 +5976,9 @@
 				A280D0BD25B34AF400CF6E33 /* AgenciesListJSON.swift in Sources */,
 				A293E51925B344DE00232408 /* CoreDataUtils.swift in Sources */,
 				A25584F025B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */,
+				A2EF80D025B735AE007F3501 /* EventLink.swift in Sources */,
 				A280D16125B34B7F00CF6E33 /* MissionList.swift in Sources */,
-				A280D18525B34B7F00CF6E33 /* IconView.swift in Sources */,
+				A280D18525B34B7F00CF6E33 /* LoadedImageView.swift in Sources */,
 				A255851825B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */,
 				A25584FE25B375510075B128 /* Rocket+Extensions.swift in Sources */,
 				A280D0F325B34AF400CF6E33 /* StatusJSON.swift in Sources */,
@@ -5968,14 +5988,13 @@
 				A280D1D925B34B7F00CF6E33 /* AgencyDetail.swift in Sources */,
 				A25584D525B3624C0075B128 /* HoldFailView.swift in Sources */,
 				A280D0B425B34AF400CF6E33 /* LiveStreamJSON.swift in Sources */,
+				A2AEAA9A25BC78DE002B8953 /* APIManager.swift in Sources */,
 				A280D09C25B34AF400CF6E33 /* AgencyJSON.swift in Sources */,
 				A28F7EDC25B3C1D6007C6C03 /* Vehicle+Extensions.swift in Sources */,
 				A280D1DC25B34B7F00CF6E33 /* AgencyList.swift in Sources */,
 				A2DC73CD25B6139E0059E89E /* FlightVehicleList.swift in Sources */,
 				A280D0C025B34AF400CF6E33 /* EventListJSON.swift in Sources */,
 				A280D0B725B34AF400CF6E33 /* LocationListJSON.swift in Sources */,
-				A255850625B375890075B128 /* ServiceProvider+Extensions.swift in Sources */,
-				A280D1C725B34B7F00CF6E33 /* ServiceProviderList.swift in Sources */,
 				A280D0F025B34AF400CF6E33 /* LocationJSON.swift in Sources */,
 				A280D1A325B34B7F00CF6E33 /* DescriptionView.swift in Sources */,
 				A280D1D025B34B7F00CF6E33 /* AstronautDetail.swift in Sources */,
@@ -5994,6 +6013,7 @@
 				A280D18E25B34B7F00CF6E33 /* AgencyLink.swift in Sources */,
 				A280D1B525B34B7F00CF6E33 /* DockingList.swift in Sources */,
 				A255853025B3BBB10075B128 /* AstronautTypeJSON.swift in Sources */,
+				A2AEAABA25BCC8FE002B8953 /* View+Extensions.swift in Sources */,
 				A2EF80C825B68944007F3501 /* LauncherDetail.swift in Sources */,
 				A280D17625B34B7F00CF6E33 /* RocketList.swift in Sources */,
 				A28F7ED425B3C15D007C6C03 /* Spacecraft+Extensions.swift in Sources */,
@@ -6005,6 +6025,7 @@
 				A280D1BB25B34B7F00CF6E33 /* TimelineView.swift in Sources */,
 				A280D16D25B34B7F00CF6E33 /* SpaceStationList.swift in Sources */,
 				A2DC73DA25B614530059E89E /* FlightVehicleDetail.swift in Sources */,
+				A2AEAAA125BCA49E002B8953 /* LaunchRequest.swift in Sources */,
 				A255852825B3BB8D0075B128 /* AstronautStatusJSON.swift in Sources */,
 				A280D0C925B34AF400CF6E33 /* LaunchListJSON.swift in Sources */,
 				A293E50D25B344DE00232408 /* LaunchList.xcdatamodeld in Sources */,
@@ -6012,6 +6033,7 @@
 				A280D0DB25B34AF400CF6E33 /* ProgramListJSON.swift in Sources */,
 				A293E51025B344DE00232408 /* SpacecraftConfig+Extensions.swift in Sources */,
 				A280D1AF25B34B7F00CF6E33 /* ProgramDetail.swift in Sources */,
+				A2AEAAAE25BCC4F0002B8953 /* APIRequest.swift in Sources */,
 				A293E50125B344DE00232408 /* Persistence.swift in Sources */,
 				A280D0D825B34AF400CF6E33 /* LauncherListJSON.swift in Sources */,
 				A280D1CA25B34B7F00CF6E33 /* TabsView.swift in Sources */,
@@ -6019,7 +6041,6 @@
 				A280D08D25B34AF300CF6E33 /* ExpeditionJSON.swift in Sources */,
 				A280D15825B34B7F00CF6E33 /* SettingsView.swift in Sources */,
 				A280D19425B34B7F00CF6E33 /* SearchBar.swift in Sources */,
-				A280D0D225B34AF400CF6E33 /* ServiceProviderListJSON.swift in Sources */,
 				A2DC6AC025B48B660059E89E /* Dictionary+Extensions.swift in Sources */,
 				A2EF80B425B6873B007F3501 /* SpacecraftRow.swift in Sources */,
 				A280D17025B34B7F00CF6E33 /* DatasetList.swift in Sources */,
@@ -6048,15 +6069,14 @@
 				A293E50525B344DE00232408 /* Launch+Extensions.swift in Sources */,
 				A280D0EB25B34AF400CF6E33 /* LaunchJSON.swift in Sources */,
 				A293E4B125B343F500232408 /* ISO3166Utils.swift in Sources */,
-				A280D1C525B34B7F00CF6E33 /* ServiceProviderDetail.swift in Sources */,
 				A280D1CE25B34B7F00CF6E33 /* AstronautList.swift in Sources */,
 				A280D1C225B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */,
 				A280D18C25B34B7F00CF6E33 /* LinkBarView.swift in Sources */,
-				A280D09425B34AF400CF6E33 /* ServiceProviderJSON.swift in Sources */,
 				A280D1AA25B34B7F00CF6E33 /* PadDetail.swift in Sources */,
 				A280D18325B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */,
 				A293E4FC25B344DE00232408 /* Agency+Extensions.swift in Sources */,
 				A255852125B3BB440075B128 /* Samples.swift in Sources */,
+				A2EF80E725B736DD007F3501 /* AgencyData.swift in Sources */,
 				A280D09125B34AF400CF6E33 /* NoticeJSON.swift in Sources */,
 				A280D14D25B34B7F00CF6E33 /* LaunchList.swift in Sources */,
 				A25584E825B374450075B128 /* Docking+Extensions.swift in Sources */,
@@ -6076,6 +6096,7 @@
 				A280D0D625B34AF400CF6E33 /* ExpeditionListJSON.swift in Sources */,
 				A280D1D425B34B7F00CF6E33 /* EventList.swift in Sources */,
 				A2DC73C525B60E0A0059E89E /* ExpeditionList.swift in Sources */,
+				A2AEAAA725BCACC9002B8953 /* APIManager.swift in Sources */,
 				A280D16525B34B7F00CF6E33 /* MissionDetail.swift in Sources */,
 				A280D15F25B34B7F00CF6E33 /* LiveStreamsList.swift in Sources */,
 				A2A416AA25B3BE1C005143D6 /* Mission+Extensions.swift in Sources */,
@@ -6094,7 +6115,7 @@
 				A293E4FF25B344DE00232408 /* Event+Extensions.swift in Sources */,
 				A25584F125B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */,
 				A280D16225B34B7F00CF6E33 /* MissionList.swift in Sources */,
-				A280D18625B34B7F00CF6E33 /* IconView.swift in Sources */,
+				A280D18625B34B7F00CF6E33 /* LoadedImageView.swift in Sources */,
 				A255851925B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */,
 				A25584FF25B375510075B128 /* Rocket+Extensions.swift in Sources */,
 				A280D0DF25B34AF400CF6E33 /* SpacecraftConfigJSON.swift in Sources */,
@@ -6110,8 +6131,6 @@
 				A2DC73CE25B6139E0059E89E /* FlightVehicleList.swift in Sources */,
 				A280D0D025B34AF400CF6E33 /* PadListJSON.swift in Sources */,
 				A280D0E825B34AF400CF6E33 /* AstronautJSON.swift in Sources */,
-				A255850725B375890075B128 /* ServiceProvider+Extensions.swift in Sources */,
-				A280D1C825B34B7F00CF6E33 /* ServiceProviderList.swift in Sources */,
 				A280D0C125B34AF400CF6E33 /* EventListJSON.swift in Sources */,
 				A280D1A425B34B7F00CF6E33 /* DescriptionView.swift in Sources */,
 				A280D1D125B34B7F00CF6E33 /* AstronautDetail.swift in Sources */,
@@ -6128,6 +6147,7 @@
 				A280D18025B34B7F00CF6E33 /* ImageLoader.swift in Sources */,
 				A293E50E25B344DE00232408 /* LaunchList.xcdatamodeld in Sources */,
 				A280D18F25B34B7F00CF6E33 /* AgencyLink.swift in Sources */,
+				A2EF80D125B735AE007F3501 /* EventLink.swift in Sources */,
 				A280D1B625B34B7F00CF6E33 /* DockingList.swift in Sources */,
 				A255853125B3BBB10075B128 /* AstronautTypeJSON.swift in Sources */,
 				A280D17725B34B7F00CF6E33 /* RocketList.swift in Sources */,
@@ -6158,12 +6178,13 @@
 				A2DC6AC125B48B660059E89E /* Dictionary+Extensions.swift in Sources */,
 				A280D17125B34B7F00CF6E33 /* DatasetList.swift in Sources */,
 				A293E51125B344DE00232408 /* SpacecraftConfig+Extensions.swift in Sources */,
-				A280D0D325B34AF400CF6E33 /* ServiceProviderListJSON.swift in Sources */,
 				A280D0B225B34AF400CF6E33 /* PadJSON.swift in Sources */,
 				A293E51725B344DE00232408 /* Astronaut+Extensions.swift in Sources */,
+				A2EF80D925B735F9007F3501 /* ExpeditionRow.swift in Sources */,
 				A2EF80C925B68944007F3501 /* LauncherDetail.swift in Sources */,
 				A280D18925B34B7F00CF6E33 /* RowImage.swift in Sources */,
 				A280D1E025B34B7F00CF6E33 /* VehicleList.swift in Sources */,
+				A2AEAAC225BDE349002B8953 /* JSONResponse.swift in Sources */,
 				A280D1E325B34B7F00CF6E33 /* VehicleDetail.swift in Sources */,
 				A280D1AD25B34B7F00CF6E33 /* ProgramLinks.swift in Sources */,
 				A255854925B3BCA70075B128 /* Launcher+Extensions.swift in Sources */,
@@ -6198,13 +6219,11 @@
 			files = (
 				A280D0B025B34AF400CF6E33 /* FlightVehicleJSON.swift in Sources */,
 				A280D1E125B34B7F00CF6E33 /* VehicleList.swift in Sources */,
-				A280D15A25B34B7F00CF6E33 /* SettingsView.swift in Sources */,
 				A280D0F525B34AF400CF6E33 /* StatusJSON.swift in Sources */,
 				A280D09225B34AF400CF6E33 /* NoticeJSON.swift in Sources */,
 				A280D18A25B34B7F00CF6E33 /* RowImage.swift in Sources */,
 				A2D6D7B42597BD7D003D5401 /* Checkers.swift in Sources */,
 				A280D1BA25B34B7F00CF6E33 /* DockingDetail.swift in Sources */,
-				A280D09525B34AF400CF6E33 /* ServiceProviderJSON.swift in Sources */,
 				A280D1E425B34B7F00CF6E33 /* VehicleDetail.swift in Sources */,
 				A280D0BF25B34AF400CF6E33 /* AgenciesListJSON.swift in Sources */,
 				A280D0CE25B34AF400CF6E33 /* StarshipEventsJSON.swift in Sources */,
@@ -6264,7 +6283,6 @@
 				A280D0F825B34AF400CF6E33 /* DockingJSON.swift in Sources */,
 				A280D0C225B34AF400CF6E33 /* EventListJSON.swift in Sources */,
 				A280D1C025B34B7F00CF6E33 /* ExpeditionLinks.swift in Sources */,
-				A280D0D425B34AF400CF6E33 /* ServiceProviderListJSON.swift in Sources */,
 				A280D1DB25B34B7F00CF6E33 /* AgencyDetail.swift in Sources */,
 				A280D0B925B34AF400CF6E33 /* LocationListJSON.swift in Sources */,
 				A280D08925B34AF300CF6E33 /* ProgramJSON.swift in Sources */,
@@ -6276,19 +6294,17 @@
 				A280D1DE25B34B7F00CF6E33 /* AgencyList.swift in Sources */,
 				A2DA72542595AFC4009405E6 /* LaunchListUnitTests.swift in Sources */,
 				A280D1B725B34B7F00CF6E33 /* DockingList.swift in Sources */,
-				A280D1C925B34B7F00CF6E33 /* ServiceProviderList.swift in Sources */,
 				A280D18425B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */,
 				A25584D725B3624C0075B128 /* HoldFailView.swift in Sources */,
 				A280D18D25B34B7F00CF6E33 /* LinkBarView.swift in Sources */,
 				A280D14E25B34B7F00CF6E33 /* LaunchList.swift in Sources */,
 				A280D1B425B34B7F00CF6E33 /* ProgramList.swift in Sources */,
 				A280D0EF25B34AF400CF6E33 /* LauncherConfigJSON.swift in Sources */,
-				A280D18725B34B7F00CF6E33 /* IconView.swift in Sources */,
+				A280D18725B34B7F00CF6E33 /* LoadedImageView.swift in Sources */,
 				A280D0CB25B34AF400CF6E33 /* LaunchListJSON.swift in Sources */,
 				A280D1CC25B34B7F00CF6E33 /* TabsView.swift in Sources */,
 				A280D0E925B34AF400CF6E33 /* AstronautJSON.swift in Sources */,
 				A280D0DD25B34AF400CF6E33 /* ProgramListJSON.swift in Sources */,
-				A280D1C625B34B7F00CF6E33 /* ServiceProviderDetail.swift in Sources */,
 				A280D09B25B34AF400CF6E33 /* SpaceStationJSON.swift in Sources */,
 				A280D15425B34B7F00CF6E33 /* LaunchDetail.swift in Sources */,
 			);
