@@ -96,6 +96,12 @@ func getLaunches( with apiRequest: LaunchRequest )
    }
 }
 
+/**
+ Loads data from the API.
+
+ - parameter apiString: `String` API URL
+ - parameter completion: callback for successful load
+ */
 private func loadJSON( fromAPI apiString: String,
                        completion: @escaping ( Result< Data, Error > ) -> Void )
 {
