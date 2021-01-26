@@ -126,6 +126,9 @@ private func loadJSON( fromAPI apiString: String,
    urlSession.resume()
 }
 
+/**
+ 
+ */
 class NetworkingHandler: NSObject, URLSessionDelegate
 {
    func urlSession( _ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask )
