@@ -23,6 +23,7 @@ struct RocketList: View
 //         }
       }
       .navigationTitle( "Rocket" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

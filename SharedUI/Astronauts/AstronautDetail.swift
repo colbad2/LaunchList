@@ -57,6 +57,7 @@ struct AstronautDetail: View
          .padding()
       }
       .navigationTitle( "Astronaut" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

@@ -53,6 +53,7 @@ struct ProgramDetail: View
       }
       .padding()
       .navigationTitle( "Program" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

@@ -26,7 +26,8 @@ struct AstronautList: View
             AstronautRow( astronaut: astronaut )
          }
       }
-      .navigationBarTitle( "Astronauts", displayMode: .inline )
+      .navigationTitle( "Astronauts" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

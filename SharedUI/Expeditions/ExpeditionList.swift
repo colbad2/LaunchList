@@ -23,6 +23,7 @@ struct ExpeditionList: View
          }
       }
       .navigationTitle( "Expeditions" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

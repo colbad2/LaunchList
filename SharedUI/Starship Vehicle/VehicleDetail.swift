@@ -21,6 +21,7 @@ struct VehicleDetail: View
       }
       .padding()
       .navigationTitle( "Starship" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

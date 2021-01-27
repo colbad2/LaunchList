@@ -39,7 +39,8 @@ struct LaunchList: View
              ScrollManagerView( indexPathToSetVisible: $indexPathToSetVisible )
                  .allowsHitTesting( false ).frame( width: 0, height: 0 )
          )
-         .navigationBarTitle( "Launches", displayMode: .inline )
+         .navigationTitle( "Launches" )
+         .navigationBarTitleDisplayMode( .inline )
          .toolbar
          {
             ToolbarItem( placement: .navigationBarTrailing )

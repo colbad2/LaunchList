@@ -23,6 +23,7 @@ struct MissionList: View
          }
       }
       .navigationTitle( "Missions" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

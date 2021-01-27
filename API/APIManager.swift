@@ -72,8 +72,15 @@ struct APIManager
       getAPILaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/previous/" ) )
    }
 
-   // TODO get previous launch by ID
-   // TODO get upcoming launch by ID
+   func fetchAPIUpcomingLaunch( withID id: Int64 )
+   {
+      getAPILaunch( with: id, path: "launch/upcoming/" )
+   }
+
+   func fetchAPIPreviousLaunch( withID id: Int64 )
+   {
+      getAPILaunch( with: id, path: "launch/previous/" )
+   }
 }
 
 func getAPIAgency( withID id: Int64 )
@@ -150,6 +157,23 @@ func getAPILaunches( with apiRequest: LaunchRequest )
 
       request = apiRequest.getNextRequest( count: responseJSON.totalCount )
    }
+}
+
+func getAPILaunch( with id: Int64, path: String )
+{
+   var json: LaunchJSON?
+   loadJSON( fromAPI: "\(API_URL_BASE)\(path)/\(id)" )
+   {
+      result in
+
+      switch result
+      {
+         case .success( let data ): json = parseJSONString( jsonData: data )
+         case .failure( let error ): print( error ); return
+      }
+   }
+   guard let launchJSON: LaunchJSON = json else { return }
+   _ = fetchLaunch( launch: launchJSON, context: PersistenceController.shared.container.viewContext )
 }
 
 /**

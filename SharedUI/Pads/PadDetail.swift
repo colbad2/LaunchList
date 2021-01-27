@@ -32,7 +32,8 @@ struct PadDetail: View
          }
          .padding()
       }
-      .navigationBarTitle( "Pad", displayMode: .inline )
+      .navigationTitle( "Pad" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

@@ -23,6 +23,7 @@ struct LiveStreamsList: View
          }
       }
       .navigationTitle( "LiveStreams" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

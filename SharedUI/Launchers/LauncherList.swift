@@ -44,6 +44,7 @@ struct LauncherList: View
          //         }
       }
       .navigationTitle( "Launcher" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

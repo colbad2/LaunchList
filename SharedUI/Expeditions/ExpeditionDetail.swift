@@ -25,7 +25,8 @@ struct ExpeditionDetail: View
          }
          .padding()
       }
-      .navigationBarTitle( "Expedition", displayMode: .inline )
+      .navigationTitle( "Expedition" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

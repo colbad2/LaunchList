@@ -23,6 +23,7 @@ struct SpacecraftList: View
          //         }
       }
       .navigationTitle( "Spacecraft" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

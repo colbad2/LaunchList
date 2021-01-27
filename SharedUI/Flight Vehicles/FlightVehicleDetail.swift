@@ -46,6 +46,7 @@ config
          .padding()
 //      }
       .navigationTitle( "FlightVehicle" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

@@ -77,6 +77,7 @@ struct LaunchDetail: View
       }
       .padding()
       .navigationTitle( "Launch" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

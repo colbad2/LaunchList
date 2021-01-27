@@ -23,6 +23,7 @@ struct ProgramList: View
          }
       }
       .navigationTitle( "Programs" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

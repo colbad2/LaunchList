@@ -23,6 +23,7 @@ struct DockingList: View
          }
       }
       .navigationTitle( "Dockings" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

@@ -23,6 +23,7 @@ struct SpaceStationList: View
          }
       }
       .navigationTitle( "SpaceStations" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

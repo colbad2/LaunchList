@@ -15,6 +15,7 @@ struct RocketDetail: View
       }
       .padding()
       .navigationTitle( "Rocket" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

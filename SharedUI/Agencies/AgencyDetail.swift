@@ -51,6 +51,7 @@ struct AgencyDetail: View
       }
       .padding()
       .navigationTitle( "Agency" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

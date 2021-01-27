@@ -15,6 +15,7 @@ struct LauncherDetail: View
       }
       .padding()
       .navigationTitle( "Launcher" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

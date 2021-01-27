@@ -33,6 +33,7 @@ struct SpaceStationDetail: View
       }
       .padding()
       .navigationTitle( "SpaceStation" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

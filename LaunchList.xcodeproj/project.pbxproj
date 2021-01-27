@@ -387,7 +387,6 @@
 		A2DA721F2595AF8F009405E6 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DA72232595AF8F009405E6 /* TestsIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsIOS.swift; sourceTree = "<group>"; };
 		A2DA72252595AF8F009405E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2DA722A2595AF8F009405E6 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DA72512595AFC4009405E6 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DA72532595AFC4009405E6 /* LaunchListUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListUnitTests.swift; sourceTree = "<group>"; };
 		A2DA72552595AFC4009405E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -416,13 +415,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A2DA721C2595AF8F009405E6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A2DA72272595AF8F009405E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -798,7 +790,6 @@
 			children = (
 				A2DA720F2595AF8F009405E6 /* LaunchList.app */,
 				A2DA721F2595AF8F009405E6 /* Tests iOS.xctest */,
-				A2DA722A2595AF8F009405E6 /* Tests macOS.xctest */,
 				A2DA72512595AFC4009405E6 /* UnitTests.xctest */,
 			);
 			name = Products;
@@ -909,23 +900,6 @@
 			productReference = A2DA721F2595AF8F009405E6 /* Tests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		A2DA72292595AF8F009405E6 /* Tests macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A2DA72462595AF8F009405E6 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
-			buildPhases = (
-				A2DA72262595AF8F009405E6 /* Sources */,
-				A2DA72272595AF8F009405E6 /* Frameworks */,
-				A2DA72282595AF8F009405E6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Tests macOS";
-			productName = "Tests macOS";
-			productReference = A2DA722A2595AF8F009405E6 /* Tests macOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		A2DA72502595AFC4009405E6 /* UnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2DA72562595AFC4009405E6 /* Build configuration list for PBXNativeTarget "UnitTests" */;
@@ -960,10 +934,6 @@
 						CreatedOnToolsVersion = 12.3;
 						TestTargetID = A2DA720E2595AF8F009405E6;
 					};
-					A2DA72292595AF8F009405E6 = {
-						CreatedOnToolsVersion = 12.3;
-						TestTargetID = A2DA72162595AF8F009405E6;
-					};
 					A2DA72502595AFC4009405E6 = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -984,7 +954,6 @@
 			targets = (
 				A2DA720E2595AF8F009405E6 /* LaunchList (iOS) */,
 				A2DA721E2595AF8F009405E6 /* Tests iOS */,
-				A2DA72292595AF8F009405E6 /* Tests macOS */,
 				A2DA72502595AFC4009405E6 /* UnitTests */,
 			);
 		};
@@ -1013,13 +982,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A2DA721D2595AF8F009405E6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A2DA72282595AF8F009405E6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1223,13 +1185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2DA72242595AF8F009405E6 /* TestsIOS.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A2DA72262595AF8F009405E6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1509,50 +1464,6 @@
 			};
 			name = Release;
 		};
-		A2DA72472595AF8F009405E6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z3JGPQE589;
-				INFOPLIST_FILE = "Tests macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "net.colbadhombre.LaunchList.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "LaunchList (macOS)";
-			};
-			name = Debug;
-		};
-		A2DA72482595AF8F009405E6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z3JGPQE589;
-				INFOPLIST_FILE = "Tests macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "net.colbadhombre.LaunchList.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "LaunchList (macOS)";
-			};
-			name = Release;
-		};
 		A2DA72572595AFC4009405E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1620,15 +1531,6 @@
 			buildConfigurations = (
 				A2DA72442595AF8F009405E6 /* Debug */,
 				A2DA72452595AF8F009405E6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A2DA72462595AF8F009405E6 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A2DA72472595AF8F009405E6 /* Debug */,
-				A2DA72482595AF8F009405E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -23,6 +23,7 @@ struct PadList: View
          }
       }
       .navigationTitle( "Pads" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 

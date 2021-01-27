@@ -23,6 +23,7 @@ struct VehicleList: View
          }
       }
       .navigationTitle( "Starship Vehicle" )
+      .navigationBarTitleDisplayMode( .inline )
    }
 }
 
