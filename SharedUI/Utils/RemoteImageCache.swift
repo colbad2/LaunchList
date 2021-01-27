@@ -1,9 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 import CoreData
-#if !os(macOS)
 import UIKit
-#endif
 
 /**
  Singleton for fetching images from URLs and holding them for future use.
