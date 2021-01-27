@@ -38,6 +38,26 @@ extension Agency
 
    /** True if the `Agency` has any `SpacecraftConfig`s. */
    var hasSpacecraftConfigs: Bool { !spacecraftConfigsSet.isEmpty }
+
+   func addLaunchersFromJSON( launchers: [LauncherJSON]?, context: NSManagedObjectContext )
+   {
+      for launcher: LauncherJSON in launchers ?? []
+      {
+         let launcherEntity: Launcher = fetchLauncher( launcher: launcher, context: context )
+         self.addToLauncherList( launcherEntity )
+         launcherEntity.addToAgencies( self )
+      }
+   }
+
+   func addSpacecraftsFromJSON( spacecraftList: [SpacecraftJSON]?, context: NSManagedObjectContext )
+   {
+      for spacecraft: SpacecraftJSON in spacecraftList ?? []
+      {
+         let spacecraftEntity: Spacecraft = fetchSpacecraft( spacecraft: spacecraft, context: context )
+         self.addToSpacecraftList( spacecraftEntity )
+         spacecraftEntity.addToAgencies( self )
+      }
+   }
 }
 
 /**
@@ -126,7 +146,7 @@ public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> 
 public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agency
 {
    let agencyEntity: Agency? = getAgency( by: agency.id, context: context )
-   agency.updateEntity( entity: agencyEntity )
+   agency.updateEntity( entity: agencyEntity, context: context )
    return agencyEntity ?? agency.addToCoreData( context: context )
 }
 

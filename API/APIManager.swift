@@ -47,19 +47,76 @@ struct APIManager
       monitor.start( queue: .global() ) // Deliver updates on the background queue
    }
 
-   func fetchLaunches()
+   func fetchAPIAgencies()
    {
-      getLaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/" ) )
+      getAPIAgencies( with: AgencyRequest( base: API_URL_BASE, endPoint: "agencies/" ) )
    }
 
-   func fetchUpcomingLaunches()
+   func fetchAPIAgency( withID id: Int64 )
    {
-      getLaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/upcoming/" ) )
+      getAPIAgency( withID: id )
    }
 
-   func fetchPreviousLaunches()
+   func fetchAPILaunches()
    {
-      getLaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/previous/" ) )
+      getAPILaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/" ) )
+   }
+
+   func fetchAPIUpcomingLaunches()
+   {
+      getAPILaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/upcoming/" ) )
+   }
+
+   func fetchAPIPreviousLaunches()
+   {
+      getAPILaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/previous/" ) )
+   }
+
+   // TODO get previous launch by ID
+   // TODO get upcoming launch by ID
+}
+
+func getAPIAgency( withID id: Int64 )
+{
+   var json: AgencyJSON?
+   loadJSON( fromAPI: "\(API_URL_BASE)agencies/\(id)" )
+   {
+      result in
+
+      switch result
+      {
+         case .success( let data ): json = parseJSONString( jsonData: data )
+         case .failure( let error ): print( error ); return
+      }
+   }
+   guard let agencyJSON: AgencyJSON = json else { return }
+   _ = fetchAgency( agency: agencyJSON, context: PersistenceController.shared.container.viewContext )
+}
+
+func getAPIAgencies( with apiRequest: AgencyRequest )
+{
+   var request: APIRequest? = apiRequest
+   while let currentRequest: APIRequest = request
+   {
+      var json: AgenciesListJSON?
+      loadJSON( fromAPI: currentRequest.requestURL )
+      {
+         result in
+
+         switch result
+         {
+            case .success( let data ): json = parseJSONString( jsonData: data )
+            case .failure( let error ): print( error ); return
+         }
+      }
+      guard let responseJSON: AgenciesListJSON = json else { break }
+
+      for agencyJSON: AgencyJSON in responseJSON.sublist ?? []
+      {
+         _ = fetchAgency( agency: agencyJSON, context: PersistenceController.shared.container.viewContext )
+      }
+
+      request = apiRequest.getNextRequest( count: responseJSON.totalCount )
    }
 }
 
@@ -68,7 +125,7 @@ struct APIManager
 
  - parameter: apiRequest - {LaunchRequest} parameters for the API call
  */
-func getLaunches( with apiRequest: LaunchRequest )
+func getAPILaunches( with apiRequest: LaunchRequest )
 {
    var request: APIRequest? = apiRequest
    while let currentRequest: APIRequest = request
@@ -88,8 +145,7 @@ func getLaunches( with apiRequest: LaunchRequest )
 
       for launchJSON in responseJSON.sublist ?? []
       {
-         let launchEntity: Launch = fetchLaunch( launch: launchJSON, context: PersistenceController.shared.container.viewContext )
-         launchEntity.fetched = Date()
+         _ = fetchLaunch( launch: launchJSON, context: PersistenceController.shared.container.viewContext )
       }
 
       request = apiRequest.getNextRequest( count: responseJSON.totalCount )

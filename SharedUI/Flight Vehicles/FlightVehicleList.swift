@@ -25,7 +25,7 @@ struct FlightVehicleList: View
             }
          }
       }
-      .navigationBarTitle( "Flight Vehicles", displayMode: .inline )
+      .navigationTitle( "Flight Vehicles" )
    }
 }
 

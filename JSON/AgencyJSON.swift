@@ -2,12 +2,8 @@
 
 import CoreData
 
-// swiftlint:disable line_length
-
 /**
- Agency involved in the launch program.
-
- Part of a `Program` "agencies" list.
+ Agency involved in a space program.
 
  ### Example JSON:
     {
@@ -18,7 +14,7 @@ import CoreData
       "type": "Commercial",
       "country_code": "USA",
       "abbrev": "AARC",
-      "description": "Ad Astra Rocket Company is an American Space Company doing research and development in plasma propulsion technology. This involves using the technology of VASIMR developed in the late '70s, developed by the companies founder, Franklin Diaz. They have begun testing of their VF-200 model engine, built for interplanetary travel.",
+      "description": "Ad Astra Rocket Company is an American Space Company doing research and development ...",
       "administrator": "Dr. Franklin Chang Diaz",
       "founding_year": "2005",
       "launchers": "None",
@@ -32,11 +28,28 @@ public struct AgencyJSON: Decodable, Identifiable, JSONElement
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
    {
-      case id, url, name, featured, type, countryCode, administrator, foundingYear, launchers, spacecraft, parent
+      case id, url, name, featured, type, countryCode, administrator, launchers, spacecraft, parent
 
       case abbreviation = "abbrev"
       case agencyDescription = "description"
-      case imageURL = "imageUrl"
+      case foundingYear = "founding_year"
+      case launchLibraryURL = "launch_library_url"
+      case totalLaunchCount = "total_launch_count"
+      case successfulLaunches = "successful_launches"
+      case consecutiveSuccessfulLaunches = "consecutive_successful_launches"
+      case failedLaunches = "failed_launches"
+      case pendingLaunches = "pending_launches"
+      case successfulLandings = "successful_landings"
+      case failedLandings = "failed_landings"
+      case attemptedLandings = "attempted_landings"
+      case consecutiveSuccessfulLandings = "consecutive_successful_landings"
+      case infoURL = "info_url"
+      case wikiURL = "wiki_url"
+      case logoURL = "logo_url"
+      case imageURL = "image_url"
+      case nationURL = "nation_url"
+      case launcherList = "launcher_list"
+      case spacecraftList = "spacecraft_list"
    }
 
    public var id: Int64
@@ -53,20 +66,37 @@ public struct AgencyJSON: Decodable, Identifiable, JSONElement
    var spacecraft: String?
    var parent: String?
    var imageURL: String?
+   var launchLibraryURL: String?
+   var totalLaunchCount: Int64
+   var successfulLaunches: Int64
+   var consecutiveSuccessfulLaunches: Int64
+   var failedLaunches: Int64
+   var pendingLaunches: Int64
+   var successfulLandings: Int64
+   var failedLandings: Int64
+   var attemptedLandings: Int64
+   var consecutiveSuccessfulLandings: Int64
+   var infoURL: String?
+   var wikiURL: String?
+   var logoURL: String?
+   var nationURL: String?
+   var launcherList: [LauncherJSON]?
+   var spacecraftList: [SpacecraftJSON]?
 
    public func addToCoreData( context: NSManagedObjectContext ) -> Agency
    {
       let newAgency: Agency = Agency( context: context )
-      updateEntity( entity: newAgency )
+      updateEntity( entity: newAgency, context: context  )
 
       return newAgency
    }
 
-   public func updateEntity( entity: Agency? )
+   public func updateEntity( entity: Agency?, context: NSManagedObjectContext )
    {
-      guard let agencyEntity = entity else { return }
+      guard let agencyEntity: Agency = entity else { return }
 
       agencyEntity.id = id
+      agencyEntity.url = url
       agencyEntity.name = name
       agencyEntity.type = type
       agencyEntity.countryCodes = getCountryCodes( countryCode: countryCode )
@@ -83,7 +113,7 @@ public struct AgencyJSON: Decodable, Identifiable, JSONElement
 
       if launchers?.count ?? 0 > 0 && launchers != "None" // DATABASE CORRECTION
       {
-         agencyEntity.launchers = self.launchers
+         agencyEntity.launchers = launchers
       }
 
       if spacecraft?.count ?? 0 > 0 && spacecraft != "None" // DATABASE CORRECTION
@@ -100,6 +130,24 @@ public struct AgencyJSON: Decodable, Identifiable, JSONElement
       {
          agencyEntity.countryCodes?.append( correction ) // DATABASE CORRECTION
       }
+
+      agencyEntity.launchLibraryURL = launchLibraryURL
+      agencyEntity.totalLaunchCount = totalLaunchCount
+      agencyEntity.successfulLaunches = successfulLaunches
+      agencyEntity.consecutiveSuccessfulLaunches = consecutiveSuccessfulLaunches
+      agencyEntity.failedLaunches = failedLaunches
+      agencyEntity.pendingLaunches = pendingLaunches
+      agencyEntity.successfulLandings = successfulLandings
+      agencyEntity.failedLandings = failedLandings
+      agencyEntity.attemptedLandings = attemptedLandings
+      agencyEntity.consecutiveSuccessfulLandings = consecutiveSuccessfulLandings
+      agencyEntity.infoURL = infoURL
+      agencyEntity.wikiURL = wikiURL
+      agencyEntity.logoURL = logoURL
+      agencyEntity.imageURL = imageURL
+      agencyEntity.nationURL = nationURL
+      agencyEntity.addLaunchersFromJSON( launchers: launcherList, context: context )
+      agencyEntity.addSpacecraftsFromJSON( spacecraftList: spacecraftList, context: context )
 
       agencyEntity.sortableName = name?.lowercased()
       agencyEntity.fetched = Date()

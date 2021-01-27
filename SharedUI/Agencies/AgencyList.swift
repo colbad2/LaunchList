@@ -27,7 +27,7 @@ struct AgencyList: View
             AgencyRow( agency: agency )
          }
       }
-      .navigationBarTitle( "Agencies", displayMode: .inline )
+      .navigationTitle( "Agencies" )
    }
 }
 

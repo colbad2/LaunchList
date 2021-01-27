@@ -22,7 +22,7 @@ struct DockingList: View
             DockingRow( docking: docking )
          }
       }
-      .navigationBarTitle( "Dockings", displayMode: .inline )
+      .navigationTitle( "Dockings" )
    }
 }
 

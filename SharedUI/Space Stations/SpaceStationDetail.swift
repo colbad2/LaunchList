@@ -17,25 +17,22 @@ struct SpaceStationDetail: View
    /** View contents. */
    var body: some View
    {
-//      VStack
-//      {
-         ScrollView
+      ScrollView
+      {
+         VStack
          {
-            VStack
-            {
-               TitleField( text: spaceStation?.name )
-               LeftField( text: spaceStation?.status )
-               LeftField( text: spaceStation?.orbit )
-            }
-
-            LoadedImageView( withURL: spaceStation?.imageURL )
-
-            StationEventList( stationEvents: spaceStation?.eventsSet )
-            StationExpeditionList( stationExpeditions: spaceStation?.expeditionsSet )
+            TitleField( text: spaceStation?.name )
+            LeftField( text: spaceStation?.status )
+            LeftField( text: spaceStation?.orbit )
          }
-         .padding()
-//      }
-      .navigationBarTitle( "SpaceStation", displayMode: .inline )
+
+         LoadedImageView( withURL: spaceStation?.imageURL )
+
+         StationEventList( stationEvents: spaceStation?.eventsSet )
+         StationExpeditionList( stationExpeditions: spaceStation?.expeditionsSet )
+      }
+      .padding()
+      .navigationTitle( "SpaceStation" )
    }
 }
 

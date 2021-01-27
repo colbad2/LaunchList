@@ -1,7 +1,9 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 import SwiftUI
+#if !os(macOS)
 import UIKit
+#endif
 
 class ImageLoader: ObservableObject
 {

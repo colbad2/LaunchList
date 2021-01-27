@@ -38,7 +38,7 @@ struct LiveStreamDetail: View
          }
          .padding()
       }
-      .navigationBarTitle( "LiveStream", displayMode: .inline )
+      .navigationTitle( "LiveStream" )
    }
 }
 

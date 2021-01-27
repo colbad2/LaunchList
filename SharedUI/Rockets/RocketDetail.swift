@@ -14,7 +14,7 @@ struct RocketDetail: View
          LeftField( text: rocket?.variant )
       }
       .padding()
-      .navigationBarTitle( "Rocket", displayMode: .inline )
+      .navigationTitle( "Rocket" )
    }
 }
 

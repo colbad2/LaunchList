@@ -52,7 +52,7 @@ struct ProgramDetail: View
          LinkBarView( links: [ "Info": program.infoURL ?? "", "Wiki": program.wikiURL ?? "" ] )
       }
       .padding()
-      .navigationBarTitle( "Program", displayMode: .inline )
+      .navigationTitle( "Program" )
    }
 }
 

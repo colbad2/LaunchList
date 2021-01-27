@@ -20,7 +20,7 @@ struct VehicleDetail: View
          DescriptionView( desc: vehicle.details )
       }
       .padding()
-      .navigationBarTitle( "Starship", displayMode: .inline )
+      .navigationTitle( "Starship" )
    }
 }
 

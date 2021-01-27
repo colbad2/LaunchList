@@ -50,7 +50,7 @@ struct AgencyDetail: View
                                "YouTube": AgencyData.shared.getYouTube( agency ) ?? "" ] )
       }
       .padding()
-      .navigationBarTitle( "Agency", displayMode: .inline )
+      .navigationTitle( "Agency" )
    }
 }
 

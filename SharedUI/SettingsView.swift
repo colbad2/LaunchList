@@ -85,7 +85,7 @@ struct SettingsView: View
             }
          }
       }
-      .navigationBarTitleDisplayMode( .inline )
+      // .navigationTitleDisplayMode( .inline )
       .toolbar
       {
          ToolbarItem( placement: .navigationBarLeading )

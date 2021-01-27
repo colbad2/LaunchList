@@ -22,7 +22,7 @@ struct ProgramList: View
             ProgramRow( program: program )
          }
       }
-      .navigationBarTitle( "Programs", displayMode: .inline )
+      .navigationTitle( "Programs" )
    }
 }
 

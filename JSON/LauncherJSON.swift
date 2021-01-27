@@ -32,7 +32,8 @@ public struct LauncherJSON: Decodable, Identifiable, JSONElement
    // translate API attribute names into better var names
    enum CodingKeys: String, CodingKey
    {
-      case id, url, flightProven, serialNumber, status, details, launcherConfig, flights, lastLaunchDate, firstLaunchDate
+      case id, url, flightProven, serialNumber, status, details, launcherConfig, flights, lastLaunchDate,
+           firstLaunchDate
 
       case imageURL = "imageUrl"
    }

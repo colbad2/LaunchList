@@ -22,7 +22,7 @@ struct PadList: View
             PadRow( pad: pad )
          }
       }
-      .navigationBarTitle( "Pads", displayMode: .inline )
+      .navigationTitle( "Pads" )
    }
 }
 

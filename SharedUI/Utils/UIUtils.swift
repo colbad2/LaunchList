@@ -6,12 +6,12 @@ struct ScrollManagerView: UIViewRepresentable
 {
    @Binding var indexPathToSetVisible: IndexPath?
 
-   func makeUIView(context: Context) -> UIView
+   func makeUIView( context: Context ) -> UIView
    {
       return UIView()
    }
 
-   func updateUIView(_ uiView: UIView, context: Context)
+   func updateUIView( _ uiView: UIView, context: Context )
    {
       guard let indexPath = indexPathToSetVisible else { return }
       let superview: UIView? = uiView.findViewController()?.view

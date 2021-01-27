@@ -43,7 +43,7 @@ struct LauncherList: View
          LauncherRow( launcher: launcher )
          //         }
       }
-      .navigationBarTitle( "Launcher", displayMode: .inline )
+      .navigationTitle( "Launcher" )
    }
 }
 

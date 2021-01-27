@@ -61,15 +61,12 @@ struct TimelineView: View
          {
             HStack
             {
-               Button( iconName: "arrow.up.to.line" ) { self.indexPathToSetVisible = IndexPath( row: 0, section: 0 ) }
-               Button( iconName: "calendar" ) { self.indexPathToSetVisible = IndexPath( row: getNowIndex( launches: timelineEntities ), section: 0 ) }
-               Button( iconName: "arrow.down.to.line" ) { self.indexPathToSetVisible = IndexPath( row: timelineEntities.count - 1, section: 0 ) }
-//               Button( action: { self.indexPathToSetVisible = IndexPath( row: 0, section: 0 ) },
-//                       label: { Image( systemName: "arrow.up.to.line" ) } )
-//               Button( action: { self.indexPathToSetVisible = IndexPath( row: getNowIndex( launches: timelineEntities ), section: 0 ) },
-//                       label: { Image( systemName: "calendar" ) } )
-//               Button( action: { self.indexPathToSetVisible = IndexPath( row: timelineEntities.count - 1, section: 0 ) },
-//                       label: { Image( systemName: "arrow.down.to.line" ) } )
+               Button( iconName: "arrow.up.to.line" )
+                  { self.indexPathToSetVisible = IndexPath( item: 0, section: 0 ) }
+               Button( iconName: "calendar" )
+                  { self.indexPathToSetVisible = IndexPath( item: getNowIndex( launches: timelineEntities ), section: 0 ) }
+               Button( iconName: "arrow.down.to.line" )
+                  { self.indexPathToSetVisible = IndexPath( item: timelineEntities.count - 1, section: 0 ) }
             }
          }
       }

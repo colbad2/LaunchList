@@ -22,7 +22,7 @@ struct SpaceStationList: View
             SpaceStationRow( spaceStation: spaceStation )
          }
       }
-      .navigationBarTitle( "SpaceStations", displayMode: .inline )
+      .navigationTitle( "SpaceStations" )
    }
 }
 

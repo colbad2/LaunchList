@@ -76,7 +76,7 @@ struct LaunchDetail: View
          ProgramLinks( programs: launch.programsSet )
       }
       .padding()
-      .navigationBarTitle( "Launch", displayMode: .inline )
+      .navigationTitle( "Launch" )
    }
 }
 

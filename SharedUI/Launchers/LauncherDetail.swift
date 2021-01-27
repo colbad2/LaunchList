@@ -14,7 +14,7 @@ struct LauncherDetail: View
          LeftField( text: launcher?.serialNumber )
       }
       .padding()
-      .navigationBarTitle( "Launcher", displayMode: .inline )
+      .navigationTitle( "Launcher" )
    }
 }
 
