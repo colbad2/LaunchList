@@ -43,22 +43,41 @@ import CoreData
               "url": "https://ll.thespacedevs.com/2.1.0/pad/54/",
               "wiki_url": ""
           }
+
+ ### Spec
+       id   integer readOnly: true
+       url   string($uri) readOnly: true
+       agency_id   integer maximum: 2147483647 minimum: -2147483648 x-nullable: true
+       name   string maxLength: 255
+       info_url   string($uri) maxLength: 200 x-nullable: true
+       wiki_url   string($uri) maxLength: 200 x-nullable: true
+       map_url   string($uri) maxLength: 200 x-nullable: true
+       latitude   string maxLength: 30 x-nullable: true
+       longitude   string maxLength: 30 x-nullable: true
+       location*   Location{...}
+       map_image   string($uri) x-nullable: true
+       total_launch_count   string
  */
-public struct PadJSON: Decodable, Identifiable, JSONElement
+public class PadJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case id, latitude, location, longitude, mapImage, name, totalLaunchCount, url
+//   enum CodingKeys: String, CodingKey
+//   {
+//      case id, latitude, location, longitude, name, url
+//
+//      case agencyID = "agency_id"
+//      case infoURL = "info_url"
+//      case mapImage = "map_image"
+//      case mapURL = "map_url"
+//      case wikiURL = "wiki_url"
+//      case totalLaunchCount = "total_launch_count"
+//   }
 
-      case agencyID = "agencyId"
-      case infoURL = "infoUrl"
-      case mapURL = "mapUrl"
-      case wikiURL = "wikiUrl"
-   }
-
-   var agencyID: Int64?
+   /** ID of the astronaut within the API. */
    public var id: Int64
+   /** URI of this data. Unused. */
+   var url: String?
+   var agencyID: Int64?
    var infoURL: String?
    var latitude: String?
    var longitude: String?
@@ -67,9 +86,38 @@ public struct PadJSON: Decodable, Identifiable, JSONElement
    var mapURL: String?
    var name: String?
    var totalLaunchCount: Int64?
-   var url: String?
    var wikiURL: String?
 
+   /**
+    Make a `LaunchJSON` from a JSON structure.
+
+    - parameter json: `JSONStructure` JSON to parse
+    */
+   init?( json: JSONStructure? )
+   {
+      guard let json = json else { return nil }
+      guard let id = json[ "id" ] as? Int64 else { return nil }
+
+      self.id = id
+      self.url = json[ "url" ] as? String
+      self.agencyID = json[ "agency_id" ] as? Int64
+      self.infoURL = json[ "info_url" ] as? String
+      self.latitude = json[ "latitude" ] as? String
+      self.longitude = json[ "longitude" ] as? String
+      self.location = LocationJSON( json: json[ "location" ] as? JSONStructure )
+      self.mapImage = json[ "map_image" ] as? String
+      self.mapURL = json[ "map_url" ] as? String
+      self.name = json[ "name" ] as? String
+      self.totalLaunchCount = json[ "total_launch_count" ] as? Int64
+      self.wikiURL = json[ "wiki_url" ] as? String
+   }
+
+   /**
+    Add this data to Core Data as a `Pad` entity. The context still needs to be saved after the add.
+
+    - parameter context: Core Data context to add the entity to.
+    - returns: `Pad` the added entity
+    */
    public func addToCoreData( context: NSManagedObjectContext ) -> Pad
    {
       let newPad: Pad = Pad( context: context )
@@ -78,11 +126,17 @@ public struct PadJSON: Decodable, Identifiable, JSONElement
       return newPad
    }
 
+   /**
+    Set or update the values of the `Pad` entity,
+
+    - parameter entity:  `Pad?` entity to fill/update
+    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+    */
    public func updateEntity( entity: Pad?, context: NSManagedObjectContext )
    {
       guard let padEntity = entity else { return }
 
-      padEntity.agencyID = agencyID ?? -1
+      padEntity.agencyID = guaranteedInt64( agencyID )
       padEntity.id = id
       padEntity.infoURL = infoURL
       padEntity.latitude = latitude ?? ""
@@ -101,14 +155,14 @@ public struct PadJSON: Decodable, Identifiable, JSONElement
       if let padName: String = name
       {
          var name: String = padName
-         if !name.isEmpty && name.first?.isNumber ?? false
+         if !name.isEmpty && ( name.first?.isNumber ?? false )
          {
             name = "Pad " + name
          }
          padEntity.name = name
       }
 
-      padEntity.totalLaunchCount = totalLaunchCount ?? -1
+      padEntity.totalLaunchCount = guaranteedInt64( totalLaunchCount )
 
       if let wikiURL: String = wikiURL?.trim()
       {

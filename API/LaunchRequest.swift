@@ -4,10 +4,8 @@
  Encapsulation of the API upcoming launch endpoint parameters. Returns future Launch objects and launches from
  the last twenty four hours.
  */
-struct LaunchRequest: APIRequest
+class LaunchRequest: BaseAPIListRequest, APIListRequest
 {
-   var base: String
-   var endPoint: String
    var name: String?
    var slug: String?
    var rocketConfigName: String?
@@ -24,11 +22,6 @@ struct LaunchRequest: APIRequest
    var orbitName: String?
    var orbitNameContains: String?
    var program: String?
-   var search: String? // Searches through the launch name, rocket name, launch agency and mission name.
-   var ordering: String?
-   var limit: Int = 100
-   var offset: Int = 0
-   var mode: APIRequestMode = APIRequestMode.detailed // 'normal', 'list', 'detailed'
    var locationIDs: [Int]?
    var launchServiceProviderIDs: [Int]?
    var isCrewed: Bool?
@@ -41,10 +34,8 @@ struct LaunchRequest: APIRequest
    var related: Bool?
    var hideRecentPrevious: Bool? // not for previous launches
 
-   var requestURL: String
+   override var requestURL: String
    {
-      var url: String = base + endPoint // "launch/upcoming/?"
-
       var parameters: [String] = []
       if let name: String = name { parameters.append( "name=\(name)" ) }
       if let slug: String = slug { parameters.append( "slug=\(slug)" ) }
@@ -65,11 +56,6 @@ struct LaunchRequest: APIRequest
       if let orbitName: String = orbitName { parameters.append( "mission__orbit__name=\(orbitName)" ) }
       if let orbitNameContains: String = orbitNameContains { parameters.append( "mission__orbit__name=\(orbitNameContains)" ) }
       if let program: String = program { parameters.append( "program=\(program)" ) }
-      if let search: String = search { parameters.append( "search=\(search)" ) }
-      if let ordering: String = ordering { parameters.append( "ordering=\(ordering)" ) }
-      parameters.append( "limit=\(limit)" )
-      parameters.append( "offset=\(offset)" )
-      parameters.append( "mode=\(mode)" )
       if let locationIDs: [Int] = locationIDs { parameters.append( "location__ids=\(locationIDs)" ) }
       if let launchServiceProviderIDs: [Int] = launchServiceProviderIDs { parameters.append( "lsp__ids=\(launchServiceProviderIDs)" ) }
       if let isCrewed: Bool = isCrewed { parameters.append( "is_crewed=\(isCrewed)" ) }
@@ -82,19 +68,22 @@ struct LaunchRequest: APIRequest
       if let related: Bool = related { parameters.append( "related=\(related)" ) }
       if let hideRecentPrevious: Bool = hideRecentPrevious { parameters.append( "hide_recent_previous=\(hideRecentPrevious)" ) }
 
-      url += parameters.joined( separator: "&" )
-
-      return url
+      return super.requestURL + parameters.joined( separator: "&" )
    }
-}
 
-// preserves auto-generated init
-extension LaunchRequest
-{
-   init( base: String, endPoint: String, limit: Int = 100, offset: Int = 0 )
+   init( baseURL: String, endPoint: String, searchTerm: String? = nil,
+         orderingField: String? = nil, limit: Int = 100, offset: Int = 0, name: String? = nil, slug: String? = nil,
+         rocketConfigName: String? = nil, rocketConfigID: String? = nil, status: String? = nil, launchLibraryID: Int? = nil,
+         spacecraftName: String? = nil, spacecraftNameContains: String? = nil, spacecraftID: Int? = nil, manufacturerName: String? = nil,
+         manufacturerNameContains: String? = nil, rocketConfigFullName: String? = nil, rocketConfigFullNameContains: String? = nil,
+         orbitName: String? = nil, orbitNameContains: String? = nil, program: String? = nil, locationIDs: [Int]? = nil,
+         launchServiceProviderIDs: [Int]? = nil, isCrewed: Bool? = nil, includeSuborbital: Bool? = nil, serialNumber: String? = nil,
+         launchServiceProviderName: String? = nil, launchServiceProviderID: Int? = nil, launcherConfigID: Int? = nil,
+         spacecraftConfigIDs: [Int]? = nil, related: Bool? = nil, hideRecentPrevious: Bool? = nil )
    {
-      self.base = base
-      self.endPoint = endPoint + "?"
+      super.init( baseURL: baseURL, endPoint: endPoint, searchTerm: searchTerm,
+                  orderingField: orderingField, limit: limit, offset: offset )
+
       self.name = nil
       self.slug = nil
       self.rocketConfigName = nil
@@ -111,11 +100,6 @@ extension LaunchRequest
       self.orbitName = nil
       self.orbitNameContains = nil
       self.program = nil
-      self.search = nil
-      self.ordering = nil
-      self.limit = limit
-      self.offset = offset
-      self.mode = APIRequestMode.detailed
       self.locationIDs = nil
       self.launchServiceProviderIDs = nil
       self.isCrewed = nil
@@ -127,5 +111,27 @@ extension LaunchRequest
       self.spacecraftConfigIDs = nil
       self.related = nil
       self.hideRecentPrevious = nil
+   }
+
+   func copy() -> APIListRequest
+   {
+      let newRequest: LaunchRequest =
+         LaunchRequest( baseURL: self.base, endPoint: self.endPoint, searchTerm: self.search, orderingField: self.ordering,
+                        limit: self.limit, offset: self.offset, name: self.name, slug: self.slug,
+                        rocketConfigName: self.rocketConfigName, rocketConfigID: self.rocketConfigID, status: self.status,
+                        launchLibraryID: self.launchLibraryID,
+                        spacecraftName: self.spacecraftName, spacecraftNameContains: self.spacecraftNameContains,
+                        spacecraftID: self.spacecraftID, manufacturerName: self.manufacturerName,
+                        manufacturerNameContains: self.manufacturerNameContains, rocketConfigFullName: self.rocketConfigFullName,
+                        rocketConfigFullNameContains: self.rocketConfigFullNameContains,
+                        orbitName: self.orbitName, orbitNameContains: self.orbitNameContains, program: self.program,
+                        locationIDs: self.locationIDs,
+                        launchServiceProviderIDs: self.launchServiceProviderIDs, isCrewed: self.isCrewed,
+                        includeSuborbital: self.includeSuborbital, serialNumber: self.serialNumber,
+                        launchServiceProviderName: self.launchServiceProviderName, launchServiceProviderID: self.launchServiceProviderID,
+                        launcherConfigID: self.launcherConfigID,
+                        spacecraftConfigIDs: self.spacecraftConfigIDs, related: self.related, hideRecentPrevious: self.hideRecentPrevious )
+
+      return newRequest
    }
 }

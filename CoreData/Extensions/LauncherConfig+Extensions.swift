@@ -12,7 +12,35 @@ public let LAUNCHER_CONFIG_ENTITY_NAME: String = "LauncherConfig"
  */
 extension LauncherConfig
 {
-   // no sets
+   /**
+    Adds the JSON struct, creating or updating as necessary.
+
+    - parameter provider: `AgencyJSON?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addManufacturerFromJSON( manufacturer: AgencyJSON?, context: NSManagedObjectContext )
+   {
+      guard let json = manufacturer else { return }
+      let agencyEntity: Agency = fetchAgency( agency: json, context: context )
+      self.manufacturer = agencyEntity
+      agencyEntity.addToLauncherConfigs( self )
+   }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter programs: `[ProgramJSON]?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addProgramsFromJSON( programs: [ProgramJSON]?, context: NSManagedObjectContext )
+   {
+      for program in programs ?? []
+      {
+         let programEntity: Program = fetchProgram( program: program, context: context )
+         self.addToPrograms( programEntity )
+         programEntity.addToLauncherConfigs( self )
+      }
+   }
 }
 
 /**

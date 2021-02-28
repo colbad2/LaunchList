@@ -5,26 +5,46 @@ import CoreData
 /**
  Mission orbit.
 
- Used in `MissionJSON`
-
- ### example JSON:
+ ### Example JSON:
        {
            "abbrev": "GTO",
            "id": 2,
            "name": "Geostationary Transfer Orbit"
        }
+
+ ### Spec
+       id   integer
+       name*   string maxLength: 50 minLength: 1
+       abbrev*   string  maxLength: 30 minLength: 1
+ }
  */
-public struct OrbitJSON: Decodable, Identifiable, JSONElement
+public class OrbitJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case id, name
+//   enum CodingKeys: String, CodingKey
+//   {
+//      case id, name
+//
+//      case abbreviation = "abbrev"
+//   }
 
-      case abbreviation = "abbrev"
-   }
-
-   var abbreviation: String?
+   /** ID of the astronaut within the API. */
    public var id: Int64
-   var name: String?
+   let name: String?
+   let abbreviation: String?
+
+   /**
+    Make a `ServiceProviderJSON` from a JSON structure.
+
+    - parameter json: `JSONStructure` JSON to parse
+    */
+   init?( json: JSONStructure? )
+   {
+      guard let json = json else { return nil }
+      guard let id = json[ "id" ] as? Int64 else { return nil }
+
+      self.id = id
+      self.abbreviation = json[ "abbrev" ] as? String
+      self.name = json[ "name" ] as? String
+   }
 }

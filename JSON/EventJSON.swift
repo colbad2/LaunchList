@@ -46,26 +46,46 @@ import CoreData
            }
          ]
        }
+
+ ### Spec
+ id   integer
+ url   string($uri)
+ slug*   string($slug) pattern: ^[-a-zA-Z0-9_]+$ minLength: 1
+ name*   string maxLength: 200 minLength: 1
+ type   EventType{...}
+ description   string maxLength: 2048
+ location   string maxLength: 100 x-nullable: true
+ news_url   string($uri) maxLength: 250 x-nullable: true
+ video_url   string($uri) maxLength: 250 x-nullable: true
+ feature_image   string($uri)
+ date   string($date-time) x-nullable: true
+ launches*   [LaunchSerializerCommon{...}]
+ expeditions*   [Expedition{...}]
+ spacestations*   [SpaceStationSerializerForCommon{...}]
+ program   [Program{...}]
  */
-public struct EventJSON: Decodable, Identifiable, JSONElement
+public class EventJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case id, url, slug, name, type, location, featureImage, date, launches, expeditions
+//   enum CodingKeys: String, CodingKey
+//   {
+//      case id, url, slug, name, type, location, date, launches, expeditions
+//
+//      case eventDescription = "description"
+//      case newsURL = "news_url"
+//      case videoURL = "video_url"
+//      case spaceStations = "spacestations"
+//      case programs = "program"
+//      case featureImage = "feature_image"
+//   }
 
-      case eventDescription = "description"
-      case newsURL = "newsUrl"
-      case videoURL = "videoUrl"
-      case spaceStations = "spacestations"
-      case programs = "program"
-   }
-
+   /** ID of the astronaut within the API. */
    public let id: Int64
-   let url: String? // unused
+   /** URI of this data. Unused. */
+   let url: String?
    let slug: String? // unused
    let name: String?
-   let type: EventTypeJSON?
+   let type: IDNameJSON?
    let eventDescription: String?
    let location: String?
    let newsURL: String?
@@ -77,6 +97,39 @@ public struct EventJSON: Decodable, Identifiable, JSONElement
    let spaceStations: [SpaceStationJSON]?
    let programs: [ProgramJSON]?
 
+   /**
+    Make a `EventJSON` from a JSON structure.
+
+    - parameter json: `JSONStructure` JSON to parse
+    */
+   init?( json: JSONStructure? )
+   {
+      guard let json = json else { return nil }
+      guard let id = json[ "id" ] as? Int64 else { return nil }
+
+      self.id = id
+      self.url = json[ "url" ] as? String
+      self.slug = json[ "slug" ] as? String
+      self.name = json[ "name" ] as? String
+      self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )
+      self.eventDescription = json[ "description" ] as? String
+      self.location = json[ "location" ] as? String
+      self.newsURL = json[ "news_url" ] as? String
+      self.videoURL = json[ "video_url" ] as? String
+      self.featureImage = json[ "feature_image" ] as? String
+      self.date = json[ "date" ] as? String
+      self.launches = ( json[ "launches" ] as? [JSONStructure] )?.compactMap { LaunchJSON( json: $0 ) }
+      self.expeditions = ( json[ "expeditions" ] as? [JSONStructure] )?.compactMap { ExpeditionJSON( json: $0 ) }
+      self.spaceStations = ( json[ "spaceStations" ] as? [JSONStructure] )?.compactMap { SpaceStationJSON( json: $0 ) }
+      self.programs = ( json[ "programs" ] as? [JSONStructure] )?.compactMap { ProgramJSON( json: $0 ) }
+   }
+
+   /**
+    Add this data to Core Data as a `Event` entity. The context still needs to be saved after the add.
+
+    - parameter context: Core Data context to add the entity to.
+    - returns: `Event` the added entity
+    */
    public func addToCoreData( context: NSManagedObjectContext ) -> Event
    {
       let newEvent: Event = Event( context: context )
@@ -85,6 +138,12 @@ public struct EventJSON: Decodable, Identifiable, JSONElement
       return newEvent
    }
 
+   /**
+    Set or update the values of the `Event` entity,
+
+    - parameter entity:  `Event?` entity to fill/update
+    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+    */
    public func updateEntity( entity: Event?, context: NSManagedObjectContext )
    {
       guard let eventEntity = entity else { return }

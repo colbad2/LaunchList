@@ -17,8 +17,8 @@ struct DatasetList: View
                                            blurb: "happenings, briefings, meetings, anniversaries" ),
                                  ListItem( title: "Live Streams", entity: LIVE_STREAM_ENTITY_NAME, iconName: "LiveStream",
                                            blurb: "video streams of Starship activities" ),
-                                 ListItem( title: "Starship Vehicles", entity: VEHICLE_ENTITY_NAME, iconName: "Starship",
-                                           blurb: "individual Starship instances" ),
+                                 ListItem( title: "Starship Vehicles", entity: ROCKET_ENTITY_NAME, iconName: "Starship",
+                                           blurb: "rocket instances" ),
                                  ListItem( title: "Docking", entity: DOCKING_ENTITY_NAME, iconName: "Docking",
                                            blurb: "meetings of vehicles and space stations" ),
                                  ListItem( title: "Space Stations", entity: SPACESTATION_ENTITY_NAME, iconName: "Station",
@@ -111,10 +111,8 @@ func getListItemView( title: String ) -> AnyView
       case "Astronauts": return AnyView( AstronautList() )
       case "Events": return AnyView( EventList() )
       case "Live Streams": return AnyView( LiveStreamsList() )
-      case "Starship Vehicles": return AnyView( VehicleList() )
       case "Docking": return AnyView( DockingList() )
       case "Space Stations": return AnyView( SpaceStationList() )
-
       case "Expeditions": return AnyView( ExpeditionList() )
       case "Flight Vehicles": return AnyView( FlightVehicleList() )
       case "Spacecraft": return AnyView( SpacecraftList() )

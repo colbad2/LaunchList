@@ -24,7 +24,7 @@ struct HomeView: View
             {
                TitleField( text: missionName( launch ) )
                TwoFields( leftString: launch.getProviderName(),
-                          rightString: launch.rocket?.name ?? launch.name )
+                          rightString: launch.rocket?.configuration?.name ?? launch.name )
                TwoFields( leftString: launch.agency?.type,
                           rightString: launch.mission?.type )
                LeftField( text: launch.mission?.orbitName )

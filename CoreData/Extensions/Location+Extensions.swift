@@ -12,7 +12,21 @@ public let LOCATION_ENTITY_NAME: String = "Location"
  */
 extension Location
 {
-   //
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter links: `[PadJSON]?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addPadsFromJSON( pads: [PadJSON]?, context: NSManagedObjectContext )
+   {
+      for pad in pads ?? []
+      {
+         let padEntity: Pad = fetchPad( pad: pad, context: context )
+         self.addToPads( padEntity )
+         padEntity.location = self
+      }
+   }
 }
 
 /**

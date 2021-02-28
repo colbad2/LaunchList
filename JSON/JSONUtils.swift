@@ -3,6 +3,11 @@
 import Foundation
 
 /**
+ General form of a JSON structure
+ */
+public typealias JSONStructure = [ String: Any ]
+
+/**
  Parser for ISO dates. Use on main thread only.
  */
 public struct ISOParser
@@ -127,6 +132,17 @@ public func parseJSONString< T: Decodable >( jsonData: Data ) -> T?
    return nil
 }
 
+/**
+ Parses raw data as JSON.
+
+ - parameter data: `Data` raw bytes from the API
+ - returns:        `JSONStructure?` JSON dictionary, if possible
+ */
+public func parseJSON( data: Data ) -> JSONStructure?
+{
+   return try? JSONSerialization.jsonObject( with: data, options: [] ) as? [String: Any]
+}
+
 func reportDecodingError( error: DecodingError )
 {
    switch error
@@ -186,7 +202,7 @@ public func getCountryCodes( countryCode: String? ) -> [String]
             codes.append( String( country.prefix( 3 ) ) )
             codes.append( String( country.suffix( 3 ) ) )
          }
-         else if country.contains( "/" )
+         else if country.contains( "/" ) // DATABASE CORRECTION
          {
             let countryParts: [Substring] = country.split( separator: "/" )
             codes.append( String( countryParts[ 0 ] ) )
@@ -202,4 +218,37 @@ public func getCountryCodes( countryCode: String? ) -> [String]
    if codes.isEmpty { return [] }
 
    return codes
+}
+
+/**
+ Returns the int, if it exists, or a default value. Used because CoreData can't have optional primitives.
+
+ - parameter maybeInt64: `Int64?` possible int
+ - returns:              `Int64` int or a default value
+ */
+public func guaranteedInt64( _ maybeInt64: Int64? ) -> Int64
+{
+   return maybeInt64 ?? -1
+}
+
+/**
+ Returns the int, if it exists, or a default value. Used because CoreData can't have optional primitives.
+
+ - parameter maybeInt16: `Int16?` possible int
+ - returns:              ` `Int16` int or a default value
+ */
+public func guaranteedInt16( _ maybeInt16: Int16? ) -> Int16
+{
+   return maybeInt16 ?? -1
+}
+
+/**
+ Returns the bool, if it exists, or a default value. Used because CoreData can't have optional primitives.
+
+ - parameter maybeBool: `Bool?` possible bool
+ - returns:             `Bool` bool or a default value
+ */
+public func guaranteedBool( _ maybeBool: Bool? ) -> Bool
+{
+   return maybeBool ?? false
 }

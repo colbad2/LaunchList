@@ -1,57 +1,90 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+/** API end point for agency requests. */
+private let apiEndPoint: String = "agencies/"
+
 /**
- Encapsulation of the API agency endpoint parameters.
+ Agency list endpoint request.
  */
-struct AgencyRequest: APIRequest
+public class AgencyListRequest: BaseAPIListRequest, APIListRequest
 {
-   var base: String
-   var endPoint: String
    var featured: String?
    var agencyType: String?
    var countryCode: String?
-   var search: String?
-   var ordering: String?
-   var limit: Int = 100
-   var offset: Int = 0
    var mode: APIRequestMode = .detailed
-
-   var requestURL: String
+   /** URL for the request. */
+   override var requestURL: String
    {
-      var url: String = base + endPoint // "agencies/?"
-
       var parameters: [String] = []
+      addParameter( param: featured, paramName: "featured", parameters: &parameters )
+      addParameter( param: agencyType, paramName: "agency_type", parameters: &parameters )
+      addParameter( param: countryCode, paramName: "country_code", parameters: &parameters )
+      addParameter( param: mode, paramName: "mode", parameters: &parameters )
 
-      if let featured: String = featured { parameters.append( "featured=\(featured)" ) }
-      if let agencyType: String = agencyType { parameters.append( "agency_type=\(agencyType)" ) }
-      if let countryCode: String = countryCode { parameters.append( "country_code=\(countryCode)" ) }
-      if let search: String = search { parameters.append( "search=\(search)" ) }
-      if let ordering: String = ordering { parameters.append( "ordering=\(ordering)" ) }
-      parameters.append( "limit=\(limit)" )
-      parameters.append( "offset=\(offset)" )
-      parameters.append( "mode=\(mode)" )
+      return super.requestURL + parameters.joined( separator: "&" )
+   }
 
-      url += parameters.joined( separator: "&" )
+   /**
+    Creates a request for a list of specific types.
 
-      return url
+    - parameter baseURL: `String` base part of the constructed request URL
+    - parameter requestType: `ConfigRequestMode` what type is being requested
+    - parameter searchTerm: `String` search term to filter by
+    - parameter orderingField: `String` which field to order by (can only be 'id' or 'name')
+    - parameter limit: `Int` limit of records to return (max 100)
+    - parameter offset: `Int` starting index of the types returned
+    */
+   init( baseURL: String, searchTerm: String? = nil,
+         orderingField: String? = nil, limit: Int = 100, offset: Int = 0,
+         featured: String? = nil, agencyType: String? = nil, countryCode: String? = nil )
+   {
+      super.init( baseURL: baseURL, endPoint: apiEndPoint, searchTerm: searchTerm,
+                  orderingField: orderingField, limit: limit, offset: offset )
+
+      self.featured = featured
+      self.agencyType = agencyType
+      self.countryCode = countryCode
+   }
+
+   /**
+    Makes a copy of this request
+
+    - returns: copy of this request
+    */
+   func copy() -> APIListRequest
+   {
+      return AgencyListRequest( baseURL: base, searchTerm: search,
+                                orderingField: ordering, limit: limit, offset: offset )
    }
 }
 
-// preserves auto-generated init
-extension AgencyRequest
+public class AgencyRequest: BaseAPIIDRequest
 {
-   init( base: String, endPoint: String, limit: Int = 100, offset: Int = 0 )
-   {
-      self.base = base
-      self.endPoint = endPoint + "?"
+   /**
+    Creates a request for a specific type, with a specific ID.
 
-      self.featured = nil
-      self.agencyType = nil
-      self.countryCode = nil
-      self.search = nil
-      self.ordering = nil
-      self.limit = limit
-      self.offset = offset
-      self.mode = .detailed
+    - parameter baseURL: `String` base part of the constructed request URL
+    - parameter id: `Int64` ID of the type requested
+    */
+   init( baseURL: String, id: Int64 )
+   {
+      super.init( baseURL: baseURL, endPoint: apiEndPoint, id: id )
    }
+}
+
+/**
+ Parse the raw JSON returned from an agency list request.
+
+ - parameter json: `JSONStructure` raw JSON to parse
+ - returns: list of `AgencyJSON`
+ */
+public func parseAgencyListResponse( json: JSONStructure ) -> [AgencyJSON]
+{
+   var data: [AgencyJSON] = []
+   if let dataArray: [JSONStructure] = json[ "sublist" ] as? [JSONStructure]
+   {
+      data = dataArray.compactMap { return AgencyJSON( json: $0 ) }
+   }
+
+   return data
 }

@@ -15,7 +15,9 @@ happy with the UI.
 Things that need to happen for a good app 
 
 ### Core Data/JSON
-- prefilled Core Data default data store
+- prefilled Core Data default data store (data only? iamges loaded sparately)
+- can we include the external file dir alongside the default data db files?
+- reduce image sizes on import if storing in the db
 - some duplicate Pads/ unknown pads with no info/ lat lons with extra zeros (west texas)/pads with no launches, no countries
 ### API loading
 - Load db regularly
@@ -25,12 +27,12 @@ Things that need to happen for a good app
 - db download scheduler
 - import dbs after app start, not before UI shown
 - check all of Swagger for API parts that I may have missed. I am sure some of the subobjects miss everything the API has
+- Remove unused old JSON parsing code, including API response JSON structs
 ### Redundancy
 - Program/Agency logos if not provided by the API
 - Alternative internal logos for slow loading ones (ISS)
 ### Performance/efficiency
 - pre-fill image cache with images from db?
-- can we include the external file dir alongside the default data db files?
 ### Beauty
 - tab icons
 - use a common date format
@@ -161,6 +163,20 @@ Articles that address particular features/problems that I haven't dealt with yet
 - https://developer.apple.com/documentation/combine/receiving-and-handling-events-with-combine
 - https://realm.github.io/SwiftLint/pattern_matching_keywords.html
 - https://www.i18nqa.com/debug/utf8-debug.html
+- https://github.com/joemasilotti/UI-Testing-Cheat-Sheet
+- https://www.raywenderlich.com/14958063-modern-efficient-core-data
+- https://www.raywenderlich.com/501-sourcery-tutorial-generating-swift-code-for-ios
+- https://www.google.com/search?client=safari&rls=en&q=core+data+default+store&ie=UTF-8&oe=UTF-8
+- https://www.vadimbulavin.com/network-connectivity-on-ios-with-swift/
+- https://www.google.com/search?client=safari&rls=en&q=swift+load+json+from+URL&ie=UTF-8&oe=UTF-8
+- https://programmingwithswift.com/parse-json-from-file-and-url-with-swift/
+- https://developer.apple.com/library/archive/technotes/tn2350/_index.html
+- https://www.google.com/search?client=safari&rls=en&q=xcode+default+database&ie=UTF-8&oe=UTF-8
+
+
+## Data sources
+- https://en.wikipedia.org/wiki/List_of_government_space_agencies
+- https://www.spacelaunchschedule.com/agency/aeronautics-and-space-research-and-diffusion-center/
 
 
 ## To Read
@@ -189,3 +205,6 @@ These have been completed, but tend to creep back in if not vigilant
 
 - [swift-code-metrics]{https://github.com/matsoftware/swift-code-metrics}
 - [swiftlint]{}
+- [Carthage]{}
+- [Hippolyte]{https://github.com/JanGorman/Hippolyte} HTTP stub generator
+- [Sourcery]{}

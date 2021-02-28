@@ -12,8 +12,6 @@ public let SPACECRAFT_ENTITY_NAME: String = "Spacecraft"
  */
 extension Spacecraft
 {
-   // no sets
-
    /**
     Adds the JSON struct, creating or updating as necessary.
 
@@ -27,6 +25,22 @@ extension Spacecraft
          let spacecraftConfigEntity: SpacecraftConfig = fetchSpacecraftConfig( spacecraftConfig: spacecraftConfig, context: context )
          self.spacecraftConfig = spacecraftConfigEntity
          spacecraftConfigEntity.spacecraft = self
+      }
+   }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter flights: `[SpacecraftFlightJSON]?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addFlightsFromJSON( flights: [SpacecraftFlightJSON]?, context: NSManagedObjectContext )
+   {
+      for flight in flights ?? []
+      {
+         let flightEntity: SpacecraftFlight = fetchSpacecraftFlight( flight: flight, context: context )
+         self.addToSpacecraftFlights( flightEntity )
+         flightEntity.spacecraft = self
       }
    }
 }
@@ -56,7 +70,7 @@ public func getSpacecraft( by entityID: Int64, context: NSManagedObjectContext )
 public func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjectContext ) -> Spacecraft
 {
    let spacecraftEntity: Spacecraft? = getSpacecraft( by: spacecraft.id, context: context )
-   spacecraft.updateEntity( entity: spacecraftEntity, context: context )
+   spacecraft.updateEntity( spacecraftEntity: spacecraftEntity, context: context )
    return spacecraftEntity ?? spacecraft.addToCoreData( context: context )
 }
 

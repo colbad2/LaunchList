@@ -115,7 +115,7 @@ struct LaunchRow: View
             let providerName: String = launch.getProviderName()
             BlackSubheadlineText( text: providerName )
             Spacer()
-            BlackSubheadlineText( text: launch.rocket?.name ?? launch.name ?? "" )
+            BlackSubheadlineText( text: launch.rocket?.configuration?.name ?? launch.name ?? "" )
          }
          BlackSubheadlineText( text: tightDateString( launch.windowStart ).uppercased() )
       }

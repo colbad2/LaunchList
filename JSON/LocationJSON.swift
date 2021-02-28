@@ -3,8 +3,8 @@
 import CoreData
 
 /**
- The larger location of the launch, that contains the launch pad itself. For example, the Kennedy
- Space Center would be the locaton for Launch Complex 39A.
+ The larger location of the launch, that contains the launch pad itself. For example, 'Kennedy
+ Space Center' would be the location for 'Launch Complex 39A'.
 
  Part of a `PadJSON`.
 
@@ -18,13 +18,25 @@ import CoreData
            "total_launch_count": 208,
            "url": "https://ll.thespacedevs.com/2.1.0/location/12/"
        }
+
+ ### Spec
+       id                  integer
+       url                 string($uri)
+       name                string maxLength: 255
+       country_code        string maxLength: 255
+       map_image           string($uri) x-nullable: true
+       total_launch_count  string
+       total_landing_count string
+       pads*               [Pad]
  */
-public struct LocationJSON: Decodable, Identifiable, JSONElement
+public class LocationJSON: Decodable, Identifiable, JSONElement
 {
-   /** Three-letter country code containing the location. */
-   var countryCode: String?
    /** ID of the location within the API. */
    public var id: Int64
+   /** API URI for this location. */
+   var url: String?
+   /** Three-letter country code containing the location. */
+   var countryCode: String?
    /** URL to a map of the location. */
    var mapImage: String?
    /** Human-readable name for the location. */
@@ -33,11 +45,31 @@ public struct LocationJSON: Decodable, Identifiable, JSONElement
    var totalLandingCount: Int64?
    /** Number of launches that have occurred at the location. */
    var totalLaunchCount: Int64?
-   /** API URI for this location. */
-   var url: String?
+   /** List of pads at the location. */
+   var pads: [PadJSON] = []
 
    /**
-    Add this location to Core Data as a [Location] entity. The context still needs to be saved after the add.
+    Make a `LocationJSON` from a JSON structure.
+
+    - parameter json: `JSONStructure` JSON to parse
+    */
+   init?( json: JSONStructure? )
+   {
+      guard let json = json else { return nil }
+      guard let id = json[ "id" ] as? Int64 else { return nil }
+
+      self.id = id
+      self.url = json[ "url" ] as? String
+      self.countryCode = json[ "country_code" ] as? String
+      self.mapImage = json[ "map_image" ] as? String
+      self.name = json[ "name" ] as? String
+      self.totalLandingCount = json[ "total_landing_count" ] as? Int64
+      self.totalLaunchCount = json[ "total_launch_count" ] as? Int64
+      self.pads = ( json[ "pads" ] as? [JSONStructure] ?? [] ).compactMap { return PadJSON( json: $0 ) }
+   }
+
+   /**
+    Add this location to Core Data as a `Location` entity. The context still needs to be saved after the add.
 
     - parameter context: `NSManagedObjectContext` Core Data context to add the entity to.
     - returns:           `Location` the added entity
@@ -50,6 +82,12 @@ public struct LocationJSON: Decodable, Identifiable, JSONElement
       return newLocation
    }
 
+   /**
+    Set or update the values of the `Location` entity,
+
+    - parameter entity:  `Location?` entity to fill/update
+    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+    */
    public func updateEntity( entity: Location?, context: NSManagedObjectContext )
    {
       guard let locationEntity = entity else { return }
@@ -58,8 +96,9 @@ public struct LocationJSON: Decodable, Identifiable, JSONElement
       locationEntity.id = id
       locationEntity.mapImage = mapImage
       locationEntity.name = name
-      locationEntity.totalLandingCount = totalLandingCount ?? -1
-      locationEntity.totalLaunchCount = totalLaunchCount ?? -1
+      locationEntity.totalLandingCount = guaranteedInt64( totalLandingCount )
+      locationEntity.totalLaunchCount = guaranteedInt64( totalLaunchCount )
+      locationEntity.addPadsFromJSON( pads: pads, context: context )
 
       locationEntity.fetched = Date()
    }

@@ -14,12 +14,18 @@ struct APIManager
 {
    static let shared: APIManager = APIManager()
 
+   var baseURL: String = API_URL_BASE
+
    init()
    {
       let config: URLSessionConfiguration = URLSessionConfiguration.default
       config.waitsForConnectivity = true
       config.timeoutIntervalForResource = 300
       config.allowsConstrainedNetworkAccess = false
+
+      URLCache.shared = URLCache( memoryCapacity: 20 * 1024 * 1024,
+                                  diskCapacity: 100 * 1024 * 1024,
+                                  diskPath: nil )
 
       let monitor: NWPathMonitor = NWPathMonitor()
       monitor.pathUpdateHandler =
@@ -49,7 +55,7 @@ struct APIManager
 
    func fetchAPIAgencies()
    {
-      getAPIAgencies( with: AgencyRequest( base: API_URL_BASE, endPoint: "agencies/" ) )
+      getAPIAgencies( with: AgencyListRequest( baseURL: self.baseURL ) )
    }
 
    func fetchAPIAgency( withID id: Int64 )
@@ -59,17 +65,17 @@ struct APIManager
 
    func fetchAPILaunches()
    {
-      getAPILaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/" ) )
+      getAPILaunches( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/" ) )
    }
 
    func fetchAPIUpcomingLaunches()
    {
-      getAPILaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/upcoming/" ) )
+      getAPILaunches( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/upcoming/" ) )
    }
 
    func fetchAPIPreviousLaunches()
    {
-      getAPILaunches( with: LaunchRequest( base: API_URL_BASE, endPoint: "launch/previous/" ) )
+      getAPILaunches( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/previous/" ) )
    }
 
    func fetchAPIUpcomingLaunch( withID id: Int64 )
@@ -100,10 +106,10 @@ func getAPIAgency( withID id: Int64 )
    _ = fetchAgency( agency: agencyJSON, context: PersistenceController.shared.container.viewContext )
 }
 
-func getAPIAgencies( with apiRequest: AgencyRequest )
+func getAPIAgencies( with apiRequest: AgencyListRequest )
 {
-   var request: APIRequest? = apiRequest
-   while let currentRequest: APIRequest = request
+   var request: APIListRequest? = apiRequest
+   while let currentRequest: APIListRequest = request
    {
       var json: AgenciesListJSON?
       loadJSON( fromAPI: currentRequest.requestURL )
@@ -134,8 +140,8 @@ func getAPIAgencies( with apiRequest: AgencyRequest )
  */
 func getAPILaunches( with apiRequest: LaunchRequest )
 {
-   var request: APIRequest? = apiRequest
-   while let currentRequest: APIRequest = request
+   var request: APIListRequest? = apiRequest
+   while let currentRequest: APIListRequest = request
    {
       var json: LaunchListJSON?
       loadJSON( fromAPI: currentRequest.requestURL )

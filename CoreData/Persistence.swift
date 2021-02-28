@@ -26,7 +26,6 @@ public struct PersistenceController
       _ = getSampleLaunch()?.addToCoreData( context: viewContext )
       _ = getSampleAstronaut()?.addToCoreData( context: viewContext )
       _ = getSampleDocking()?.addToCoreData( context: viewContext )
-      _ = getSampleVehicle()?.addToCoreData( context: viewContext )
       _ = getSampleSpaceStation()?.addToCoreData( context: viewContext )
       _ = getSampleExpedition()?.addToCoreData( context: viewContext )
       _ = getSampleLocation()?.addToCoreData( context: viewContext )
@@ -225,9 +224,9 @@ func loadStarshipTests( context: NSManagedObjectContext )
 //      _ = fetchNotice( notice: notice, context: context )
 //   }
    print( "parsing vehicles" )
-   for vehicle in starshipData?.vehicles ?? []
+   for rocket in starshipData?.vehicles ?? []
    {
-      _ = fetchVehicle( vehicle: vehicle, context: context )
+      _ = fetchLauncher( launcher: rocket, context: context )
    }
    print( "done starshipTests.json" )
 }

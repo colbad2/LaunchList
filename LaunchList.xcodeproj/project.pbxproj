@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2E4473C355B2BEC5B60CAC9A /* AgencyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E447EF33182BB4E65A2406C /* AgencyRequest.swift */; };
+		A214B97F25EAFA770021E1C1 /* AstronautFlight+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A214B97E25EAFA770021E1C1 /* AstronautFlight+Extensions.swift */; };
 		A2178AA125C1093600DBC91E /* AgencyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E447EF33182BB4E65A2406C /* AgencyRequest.swift */; };
 		A21AD0E925BE0CDE007D9C42 /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEAAC025BDE349002B8953 /* JSONResponse.swift */; };
-		A21AD0EF25BE0CE2007D9C42 /* AstronautStatusJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */; };
-		A21AD0F525BE0CE7007D9C42 /* AstronautTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852F25B3BBB10075B128 /* AstronautTypeJSON.swift */; };
 		A21AD0FB25BE0CEA007D9C42 /* ConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A416B025B3BFF0005143D6 /* ConfigurationJSON.swift */; };
-		A21AD10125BE0CEF007D9C42 /* DockingLocationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255853725B3BBDC0075B128 /* DockingLocationJSON.swift */; };
-		A21AD10725BE0CF3007D9C42 /* EventTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255853F25B3BC300075B128 /* EventTypeJSON.swift */; };
+		A21AD10725BE0CF3007D9C42 /* IDNameJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255853F25B3BC300075B128 /* IDNameJSON.swift */; };
 		A21AD11725BE0D30007D9C42 /* ISO3166Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A925B343F500232408 /* ISO3166Utils.swift */; };
 		A21AD11D25BE0D32007D9C42 /* Regex+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A725B343F500232408 /* Regex+Extensions.swift */; };
 		A21AD12325BE0D35007D9C42 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A825B343F500232408 /* String+Extensions.swift */; };
@@ -22,6 +20,21 @@
 		A21AD13525BE0D3C007D9C42 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC6ABF25B48B660059E89E /* Dictionary+Extensions.swift */; };
 		A21AD13B25BE0D57007D9C42 /* AgencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80E525B736DD007F3501 /* AgencyData.swift */; };
 		A21AD14E25BE0FB3007D9C42 /* TextVIews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AD14D25BE0FB3007D9C42 /* TextVIews.swift */; };
+		A229212525D0A53B00F7481F /* SourceryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A229212425D0A53B00F7481F /* SourceryProtocols.swift */; };
+		A229212625D0A53B00F7481F /* SourceryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A229212425D0A53B00F7481F /* SourceryProtocols.swift */; };
+		A2421F8325DACAF800A7640E /* LandingLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2421F8225DACAF800A7640E /* LandingLocation+Extensions.swift */; };
+		A2421F8825DAD2B900A7640E /* LauncherConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2421F8725DAD2B900A7640E /* LauncherConfigRequest.swift */; };
+		A2421F8D25DAEEC200A7640E /* LaunchStatusJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2421F8C25DAEEC200A7640E /* LaunchStatusJSON.swift */; };
+		A2421F9225DAEFE600A7640E /* SpacecraftConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2421F9125DAEFE600A7640E /* SpacecraftConfigRequest.swift */; };
+		A2421F9725DAF0B400A7640E /* StarshipDashboardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2421F9625DAF0B400A7640E /* StarshipDashboardRequest.swift */; };
+		A2421F9C25DB4FC400A7640E /* DockingEventJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2421F9B25DB4FC400A7640E /* DockingEventJSON.swift */; };
+		A2421FA125DB596500A7640E /* DockingEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2421FA025DB596500A7640E /* DockingEventRequest.swift */; };
+		A2421FAA25DD611F00A7640E /* Hippolyte.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2421FA925DD611F00A7640E /* Hippolyte.xcframework */; };
+		A2421FAF25DD61F000A7640E /* HyppolyteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2421FAE25DD61F000A7640E /* HyppolyteTests.swift */; };
+		A24CE1B025EA9D5C00DC4370 /* URLLink+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24CE1AF25EA9D5C00DC4370 /* URLLink+Extensions.swift */; };
+		A24EFCBD25D9993300EDCFAD /* SpacecraftFlight+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EFCBC25D9993300EDCFAD /* SpacecraftFlight+Extensions.swift */; };
+		A24EFCCE25DAC20B00EDCFAD /* ConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EFCCD25DAC20B00EDCFAD /* ConfigRequest.swift */; };
+		A24EFCD325DAC7CB00EDCFAD /* LandingLocationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EFCD225DAC7CB00EDCFAD /* LandingLocationJSON.swift */; };
 		A25584D525B3624C0075B128 /* HoldFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584D425B3624C0075B128 /* HoldFailView.swift */; };
 		A25584DE25B36D170075B128 /* SocialMediaLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584DD25B36D170075B128 /* SocialMediaLink.swift */; };
 		A25584E725B374450075B128 /* Docking+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584E625B374450075B128 /* Docking+Extensions.swift */; };
@@ -29,21 +42,23 @@
 		A25584FE25B375510075B128 /* Rocket+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25584FD25B375510075B128 /* Rocket+Extensions.swift */; };
 		A255851825B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */; };
 		A255852025B3BB440075B128 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255851F25B3BB440075B128 /* Samples.swift */; };
-		A255852825B3BB8D0075B128 /* AstronautStatusJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */; };
-		A255853025B3BBB10075B128 /* AstronautTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255852F25B3BBB10075B128 /* AstronautTypeJSON.swift */; };
-		A255853825B3BBDC0075B128 /* DockingLocationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255853725B3BBDC0075B128 /* DockingLocationJSON.swift */; };
-		A255854025B3BC300075B128 /* EventTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255853F25B3BC300075B128 /* EventTypeJSON.swift */; };
+		A255854025B3BC300075B128 /* IDNameJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255853F25B3BC300075B128 /* IDNameJSON.swift */; };
 		A255854825B3BCA70075B128 /* Launcher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255854725B3BCA70075B128 /* Launcher+Extensions.swift */; };
 		A255855025B3BD100075B128 /* LiveStream+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255854F25B3BD100075B128 /* LiveStream+Extensions.swift */; };
 		A255855825B3BD770075B128 /* Location+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255855725B3BD770075B128 /* Location+Extensions.swift */; };
+		A266734225D8616100857C0B /* Configuration+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266734125D8616100857C0B /* Configuration+Extensions.swift */; };
+		A266734725D8802D00857C0B /* ServiceProviderJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266734625D8802D00857C0B /* ServiceProviderJSON.swift */; };
+		A266734C25D9907A00857C0B /* AstronautRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266734B25D9907A00857C0B /* AstronautRequest.swift */; };
+		A266734D25D9907A00857C0B /* AstronautRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266734B25D9907A00857C0B /* AstronautRequest.swift */; };
+		A266735225D995AD00857C0B /* SpacecraftFlightJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266735125D995AD00857C0B /* SpacecraftFlightJSON.swift */; };
+		A266735325D995AD00857C0B /* SpacecraftFlightJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266735125D995AD00857C0B /* SpacecraftFlightJSON.swift */; };
+		A269216525EB007200861A5B /* DockingEvent+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269216425EB007200861A5B /* DockingEvent+Extensions.swift */; };
 		A280D08725B34AF300CF6E33 /* ProgramJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06025B34AF300CF6E33 /* ProgramJSON.swift */; };
 		A280D08925B34AF300CF6E33 /* ProgramJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06025B34AF300CF6E33 /* ProgramJSON.swift */; };
 		A280D08A25B34AF300CF6E33 /* RoadClosureJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06125B34AF300CF6E33 /* RoadClosureJSON.swift */; };
 		A280D08C25B34AF300CF6E33 /* RoadClosureJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06125B34AF300CF6E33 /* RoadClosureJSON.swift */; };
 		A280D08D25B34AF300CF6E33 /* ExpeditionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06225B34AF300CF6E33 /* ExpeditionJSON.swift */; };
 		A280D08F25B34AF300CF6E33 /* ExpeditionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06225B34AF300CF6E33 /* ExpeditionJSON.swift */; };
-		A280D09025B34AF300CF6E33 /* NoticeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06325B34AF300CF6E33 /* NoticeJSON.swift */; };
-		A280D09225B34AF400CF6E33 /* NoticeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06325B34AF300CF6E33 /* NoticeJSON.swift */; };
 		A280D09625B34AF400CF6E33 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06525B34AF300CF6E33 /* JSONUtils.swift */; };
 		A280D09825B34AF400CF6E33 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06525B34AF300CF6E33 /* JSONUtils.swift */; };
 		A280D09925B34AF400CF6E33 /* SpaceStationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06625B34AF300CF6E33 /* SpaceStationJSON.swift */; };
@@ -54,8 +69,6 @@
 		A280D0A125B34AF400CF6E33 /* OrbitJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06825B34AF300CF6E33 /* OrbitJSON.swift */; };
 		A280D0A225B34AF400CF6E33 /* LauncherJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06925B34AF300CF6E33 /* LauncherJSON.swift */; };
 		A280D0A425B34AF400CF6E33 /* LauncherJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06925B34AF300CF6E33 /* LauncherJSON.swift */; };
-		A280D0A525B34AF400CF6E33 /* VehicleJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06A25B34AF300CF6E33 /* VehicleJSON.swift */; };
-		A280D0A725B34AF400CF6E33 /* VehicleJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06A25B34AF300CF6E33 /* VehicleJSON.swift */; };
 		A280D0A825B34AF400CF6E33 /* MissionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06B25B34AF300CF6E33 /* MissionJSON.swift */; };
 		A280D0AA25B34AF400CF6E33 /* MissionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06B25B34AF300CF6E33 /* MissionJSON.swift */; };
 		A280D0AB25B34AF400CF6E33 /* EventJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D06C25B34AF300CF6E33 /* EventJSON.swift */; };
@@ -155,12 +168,9 @@
 		A280D1D625B34B7F00CF6E33 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14525B34B7F00CF6E33 /* EventDetail.swift */; };
 		A280D1D925B34B7F00CF6E33 /* AgencyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14725B34B7F00CF6E33 /* AgencyDetail.swift */; };
 		A280D1DC25B34B7F00CF6E33 /* AgencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14825B34B7F00CF6E33 /* AgencyList.swift */; };
-		A280D1DF25B34B7F00CF6E33 /* VehicleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14A25B34B7F00CF6E33 /* VehicleList.swift */; };
-		A280D1E225B34B7F00CF6E33 /* VehicleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280D14B25B34B7F00CF6E33 /* VehicleDetail.swift */; };
 		A280D1F525B34BA900CF6E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A280D1F425B34BA900CF6E33 /* Assets.xcassets */; };
 		A280D1F725B34BA900CF6E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A280D1F425B34BA900CF6E33 /* Assets.xcassets */; };
 		A28F7ED425B3C15D007C6C03 /* Spacecraft+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28F7ED325B3C15D007C6C03 /* Spacecraft+Extensions.swift */; };
-		A28F7EDC25B3C1D6007C6C03 /* Vehicle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28F7EDB25B3C1D6007C6C03 /* Vehicle+Extensions.swift */; };
 		A293E4AA25B343F500232408 /* Regex+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A725B343F500232408 /* Regex+Extensions.swift */; };
 		A293E4AD25B343F500232408 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A825B343F500232408 /* String+Extensions.swift */; };
 		A293E4B025B343F500232408 /* ISO3166Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293E4A925B343F500232408 /* ISO3166Utils.swift */; };
@@ -212,6 +222,18 @@
 		A2EF80D825B735F9007F3501 /* ExpeditionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80D725B735F9007F3501 /* ExpeditionRow.swift */; };
 		A2EF80E625B736DD007F3501 /* AgencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EF80E525B736DD007F3501 /* AgencyData.swift */; };
 		A2EF80EE25B7381F007F3501 /* AgencyLogos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2EF80ED25B7381F007F3501 /* AgencyLogos.xcassets */; };
+		A2FD362125DD749C00C3C1EF /* RoleTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD362025DD749C00C3C1EF /* RoleTypeJSON.swift */; };
+		A2FD362225DD749C00C3C1EF /* RoleTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD362025DD749C00C3C1EF /* RoleTypeJSON.swift */; };
+		A2FD362725DD7E8400C3C1EF /* AstronautFlightJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD362625DD7E8400C3C1EF /* AstronautFlightJSON.swift */; };
+		A2FD362825DD7E8400C3C1EF /* AstronautFlightJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD362625DD7E8400C3C1EF /* AstronautFlightJSON.swift */; };
+		A2FD363025DEF2BF00C3C1EF /* LandingTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD362F25DEF2BF00C3C1EF /* LandingTypeJSON.swift */; };
+		A2FD363125DEF2BF00C3C1EF /* LandingTypeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD362F25DEF2BF00C3C1EF /* LandingTypeJSON.swift */; };
+		A2FD363C25DEF31E00C3C1EF /* LandingJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD363B25DEF31E00C3C1EF /* LandingJSON.swift */; };
+		A2FD363D25DEF31E00C3C1EF /* LandingJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD363B25DEF31E00C3C1EF /* LandingJSON.swift */; };
+		A2FD364525DEF52600C3C1EF /* FirstStageJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD364425DEF52600C3C1EF /* FirstStageJSON.swift */; };
+		A2FD364625DEF52600C3C1EF /* FirstStageJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD364425DEF52600C3C1EF /* FirstStageJSON.swift */; };
+		A2FD364E25DEF9B900C3C1EF /* LinkJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD364D25DEF9B900C3C1EF /* LinkJSON.swift */; };
+		A2FD364F25DEF9B900C3C1EF /* LinkJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD364D25DEF9B900C3C1EF /* LinkJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,7 +261,23 @@
 
 /* Begin PBXFileReference section */
 		2E447EF33182BB4E65A2406C /* AgencyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyRequest.swift; sourceTree = "<group>"; };
+		A214B97E25EAFA770021E1C1 /* AstronautFlight+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AstronautFlight+Extensions.swift"; sourceTree = "<group>"; };
 		A21AD14D25BE0FB3007D9C42 /* TextVIews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextVIews.swift; sourceTree = "<group>"; };
+		A229212425D0A53B00F7481F /* SourceryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceryProtocols.swift; sourceTree = "<group>"; };
+		A2421F8225DACAF800A7640E /* LandingLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LandingLocation+Extensions.swift"; sourceTree = "<group>"; };
+		A2421F8725DAD2B900A7640E /* LauncherConfigRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherConfigRequest.swift; sourceTree = "<group>"; };
+		A2421F8C25DAEEC200A7640E /* LaunchStatusJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchStatusJSON.swift; sourceTree = "<group>"; };
+		A2421F9125DAEFE600A7640E /* SpacecraftConfigRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacecraftConfigRequest.swift; sourceTree = "<group>"; };
+		A2421F9625DAF0B400A7640E /* StarshipDashboardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipDashboardRequest.swift; sourceTree = "<group>"; };
+		A2421F9B25DB4FC400A7640E /* DockingEventJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockingEventJSON.swift; sourceTree = "<group>"; };
+		A2421FA025DB596500A7640E /* DockingEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockingEventRequest.swift; sourceTree = "<group>"; };
+		A2421FA825DD607C00A7640E /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		A2421FA925DD611F00A7640E /* Hippolyte.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Hippolyte.xcframework; path = Carthage/Build/Hippolyte.xcframework; sourceTree = "<group>"; };
+		A2421FAE25DD61F000A7640E /* HyppolyteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyppolyteTests.swift; sourceTree = "<group>"; };
+		A24CE1AF25EA9D5C00DC4370 /* URLLink+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLLink+Extensions.swift"; sourceTree = "<group>"; };
+		A24EFCBC25D9993300EDCFAD /* SpacecraftFlight+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpacecraftFlight+Extensions.swift"; sourceTree = "<group>"; };
+		A24EFCCD25DAC20B00EDCFAD /* ConfigRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigRequest.swift; sourceTree = "<group>"; };
+		A24EFCD225DAC7CB00EDCFAD /* LandingLocationJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingLocationJSON.swift; sourceTree = "<group>"; };
 		A25584D425B3624C0075B128 /* HoldFailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldFailView.swift; sourceTree = "<group>"; };
 		A25584DD25B36D170075B128 /* SocialMediaLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaLink.swift; sourceTree = "<group>"; };
 		A25584E625B374450075B128 /* Docking+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Docking+Extensions.swift"; sourceTree = "<group>"; };
@@ -247,25 +285,25 @@
 		A25584FD25B375510075B128 /* Rocket+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rocket+Extensions.swift"; sourceTree = "<group>"; };
 		A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LauncherConfig+Extensions.swift"; sourceTree = "<group>"; };
 		A255851F25B3BB440075B128 /* Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Samples.swift; sourceTree = "<group>"; };
-		A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautStatusJSON.swift; sourceTree = "<group>"; };
-		A255852F25B3BBB10075B128 /* AstronautTypeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautTypeJSON.swift; sourceTree = "<group>"; };
-		A255853725B3BBDC0075B128 /* DockingLocationJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockingLocationJSON.swift; sourceTree = "<group>"; };
-		A255853F25B3BC300075B128 /* EventTypeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypeJSON.swift; sourceTree = "<group>"; };
+		A255853F25B3BC300075B128 /* IDNameJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDNameJSON.swift; sourceTree = "<group>"; };
 		A255854725B3BCA70075B128 /* Launcher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Launcher+Extensions.swift"; sourceTree = "<group>"; };
 		A255854F25B3BD100075B128 /* LiveStream+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveStream+Extensions.swift"; sourceTree = "<group>"; };
 		A255855725B3BD770075B128 /* Location+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+Extensions.swift"; sourceTree = "<group>"; };
+		A266734125D8616100857C0B /* Configuration+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Extensions.swift"; sourceTree = "<group>"; };
+		A266734625D8802D00857C0B /* ServiceProviderJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderJSON.swift; sourceTree = "<group>"; };
+		A266734B25D9907A00857C0B /* AstronautRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautRequest.swift; sourceTree = "<group>"; };
+		A266735125D995AD00857C0B /* SpacecraftFlightJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacecraftFlightJSON.swift; sourceTree = "<group>"; };
+		A269216425EB007200861A5B /* DockingEvent+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DockingEvent+Extensions.swift"; sourceTree = "<group>"; };
 		A2732B4025A2CE7600A11CE6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A2732B4225A2CE7600A11CE6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A280D06025B34AF300CF6E33 /* ProgramJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramJSON.swift; sourceTree = "<group>"; };
 		A280D06125B34AF300CF6E33 /* RoadClosureJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoadClosureJSON.swift; sourceTree = "<group>"; };
 		A280D06225B34AF300CF6E33 /* ExpeditionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpeditionJSON.swift; sourceTree = "<group>"; };
-		A280D06325B34AF300CF6E33 /* NoticeJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeJSON.swift; sourceTree = "<group>"; };
 		A280D06525B34AF300CF6E33 /* JSONUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
 		A280D06625B34AF300CF6E33 /* SpaceStationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceStationJSON.swift; sourceTree = "<group>"; };
 		A280D06725B34AF300CF6E33 /* AgencyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyJSON.swift; sourceTree = "<group>"; };
 		A280D06825B34AF300CF6E33 /* OrbitJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrbitJSON.swift; sourceTree = "<group>"; };
 		A280D06925B34AF300CF6E33 /* LauncherJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LauncherJSON.swift; sourceTree = "<group>"; };
-		A280D06A25B34AF300CF6E33 /* VehicleJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleJSON.swift; sourceTree = "<group>"; };
 		A280D06B25B34AF300CF6E33 /* MissionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionJSON.swift; sourceTree = "<group>"; };
 		A280D06C25B34AF300CF6E33 /* EventJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventJSON.swift; sourceTree = "<group>"; };
 		A280D06D25B34AF300CF6E33 /* FlightVehicleJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightVehicleJSON.swift; sourceTree = "<group>"; };
@@ -339,11 +377,8 @@
 		A280D14525B34B7F00CF6E33 /* EventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		A280D14725B34B7F00CF6E33 /* AgencyDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyDetail.swift; sourceTree = "<group>"; };
 		A280D14825B34B7F00CF6E33 /* AgencyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyList.swift; sourceTree = "<group>"; };
-		A280D14A25B34B7F00CF6E33 /* VehicleList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleList.swift; sourceTree = "<group>"; };
-		A280D14B25B34B7F00CF6E33 /* VehicleDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleDetail.swift; sourceTree = "<group>"; };
 		A280D1F425B34BA900CF6E33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A28F7ED325B3C15D007C6C03 /* Spacecraft+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spacecraft+Extensions.swift"; sourceTree = "<group>"; };
-		A28F7EDB25B3C1D6007C6C03 /* Vehicle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Extensions.swift"; sourceTree = "<group>"; };
 		A293E49F25B33E5A00232408 /* scm.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = scm.json; sourceTree = "<group>"; };
 		A293E4A725B343F500232408 /* Regex+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Regex+Extensions.swift"; sourceTree = "<group>"; };
 		A293E4A825B343F500232408 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -404,6 +439,12 @@
 		A2EF80ED25B7381F007F3501 /* AgencyLogos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AgencyLogos.xcassets; sourceTree = "<group>"; };
 		A2F8B33625B1514B00C917D0 /* LaunchList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LaunchList.entitlements; sourceTree = "<group>"; };
 		A2F8B34425B1570700C917D0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		A2FD362025DD749C00C3C1EF /* RoleTypeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTypeJSON.swift; sourceTree = "<group>"; };
+		A2FD362625DD7E8400C3C1EF /* AstronautFlightJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautFlightJSON.swift; sourceTree = "<group>"; };
+		A2FD362F25DEF2BF00C3C1EF /* LandingTypeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingTypeJSON.swift; sourceTree = "<group>"; };
+		A2FD363B25DEF31E00C3C1EF /* LandingJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingJSON.swift; sourceTree = "<group>"; };
+		A2FD364425DEF52600C3C1EF /* FirstStageJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStageJSON.swift; sourceTree = "<group>"; };
+		A2FD364D25DEF9B900C3C1EF /* LinkJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +466,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2421FAA25DD611F00A7640E /* Hippolyte.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +476,7 @@
 		A2732B3F25A2CE7600A11CE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2421FA925DD611F00A7640E /* Hippolyte.xcframework */,
 				A2732B4025A2CE7600A11CE6 /* WidgetKit.framework */,
 				A2732B4225A2CE7600A11CE6 /* SwiftUI.framework */,
 			);
@@ -443,37 +486,43 @@
 		A280D05F25B34AF300CF6E33 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				A280D07025B34AF300CF6E33 /* JSON Files */,
 				A280D06725B34AF300CF6E33 /* AgencyJSON.swift */,
+				A2FD362625DD7E8400C3C1EF /* AstronautFlightJSON.swift */,
 				A280D08125B34AF300CF6E33 /* AstronautJSON.swift */,
-				A255852725B3BB8D0075B128 /* AstronautStatusJSON.swift */,
-				A255852F25B3BBB10075B128 /* AstronautTypeJSON.swift */,
 				A2A416B025B3BFF0005143D6 /* ConfigurationJSON.swift */,
+				A2421F9B25DB4FC400A7640E /* DockingEventJSON.swift */,
 				A280D08625B34AF300CF6E33 /* DockingJSON.swift */,
-				A255853725B3BBDC0075B128 /* DockingLocationJSON.swift */,
 				A280D06C25B34AF300CF6E33 /* EventJSON.swift */,
-				A255853F25B3BC300075B128 /* EventTypeJSON.swift */,
 				A280D06225B34AF300CF6E33 /* ExpeditionJSON.swift */,
+				A2FD364425DEF52600C3C1EF /* FirstStageJSON.swift */,
 				A280D06D25B34AF300CF6E33 /* FlightVehicleJSON.swift */,
-				A255851F25B3BB440075B128 /* Samples.swift */,
+				A255853F25B3BC300075B128 /* IDNameJSON.swift */,
+				A280D07025B34AF300CF6E33 /* JSON Files */,
 				A280D06525B34AF300CF6E33 /* JSONUtils.swift */,
+				A2FD363B25DEF31E00C3C1EF /* LandingJSON.swift */,
+				A24EFCD225DAC7CB00EDCFAD /* LandingLocationJSON.swift */,
+				A2FD362F25DEF2BF00C3C1EF /* LandingTypeJSON.swift */,
 				A280D08325B34AF300CF6E33 /* LauncherConfigJSON.swift */,
 				A280D06925B34AF300CF6E33 /* LauncherJSON.swift */,
 				A280D08225B34AF300CF6E33 /* LaunchJSON.swift */,
+				A2421F8C25DAEEC200A7640E /* LaunchStatusJSON.swift */,
+				A2FD364D25DEF9B900C3C1EF /* LinkJSON.swift */,
 				A280D06F25B34AF300CF6E33 /* LiveStreamJSON.swift */,
 				A280D08425B34AF300CF6E33 /* LocationJSON.swift */,
 				A280D06B25B34AF300CF6E33 /* MissionJSON.swift */,
-				A280D06325B34AF300CF6E33 /* NoticeJSON.swift */,
 				A280D06825B34AF300CF6E33 /* OrbitJSON.swift */,
 				A280D06E25B34AF300CF6E33 /* PadJSON.swift */,
 				A280D06025B34AF300CF6E33 /* ProgramJSON.swift */,
 				A280D06125B34AF300CF6E33 /* RoadClosureJSON.swift */,
 				A280D08025B34AF300CF6E33 /* RocketJSON.swift */,
+				A2FD362025DD749C00C3C1EF /* RoleTypeJSON.swift */,
+				A255851F25B3BB440075B128 /* Samples.swift */,
+				A266734625D8802D00857C0B /* ServiceProviderJSON.swift */,
 				A280D07E25B34AF300CF6E33 /* SpacecraftConfigJSON.swift */,
+				A266735125D995AD00857C0B /* SpacecraftFlightJSON.swift */,
 				A280D07F25B34AF300CF6E33 /* SpacecraftJSON.swift */,
 				A280D06625B34AF300CF6E33 /* SpaceStationJSON.swift */,
 				A280D08525B34AF300CF6E33 /* StatusJSON.swift */,
-				A280D06A25B34AF300CF6E33 /* VehicleJSON.swift */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -522,7 +571,6 @@
 				A280D11B25B34B7E00CF6E33 /* Rockets */,
 				A280D11525B34B7E00CF6E33 /* Space Stations */,
 				A2EF80A625B68684007F3501 /* Spacecraft */,
-				A280D14925B34B7F00CF6E33 /* Starship Vehicle */,
 				A280D12225B34B7E00CF6E33 /* Subviews */,
 				A280D11E25B34B7E00CF6E33 /* Utils */,
 			);
@@ -674,24 +722,19 @@
 			path = Agencies;
 			sourceTree = "<group>";
 		};
-		A280D14925B34B7F00CF6E33 /* Starship Vehicle */ = {
-			isa = PBXGroup;
-			children = (
-				A280D14B25B34B7F00CF6E33 /* VehicleDetail.swift */,
-				A280D14A25B34B7F00CF6E33 /* VehicleList.swift */,
-			);
-			path = "Starship Vehicle";
-			sourceTree = "<group>";
-		};
 		A28F7EED25B3C370007C6C03 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A293E4EC25B344DE00232408 /* Agency+Extensions.swift */,
 				A293E4F625B344DE00232408 /* Astronaut+Extensions.swift */,
+				A214B97E25EAFA770021E1C1 /* AstronautFlight+Extensions.swift */,
+				A266734125D8616100857C0B /* Configuration+Extensions.swift */,
 				A25584E625B374450075B128 /* Docking+Extensions.swift */,
+				A269216425EB007200861A5B /* DockingEvent+Extensions.swift */,
 				A293E4ED25B344DE00232408 /* Event+Extensions.swift */,
 				A293E4F525B344DE00232408 /* Expedition+Extensions.swift */,
 				A25584EF25B374B60075B128 /* FlightVehicle+Extensions.swift */,
+				A2421F8225DACAF800A7640E /* LandingLocation+Extensions.swift */,
 				A293E4EF25B344DE00232408 /* Launch+Extensions.swift */,
 				A255854725B3BCA70075B128 /* Launcher+Extensions.swift */,
 				A255851725B3BABC0075B128 /* LauncherConfig+Extensions.swift */,
@@ -703,8 +746,9 @@
 				A25584FD25B375510075B128 /* Rocket+Extensions.swift */,
 				A28F7ED325B3C15D007C6C03 /* Spacecraft+Extensions.swift */,
 				A293E4F425B344DE00232408 /* SpacecraftConfig+Extensions.swift */,
+				A24EFCBC25D9993300EDCFAD /* SpacecraftFlight+Extensions.swift */,
 				A293E4EB25B344DE00232408 /* SpaceStation+Extensions.swift */,
-				A28F7EDB25B3C1D6007C6C03 /* Vehicle+Extensions.swift */,
+				A24CE1AF25EA9D5C00DC4370 /* URLLink+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -717,6 +761,7 @@
 				A293E4A825B343F500232408 /* String+Extensions.swift */,
 				A2DC6ABF25B48B660059E89E /* Dictionary+Extensions.swift */,
 				A2AEAAB925BCC8FE002B8953 /* View+Extensions.swift */,
+				A229212425D0A53B00F7481F /* SourceryProtocols.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -755,9 +800,15 @@
 			isa = PBXGroup;
 			children = (
 				A2AEAA9925BC78DE002B8953 /* APIManager.swift */,
-				A2AEAAA025BCA49E002B8953 /* LaunchRequest.swift */,
 				A2AEAAAD25BCC4F0002B8953 /* APIRequest.swift */,
 				2E447EF33182BB4E65A2406C /* AgencyRequest.swift */,
+				A266734B25D9907A00857C0B /* AstronautRequest.swift */,
+				A24EFCCD25DAC20B00EDCFAD /* ConfigRequest.swift */,
+				A2AEAAA025BCA49E002B8953 /* LaunchRequest.swift */,
+				A2421F8725DAD2B900A7640E /* LauncherConfigRequest.swift */,
+				A2421F9125DAEFE600A7640E /* SpacecraftConfigRequest.swift */,
+				A2421F9625DAF0B400A7640E /* StarshipDashboardRequest.swift */,
+				A2421FA025DB596500A7640E /* DockingEventRequest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -765,6 +816,7 @@
 		A2DA71FF2595AF8C009405E6 = {
 			isa = PBXGroup;
 			children = (
+				A2421FA825DD607C00A7640E /* Cartfile */,
 				A29CEE6925BC77ED0032F88A /* API */,
 				A2EF80E425B736C3007F3501 /* AppData */,
 				A293E49F25B33E5A00232408 /* scm.json */,
@@ -819,6 +871,7 @@
 				A2DA72552595AFC4009405E6 /* Info.plist */,
 				A2D6D7932597B8CC003D5401 /* AgenciesUnitTests.swift */,
 				A2D6D7B12597BD7D003D5401 /* Checkers.swift */,
+				A2421FAE25DD61F000A7640E /* HyppolyteTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -1041,6 +1094,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2FD364E25DEF9B900C3C1EF /* LinkJSON.swift in Sources */,
+				A2421F9225DAEFE600A7640E /* SpacecraftConfigRequest.swift in Sources */,
 				A293E51625B344DE00232408 /* Astronaut+Extensions.swift in Sources */,
 				A280D0DE25B34AF400CF6E33 /* SpacecraftConfigJSON.swift in Sources */,
 				A280D0C625B34AF400CF6E33 /* AstronautListJSON.swift in Sources */,
@@ -1048,16 +1103,18 @@
 				A280D1C125B34B7F00CF6E33 /* ExpeditionDetail.swift in Sources */,
 				A280D18B25B34B7F00CF6E33 /* LinkBarView.swift in Sources */,
 				A2EF80A825B68694007F3501 /* SpacecraftList.swift in Sources */,
+				A2421F8825DAD2B900A7640E /* LauncherConfigRequest.swift in Sources */,
 				A280D0EA25B34AF400CF6E33 /* LaunchJSON.swift in Sources */,
 				A280D1A925B34B7F00CF6E33 /* PadDetail.swift in Sources */,
 				A280D18225B34B7F00CF6E33 /* RemoteImageCache.swift in Sources */,
 				A280D09925B34AF400CF6E33 /* SpaceStationJSON.swift in Sources */,
 				A255852025B3BB440075B128 /* Samples.swift in Sources */,
+				A2421FA125DB596500A7640E /* DockingEventRequest.swift in Sources */,
 				A280D14C25B34B7F00CF6E33 /* LaunchList.swift in Sources */,
 				A25584E725B374450075B128 /* Docking+Extensions.swift in Sources */,
 				A280D1D625B34B7F00CF6E33 /* EventDetail.swift in Sources */,
+				A2FD363025DEF2BF00C3C1EF /* LandingTypeJSON.swift in Sources */,
 				A280D1A625B34B7F00CF6E33 /* PadList.swift in Sources */,
-				A255853825B3BBDC0075B128 /* DockingLocationJSON.swift in Sources */,
 				A293E4FB25B344DE00232408 /* Agency+Extensions.swift in Sources */,
 				A280D19D25B34B7F00CF6E33 /* TitleField.swift in Sources */,
 				A2EF80D825B735F9007F3501 /* ExpeditionRow.swift in Sources */,
@@ -1071,6 +1128,7 @@
 				A280D0A825B34AF400CF6E33 /* MissionJSON.swift in Sources */,
 				A280D0AB25B34AF400CF6E33 /* EventJSON.swift in Sources */,
 				A280D0E725B34AF400CF6E33 /* AstronautJSON.swift in Sources */,
+				A24EFCCE25DAC20B00EDCFAD /* ConfigRequest.swift in Sources */,
 				A280D1D325B34B7F00CF6E33 /* EventList.swift in Sources */,
 				A2DC73C425B60E0A0059E89E /* ExpeditionList.swift in Sources */,
 				A280D16425B34B7F00CF6E33 /* MissionDetail.swift in Sources */,
@@ -1078,42 +1136,51 @@
 				A2A416A925B3BE1C005143D6 /* Mission+Extensions.swift in Sources */,
 				A280D19125B34B7F00CF6E33 /* LeftField.swift in Sources */,
 				A255855825B3BD770075B128 /* Location+Extensions.swift in Sources */,
+				A229212525D0A53B00F7481F /* SourceryProtocols.swift in Sources */,
 				A293E51325B344DE00232408 /* Expedition+Extensions.swift in Sources */,
 				A21AD14E25BE0FB3007D9C42 /* TextVIews.swift in Sources */,
 				A2AEAAC125BDE349002B8953 /* JSONResponse.swift in Sources */,
 				A280D16725B34B7F00CF6E33 /* SpaceStationLinks.swift in Sources */,
 				A2EF80BC25B68839007F3501 /* LauncherList.swift in Sources */,
+				A266734C25D9907A00857C0B /* AstronautRequest.swift in Sources */,
 				A280D1BE25B34B7F00CF6E33 /* ExpeditionLinks.swift in Sources */,
 				A293E50725B344DE00232408 /* Pad+Extensions.swift in Sources */,
 				A280D19725B34B7F00CF6E33 /* TwoFields.swift in Sources */,
 				A280D16A25B34B7F00CF6E33 /* SpaceStationDetail.swift in Sources */,
+				A2421F8325DACAF800A7640E /* LandingLocation+Extensions.swift in Sources */,
 				A280D19A25B34B7F00CF6E33 /* CountdownView.swift in Sources */,
 				A280D0C325B34AF400CF6E33 /* StarshipListJSON.swift in Sources */,
 				A293E50A25B344DE00232408 /* Program+Extensions.swift in Sources */,
 				A280D0BD25B34AF400CF6E33 /* AgenciesListJSON.swift in Sources */,
 				A293E51925B344DE00232408 /* CoreDataUtils.swift in Sources */,
+				A266734725D8802D00857C0B /* ServiceProviderJSON.swift in Sources */,
 				A25584F025B374B60075B128 /* FlightVehicle+Extensions.swift in Sources */,
+				A2FD362125DD749C00C3C1EF /* RoleTypeJSON.swift in Sources */,
+				A2FD364525DEF52600C3C1EF /* FirstStageJSON.swift in Sources */,
 				A2EF80D025B735AE007F3501 /* EventLink.swift in Sources */,
 				A280D16125B34B7F00CF6E33 /* MissionList.swift in Sources */,
 				A280D18525B34B7F00CF6E33 /* LoadedImageView.swift in Sources */,
 				A255851825B3BABC0075B128 /* LauncherConfig+Extensions.swift in Sources */,
 				A25584FE25B375510075B128 /* Rocket+Extensions.swift in Sources */,
 				A280D0F325B34AF400CF6E33 /* StatusJSON.swift in Sources */,
+				A24EFCD325DAC7CB00EDCFAD /* LandingLocationJSON.swift in Sources */,
 				A280D0D525B34AF400CF6E33 /* ExpeditionListJSON.swift in Sources */,
 				A280D0E425B34AF400CF6E33 /* RocketJSON.swift in Sources */,
-				A255854025B3BC300075B128 /* EventTypeJSON.swift in Sources */,
+				A255854025B3BC300075B128 /* IDNameJSON.swift in Sources */,
 				A280D1D925B34B7F00CF6E33 /* AgencyDetail.swift in Sources */,
 				A25584D525B3624C0075B128 /* HoldFailView.swift in Sources */,
+				A2FD363C25DEF31E00C3C1EF /* LandingJSON.swift in Sources */,
 				A280D0B425B34AF400CF6E33 /* LiveStreamJSON.swift in Sources */,
 				A2AEAA9A25BC78DE002B8953 /* APIManager.swift in Sources */,
 				A280D09C25B34AF400CF6E33 /* AgencyJSON.swift in Sources */,
-				A28F7EDC25B3C1D6007C6C03 /* Vehicle+Extensions.swift in Sources */,
+				A214B97F25EAFA770021E1C1 /* AstronautFlight+Extensions.swift in Sources */,
 				A280D1DC25B34B7F00CF6E33 /* AgencyList.swift in Sources */,
 				A2DC73CD25B6139E0059E89E /* FlightVehicleList.swift in Sources */,
 				A280D0C025B34AF400CF6E33 /* EventListJSON.swift in Sources */,
 				A280D0B725B34AF400CF6E33 /* LocationListJSON.swift in Sources */,
 				A280D0F025B34AF400CF6E33 /* LocationJSON.swift in Sources */,
 				A280D1A325B34B7F00CF6E33 /* DescriptionView.swift in Sources */,
+				A2FD362725DD7E8400C3C1EF /* AstronautFlightJSON.swift in Sources */,
 				A280D1D025B34B7F00CF6E33 /* AstronautDetail.swift in Sources */,
 				A280D17325B34B7F00CF6E33 /* HomeView.swift in Sources */,
 				A293E4F825B344DE00232408 /* SpaceStation+Extensions.swift in Sources */,
@@ -1121,15 +1188,18 @@
 				A280D1B225B34B7F00CF6E33 /* ProgramList.swift in Sources */,
 				A280D0E125B34AF400CF6E33 /* SpacecraftJSON.swift in Sources */,
 				A280D15B25B34B7F00CF6E33 /* LiveStreamDetail.swift in Sources */,
-				A280D09025B34AF300CF6E33 /* NoticeJSON.swift in Sources */,
 				A280D15525B34B7F00CF6E33 /* LaunchListApp.swift in Sources */,
 				A280D14F25B34B7F00CF6E33 /* LaunchLinks.swift in Sources */,
+				A2421F9725DAF0B400A7640E /* StarshipDashboardRequest.swift in Sources */,
 				A280D1B825B34B7F00CF6E33 /* DockingDetail.swift in Sources */,
+				A2421F8D25DAEEC200A7640E /* LaunchStatusJSON.swift in Sources */,
 				A280D17F25B34B7F00CF6E33 /* ImageLoader.swift in Sources */,
 				A280D0CC25B34AF400CF6E33 /* StarshipEventsJSON.swift in Sources */,
 				A280D18E25B34B7F00CF6E33 /* AgencyLink.swift in Sources */,
+				A266734225D8616100857C0B /* Configuration+Extensions.swift in Sources */,
+				A24EFCBD25D9993300EDCFAD /* SpacecraftFlight+Extensions.swift in Sources */,
 				A280D1B525B34B7F00CF6E33 /* DockingList.swift in Sources */,
-				A255853025B3BBB10075B128 /* AstronautTypeJSON.swift in Sources */,
+				A266735225D995AD00857C0B /* SpacecraftFlightJSON.swift in Sources */,
 				A2AEAABA25BCC8FE002B8953 /* View+Extensions.swift in Sources */,
 				A2EF80C825B68944007F3501 /* LauncherDetail.swift in Sources */,
 				A280D17625B34B7F00CF6E33 /* RocketList.swift in Sources */,
@@ -1143,7 +1213,6 @@
 				A280D16D25B34B7F00CF6E33 /* SpaceStationList.swift in Sources */,
 				A2DC73DA25B614530059E89E /* FlightVehicleDetail.swift in Sources */,
 				A2AEAAA125BCA49E002B8953 /* LaunchRequest.swift in Sources */,
-				A255852825B3BB8D0075B128 /* AstronautStatusJSON.swift in Sources */,
 				A280D0C925B34AF400CF6E33 /* LaunchListJSON.swift in Sources */,
 				A293E50D25B344DE00232408 /* LaunchList.xcdatamodeld in Sources */,
 				A280D08A25B34AF300CF6E33 /* RoadClosureJSON.swift in Sources */,
@@ -1159,15 +1228,15 @@
 				A280D15825B34B7F00CF6E33 /* SettingsView.swift in Sources */,
 				A280D19425B34B7F00CF6E33 /* SearchBar.swift in Sources */,
 				A2DC6AC025B48B660059E89E /* Dictionary+Extensions.swift in Sources */,
+				A24CE1B025EA9D5C00DC4370 /* URLLink+Extensions.swift in Sources */,
 				A2EF80B425B6873B007F3501 /* SpacecraftRow.swift in Sources */,
 				A280D17025B34B7F00CF6E33 /* DatasetList.swift in Sources */,
 				A280D0B125B34AF400CF6E33 /* PadJSON.swift in Sources */,
 				A293E4FE25B344DE00232408 /* Event+Extensions.swift in Sources */,
 				A293E50425B344DE00232408 /* Launch+Extensions.swift in Sources */,
-				A280D0A525B34AF400CF6E33 /* VehicleJSON.swift in Sources */,
+				A269216525EB007200861A5B /* DockingEvent+Extensions.swift in Sources */,
+				A2421F9C25DB4FC400A7640E /* DockingEventJSON.swift in Sources */,
 				A280D18825B34B7F00CF6E33 /* RowImage.swift in Sources */,
-				A280D1DF25B34B7F00CF6E33 /* VehicleList.swift in Sources */,
-				A280D1E225B34B7F00CF6E33 /* VehicleDetail.swift in Sources */,
 				A280D1AC25B34B7F00CF6E33 /* ProgramLinks.swift in Sources */,
 				A255854825B3BCA70075B128 /* Launcher+Extensions.swift in Sources */,
 				A280D08725B34AF300CF6E33 /* ProgramJSON.swift in Sources */,
@@ -1193,18 +1262,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				A280D0B025B34AF400CF6E33 /* FlightVehicleJSON.swift in Sources */,
+				A266735325D995AD00857C0B /* SpacecraftFlightJSON.swift in Sources */,
+				A229212625D0A53B00F7481F /* SourceryProtocols.swift in Sources */,
+				A2FD363D25DEF31E00C3C1EF /* LandingJSON.swift in Sources */,
+				A2FD362825DD7E8400C3C1EF /* AstronautFlightJSON.swift in Sources */,
 				A280D0F525B34AF400CF6E33 /* StatusJSON.swift in Sources */,
-				A280D09225B34AF400CF6E33 /* NoticeJSON.swift in Sources */,
 				A2D6D7B42597BD7D003D5401 /* Checkers.swift in Sources */,
 				A280D0BF25B34AF400CF6E33 /* AgenciesListJSON.swift in Sources */,
 				A280D0CE25B34AF400CF6E33 /* StarshipEventsJSON.swift in Sources */,
 				A280D0C825B34AF400CF6E33 /* AstronautListJSON.swift in Sources */,
+				A266734D25D9907A00857C0B /* AstronautRequest.swift in Sources */,
+				A2421FAF25DD61F000A7640E /* HyppolyteTests.swift in Sources */,
 				A2178AA125C1093600DBC91E /* AgencyRequest.swift in Sources */,
 				A280D0F225B34AF400CF6E33 /* LocationJSON.swift in Sources */,
 				A21AD13525BE0D3C007D9C42 /* Dictionary+Extensions.swift in Sources */,
 				A21AD0E925BE0CDE007D9C42 /* JSONResponse.swift in Sources */,
 				A280D09E25B34AF400CF6E33 /* AgencyJSON.swift in Sources */,
-				A280D0A725B34AF400CF6E33 /* VehicleJSON.swift in Sources */,
+				A2FD364625DEF52600C3C1EF /* FirstStageJSON.swift in Sources */,
 				A280D0A125B34AF400CF6E33 /* OrbitJSON.swift in Sources */,
 				A280D0BC25B34AF400CF6E33 /* DockingListJSON.swift in Sources */,
 				A280D0D125B34AF400CF6E33 /* PadListJSON.swift in Sources */,
@@ -1212,8 +1286,8 @@
 				A280D08C25B34AF300CF6E33 /* RoadClosureJSON.swift in Sources */,
 				A280D0B325B34AF400CF6E33 /* PadJSON.swift in Sources */,
 				A280D0EC25B34AF400CF6E33 /* LaunchJSON.swift in Sources */,
+				A2FD363125DEF2BF00C3C1EF /* LandingTypeJSON.swift in Sources */,
 				A280D0A425B34AF400CF6E33 /* LauncherJSON.swift in Sources */,
-				A21AD0EF25BE0CE2007D9C42 /* AstronautStatusJSON.swift in Sources */,
 				A280D0E025B34AF400CF6E33 /* SpacecraftConfigJSON.swift in Sources */,
 				A280D09825B34AF400CF6E33 /* JSONUtils.swift in Sources */,
 				A280D08F25B34AF300CF6E33 /* ExpeditionJSON.swift in Sources */,
@@ -1226,22 +1300,22 @@
 				A280D0E325B34AF400CF6E33 /* SpacecraftJSON.swift in Sources */,
 				A2D6D7942597B8CC003D5401 /* AgenciesUnitTests.swift in Sources */,
 				A2B75C1F25B403D1002E95A0 /* Samples.swift in Sources */,
-				A21AD0F525BE0CE7007D9C42 /* AstronautTypeJSON.swift in Sources */,
 				A280D0F825B34AF400CF6E33 /* DockingJSON.swift in Sources */,
 				A280D0C225B34AF400CF6E33 /* EventListJSON.swift in Sources */,
 				A21AD13B25BE0D57007D9C42 /* AgencyData.swift in Sources */,
 				A280D0B925B34AF400CF6E33 /* LocationListJSON.swift in Sources */,
 				A21AD12325BE0D35007D9C42 /* String+Extensions.swift in Sources */,
+				A2FD362225DD749C00C3C1EF /* RoleTypeJSON.swift in Sources */,
 				A280D08925B34AF300CF6E33 /* ProgramJSON.swift in Sources */,
 				A21AD12925BE0D38007D9C42 /* View+Extensions.swift in Sources */,
 				A280D0C525B34AF400CF6E33 /* StarshipListJSON.swift in Sources */,
 				A21AD0FB25BE0CEA007D9C42 /* ConfigurationJSON.swift in Sources */,
 				A21AD11D25BE0D32007D9C42 /* Regex+Extensions.swift in Sources */,
-				A21AD10125BE0CEF007D9C42 /* DockingLocationJSON.swift in Sources */,
 				A2DA72542595AFC4009405E6 /* LaunchListUnitTests.swift in Sources */,
 				A280D0EF25B34AF400CF6E33 /* LauncherConfigJSON.swift in Sources */,
 				A280D0CB25B34AF400CF6E33 /* LaunchListJSON.swift in Sources */,
-				A21AD10725BE0CF3007D9C42 /* EventTypeJSON.swift in Sources */,
+				A2FD364F25DEF9B900C3C1EF /* LinkJSON.swift in Sources */,
+				A21AD10725BE0CF3007D9C42 /* IDNameJSON.swift in Sources */,
 				A280D0E925B34AF400CF6E33 /* AstronautJSON.swift in Sources */,
 				A280D0DD25B34AF400CF6E33 /* ProgramListJSON.swift in Sources */,
 				A280D09B25B34AF400CF6E33 /* SpaceStationJSON.swift in Sources */,

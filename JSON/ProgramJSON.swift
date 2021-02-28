@@ -47,24 +47,38 @@ import CoreData
            "wiki_url": "https://en.wikipedia.org/wiki/Commercial_Resupply_Services#Commercial_Resupply_Services"
        }
 
+ ### Spec
+       id   integer
+       url   string($uri)
+       name*   string maxLength: 255 minLength: 1
+       description   string maxLength: 40000 x-nullable: true
+       agencies   [Agency{...}]
+       image_url   string($uri) readOnly: true
+       start_date string($date-time) x-nullable: true
+       end_date   string($date-time) x-nullable: true
+       info_url   string($uri)  maxLength: 200 x-nullable: true
+       wiki_url   string($uri) maxLength: 200 x-nullable: true
+
  ### See
  [ProgramListJSON]
  */
-public struct ProgramJSON: Decodable, Identifiable, JSONElement
+public class ProgramJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case id, url, name, description, agencies
+//   enum CodingKeys: String, CodingKey
+//   {
+//      case id, url, name, description, agencies
+//
+//      case imageURL = "image_url"
+//      case startDate = "start_date"
+//      case endDate = "end_date"
+//      case infoURL = "info_url"
+//      case wikiURL = "wiki_url"
+//   }
 
-      case imageURL = "imageUrl"
-      case startDate = "startDate"
-      case endDate = "endDate"
-      case infoURL = "infoUrl"
-      case wikiURL = "wikiUrl"
-   }
-
+   /** ID of the astronaut within the API. */
    public var id: Int64
+   /** URI of this data. Unused. */
    var url: String? // unused
    var name: String?
    var description: String?
@@ -74,6 +88,34 @@ public struct ProgramJSON: Decodable, Identifiable, JSONElement
    var endDate: String?
    var infoURL: String?
    var wikiURL: String?
+
+   /**
+    Make a `ProgramJSON` from a JSON structure.
+
+    - parameter json: `JSONStructure` JSON to parse
+    */
+   init?( json: JSONStructure? )
+   {
+      guard let json = json else { return nil }
+      guard let id = json[ "id" ] as? Int64 else { return nil }
+
+      self.id = id
+      self.url = json[ "url" ] as? String
+      self.name = json[ "name" ] as? String
+      self.description = json[ "description" ] as? String
+
+      self.agencies = []
+      if let agenciesArray: [JSONStructure] = json[ "agencies" ] as? [JSONStructure]
+      {
+         self.agencies = agenciesArray.compactMap { AgencyJSON( json: $0 ) }
+      }
+
+      self.imageURL = json[ "image_url" ] as? String
+      self.startDate = json[ "start_date" ] as? String
+      self.endDate = json[ "end_date" ] as? String
+      self.infoURL = json[ "info_url" ] as? String
+      self.wikiURL = json[ "wiki_url" ] as? String
+   }
 
    /**
     Creates a new `Program` entity and fills it with data from this `ProgramJSON`.

@@ -16,7 +16,7 @@ extension Rocket
    var launchesSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
 
    /** `Set< Vehicle >` wrapper for the generated `NSSet` of `Vehicle`s. */
-   var vehiclesSet: Set< Vehicle > { self.vehicles as? Set< Vehicle > ?? Set< Vehicle >() }
+   var rocketsSet: Set< Rocket > { self.vehicles as? Set< Rocket > ?? Set< Rocket >() }
 
    /** Array of `Launch`s, sorted by name. */
    var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchesSet ) ) }
@@ -25,10 +25,18 @@ extension Rocket
    var hasLaunches: Bool { !launchesSet.isEmpty }
 
    /** Array of `Vehicle`s, sorted by name. */
-   var sortedVehicles: [Vehicle] { sortVehiclesByName( vehicleArray: Array( self.vehiclesSet ) ) }
+   var sortedRockets: [Rocket] { sortRocketsByName( rocketArray: Array( self.rocketsSet ) ) }
 
    /** True if the `Rocket` has any `Vehicle`s. */
-   var hasVehicles: Bool { !vehiclesSet.isEmpty }
+   var hasVehicles: Bool { !rocketsSet.isEmpty }
+
+   func addConfigurationFromJSON( configuration: ConfigurationJSON?, context: NSManagedObjectContext )
+   {
+      guard let json = configuration else { return }
+      let configurationEntity: Configuration = fetchConfiguration( configuration: json, context: context )
+      self.configuration = configurationEntity
+      configurationEntity.addToRockets( self )
+   }
 }
 
 /**
@@ -46,8 +54,8 @@ func sortRocketsByName( rocketArray: [Rocket]? ) -> [Rocket]
    {
       rocket1, rocket2 in
 
-      if let name1: String = rocket1.name,
-         let name2: String = rocket2.name
+      if let name1: String = rocket1.configuration?.name,
+         let name2: String = rocket2.configuration?.name
       {
          return name1 < name2
       }
@@ -80,13 +88,11 @@ public func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket
 
  - parameter rocket: `RocketJSON` JSON data about the rocket
  - parameter context: `NSManagedObjectContext` Core Data object context
- - returns: `Rocket?` updated entity
+ - returns: `Rocket` updated entity
  */
-public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket?
+public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket
 {
-   guard let id = rocket.configuration?.id else { return nil }
-
-   let rocketEntity: Rocket? = getRocket( by: id, context: context )
+   let rocketEntity: Rocket? = getRocket( by: rocket.id, context: context )
    rocket.updateEntity( entity: rocketEntity, context: context )
    return rocketEntity ?? rocket.addToCoreData( context: context )
 }

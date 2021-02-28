@@ -3,7 +3,7 @@
 import CoreData
 
 /**
- Base structure in the startship tests JSON returned from the API. Not encoded into a Core Data entity.
+ Base structure in the starship tests JSON returned from the API. Not encoded into a Core Data entity.
 
  ### Example
 
@@ -27,7 +27,7 @@ public struct StarshipListJSON: Decodable
    let upcoming: StarshipEventsJSON?
    let previous: StarshipEventsJSON?
    let liveStreams: [LiveStreamJSON]?
-   let roadClosures: [RoadClosureJSON]? // unused
-   let notices: [NoticeJSON]?
-   let vehicles: [VehicleJSON]?
+   let roadClosures: [RoadClosureJSON]?
+   let notices: [IDNameJSON]?
+   let vehicles: [LauncherJSON]?
 }

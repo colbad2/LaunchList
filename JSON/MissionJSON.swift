@@ -18,21 +18,31 @@ import CoreData
            "orbit": { … },
            "type": "Communications"
          }
+
+   ### Spec
+       id   integer
+       launch_library_id   integer maximum: 2147483647 minimum: -2147483648 x-nullable: true
+       name   string maxLength: 255
+       description   string
+       launch_designator   string maxLength: 255 x-nullable: true
+       type   string
+       orbit*   Orbit{}
+ }
  */
-public struct MissionJSON: Decodable, Identifiable, JSONElement
+public class MissionJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case description, id, launchDesignator, name, orbit, type
+//   enum CodingKeys: String, CodingKey
+//   {
+//      case description, id, launchDesignator, name, orbit, type
+//
+//      case launchLibraryID = "launchLibraryId"
+//   }
 
-      case launchLibraryID = "launchLibraryId"
-   }
-
-   /** Description of the mission. Can contain encoded Unicode elements like /u00fc, which are translated correctly on parse of JSON. */
-   var description: String?
    /** ID of the mission within the API. */
    public var id: Int64
+   /** Description of the mission. Can contain encoded Unicode elements like /u00fc, which are translated correctly on parse of JSON. */
+   var description: String?
    /** unknown */
    var launchDesignator: String?
    /** ID from the previous API database. */
@@ -43,6 +53,25 @@ public struct MissionJSON: Decodable, Identifiable, JSONElement
    var orbit: OrbitJSON?
    /** Type of the mission, such as communications, etc. Often blank. */
    var type: String?
+
+   /**
+    Make a `ServiceProviderJSON` from a JSON structure.
+
+    - parameter json: `JSONStructure` JSON to parse
+    */
+   init?( json: JSONStructure? )
+   {
+      guard let json = json else { return nil }
+      guard let id = json[ "id" ] as? Int64 else { return nil }
+
+      self.id = id
+      self.description = json[ "description" ] as? String
+      self.launchDesignator = json[ "launchDesignator" ] as? String
+      self.launchLibraryID = json[ "launchLibraryId" ] as? Int64
+      self.name = json[ "name" ] as? String
+      self.orbit = OrbitJSON( json: json[ "orbit" ] as? JSONStructure )
+      self.type = json[ "type" ] as? String
+   }
 
    /**
     Add this mission to Core Data as a [Mission] entity. The context still needs to be saved after the add.
@@ -58,6 +87,12 @@ public struct MissionJSON: Decodable, Identifiable, JSONElement
       return newMission
    }
 
+   /**
+    Set or update the values of the `Mission` entity,
+
+    - parameter entity:  `Mission?` entity to fill/update
+    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+    */
    func updateEntity( entity: Mission?, context: NSManagedObjectContext )
    {
       guard let missionEntity = entity else { return }
@@ -79,6 +114,13 @@ public struct MissionJSON: Decodable, Identifiable, JSONElement
    }
 }
 
+/**
+ Filter the name of an orbit so that the names area standard across the API.
+
+ - parameter name: `String` original orbit name
+ - parameter abbreviation: `String` short orbit name
+ - returns: standarad orbit name
+ */
 private func normalizedOrbitName( _ name: String?, abbreviation: String? = nil ) -> String?
 {
    guard var orbitName = name else { return nil }

@@ -25,6 +25,26 @@ extension Astronaut
       self.agency = agencyEntity
       agencyEntity.addToAstronauts( self )
    }
+
+   func addLaunchesFromJSON( launches: [LaunchJSON]?, context: NSManagedObjectContext )
+   {
+      for launch: LaunchJSON in launches ?? []
+      {
+         let launchEntity: Launch = fetchLaunch( launch: launch, context: context )
+         self.addToLaunches( launchEntity )
+         launchEntity.addToAstronauts( self )
+      }
+   }
+
+   func addLandingsFromJSON( landings: [SpacecraftFlightJSON]?, context: NSManagedObjectContext )
+   {
+      for flight: SpacecraftFlightJSON in landings ?? []
+      {
+         let flightEntity: SpacecraftFlight = fetchSpacecraftFlight( flight: flight, context: context )
+         self.addToLandings( flightEntity )
+         flightEntity.addToAstronauts( self )
+      }
+   }
 }
 
 /**

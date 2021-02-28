@@ -165,10 +165,6 @@ func imageLoader( _ context: NSManagedObjectContext )
    {
       RemoteImageCache.shared.downloadImage( with: spaceStation.imageURL ) { _, _, _ in }
    }
-   for vehicle in fetchAllVehicles( context: context ) ?? []
-   {
-      RemoteImageCache.shared.downloadImage( with: vehicle.imageURL ) { _, _, _ in }
-   }
 }
 
 struct LoadJSONButton: View

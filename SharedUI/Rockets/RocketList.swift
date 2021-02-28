@@ -33,7 +33,7 @@ struct RocketRow: View
 
    var body: some View
    {
-      TitleField( text: rocket.fullName )
+      TitleField( text: rocket.configuration?.fullName ?? "" )
 //      TitleField( text: rocket?.family )
 //      LeftField( text: rocket?.variant )
    }

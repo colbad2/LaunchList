@@ -117,6 +117,38 @@ extension Launch
          self.rocket?.addToLaunches( self )
       }
    }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter links: `[URLJSON]?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addInfoLinksFromJSON( links: [LinkJSON]?, context: NSManagedObjectContext )
+   {
+      for link in links ?? []
+      {
+         let linkEntity: URLLink = fetchURLLink( link: link, context: context )
+         self.addToInfoURLs( linkEntity )
+         linkEntity.infoLaunch = self
+      }
+   }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter links: `[URLJSON]?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addVideoLinksFromJSON( links: [LinkJSON]?, context: NSManagedObjectContext )
+   {
+      for link in links ?? []
+      {
+         let linkEntity: URLLink = fetchURLLink( link: link, context: context )
+         self.addToVideoURLs( linkEntity )
+         linkEntity.videoLaunch = self
+      }
+   }
 }
 
 /**
@@ -184,12 +216,13 @@ public func missionName( _ launch: Launch? ) -> String
  NOTE: this is the only entity to use a `String` ID instead of an `Int64` ID. PITA
 
  - parameter entityID: `String` ID of the `Launch` to fetch
- - parameter context: `NSManagedObjectContext` context to get the `Launch` from
- - returns: `Launch?` launch with the given ID in the context, nil if not found
+ - parameter context:  `NSManagedObjectContext` context to get the `Launch` from
+ - returns:            `Launch?` launch with the given ID in the context, nil if not found
  */
-public func getLaunch( by entityID: String, context: NSManagedObjectContext ) -> Launch?
+public func getLaunch( by entityID: String?, context: NSManagedObjectContext ) -> Launch?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: LAUNCH_ENTITY_NAME ) as? Launch
+   guard let id: String = entityID else { return nil }
+   return getEntityByID( entityID: id, context: context, entityName: LAUNCH_ENTITY_NAME ) as? Launch
 }
 
 /**

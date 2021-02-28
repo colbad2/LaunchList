@@ -29,6 +29,38 @@ extension SpaceStation
 
    /** True if the `SpaceStation` has any `Expedition`s. */
    var hasExpeditions: Bool { !expeditionsSet.isEmpty }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter owners: `[AgencyJSON]?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addOwnersFromJSON( owners: [AgencyJSON]?, context: NSManagedObjectContext )
+   {
+      for owner in owners ?? []
+      {
+         let agencyEntity: Agency = fetchAgency( agency: owner, context: context )
+         self.addToOwners( agencyEntity )
+         agencyEntity.addToSpaceStations( self )
+      }
+   }
+
+   /**
+    Adds the JSON structs, creating or updating as necessary.
+
+    - parameter expeditions: `[ExpeditionJSON]?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    */
+   func addExpeditionsFromJSON( expeditions: [ExpeditionJSON]?, context: NSManagedObjectContext )
+   {
+      for expedition in expeditions ?? []
+      {
+         let expeditionEntity: Expedition = fetchExpedition( expedition: expedition, context: context )
+         self.addToExpeditions( expeditionEntity )
+         expeditionEntity.spaceStation = self
+      }
+   }
 }
 
 /**

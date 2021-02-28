@@ -4,6 +4,8 @@ import CoreData
 
 /**
 
+ Same as what the API calls a 'vehicle' in some places.
+
  ### Example JSON
        {
          "id": 8,
@@ -26,30 +28,85 @@ import CoreData
          "last_launch_date": "2010-06-04T18:45:00Z",
          "first_launch_date": "2010-06-04T18:45:00Z"
        }
+ ### Spec
+       id                  integer
+       url                 string($uri)
+       details             string maxLength: 2048
+       flight_proven       boolean
+       serial_number       string maxLength: 10 x-nullable: true
+       status              string maxLength: 2048
+       image_url           string($uri)x-nullable: true
+       successful_landings string
+       attempted_landings  string
+       flights             string
+       last_launch_date    string
+       first_launch_date   string
+       successful_landings string
+       attempted_landings  string
+       launcher_config     LauncherConfig
  */
-public struct LauncherJSON: Decodable, Identifiable, JSONElement
+public class LauncherJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case id, url, flightProven, serialNumber, status, details, launcherConfig, flights, lastLaunchDate,
-           firstLaunchDate
+//   enum CodingKeys: String, CodingKey
+//   {
+//      case id, url, status, details, flights
+//
+//      case flightProven = "flight_proven"
+//      case serialNumber = "serial_number"
+//      case imageURL = "image_url"
+//      case lastLaunchDate = "last_launch_date"
+//      case firstLaunchDate = "first_launch_date"
+//      case launcherConfig = "launcher_config"
+//   }
 
-      case imageURL = "imageUrl"
-   }
-
+   /** ID of the astronaut within the API. */
    public var id: Int64
-   var url: String? // unused
+   /** URI of this data. Unused. */
+   var url: String?
    var flightProven: Bool?
    var serialNumber: String?
    var status: String?
    var details: String?
    var launcherConfig: LauncherConfigJSON?
    var imageURL: String?
-   var flights: Int64
+   var flights: Int64?
    var lastLaunchDate: String?
    var firstLaunchDate: String?
+   var successfulLandings: String?
+   var attemptedLandings: String?
 
+   /**
+    Make a `LauncherJSON` from a JSON structure.
+
+    - parameter json: `JSONStructure` JSON to parse
+    */
+   init?( json: JSONStructure? )
+   {
+      guard let json = json else { return nil }
+      guard let id = json[ "id" ] as? Int64 else { return nil }
+
+      self.id = id
+      self.url = json[ "url" ] as? String
+      self.flightProven = json[ "flight_proven" ] as? Bool
+      self.serialNumber = json[ "serial_number" ] as? String
+      self.status = json[ "status" ] as? String
+      self.details = json[ "details" ] as? String
+      self.launcherConfig = LauncherConfigJSON( json: json[ "launcher_config" ] as? JSONStructure )
+      self.imageURL = json[ "image_url" ] as? String
+      self.flights = json[ "flights" ] as? Int64
+      self.lastLaunchDate = json[ "last_launch_date" ] as? String
+      self.firstLaunchDate = json[ "first_launch_date" ] as? String
+      self.successfulLandings = json[ "successful_landings" ] as? String
+      self.attemptedLandings = json[ "attempted_landings" ] as? String
+   }
+
+   /**
+    Add this data to Core Data as a `Launcher`. The context still needs to be saved after the add.
+
+    - parameter context: Core Data context to add the entity to.
+    - returns: `Launcher` the added entity
+    */
    public func addToCoreData( context: NSManagedObjectContext ) -> Launcher
    {
       let newLauncher: Launcher = Launcher( context: context )
@@ -58,20 +115,28 @@ public struct LauncherJSON: Decodable, Identifiable, JSONElement
       return newLauncher
    }
 
+   /**
+    Set or update the values of the `Launcher` entity,
+
+    - parameter entity:  `Launcher?` entity to fill/update
+    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+    */
    public func updateEntity( entity: Launcher?, context: NSManagedObjectContext )
    {
       guard let launcherEntity = entity else { return }
 
       launcherEntity.id = id
-      launcherEntity.flightProven = flightProven ?? false
+      launcherEntity.flightProven = guaranteedBool( flightProven )
       launcherEntity.serialNumber = serialNumber
       launcherEntity.status = status
       launcherEntity.details = details
       launcherEntity.addLauncherConfigFromJSON( config: launcherConfig, context: context )
       launcherEntity.imageURL = imageURL
-      launcherEntity.flights = flights
+      launcherEntity.flights = guaranteedInt64( flights )
       launcherEntity.lastLaunchDate = lastLaunchDate
       launcherEntity.firstLaunchDate = firstLaunchDate
+      launcherEntity.successfulLandings = successfulLandings
+      launcherEntity.attemptedLandings = attemptedLandings
 
       launcherEntity.fetched = Date()
    }

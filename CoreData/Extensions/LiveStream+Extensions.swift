@@ -32,7 +32,7 @@ public func fetchAllLiveStreams( context: NSManagedObjectContext ) -> [LiveStrea
  ### Example
      let liveStream: LiveStream = getLiveStream( by: 2345, context: context )
 
- - parameter entityID - `Int64` ID of the `LiveStream` to fetch
+ - parameter entityID - `String` ID of the `LiveStream` to fetch
  - parameter context - `NSManagedObjectContext` context to get the `LiveStream` from
  - returns: `LiveStream?` live stream with the given ID in the context, nil if not found
  */

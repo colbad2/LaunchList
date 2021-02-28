@@ -31,7 +31,7 @@ extension Pad
    {
       guard let location = location else { return }
       self.location = fetchLocation( location: location, context: context )
-      self.location?.pad = self
+      self.location?.addToPads( self )
    }
 }
 

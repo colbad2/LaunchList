@@ -10,8 +10,8 @@ struct RocketDetail: View
    {
       ScrollView
       {
-         TitleField( text: rocket?.family )
-         LeftField( text: rocket?.variant )
+         TitleField( text: rocket?.configuration?.family )
+         LeftField( text: rocket?.configuration?.variant )
       }
       .padding()
       .navigationTitle( "Rocket" )
@@ -26,7 +26,7 @@ struct RocketPreview: PreviewProvider
    {
       if let rocket: Rocket = getSampleRocketEntity()
       {
-         Text( rocket.fullName ?? "" )
+         Text( rocket.configuration?.fullName ?? "" )
          RocketDetail( rocket: rocket )
       }
    }

@@ -39,13 +39,13 @@ extension Agency
    /** True if the `Agency` has any `SpacecraftConfig`s. */
    var hasSpacecraftConfigs: Bool { !spacecraftConfigsSet.isEmpty }
 
-   func addLaunchersFromJSON( launchers: [LauncherJSON]?, context: NSManagedObjectContext )
+   func addConfigurationsFromJSON( configurations: [ConfigurationJSON]?, context: NSManagedObjectContext )
    {
-      for launcher: LauncherJSON in launchers ?? []
+      for configuration: ConfigurationJSON in configurations ?? []
       {
-         let launcherEntity: Launcher = fetchLauncher( launcher: launcher, context: context )
-         self.addToLauncherList( launcherEntity )
-         launcherEntity.addToAgencies( self )
+         let configurationEntity: Configuration = fetchConfiguration( configuration: configuration, context: context )
+         self.addToConfigurations( configurationEntity )
+         configurationEntity.addToAgencies( self )
       }
    }
 

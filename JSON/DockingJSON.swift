@@ -14,25 +14,58 @@ import CoreData
          "docking_location": { … }
        }
  */
-public struct DockingJSON: Decodable, Identifiable, JSONElement
+public class DockingJSON: Decodable, Identifiable, JSONElement
 {
    // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case id, url, docking, departure, flightVehicle
+//   enum CodingKeys: String, CodingKey
+//   {
+//      case id, url, docking, departure, flightVehicle
+//
+//      case launchID = "launchId"
+//   }
 
-      case launchID = "launchId"
+   /** ID of the astronaut within the API. */
+   public var id: Int64
+   /** URI of this data. Unused. */
+   var url: String?
+   var launchID: String?
+   /** Docking date. */
+   var docking: String?
+   /** Docking position. */
+   var dockingLocationName: String?
+   /** Undocking date. */
+   var departure: String?
+   /** Vehicle docked. */
+   var flightVehicle: FlightVehicleJSON?
+   /** Docking position details. */
+   var dockingLocation: IDNameJSON?
+
+   /**
+    Make a `DockingJSON` from a JSON structure.
+
+    - parameter json: `JSONStructure` JSON to parse
+    */
+   init?( json: JSONStructure? )
+   {
+      guard let json = json else { return nil }
+      guard let id = json[ "id" ] as? Int64 else { return nil }
+
+      self.id = id
+      self.url = json[ "url" ] as? String
+      self.launchID = json[ "launchId" ] as? String
+      self.docking = json[ "docking" ] as? String
+      self.dockingLocationName = json[ "dockingLocationName" ] as? String
+      self.departure = json[ "departure" ] as? String
+      self.flightVehicle = FlightVehicleJSON( json: json[ "flightVehicle" ] as? JSONStructure )
+      self.dockingLocation = IDNameJSON( json: json[ "dockingLocation" ] as? JSONStructure )
    }
 
-   public var id: Int64
-   var url: String? // unused
-   var launchID: String?
-   var docking: String?  // docking name
-   var dockingLocationName: String?
-   var departure: String?
-   var flightVehicle: FlightVehicleJSON?
-   var dockingLocation: DockingLocationJSON?
+   /**
+    Add this data to Core Data as a `Docking` entity. The context still needs to be saved after the add.
 
+    - parameter context: Core Data context to add the entity to.
+    - returns: `Docking` the added entity
+    */
    public func addToCoreData( context: NSManagedObjectContext ) -> Docking
    {
       let newDocking: Docking = Docking( context: context )
@@ -41,6 +74,12 @@ public struct DockingJSON: Decodable, Identifiable, JSONElement
       return newDocking
    }
 
+   /**
+    Set or update the values of the `Docking` entity,
+
+    - parameter entity:  `Docking?` entity to fill/update
+    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+    */
    public func updateEntity( entity: Docking?, context: NSManagedObjectContext )
    {
       guard let dockingEntity = entity else { return }
