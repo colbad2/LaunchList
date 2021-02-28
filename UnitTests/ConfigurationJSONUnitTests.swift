@@ -19,8 +19,9 @@ class ConfigurationJSONUnitTests: XCTestCase
        }
       """
 
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
-      let rocketConfiguration: ConfigurationJSON? = ConfigurationJSON( json: parseJSON( data: jsonData ) )
+      guard let rocketConfiguration: ConfigurationJSON =
+               ConfigurationJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+
       checkConfiguration( config: rocketConfiguration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",

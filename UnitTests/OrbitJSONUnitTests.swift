@@ -15,12 +15,11 @@ class OrbitJSONUnitTests: XCTestCase
         }
       """
 
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
-      let orbit: OrbitJSON? = OrbitJSON( json: parseJSON( data: jsonData ) )
+      guard let orbit: OrbitJSON = OrbitJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       XCTAssertNotNil( orbit )
-      XCTAssertEqual( orbit?.abbreviation, "GTO" )
-      XCTAssertEqual( orbit?.id, 2 )
-      XCTAssertEqual( orbit?.name, "Geostationary Transfer Orbit" )
+      XCTAssertEqual( orbit.abbreviation, "GTO" )
+      XCTAssertEqual( orbit.id, 2 )
+      XCTAssertEqual( orbit.name, "Geostationary Transfer Orbit" )
    }
 }

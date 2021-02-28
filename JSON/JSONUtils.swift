@@ -167,10 +167,16 @@ public func parseJSON( data: Data ) -> JSONStructure?
    return try? JSONSerialization.jsonObject( with: data, options: [] ) as? [String: Any]
 }
 
-public func parseJSONFromString( data: String ) -> JSONStructure?
+//public func parseJSONFromString( data: String ) -> JSONStructure?
+//{
+//   guard let jsonData: Data = data.data( using: .utf8 ) else { return nil }
+//   return try? JSONSerialization.jsonObject( with: jsonData, options: [] ) as? [String: Any]
+//}
+
+public func parseJSON( jsonString: String ) -> JSONStructure?
 {
-   guard let jsonData: Data = data.data( using: .utf8 ) else { return nil }
-   return try? JSONSerialization.jsonObject( with: jsonData, options: [] ) as? [String: Any]
+   guard let jsonData: Data = jsonString.data( using: .utf8 ) else { return nil }
+   return parseJSON( data: jsonData )
 }
 
 func reportDecodingError( error: DecodingError )
