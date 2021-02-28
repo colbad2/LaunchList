@@ -1,9 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
-// swiftlint:disable line_length
-
 /**
  ### Example JSON
        {
@@ -12,7 +8,7 @@ import CoreData
          "name": "Soyuz TMA-16",
          "serial_number": "Soyuz TMA 11F732A17 #226",
          "status": { … },
-         "description": "Soyuz TMA-16 was a Soyuz spacecraft which launched on September 30 2009 07:14 UTC. It transported two members of the Expedition 21 crew and one participant to the International Space Station. The Expedition 21 crew consisted of Maksim Surayev and Jeffrey Williams. The spaceflight participant was tourist Guy Laliberté.",
+         "description": "Soyuz TMA-16 was a Soyuz spacecraft which launched on September 30 2009 07:14 UTC…",
          "spacecraft_config": { … }
        }
 
@@ -28,14 +24,6 @@ import CoreData
  */
 public class SpacecraftJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, url, name, serialNumber, status, spacecraftConfig
-//
-//      case spacecraftDescription = "description"
-//   }
-
    /** ID of the config within the API. */
    public var id: Int64
    /** URI of this data in the API. Unused. */
@@ -68,42 +56,5 @@ public class SpacecraftJSON: Decodable, Identifiable, JSONElement
       self.spacecraftDescription = json[ "description" ] as? String
       self.spacecraftConfig = SpacecraftConfigJSON( json: json[ "spacecraftConfig" ] as? JSONStructure )
       self.flights = ( json[ "flights" ] as? [JSONStructure] ?? [] ).compactMap { return SpacecraftFlightJSON( json: $0 ) }
-   }
-
-   /**
-    Add this data to Core Data as a `Spacecraft` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Spacecraft
-   {
-      let newSpacecraft: Spacecraft = Spacecraft( context: context )
-      updateEntity( spacecraftEntity: newSpacecraft, context: context )
-
-      return newSpacecraft
-   }
-
-   /**
-    Set or update the values of the `Spacecraft` entity,
-
-    - parameter spacecraftEntity: `Spacecraft?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( spacecraftEntity: Spacecraft?, context: NSManagedObjectContext )
-   {
-      guard let entity = spacecraftEntity else { return }
-
-      entity.id = id
-      entity.url = url
-      entity.name = name
-      entity.serialNumber = serialNumber
-      entity.status = status?.name
-      entity.statusName = status?.name
-      entity.spacecraftDescription = spacecraftDescription
-      entity.addSpacecraftConfigFromJSON( spacecraftConfig: spacecraftConfig, context: context )
-      entity.addFlightsFromJSON( flights: flights, context: context )
-
-      entity.fetched = Date()
    }
 }

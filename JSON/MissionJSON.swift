@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
    Mission being serviced by a launch.
 
@@ -20,25 +18,17 @@ import CoreData
          }
 
    ### Spec
-       id   integer
-       launch_library_id   integer maximum: 2147483647 minimum: -2147483648 x-nullable: true
-       name   string maxLength: 255
-       description   string
-       launch_designator   string maxLength: 255 x-nullable: true
-       type   string
-       orbit*   Orbit{}
+       id                integer
+       launch_library_id integer maximum: 2147483647 minimum: -2147483648 x-nullable: true
+       name              string maxLength: 255
+       description       string
+       launch_designator string maxLength: 255 x-nullable: true
+       type              string
+       orbit*            Orbit{}
  }
  */
 public class MissionJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case description, id, launchDesignator, name, orbit, type
-//
-//      case launchLibraryID = "launchLibraryId"
-//   }
-
    /** ID of the mission within the API. */
    public var id: Int64
    /** Description of the mission. Can contain encoded Unicode elements like /u00fc, which are translated correctly on parse of JSON. */
@@ -67,50 +57,10 @@ public class MissionJSON: Decodable, Identifiable, JSONElement
       self.id = id
       self.description = json[ "description" ] as? String
       self.launchDesignator = json[ "launchDesignator" ] as? String
-      self.launchLibraryID = json[ "launchLibraryId" ] as? Int64
+      self.launchLibraryID = json[ "launch_library_id" ] as? Int64
       self.name = json[ "name" ] as? String
       self.orbit = OrbitJSON( json: json[ "orbit" ] as? JSONStructure )
       self.type = json[ "type" ] as? String
-   }
-
-   /**
-    Add this mission to Core Data as a [Mission] entity. The context still needs to be saved after the add.
-
-    - parameter context: `NSManagedObjectContext` Core Data context to add the entity to.
-    - returns:           `Mission` the added entity
-    */
-   func addToCoreData( context: NSManagedObjectContext ) -> Mission
-   {
-      let newMission: Mission = Mission( context: context )
-      updateEntity( entity: newMission, context: context )
-
-      return newMission
-   }
-
-   /**
-    Set or update the values of the `Mission` entity,
-
-    - parameter entity:  `Mission?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   func updateEntity( entity: Mission?, context: NSManagedObjectContext )
-   {
-      guard let missionEntity = entity else { return }
-
-      missionEntity.missionDescription = description?.fixBadUTF()
-      missionEntity.id = id
-      missionEntity.launchDesignator = launchDesignator
-      missionEntity.name = name?.fixBadUTF().trim()
-
-      if let orbitName: String = orbit?.name
-      {
-         missionEntity.orbitName = normalizedOrbitName( orbitName, abbreviation: orbit?.abbreviation )
-      }
-      missionEntity.orbitAbbreviation = orbit?.abbreviation
-
-      missionEntity.type = type
-
-      missionEntity.fetched = Date()
    }
 }
 

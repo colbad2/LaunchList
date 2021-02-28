@@ -5,15 +5,6 @@
  */
 public class LandingTypeJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, name
-//
-//      case abbreviation = "abbrev"
-//      case typeDescription = "description"
-//   }
-
    /** ID of the landing type within the API. */
    public let id: Int64
    let name: String?

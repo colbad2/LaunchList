@@ -39,6 +39,41 @@ extension FlightVehicle
 }
 
 /**
+ Add this data to Core Data as a `FlightVehicle`. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: `FlightVehicle` the added entity
+ */
+public func addToCoreData( context: NSManagedObjectContext ) -> FlightVehicle
+{
+   let newFlightVehicle: FlightVehicle = FlightVehicle( context: context )
+   updateEntity( flightVehicle: flightVehicle, entity: newFlightVehicle, context: context )
+
+   return newFlightVehicle
+}
+
+/**
+ Set or update the values of the `FlightVehicle` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `FlightVehicle?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( flightVehicle: FlightVehicleJSON, entity: FlightVehicle?, context: NSManagedObjectContext )
+{
+   guard let flightVehicleEntity = entity else { return }
+
+   flightVehicleEntity.id = flightVehicle.id
+   flightVehicleEntity.url = flightVehicle.url
+   flightVehicleEntity.destination = flightVehicle.destination
+   flightVehicleEntity.missionEnd = flightVehicle.missionEnd
+   flightVehicleEntity.addSpacecraftFromJSON( spacecraft: flightVehicle.spacecraft, context: context )
+
+   flightVehicleEntity.fetched = Date()
+}
+
+/**
  Returns a sorted version of the given `FlightVehicle` array.
 
  - parameter flightVehicleArray: `[FlightVehicle]?` list of `FlightVehicle`s to sort

@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  Data that describe a launch.
 
@@ -71,26 +69,6 @@ import CoreData
  */
 public class LaunchJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case hashtag, id, image, infographic, mission, name,
-//         net, pad, probability, rocket, slug, status, url,
-//         infoURLs, vidURLs
-//
-//      case failReason = "failreason"
-//      case holdReason = "holdreason"
-//      case inHold = "inhold"
-//      case launchLibraryID = "launch_library_id"
-//      case tbdDate = "tbddate"
-//      case tbdTime = "tbdtime"
-//      case serviceProvider = "launchServiceProvider"
-//      case programs = "program"
-//      case windowEnd = "window_end"
-//      case windowStart = "window_start"
-//      case webcastLive = "webcast_live"
-//   }
-
    /** ID of the astronaut within the API. */
    public var id: String
    /** URI of this data. Unused. */
@@ -102,7 +80,7 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
    var image: String?
    var infographic: String?
    var inHold: Bool?
-   var serviceProvider: ServiceProviderJSON?
+   var serviceProvider: AgencyJSON?
    var mission: MissionJSON?
    var name: String?
    var net: String?
@@ -120,8 +98,8 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
    var webcastLive: Bool?
    var windowEnd: String?
    var windowStart: String?
-   var infoURLs: [LinkJSON] = []
-   var vidURLs: [LinkJSON] = []
+   var infoURLs: [URLLinkJSON] = []
+   var vidURLs: [URLLinkJSON] = []
    var orbitalLaunchAttemptCount: String?
    var locationLaunchAttemptCount: String?
    var padLaunchAttemptCount: String?
@@ -150,7 +128,7 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
       self.infographic = json[ "infographic" ] as? String
       self.inHold = json[ "inhold" ] as? Bool
       self.launchLibraryID = json[ "launch_library_id" ] as? Int64
-      self.serviceProvider = ServiceProviderJSON( json: json[ "launchServiceProvider" ] as? JSONStructure )
+      self.serviceProvider = AgencyJSON( json: json[ "launch_service_provider" ] as? JSONStructure )
       self.mission = MissionJSON( json: json[ "mission" ] as? JSONStructure )
       self.name = json[ "name" ] as? String
       self.net = json[ "net" ] as? String
@@ -166,16 +144,16 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
       self.rocket = RocketJSON( json: json[ "rocket" ] as? JSONStructure )
       self.slug = json[ "slug" ] as? String
       self.status = StatusJSON( json: json[ "status" ] as? JSONStructure )
-      self.statusName = json[ "statusName" ] as? String
-      self.statusAbbreviation = json[ "statusAbbreviation" ] as? String
-      self.statusDescription = json[ "statusDescription" ] as? String
+      self.statusName = self.status?.name
+      self.statusAbbreviation = self.status?.abbreviation
+      self.statusDescription = self.status?.description
       self.tbdDate = json[ "tbddate" ] as? Bool
       self.tbdTime = json[ "tbdtime" ] as? Bool
-      self.webcastLive = json[ "webcastLive" ] as? Bool
-      self.windowEnd = json[ "windowEnd" ] as? String
-      self.windowStart = json[ "windowStart" ] as? String
-      self.infoURLs = ( json[ "infoURLs" ] as? [JSONStructure] ?? [] ).compactMap { return LinkJSON( json: $0 ) }
-      self.vidURLs = ( json[ "vidURLs" ] as? [JSONStructure] ?? [] ).compactMap { return LinkJSON( json: $0 ) }
+      self.webcastLive = json[ "webcast_live" ] as? Bool
+      self.windowEnd = json[ "window_end" ] as? String
+      self.windowStart = json[ "window_start" ] as? String
+      self.infoURLs = ( json[ "infoURLs" ] as? [JSONStructure] ?? [] ).compactMap { return URLLinkJSON( json: $0 ) }
+      self.vidURLs = ( json[ "vidURLs" ] as? [JSONStructure] ?? [] ).compactMap { return URLLinkJSON( json: $0 ) }
 
       self.orbitalLaunchAttemptCount = json[ "orbital_launch_attempt_count" ] as? String
       self.locationLaunchAttemptCount = json[ "location_launch_attempt_count" ] as? String
@@ -185,79 +163,5 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
       self.locationLaunchAttemptCountYear = json[ "location_launch_attempt_count_year" ] as? String
       self.padLaunchAttemptCountYear = json[ "pad_launch_attempt_count_year" ] as? String
       self.agencyLaunchAttemptCountYear = json[ "agency_launch_attempt_count_year" ] as? String
-   }
-
-   /**
-    Add this data to Core Data as a `Launch` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: `Launch` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Launch
-   {
-      let newLaunch: Launch = Launch( context: context )
-      updateEntity( entity: newLaunch, context: context )
-
-      return newLaunch
-   }
-
-   /**
-    Set or update the values of the `Launch` entity,
-
-    - parameter entity:  `Launch?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: Launch?, context: NSManagedObjectContext )
-   {
-      guard let launchEntity = entity else { return }
-
-      if let fail: String = failReason?.trim()
-      {
-         if !fail.isEmpty
-         {
-            launchEntity.failReason = fail
-         }
-      }
-      launchEntity.hashtag = hashtag
-      launchEntity.holdReason = holdReason
-      launchEntity.id = id
-      launchEntity.image = image
-      launchEntity.infographic = infographic
-      launchEntity.inHold = guaranteedBool( inHold )
-
-      // launchEntity.addServiceProviderFromJSON( provider: serviceProvider, context: context )
-      launchEntity.addAgencyFromJSON( provider: serviceProvider, context: context )
-
-      launchEntity.addMissionFromJSON( mission: mission, context: context )
-      launchEntity.name = name?.fixBadUTF()
-      launchEntity.net = parseISODate( isoDate: net )
-      launchEntity.addPadFromJSON( pad: pad, context: context )
-      launchEntity.probability = guaranteedInt16( probability )
-      launchEntity.addProgramsFromJSON( programs: programs, context: context )
-      launchEntity.addRocketFromJSON( rocket: rocket, context: context )
-      launchEntity.slug = slug
-      launchEntity.statusName = status?.name
-      launchEntity.statusAbbreviation = status?.abbreviation
-      launchEntity.statusDescription = status?.description
-      launchEntity.tbdDate = guaranteedBool( tbdDate )
-      launchEntity.tbdTime = guaranteedBool( tbdTime )
-      launchEntity.webcastLive = guaranteedBool( webcastLive )
-      launchEntity.windowEnd = parseISODate( isoDate: windowEnd )
-      launchEntity.windowStart = parseISODate( isoDate: windowStart )
-      launchEntity.sortingDate = parseISODate( isoDate: windowStart )
-
-      launchEntity.addInfoLinksFromJSON( links: infoURLs, context: context )
-      launchEntity.addVideoLinksFromJSON( links: vidURLs, context: context )
-
-      launchEntity.orbitalLaunchAttemptCount = orbitalLaunchAttemptCount
-      launchEntity.locationLaunchAttemptCount = locationLaunchAttemptCount
-      launchEntity.padLaunchAttemptCount = padLaunchAttemptCount
-      launchEntity.agencyLaunchAttemptCount = agencyLaunchAttemptCount
-      launchEntity.orbitalLaunchAttemptCountYear = orbitalLaunchAttemptCountYear
-      launchEntity.locationLaunchAttemptCountYear = locationLaunchAttemptCountYear
-      launchEntity.padLaunchAttemptCountYear = padLaunchAttemptCountYear
-      launchEntity.agencyLaunchAttemptCountYear = agencyLaunchAttemptCountYear
-
-      launchEntity.fetched = Date()
    }
 }

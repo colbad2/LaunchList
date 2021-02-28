@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  Part of the starship API.
  
@@ -41,38 +39,5 @@ public class LiveStreamJSON: Decodable, JSONElement
       self.liveStreamDescription = json[ "description" ] as? String
       self.image = json[ "image" ] as? String
       self.url = json[ "url" ] as! String
-   }
-
-   /**
-    Add this data to Core Data as a `LiveStream`. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: `LiveStream` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> LiveStream
-   {
-      let newLiveStream: LiveStream = LiveStream( context: context )
-      updateEntity( entity: newLiveStream, context: context )
-
-      return newLiveStream
-   }
-
-   /**
-    Set or update the values of the `LiveStream` entity,
-
-    - parameter entity:  `LiveStream?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: LiveStream?, context: NSManagedObjectContext )
-   {
-      guard let liveStreamEntity = entity else { return }
-
-      liveStreamEntity.id = url // use the URL as an ID
-      liveStreamEntity.url = url
-      liveStreamEntity.liveStreamDescription = liveStreamDescription
-      liveStreamEntity.title = title
-      liveStreamEntity.image = image
-
-      liveStreamEntity.fetched = Date()
    }
 }

@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  ### Spec
        id            integer
@@ -50,42 +48,5 @@ public class SpacecraftFlightJSON: Decodable, Identifiable, JSONElement, AutoEqu
       self.onboardCrew = ( json[ "onboard_crew" ] as? [JSONStructure] ?? [] ).compactMap { return AstronautFlightJSON( json: $0 ) }
       self.landingCrew = ( json[ "landing_crew" ] as? [JSONStructure] ?? [] ).compactMap { return AstronautFlightJSON( json: $0 ) }
       self.dockingEvents = ( json[ "docking_events" ] as? [JSONStructure] ?? [] ).compactMap { return DockingEventJSON( json: $0 ) }
-   }
-
-   /**
-    Add this data to Core Data as a `SpacecraftFlight` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> SpacecraftFlight
-   {
-      let newSpacecraftFlight: SpacecraftFlight = SpacecraftFlight( context: context )
-      updateEntity( entity: newSpacecraftFlight, context: context )
-
-      return newSpacecraftFlight
-   }
-
-   /**
-    Set or update the values of the `SpacecraftFlight` entity,
-
-    - parameter entity: `SpacecraftFlight?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: SpacecraftFlight?, context: NSManagedObjectContext )
-   {
-      guard let flightEntity = entity else { return }
-
-      flightEntity.id = id
-      flightEntity.destination = destination
-      flightEntity.missionEnd = missionEnd
-      flightEntity.addSpacecraftFromJSON( spacecraft: spacecraft, context: context )
-      flightEntity.addLaunchFromJSON( launch: self.launch, context: context )
-      flightEntity.addLaunchCrewFromJSON( crew: self.launchCrew, context: context )
-      flightEntity.addOnboardCrewFromJSON( crew: self.onboardCrew, context: context )
-      flightEntity.addLandingCrewFromJSON( crew: self.landingCrew, context: context )
-      flightEntity.addDockingEventsFromJSON( dockingEvents: self.dockingEvents, context: context )
-
-      flightEntity.fetched = Date()
    }
 }

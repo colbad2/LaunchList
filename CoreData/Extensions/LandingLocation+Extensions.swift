@@ -29,6 +29,41 @@ extension LandingLocation
 }
 
 /**
+ Add this location to Core Data as a `LandingLocation` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: `NSManagedObjectContext` Core Data context to add the entity to.
+ - returns:           `LandingLocation` the added entity
+ */
+public func addToCoreData( json: LandingLocationJSON, context: NSManagedObjectContext ) -> LandingLocation
+{
+   let newLandingLocation: LandingLocation = LandingLocation( context: context )
+   updateEntity( json: json, entity: newLandingLocation, context: context )
+
+   return newLandingLocation
+}
+
+/**
+ Set or update the values of the `LandingLocation` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `LandingLocation?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: LandingLocationJSON, entity: LandingLocation?, context: NSManagedObjectContext )
+{
+   guard let landingLocationEntity = entity else { return }
+
+   landingLocationEntity.id = json.id
+   landingLocationEntity.name = json.name
+   landingLocationEntity.abbreviation = json.abbreviation
+   landingLocationEntity.addLocationFromJSON( location: json.location, context: context )
+   landingLocationEntity.successfulLandings = json.successfulLandings
+
+   landingLocationEntity.fetched = Date()
+}
+
+/**
  Gets all the `LandingLocation` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `LandingLocation`s from

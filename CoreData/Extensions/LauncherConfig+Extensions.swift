@@ -44,6 +44,66 @@ extension LauncherConfig
 }
 
 /**
+ Add this data to Core Data as a `LauncherConfig`. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: `LauncherConfig` the added entity
+ */
+public func addToCoreData( json: LauncherConfigJSON, context: NSManagedObjectContext ) -> LauncherConfig
+{
+   let newLauncherConfig: LauncherConfig = LauncherConfig( context: context )
+   updateEntity( json: json, entity: newLauncherConfig, context: context )
+
+   return newLauncherConfig
+}
+
+/**
+ Set or update the values of the `LauncherConfig` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `LauncherConfig?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: LauncherConfigJSON, entity: LauncherConfig?, context: NSManagedObjectContext )
+{
+   guard let launcherConfigEntity = entity else { return }
+
+   launcherConfigEntity.id = json.id
+   launcherConfigEntity.name = json.name
+   launcherConfigEntity.family = json.family
+   launcherConfigEntity.fullName = json.fullName
+   launcherConfigEntity.launcherConfigDescription = json.launcherConfigDescription
+   launcherConfigEntity.variant = json.variant
+   launcherConfigEntity.alias = json.alias
+   launcherConfigEntity.minStage = guaranteedInt64( json.minStage )
+   launcherConfigEntity.maxStage = guaranteedInt64( json.maxStage )
+   launcherConfigEntity.length = guaranteedInt64( json.length )
+   launcherConfigEntity.diameter = guaranteedInt64( json.diameter )
+   launcherConfigEntity.maidenFlight = json.maidenFlight
+   launcherConfigEntity.launchMass = guaranteedInt64( json.launchMass )
+   launcherConfigEntity.leoCapacity = guaranteedInt64( json.leoCapacity )
+   launcherConfigEntity.gtoCapacity = guaranteedInt64( json.gtoCapacity )
+   launcherConfigEntity.takeoffThrust = guaranteedInt64( json.takeoffThrust )
+   launcherConfigEntity.apogee = guaranteedInt64( json.apogee )
+   launcherConfigEntity.vehicleRange = guaranteedInt64( json.vehicleRange )
+   launcherConfigEntity.imageURL = json.imageURL
+   launcherConfigEntity.infoURL = json.infoURL
+   launcherConfigEntity.wikiURL = json.wikiURL
+   launcherConfigEntity.consecutiveSuccessfulLaunches = guaranteedInt64( json.consecutiveSuccessfulLaunches )
+   launcherConfigEntity.successfulLaunches = guaranteedInt64( json.successfulLaunches )
+   launcherConfigEntity.failedLaunches = guaranteedInt64( json.failedLaunches )
+   launcherConfigEntity.pendingLaunches = guaranteedInt64( json.pendingLaunches )
+   launcherConfigEntity.addManufacturerFromJSON( manufacturer: json.manufacturer, context: context )
+   launcherConfigEntity.addProgramsFromJSON( programs: json.programs, context: context )
+   launcherConfigEntity.reusable = guaranteedBool( json.reusable )
+   launcherConfigEntity.totalLaunchCount = json.totalLaunchCount
+
+   // additional generated info, not in the JSON
+   launcherConfigEntity.fetched = Date()
+}
+
+/**
  Gets a `LauncherConfig` with the given ID in the given context.
 
  ### Example

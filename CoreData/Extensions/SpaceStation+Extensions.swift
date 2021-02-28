@@ -64,6 +64,50 @@ extension SpaceStation
 }
 
 /**
+ Add this data to Core Data as a `SpaceStation` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: the added entity
+ */
+public func addToCoreData( json: SpaceStationJSON, context: NSManagedObjectContext ) -> SpaceStation
+{
+   let newSpaceStation: SpaceStation = SpaceStation( context: context )
+   updateEntity( json: spaceStationJSON, entity: newSpaceStation, context: context )
+
+   return newSpaceStation
+}
+
+/**
+ Set or update the values of the `SpaceStation` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity: `SpaceStation?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: SpaceStationJSON, entity: SpaceStation?, context: NSManagedObjectContext )
+{
+   guard let spaceStationEntity = entity else { return }
+
+   spaceStationEntity.id = json.id
+   spaceStationEntity.name = json.name
+   spaceStationEntity.status = json.status?.name
+   spaceStationEntity.statusName = json.status?.name
+   spaceStationEntity.statusAbbreviation = json.status?.abbreviation
+   spaceStationEntity.statusDescription = json.status?.description
+   spaceStationEntity.orbit = json.orbit
+   spaceStationEntity.imageURL = json.imageURL
+   spaceStationEntity.founded = json.founded
+   spaceStationEntity.spaceStationDescription = json.spaceStationDescription
+   spaceStationEntity.addOwnersFromJSON( owners: json.owners, context: context )
+   spaceStationEntity.type = json.type
+   spaceStationEntity.deorbited = json.deorbited
+   spaceStationEntity.addExpeditionsFromJSON( expeditions: json.activeExpeditions, context: context )
+
+   spaceStationEntity.fetched = Date()
+}
+
+/**
  Gets all the `SpaceStation` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `SpaceStation`s from

@@ -2,23 +2,15 @@
 
 /**
  ### Spec
- id   integer
- attempt   boolean x-nullable: true
- success   boolean x-nullable: true
- description   string maxLength: 2048
- location   LandingLocation{...}
- type   LandingType{...}
+       id   integer
+       attempt   boolean x-nullable: true
+       success   boolean x-nullable: true
+       description   string maxLength: 2048
+       location   LandingLocation{...}
+       type   LandingType{...}
  */
 public class LandingJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, attempt, success, location, type
-//
-//      case landingDescription = "description"
-//   }
-
    /** ID of the location within the API. */
    public var id: Int64
    var attempt: Bool?

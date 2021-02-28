@@ -48,6 +48,61 @@ extension Astronaut
 }
 
 /**
+ Add this astronaut to Core Data as a `Astronaut` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: the added entity
+ */
+public func addToCoreData( json: AstronautJSON, context: NSManagedObjectContext ) -> Astronaut
+{
+   let newAstronaut: Astronaut = Astronaut( context: context )
+   updateEntity( json: json, entity: newAstronaut, context: context )
+
+   return newAstronaut
+}
+
+/**
+ Set or update the values of the `Astronaut` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity: `Astronaut?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: AstronautJSON, entity: Astronaut?, context: NSManagedObjectContext )
+{
+   guard let astronautEntity = entity else { return }
+
+   astronautEntity.id = json.id
+   astronautEntity.name = json.name
+   astronautEntity.status = json.status?.name
+   astronautEntity.type = json.type?.name
+   astronautEntity.dateOfBirth = json.dateOfBirth
+   astronautEntity.dateOfDeath = json.dateOfDeath
+   astronautEntity.nationality = json.nationality
+   astronautEntity.bio = json.bio
+   astronautEntity.twitter = json.twitter
+   astronautEntity.instagram = json.instagram
+   astronautEntity.wiki = json.wiki
+   astronautEntity.addAgencyFromJSON( agency: json.agency, context: context )
+   astronautEntity.firstFlight = json.firstFlight
+   astronautEntity.lastFlight = json.lastFlight
+   astronautEntity.profileImage = json.profileImage
+   astronautEntity.profileImageThumbnail = json.profileImageThumbnail
+
+   astronautEntity.addLaunchesFromJSON( launches: json.flights, context: context )
+   astronautEntity.addLandingsFromJSON( landings: json.landings, context: context )
+
+   // sort by last name
+   if let lastPart: Substring = json.name?.split( separator: " " ).last
+   {
+      astronautEntity.sortingName = String( lastPart )
+   }
+
+   astronautEntity.fetched = Date()
+}
+
+/**
  Gets all the `Agency` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `Astronaut`s from

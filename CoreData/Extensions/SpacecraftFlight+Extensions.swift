@@ -119,6 +119,45 @@ extension SpacecraftFlight
 }
 
 /**
+ Add this data to Core Data as a `SpacecraftFlight` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: the added entity
+ */
+public func addToCoreData( json: SpacecraftFlightJSON, context: NSManagedObjectContext ) -> SpacecraftFlight
+{
+   let newSpacecraftFlight: SpacecraftFlight = SpacecraftFlight( context: context )
+   updateEntity( json: json, entity: newSpacecraftFlight, context: context )
+
+   return newSpacecraftFlight
+}
+
+/**
+ Set or update the values of the `SpacecraftFlight` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity: `SpacecraftFlight?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: SpacecraftFlightJSON, entity: SpacecraftFlight?, context: NSManagedObjectContext )
+{
+   guard let flightEntity = entity else { return }
+
+   flightEntity.id = json.id
+   flightEntity.destination = json.destination
+   flightEntity.missionEnd = json.missionEnd
+   flightEntity.addSpacecraftFromJSON( spacecraft: json.spacecraft, context: context )
+   flightEntity.addLaunchFromJSON( launch: json.launch, context: context )
+   flightEntity.addLaunchCrewFromJSON( crew: json.launchCrew, context: context )
+   flightEntity.addOnboardCrewFromJSON( crew: json.onboardCrew, context: context )
+   flightEntity.addLandingCrewFromJSON( crew: json.landingCrew, context: context )
+   flightEntity.addDockingEventsFromJSON( dockingEvents: json.dockingEvents, context: context )
+
+   flightEntity.fetched = Date()
+}
+
+/**
  Gets all the `SpacecraftFlight` entities in the context
 
  - parameter context: `NSManagedObjectContext` context to get the `SpacecraftFlight`s from

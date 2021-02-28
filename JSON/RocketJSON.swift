@@ -14,10 +14,10 @@ import CoreData
        }
 
  ### Spec
- id   integer
- configuration   LauncherConfigDetail{...}
- launcher_stage   [FirstStage{...}]
- spacecraft_stage   SpacecraftFlightDetailedSerializerForLaunch{...}
+       id               integer
+       configuration    LauncherConfigDetail{...}
+       launcher_stage   [FirstStage{...}]
+       spacecraft_stage SpacecraftFlightDetailedSerializerForLaunch{...}
  */
 public class RocketJSON: Decodable, Identifiable, JSONElement, AutoEquatable, AutoHashable
 {
@@ -42,36 +42,5 @@ public class RocketJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
       self.configuration = ConfigurationJSON( json: json[ "configuration" ] as? JSONStructure )
       self.launcherStage = ( json[ "launcher_stage" ] as? [JSONStructure] )?.compactMap { FirstStageJSON( json: $0 ) } ?? []
       self.spacecraftStage = SpacecraftFlightJSON( json: json[ "spacecraft_stage" ] as? JSONStructure )
-   }
-
-   /**
-    Add this rocket to Core Data as a `Rocket` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
-    */
-   func addToCoreData( context: NSManagedObjectContext ) -> Rocket
-   {
-      let newRocket: Rocket = Rocket( context: context )
-      updateEntity( entity: newRocket, context: context )
-
-      return newRocket
-   }
-
-   /**
-    Set or update the values of the `Rocket` entity,
-
-    - parameter entity: `Rocket?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   func updateEntity( entity: Rocket?, context: NSManagedObjectContext )
-   {
-      guard let rocketEntity = entity else { return }
-
-      rocketEntity.id = id
-      rocketEntity.addConfigurationFromJSON( configuration: configuration, context: context )
-      rocketEntity.name = configuration?.name
-
-      rocketEntity.fetched = Date()
    }
 }

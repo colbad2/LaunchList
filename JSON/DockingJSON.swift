@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  ### Example JSON
        {
@@ -16,14 +14,6 @@ import CoreData
  */
 public class DockingJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, url, docking, departure, flightVehicle
-//
-//      case launchID = "launchId"
-//   }
-
    /** ID of the astronaut within the API. */
    public var id: Int64
    /** URI of this data. Unused. */
@@ -58,40 +48,5 @@ public class DockingJSON: Decodable, Identifiable, JSONElement
       self.departure = json[ "departure" ] as? String
       self.flightVehicle = FlightVehicleJSON( json: json[ "flightVehicle" ] as? JSONStructure )
       self.dockingLocation = IDNameJSON( json: json[ "dockingLocation" ] as? JSONStructure )
-   }
-
-   /**
-    Add this data to Core Data as a `Docking` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: `Docking` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Docking
-   {
-      let newDocking: Docking = Docking( context: context )
-      updateEntity( entity: newDocking, context: context )
-
-      return newDocking
-   }
-
-   /**
-    Set or update the values of the `Docking` entity,
-
-    - parameter entity:  `Docking?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: Docking?, context: NSManagedObjectContext )
-   {
-      guard let dockingEntity = entity else { return }
-
-      dockingEntity.id = id
-      dockingEntity.launchID = launchID
-      dockingEntity.docking = docking
-      dockingEntity.departure = departure
-      dockingEntity.addEntityFromJSON( json: flightVehicle, context: context )
-      dockingEntity.dockingLocationName = dockingLocation?.name
-      dockingEntity.sortingDate = parseISODate( isoDate: docking )
-
-      dockingEntity.fetched = Date()
    }
 }

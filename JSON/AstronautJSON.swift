@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  Astronaut.
 
@@ -65,19 +63,6 @@ import CoreData
  */
 public class AstronautJSON: Decodable, Identifiable, JSONElement, AutoEquatable, AutoHashable
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, url, name, status, type, nationality, bio, twitter, instagram, wiki, agency, flights, landings
-//
-//      case dateOfBirth = "date_of_birth"
-//      case dateOfDeath = "date_of_death"
-//      case profileImage = "profile_image"
-//      case profileImageThumbnail = "profile_image_thumbnail"
-//      case lastFlight = "last_flight"
-//      case firstFlight = "first_flight"
-//   }
-
    /** ID of the astronaut within the API. */
    public var id: Int64
    /** URI of this data. Unused. */
@@ -146,58 +131,5 @@ public class AstronautJSON: Decodable, Identifiable, JSONElement, AutoEquatable,
       self.profileImageThumbnail = json[ "profile_image_thumbnail" ] as? String
       self.flights = ( json[ "flights" ] as? [JSONStructure] )?.compactMap { LaunchJSON( json: $0 ) } ?? []
       self.landings = ( json[ "landings" ] as? [JSONStructure] )?.compactMap { SpacecraftFlightJSON( json: $0 ) } ?? []
-   }
-
-   /**
-    Add this astronaut to Core Data as a `Astronaut` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Astronaut
-   {
-      let newAstronaut: Astronaut = Astronaut( context: context )
-      updateEntity( entity: newAstronaut, context: context )
-
-      return newAstronaut
-   }
-
-   /**
-    Set or update the values of the `Astronaut` entity,
-
-    - parameter entity: `Astronaut?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: Astronaut?, context: NSManagedObjectContext )
-   {
-      guard let astronautEntity = entity else { return }
-
-      astronautEntity.id = id
-      astronautEntity.name = name
-      astronautEntity.status = status?.name
-      astronautEntity.type = type?.name
-      astronautEntity.dateOfBirth = dateOfBirth
-      astronautEntity.dateOfDeath = dateOfDeath
-      astronautEntity.nationality = nationality
-      astronautEntity.bio = bio
-      astronautEntity.twitter = twitter
-      astronautEntity.instagram = instagram
-      astronautEntity.wiki = wiki
-      astronautEntity.addAgencyFromJSON( agency: agency, context: context )
-      astronautEntity.firstFlight = firstFlight
-      astronautEntity.lastFlight = lastFlight
-      astronautEntity.profileImage = profileImage
-      astronautEntity.profileImageThumbnail = profileImageThumbnail
-
-      astronautEntity.addLaunchesFromJSON( launches: flights, context: context )
-      astronautEntity.addLandingsFromJSON( landings: landings, context: context )
-
-      // sort by last name
-      if let lastPart: Substring = name?.split( separator: " " ).last
-      {
-         astronautEntity.sortingName = String( lastPart )
-      }
-
-      astronautEntity.fetched = Date()
    }
 }

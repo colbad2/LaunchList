@@ -1,9 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
- Mission orbit.
+ Mission orbit. All fields are promoted into the `Mission` entity, so there is no `Orbit` CoreData entity.
 
  ### Example JSON:
        {
@@ -20,14 +18,6 @@ import CoreData
  */
 public class OrbitJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, name
-//
-//      case abbreviation = "abbrev"
-//   }
-
    /** ID of the astronaut within the API. */
    public var id: Int64
    let name: String?

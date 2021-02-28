@@ -114,6 +114,50 @@ extension Event
 }
 
 /**
+ Add this data to Core Data as a `Event` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns:           `Event` the added entity
+ */
+public func addToCoreData( json: EventJSON, context: NSManagedObjectContext ) -> Event
+{
+   let newEvent: Event = Event( context: context )
+   updateEntity( json: json, entity: newEvent, context: context )
+
+   return newEvent
+}
+
+/**
+ Set or update the values of the `Event` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `Event?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: EventJSON, entity: Event?, context: NSManagedObjectContext )
+{
+   guard let eventEntity = entity else { return }
+
+   eventEntity.id = json.id
+   eventEntity.name = json.name
+   eventEntity.type = json.type?.name
+   eventEntity.eventDescription = json.eventDescription
+   eventEntity.location = json.location
+   eventEntity.newsURL = json.newsURL
+   eventEntity.videoURL = json.videoURL
+   eventEntity.featureImage = json.featureImage
+   eventEntity.date = parseISODate( isoDate: json.date )
+   eventEntity.addLaunchesFromJSONList( launches: json.launches, context: context )
+   eventEntity.addExpeditionsFromJSONList( expeditions: json.expeditions, context: context )
+   eventEntity.addSpaceStationsFromJSONList( spaceStations: json.spaceStations, context: context )
+   eventEntity.addProgramsFromJSONList( programs: json.programs, context: context )
+   eventEntity.sortingDate = parseISODate( isoDate: json.date )
+
+   eventEntity.fetched = Date()
+}
+
+/**
  Gets all the `Event` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `Event`s from

@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  ### Example JSON
        {
@@ -73,47 +71,5 @@ public class SpaceStationJSON: Decodable, Identifiable, JSONElement
       self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )?.name
       self.deorbited = json[ "deorbited" ] as? String
       self.activeExpeditions = ( json[ "active_expedition" ] as? [JSONStructure] ?? [] ).compactMap { return ExpeditionJSON( json: $0 ) }
-   }
-
-   /**
-    Add this data to Core Data as a `SpaceStation` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> SpaceStation
-   {
-      let newSpaceStation: SpaceStation = SpaceStation( context: context )
-      updateEntity( entity: newSpaceStation, context: context )
-
-      return newSpaceStation
-   }
-
-   /**
-    Set or update the values of the `SpaceStation` entity,
-
-    - parameter entity: `SpaceStation?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: SpaceStation?, context: NSManagedObjectContext )
-   {
-      guard let spaceStationEntity = entity else { return }
-
-      spaceStationEntity.id = id
-      spaceStationEntity.name = name
-      spaceStationEntity.status = status?.name
-      spaceStationEntity.statusName = status?.name
-      spaceStationEntity.statusAbbreviation = status?.abbreviation
-      spaceStationEntity.statusDescription = status?.description
-      spaceStationEntity.orbit = orbit
-      spaceStationEntity.imageURL = imageURL
-      spaceStationEntity.founded = founded
-      spaceStationEntity.spaceStationDescription = spaceStationDescription
-      spaceStationEntity.addOwnersFromJSON( owners: self.owners, context: context )
-      spaceStationEntity.type = type
-      spaceStationEntity.deorbited = deorbited
-      spaceStationEntity.addExpeditionsFromJSON( expeditions: self.activeExpeditions, context: context )
-
-      spaceStationEntity.fetched = Date()
    }
 }

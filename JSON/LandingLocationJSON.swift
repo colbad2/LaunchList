@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  Returned by the 'config/landinglocation' endpoint.
 
@@ -41,38 +39,5 @@ public class LandingLocationJSON: Decodable, Identifiable, JSONElement
       self.abbreviation = json[ "abbreviation" ] as? String
       self.location = LocationJSON( json: json[ "location" ] as? JSONStructure )
       self.successfulLandings = json[ "successful_landings" ] as? String
-   }
-
-   /**
-    Add this location to Core Data as a `LandingLocation` entity. The context still needs to be saved after the add.
-
-    - parameter context: `NSManagedObjectContext` Core Data context to add the entity to.
-    - returns:           `LandingLocation` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> LandingLocation
-   {
-      let newLandingLocation: LandingLocation = LandingLocation( context: context )
-      updateEntity( entity: newLandingLocation, context: context )
-
-      return newLandingLocation
-   }
-
-   /**
-    Set or update the values of the `LandingLocation` entity,
-
-    - parameter entity:  `LandingLocation?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: LandingLocation?, context: NSManagedObjectContext )
-   {
-      guard let landingLocationEntity = entity else { return }
-
-      landingLocationEntity.id = id
-      landingLocationEntity.name = name
-      landingLocationEntity.abbreviation = abbreviation
-      landingLocationEntity.addLocationFromJSON( location: location, context: context )
-      landingLocationEntity.successfulLandings = successfulLandings
-
-      landingLocationEntity.fetched = Date()
    }
 }

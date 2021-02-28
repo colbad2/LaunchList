@@ -46,6 +46,45 @@ extension Spacecraft
 }
 
 /**
+ Add this data to Core Data as a `Spacecraft` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: the added entity
+ */
+public func addToCoreData( json: SpacecraftJSON, context: NSManagedObjectContext ) -> Spacecraft
+{
+   let newSpacecraft: Spacecraft = Spacecraft( context: context )
+   updateEntity( json: json, spacecraftEntity: newSpacecraft, context: context )
+
+   return newSpacecraft
+}
+
+/**
+ Set or update the values of the `Spacecraft` entity,
+
+ - parameter json:    JSON to parse
+ - parameter spacecraftEntity: `Spacecraft?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: SpacecraftJSON, spacecraftEntity: Spacecraft?, context: NSManagedObjectContext )
+{
+   guard let entity = spacecraftEntity else { return }
+
+   entity.id = json.id
+   entity.url = json.url
+   entity.name = json.name
+   entity.serialNumber = json.serialNumber
+   entity.status = json.status?.name
+   entity.statusName = json.status?.name
+   entity.spacecraftDescription = json.spacecraftDescription
+   entity.addSpacecraftConfigFromJSON( spacecraftConfig: json.spacecraftConfig, context: context )
+   entity.addFlightsFromJSON( flights: json.flights, context: context )
+
+   entity.fetched = Date()
+}
+
+/**
  Gets a `Spacecraft` with the given ID in the given context.
 
  ### Example

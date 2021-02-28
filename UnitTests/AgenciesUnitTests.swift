@@ -4,13 +4,19 @@ import XCTest
 
 public class AgenciesUnitTests: XCTestCase
 {
-   private var decoder: JSONDecoder
+   private var decoder: JSONDecoder!
 
    override public func setUp()
    {
       super.setUp()
       decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
+   }
+
+   public override func tearDown()
+   {
+      self.decoder = nil
+      super.tearDown()
    }
 
    //   func testParseJSON() throws
@@ -24,4 +30,21 @@ public class AgenciesUnitTests: XCTestCase
    //      XCTAssertNil( agenciesProvider.agencies.previousGroupURL )
    //      XCTAssertEqual( agenciesProvider.agencies.agenciesSublist?.count, 100 )
    //   }
+
+   func testAgencyJSON() throws
+   {
+      let json: String =
+         """
+        {
+            "id": 44,
+            "name": "National Aeronautics and Space Administration",
+            "type": "Government",
+            "url": "https://ll.thespacedevs.com/2.1.0/agencies/44/"
+        }
+      """
+
+      let agency: AgencyJSON? = parseJSONString( json: json )
+      checkAgency( agency: agency, agencyID: 44, name: "National Aeronautics and Space Administration",
+                   type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
+   }
 }

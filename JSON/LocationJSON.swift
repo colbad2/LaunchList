@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  The larger location of the launch, that contains the launch pad itself. For example, 'Kennedy
  Space Center' would be the location for 'Launch Complex 39A'.
@@ -66,40 +64,5 @@ public class LocationJSON: Decodable, Identifiable, JSONElement
       self.totalLandingCount = json[ "total_landing_count" ] as? Int64
       self.totalLaunchCount = json[ "total_launch_count" ] as? Int64
       self.pads = ( json[ "pads" ] as? [JSONStructure] ?? [] ).compactMap { return PadJSON( json: $0 ) }
-   }
-
-   /**
-    Add this location to Core Data as a `Location` entity. The context still needs to be saved after the add.
-
-    - parameter context: `NSManagedObjectContext` Core Data context to add the entity to.
-    - returns:           `Location` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Location
-   {
-      let newLocation: Location = Location( context: context )
-      updateEntity( entity: newLocation, context: context )
-
-      return newLocation
-   }
-
-   /**
-    Set or update the values of the `Location` entity,
-
-    - parameter entity:  `Location?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: Location?, context: NSManagedObjectContext )
-   {
-      guard let locationEntity = entity else { return }
-
-      locationEntity.countryCode = countryCode
-      locationEntity.id = id
-      locationEntity.mapImage = mapImage
-      locationEntity.name = name
-      locationEntity.totalLandingCount = guaranteedInt64( totalLandingCount )
-      locationEntity.totalLaunchCount = guaranteedInt64( totalLaunchCount )
-      locationEntity.addPadsFromJSON( pads: pads, context: context )
-
-      locationEntity.fetched = Date()
    }
 }

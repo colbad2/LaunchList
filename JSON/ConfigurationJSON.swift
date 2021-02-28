@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  Specific configuration of a rocket.
 
@@ -20,14 +18,6 @@ import CoreData
  */
 public class ConfigurationJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case family, fullName, id, name, url, variant
-//
-//      case launchLibraryID = "launchLibraryId"
-//   }
-
    /** ID of the location within the API. */
    public var id: Int64
    /** Broad name of the rocket family, like "Falcon 9". */
@@ -55,43 +45,10 @@ public class ConfigurationJSON: Decodable, Identifiable, JSONElement
 
       self.id = id
       self.family = json[ "family" ] as? String
-      self.fullName = json[ "fullName" ] as? String
-      self.launchLibraryID = json[ "launchLibraryId" ] as? Int64
+      self.fullName = json[ "full_name" ] as? String
+      self.launchLibraryID = json[ "launch_library_id" ] as? Int64
       self.name = json[ "name" ] as? String
       self.url = json[ "url" ] as? String
       self.variant = json[ "variant" ] as? String
-   }
-
-   /**
-    Add this configuration to Core Data as a `Configuration` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
-    */
-   func addToCoreData( context: NSManagedObjectContext ) -> Configuration
-   {
-      let newConfiguration: Configuration = Configuration( context: context )
-      updateEntity( entity: newConfiguration, context: context )
-
-      return newConfiguration
-   }
-
-   /**
-    Set or update the values of the `Configuration` entity,
-
-    - parameter entity: `Configuration?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   func updateEntity( entity: Configuration?, context: NSManagedObjectContext )
-   {
-      guard let configurationEntity = entity else { return }
-
-      configurationEntity.id = id
-      configurationEntity.family = family
-      configurationEntity.fullName = fullName
-      configurationEntity.name = name
-      configurationEntity.url = url
-
-      configurationEntity.fetched = Date()
    }
 }

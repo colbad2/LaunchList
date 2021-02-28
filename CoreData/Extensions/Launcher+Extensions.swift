@@ -29,6 +29,48 @@ extension Launcher
 }
 
 /**
+ Add this data to Core Data as a `Launcher`. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: `Launcher` the added entity
+ */
+public func addToCoreData( json: LauncherJSON, context: NSManagedObjectContext ) -> Launcher
+{
+   let newLauncher: Launcher = Launcher( context: context )
+   updateEntity( json: json, entity: newLauncher, context: context )
+
+   return newLauncher
+}
+
+/**
+ Set or update the values of the `Launcher` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `Launcher?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: LauncherJSON, entity: Launcher?, context: NSManagedObjectContext )
+{
+   guard let launcherEntity = entity else { return }
+
+   launcherEntity.id = json.id
+   launcherEntity.flightProven = guaranteedBool( json.flightProven )
+   launcherEntity.serialNumber = json.serialNumber
+   launcherEntity.status = json.status
+   launcherEntity.details = json.details
+   launcherEntity.addLauncherConfigFromJSON( config: json.launcherConfig, context: context )
+   launcherEntity.imageURL = json.imageURL
+   launcherEntity.flights = guaranteedInt64( json.flights )
+   launcherEntity.lastLaunchDate = json.lastLaunchDate
+   launcherEntity.firstLaunchDate = json.firstLaunchDate
+   launcherEntity.successfulLandings = json.successfulLandings
+   launcherEntity.attemptedLandings = json.attemptedLandings
+
+   launcherEntity.fetched = Date()
+}
+
+/**
  Gets all the `Launcher` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `Launcher`s from

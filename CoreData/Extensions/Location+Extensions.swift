@@ -30,6 +30,43 @@ extension Location
 }
 
 /**
+ Add this location to Core Data as a `Location` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: `NSManagedObjectContext` Core Data context to add the entity to.
+ - returns:           `Location` the added entity
+ */
+public func addToCoreData( json: LocationJSON, context: NSManagedObjectContext ) -> Location
+{
+   let newLocation: Location = Location( context: context )
+   updateEntity( json: json, entity: newLocation, context: context )
+
+   return newLocation
+}
+
+/**
+ Set or update the values of the `Location` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `Location?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: LocationJSON, entity: Location?, context: NSManagedObjectContext )
+{
+   guard let locationEntity = entity else { return }
+
+   locationEntity.countryCode = json.countryCode
+   locationEntity.id = json.id
+   locationEntity.mapImage = json.mapImage
+   locationEntity.name = json.name
+   locationEntity.totalLandingCount = guaranteedInt64( json.totalLandingCount )
+   locationEntity.totalLaunchCount = guaranteedInt64( json.totalLaunchCount )
+   locationEntity.addPadsFromJSON( pads: json.pads, context: context )
+
+   locationEntity.fetched = Date()
+}
+
+/**
  Gets all the `Location` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `Location`s from

@@ -16,6 +16,50 @@ extension DockingEvent
 }
 
 /**
+ Add this data to Core Data as a `DockingEvent` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns:           the added entity
+ */
+public func addToCoreData( json: DockingEventJSON, context: NSManagedObjectContext ) -> DockingEvent
+{
+   let newDockingEvent: DockingEvent = DockingEvent( context: context )
+   updateEntity( json: json, entity: newDockingEvent, context: context )
+
+   return newDockingEvent
+}
+
+/**
+ Set or update the values of the `DockingEvent` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity: `DockingEvent?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: DockingEventJSON, entity: DockingEvent?, context: NSManagedObjectContext )
+{
+   guard let dockingEventEntity = entity else { return }
+
+   dockingEventEntity.id = json.id
+   dockingEventEntity.url = json.url
+   dockingEventEntity.launch = getLaunch( by: json.launchID, context: context )
+   dockingEventEntity.docking = json.docking
+   dockingEventEntity.departure = json.departure
+   if let flight: SpacecraftFlightJSON = json.flightVehicle
+   {
+      dockingEventEntity.flightVehicle = fetchSpacecraftFlight( flight: flight, context: context )
+   }
+   dockingEventEntity.dockingLocation = json.dockingLocation?.name
+   if let spacestation: SpaceStationJSON = json.spacestation
+   {
+      dockingEventEntity.spacestation = fetchSpaceStation( spaceStation: spacestation, context: context )
+   }
+
+   dockingEventEntity.fetched = Date()
+}
+
+/**
  Gets a `DockingEvent` with the given ID in the given context.
 
  ### Example

@@ -36,6 +36,71 @@ extension Pad
 }
 
 /**
+ Add this data to Core Data as a `Pad` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: `Pad` the added entity
+ */
+public func addToCoreData( json: PadJSON, context: NSManagedObjectContext ) -> Pad
+{
+   let newPad: Pad = Pad( context: context )
+   updateEntity( json: json, entity: newPad, context: context )
+
+   return newPad
+}
+
+/**
+ Set or update the values of the `Pad` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `Pad?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: PadJSON, entity: Pad?, context: NSManagedObjectContext )
+{
+   guard let padEntity = entity else { return }
+
+   padEntity.agencyID = guaranteedInt64( json.agencyID )
+   padEntity.id = json.id
+   padEntity.infoURL = json.infoURL
+   padEntity.latitude = json.latitude ?? ""
+   padEntity.longitude = json.longitude ?? ""
+   padEntity.addEntityFromJSON( location: json.location, context: context )
+   padEntity.mapImage = json.mapImage
+
+   if let mapURL: String = json.mapURL?.trim()
+   {
+      if !mapURL.isEmpty
+      {
+         padEntity.mapURL = mapURL.fixBadUTF()
+      }
+   }
+
+   if let padName: String = json.name
+   {
+      var name: String = padName
+      if !name.isEmpty && ( name.first?.isNumber ?? false )
+      {
+         name = "Pad " + name
+      }
+      padEntity.name = name
+   }
+
+   padEntity.totalLaunchCount = guaranteedInt64( totalLaunchCount )
+
+   if let wikiURL: String = json.wikiURL?.trim()
+   {
+      if !wikiURL.isEmpty
+      {
+         padEntity.wikiURL = wikiURL
+      }
+   }
+
+   padEntity.fetched = Date()
+}
+
+/**
  Gets all the `Pad` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `Pad`s from

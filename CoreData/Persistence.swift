@@ -354,27 +354,3 @@ func fillStore( viewContext: NSManagedObjectContext )
 
    saveContext( viewContext )
 }
-
-/**
- Reads the JSON in a bundle file, and returns it as [Data]
-
- - parameter name: `String` name of the bundle file to load
- - returns:        `Data?` content of the bundle file, if it could be loaded, nil otherwise
- */
-func readBundleJSONFile( forName name: String ) -> Data?
-{
-   do
-   {
-      if let bundlePath: String = Bundle.main.path( forResource: name, ofType: "json" ),
-         let jsonData: Data = try String( contentsOfFile: bundlePath ).data( using: .utf8 )
-      {
-         return jsonData
-      }
-   }
-   catch
-   {
-      print( error )
-   }
-
-   return nil
-}

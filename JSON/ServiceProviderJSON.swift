@@ -13,6 +13,8 @@ import CoreData
        "type": "Commercial",
        "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
      }
+
+ // TODO replaced with Agency
  */
 public class ServiceProviderJSON: Decodable
 {
@@ -39,34 +41,5 @@ public class ServiceProviderJSON: Decodable
       self.url = json[ "url" ] as? String
       self.name = json[ "name" ] as? String
       self.type = json[ "type" ] as? String
-   }
-
-   /**
-    Add this data to Core Data as a `Agency` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: `Agency` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Agency
-   {
-      let newServiceProvider: Agency = Agency( context: context )
-      updateEntity( entity: newServiceProvider )
-
-      return newServiceProvider
-   }
-
-   /**
-    Set or update the values of the `Agency` entity,
-
-    - parameter entity:  `Agency?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: Agency? )
-   {
-      guard let agencyEntity = entity else { return }
-
-      agencyEntity.id = id
-      agencyEntity.name = name
-      agencyEntity.type = type
    }
 }

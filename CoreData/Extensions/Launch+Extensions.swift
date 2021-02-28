@@ -152,6 +152,80 @@ extension Launch
 }
 
 /**
+ Add this data to Core Data as a `Launch` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: `Launch` the added entity
+ */
+public func addToCoreData( json: LaunchJSON, context: NSManagedObjectContext ) -> Launch
+{
+   let newLaunch: Launch = Launch( context: context )
+   updateEntity( json: json, entity: newLaunch, context: context )
+
+   return newLaunch
+}
+
+/**
+ Set or update the values of the `Launch` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `Launch?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: LaunchJSON, entity: Launch?, context: NSManagedObjectContext )
+{
+   guard let launchEntity = entity else { return }
+
+   if let fail: String = json.failReason?.trim()
+   {
+      if !fail.isEmpty
+      {
+         launchEntity.failReason = fail
+      }
+   }
+   launchEntity.hashtag = json.hashtag
+   launchEntity.holdReason = json.holdReason
+   launchEntity.id = json.id
+   launchEntity.image = json.image
+   launchEntity.infographic = json.infographic
+   launchEntity.inHold = guaranteedBool( json.inHold )
+
+   // launchEntity.addServiceProviderFromJSON( provider: json.serviceProvider, context: context )
+   launchEntity.addAgencyFromJSON( provider: json.serviceProvider, context: context )
+
+   launchEntity.addMissionFromJSON( mission: json.mission, context: context )
+   launchEntity.name = json.name?.fixBadUTF()
+   launchEntity.net = parseISODate( isoDate: json.net )
+   launchEntity.addPadFromJSON( pad: json.pad, context: context )
+   launchEntity.probability = guaranteedInt16( json.probability )
+   launchEntity.addProgramsFromJSON( programs: json.programs, context: context )
+   launchEntity.addRocketFromJSON( rocket: json.rocket, context: context )
+   launchEntity.slug = json.slug
+   launchEntity.statusName = json.status?.name
+   launchEntity.statusAbbreviation = json.status?.abbreviation
+   launchEntity.statusDescription = json.status?.description
+   launchEntity.tbdDate = guaranteedBool( json.tbdDate )
+   launchEntity.tbdTime = guaranteedBool( json.tbdTime )
+   launchEntity.webcastLive = guaranteedBool( json.webcastLive )
+   launchEntity.windowEnd = parseISODate( isoDate: json.windowEnd )
+   launchEntity.windowStart = parseISODate( isoDate: json.windowStart )
+   launchEntity.sortingDate = parseISODate( isoDate: json.windowStart )
+   launchEntity.addInfoLinksFromJSON( links: json.infoURLs, context: context )
+   launchEntity.addVideoLinksFromJSON( links: json.vidURLs, context: context )
+   launchEntity.orbitalLaunchAttemptCount = json.orbitalLaunchAttemptCount
+   launchEntity.locationLaunchAttemptCount = json.locationLaunchAttemptCount
+   launchEntity.padLaunchAttemptCount = json.padLaunchAttemptCount
+   launchEntity.agencyLaunchAttemptCount = json.agencyLaunchAttemptCount
+   launchEntity.orbitalLaunchAttemptCountYear = json.orbitalLaunchAttemptCountYear
+   launchEntity.locationLaunchAttemptCountYear = json.locationLaunchAttemptCountYear
+   launchEntity.padLaunchAttemptCountYear = json.padLaunchAttemptCountYear
+   launchEntity.agencyLaunchAttemptCountYear = json.agencyLaunchAttemptCountYear
+
+   launchEntity.fetched = Date()
+}
+
+/**
  Gets all the `Launch` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `Launch`s from

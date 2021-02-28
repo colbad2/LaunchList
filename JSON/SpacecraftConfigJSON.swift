@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  Spacecraft (as distinguished from launchers) details.
 
@@ -24,7 +22,6 @@ import CoreData
        agency   Agency{...}
        in_use   boolean
        image_url   string($uri), readOnly: true, x-nullable: true
-
        capability   string, maxLength: 2048, minLength: 1
        history   string, maxLength: 1000, minLength: 1
        details   string, maxLength: 1000, minLength: 1
@@ -41,22 +38,6 @@ import CoreData
  */
 public class SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, url, name, type, agency, inUse, imageURL,
-//           capability, history, details, height, diameter
-//
-//      case maidenFlight = "maiden_flight"
-//      case humanRated = "human_rated"
-//      case crewCapacity = "crew_capacity"
-//      case payloadCapacity = "payload_capacity"
-//      case flightLife = "flight_life"
-//      case nationURL = "nation_url"
-//      case wikiURL = "wiki_link"
-//      case infoURL = "info_link"
-//   }
-
    /** ID of the config within the API. */
    public let id: Int64
    /** URI of this data in the API. Unused. */
@@ -71,9 +52,6 @@ public class SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
    let inUse: Bool?
    /** Image URL for this config. */
    let imageURL: String?
-
-   // details
-
    let capability: String?
    let history: String?
    let details: String?
@@ -105,9 +83,6 @@ public class SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
       self.agency = AgencyJSON( json: json[ "agency" ] as? JSONStructure )
       self.inUse = json[ "inUse" ] as? Bool
       self.imageURL = json[ "imageURL" ] as? String
-
-      // details
-
       self.capability = json[ "capability" ] as? String
       self.history = json[ "history" ] as? String
       self.details = json[ "details" ] as? String
@@ -121,53 +96,5 @@ public class SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
       self.nationURL = json[ "nation_url" ] as? String
       self.wikiURL = json[ "wiki_link" ] as? String
       self.infoURL = json[ "info_link" ] as? String
-   }
-
-   /**
-    Add this config to Core Data as a `SpacecraftConfig` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> SpacecraftConfig
-   {
-      let newSpacecraftConfig: SpacecraftConfig = SpacecraftConfig( context: context )
-      updateEntity( entity: newSpacecraftConfig, context: context )
-
-      return newSpacecraftConfig
-   }
-
-   /**
-    Set or update the values of the `SpacecraftConfig` entity,
-
-    - parameter entity: `SpacecraftConfig?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: SpacecraftConfig?, context: NSManagedObjectContext )
-   {
-      guard let spacecraftConfigEntity = entity else { return }
-
-      spacecraftConfigEntity.id = id
-      spacecraftConfigEntity.url = url
-      spacecraftConfigEntity.type = type?.name
-      spacecraftConfigEntity.addAgencyFromJSON( agency: agency, context: context )
-
-      // details
-
-      spacecraftConfigEntity.capability = capability
-      spacecraftConfigEntity.history = history
-      spacecraftConfigEntity.details = details
-      spacecraftConfigEntity.maidenFlight = maidenFlight
-      spacecraftConfigEntity.height = guaranteedInt64( height )
-      spacecraftConfigEntity.diameter = guaranteedInt64( diameter )
-      spacecraftConfigEntity.humanRated = guaranteedBool( humanRated )
-      spacecraftConfigEntity.crewCapacity = guaranteedInt64( crewCapacity )
-      spacecraftConfigEntity.payloadCapacity = guaranteedInt64( payloadCapacity )
-      spacecraftConfigEntity.flightLife = flightLife
-      spacecraftConfigEntity.nationURL = nationURL
-      spacecraftConfigEntity.wikiURL = wikiURL
-      spacecraftConfigEntity.infoURL = infoURL
-
-      spacecraftConfigEntity.fetched = Date()
    }
 }

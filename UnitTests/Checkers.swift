@@ -7,8 +7,7 @@ import XCTest
 
 func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: String? = nil, lat: String, lon: String,
                mapImage: String? = nil, mapURL: String? = nil, name: String, totalLaunchCount: Int64,
-               url: String? = nil,
-               wikiURL: String? = nil )
+               url: String? = nil, wikiURL: String? = nil )
 {
    XCTAssertNotNil( pad )
    XCTAssertEqual( pad?.agencyID, agencyID )
@@ -24,7 +23,7 @@ func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: Str
    XCTAssertEqual( pad?.wikiURL, wikiURL )
 }
 
-func checkServiceProvider( provider: ServiceProviderJSON?, providerID: Int64, name: String, type: String, url: URL )
+func checkServiceProvider( provider: ServiceProviderJSON?, providerID: Int64, name: String, type: String, url: String )
 {
    XCTAssertNotNil( provider )
    XCTAssertEqual( provider?.id, providerID )

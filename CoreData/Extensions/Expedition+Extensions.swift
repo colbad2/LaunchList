@@ -39,6 +39,41 @@ extension Expedition
 }
 
 /**
+ Add this data to Core Data as a `Expedition` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: the added entity
+ */
+public func addToCoreData( json: ExpeditionJSON, context: NSManagedObjectContext ) -> Expedition
+{
+   let newExpedition: Expedition = Expedition( context: context )
+   updateEntity( json: json, entity: newExpedition, context: context )
+
+   return newExpedition
+}
+
+/**
+ Set or update the values of the `Expedition` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity: `Expedition?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: ExpeditionJSON, entity: Expedition?, context: NSManagedObjectContext )
+{
+   guard let expeditionEntity = entity else { return }
+
+   expeditionEntity.id = json.id
+   expeditionEntity.name = json.name
+   expeditionEntity.start = json.start
+   expeditionEntity.end = json.end
+   expeditionEntity.addSpaceStationFromJSON( spaceStation: json.spaceStation, context: context )
+
+   expeditionEntity.fetched = Date()
+}
+
+/**
  Returns a name sorted version of the given `Expedition` array.
 
  - parameter expeditionArray: `[Expedition]?` list of `Expedition`s to sort

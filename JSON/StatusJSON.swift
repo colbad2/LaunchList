@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  Status of an enclosing data object, like a spacecraft or spacestation.
 
@@ -17,14 +15,6 @@ import CoreData
  */
 public class StatusJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case description, id, name
-//
-//      case abbreviation = "abbrev"
-//   }
-
    /** ID of the rocket within the API. */
    public var id: Int64
    /** Staus abbreviation. */

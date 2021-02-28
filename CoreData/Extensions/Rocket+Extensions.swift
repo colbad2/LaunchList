@@ -40,6 +40,39 @@ extension Rocket
 }
 
 /**
+ Add this rocket to Core Data as a `Rocket` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: the added entity
+ */
+func addToCoreData( json: RocketJSON, context: NSManagedObjectContext ) -> Rocket
+{
+   let newRocket: Rocket = Rocket( context: context )
+   updateEntity( json: json, entity: newRocket, context: context )
+
+   return newRocket
+}
+
+/**
+ Set or update the values of the `Rocket` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity: `Rocket?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+func updateEntity( json: RocketJSON, entity: Rocket?, context: NSManagedObjectContext )
+{
+   guard let rocketEntity = entity else { return }
+
+   rocketEntity.id = json.id
+   rocketEntity.addConfigurationFromJSON( configuration: json.configuration, context: context )
+   rocketEntity.name = json.configuration?.name
+
+   rocketEntity.fetched = Date()
+}
+
+/**
  Returns a sorted version of the given `Rocket` array.
 
  - parameter rocketArray: `[Rocket]?` list of `Rocket`s to sort

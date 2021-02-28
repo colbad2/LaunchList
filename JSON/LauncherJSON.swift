@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
 
  Same as what the API calls a 'vehicle' in some places.
@@ -47,19 +45,6 @@ import CoreData
  */
 public class LauncherJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, url, status, details, flights
-//
-//      case flightProven = "flight_proven"
-//      case serialNumber = "serial_number"
-//      case imageURL = "image_url"
-//      case lastLaunchDate = "last_launch_date"
-//      case firstLaunchDate = "first_launch_date"
-//      case launcherConfig = "launcher_config"
-//   }
-
    /** ID of the astronaut within the API. */
    public var id: Int64
    /** URI of this data. Unused. */
@@ -99,45 +84,5 @@ public class LauncherJSON: Decodable, Identifiable, JSONElement
       self.firstLaunchDate = json[ "first_launch_date" ] as? String
       self.successfulLandings = json[ "successful_landings" ] as? String
       self.attemptedLandings = json[ "attempted_landings" ] as? String
-   }
-
-   /**
-    Add this data to Core Data as a `Launcher`. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: `Launcher` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Launcher
-   {
-      let newLauncher: Launcher = Launcher( context: context )
-      updateEntity( entity: newLauncher, context: context )
-
-      return newLauncher
-   }
-
-   /**
-    Set or update the values of the `Launcher` entity,
-
-    - parameter entity:  `Launcher?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: Launcher?, context: NSManagedObjectContext )
-   {
-      guard let launcherEntity = entity else { return }
-
-      launcherEntity.id = id
-      launcherEntity.flightProven = guaranteedBool( flightProven )
-      launcherEntity.serialNumber = serialNumber
-      launcherEntity.status = status
-      launcherEntity.details = details
-      launcherEntity.addLauncherConfigFromJSON( config: launcherConfig, context: context )
-      launcherEntity.imageURL = imageURL
-      launcherEntity.flights = guaranteedInt64( flights )
-      launcherEntity.lastLaunchDate = lastLaunchDate
-      launcherEntity.firstLaunchDate = firstLaunchDate
-      launcherEntity.successfulLandings = successfulLandings
-      launcherEntity.attemptedLandings = attemptedLandings
-
-      launcherEntity.fetched = Date()
    }
 }

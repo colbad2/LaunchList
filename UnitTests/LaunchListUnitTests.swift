@@ -9,312 +9,12 @@ import XCTest
 
 class LaunchListUnitTests: XCTestCase
 {
-   private var decoder: JSONDecoder
-
-   override func setUp()
-   {
-      super.setUp()
-      decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-   }
-
-   func testParseJSON() throws
-   {
-      let launchProvider: LaunchProvider = LaunchProvider()
-
-      XCTAssertNotNil( launchProvider.launches )
-      XCTAssertEqual( launchProvider.launches.totalLaunchCount, 35 )
-      XCTAssertEqual( launchProvider.launches.nextLaunchGroupURL, "https://ll.thespacedevs.com/2.1.0/launch/upcoming/?limit=10&offset=10&search=SpaceX" )
-      XCTAssertNil( launchProvider.launches.previousLaunchGroupURL )
-      XCTAssertEqual( launchProvider.launches.launchSublist?.count, 10 )
-   }
-
-   func testPadJSON() throws
-   {
-      guard let jsonData: Data = padJSON1.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let pad: PadJSON? = try? decoder.decode( PadJSON.self, from: jsonData )
-      checkPad( pad: pad, id: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
-                mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
-                mapURL: "http://maps.google.com/maps?q=28.56194122,-80.57735736",
-                name: "Space Launch Complex 40", totalLaunchCount: 63,
-                url: "https://ll.thespacedevs.com/2.1.0/pad/80/",
-                wikiURL: "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40" )
-      checkLocation( location: pad?.location, id: 12, countryCode: "USA",
-                     mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-                     name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
-                     url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
-   }
-
-   func testPadJSON2() throws
-   {
-      gurad let jsonData: Data = padJSON2.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let pad: PadJSON? = try? decoder.decode( PadJSON.self, from: jsonData )
-      checkPad( pad: pad, id: 54, lat: "0.0", lon: "0.0",
-                mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_54_20200803143536.jpg",
-                mapURL: "", name: "Unknown Pad", totalLaunchCount: 0,
-                url: "https://ll.thespacedevs.com/2.1.0/pad/54/", wikiURL: "" )
-      checkLocation( location: pad?.location, id: 22, countryCode: "UNK",
-                     mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
-                     name: "Unknown Location", landingCount: 0, lauchCount: 0,
-                     url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
-   }
-
-   func testLocationJSON1() throws
-   {
-      let json: String =
-      """
-      {
-          "country_code": "USA",
-          "id": 12,
-          "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-          "name": "Cape Canaveral, FL, USA",
-          "total_landing_count": 20,
-          "total_launch_count": 208,
-          "url": "https://ll.thespacedevs.com/2.1.0/location/12/"
-      }
-      """
-
-      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let location: LocationJSON = try? decoder.decode( LocationJSON.self, from: jsonData )
-      checkLocation( location: location, id: 12, countryCode: "USA",
-                     mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-                     name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
-                     url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
-   }
-
-   func testLocationJSON2() throws
-   {
-      let json: String =
-      """
-      {
-          "country_code": "UNK",
-          "id": 22,
-          "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
-          "name": "Unknown Location",
-          "total_landing_count": 0,
-          "total_launch_count": 0,
-          "url": "https://ll.thespacedevs.com/2.1.0/location/22/"
-      }
-      """
-
-      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let location: LocationJSON = try? decoder.decode( LocationJSON.self, from: jsonData )
-      checkLocation( location: location, id: 22, countryCode: "UNK",
-                     mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
-                     name: "Unknown Location", landingCount: 0, lauchCount: 0,
-                     url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
-   }
-
-   func testRocketConfig() throws
-   {
-      let json: String =
-      """
-       {
-           "family": "Falcon",
-           "full_name": "Falcon 9 Block 5",
-           "id": 164,
-           "launch_library_id": 188,
-           "name": "Falcon 9 Block 5",
-           "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-           "variant": "Block 5"
-       }
-      """
-
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let rocketConfiguration: ConfigurationJSON = try? decoder.decode( ConfigurationJSON.self, from: jsonData )
-      checkConfiguration( config: rocketConfiguration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                          libraryID: 188, name: "Falcon 9 Block 5",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                          variant: "Block 5" )
-   }
-
-   func testOrbitJSON() throws
-   {
-      let json: String =
-      """
-        {
-            "abbrev": "GTO",
-            "id": 2,
-            "name": "Geostationary Transfer Orbit"
-        }
-      """
-
-      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let orbit: OrbitJSON = try? decoder.decode( OrbitJSON.self, from: jsonData )
-
-      XCTAssertNotNil( orbit )
-      XCTAssertEqual( orbit.abbreviation, "GTO" )
-      XCTAssertEqual( orbit.id, 2 )
-      XCTAssertEqual( orbit.name, "Geostationary Transfer Orbit" )
-   }
-
-   func testMissionJSON1() throws
-   {
-      let json: String =
-      #"""
-      {
-          "description": "T\u00fcrksat 5A is the first of two Turkish next generation communications satellites, which will be operated by T\u00fcrksat for commercial and military purposes.",
-          "id": 1222,
-          "launch_designator": null,
-          "launch_library_id": null,
-          "name": "T\u00fcrksat 5A",
-          "orbit": {
-              "abbrev": "GTO",
-              "id": 2,
-              "name": "Geostationary Transfer Orbit"
-          },
-          "type": "Communications"
-      }
-      """#
-
-      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let mission: MissionJSON = try? decoder.decode( MissionJSON.self, from: jsonData )
-      checkMission( mission: mission, id: 1222,
-                    description: "T\u{00fc}rksat 5A is the first of two Turkish next generation communications satellites, which will be operated by T\u{00fc}rksat for commercial and military purposes.",
-                    name: "T\u{00fc}rksat 5A", type: "Communications",
-                    orbitAbbreviation: "GTO", orbitLibraryID: 2, orbitName: "Geostationary Transfer Orbit" )
-   }
-
-   func testMissionJSON2() throws
-   {
-      let json: String =
-      #"""
-        {
-            "description": "SXM-8 is a large high power broadcasting satellite for SiriusXM's digital audio radio service (DARS).\n\nSpace Systems/Loral (SS/L) got in July 2016 the contract to build the two satellites based on their SSL-1300 bus - SXM-7 and SXM-8. Both operate in the S-band spectrum. Each satellite will generate more than 20-kW of power and will have a large unfurlable antenna reflector, which enables broadcast to radios without the need for large dish-type antennas on the ground.\n\nSXM-8 is meant to replace the XM-4 satellite.",
-            "id": 1045,
-            "launch_designator": null,
-            "launch_library_id": 1245,
-            "name": "SXM-8",
-            "orbit": null,
-            "type": "Communications"
-        }
-      """#
-
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let mission: MissionJSON = try? decoder.decode( MissionJSON.self, from: jsonData )
-      checkMission( mission: mission, id: 1045,
-                    description: "SXM-8 is a large high power broadcasting satellite for SiriusXM's digital audio radio service (DARS).\n\nSpace Systems/Loral (SS/L) got in July 2016 the contract to build the two satellites based on their SSL-1300 bus - SXM-7 and SXM-8. Both operate in the S-band spectrum. Each satellite will generate more than 20-kW of power and will have a large unfurlable antenna reflector, which enables broadcast to radios without the need for large dish-type antennas on the ground.\n\nSXM-8 is meant to replace the XM-4 satellite.",
-                    libraryID: 1245, name: "SXM-8", type: "Communications" )
-   }
-
-   func testServiceProviderJSON() throws
-   {
-      let json: String =
-      """
-       {
-           "id": 121,
-           "name": "SpaceX",
-           "type": "Commercial",
-           "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
-       }
-      """
-
-      gurad let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let serviceProvider: ServiceProviderJSON = try? decoder.decode( ServiceProviderJSON.self, from: jsonData )
-      checkServiceProvider( provider: serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-   }
-
-   func testStatusJSON() throws
-   {
-      let json: String =
-      """
-       {
-           "abbrev": "TBC",
-           "description": "Awaiting official confirmation - current date is known with some certainty.",
-           "id": 8,
-           "name": "To Be Confirmed"
-       }
-      """
-
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let status: StatusJSON = try? decoder.decode( StatusJSON.self, from: jsonData )
-      checkStatus( status: status, abbreviation: "TBC",
-                   description: "Awaiting official confirmation - current date is known with some certainty.",
-                   id: 8, name: "To Be Confirmed" )
-   }
-
-   func testRocketJSON() throws
-   {
-      let json: String =
-      """
-       {
-           "configuration": {
-               "family": "Falcon",
-               "full_name": "Falcon 9 Block 5",
-               "id": 164,
-               "launch_library_id": 188,
-               "name": "Falcon 9 Block 5",
-               "url": "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-               "variant": "Block 5"
-           },
-           "id": 136
-       }
-      """
-
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let rocket: RocketJSON = try? decoder.decode( RocketJSON.self, from: jsonData )
-
-      XCTAssertNotNil( rocket )
-      checkConfiguration( config: rocket.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                          libraryID: 188, name: "Falcon 9 Block 5",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                          variant: "Block 5" )
-      XCTAssertEqual( rocket.id, 136 )
-   }
-
-   func testAgencyJSON() throws
-   {
-      let json: String =
-      """
-        {
-            "id": 44,
-            "name": "National Aeronautics and Space Administration",
-            "type": "Government",
-            "url": "https://ll.thespacedevs.com/2.1.0/agencies/44/"
-        }
-      """
-
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let agency: AgencyJSON = try? decoder.decode( AgencyJSON.self, from: jsonData )
-      checkAgency( agency: agency, id: 44, name: "National Aeronautics and Space Administration",
-                   type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
-   }
-
-   func testProgramJSON() throws
-   {
-      guard let jsonData: Data = programJSON1.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let program: ProgramJSON = try? decoder.decode( ProgramJSON.self, from: jsonData )
-      checkProgram( program: program, id: 11,
-                    description: "Commercial Resupply Services (CRS) are a series of flights awarded by NASA for the delivery of cargo and supplies to the International Space Station.The first CRS contracts were signed in 2008 and awarded $1.6 billion to SpaceX for twelve cargo Dragon and $1.9 billion to Orbital Sciences for eight Cygnus flights, covering deliveries to 2016. The Falcon 9 and Antares rockets were also developed under the CRS program to deliver cargo spacecraft to the ISS.",
-                    endDate: nil,
-                    imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/commercial2520_program_20201129212219.png",
-                    infoURL: nil, name: "Commercial Resupply Services",
-                    startDate: "2008-12-23T00:00:00Z",
-                    url: "https://ll.thespacedevs.com/2.1.0/program/11/",
-                    wikiURL: "https://en.wikipedia.org/wiki/Commercial_Resupply_Services#Commercial_Resupply_Services" )
-      XCTAssertNotNil( program.agencies )
-      XCTAssertEqual( program.agencies.count, 4 )
-      XCTAssertNotNil( program.agencies[ 0 ] )
-      checkAgency( agency: program.agencies[ 0 ], id: 44, name: "National Aeronautics and Space Administration",
-                   type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
-      XCTAssertNotNil( program.agencies[ 1 ] )
-      checkAgency( agency: program.agencies[ 1 ], id: 257, name: "Northrop Grumman Innovation Systems",
-                   type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/257/" )
-      XCTAssertNotNil( program.agencies[ 2 ] )
-      checkAgency( agency: program.agencies[ 2 ], id: 1020, name: "Sierra Nevada Corporation",
-                   type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/1020/" )
-      XCTAssertNotNil( program.agencies[ 3 ] )
-      checkAgency( agency: program.agencies[ 3 ], id: 121, name: "SpaceX",
-                   type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
-   }
-
    func testLaunchJSON1() throws
    {
-      guard let jsonData: Data = launchJSON1.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
+      guard let jsonData: Data = launchJSON1.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
+      let launch: LaunchJSON? = LaunchJSON( json: parseJSON( data: jsonData ) )
 
-      checkLaunch( launch: launch, id: "d5d607b7-05ed-4142-8703-14b553c195e0", failReason: "", holdReason: "",
+      checkLaunch( launch: launch, launchID: "d5d607b7-05ed-4142-8703-14b553c195e0", failReason: "", holdReason: "",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1412, name: "Falcon 9 Block 5 | T\u{00fc}rksat 5A",
                    net: "2021-01-05T01:27:00Z",
@@ -322,32 +22,32 @@ class LaunchListUnitTests: XCTestCase
                    url: "https://ll.thespacedevs.com/2.1.0/launch/d5d607b7-05ed-4142-8703-14b553c195e0/",
                    webcastLive: false, windowEnd: "2021-01-05T05:29:00Z",
                    windowStart: "2021-01-05T01:27:00Z" )
-      checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-      checkMission( mission: launch.mission, id: 1222,
+      checkAgency( agency: launch?.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
+                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+      checkMission( mission: launch?.mission, missionID: 1222,
                     description: "T\u{00fc}rksat 5A is the first of two Turkish next generation communications satellites, which will be operated by T\u{00fc}rksat for commercial and military purposes.",
                     name: "T\u{00fc}rksat 5A", type: "Communications",
                     orbitAbbreviation: "GTO", orbitLibraryID: 2, orbitName: "Geostationary Transfer Orbit" )
-      checkPad( pad: launch.pad, id: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
+      checkPad( pad: launch?.pad, padID: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
                 mapURL: "http://maps.google.com/maps?q=28.56194122,-80.57735736",
                 name: "Space Launch Complex 40", totalLaunchCount: 63,
                 url: "https://ll.thespacedevs.com/2.1.0/pad/80/",
                 wikiURL: "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40" )
-      checkLocation( location: launch.pad?.location, id: 12, countryCode: "USA",
+      checkLocation( location: launch?.pad?.location, locationID: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
                      name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
-      XCTAssertNotNil( launch.program )
-      XCTAssertEqual( launch.program?.count, 0 )
-      checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+      XCTAssertNotNil( launch?.programs )
+      XCTAssertEqual( launch?.programs?.count, 0 )
+      checkConfiguration( config: launch?.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
                           variant: "Block 5" )
-      XCTAssertEqual( launch.rocket?.id, 136 )
-      checkStatus( status: launch.status, abbreviation: "TBC",
+      XCTAssertEqual( launch?.rocket?.id, 136 )
+      checkStatus( status: launch?.status, abbreviation: "TBC",
                    description: "Awaiting official confirmation - current date is known with some certainty.",
-                   id: 8, name: "To Be Confirmed" )
+                   statusID: 8, name: "To Be Confirmed" )
    }
 
    func testLaunchParse()
@@ -444,7 +144,8 @@ class LaunchListUnitTests: XCTestCase
       }
       """
 
-      let parsedObject: LaunchJSON? = parseJSONString( json: json )
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
+      let parsedObject: LaunchJSON? = LaunchJSON( json: parseJSON( data: jsonData ) )
       XCTAssertNotNil( parsedObject )
    }
 
@@ -522,10 +223,10 @@ class LaunchListUnitTests: XCTestCase
       }
       """#
 
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
+      let launch: LaunchJSON? = LaunchJSON( json: parseJSON( data: jsonData ) )
 
-      checkLaunch( launch: launch, id: "f213a5df-579a-4682-8143-df228e463049", failReason: "", holdReason: "",
+      checkLaunch( launch: launch, launchID: "f213a5df-579a-4682-8143-df228e463049", failReason: "", holdReason: "",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1965, name: "Falcon 9 Block 5 | Dedicated SSO Rideshare Mission 1",
                    net: "2021-01-14T00:00:00Z",
@@ -534,29 +235,29 @@ class LaunchListUnitTests: XCTestCase
                    url: "https://ll.thespacedevs.com/2.1.0/launch/f213a5df-579a-4682-8143-df228e463049/",
                    webcastLive: false, windowEnd: "2021-01-14T00:00:00Z",
                    windowStart: "2021-01-14T00:00:00Z" )
-      checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-      XCTAssertNil( launch.mission )
-      checkPad( pad: launch.pad, id: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
+      checkAgency( agency: launch?.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
+                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+      XCTAssertNil( launch?.mission )
+      checkPad( pad: launch?.pad, padID: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
                 mapURL: "http://maps.google.com/maps?q=28.56194122,-80.57735736",
                 name: "Space Launch Complex 40", totalLaunchCount: 63,
                 url: "https://ll.thespacedevs.com/2.1.0/pad/80/",
                 wikiURL: "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40" )
-      checkLocation( location: launch.pad?.location, id: 12, countryCode: "USA",
+      checkLocation( location: launch?.pad?.location, locationID: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
                      name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
-      XCTAssertNotNil( launch.program )
-      XCTAssertEqual( launch.program?.count, 0 )
-      checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+      XCTAssertNotNil( launch?.programs )
+      XCTAssertEqual( launch?.programs?.count, 0 )
+      checkConfiguration( config: launch?.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
                           variant: "Block 5" )
-      XCTAssertEqual( launch.rocket?.id, 2518 )
-      checkStatus( status: launch.status, abbreviation: "TBD",
+      XCTAssertEqual( launch?.rocket?.id, 2518 )
+      checkStatus( status: launch?.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
-                   id: 2, name: "To Be Determined" )
+                   statusID: 2, name: "To Be Determined" )
    }
 
    func testLaunchJSON3() throws
@@ -641,10 +342,10 @@ class LaunchListUnitTests: XCTestCase
        }
       """#
 
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
+      let launch: LaunchJSON? = LaunchJSON( json: parseJSON( data: jsonData ) )
 
-      checkLaunch( launch: launch, id: "edaf9a8d-d67c-4e0e-8452-a37b111581d5", failReason: "", holdReason: "",
+      checkLaunch( launch: launch, launchID: "edaf9a8d-d67c-4e0e-8452-a37b111581d5", failReason: "", holdReason: "",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1417, name: "Falcon 9 Block 5 | Sirius SXM-8",
                    net: "2021-01-31T00:00:00Z",
@@ -652,31 +353,31 @@ class LaunchListUnitTests: XCTestCase
                    url: "https://ll.thespacedevs.com/2.1.0/launch/edaf9a8d-d67c-4e0e-8452-a37b111581d5/",
                    webcastLive: false, windowEnd: "2021-01-31T00:00:00Z",
                    windowStart: "2021-01-31T00:00:00Z" )
-      checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-      checkMission( mission: launch.mission, id: 1045,
+      checkAgency( agency: launch?.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
+                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+      checkMission( mission: launch?.mission, missionID: 1045,
                     description: "SXM-8 is a large high power broadcasting satellite for SiriusXM's digital audio radio service (DARS).\n\nSpace Systems/Loral (SS/L) got in July 2016 the contract to build the two satellites based on their SSL-1300 bus - SXM-7 and SXM-8. Both operate in the S-band spectrum. Each satellite will generate more than 20-kW of power and will have a large unfurlable antenna reflector, which enables broadcast to radios without the need for large dish-type antennas on the ground.\n\nSXM-8 is meant to replace the XM-4 satellite.",
                     designator: nil, libraryID: 1245, name: "SXM-8", type: "Communications",
                     orbitAbbreviation: nil, orbitLibraryID: nil, orbitName: nil )
-      XCTAssertNil( launch.mission?.orbit )
-      checkPad( pad: launch.pad, id: 54, lat: "0.0", lon: "0.0",
+      XCTAssertNil( launch?.mission?.orbit )
+      checkPad( pad: launch?.pad, padID: 54, lat: "0.0", lon: "0.0",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_54_20200803143536.jpg",
                 mapURL: "", name: "Unknown Pad", totalLaunchCount: 0,
                 url: "https://ll.thespacedevs.com/2.1.0/pad/54/", wikiURL: "" )
-      checkLocation( location: launch.pad?.location, id: 22, countryCode: "UNK",
+      checkLocation( location: launch?.pad?.location, locationID: 22, countryCode: "UNK",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
                      name: "Unknown Location", landingCount: 0, lauchCount: 0,
                      url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
-      XCTAssertNotNil( launch.program )
-      XCTAssertEqual( launch.program?.count, 0 )
-      checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+      XCTAssertNotNil( launch?.programs )
+      XCTAssertEqual( launch?.programs?.count, 0 )
+      checkConfiguration( config: launch?.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
                           variant: "Block 5" )
-      XCTAssertEqual( launch.rocket?.id, 139 )
-      checkStatus( status: launch.status, abbreviation: "TBD",
+      XCTAssertEqual( launch?.rocket?.id, 139 )
+      checkStatus( status: launch?.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
-                   id: 2, name: "To Be Determined" )
+                   statusID: 2, name: "To Be Determined" )
    }
 
    func testLaunchJSON4() throws
@@ -753,10 +454,10 @@ class LaunchListUnitTests: XCTestCase
           }
       """#
 
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
+      let launch: LaunchJSON? = LaunchJSON( json: parseJSON( data: jsonData ) )
 
-      checkLaunch( launch: launch, id: "0098c032-73de-4c6f-8d73-5d68b9a12fdf",
+      checkLaunch( launch: launch, launchID: "0098c032-73de-4c6f-8d73-5d68b9a12fdf",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon2520heavy_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1585, name: "Falcon Heavy | USSF-52",
                    net: "2021-03-01T00:00:00Z",
@@ -764,29 +465,29 @@ class LaunchListUnitTests: XCTestCase
                    url: "https://ll.thespacedevs.com/2.1.0/launch/0098c032-73de-4c6f-8d73-5d68b9a12fdf/",
                    webcastLive: false, windowEnd: "2021-03-01T00:00:00Z",
                    windowStart: "2021-03-01T00:00:00Z" )
-      checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-      XCTAssertNil( launch.mission )
-      checkPad( pad: launch.pad, id: 87, lat: "28.60822681", lon: "-80.60428186",
+      checkAgency( agency: launch?.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
+                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+      XCTAssertNil( launch?.mission )
+      checkPad( pad: launch?.pad, padID: 87, lat: "28.60822681", lon: "-80.60428186",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
                 mapURL: "http://maps.google.com/maps?q=28.608+N,+80.604+W", name: "Launch Complex 39A",
                 totalLaunchCount: 125,
                 url: "https://ll.thespacedevs.com/2.1.0/pad/87/",
                 wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
-      checkLocation( location: launch.pad?.location, id: 27, countryCode: "USA",
+      checkLocation( location: launch?.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
                      name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
-      XCTAssertNotNil( launch.program )
-      XCTAssertEqual( launch.program?.count, 0 )
-      checkConfiguration( config: launch.rocket?.configuration, id: 161, family: "Falcon", fullName: "Falcon Heavy",
+      XCTAssertNotNil( launch?.programs )
+      XCTAssertEqual( launch?.programs?.count, 0 )
+      checkConfiguration( config: launch?.rocket?.configuration, configID: 161, family: "Falcon", fullName: "Falcon Heavy",
                           libraryID: 58, name: "Falcon Heavy",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/161/",
                           variant: "Heavy" )
-      XCTAssertEqual( launch.rocket?.id, 162 )
-      checkStatus( status: launch.status, abbreviation: "TBD",
+      XCTAssertEqual( launch?.rocket?.id, 162 )
+      checkStatus( status: launch?.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
-                   id: 2, name: "To Be Determined" )
+                   statusID: 2, name: "To Be Determined" )
    }
 
    func testLaunchJSON5() throws
@@ -901,10 +602,10 @@ class LaunchListUnitTests: XCTestCase
        }
       """#
 
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
+      let launch: LaunchJSON? = LaunchJSON( json: parseJSON( data: jsonData ) )
 
-      checkLaunch( launch: launch, id: "89a150ea-6e4b-489f-853c-3603ae684611",
+      checkLaunch( launch: launch, launchID: "89a150ea-6e4b-489f-853c-3603ae684611",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 2090, name: "Falcon 9 Block 5 | Dragon CRS-2 SpX-22",
                    net: "2021-03-12T00:00:00Z",
@@ -912,52 +613,52 @@ class LaunchListUnitTests: XCTestCase
                    url: "https://ll.thespacedevs.com/2.1.0/launch/89a150ea-6e4b-489f-853c-3603ae684611/",
                    webcastLive: false, windowEnd: "2021-03-12T00:00:00Z",
                    windowStart: "2021-03-12T00:00:00Z" )
-      checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-      XCTAssertNil( launch.mission )
-      checkPad( pad: launch.pad, id: 87, lat: "28.60822681", lon: "-80.60428186",
+      checkAgency( agency: launch?.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
+                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+      XCTAssertNil( launch?.mission )
+      checkPad( pad: launch?.pad, padID: 87, lat: "28.60822681", lon: "-80.60428186",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
                 mapURL: "http://maps.google.com/maps?q=28.608+N,+80.604+W", name: "Launch Complex 39A",
                 totalLaunchCount: 125,
                 url: "https://ll.thespacedevs.com/2.1.0/pad/87/",
                 wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
-      checkLocation( location: launch.pad?.location, id: 27, countryCode: "USA",
+      checkLocation( location: launch?.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
                      name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
 
-      XCTAssertNotNil( launch.program )
-      XCTAssertEqual( launch.program?.count, 1 )
-      checkProgram( program: launch.program?[ 0 ], id: 11,
+      XCTAssertNotNil( launch?.programs )
+      XCTAssertEqual( launch?.programs?.count, 1 )
+      checkProgram( program: launch?.programs?[ 0 ], programID: 11,
                     description: "Commercial Resupply Services (CRS) are a series of flights awarded by NASA for the delivery of cargo and supplies to the International Space Station.The first CRS contracts were signed in 2008 and awarded $1.6 billion to SpaceX for twelve cargo Dragon and $1.9 billion to Orbital Sciences for eight Cygnus flights, covering deliveries to 2016. The Falcon 9 and Antares rockets were also developed under the CRS program to deliver cargo spacecraft to the ISS.",
                     imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/commercial2520_program_20201129212219.png",
                     name: "Commercial Resupply Services",
                     startDate: "2008-12-23T00:00:00Z",
                     url: "https://ll.thespacedevs.com/2.1.0/program/11/",
                     wikiURL: "https://en.wikipedia.org/wiki/Commercial_Resupply_Services#Commercial_Resupply_Services" )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies )
-      XCTAssertEqual( launch.program?[ 0 ].agencies.count, 4 )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 0 ] )
-      checkAgency( agency: launch.program?[ 0 ].agencies[ 0 ], id: 44, name: "National Aeronautics and Space Administration",
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies )
+      XCTAssertEqual( launch?.programs?[ 0 ].agencies.count, 4 )
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies[ 0 ] )
+      checkAgency( agency: launch?.programs?[ 0 ].agencies[ 0 ], agencyID: 44, name: "National Aeronautics and Space Administration",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 1 ] )
-      checkAgency( agency: launch.program?[ 0 ].agencies[ 1 ], id: 257, name: "Northrop Grumman Innovation Systems",
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies[ 1 ] )
+      checkAgency( agency: launch?.programs?[ 0 ].agencies[ 1 ], agencyID: 257, name: "Northrop Grumman Innovation Systems",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/257/" )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 2 ] )
-      checkAgency( agency: launch.program?[ 0 ].agencies[ 2 ], id: 1020, name: "Sierra Nevada Corporation",
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies[ 2 ] )
+      checkAgency( agency: launch?.programs?[ 0 ].agencies[ 2 ], agencyID: 1020, name: "Sierra Nevada Corporation",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/1020/" )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 3 ] )
-      checkAgency( agency: launch.program?[ 0 ].agencies[ 3 ], id: 121, name: "SpaceX",
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies[ 3 ] )
+      checkAgency( agency: launch?.programs?[ 0 ].agencies[ 3 ], agencyID: 121, name: "SpaceX",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
 
-      checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+      checkConfiguration( config: launch?.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
                           variant: "Block 5" )
-      XCTAssertEqual( launch.rocket?.id, 2746 )
-      checkStatus( status: launch.status, abbreviation: "TBD",
+      XCTAssertEqual( launch?.rocket?.id, 2746 )
+      checkStatus( status: launch?.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
-                   id: 2, name: "To Be Determined" )
+                   statusID: 2, name: "To Be Determined" )
    }
 
    func testLaunchJSON6() throws
@@ -1121,10 +822,10 @@ class LaunchListUnitTests: XCTestCase
           }
       """#
 
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
+      let launch: LaunchJSON? = LaunchJSON( json: parseJSON( data: jsonData ) )
 
-      checkLaunch( launch: launch, id: "32dcb5ad-7609-4fc0-8094-768ee5c2ebe0", failReason: "", holdReason: "",
+      checkLaunch( launch: launch, launchID: "32dcb5ad-7609-4fc0-8094-768ee5c2ebe0", failReason: "", holdReason: "",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 2077, name: "Falcon 9 Block 5 | SpX USCV-2 (NASA Crew Flight 2)",
                    net: "2021-03-30T00:00:00Z",
@@ -1132,27 +833,27 @@ class LaunchListUnitTests: XCTestCase
                    url: "https://ll.thespacedevs.com/2.1.0/launch/32dcb5ad-7609-4fc0-8094-768ee5c2ebe0/",
                    webcastLive: false, windowEnd: "2021-03-30T00:00:00Z",
                    windowStart: "2021-03-30T00:00:00Z" )
-      checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-      checkMission( mission: launch.mission, id: 1137,
+      checkAgency( agency: launch?.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
+                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+      checkMission( mission: launch?.mission, missionID: 1137,
                     description: "SpaceX Crew-2 will be the second crewed operational flight of a Crew Dragon spacecraft, and the third overall crewed orbital flight. It will use the same Falcon 9 first stage as the Crew-1 mission and the same Crew Dragon capsule as the Demo-2 mission (Endeavour).",
                     libraryID: 1330, name: "SpX USCV-2 (NASA Crew Flight 2)", type: "Human Exploration",
                     orbitAbbreviation: "LEO", orbitLibraryID: 8, orbitName: "Low Earth Orbit" )
-      checkPad( pad: launch.pad, id: 87, lat: "28.60822681", lon: "-80.60428186",
+      checkPad( pad: launch?.pad, padID: 87, lat: "28.60822681", lon: "-80.60428186",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
                 mapURL: "http://maps.google.com/maps?q=28.608+N,+80.604+W", name: "Launch Complex 39A",
                 totalLaunchCount: 125,
                 url: "https://ll.thespacedevs.com/2.1.0/pad/87/",
                 wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
-      checkLocation( location: launch.pad?.location, id: 27, countryCode: "USA",
+      checkLocation( location: launch?.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
                      name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
 
-      XCTAssertNotNil( launch.program )
-      XCTAssertEqual( launch.program?.count, 2 )
+      XCTAssertNotNil( launch?.programs )
+      XCTAssertEqual( launch?.programs?.count, 2 )
 
-      checkProgram( program: launch.program?[ 0 ], id: 5,
+      checkProgram( program: launch?.programs?[ 0 ], programID: 5,
                     description: "The Commercial Crew Program (CCP) is a human spaceflight program operated by NASA, in association with American aerospace manufacturers Boeing and SpaceX. The program conducts rotations between the expeditions of the International Space Station program, transporting crews to and from the International Space Station (ISS) aboard Boeing Starliner and SpaceX Crew Dragon capsules, in the first crewed orbital spaceflights operated by private companies.",
                     imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/commercial2520_program_20200820201209.png",
                     infoURL: "https://www.nasa.gov/exploration/commercial/crew/index.html",
@@ -1160,19 +861,19 @@ class LaunchListUnitTests: XCTestCase
                     startDate: "2011-04-18T00:00:00Z",
                     url: "https://ll.thespacedevs.com/2.1.0/program/5/",
                     wikiURL: "https://en.wikipedia.org/wiki/Commercial_Crew_Program" )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies )
-      XCTAssertEqual( launch.program?[ 0 ].agencies.count, 3 )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 0 ] )
-      checkAgency( agency: launch.program?[ 0 ].agencies[ 0 ], id: 80, name: "Boeing",
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies )
+      XCTAssertEqual( launch?.programs?[ 0 ].agencies.count, 3 )
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies[ 0 ] )
+      checkAgency( agency: launch?.programs?[ 0 ].agencies[ 0 ], agencyID: 80, name: "Boeing",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/80/" )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 1 ] )
-      checkAgency( agency: launch.program?[ 0 ].agencies[ 1 ], id: 44, name: "National Aeronautics and Space Administration",
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies[ 1 ] )
+      checkAgency( agency: launch?.programs?[ 0 ].agencies[ 1 ], agencyID: 44, name: "National Aeronautics and Space Administration",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
-      XCTAssertNotNil( launch.program?[ 0 ].agencies[ 2 ] )
-      checkAgency( agency: launch.program?[ 0 ].agencies[ 2 ], id: 121, name: "SpaceX",
+      XCTAssertNotNil( launch?.programs?[ 0 ].agencies[ 2 ] )
+      checkAgency( agency: launch?.programs?[ 0 ].agencies[ 2 ], agencyID: 121, name: "SpaceX",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
 
-      checkProgram( program: launch.program?[ 1 ], id: 17,
+      checkProgram( program: launch?.programs?[ 1 ], programID: 17,
                     description: "The International Space Station programme is tied together by a complex set of legal, political and financial agreements between the sixteen nations involved in the project, governing ownership of the various components, rights to crewing and utilization, and responsibilities for crew rotation and resupply of the International Space Station. It was conceived in 1984 by President Ronald Reagan, during the Space Station Freedom project as it was originally called.",
                     imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/international2_program_20201129184745.png",
                     infoURL: "https://www.nasa.gov/mission_pages/station/main/index.html",
@@ -1180,32 +881,32 @@ class LaunchListUnitTests: XCTestCase
                     startDate: "1998-11-20T06:40:00Z",
                     url: "https://ll.thespacedevs.com/2.1.0/program/17/",
                     wikiURL: "https://en.wikipedia.org/wiki/International_Space_Station_programme" )
-      XCTAssertNotNil( launch.program?[ 1 ].agencies )
-      XCTAssertEqual( launch.program?[ 1 ].agencies.count, 5 )
-      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 0 ] )
-      checkAgency( agency: launch.program?[ 1 ].agencies[ 0 ], id: 16, name: "Canadian Space Agency",
+      XCTAssertNotNil( launch?.programs?[ 1 ].agencies )
+      XCTAssertEqual( launch?.programs?[ 1 ].agencies.count, 5 )
+      XCTAssertNotNil( launch?.programs?[ 1 ].agencies[ 0 ] )
+      checkAgency( agency: launch?.programs?[ 1 ].agencies[ 0 ], agencyID: 16, name: "Canadian Space Agency",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/16/" )
-      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 1 ] )
-      checkAgency( agency: launch.program?[ 1 ].agencies[ 1 ], id: 27, name: "European Space Agency",
+      XCTAssertNotNil( launch?.programs?[ 1 ].agencies[ 1 ] )
+      checkAgency( agency: launch?.programs?[ 1 ].agencies[ 1 ], agencyID: 27, name: "European Space Agency",
                    type: "Multinational", url: "https://ll.thespacedevs.com/2.1.0/agencies/27/" )
-      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 2 ] )
-      checkAgency( agency: launch.program?[ 1 ].agencies[ 2 ], id: 37, name: "Japan Aerospace Exploration Agency",
+      XCTAssertNotNil( launch?.programs?[ 1 ].agencies[ 2 ] )
+      checkAgency( agency: launch?.programs?[ 1 ].agencies[ 2 ], agencyID: 37, name: "Japan Aerospace Exploration Agency",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/37/" )
-      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 3 ] )
-      checkAgency( agency: launch.program?[ 1 ].agencies[ 3 ], id: 44, name: "National Aeronautics and Space Administration",
+      XCTAssertNotNil( launch?.programs?[ 1 ].agencies[ 3 ] )
+      checkAgency( agency: launch?.programs?[ 1 ].agencies[ 3 ], agencyID: 44, name: "National Aeronautics and Space Administration",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
-      XCTAssertNotNil( launch.program?[ 1 ].agencies[ 4 ] )
-      checkAgency( agency: launch.program?[ 1 ].agencies[ 4 ], id: 63, name: "Russian Federal Space Agency (ROSCOSMOS)",
+      XCTAssertNotNil( launch?.programs?[ 1 ].agencies[ 4 ] )
+      checkAgency( agency: launch?.programs?[ 1 ].agencies[ 4 ], agencyID: 63, name: "Russian Federal Space Agency (ROSCOSMOS)",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/63/" )
 
-      checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+      checkConfiguration( config: launch?.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
                           variant: "Block 5" )
-      XCTAssertEqual( launch.rocket?.id, 2732 )
-      checkStatus( status: launch.status, abbreviation: "TBD",
+      XCTAssertEqual( launch?.rocket?.id, 2732 )
+      checkStatus( status: launch?.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
-                   id: 2, name: "To Be Determined" )
+                   statusID: 2, name: "To Be Determined" )
    }
 
    func testLaunchJSON7() throws
@@ -1282,10 +983,10 @@ class LaunchListUnitTests: XCTestCase
            }
       """#
 
-      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ) }
-      let launch: LaunchJSON = try? decoder.decode( LaunchJSON.self, from: jsonData )
+      guard let jsonData: Data = json.data( using: .utf8 ) else { XCTFail( "can't load test data" ); return }
+      let launch: LaunchJSON? = LaunchJSON( json: parseJSON( data: jsonData ) )
 
-      checkLaunch( launch: launch, id: "572dbb78-06f5-47dd-be8c-593967333d81",
+      checkLaunch( launch: launch, launchID: "572dbb78-06f5-47dd-be8c-593967333d81",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1527, name: "Falcon 9 Block 5 | GPS III SV06",
                    net: "2021-04-01T00:00:00Z",
@@ -1293,85 +994,33 @@ class LaunchListUnitTests: XCTestCase
                    url: "https://ll.thespacedevs.com/2.1.0/launch/572dbb78-06f5-47dd-be8c-593967333d81/",
                    webcastLive: false, windowEnd: "2021-04-01T00:00:00Z",
                    windowStart: "2021-04-01T00:00:00Z" )
-      checkServiceProvider( provider: launch.serviceProvider, id: 121, name: "SpaceX", type: "Commercial",
-                            url: URL( string: "https://ll.thespacedevs.com/2.1.0/agencies/121/" ) )
-      XCTAssertNil( launch.mission )
-      checkPad( pad: launch.pad, id: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
+      checkAgency( agency: launch?.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
+                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+      XCTAssertNil( launch?.mission )
+      checkPad( pad: launch?.pad, padID: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
                 mapURL: "http://maps.google.com/maps?q=28.56194122,-80.57735736", name: "Space Launch Complex 40",
                 totalLaunchCount: 63,
                 url: "https://ll.thespacedevs.com/2.1.0/pad/80/",
                 wikiURL: "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40" )
-      checkLocation( location: launch.pad?.location, id: 12, countryCode: "USA",
+      checkLocation( location: launch?.pad?.location, locationID: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
                      name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
 
-      XCTAssertNotNil( launch.program )
-      XCTAssertEqual( launch.program?.count, 0 )
+      XCTAssertNotNil( launch?.programs )
+      XCTAssertEqual( launch?.programs?.count, 0 )
 
-      checkConfiguration( config: launch.rocket?.configuration, id: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+      checkConfiguration( config: launch?.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
                           libraryID: 188, name: "Falcon 9 Block 5",
                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
                           variant: "Block 5" )
-      XCTAssertEqual( launch.rocket?.id, 174 )
-      checkStatus( status: launch.status, abbreviation: "TBD",
+      XCTAssertEqual( launch?.rocket?.id, 174 )
+      checkStatus( status: launch?.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
-                   id: 2, name: "To Be Determined" )
+                   statusID: 2, name: "To Be Determined" )
    }
 }
-
-let padJSON1: String =
-"""
-{
-    "agency_id": 121,
-    "id": 80,
-    "info_url": null,
-    "latitude": "28.56194122",
-    "location": {
-        "country_code": "USA",
-        "id": 12,
-        "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-        "name": "Cape Canaveral, FL, USA",
-        "total_landing_count": 20,
-        "total_launch_count": 208,
-        "url": "https://ll.thespacedevs.com/2.1.0/location/12/"
-    },
-    "longitude": "-80.57735736",
-    "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
-    "map_url": "http://maps.google.com/maps?q=28.56194122,-80.57735736",
-    "name": "Space Launch Complex 40",
-    "total_launch_count": 63,
-    "url": "https://ll.thespacedevs.com/2.1.0/pad/80/",
-    "wiki_url": "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40"
-}
-"""
-
-let padJSON2: String =
-"""
-   {
-       "agency_id": null,
-       "id": 54,
-       "info_url": null,
-       "latitude": "0.0",
-       "location": {
-           "country_code": "UNK",
-           "id": 22,
-           "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
-           "name": "Unknown Location",
-           "total_landing_count": 0,
-           "total_launch_count": 0,
-           "url": "https://ll.thespacedevs.com/2.1.0/location/22/"
-       },
-       "longitude": "0.0",
-       "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_54_20200803143536.jpg",
-       "map_url": "",
-       "name": "Unknown Pad",
-       "total_launch_count": 0,
-       "url": "https://ll.thespacedevs.com/2.1.0/pad/54/",
-       "wiki_url": ""
-   }
-"""
 
 let launchJSON1: String =
 #"""
@@ -1456,44 +1105,3 @@ let launchJSON1: String =
     "window_start": "2021-01-05T01:27:00Z"
 }
 """#
-
-let programJSON1: String =
-"""
-{
-    "agencies": [
-        {
-            "id": 44,
-            "name": "National Aeronautics and Space Administration",
-            "type": "Government",
-            "url": "https://ll.thespacedevs.com/2.1.0/agencies/44/"
-        },
-        {
-            "id": 257,
-            "name": "Northrop Grumman Innovation Systems",
-            "type": "Commercial",
-            "url": "https://ll.thespacedevs.com/2.1.0/agencies/257/"
-        },
-        {
-            "id": 1020,
-            "name": "Sierra Nevada Corporation",
-            "type": "Commercial",
-            "url": "https://ll.thespacedevs.com/2.1.0/agencies/1020/"
-        },
-        {
-            "id": 121,
-            "name": "SpaceX",
-            "type": "Commercial",
-            "url": "https://ll.thespacedevs.com/2.1.0/agencies/121/"
-        }
-    ],
-    "description": "Commercial Resupply Services (CRS) are a series of flights awarded by NASA for the delivery of cargo and supplies to the International Space Station.The first CRS contracts were signed in 2008 and awarded $1.6 billion to SpaceX for twelve cargo Dragon and $1.9 billion to Orbital Sciences for eight Cygnus flights, covering deliveries to 2016. The Falcon 9 and Antares rockets were also developed under the CRS program to deliver cargo spacecraft to the ISS.",
-    "end_date": null,
-    "id": 11,
-    "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/program_images/commercial2520_program_20201129212219.png",
-    "info_url": null,
-    "name": "Commercial Resupply Services",
-    "start_date": "2008-12-23T00:00:00Z",
-    "url": "https://ll.thespacedevs.com/2.1.0/program/11/",
-    "wiki_url": "https://en.wikipedia.org/wiki/Commercial_Resupply_Services#Commercial_Resupply_Services"
-}
-"""

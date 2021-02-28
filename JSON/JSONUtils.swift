@@ -97,6 +97,30 @@ public func parseJSONFile<T: Decodable>( filename: String ) -> T?
 }
 
 /**
+ Reads the JSON in a bundle file, and returns it as [Data]
+
+ - parameter name: `String` name of the bundle file to load
+ - returns:        `Data?` content of the bundle file, if it could be loaded, nil otherwise
+ */
+func readBundleJSONFile( forName name: String ) -> Data?
+{
+   do
+   {
+      if let bundlePath: String = Bundle.main.path( forResource: name, ofType: "json" ),
+         let jsonData: Data = try String( contentsOfFile: bundlePath ).data( using: .utf8 )
+      {
+         return jsonData
+      }
+   }
+   catch
+   {
+      print( error )
+   }
+
+   return nil
+}
+
+/**
  Produce a JSON structure of the given type `T` from a string. `T` is determined from context.
 
  - parameter json: `String`  JSON to parse
@@ -141,6 +165,12 @@ public func parseJSONString< T: Decodable >( jsonData: Data ) -> T?
 public func parseJSON( data: Data ) -> JSONStructure?
 {
    return try? JSONSerialization.jsonObject( with: data, options: [] ) as? [String: Any]
+}
+
+public func parseJSONFromString( data: String ) -> JSONStructure?
+{
+   guard let jsonData: Data = data.data( using: .utf8 ) else { return nil }
+   return try? JSONSerialization.jsonObject( with: jsonData, options: [] ) as? [String: Any]
 }
 
 func reportDecodingError( error: DecodingError )

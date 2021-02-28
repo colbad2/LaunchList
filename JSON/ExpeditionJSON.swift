@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  ### Example JSON
       {
@@ -34,14 +32,6 @@ import CoreData
 */
 public class ExpeditionJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, url, name, start, end
-//
-//      case spaceStation = "spacestation"
-//   }
-
    /** ID of the rocket within the API. */
    public let id: Int64
    /** URI for this data in the API. Unused. */
@@ -71,38 +61,5 @@ public class ExpeditionJSON: Decodable, Identifiable, JSONElement
       self.start = json[ "start" ] as? String
       self.end = json[ "end" ] as? String
       self.spaceStation = SpaceStationJSON( json: json[ "spacestation" ] as? JSONStructure )
-   }
-
-   /**
-    Add this data to Core Data as a `Expedition` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Expedition
-   {
-      let newExpedition: Expedition = Expedition( context: context )
-      updateEntity( entity: newExpedition, context: context )
-
-      return newExpedition
-   }
-
-   /**
-    Set or update the values of the `Expedition` entity,
-
-    - parameter entity: `Expedition?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: Expedition?, context: NSManagedObjectContext )
-   {
-      guard let expeditionEntity = entity else { return }
-
-      expeditionEntity.id = id
-      expeditionEntity.name = name
-      expeditionEntity.start = start
-      expeditionEntity.end = end
-      expeditionEntity.addSpaceStationFromJSON( spaceStation: spaceStation, context: context )
-
-      expeditionEntity.fetched = Date()
    }
 }

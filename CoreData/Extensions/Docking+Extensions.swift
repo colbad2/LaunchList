@@ -30,6 +30,43 @@ extension Docking
 }
 
 /**
+ Add this data to Core Data as a `Docking` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: `Docking` the added entity
+ */
+public func addToCoreData( json: DockingJSON, context: NSManagedObjectContext ) -> Docking
+{
+   let newDocking: Docking = Docking( context: context )
+   updateEntity( json: json, entity: newDocking, context: context )
+
+   return newDocking
+}
+
+/**
+ Set or update the values of the `Docking` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `Docking?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: DockingJSON, entity: Docking?, context: NSManagedObjectContext )
+{
+   guard let dockingEntity = entity else { return }
+
+   dockingEntity.id = json.id
+   dockingEntity.launchID = json.launchID
+   dockingEntity.docking = json.docking
+   dockingEntity.departure = json.departure
+   dockingEntity.addEntityFromJSON( json: json.flightVehicle, context: context )
+   dockingEntity.dockingLocationName = json.dockingLocation?.name
+   dockingEntity.sortingDate = parseISODate( isoDate: json.docking )
+
+   dockingEntity.fetched = Date()
+}
+
+/**
  Returns a sorted version of the given `Docking` array.
 
  - parameter dockingArray: `[Docking]?` list of `Docking`s to sort

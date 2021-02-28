@@ -13,6 +13,41 @@ extension Configuration
 }
 
 /**
+ Add this configuration to Core Data as a `Configuration` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: the added entity
+ */
+func addToCoreData( json: ConfigurationJSON, context: NSManagedObjectContext ) -> Configuration
+{
+   let newConfiguration: Configuration = Configuration( context: context )
+   updateEntity( json: json, entity: newConfiguration, context: context )
+
+   return newConfiguration
+}
+
+/**
+ Set or update the values of the `Configuration` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity: `Configuration?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+func updateEntity( json: ConfigurationJSON, entity: Configuration?, context: NSManagedObjectContext )
+{
+   guard let configurationEntity = entity else { return }
+
+   configurationEntity.id = json.id
+   configurationEntity.family = json.family
+   configurationEntity.fullName = json.fullName
+   configurationEntity.name = json.name
+   configurationEntity.url = json.url
+
+   configurationEntity.fetched = Date()
+}
+
+/**
  Gets an `Configuration` with the given ID in the given context.
 
  ### Example

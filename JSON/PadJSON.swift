@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
 
  ### Example JSON:
@@ -60,19 +58,6 @@ import CoreData
  */
 public class PadJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, latitude, location, longitude, name, url
-//
-//      case agencyID = "agency_id"
-//      case infoURL = "info_url"
-//      case mapImage = "map_image"
-//      case mapURL = "map_url"
-//      case wikiURL = "wiki_url"
-//      case totalLaunchCount = "total_launch_count"
-//   }
-
    /** ID of the astronaut within the API. */
    public var id: Int64
    /** URI of this data. Unused. */
@@ -110,68 +95,5 @@ public class PadJSON: Decodable, Identifiable, JSONElement
       self.name = json[ "name" ] as? String
       self.totalLaunchCount = json[ "total_launch_count" ] as? Int64
       self.wikiURL = json[ "wiki_url" ] as? String
-   }
-
-   /**
-    Add this data to Core Data as a `Pad` entity. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: `Pad` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> Pad
-   {
-      let newPad: Pad = Pad( context: context )
-      updateEntity( entity: newPad, context: context )
-
-      return newPad
-   }
-
-   /**
-    Set or update the values of the `Pad` entity,
-
-    - parameter entity:  `Pad?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: Pad?, context: NSManagedObjectContext )
-   {
-      guard let padEntity = entity else { return }
-
-      padEntity.agencyID = guaranteedInt64( agencyID )
-      padEntity.id = id
-      padEntity.infoURL = infoURL
-      padEntity.latitude = latitude ?? ""
-      padEntity.longitude = longitude ?? ""
-      padEntity.addEntityFromJSON( location: location, context: context )
-      padEntity.mapImage = mapImage
-
-      if let mapURL: String = mapURL?.trim()
-      {
-         if !mapURL.isEmpty
-         {
-            padEntity.mapURL = mapURL.fixBadUTF()
-         }
-      }
-
-      if let padName: String = name
-      {
-         var name: String = padName
-         if !name.isEmpty && ( name.first?.isNumber ?? false )
-         {
-            name = "Pad " + name
-         }
-         padEntity.name = name
-      }
-
-      padEntity.totalLaunchCount = guaranteedInt64( totalLaunchCount )
-
-      if let wikiURL: String = wikiURL?.trim()
-      {
-         if !wikiURL.isEmpty
-         {
-            padEntity.wikiURL = wikiURL
-         }
-      }
-
-      padEntity.fetched = Date()
    }
 }

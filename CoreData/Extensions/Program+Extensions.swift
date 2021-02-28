@@ -41,6 +41,49 @@ extension Program
 }
 
 /**
+ Creates a new `Program` entity and fills it with data from this `ProgramJSON`.
+
+ - parameter json:    JSON to parse
+ - parameter context: `NSManagedObjectContext` Core Data context to add to
+ - returns:           `Program` the added entity
+ */
+public func addToCoreData( json: ProgramJSON, context: NSManagedObjectContext ) -> Program
+{
+   let newProgram: Program = Program( context: context )
+   updateEntity( json: json, entity: newProgram, context: context )
+
+   return newProgram
+}
+
+/**
+ Update an entity using the data from the [ProgramJSON] object.
+
+ ### Example
+       let context: NSManagedObjectContext = Persistence.shared.container.viewContext
+       updateEntity( entity: newProgram, context: context )
+
+ - parameter json:    JSON to parse
+ - parameter entity:  `Program` update or create a program entity
+ - parameter context: `NSManagedObjectContext` Core Data context to add to
+ */
+public func updateEntity( json: ProgramJSON, entity: Program?, context: NSManagedObjectContext )
+{
+   guard let programEntity = entity else { return }
+
+   programEntity.id = json.id
+   programEntity.name = json.name
+   programEntity.programDescription = json.description
+   addAgencies( entity: programEntity, agencies: json.agencies, context: context )
+   programEntity.imageURL = json.imageURL
+   programEntity.startDate = parseISODate( isoDate: json.startDate )
+   programEntity.endDate = parseISODate( isoDate: json.endDate )
+   programEntity.infoURL = json.infoURL
+   programEntity.wikiURL = json.wikiURL
+
+   programEntity.fetched = Date()
+}
+
+/**
  Gets all the `Program` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `Program`s from

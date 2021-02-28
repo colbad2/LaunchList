@@ -1,6 +1,10 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
+ Astronaut role on a mission.
+
+ This has no corresponding CoreData entity. All values are flattened to the `AstronautFlight` entity.
+
   ### Example JSON
        {
           "id": 21,
@@ -9,12 +13,6 @@
  */
 public class RoleTypeJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, role
-//   }
-
    public let id: Int64
    let role: String?
 

@@ -30,6 +30,53 @@ extension SpacecraftConfig
 }
 
 /**
+ Add this config to Core Data as a `SpacecraftConfig` entity. The context still needs to be saved after the add.
+
+ - parameter json:    JSON to parse
+ - parameter context: Core Data context to add the entity to.
+ - returns: the added entity
+ */
+public func addToCoreData( json: SpacecraftConfigJSON, context: NSManagedObjectContext ) -> SpacecraftConfig
+{
+   let newSpacecraftConfig: SpacecraftConfig = SpacecraftConfig( context: context )
+   updateEntity( json: json, entity: newSpacecraftConfig, context: context )
+
+   return newSpacecraftConfig
+}
+
+/**
+ Set or update the values of the `SpacecraftConfig` entity,
+
+ - parameter json:    JSON to parse
+ - parameter entity: `SpacecraftConfig?` entity to fill/update
+ - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
+ */
+public func updateEntity( json: SpacecraftConfigJSON, entity: SpacecraftConfig?, context: NSManagedObjectContext )
+{
+   guard let spacecraftConfigEntity = entity else { return }
+
+   spacecraftConfigEntity.id = json.id
+   spacecraftConfigEntity.url = json.url
+   spacecraftConfigEntity.type = json.type?.name
+   spacecraftConfigEntity.addAgencyFromJSON( agency: json.agency, context: context )
+   spacecraftConfigEntity.capability = json.capability
+   spacecraftConfigEntity.history = json.history
+   spacecraftConfigEntity.details = json.details
+   spacecraftConfigEntity.maidenFlight = json.maidenFlight
+   spacecraftConfigEntity.height = guaranteedInt64( json.height )
+   spacecraftConfigEntity.diameter = guaranteedInt64( json.diameter )
+   spacecraftConfigEntity.humanRated = guaranteedBool( json.humanRated )
+   spacecraftConfigEntity.crewCapacity = guaranteedInt64( json.crewCapacity )
+   spacecraftConfigEntity.payloadCapacity = guaranteedInt64( json.payloadCapacity )
+   spacecraftConfigEntity.flightLife = json.flightLife
+   spacecraftConfigEntity.nationURL = json.nationURL
+   spacecraftConfigEntity.wikiURL = json.wikiURL
+   spacecraftConfigEntity.infoURL = json.infoURL
+
+   spacecraftConfigEntity.fetched = Date()
+}
+
+/**
  Gets all the `SpacecraftConfig` entities in the context
 
  - parameter context:  `NSManagedObjectContext` context to get the `SpacecraftConfig`s from

@@ -1,7 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-import CoreData
-
 /**
  Detailed version returned from ID-specific Agency API (/agencies/{id}).
 
@@ -54,31 +52,6 @@ import CoreData
  */
 public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case id, url, name, family, variant, alias, length, diameter, apogee
-//
-//      case fullName = "full_name"
-//      case launchLibraryID = "launch_library_id"
-//      case launcherConfigDescription = "description"
-//      case minStage = "min_stage"
-//      case maxStage = "max_stage"
-//      case maidenFlight = "maiden_flight"
-//      case launchMass = "launch_mass"
-//      case leoCapacity = "leo_capacity"
-//      case gtoCapacity = "gto_capacity"
-//      case takeoffThrust = "to_thrust"
-//      case vehicleRange = " vehicle_range"
-//      case imageURL = "image_url"
-//      case infoURL = "info_url"
-//      case wikiURL = "wiki_url"
-//      case consecutiveSuccessfulLaunches = "consecutive_successful_launches"
-//      case successfulLaunches = "successful_launches"
-//      case failedLaunches = "failed_launches"
-//      case pendingLaunches = "pending_launches"
-//   }
-
    /** ID of the astronaut within the API. */
    public var id: Int64
    /** URI of this data. Unused. */
@@ -158,63 +131,5 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
       self.programs = ( json[ "program" ] as? [JSONStructure] ?? [] ).compactMap { return ProgramJSON( json: $0 ) }
       self.reusable = json[ "reusable" ] as? Bool
       self.totalLaunchCount = json[ "total_launch_count" ] as? String
-   }
-
-   /**
-    Add this data to Core Data as a `LauncherConfig`. The context still needs to be saved after the add.
-
-    - parameter context: Core Data context to add the entity to.
-    - returns: `LauncherConfig` the added entity
-    */
-   public func addToCoreData( context: NSManagedObjectContext ) -> LauncherConfig
-   {
-      let newLauncherConfig: LauncherConfig = LauncherConfig( context: context )
-      updateEntity( entity: newLauncherConfig, context: context )
-
-      return newLauncherConfig
-   }
-
-   /**
-    Set or update the values of the `LauncherConfig` entity,
-
-    - parameter entity:  `LauncherConfig?` entity to fill/update
-    - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
-    */
-   public func updateEntity( entity: LauncherConfig?, context: NSManagedObjectContext )
-   {
-      guard let launcherConfigEntity = entity else { return }
-
-      launcherConfigEntity.id = id
-      launcherConfigEntity.name = name
-      launcherConfigEntity.family = family
-      launcherConfigEntity.fullName = fullName
-      launcherConfigEntity.launcherConfigDescription = launcherConfigDescription
-      launcherConfigEntity.variant = variant
-      launcherConfigEntity.alias = alias
-      launcherConfigEntity.minStage = guaranteedInt64( minStage )
-      launcherConfigEntity.maxStage = guaranteedInt64( maxStage )
-      launcherConfigEntity.length = guaranteedInt64( length )
-      launcherConfigEntity.diameter = guaranteedInt64( diameter )
-      launcherConfigEntity.maidenFlight = maidenFlight
-      launcherConfigEntity.launchMass = guaranteedInt64( launchMass )
-      launcherConfigEntity.leoCapacity = guaranteedInt64( leoCapacity )
-      launcherConfigEntity.gtoCapacity = guaranteedInt64( gtoCapacity )
-      launcherConfigEntity.takeoffThrust = guaranteedInt64( takeoffThrust )
-      launcherConfigEntity.apogee = guaranteedInt64( apogee )
-      launcherConfigEntity.vehicleRange = guaranteedInt64( vehicleRange )
-      launcherConfigEntity.imageURL = imageURL
-      launcherConfigEntity.infoURL = infoURL
-      launcherConfigEntity.wikiURL = wikiURL
-      launcherConfigEntity.consecutiveSuccessfulLaunches = guaranteedInt64( consecutiveSuccessfulLaunches )
-      launcherConfigEntity.successfulLaunches = guaranteedInt64( successfulLaunches )
-      launcherConfigEntity.failedLaunches = guaranteedInt64( failedLaunches )
-      launcherConfigEntity.pendingLaunches = guaranteedInt64( pendingLaunches )
-      launcherConfigEntity.addManufacturerFromJSON( manufacturer: manufacturer, context: context )
-      launcherConfigEntity.addProgramsFromJSON( programs: programs, context: context )
-      launcherConfigEntity.reusable = guaranteedBool( reusable )
-      launcherConfigEntity.totalLaunchCount = totalLaunchCount
-
-      // additional generated info, not in the JSON
-      launcherConfigEntity.fetched = Date()
    }
 }
