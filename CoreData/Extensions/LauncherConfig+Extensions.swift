@@ -128,8 +128,8 @@ public func getLauncherConfig( by entityID: Int64, context: NSManagedObjectConte
 public func fetchLauncherConfig( launcherConfig: LauncherConfigJSON, context: NSManagedObjectContext ) -> LauncherConfig
 {
    let launcherConfigEntity: LauncherConfig? = getLauncherConfig( by: launcherConfig.id, context: context )
-   launcherConfig.updateEntity( entity: launcherConfigEntity, context: context )
-   return launcherConfigEntity ?? launcherConfig.addToCoreData( context: context )
+   updateEntity( json: launcherConfig, entity: launcherConfigEntity, context: context )
+   return launcherConfigEntity ?? addToCoreData( json: launcherConfig, context: context )
 }
 
 /**

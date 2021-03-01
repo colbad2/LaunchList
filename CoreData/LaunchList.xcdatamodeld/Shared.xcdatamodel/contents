@@ -35,7 +35,7 @@
         <attribute name="wikiURL" optional="YES" attributeType="String"/>
         <attribute name="youTubeURL" optional="YES" attributeType="String"/>
         <relationship name="astronauts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Astronaut" inverseName="agency" inverseEntity="Astronaut"/>
-        <relationship name="configurations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Configuration" inverseName="agencies" inverseEntity="Configuration"/>
+        <relationship name="configurations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LauncherConfig" inverseName="agencies" inverseEntity="LauncherConfig"/>
         <relationship name="launcherConfigs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LauncherConfig" inverseName="manufacturer" inverseEntity="LauncherConfig"/>
         <relationship name="launcherList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launcher" inverseName="agencies" inverseEntity="Launcher"/>
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="agency" inverseEntity="Launch"/>
@@ -76,16 +76,6 @@
         <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="astronautFlights" inverseEntity="Launch"/>
         <relationship name="launchFlight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpacecraftFlight" inverseName="launchCrewFlights" inverseEntity="SpacecraftFlight"/>
         <relationship name="onboardFlight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpacecraftFlight" inverseName="onboardCrewFlights" inverseEntity="SpacecraftFlight"/>
-    </entity>
-    <entity name="Configuration" representedClassName="Configuration" parentEntity="Fetched" syncable="YES" codeGenerationType="class">
-        <attribute name="family" optional="YES" attributeType="String"/>
-        <attribute name="fullName" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="url" optional="YES" attributeType="String"/>
-        <attribute name="variant" optional="YES" attributeType="String"/>
-        <relationship name="agencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Agency" inverseName="configurations" inverseEntity="Agency"/>
-        <relationship name="rockets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rocket" inverseName="configuration" inverseEntity="Rocket"/>
     </entity>
     <entity name="Docking" representedClassName=".Docking" parentEntity="TimelineEntry" syncable="YES" codeGenerationType="class">
         <attribute name="departure" optional="YES" attributeType="String"/>
@@ -235,9 +225,11 @@
         <attribute name="variant" optional="YES" attributeType="String"/>
         <attribute name="vehicleRange" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="wikiURL" optional="YES" attributeType="String"/>
+        <relationship name="agencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Agency" inverseName="configurations" inverseEntity="Agency"/>
         <relationship name="launcher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launcher" inverseName="launcherConfig" inverseEntity="Launcher"/>
         <relationship name="manufacturer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Agency" inverseName="launcherConfigs" inverseEntity="Agency"/>
         <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="launcherConfigs" inverseEntity="Program"/>
+        <relationship name="rockets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rocket" inverseName="configuration" inverseEntity="Rocket"/>
     </entity>
     <entity name="LiveStream" representedClassName=".LiveStream" parentEntity="Fetched" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
@@ -306,7 +298,7 @@
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="agencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Agency" inverseName="rockets" inverseEntity="Agency"/>
-        <relationship name="configuration" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Configuration" inverseName="rockets" inverseEntity="Configuration"/>
+        <relationship name="configuration" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LauncherConfig" inverseName="rockets" inverseEntity="LauncherConfig"/>
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="rocket" inverseEntity="Launch"/>
         <relationship name="vehicles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launcher" inverseName="rocket" inverseEntity="Launcher"/>
     </entity>
@@ -392,7 +384,6 @@
         <element name="Agency" positionX="119.1752319335938" positionY="693.9176330566406" width="128" height="674"/>
         <element name="Astronaut" positionX="-93.00262451171875" positionY="507.2274169921875" width="128" height="358"/>
         <element name="AstronautFlight" positionX="-432" positionY="90" width="128" height="134"/>
-        <element name="Configuration" positionX="-227.2347412109375" positionY="915.8938598632812" width="128" height="163"/>
         <element name="Docking" positionX="-390.4028930664061" positionY="100.9436798095703" width="128" height="133"/>
         <element name="DockingEvent" positionX="-432" positionY="90" width="128" height="149"/>
         <element name="Event" positionX="129.9351196289062" positionY="96.01762390136719" width="128" height="238"/>
@@ -403,14 +394,14 @@
         <element name="LandingLocation" positionX="747.317626953125" positionY="854.6737976074219" width="128" height="118"/>
         <element name="Launch" positionX="336.8728637695312" positionY="387.0099182128906" width="128" height="614"/>
         <element name="Launcher" positionX="721.895751953125" positionY="82.20306396484385" width="128" height="239"/>
-        <element name="LauncherConfig" positionX="707.714599609375" positionY="353.9044342041016" width="128" height="493"/>
+        <element name="LauncherConfig" positionX="707.714599609375" positionY="353.9044342041016" width="128" height="509"/>
         <element name="LiveStream" positionX="506.34033203125" positionY="-48.92556762695312" width="128" height="104"/>
         <element name="Location" positionX="992.67626953125" positionY="369.3632202148439" width="128" height="163"/>
         <element name="Mission" positionX="356.416259765625" positionY="116.7538146972656" width="128" height="149"/>
         <element name="Pad" positionX="546.6619873046875" positionY="358.8060913085938" width="128" height="209"/>
         <element name="Program" positionX="100.9578247070312" positionY="406.0181121826172" width="128" height="223"/>
         <element name="RoadClosure" positionX="-430.45166015625" positionY="-46.77241516113281" width="128" height="119"/>
-        <element name="Rocket" positionX="538.41943359375" positionY="668.942138671875" width="128" height="133"/>
+        <element name="Rocket" positionX="538.41943359375" positionY="668.942138671875" width="128" height="119"/>
         <element name="Spacecraft" positionX="-560.5470581054686" positionY="423.2239227294922" width="128" height="208"/>
         <element name="SpacecraftConfig" positionX="-627.9261474609375" positionY="686.8445129394531" width="128" height="358"/>
         <element name="SpacecraftFlight" positionX="-288.9108276367187" positionY="681.4465026855469" width="128" height="179"/>

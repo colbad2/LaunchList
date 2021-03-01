@@ -114,9 +114,9 @@ public class AgencyJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
    /** URL to a website for the agency's country. */
    var nationURL: String?
    /** List of launcher configurations used by the agency. */
-   var configurationList: [ConfigurationJSON]?
+   var configurationList: [LauncherConfigJSON] = []
    /** List of spacecraft used by the agency. */
-   var spacecraftList: [SpacecraftJSON]?
+   var spacecraftList: [SpacecraftJSON] = []
 
    /**
     Make a `AgencyJSON` from a JSON structure.
@@ -133,7 +133,7 @@ public class AgencyJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
       self.name = json[ "name" ] as? String
       self.featured = json[ "featured" ] as? Bool
       self.type = json[ "type" ] as? String
-      self.countryCode = json[ "countryCode" ] as? String
+      self.countryCode = json[ "country_code" ] as? String
       self.abbreviation = json[ "abbrev" ] as? String
       self.agencyDescription = json[ "description" ] as? String
       self.administrator = json[ "administrator" ] as? String
@@ -157,13 +157,13 @@ public class AgencyJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
       self.imageURL = json[ "image_url" ] as? String
       self.nationURL = json[ "nation_url" ] as? String
 
-      self.configurationList = nil
+      self.configurationList = []
       if let configurationArray: [JSONStructure] = json[ "launcher_list" ] as? [JSONStructure]
       {
-         self.configurationList = configurationArray.compactMap { ConfigurationJSON( json: $0 ) }
+         self.configurationList = configurationArray.compactMap { LauncherConfigJSON( json: $0 ) }
       }
 
-      self.spacecraftList = nil
+      self.spacecraftList = []
       if let spacecraftArray: [JSONStructure] = json[ "spacecraft_list" ] as? [JSONStructure]
       {
          self.spacecraftList = spacecraftArray.compactMap { SpacecraftJSON( json: $0 ) }

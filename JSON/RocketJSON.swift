@@ -24,12 +24,12 @@ public class RocketJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
    /** ID of the rocket within the API. */
    public var id: Int64
    /** Details about the kind of rocket. */
-   var configuration: ConfigurationJSON?
+   var configuration: LauncherConfigJSON?
    var launcherStage: [FirstStageJSON] = []
    var spacecraftStage: SpacecraftFlightJSON?
 
    /**
-    Make a `ConfigurationJSON` from a JSON structure.
+    Make a `RocketJSON` from a JSON structure.
 
     - parameter json: `JSONStructure` JSON to parse
     */
@@ -39,7 +39,7 @@ public class RocketJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
       guard let id = json[ "id" ] as? Int64 else { return nil }
 
       self.id = id
-      self.configuration = ConfigurationJSON( json: json[ "configuration" ] as? JSONStructure )
+      self.configuration = LauncherConfigJSON( json: json[ "configuration" ] as? JSONStructure )
       self.launcherStage = ( json[ "launcher_stage" ] as? [JSONStructure] )?.compactMap { FirstStageJSON( json: $0 ) } ?? []
       self.spacecraftStage = SpacecraftFlightJSON( json: json[ "spacecraft_stage" ] as? JSONStructure )
    }

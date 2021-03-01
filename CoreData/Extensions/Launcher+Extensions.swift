@@ -106,8 +106,8 @@ public func getLauncher( by entityID: Int64, context: NSManagedObjectContext ) -
 public func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectContext ) -> Launcher
 {
    let launcherEntity: Launcher? = getLauncher( by: launcher.id, context: context )
-   launcher.updateEntity( entity: launcherEntity, context: context )
-   return launcherEntity ?? launcher.addToCoreData( context: context )
+   updateEntity( json: launcher, entity: launcherEntity, context: context )
+   return launcherEntity ?? addToCoreData( json: launcher, context: context )
 }
 
 /**

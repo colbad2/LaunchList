@@ -167,8 +167,8 @@ public func getAstronaut( by id: Int64, context: NSManagedObjectContext ) -> Ast
 public func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectContext ) -> Astronaut
 {
    let astronautEntity: Astronaut? = getAstronaut( by: astronaut.id, context: context )
-   astronaut.updateEntity( entity: astronautEntity, context: context )
-   return astronautEntity ?? astronaut.addToCoreData( context: context )
+   updateEntity( json: astronaut, entity: astronautEntity, context: context )
+   return astronautEntity ?? addToCoreData( json: astronaut, context: context )
 }
 
 /**

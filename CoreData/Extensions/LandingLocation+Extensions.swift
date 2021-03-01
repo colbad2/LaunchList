@@ -78,7 +78,7 @@ public func fetchAllLandingLocations( context: NSManagedObjectContext ) -> [Land
  Gets a `LandingLocation` with the given ID in the given context.
 
  ### Example
- let launcher: LandingLocation = getLandingLocation( by: 2345, context: context )
+     let launcher: LandingLocation = getLandingLocation( by: 2345, context: context )
 
  - parameter entityID: `Int64` ID of the `LandingLocation` to fetch
  - parameter context: `NSManagedObjectContext` context to get the `LandingLocation` from
@@ -99,8 +99,8 @@ public func getLandingLocation( by entityID: Int64, context: NSManagedObjectCont
 public func fetchLandingLocation( launcher: LandingLocationJSON, context: NSManagedObjectContext ) -> LandingLocation
 {
    let launcherEntity: LandingLocation? = getLandingLocation( by: launcher.id, context: context )
-   launcher.updateEntity( entity: launcherEntity, context: context )
-   return launcherEntity ?? launcher.addToCoreData( context: context )
+   updateEntity( json: launcher, entity: launcherEntity, context: context )
+   return launcherEntity ?? addToCoreData( json: launcher, context: context )
 }
 
 /**

@@ -222,8 +222,8 @@ public func getEvent( by id: Int64, context: NSManagedObjectContext ) -> Event?
 public func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> Event
 {
    let eventEntity: Event? = getEvent( by: event.id, context: context )
-   event.updateEntity( entity: eventEntity, context: context )
-   return eventEntity ?? event.addToCoreData( context: context )
+   updateEntity( json: event, entity: eventEntity, context: context )
+   return eventEntity ?? addToCoreData( json: event, context: context )
 }
 
 /**

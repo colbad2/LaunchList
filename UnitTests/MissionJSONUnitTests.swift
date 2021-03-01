@@ -1,5 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+// swiftlint:disable line_length
+
 import XCTest
 
 class MissionJSONUnitTests: XCTestCase

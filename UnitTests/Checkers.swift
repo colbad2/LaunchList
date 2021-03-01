@@ -23,15 +23,6 @@ func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: Str
    XCTAssertEqual( pad?.wikiURL, wikiURL )
 }
 
-func checkServiceProvider( provider: ServiceProviderJSON?, providerID: Int64, name: String, type: String, url: String )
-{
-   XCTAssertNotNil( provider )
-   XCTAssertEqual( provider?.id, providerID )
-   XCTAssertEqual( provider?.name, name )
-   XCTAssertEqual( provider?.type, type )
-   XCTAssertEqual( provider?.url, url )
-}
-
 func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: String, mapImage: String? = nil,
                     name: String, landingCount: Int64, lauchCount: Int64, url: String? = nil )
 {
@@ -45,14 +36,13 @@ func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: Str
    XCTAssertEqual( location?.url, url )
 }
 
-func checkConfiguration( config: ConfigurationJSON?, configID: Int64, family: String, fullName: String,
-                         libraryID: Int64, name: String, url: String? = nil, variant: String )
+func checkLaunchConfig( config: LauncherConfigJSON?, configID: Int64, family: String, fullName: String,
+                        name: String, url: String? = nil, variant: String )
 {
    XCTAssertNotNil( config )
    XCTAssertEqual( config?.family, family )
    XCTAssertEqual( config?.fullName, fullName )
    XCTAssertEqual( config?.id, configID )
-   XCTAssertEqual( config?.launchLibraryID, libraryID )
    XCTAssertEqual( config?.name, name )
    XCTAssertEqual( config?.url, url )
    XCTAssertEqual( config?.variant, variant )
@@ -87,7 +77,12 @@ func checkStatus( status: StatusJSON?, abbreviation: String, description: String
 func checkAgency( agency: AgencyJSON?, agencyID: Int64, name: String, featured: Bool? = nil, type: String, url: String?,
                   countryCode: String? = nil, abbreviation: String? = nil, agencyDescription: String? = nil,
                   administrator: String? = nil, foundingYear: String? = nil, launchers: String? = nil,
-                  spacecraft: String? = nil, parent: String? = nil, imageURL: String? = nil )
+                  spacecraft: String? = nil, parent: String? = nil,
+                  imageURL: String? = nil, infoURL: String? = nil, wikiURL: String? = nil, logoURL: String? = nil,
+                  nationURL: String? = nil, totalLaunchCount: Int64? = nil, successfulLaunches: Int64? = nil,
+                  consecutiveSuccessfulLaunches: Int64? = nil, failedLaunches: Int64? = nil, pendingLaunches: Int64? = nil,
+                  successfulLandings: Int64? = nil, failedLandings: Int64? = nil, attemptedLandings: Int64? = nil,
+                  consecutiveSuccessfulLandings: Int64? = nil)
 {
    XCTAssertNotNil( agency )
    XCTAssertEqual( agency?.id, agencyID )
@@ -104,6 +99,24 @@ func checkAgency( agency: AgencyJSON?, agencyID: Int64, name: String, featured: 
    XCTAssertEqual( agency?.spacecraft, spacecraft )
    XCTAssertEqual( agency?.parent, parent )
    XCTAssertEqual( agency?.imageURL, imageURL )
+   XCTAssertEqual( agency?.infoURL, infoURL )
+   XCTAssertEqual( agency?.wikiURL, wikiURL )
+   XCTAssertEqual( agency?.logoURL, logoURL )
+   XCTAssertEqual( agency?.nationURL, nationURL )
+   XCTAssertEqual( agency?.totalLaunchCount, totalLaunchCount )
+   XCTAssertEqual( agency?.successfulLaunches, successfulLaunches )
+   XCTAssertEqual( agency?.consecutiveSuccessfulLaunches, consecutiveSuccessfulLaunches )
+   XCTAssertEqual( agency?.failedLaunches, failedLaunches )
+   XCTAssertEqual( agency?.pendingLaunches, pendingLaunches )
+   XCTAssertEqual( agency?.successfulLandings, successfulLandings )
+   XCTAssertEqual( agency?.failedLandings, failedLandings )
+   XCTAssertEqual( agency?.attemptedLandings, attemptedLandings )
+   XCTAssertEqual( agency?.consecutiveSuccessfulLandings, consecutiveSuccessfulLandings )
+
+   /*
+    "launcher_list":
+    "spacecraft_list":
+    */
 }
 
 func checkProgram( program: ProgramJSON?, programID: Int64, description: String?, endDate: String? = nil,

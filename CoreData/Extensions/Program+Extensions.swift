@@ -197,8 +197,8 @@ public func getProgram( by programID: Int64, context: NSManagedObjectContext ) -
 public func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext ) -> Program
 {
    let programEntity: Program? = getProgram( by: program.id, context: context )
-   program.updateEntity( entity: programEntity, context: context )
-   return programEntity ?? program.addToCoreData( context: context )
+   updateEntity( json: program, entity: programEntity, context: context )
+   return programEntity ?? addToCoreData( json: program, context: context )
 }
 
 /**

@@ -102,8 +102,8 @@ public func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -
 public func fetchLocation( location: LocationJSON, context: NSManagedObjectContext ) -> Location
 {
    let locationEntity: Location? = getLocation( by: location.id, context: context )
-   location.updateEntity( entity: locationEntity, context: context )
-   return locationEntity ?? location.addToCoreData( context: context )
+   updateEntity( json: location, entity: locationEntity, context: context )
+   return locationEntity ?? addToCoreData( json: location, context: context )
 }
 
 /**

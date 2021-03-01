@@ -45,10 +45,10 @@ extension FlightVehicle
  - parameter context: Core Data context to add the entity to.
  - returns: `FlightVehicle` the added entity
  */
-public func addToCoreData( context: NSManagedObjectContext ) -> FlightVehicle
+public func addToCoreData( json: FlightVehicleJSON, context: NSManagedObjectContext ) -> FlightVehicle
 {
    let newFlightVehicle: FlightVehicle = FlightVehicle( context: context )
-   updateEntity( flightVehicle: flightVehicle, entity: newFlightVehicle, context: context )
+   updateEntity( json: json, entity: newFlightVehicle, context: context )
 
    return newFlightVehicle
 }
@@ -60,15 +60,15 @@ public func addToCoreData( context: NSManagedObjectContext ) -> FlightVehicle
  - parameter entity:  `FlightVehicle?` entity to fill/update
  - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
  */
-public func updateEntity( flightVehicle: FlightVehicleJSON, entity: FlightVehicle?, context: NSManagedObjectContext )
+public func updateEntity( json: FlightVehicleJSON, entity: FlightVehicle?, context: NSManagedObjectContext )
 {
    guard let flightVehicleEntity = entity else { return }
 
-   flightVehicleEntity.id = flightVehicle.id
-   flightVehicleEntity.url = flightVehicle.url
-   flightVehicleEntity.destination = flightVehicle.destination
-   flightVehicleEntity.missionEnd = flightVehicle.missionEnd
-   flightVehicleEntity.addSpacecraftFromJSON( spacecraft: flightVehicle.spacecraft, context: context )
+   flightVehicleEntity.id = json.id
+   flightVehicleEntity.url = json.url
+   flightVehicleEntity.destination = json.destination
+   flightVehicleEntity.missionEnd = json.missionEnd
+   flightVehicleEntity.addSpacecraftFromJSON( spacecraft: json.spacecraft, context: context )
 
    flightVehicleEntity.fetched = Date()
 }
@@ -127,8 +127,8 @@ public func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContex
 public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSManagedObjectContext ) -> FlightVehicle
 {
    let flightVehicleEntity: FlightVehicle? = getFlightVehicle( by: flightVehicle.id, context: context )
-   flightVehicle.updateEntity( entity: flightVehicleEntity, context: context )
-   return flightVehicleEntity ?? flightVehicle.addToCoreData( context: context )
+   updateEntity( json: flightVehicle, entity: flightVehicleEntity, context: context )
+   return flightVehicleEntity ?? addToCoreData( json: flightVehicle, context: context )
 }
 
 /**

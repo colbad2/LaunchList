@@ -120,8 +120,8 @@ public func getDocking( by entityID: Int64, context: NSManagedObjectContext ) ->
 public func fetchDocking( docking: DockingJSON, context: NSManagedObjectContext ) -> Docking
 {
    let dockingEntity: Docking? = getDocking( by: docking.id, context: context )
-   docking.updateEntity( entity: dockingEntity, context: context )
-   return dockingEntity ?? docking.addToCoreData( context: context )
+   updateEntity( json: docking, entity: dockingEntity, context: context )
+   return dockingEntity ?? addToCoreData( json: docking, context: context )
 }
 
 /**

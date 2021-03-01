@@ -106,7 +106,7 @@ class LaunchJSONUnitTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-01-05T05:29:00Z",
                    windowStart: "2021-01-05T01:27:00Z" )
       checkAgency( agency: launch.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
-                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+                   url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
       checkMission( mission: launch.mission, missionID: 1222,
                     description: "T\u{00fc}rksat 5A is the first of two Turkish next generation communications satellites, which will be operated by T\u{00fc}rksat for commercial and military purposes.",
                     name: "T\u{00fc}rksat 5A", type: "Communications",
@@ -123,10 +123,10 @@ class LaunchJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
-      checkConfiguration( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                          libraryID: 188, name: "Falcon 9 Block 5",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                          variant: "Block 5" )
+      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+                         name: "Falcon 9 Block 5",
+                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                         variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 136 )
       checkStatus( status: launch.status, abbreviation: "TBC",
                    description: "Awaiting official confirmation - current date is known with some certainty.",
@@ -317,7 +317,7 @@ class LaunchJSONUnitTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-01-14T00:00:00Z",
                    windowStart: "2021-01-14T00:00:00Z" )
       checkAgency( agency: launch.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
-                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+                   url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
       XCTAssertNil( launch.mission )
       checkPad( pad: launch.pad, padID: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
@@ -331,10 +331,10 @@ class LaunchJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
-      checkConfiguration( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                          libraryID: 188, name: "Falcon 9 Block 5",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                          variant: "Block 5" )
+      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+                         name: "Falcon 9 Block 5",
+                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                         variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 2518 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -434,7 +434,7 @@ class LaunchJSONUnitTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-01-31T00:00:00Z",
                    windowStart: "2021-01-31T00:00:00Z" )
       checkAgency( agency: launch.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
-                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+                   url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
       checkMission( mission: launch.mission, missionID: 1045,
                     description: "SXM-8 is a large high power broadcasting satellite for SiriusXM's digital audio radio service (DARS).\n\nSpace Systems/Loral (SS/L) got in July 2016 the contract to build the two satellites based on their SSL-1300 bus - SXM-7 and SXM-8. Both operate in the S-band spectrum. Each satellite will generate more than 20-kW of power and will have a large unfurlable antenna reflector, which enables broadcast to radios without the need for large dish-type antennas on the ground.\n\nSXM-8 is meant to replace the XM-4 satellite.",
                     designator: nil, libraryID: 1245, name: "SXM-8", type: "Communications",
@@ -450,10 +450,10 @@ class LaunchJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
-      checkConfiguration( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                          libraryID: 188, name: "Falcon 9 Block 5",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                          variant: "Block 5" )
+      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+                         name: "Falcon 9 Block 5",
+                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                         variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 139 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -545,7 +545,7 @@ class LaunchJSONUnitTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-03-01T00:00:00Z",
                    windowStart: "2021-03-01T00:00:00Z" )
       checkAgency( agency: launch.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
-                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+                   url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
       XCTAssertNil( launch.mission )
       checkPad( pad: launch.pad, padID: 87, lat: "28.60822681", lon: "-80.60428186",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
@@ -559,10 +559,10 @@ class LaunchJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
-      checkConfiguration( config: launch.rocket?.configuration, configID: 161, family: "Falcon", fullName: "Falcon Heavy",
-                          libraryID: 58, name: "Falcon Heavy",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/161/",
-                          variant: "Heavy" )
+      checkLaunchConfig( config: launch.rocket?.configuration, configID: 161, family: "Falcon", fullName: "Falcon Heavy",
+                         name: "Falcon Heavy",
+                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/161/",
+                         variant: "Heavy" )
       XCTAssertEqual( launch.rocket?.id, 162 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -692,7 +692,7 @@ class LaunchJSONUnitTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-03-12T00:00:00Z",
                    windowStart: "2021-03-12T00:00:00Z" )
       checkAgency( agency: launch.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
-                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+                   url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
       XCTAssertNil( launch.mission )
       checkPad( pad: launch.pad, padID: 87, lat: "28.60822681", lon: "-80.60428186",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_87_20200803143537.jpg",
@@ -729,10 +729,10 @@ class LaunchJSONUnitTests: XCTestCase
       checkAgency( agency: launch.programs?[ 0 ].agencies[ 3 ], agencyID: 121, name: "SpaceX",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
 
-      checkConfiguration( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                          libraryID: 188, name: "Falcon 9 Block 5",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                          variant: "Block 5" )
+      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+                         name: "Falcon 9 Block 5",
+                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                         variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 2746 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -911,7 +911,7 @@ class LaunchJSONUnitTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-03-30T00:00:00Z",
                    windowStart: "2021-03-30T00:00:00Z" )
       checkAgency( agency: launch.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
-                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+                   url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
       checkMission( mission: launch.mission, missionID: 1137,
                     description: "SpaceX Crew-2 will be the second crewed operational flight of a Crew Dragon spacecraft, and the third overall crewed orbital flight. It will use the same Falcon 9 first stage as the Crew-1 mission and the same Crew Dragon capsule as the Demo-2 mission (Endeavour).",
                     libraryID: 1330, name: "SpX USCV-2 (NASA Crew Flight 2)", type: "Human Exploration",
@@ -976,10 +976,10 @@ class LaunchJSONUnitTests: XCTestCase
       checkAgency( agency: launch.programs?[ 1 ].agencies[ 4 ], agencyID: 63, name: "Russian Federal Space Agency (ROSCOSMOS)",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/63/" )
 
-      checkConfiguration( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                          libraryID: 188, name: "Falcon 9 Block 5",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                          variant: "Block 5" )
+      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+                         name: "Falcon 9 Block 5",
+                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                         variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 2732 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -1071,7 +1071,7 @@ class LaunchJSONUnitTests: XCTestCase
                    webcastLive: false, windowEnd: "2021-04-01T00:00:00Z",
                    windowStart: "2021-04-01T00:00:00Z" )
       checkAgency( agency: launch.serviceProvider, agencyID: 121, name: "SpaceX", type: "Commercial",
-                            url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
+                   url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
       XCTAssertNil( launch.mission )
       checkPad( pad: launch.pad, padID: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
@@ -1087,10 +1087,10 @@ class LaunchJSONUnitTests: XCTestCase
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
 
-      checkConfiguration( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                          libraryID: 188, name: "Falcon 9 Block 5",
-                          url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                          variant: "Block 5" )
+      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
+                         name: "Falcon 9 Block 5",
+                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                         variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 174 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",

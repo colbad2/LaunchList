@@ -1,5 +1,8 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+// swiftlint:disable line_length
+// swiftlint:disable function_body_length
+
 import XCTest
 
 class ProgramJSONUnitTests: XCTestCase
@@ -73,5 +76,3 @@ class ProgramJSONUnitTests: XCTestCase
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
    }
 }
-
-

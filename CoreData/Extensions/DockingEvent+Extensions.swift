@@ -84,6 +84,6 @@ public func getDockingEvent( by entityID: Int64, context: NSManagedObjectContext
 public func fetchDockingEvent( dockingEvent: DockingEventJSON, context: NSManagedObjectContext ) -> DockingEvent
 {
    let dockingEventEntity: DockingEvent? = getDockingEvent( by: dockingEvent.id, context: context )
-   dockingEvent.updateEntity( entity: dockingEventEntity, context: context )
-   return dockingEventEntity ?? dockingEvent.addToCoreData( context: context )
+   updateEntity( json: dockingEvent, entity: dockingEventEntity, context: context )
+   return dockingEventEntity ?? addToCoreData( json: dockingEvent, context: context )
 }

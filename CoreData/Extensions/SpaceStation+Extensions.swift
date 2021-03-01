@@ -73,7 +73,7 @@ extension SpaceStation
 public func addToCoreData( json: SpaceStationJSON, context: NSManagedObjectContext ) -> SpaceStation
 {
    let newSpaceStation: SpaceStation = SpaceStation( context: context )
-   updateEntity( json: spaceStationJSON, entity: newSpaceStation, context: context )
+   updateEntity( json: json, entity: newSpaceStation, context: context )
 
    return newSpaceStation
 }
@@ -172,8 +172,8 @@ public func getSpaceStation( by entityID: Int64, context: NSManagedObjectContext
 public func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManagedObjectContext ) -> SpaceStation
 {
    let spaceStationEntity: SpaceStation? = getSpaceStation( by: spaceStation.id, context: context )
-   spaceStation.updateEntity( entity: spaceStationEntity, context: context )
-   return spaceStationEntity ?? spaceStation.addToCoreData( context: context )
+   updateEntity( json: spaceStation, entity: spaceStationEntity, context: context )
+   return spaceStationEntity ?? addToCoreData( json: spaceStation, context: context )
 }
 
 /**

@@ -1,5 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+import CoreData
+
 /*
  These correspond to the JSON samples in Samples.swift. You would ahve to load those into a CoreData context
  before using these.
@@ -82,7 +84,6 @@ public func getSampleDockingEntity() -> Docking?
                          entityName: DOCKING_ENTITY_NAME ) as? Docking
 }
 
-
 /**
  Gets an example Core Data entity `Expedition` for use in previews.
 
@@ -95,7 +96,6 @@ public func getSampleExpeditionEntity() -> Expedition?
                          context: context,
                          entityName: EXPEDITION_ENTITY_NAME ) as? Expedition
 }
-
 
 /**
  Gets an example Core Data entity `FlightVehicle` for use in previews.
@@ -246,4 +246,3 @@ public func getSampleSpaceStationEntity() -> SpaceStation?
                          context: PersistenceController.preview.container.viewContext,
                          entityName: SPACESTATION_ENTITY_NAME ) as? SpaceStation
 }
-

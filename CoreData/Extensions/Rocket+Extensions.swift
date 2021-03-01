@@ -30,10 +30,10 @@ extension Rocket
    /** True if the `Rocket` has any `Vehicle`s. */
    var hasVehicles: Bool { !rocketsSet.isEmpty }
 
-   func addConfigurationFromJSON( configuration: ConfigurationJSON?, context: NSManagedObjectContext )
+   func addConfigurationFromJSON( configuration: LauncherConfigJSON?, context: NSManagedObjectContext )
    {
       guard let json = configuration else { return }
-      let configurationEntity: Configuration = fetchConfiguration( configuration: json, context: context )
+      let configurationEntity: LauncherConfig = fetchLauncherConfig( launcherConfig: json, context: context )
       self.configuration = configurationEntity
       configurationEntity.addToRockets( self )
    }
@@ -126,8 +126,8 @@ public func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket
 public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket
 {
    let rocketEntity: Rocket? = getRocket( by: rocket.id, context: context )
-   rocket.updateEntity( entity: rocketEntity, context: context )
-   return rocketEntity ?? rocket.addToCoreData( context: context )
+   updateEntity( json: rocket, entity: rocketEntity, context: context )
+   return rocketEntity ?? addToCoreData( json: rocket, context: context )
 }
 
 /**

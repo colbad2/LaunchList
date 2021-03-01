@@ -164,15 +164,15 @@ public func parseJSONString< T: Decodable >( jsonData: Data ) -> T?
  */
 public func parseJSON( data: Data ) -> JSONStructure?
 {
-   return try? JSONSerialization.jsonObject( with: data, options: [] ) as? [String: Any]
+   return try? JSONSerialization.jsonObject( with: data, options: [] ) as? JSONStructure
 }
 
-//public func parseJSONFromString( data: String ) -> JSONStructure?
-//{
-//   guard let jsonData: Data = data.data( using: .utf8 ) else { return nil }
-//   return try? JSONSerialization.jsonObject( with: jsonData, options: [] ) as? [String: Any]
-//}
+/**
+ Parse a string as JSON.
 
+ - parameter jsonString: `String` string from the API
+ - returns:              `JSONStructure?` JSON dictionary, if possible
+ */
 public func parseJSON( jsonString: String ) -> JSONStructure?
 {
    guard let jsonData: Data = jsonString.data( using: .utf8 ) else { return nil }

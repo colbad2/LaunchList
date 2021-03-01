@@ -87,4 +87,3 @@ class PadJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
    }
 }
-

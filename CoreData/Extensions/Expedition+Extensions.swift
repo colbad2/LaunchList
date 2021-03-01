@@ -156,8 +156,8 @@ public func getExpedition( by entityID: Int64, context: NSManagedObjectContext )
 public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjectContext ) -> Expedition
 {
    let expeditionEntity: Expedition? = getExpedition( by: expedition.id, context: context )
-   expedition.updateEntity( entity: expeditionEntity, context: context )
-   return expeditionEntity ?? expedition.addToCoreData( context: context )
+   updateEntity( json: expedition, entity: expeditionEntity, context: context )
+   return expeditionEntity ?? addToCoreData( json: expedition, context: context )
 }
 
 /**

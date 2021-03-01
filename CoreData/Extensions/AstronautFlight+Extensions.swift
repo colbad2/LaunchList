@@ -76,6 +76,6 @@ public func getAstronautFlight( by id: Int64, context: NSManagedObjectContext ) 
 public func fetchAstronautFlight( astronautFlight: AstronautFlightJSON, context: NSManagedObjectContext ) -> AstronautFlight
 {
    let astronautFlightEntity: AstronautFlight? = getAstronautFlight( by: astronautFlight.id, context: context )
-   astronautFlight.updateEntity( entity: astronautFlightEntity, context: context )
-   return astronautFlightEntity ?? astronautFlight.addToCoreData( context: context )
+   updateEntity( json: astronautFlight, entity: astronautFlightEntity, context: context )
+   return astronautFlightEntity ?? addToCoreData( json: astronautFlight, context: context )
 }

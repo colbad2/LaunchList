@@ -4,6 +4,7 @@ import CoreData
 
 // swiftlint:disable line_length
 // swiftlint:disable file_length
+// swiftlint:disable force_unwrapping
 
 private let getLaunchListJSON =
 """
@@ -879,9 +880,9 @@ private let getLaunchListJSON =
 
  - returns: `AgencyJSON` struct suitable for previewing
  */
-public func getSampleAgency() -> AgencyJSON?
+public func getSampleAgency() -> AgencyJSON
 {
-   return parseJSONString( json: sampleAgencyJSON )
+   return AgencyJSON( json: parseJSON( jsonString: sampleAgencyJSON ) )!
 }
 
 private let sampleAgencyJSON =
@@ -909,9 +910,9 @@ private let sampleAgencyJSON =
 
  - returns: `AstronautJSON` struct suitable for previewing
  */
-public func getSampleAstronaut() -> AstronautJSON?
+public func getSampleAstronaut() -> AstronautJSON
 {
-   return parseJSONString( json: sampleAstronautJSON )
+   return AstronautJSON( json: parseJSON( jsonString: sampleAstronautJSON ) )!
 }
 
 private let sampleAstronautJSON =
@@ -963,9 +964,9 @@ private let sampleAstronautJSON =
 
  - returns: `DockingJSON` struct suitable for previewing
  */
-public func getSampleDocking() -> DockingJSON?
+public func getSampleDocking() -> DockingJSON
 {
-   return parseJSONString( json: sampleDockingJSON )
+   return DockingJSON( json: parseJSON( jsonString: sampleDockingJSON ) )!
 }
 
 private let sampleDockingJSON =
@@ -1022,9 +1023,9 @@ private let sampleDockingJSON =
 
  - returns: `EventJSON` struct suitable for previewing
  */
-public func getSampleEvent() -> EventJSON?
+public func getSampleEvent() -> EventJSON
 {
-   return parseJSONString( json: sampleEventJSON )
+   return EventJSON( json: parseJSON( jsonString: sampleEventJSON ) )!
 }
 
 private let sampleEventJSON =
@@ -1076,14 +1077,14 @@ private let sampleEventJSON =
 
  - returns: `ExpeditionJSON` struct suitable for previewing
  */
-public func getSampleExpedition() -> ExpeditionJSON?
+public func getSampleExpedition() -> ExpeditionJSON
 {
-   return parseJSONString( json: sampleExpeditionJSON )
+   return ExpeditionJSON( json: parseJSON( jsonString: sampleExpeditionJSON ) )!
 }
 
 private let sampleExpeditionJSON =
-   """
- {
+"""
+{
    "id": 81,
    "url": "https://ll.thespacedevs.com/2.1.0/expedition/81/",
    "name": "Expedition 47",
@@ -1100,7 +1101,7 @@ private let sampleExpeditionJSON =
      "orbit": "Low Earth Orbit",
      "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/international2520space2520station_image_20190220215716.jpeg"
    }
- }
+}
 """
 
 /**
@@ -1108,13 +1109,13 @@ private let sampleExpeditionJSON =
 
  - returns: `FlightVehicleJSON` struct suitable for previewing
  */
-public func getSampleFlightVehicle() -> FlightVehicleJSON?
+public func getSampleFlightVehicle() -> FlightVehicleJSON
 {
-   return parseJSONString( json: sampleFlightVehicleJSON )
+   return FlightVehicleJSON( json: parseJSON( jsonString: sampleFlightVehicleJSON ) )!
 }
 
 private let sampleFlightVehicleJSON =
-   """
+"""
 {
   "id": 220,
   "url": "https://ll.thespacedevs.com/2.1.0/spacecraft/flight/220/",
@@ -1156,9 +1157,9 @@ private let sampleFlightVehicleJSON =
 
  - returns: `LauncherConfigJSON` struct suitable for previewing
  */
-public func getSampleLauncherConfig() -> LauncherConfigJSON?
+public func getSampleLauncherConfig() -> LauncherConfigJSON
 {
-   return parseJSONString( json: sampleLauncherConfigJSON )
+   return LauncherConfigJSON( json: parseJSON( jsonString: sampleLauncherConfigJSON ) )!
 }
 
 private let sampleLauncherConfigJSON =
@@ -1179,9 +1180,9 @@ private let sampleLauncherConfigJSON =
 
  - returns: `LauncherJSON` struct suitable for previewing
  */
-public func getSampleLauncher() -> LauncherJSON?
+public func getSampleLauncher() -> LauncherJSON
 {
-   return parseJSONString( json: sampleLauncherJSON )
+   return LauncherJSON( json: parseJSON( jsonString: sampleLauncherJSON ) )!
 }
 
 private let sampleLauncherJSON =
@@ -1214,9 +1215,9 @@ private let sampleLauncherJSON =
 
  - returns: `LaunchJSON` struct suitable for previewing
  */
-public func getSampleLaunch() -> LaunchJSON?
+public func getSampleLaunch() -> LaunchJSON
 {
-   return parseJSONString( json: sampleLaunchJSON )
+   return LaunchJSON( json: parseJSON( jsonString: sampleLaunchJSON ) )!
 }
 
 private let sampleLaunchJSON =
@@ -1316,9 +1317,9 @@ private let sampleLaunchJSON =
 
  - returns: `LiveStreamJSON` struct suitable for previewing
  */
-public func getSampleLiveStream() -> LiveStreamJSON?
+public func getSampleLiveStream() -> LiveStreamJSON
 {
-   return parseJSONString( json: sampleLiveStreamJSON )
+   return LiveStreamJSON( json: parseJSON( jsonString: sampleLiveStreamJSON ) )!
 }
 
 private let sampleLiveStreamJSON =
@@ -1336,9 +1337,9 @@ private let sampleLiveStreamJSON =
 
  - returns: `LocationJSON` struct suitable for previewing
  */
-public func getSampleLocation() -> LocationJSON?
+public func getSampleLocation() -> LocationJSON
 {
-   return parseJSONString( json: sampleLocationJSON )
+   return LocationJSON( json: parseJSON( jsonString: sampleLocationJSON ) )!
 }
 
 private let sampleLocationJSON =
@@ -1359,9 +1360,9 @@ private let sampleLocationJSON =
 
  - returns: `MissionJSON` struct suitable for previewing
  */
-func getSampleMission() -> MissionJSON?
+func getSampleMission() -> MissionJSON
 {
-   return parseJSONString( json: sampleMissionJSON )
+   return MissionJSON( json: parseJSON( jsonString: sampleMissionJSON ) )!
 }
 
 private let sampleMissionJSON =
@@ -1386,9 +1387,9 @@ private let sampleMissionJSON =
 
  - returns: `PadJSON` struct suitable for previewing
  */
-public func getSamplePad() -> PadJSON?
+public func getSamplePad() -> PadJSON
 {
-   return parseJSONString( json: samplePadJSON )
+   return PadJSON( json: parseJSON( jsonString: samplePadJSON ) )!
 }
 
 private let samplePadJSON =
@@ -1422,9 +1423,9 @@ private let samplePadJSON =
 
  - returns: Fixed program data
  */
-public func getSampleProgram() -> ProgramJSON?
+public func getSampleProgram() -> ProgramJSON
 {
-   return parseJSONString( json: sampleProgramJSON )
+   return ProgramJSON( json: parseJSON( jsonString: sampleProgramJSON ) )!
 }
 
 /**
@@ -1432,9 +1433,9 @@ public func getSampleProgram() -> ProgramJSON?
 
  - returns: Fixed program data
  */
-public func getSampleProgram2() -> ProgramJSON?
+public func getSampleProgram2() -> ProgramJSON
 {
-   return parseJSONString( json: sampleProgramJSON2 )
+   return ProgramJSON( json: parseJSON( jsonString: sampleProgramJSON2 ) )!
 }
 
 private let sampleProgramJSON =
@@ -1512,9 +1513,9 @@ private let sampleProgramJSON2 =
 
  - returns: `RocketJSON` struct suitable for previewing
  */
-public func getSampleRocket() -> RocketJSON?
+public func getSampleRocket() -> RocketJSON
 {
-   return parseJSONString( json: sampleRocketJSON )
+   return RocketJSON( json: parseJSON( jsonString: sampleRocketJSON ) )!
 }
 
 private let sampleRocketJSON =
@@ -1538,9 +1539,9 @@ private let sampleRocketJSON =
 
  - returns: `SpacecraftConfigJSON` struct suitable for previewing
  */
-public func getSampleSpacecraftConfig() -> SpacecraftConfigJSON?
+public func getSampleSpacecraftConfig() -> SpacecraftConfigJSON
 {
-   return parseJSONString( json: sampleSpacecraftConfigJSON )
+   return SpacecraftConfigJSON( json: parseJSON( jsonString: sampleSpacecraftConfigJSON ) )!
 }
 
 private let sampleSpacecraftConfigJSON =
@@ -1569,9 +1570,9 @@ private let sampleSpacecraftConfigJSON =
 
  - returns: `SpacecraftJSON` struct suitable for previewing
  */
-public func getSampleSpacecraft() -> SpacecraftJSON?
+public func getSampleSpacecraft() -> SpacecraftJSON
 {
-   return parseJSONString( json: sampleSpacecraftJSON )
+   return SpacecraftJSON( json: parseJSON( jsonString: sampleSpacecraftJSON ) )!
 }
 
 private let sampleSpacecraftJSON =
@@ -1611,9 +1612,9 @@ private let sampleSpacecraftJSON =
 
  - returns: `SpaceStationJSON` struct suitable for previewing
  */
-public func getSampleSpaceStation() -> SpaceStationJSON?
+public func getSampleSpaceStation() -> SpaceStationJSON
 {
-   return parseJSONString( json: sampleSpaceStationJSON )
+   return SpaceStationJSON( json: parseJSON( jsonString: sampleSpaceStationJSON ) )!
 }
 
 private let sampleSpaceStationJSON =

@@ -46,10 +46,10 @@ extension Launch
    /**
     Adds the JSON struct, creating or updating as necessary.
 
-    - parameter provider: `ServiceProviderJSON?` JSON struct to add
-    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
+    - parameter provider: `AgencyJSON?` JSON struct to add
+    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
     */
-   func addAgencyFromJSON( provider: ServiceProviderJSON?, context: NSManagedObjectContext )
+   func addAgencyFromJSON( provider: AgencyJSON?, context: NSManagedObjectContext )
    {
       guard let json = provider else { return }
       let agencyEntity: Agency = fetchAgency( agency: json, context: context )
@@ -121,10 +121,10 @@ extension Launch
    /**
     Adds the JSON structs, creating or updating as necessary.
 
-    - parameter links: `[URLJSON]?` JSON struct to add
-    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    - parameter links:   `[URLLinkJSON]?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
     */
-   func addInfoLinksFromJSON( links: [LinkJSON]?, context: NSManagedObjectContext )
+   func addInfoLinksFromJSON( links: [URLLinkJSON]?, context: NSManagedObjectContext )
    {
       for link in links ?? []
       {
@@ -137,10 +137,10 @@ extension Launch
    /**
     Adds the JSON structs, creating or updating as necessary.
 
-    - parameter links: `[URLJSON]?` JSON struct to add
-    - parameter context:  `NSManagedObjectContext` context to add the JSON struct in
+    - parameter links:   `[URLLinkJSON]?` JSON struct to add
+    - parameter context: `NSManagedObjectContext` context to add the JSON struct in
     */
-   func addVideoLinksFromJSON( links: [LinkJSON]?, context: NSManagedObjectContext )
+   func addVideoLinksFromJSON( links: [URLLinkJSON]?, context: NSManagedObjectContext )
    {
       for link in links ?? []
       {
@@ -310,12 +310,12 @@ public func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -
 {
    if let launchEntity: Launch = getLaunch( by: launch.id, context: context )
    {
-      launch.updateEntity( entity: launchEntity, context: context )
+      updateEntity( json: launch, entity: launchEntity, context: context )
       return launchEntity
    }
    else
    {
-      return launch.addToCoreData( context: context )
+      return addToCoreData( json: launch, context: context )
    }
 }
 

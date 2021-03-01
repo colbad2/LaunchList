@@ -71,7 +71,7 @@ public class MissionJSON: Decodable, Identifiable, JSONElement
  - parameter abbreviation: `String` short orbit name
  - returns: standarad orbit name
  */
-private func normalizedOrbitName( _ name: String?, abbreviation: String? = nil ) -> String?
+public func normalizedOrbitName( _ name: String?, abbreviation: String? = nil ) -> String?
 {
    guard var orbitName = name else { return nil }
 

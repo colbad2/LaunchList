@@ -39,11 +39,11 @@ extension Agency
    /** True if the `Agency` has any `SpacecraftConfig`s. */
    var hasSpacecraftConfigs: Bool { !spacecraftConfigsSet.isEmpty }
 
-   func addConfigurationsFromJSON( configurations: [ConfigurationJSON]?, context: NSManagedObjectContext )
+   func addConfigurationsFromJSON( configurations: [LauncherConfigJSON]?, context: NSManagedObjectContext )
    {
-      for configuration: ConfigurationJSON in configurations ?? []
+      for configuration: LauncherConfigJSON in configurations ?? []
       {
-         let configurationEntity: Configuration = fetchConfiguration( configuration: configuration, context: context )
+         let configurationEntity: LauncherConfig = fetchLauncherConfig( launcherConfig: configuration, context: context )
          self.addToConfigurations( configurationEntity )
          configurationEntity.addToAgencies( self )
       }
@@ -104,20 +104,20 @@ public func updateEntity( json: AgencyJSON, entity: Agency?, context: NSManagedO
 
    if json.launchers?.count ?? 0 > 0 && json.launchers != "None" // DATABASE CORRECTION
    {
-      agencyEntity.launchers = launchers
+      agencyEntity.launchers = json.launchers
    }
 
    if json.spacecraft?.count ?? 0 > 0 && json.spacecraft != "None" // DATABASE CORRECTION
    {
-      agencyEntity.spacecraft = spacecraft
+      agencyEntity.spacecraft = json.spacecraft
    }
 
    agencyEntity.parent = json.parent
    agencyEntity.imageURL = json.imageURL
 
    // add flags for holes in the API
-   if let name: String = json.agencyEntity.name,
-      let correction: String = countryCodeCorrections[ json.name ]
+   if let name: String = json.name,
+      let correction: String = countryCodeCorrections[ name ]
    {
       agencyEntity.countryCodes?.append( correction ) // DATABASE CORRECTION
    }
@@ -231,22 +231,8 @@ public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> 
 public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agency
 {
    let agencyEntity: Agency? = getAgency( by: agency.id, context: context )
-   agency.updateEntity( entity: agencyEntity, context: context )
-   return agencyEntity ?? agency.addToCoreData( context: context )
-}
-
-/**
- Fetches, updates, or creates a `Agency` from the context, given `AgencyJSON` data
-
- - parameter agency: `ServiceProviderJSON` JSON data about the agency
- - parameter context: `NSManagedObjectContext` Core Data object context
- - returns: updated `Agency`
- */
-public func fetchAgency( agency: ServiceProviderJSON, context: NSManagedObjectContext ) -> Agency
-{
-   let agencyEntity: Agency? = getAgency( by: agency.id, context: context )
-   agency.updateEntity( entity: agencyEntity )
-   return agencyEntity ?? agency.addToCoreData( context: context )
+   updateEntity( json: agency, entity: agencyEntity, context: context )
+   return agencyEntity ?? addToCoreData( json: agency, context: context )
 }
 
 /**

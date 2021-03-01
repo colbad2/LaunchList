@@ -48,7 +48,7 @@ func updateEntity( json: MissionJSON, entity: Mission?, context: NSManagedObject
 
    if let orbitName: String = json.orbit?.name
    {
-      missionEntity.orbitName = normalizedOrbitName( orbitName, abbreviation: orbit?.abbreviation )
+      missionEntity.orbitName = normalizedOrbitName( orbitName, abbreviation: json.orbit?.abbreviation )
    }
    missionEntity.orbitAbbreviation = json.orbit?.abbreviation
 
@@ -82,8 +82,8 @@ func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Missio
 func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mission
 {
    let missionEntity: Mission? = getMission( by: mission.id, context: context )
-   mission.updateEntity( entity: missionEntity, context: context )
-   return missionEntity ?? mission.addToCoreData( context: context )
+   updateEntity( json: mission, entity: missionEntity, context: context )
+   return missionEntity ?? addToCoreData( json: mission, context: context )
 }
 
 /**

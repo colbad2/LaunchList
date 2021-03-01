@@ -109,8 +109,8 @@ public func getSpacecraft( by entityID: Int64, context: NSManagedObjectContext )
 public func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjectContext ) -> Spacecraft
 {
    let spacecraftEntity: Spacecraft? = getSpacecraft( by: spacecraft.id, context: context )
-   spacecraft.updateEntity( spacecraftEntity: spacecraftEntity, context: context )
-   return spacecraftEntity ?? spacecraft.addToCoreData( context: context )
+   updateEntity( json: spacecraft, spacecraftEntity: spacecraftEntity, context: context )
+   return spacecraftEntity ?? addToCoreData( json: spacecraft, context: context )
 }
 
 /**

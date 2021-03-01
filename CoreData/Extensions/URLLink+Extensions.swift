@@ -18,11 +18,11 @@ extension URLLink
 /**
  Add this data to Core Data as a `Link` entity. The context still needs to be saved after the add.
 
- - parameter json:    JSON to parse
+ - parameter json:    `URLLinkJSON` JSON to parse
  - parameter context: Core Data context to add the entity to.
  - returns: `URLLink` the added entity
  */
-public func addToCoreData( json: LinkJSON, context: NSManagedObjectContext ) -> URLLink
+public func addToCoreData( json: URLLinkJSON, context: NSManagedObjectContext ) -> URLLink
 {
    let newLink: URLLink = URLLink( context: context )
    updateEntity( json: json, entity: newLink, context: context )
@@ -33,11 +33,11 @@ public func addToCoreData( json: LinkJSON, context: NSManagedObjectContext ) -> 
 /**
  Set or update the values of the `URLLink` entity,
 
- - parameter json:    JSON to parse
+ - parameter json:    `URLLinkJSON` JSON to parse
  - parameter entity:  `URLLink?` entity to fill/update
  - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
  */
-public func updateEntity( json: LinkJSON, entity: URLLink?, context: NSManagedObjectContext )
+public func updateEntity( json: URLLinkJSON, entity: URLLink?, context: NSManagedObjectContext )
 {
    guard let linkEntity = entity else { return }
 
@@ -70,9 +70,9 @@ public func getURLLink( by entityID: String, context: NSManagedObjectContext ) -
  - parameter context: Core Data object context
  - returns: updated `URLLink`
  */
-public func fetchURLLink( link: LinkJSON, context: NSManagedObjectContext ) -> URLLink
+public func fetchURLLink( link: URLLinkJSON, context: NSManagedObjectContext ) -> URLLink
 {
    let linkEntity: URLLink? = getURLLink( by: link.url, context: context )
-   link.updateEntity( entity: linkEntity, context: context )
-   return linkEntity ?? link.addToCoreData( context: context )
+   updateEntity( json: link, entity: linkEntity, context: context )
+   return linkEntity ?? addToCoreData( json: link, context: context )
 }

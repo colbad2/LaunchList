@@ -87,7 +87,7 @@ public func updateEntity( json: PadJSON, entity: Pad?, context: NSManagedObjectC
       padEntity.name = name
    }
 
-   padEntity.totalLaunchCount = guaranteedInt64( totalLaunchCount )
+   padEntity.totalLaunchCount = guaranteedInt64( json.totalLaunchCount )
 
    if let wikiURL: String = json.wikiURL?.trim()
    {
@@ -165,8 +165,8 @@ public func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad
 public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
 {
    let padEntity: Pad? = getPad( by: pad.id, context: context )
-   pad.updateEntity( entity: padEntity, context: context )
-   return padEntity ?? pad.addToCoreData( context: context )
+   updateEntity( json: pad, entity: padEntity, context: context )
+   return padEntity ?? addToCoreData( json: pad, context: context )
 }
 
 /**
