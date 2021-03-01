@@ -123,10 +123,11 @@ class LaunchJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
-      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                         name: "Falcon 9 Block 5",
-                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                         variant: "Block 5" )
+      checkLauncherConfig( launcher: launch.rocket?.configuration, launcherID: 164, libraryID: 188,
+                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                           name: "Falcon 9 Block 5",
+                           family: "Falcon", fullName: "Falcon 9 Block 5",
+                           variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 136 )
       checkStatus( status: launch.status, abbreviation: "TBC",
                    description: "Awaiting official confirmation - current date is known with some certainty.",
@@ -331,10 +332,11 @@ class LaunchJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
-      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                         name: "Falcon 9 Block 5",
-                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                         variant: "Block 5" )
+      checkLauncherConfig( launcher: launch.rocket?.configuration, launcherID: 164, libraryID: 188,
+                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                           name: "Falcon 9 Block 5",
+                           family: "Falcon", fullName: "Falcon 9 Block 5",
+                           variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 2518 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -450,10 +452,11 @@ class LaunchJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
-      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                         name: "Falcon 9 Block 5",
-                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                         variant: "Block 5" )
+      checkLauncherConfig( launcher: launch.rocket?.configuration, launcherID: 164, libraryID: 188,
+                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                           name: "Falcon 9 Block 5",
+                           family: "Falcon", fullName: "Falcon 9 Block 5",
+                           variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 139 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -559,10 +562,11 @@ class LaunchJSONUnitTests: XCTestCase
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
-      checkLaunchConfig( config: launch.rocket?.configuration, configID: 161, family: "Falcon", fullName: "Falcon Heavy",
-                         name: "Falcon Heavy",
-                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/161/",
-                         variant: "Heavy" )
+      checkLauncherConfig( launcher: launch.rocket?.configuration, launcherID: 161, libraryID: 58,
+                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/161/",
+                           name: "Falcon Heavy",
+                           family: "Falcon", fullName: "Falcon Heavy",
+                           variant: "Heavy" )
       XCTAssertEqual( launch.rocket?.id, 162 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -729,10 +733,11 @@ class LaunchJSONUnitTests: XCTestCase
       checkAgency( agency: launch.programs?[ 0 ].agencies[ 3 ], agencyID: 121, name: "SpaceX",
                    type: "Commercial", url: "https://ll.thespacedevs.com/2.1.0/agencies/121/" )
 
-      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                         name: "Falcon 9 Block 5",
-                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                         variant: "Block 5" )
+      checkLauncherConfig( launcher: launch.rocket?.configuration, launcherID: 164, libraryID: 188,
+                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                           name: "Falcon 9 Block 5",
+                           family: "Falcon", fullName: "Falcon 9 Block 5",
+                           variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 2746 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -976,10 +981,11 @@ class LaunchJSONUnitTests: XCTestCase
       checkAgency( agency: launch.programs?[ 1 ].agencies[ 4 ], agencyID: 63, name: "Russian Federal Space Agency (ROSCOSMOS)",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/63/" )
 
-      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                         name: "Falcon 9 Block 5",
-                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                         variant: "Block 5" )
+      checkLauncherConfig( launcher: launch.rocket?.configuration, launcherID: 164, libraryID: 188,
+                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                           name: "Falcon 9 Block 5",
+                           family: "Falcon", fullName: "Falcon 9 Block 5",
+                           variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 2732 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",
@@ -1087,10 +1093,11 @@ class LaunchJSONUnitTests: XCTestCase
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs?.count, 0 )
 
-      checkLaunchConfig( config: launch.rocket?.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                         name: "Falcon 9 Block 5",
-                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                         variant: "Block 5" )
+      checkLauncherConfig( launcher: launch.rocket?.configuration, launcherID: 164, libraryID: 188,
+                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                           name: "Falcon 9 Block 5",
+                           family: "Falcon", fullName: "Falcon 9 Block 5",
+                           variant: "Block 5" )
       XCTAssertEqual( launch.rocket?.id, 174 )
       checkStatus( status: launch.status, abbreviation: "TBD",
                    description: "Current date is a 'No Earlier Than' estimation based on unreliable or interpreted sources.",

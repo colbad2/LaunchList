@@ -36,18 +36,6 @@ func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: Str
    XCTAssertEqual( location?.url, url )
 }
 
-func checkLaunchConfig( config: LauncherConfigJSON?, configID: Int64, family: String, fullName: String,
-                        name: String, url: String? = nil, variant: String )
-{
-   XCTAssertNotNil( config )
-   XCTAssertEqual( config?.family, family )
-   XCTAssertEqual( config?.fullName, fullName )
-   XCTAssertEqual( config?.id, configID )
-   XCTAssertEqual( config?.name, name )
-   XCTAssertEqual( config?.url, url )
-   XCTAssertEqual( config?.variant, variant )
-}
-
 func checkMission( mission: MissionJSON?, missionID: Int64, description: String, designator: String? = nil,
                    libraryID: Int64? = nil, name: String, type: String, orbitAbbreviation: String? = nil,
                    orbitLibraryID: Int64? = nil, orbitName: String? = nil )

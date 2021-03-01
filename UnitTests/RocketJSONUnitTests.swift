@@ -25,10 +25,11 @@ class RocketJSONUnitTests: XCTestCase
       guard let rocket: RocketJSON = RocketJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       XCTAssertNotNil( rocket )
-      checkLaunchConfig( config: rocket.configuration, configID: 164, family: "Falcon", fullName: "Falcon 9 Block 5",
-                         name: "Falcon 9 Block 5",
-                         url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
-                         variant: "Block 5" )
+      checkLauncherConfig( launcher: rocket.configuration, launcherID: 164, libraryID: 188,
+                           url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
+                           name: "Falcon 9 Block 5",
+                           family: "Falcon", fullName: "Falcon 9 Block 5",
+                           variant: "Block 5" )
       XCTAssertEqual( rocket.id, 136 )
    }
 }

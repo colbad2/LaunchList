@@ -69,9 +69,9 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
    let alias: String?
    let minStage: Int64?
    let maxStage: Int64?
-   let length: Int64?
-   let diameter: Int64?
-   let maidenFlight: String? // ISO format?
+   let length: Double?
+   let diameter: Double?
+   let maidenFlight: String? // "2009-10-28"
    let launchMass: Int64?
    let leoCapacity: Int64?
    let gtoCapacity: Int64?
@@ -102,7 +102,7 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
 
       self.id = id
       self.url = json[ "url" ] as? String
-      self.launchLibraryID = json[ "launchLibraryId" ] as? Int64
+      self.launchLibraryID = json[ "launch_library_id" ] as? Int64
       self.name = json[ "name" ] as? String
       self.family = json[ "family" ] as? String
       self.fullName = json[ "full_name" ] as? String
@@ -111,8 +111,8 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
       self.alias = json[ "alias" ] as? String
       self.minStage = json[ "min_stage" ] as? Int64
       self.maxStage = json[ "max_stage" ] as? Int64
-      self.length = json[ "length" ] as? Int64
-      self.diameter = json[ "diameter" ] as? Int64
+      self.length = json[ "length" ] as? Double
+      self.diameter = json[ "diameter" ] as? Double
       self.maidenFlight = json[ "maiden_flight" ] as? String
       self.launchMass = json[ "launch_mass" ] as? Int64
       self.leoCapacity = json[ "leo_capacity" ] as? Int64
