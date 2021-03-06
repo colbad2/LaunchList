@@ -3,15 +3,16 @@
 /**
  ### Example JSON
 
- ### Spec
+ ### Spec (API model: DockingEvent, DockingEventDetailed, DockingEventSerializerForSpacecraftFlight,
+            DockingEventDetailedSerializerForSpacestation)
        id               integer readOnly: true
        url              string($uri) readOnly: true
        launch_id*       string minLength: 1
-       docking*         string($date-time)
-       departure        string($date-time) x-nullable: true
-       flight_vehicle   SpacecraftFlightSerializerForDockingEvent{...}
+       docking*         string($date-time) x-nullable: true
+       flight_vehicle   SpacecraftFlightSerializerForDockingEvent{...} or SpacecraftFlightForDockingEvent{...}
        docking_location DockingLocation{...}
-       space_station    SpaceStation{}
+       space_station (or spacestation)    SpaceStation{} or SpaceStationSerializerForDockingEvent{}, SpaceStationSerializerForCommon{}
+       departure   string($date-time)
  */
 public class DockingEventJSON: Decodable, Identifiable, JSONElement
 {
@@ -36,6 +37,12 @@ public class DockingEventJSON: Decodable, Identifiable, JSONElement
       self.departure = json[ "departure" ] as? String
       self.flightVehicle = SpacecraftFlightJSON( json: json[ "flight_vehicle" ] as? JSONStructure )
       self.dockingLocation = IDNameJSON( json: json[ "docking_location" ] as? JSONStructure )
-      self.spacestation = SpaceStationJSON( json: json[ "docking_location" ] as? JSONStructure )
+
+      var spaceStationJSON: JSONStructure? = json[ "space_station" ] as? JSONStructure
+      if spaceStationJSON == nil
+      {
+         spaceStationJSON = json[ "spacestation" ] as? JSONStructure
+      }
+      self.spacestation = SpaceStationJSON( json: spaceStationJSON )
    }
 }

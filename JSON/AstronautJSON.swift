@@ -39,7 +39,7 @@
          "first_flight": "1991-10-02T05:59:38Z"
        }
 
- ### Spec (base and details)
+ ### Spec (API models: AstronautNormal, AstronautDetailed, AstronautDetailedSerializerNoFlights)
        id                        integer,       readOnly: true
        url                       string($uri),  readOnly: true
        name*                     string,        maxLength: 255, minLength: 1
@@ -48,17 +48,16 @@
        date_of_birth*            string($date)
        date_of_death             string($date), x-nullable: true
        nationality*              string,        maxLength: 255
-       bio                       string,        minLength: 1,   maxLength: 2048, minLength: 1
+       bio*                      string,        minLength: 1,   maxLength: 2048, minLength: 1
        twitter                   string,        maxLength: 255, x-nullable: true
        instagram                 string,        maxLength: 255, x-nullable: true
        wiki                      string,        maxLength: 255, x-nullable: true
-       agency                    Agency{...}
+       agency                    AgencySerializerMini{...}
        profile_image             string($uri),  readOnly: true, x-nullable: true
        profile_image_thumbnail   string($uri),  readOnly: true
        last_flight               string,        readOnly: true
        first_flight              string,        readOnly: true
-
-       flights                   [Launch{...}]
+       flights                   [LaunchSerializerCommon{...}]
        landings                  [SpacecraftFlight{...}]
  */
 public class AstronautJSON: Decodable, Identifiable, JSONElement, AutoEquatable, AutoHashable

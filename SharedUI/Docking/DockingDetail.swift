@@ -22,7 +22,12 @@ struct DockingDetail: View
                LeftField( prefix: "Departure:", text: docking.docking )
                LeftField( prefix: "Location:", text: docking.dockingLocationName )
 
-               AgencyLink( agencyID: docking.flightVehicle?.spacecraft?.spacecraftConfig?.agency?.id )
+               // AgencyLink( agencyID: docking.flightVehicle?.spacecraft?.spacecraftConfig?.agencies.id )
+               List( getDockingAgencies( docking: docking ) )
+               {
+                  agency in
+                  AgencyLink( agencyID: agency.id )
+               }
             }
          }
 
@@ -30,6 +35,13 @@ struct DockingDetail: View
       }
       .padding()
    }
+}
+
+func getDockingAgencies( docking: Docking ) -> [Agency]
+{
+   let agenciesSet: Set< Agency >? = docking.flightVehicle?.spacecraft?.spacecraftConfig?.agencies as? Set<Agency>
+   guard let set = agenciesSet else { return [] }
+   return Array( set )
 }
 
 #if DEBUG

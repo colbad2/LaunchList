@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
- ### Spec
+ ### Spec (API models: InfoURL, VidURL)
        priority      integer maximum: 2147483647 minimum: -2147483648
        title         string maxLength: 200 x-nullable: true
        description   string maxLength: 350 x-nullable: true

@@ -41,7 +41,7 @@
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="agency" inverseEntity="Launch"/>
         <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="agencies" inverseEntity="Program"/>
         <relationship name="rockets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rocket" inverseName="agencies" inverseEntity="Rocket"/>
-        <relationship name="spacecraftConfigs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpacecraftConfig" inverseName="agency" inverseEntity="SpacecraftConfig"/>
+        <relationship name="spacecraftConfigs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpacecraftConfig" inverseName="agencies" inverseEntity="SpacecraftConfig"/>
         <relationship name="spacecraftList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Spacecraft" inverseName="agencies" inverseEntity="Spacecraft"/>
         <relationship name="spaceStations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpaceStation" inverseName="owners" inverseEntity="SpaceStation"/>
     </entity>
@@ -201,7 +201,7 @@
         <attribute name="alias" optional="YES" attributeType="String"/>
         <attribute name="apogee" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="consecutiveSuccessfulLaunches" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="diameter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="diameter" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="failedLaunches" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="family" optional="YES" attributeType="String"/>
         <attribute name="fullName" optional="YES" attributeType="String"/>
@@ -211,7 +211,7 @@
         <attribute name="infoURL" optional="YES" attributeType="String"/>
         <attribute name="launcherConfigDescription" optional="YES" attributeType="String"/>
         <attribute name="launchMass" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="length" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="length" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="leoCapacity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="maidenFlight" optional="YES" attributeType="String"/>
         <attribute name="maxStage" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -319,9 +319,9 @@
         <attribute name="capability" optional="YES" attributeType="String"/>
         <attribute name="crewCapacity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="details" optional="YES" attributeType="String"/>
-        <attribute name="diameter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="diameter" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="flightLife" optional="YES" attributeType="String"/>
-        <attribute name="height" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="height" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="history" optional="YES" attributeType="String"/>
         <attribute name="humanRated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -335,7 +335,7 @@
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
         <attribute name="wikiURL" optional="YES" attributeType="String"/>
-        <relationship name="agency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Agency" inverseName="spacecraftConfigs" inverseEntity="Agency"/>
+        <relationship name="agencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Agency" inverseName="spacecraftConfigs" inverseEntity="Agency"/>
         <relationship name="spacecraft" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spacecraft" inverseName="spacecraftConfig" inverseEntity="Spacecraft"/>
     </entity>
     <entity name="SpacecraftFlight" representedClassName="SpacecraftFlight" parentEntity="Fetched" syncable="YES" codeGenerationType="class">
@@ -403,7 +403,7 @@
         <element name="RoadClosure" positionX="-430.45166015625" positionY="-46.77241516113281" width="128" height="119"/>
         <element name="Rocket" positionX="538.41943359375" positionY="668.942138671875" width="128" height="119"/>
         <element name="Spacecraft" positionX="-560.5470581054686" positionY="423.2239227294922" width="128" height="208"/>
-        <element name="SpacecraftConfig" positionX="-627.9261474609375" positionY="686.8445129394531" width="128" height="358"/>
+        <element name="SpacecraftConfig" positionX="-627.9261474609375" positionY="686.8445129394531" width="128" height="344"/>
         <element name="SpacecraftFlight" positionX="-288.9108276367187" positionY="681.4465026855469" width="128" height="179"/>
         <element name="SpaceStation" positionX="-239.146240234375" positionY="296.3642730712891" width="128" height="269"/>
         <element name="TimelineEntry" positionX="-596.2223510742188" positionY="6.175186157226562" width="128" height="58"/>

@@ -13,9 +13,9 @@ import CoreData
            "id": 136
        }
 
- ### Spec
+ ### Spec (API Model: RocketSerializerCommon, RocketDetailed)
        id               integer
-       configuration    LauncherConfigDetail{...}
+       configuration    LauncherConfigList{...} pr LauncherConfigDetail{}
        launcher_stage   [FirstStage{...}]
        spacecraft_stage SpacecraftFlightDetailedSerializerForLaunch{...}
  */

@@ -21,14 +21,15 @@
          }
       }
 
- ### Spec
+ ### Spec (API models: Expedition, ExpeditionDetail, ExpeditionSerializerforSpacestation,
+                         ExpeditionDetailedSerializerforSpacestation )
        id   integer
        url   string($uri)
        name*   string maxLength: 255 minLength: 1
        start*   string($date-time)
        end   string($date-time)
-       spacestation   SpaceStation
-       crew   [AstronautFlight]
+       spacestation   SpaceStationSerializerForExpedition or SpaceStationDetailedSerializerForExpedition
+       crew   AstronautFlight[] or AstronautFlightForExpedition[]
 */
 public class ExpeditionJSON: Decodable, Identifiable, JSONElement
 {

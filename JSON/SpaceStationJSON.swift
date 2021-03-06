@@ -14,19 +14,28 @@
          "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/spacestation_images/salyut25206_image_20190318095930.jpg"
        }
 
- ### Spec
+ ### Spec (API model: SpaceStationSerializerForDockingEvent, SpaceStationSerializerForExpedition,
+                        SpaceStationSerializerForCommon, SpaceStationDetailedSerializerForExpedition,
+                        SpaceStation, SpaceStationDetailed)
        id                integer
        url               string($uri)
        name*             string maxLength: 255 minLength: 1
        image_url         string($uri) x-nullable: true
-       status            IDNameJSON{...}
+       status            SpaceStationStatus{...} (IDNameJSON)
        orbit             string
        founded*          string($date)
        description*      string maxLength: 2048 minLength: 1
        owners            [AgencyList]
-       type              IDNameJSON
-       deorbited         string($date) x-nullable: true
-       active_expedition [Expedition]
+       type              SpaceStstionType (IDNameJSON)
+       deorbited         string($date)
+       active_expedition [Expedition] or ExpeditionSerializerForSpacestation[]
+       (active_expeditions ExpeditionDetailedSerializerForSpacestation[])
+       height   number title: Height (m)
+       width   number title: Width (m)
+       mass   number title: Mass (T)
+       volume   integer title: Volume (m^3) maximum: 2147483647 minimum: -214748364
+       onboard_crew   string
+       docking_location   [ DockingLocationSerializerForSpacestation{...}]
  */
 public class SpaceStationJSON: Decodable, Identifiable, JSONElement
 {
@@ -48,6 +57,16 @@ public class SpaceStationJSON: Decodable, Identifiable, JSONElement
    var type: String?
    var deorbited: String? // Date
    var activeExpeditions: [ExpeditionJSON] = []
+   /** Height in meters.*/
+   var height: Double?
+   /** Width in meters.*/
+   var width: Double?
+   /** Mass in Tons. */
+   var mass: Double?
+   /** Volume (m^3). */
+   var volume: Int64?
+   var onboardCrew: String?
+   var dockingLocations: [DockingLocationJSON] = []
 
    /**
     Make a `SpaceStationJSON` from a JSON structure.
@@ -70,6 +89,21 @@ public class SpaceStationJSON: Decodable, Identifiable, JSONElement
       self.owners = ( json[ "owners" ] as? [JSONStructure] ?? [] ).compactMap { return AgencyJSON( json: $0 ) }
       self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )?.name
       self.deorbited = json[ "deorbited" ] as? String
-      self.activeExpeditions = ( json[ "active_expedition" ] as? [JSONStructure] ?? [] ).compactMap { return ExpeditionJSON( json: $0 ) }
+
+      var expeditionsJSON: [JSONStructure]? = json[ "active_expedition" ] as? [JSONStructure]
+      if expeditionsJSON == nil
+      {
+         expeditionsJSON = json[ "active_expeditions" ] as? [JSONStructure]
+      }
+      self.activeExpeditions = ( expeditionsJSON ?? [] ).compactMap { return ExpeditionJSON( json: $0 ) }
+
+      self.height = json[ "height" ] as? Double
+      self.width = json[ "width" ] as? Double
+      self.mass = json[ "mass" ] as? Double
+      self.volume = json[ "volume" ] as? Int64
+      self.onboardCrew = json[ "onboard_crew" ] as? String
+
+      let dockingLocationsJSON: [JSONStructure] = json[ "docking_location" ] as? [JSONStructure] ?? []
+      self.dockingLocations = dockingLocationsJSON.compactMap { return DockingLocationJSON( json: $0 ) }
    }
 }

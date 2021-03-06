@@ -14,7 +14,7 @@
          "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/soyuz_image_20201015191152.jpg"
        }
 
- ### Spec (base and details)
+ ### Spec (API models: SpacecraftConfigurationDetail, SpacecraftConfig, SpacecraftConfiguration)
        id   integer, readOnly: true
        url   string($uri), readOnly: true
        name*   string, maxLength: 200, minLength: 1
@@ -22,6 +22,7 @@
        agency   Agency{...}
        in_use   boolean
        image_url   string($uri), readOnly: true, x-nullable: true
+
        capability   string, maxLength: 2048, minLength: 1
        history   string, maxLength: 1000, minLength: 1
        details   string, maxLength: 1000, minLength: 1
@@ -56,8 +57,8 @@ public class SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
    let history: String?
    let details: String?
    let maidenFlight: String? // ISO date
-   let height: Int64?
-   let diameter: Int64?
+   let height: Double?
+   let diameter: Double?
    let humanRated: Bool?
    let crewCapacity: Int64?
    let payloadCapacity: Int64?
@@ -81,20 +82,20 @@ public class SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
       self.name = json[ "name" ] as? String
       self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )
       self.agency = AgencyJSON( json: json[ "agency" ] as? JSONStructure )
-      self.inUse = json[ "inUse" ] as? Bool
-      self.imageURL = json[ "imageURL" ] as? String
-      self.capability = json[ "capability" ] as? String
+      self.inUse = json[ "in_use" ] as? Bool
+      self.imageURL = json[ "image_url" ] as? String
+      self.capability = nonEmptyString( json[ "capability" ] )
       self.history = json[ "history" ] as? String
       self.details = json[ "details" ] as? String
-      self.maidenFlight = json[ "imageURL" ] as? String
-      self.height = json[ "height" ] as? Int64
-      self.diameter = json[ "diameter" ] as? Int64
+      self.maidenFlight = json[ "maiden_flight" ] as? String
+      self.height = json[ "height" ] as? Double
+      self.diameter = json[ "diameter" ] as? Double
       self.humanRated = json[ "human_rated" ] as? Bool
       self.crewCapacity = json[ "crew_capacity" ] as? Int64
       self.payloadCapacity = json[ "payload_capacity" ] as? Int64
-      self.flightLife = json[ "maiden_flight" ] as? String
+      self.flightLife = json[ "flight_life" ] as? String
       self.nationURL = json[ "nation_url" ] as? String
       self.wikiURL = json[ "wiki_link" ] as? String
-      self.infoURL = json[ "info_link" ] as? String
+      self.infoURL = nonEmptyString( json[ "info_link" ] )
    }
 }

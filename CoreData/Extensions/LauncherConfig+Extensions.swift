@@ -78,8 +78,8 @@ public func updateEntity( json: LauncherConfigJSON, entity: LauncherConfig?, con
    launcherConfigEntity.alias = json.alias
    launcherConfigEntity.minStage = guaranteedInt64( json.minStage )
    launcherConfigEntity.maxStage = guaranteedInt64( json.maxStage )
-   launcherConfigEntity.length = guaranteedInt64( json.length )
-   launcherConfigEntity.diameter = guaranteedInt64( json.diameter )
+   launcherConfigEntity.length = guaranteedDouble( json.length )
+   launcherConfigEntity.diameter = guaranteedDouble( json.diameter )
    launcherConfigEntity.maidenFlight = json.maidenFlight
    launcherConfigEntity.launchMass = guaranteedInt64( json.launchMass )
    launcherConfigEntity.leoCapacity = guaranteedInt64( json.leoCapacity )

@@ -17,14 +17,15 @@
            "type": "Communications"
          }
 
-   ### Spec
+   ### Spec (API model: Mission)
        id                integer
-       launch_library_id integer maximum: 2147483647 minimum: -2147483648 x-nullable: true
        name              string maxLength: 255
        description       string
-       launch_designator string maxLength: 255 x-nullable: true
+       launch_designator string maxLength: 255
        type              string
        orbit*            Orbit{}
+
+       // launch_library_id integer maximum: 2147483647 minimum: -2147483648
  }
  */
 public class MissionJSON: Decodable, Identifiable, JSONElement

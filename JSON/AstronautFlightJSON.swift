@@ -1,10 +1,10 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
- ### Spec
+ ### Spec (API models: AstronautFlight, AstronautFlightForExpedition)
        id        integer
-       role      string
-       astronaut Astronaut{...}
+       role      AstronautRole{}
+       astronaut Astronaut{...} or AstronautDetailedSerializerNoFlights{}
  */
 public class AstronautFlightJSON: Decodable
 {

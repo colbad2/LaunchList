@@ -10,7 +10,7 @@
            "name": "Geostationary Transfer Orbit"
        }
 
- ### Spec
+ ### Spec (API model: Orbit)
        id   integer
        name*   string maxLength: 50 minLength: 1
        abbrev*   string  maxLength: 30 minLength: 1

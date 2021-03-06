@@ -12,14 +12,14 @@
          "spacecraft_config": { … }
        }
 
- ## Spec
+ ## Spec (API models: Spacecraft, SpacecraftDetailedNoFlights, SpacecraftDetailed)
        id                integer
        url               string($uri)
        name*             string maxLength: 255 minLength: 1
        serial_number     string maxLength: 255 x-nullable: true
        status            SpacecraftStatus{...}
        description*      string maxLength: 2048 minLength: 1
-       spacecraft_config  SpacecraftConfig{...}
+       spacecraft_config  SpacecraftConfig{...} or SpacecraftConfigDetail
        flights           [SpacecraftFlight]
  */
 public class SpacecraftJSON: Decodable, Identifiable, JSONElement

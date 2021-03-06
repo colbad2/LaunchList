@@ -49,13 +49,23 @@ extension Agency
       }
    }
 
-   func addSpacecraftsFromJSON( spacecraftList: [SpacecraftJSON]?, context: NSManagedObjectContext )
+//   func addSpacecraftsFromJSON( spacecraftList: [SpacecraftJSON]?, context: NSManagedObjectContext )
+//   {
+//      for spacecraft: SpacecraftJSON in spacecraftList ?? []
+//      {
+//         let spacecraftEntity: Spacecraft = fetchSpacecraft( spacecraft: spacecraft, context: context )
+//         self.addToSpacecraftList( spacecraftEntity )
+//         spacecraftEntity.addToAgencies( self )
+//      }
+//   }
+
+   func addSpacecraftConfigsFromJSON( spacecraftConfigs: [SpacecraftConfigJSON]?, context: NSManagedObjectContext )
    {
-      for spacecraft: SpacecraftJSON in spacecraftList ?? []
+      for spacecraft: SpacecraftConfigJSON in spacecraftConfigs ?? []
       {
-         let spacecraftEntity: Spacecraft = fetchSpacecraft( spacecraft: spacecraft, context: context )
-         self.addToSpacecraftList( spacecraftEntity )
-         spacecraftEntity.addToAgencies( self )
+         let spacecraftConfigEntity: SpacecraftConfig = fetchSpacecraftConfig( spacecraftConfig: spacecraft, context: context )
+         self.addToSpacecraftConfigs( spacecraftConfigEntity )
+         spacecraftConfigEntity.addToAgencies( self )
       }
    }
 }
@@ -138,7 +148,7 @@ public func updateEntity( json: AgencyJSON, entity: Agency?, context: NSManagedO
    agencyEntity.imageURL = json.imageURL
    agencyEntity.nationURL = json.nationURL
    agencyEntity.addConfigurationsFromJSON( configurations: json.configurationList, context: context )
-   agencyEntity.addSpacecraftsFromJSON( spacecraftList: json.spacecraftList, context: context )
+   agencyEntity.addSpacecraftConfigsFromJSON( spacecraftConfigs: json.spacecraftList, context: context )
 
    // additional generated info, not in the JSON
    agencyEntity.sortableName = json.name?.lowercased()

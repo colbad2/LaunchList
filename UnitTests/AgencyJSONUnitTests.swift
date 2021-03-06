@@ -675,8 +675,247 @@ public class AgenciesUnitTests: XCTestCase
       XCTAssertNotNil( configurations )
       XCTAssertEqual( configurations.count, 12 )
 
-      let spacecraft: [SpacecraftJSON] = agency.spacecraftList
+      checkLauncherConfig( launcher: configurations[ 0 ], launcherID: 126, libraryID: 158, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/126/",
+                           name: "Ares I-X",
+                           description: "Ares I was the crew launch vehicle that was being developed by NASA as part of the Constellation program. Ares I-X was a design concept demonstrator, that had a dummy second stage and a partially functional first stage.",
+                           family: "Ares", fullName: "Ares I-X", variant: "I-X",
+                           minStage: 1, maxStage: 1, length: 99.7,
+                           diameter: 3.71, maidenFlight: "2009-10-28", launchMass: 816,
+                           takeoffThrust: 12000,
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/ares2520i-x_image_20190222030444.jpeg",
+                           wikiURL: "https://en.wikipedia.org/wiki/Ares_I", consecutiveSuccessfulLaunches: 1,
+                           successfulLaunches: 1, failedLaunches: 0, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 1 ], launcherID: 162, libraryID: 140, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/162/",
+                           name: "Atlas",
+                           description: "The Atlas LV-3B, Atlas D Mercury Launch Vehicle or Mercury-Atlas Launch Vehicle, was a human-rated expendable launch system used as part of the United States Project Mercury to send astronauts into low Earth orbit. Manufactured by American aircraft manufacturing company Convair, it was derived from the SM-65D Atlas missile, and was a member of the Atlas family of rockets.",
+                           family: "Atlas", fullName: "Atlas LV-3B", variant: "LV-3B",
+                           minStage: 1, maxStage: 1, length: 28.7,
+                           diameter: 3, maidenFlight: "1960-07-29", launchMass: 120, leoCapacity: 1360,
+                           takeoffThrust: 1300,
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/atlas_image_20190222030015.jpeg",
+                           wikiURL: "https://en.wikipedia.org/wiki/Atlas_LV-3B", consecutiveSuccessfulLaunches: 6,
+                           successfulLaunches: 6, failedLaunches: 1, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 2 ], launcherID: 342, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/342/",
+                           name: "Nike Cajun",
+                           description: "The Nike-Cajun was a two-stage sounding rocket built by combining a Nike base stage with a Cajun upper stage. It was launched 714 times between 1956 and 1976 and was the most frequently used sounding rocket of the western world.",
+                           fullName: "Nike Cajun",
+                           minStage: 2, maxStage: 2, length: 7.7,
+                           diameter: 0.42, maidenFlight: "1956-07-06", launchMass: 0,
+                           takeoffThrust: 246,
+                           wikiURL: "https://en.wikipedia.org/wiki/Nike-Cajun", consecutiveSuccessfulLaunches: 0,
+                           successfulLaunches: 0, failedLaunches: 0, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 3 ], launcherID: 195, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/195/",
+                           name: "Orion Abort Test Booster",
+                           description: "The Orion Abort Test Booster is a small solid rocket launcher developed by Northropp Grumman.\r\n\r\nIt uses a single stage Peacekeeper missile first stage motor [SR118] inside an Aero-Shell to replicate the Orion Service Module 5.5 meter diameter.",
+                           fullName: "Orion Abort Test Booster",
+                           minStage: 1, maxStage: 1,
+                           diameter: 5.5, maidenFlight: "2019-07-02",
+                           takeoffThrust: 2200,
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/orion2520abort2520test2520booster_image_20190701191116.jpeg",
+                           infoURL: "https://www.nasa.gov/sites/default/files/atoms/files/aa2_fact_sheet.pdf",
+                           wikiURL: "https://en.wikipedia.org/wiki/Orion_Abort_Test_Booster", consecutiveSuccessfulLaunches: 1,
+                           successfulLaunches: 1, failedLaunches: 0, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 4 ], launcherID: 163, libraryID: 135, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/163/",
+                           name: "Saturn IB",
+                           description: "The Saturn IB (pronounced \"one B\", also known as the Uprated Saturn I) was an American launch vehicle commissioned by the National Aeronautics and Space Administration (NASA) for the Apollo program. It replaced the S-IV second stage of the Saturn I with the much more powerful S-IVB, able to launch a partially fueled Apollo Command/Service Module (CSM) or a fully fueled Lunar Module (LM) into low Earth orbit for early flight tests before the larger Saturn V needed for lunar flight was ready.",
+                           family: "Saturn", fullName: "Saturn IB", variant: "IB",
+                           minStage: 2, maxStage: 2,
+                           length: 43.2, diameter: 6.61, maidenFlight: "1966-02-26", launchMass: 590, leoCapacity: 21000,
+                           takeoffThrust: 7100,
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/saturn2520ib_image_20190222030046.jpeg",
+                           wikiURL: "https://en.wikipedia.org/wiki/Saturn_IB", consecutiveSuccessfulLaunches: 6,
+                           successfulLaunches: 6, failedLaunches: 0, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 5 ], launcherID: 93, libraryID: 136, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/93/",
+                           name: "Saturn V",
+                           description: "The Saturn V was a human-rated expendable rocket used by NASA between 1967 and 1973. Most notably, the Saturn V took the Apollo program to the Moon. It still remains the world's tallest, heaviest, and most powerful rocket ever brought to operational status and is the only launch vehicle to take humans beyond LEO.",
+                           family: "Saturn", fullName: "Saturn V", variant: "V",
+                           minStage: 3, maxStage: 3,
+                           length: 110.6, diameter: 10.1, maidenFlight: "1967-11-09", launchMass: 2970, leoCapacity: 140000,
+                           takeoffThrust: 35100,
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/saturn2520v_image_20190222030036.jpeg",
+                           wikiURL: "https://en.wikipedia.org/wiki/Saturn_V", consecutiveSuccessfulLaunches: 13,
+                           successfulLaunches: 13, failedLaunches: 0, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 6 ], launcherID: 185, libraryID: 208, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/185/",
+                           name: "Scout X-1",
+                           description: "Scout X-1 was an American expendable launch system and sounding rocket which was flown seven times between August 1960 and October 1961.",
+                           family: "Scout", fullName: "Scout X-1", variant: "X-1",
+                           minStage: 4, maxStage: 4,
+                           length: 25, diameter: 1.01, maidenFlight: "1960-07-02", launchMass: 16, leoCapacity: 59,
+                           takeoffThrust: 471, apogee: 185,
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/scout2520x-1_image_20190324192636.jpeg",
+                           wikiURL: "https://en.wikipedia.org/wiki/Scout_X-1", consecutiveSuccessfulLaunches: 0,
+                           successfulLaunches: 1, failedLaunches: 2, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 7 ], launcherID: 205, libraryID: 236, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/205/",
+                           name: "SLS Block 1B",
+                           fullName: "SLS Block 1B",
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/sls_block_1b_image_20200905100013.jpeg",
+                           consecutiveSuccessfulLaunches: 0,
+                           successfulLaunches: 0, failedLaunches: 0, pendingLaunches: 4 )
+
+      checkLauncherConfig( launcher: configurations[ 8 ], launcherID: 143, libraryID: 144, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/143/",
+                           name: "Space Launch System (SLS)",
+                           description: "The Space Launch System (SLS) is an American Space Shuttle-derived heavy expendable launch vehicle. It is part of NASA's deep space exploration plans including a manned mission to Mars. SLS follows the cancellation of the Constellation program, and is to replace the retired Space Shuttle.",
+                           family: "SLS", fullName: "Space Launch System (SLS)",
+                           minStage: 2, maxStage: 3,
+                           length: 111, diameter: 8.4, leoCapacity: 130000,
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/space2520launch2520system25202528sls2529_image_20190224012338.jpeg",
+                           wikiURL: "https://en.wikipedia.org/wiki/Space_Launch_System",
+                           consecutiveSuccessfulLaunches: 0,
+                           successfulLaunches: 0, failedLaunches: 0, pendingLaunches: 4 )
+
+      checkLauncherConfig( launcher: configurations[ 9 ], launcherID: 98, libraryID: 137, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/98/",
+                           name: "Titan II",
+                           description: "The Titan II GLV (Gemini Launch Vehicle) or Gemini-Titan II was an American expendable launch system derived from the Titan II missile, which was used to launch twelve Gemini missions for NASA between 1964 and 1966. Two unmanned launches followed by ten manned ones were conducted from Launch Complex 19 at the Cape Canaveral Air Force Station, starting with Gemini 1 on April 8, 1964.",
+                           family: "Titan", fullName: "Titan II GLV", variant: "GLV",
+                           minStage: 2, maxStage: 2,
+                           length: 33.2, diameter: 3.05, maidenFlight: "1964-04-08",
+                           launchMass: 154, leoCapacity: 3850, takeoffThrust: 1913,
+                           imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/titan2520ii_image_20190222030027.jpeg",
+                           wikiURL: "https://en.wikipedia.org/wiki/Titan_II_GLV",
+                           consecutiveSuccessfulLaunches: 10,
+                           successfulLaunches: 10, failedLaunches: 0, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 10 ], launcherID: 441, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/441/",
+                           name: "Trailblazer 1",
+                           description: "American test vehicle. The rocket's first three stages would take the upper stage package to a 260 km apogee. The upper stage package was mounted upside-down in relation to the other stages. When it had reached the peak, the three upper stages fired in sequence, ramming the payload, a 13 cm sphere, into the atmosphere at orbital re-entry speeds.",
+                           family: "Trailblazer", fullName: "Trailblazer 1", variant: "1",
+                           minStage: 4, maxStage: 4,
+                           length: 17.1, diameter: 0.58, maidenFlight: "1959-03-03",
+                           launchMass: 3, takeoffThrust: 365,
+                           consecutiveSuccessfulLaunches: 0,
+                           successfulLaunches: 0, failedLaunches: 0, pendingLaunches: 0 )
+
+      checkLauncherConfig( launcher: configurations[ 11 ], launcherID: 442, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/442/",
+                           name: "Trailblazer 2",
+                           description: "American test vehicle. NASA rocket designed for high-speed re-entry tests.",
+                           family: "Trailblazer", fullName: "Trailblazer 2", variant: "2",
+                           minStage: 4, maxStage: 4,
+                           length: 15.7, diameter: 0.79, maidenFlight: "1961-12-14",
+                           launchMass: 6, takeoffThrust: 547,
+                           consecutiveSuccessfulLaunches: 0,
+                           successfulLaunches: 0, failedLaunches: 0, pendingLaunches: 0 )
+
+      let spacecraft: [SpacecraftConfigJSON] = agency.spacecraftList
       XCTAssertNotNil( spacecraft )
       XCTAssertEqual( spacecraft.count, 6 )
+
+      checkSpacecraftConfig( spacecraft: spacecraft[ 0 ], spacecraftID: 10, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/10/",
+                             name: "Apollo Command/Service Module",
+                             type: "Unknown", inUse: false, capability: "Cargo and Human Transportation to Lunar Orbit",
+                             history: "The Apollo Command/Service Module (CSM) was one of two principal components of the United States Apollo spacecraft, used for the Apollo program which landed astronauts on the Moon between 1969 and 1972.",
+                             details: "The Apollo Command/Service Module (CSM) was one of two principal components of the United States Apollo spacecraft, used for the Apollo program which landed astronauts on the Moon between 1969 and 1972. The CSM functioned as a mother ship which carried a crew of three astronauts and the second Apollo spacecraft, the Lunar Module, to lunar orbit, and brought the astronauts back to Earth. It consisted of two parts: the conical Command Module, a cabin that housed the crew and carried equipment needed for atmospheric reentry and splashdown; and the cylindrical Service Module which provided propulsion, electrical power and storage for various consumables required during a mission. An umbilical connection transferred power and consumables between the two modules. Just before reentry of the Command Module on the return home, the umbilical connection was severed and the Service Module was cast off and allowed to burn up in the atmosphere.",
+                             maidenFlight: "1966-02-26",
+                             height: 11, diameter: 3.9, humanRated: true, crewCapacity: 3,
+                             payloadCapacity: 1050, flightLife: "14 days",
+                             imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/apollo2520command2fservice2520module_image_20190207032507.jpeg",
+                             nationURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_nation/apollo2520command2fservice2520module_image_20190207032507.png",
+                             wikiURL: "https://en.wikipedia.org/wiki/Apollo_Command/Service_Module" )
+      checkAgency( agency: spacecraft[ 0 ].agency, agencyID: 44, name: "National Aeronautics and Space Administration",
+                   featured: true, type: "Government", url: "https://ll.thespacedevs.com/2.2.0/agencies/44/",
+                   countryCode: "USA", abbreviation: "NASA",
+                   agencyDescription: "The National Aeronautics and Space Administration is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA have many launch facilities but most are inactive. The most commonly used pad will be LC-39B at Kennedy Space Center in Florida.",
+                   administrator: "Administrator: Jim Bridenstine", foundingYear: "1958", launchers: "Space Shuttle | SLS",
+                   spacecraft: "Orion",
+                   imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg" )
+
+      checkSpacecraftConfig( spacecraft: spacecraft[ 1 ], spacecraftID: 12, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/12/",
+                             name: "Gemini",
+                             type: "Unknown", inUse: false, capability: "Human transportation to low Earth orbit.",
+                             history: "The Gemini crew capsule (referred to as the Reentry Module) was essentially an enlarged version of the Mercury capsule. Unlike Mercury, the retrorockets, electrical power, propulsion systems, oxygen, and water were located in a detachable Adapter Module behind the Reentry Module. A major design improvement in Gemini was to locate all internal spacecraft systems in modular components, which could be independently tested and replaced when necessary, without removing or disturbing other already tested components.",
+                             details: "The spacecraft was 18 feet 5 inches (5.61 m) long and 10 feet (3.0 m) wide, with a launch weight varying from 7,100 to 8,350 pounds (3,220 to 3,790 kg).",
+                             maidenFlight: "1964-04-08",
+                             height: 5.61, diameter: 3, humanRated: true, crewCapacity: 2,
+                             flightLife: "Between a few hours and multiple days (14 day is the maximum achieved).",
+                             imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/gemini_image_20190207032517.jpeg",
+                             nationURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_nation/gemini_image_20190207032517.png",
+                             wikiURL: "https://en.wikipedia.org/wiki/Project_Gemini#Spacecraft" )
+      checkAgency( agency: spacecraft[ 1 ].agency, agencyID: 44, name: "National Aeronautics and Space Administration",
+                   featured: true, type: "Government", url: "https://ll.thespacedevs.com/2.2.0/agencies/44/",
+                   countryCode: "USA", abbreviation: "NASA",
+                   agencyDescription: "The National Aeronautics and Space Administration is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA have many launch facilities but most are inactive. The most commonly used pad will be LC-39B at Kennedy Space Center in Florida.",
+                   administrator: "Administrator: Jim Bridenstine", foundingYear: "1958", launchers: "Space Shuttle | SLS",
+                   spacecraft: "Orion",
+                   imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg" )
+
+      checkSpacecraftConfig( spacecraft: spacecraft[ 2 ], spacecraftID: 11, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/11/",
+                             name: "Mercury",
+                             type: "Unknown", inUse: false, capability: "Human transportation to upper Earth atmosphere and low Earth orbit.",
+                             history: "The Mercury spacecraft was the manned capsule used for suborbital and orbital launches during the Project Mercury, the first human spaceflight program of the United States, from 1958 through 1963.",
+                             details: "The Mercury spacecraft's principal designer was Maxime Faget, who started research for manned spaceflight during the time of the NACA. With 100 cubic feet (2.8 m3) of habitable volume, the capsule was just large enough for a single crew member. Inside were 120 controls: 55 electrical switches, 30 fuses and 35 mechanical levers. The heaviest spacecraft, Mercury-Atlas 9, weighed 3,000 pounds (1,400 kg) fully loaded. Its outer skin was made of René 41, a nickel alloy able to withstand high temperatures.",
+                             maidenFlight: "1961-05-05",
+                             height: 3.3, diameter: 1.8, humanRated: true, crewCapacity: 1,
+                             flightLife: "Between 15 minutes and 3 days.",
+                             imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/mercury_image_20190207032519.jpeg",
+                             nationURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_nation/mercury_image_20190207032519.png",
+                             wikiURL: "https://en.wikipedia.org/wiki/Project_Mercury#Spacecraft" )
+      checkAgency( agency: spacecraft[ 2 ].agency, agencyID: 44, name: "National Aeronautics and Space Administration",
+                   featured: true, type: "Government", url: "https://ll.thespacedevs.com/2.2.0/agencies/44/",
+                   countryCode: "USA", abbreviation: "NASA",
+                   agencyDescription: "The National Aeronautics and Space Administration is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA have many launch facilities but most are inactive. The most commonly used pad will be LC-39B at Kennedy Space Center in Florida.",
+                   administrator: "Administrator: Jim Bridenstine", foundingYear: "1958", launchers: "Space Shuttle | SLS",
+                   spacecraft: "Orion",
+                   imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg" )
+
+      checkSpacecraftConfig( spacecraft: spacecraft[ 3 ], spacecraftID: 13, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/13/",
+                             name: "North American X-15",
+                             type: "Unknown", inUse: false, capability: "Experimental aircraft used for Aircraft and Spacecraft design",
+                             history: "The North American X-15 currently holds the record for the highest speed in a manned, powered aircraft.\r\n\r\nThe three variants of the X-15 flew nearly 200 times, with 13 of them going over 80km high.",
+                             details: "The North American X-15 was a hypersonic rocket-powered aircraft operated by the United States Air Force and the National Aeronautics and Space Administration. The X-15 reached altitudes of over 80km and speeds of over 6000 km/h.\r\n\r\nThe X-15 had a wingspan of 6.8 meters, and length of 15.4",
+                             maidenFlight: "1959-06-08",
+                             height: 15.45, diameter: 6.8, humanRated: true, crewCapacity: 1,
+                             flightLife: "~10 minute flights",
+                             imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/north2520american2520x-15_image_20190207032520.jpeg",
+                             nationURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_nation/north2520american2520x-15_image_20190207032520.png",
+                             wikiURL: "https://en.wikipedia.org/wiki/North_American_X-15",
+                             infoURL: "https://airandspace.si.edu/collection-objects/north-american-x-15" )
+      checkAgency( agency: spacecraft[ 3 ].agency, agencyID: 44, name: "National Aeronautics and Space Administration",
+                   featured: true, type: "Government", url: "https://ll.thespacedevs.com/2.2.0/agencies/44/",
+                   countryCode: "USA", abbreviation: "NASA",
+                   agencyDescription: "The National Aeronautics and Space Administration is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA have many launch facilities but most are inactive. The most commonly used pad will be LC-39B at Kennedy Space Center in Florida.",
+                   administrator: "Administrator: Jim Bridenstine", foundingYear: "1958", launchers: "Space Shuttle | SLS",
+                   spacecraft: "Orion",
+                   imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg" )
+
+      checkSpacecraftConfig( spacecraft: spacecraft[ 4 ], spacecraftID: 4, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/4/",
+                             name: "Orion",
+                             type: "Unknown", inUse: true,
+                             history: "The Orion Multi-Purpose Crew Vehicle (Orion MPCV) is an American spacecraft intended to carry a crew of four astronauts to destinations at or beyond low Earth orbit (LEO). Currently under development by NASA for launch on the Space Launch System, Orion is intended to facilitate human exploration of asteroids and of Mars, as well as to provide a means of delivering or retrieving crew or supplies from the ISS if needed.",
+                             details: "The Orion MPCV takes basic design elements from the Apollo Command Module that took astronauts to the moon, but its technology and capability are more advanced. It is designed to support long-duration deep space missions, with up to 21 days active crew time plus 6 months quiescent. During the quiescent period crew life support would be provided by another module such as a Deep Space Habitat. The spacecraft's life support, propulsion, thermal protection and avionics systems are designed to be upgradeable as new technologies become available. nn The MPCV spacecraft includes both crew and service modules, and a spacecraft adaptor. The MPCV's crew module is larger than Apollo's and can support more crew members for short or long-duration missions. The service module fuels and propels the spacecraft as well as storing oxygen and water for astronauts. The service module's structure is also being designed to provide locations to mount scientific experiments and cargo.",
+                             humanRated: false,
+                             imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/orion_image_20190207032521.jpeg",
+                             wikiURL: "https://en.wikipedia.org/wiki/Orion_(spacecraft)" )
+      checkAgency( agency: spacecraft[ 4 ].agency, agencyID: 44, name: "National Aeronautics and Space Administration",
+                   featured: true, type: "Government", url: "https://ll.thespacedevs.com/2.2.0/agencies/44/",
+                   countryCode: "USA", abbreviation: "NASA",
+                   agencyDescription: "The National Aeronautics and Space Administration is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA have many launch facilities but most are inactive. The most commonly used pad will be LC-39B at Kennedy Space Center in Florida.",
+                   administrator: "Administrator: Jim Bridenstine", foundingYear: "1958", launchers: "Space Shuttle | SLS",
+                   spacecraft: "Orion",
+                   imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg" )
+
+      checkSpacecraftConfig( spacecraft: spacecraft[ 5 ], spacecraftID: 14, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/14/",
+                             name: "Space Shuttle",
+                             type: "Unknown", inUse: false, capability: "Carrying a crew of 7 astronauts along with cargo to Low Earth Orbit.",
+                             history: "The Space shuttle was a United States space craft. Following the conclusion of the Apollo program the Space Shuttle intended to lower costs for reliable access to Low Earth Orbit. The program ran from 1981-2011.",
+                             details: "The Space Shuttle was a partially reusable LEO spacecraft system operated by the U.S. National Aeronautics and Space Administration (NASA) as part of the Space Shuttle program. Its official program name was Space Transportation System (STS), taken from a 1969 plan for a system of reusable spacecraft of which it was the only item funded for development. The first of four orbital test flights occurred in 1981, leading to operational flights in 1982. In addition to the prototype whose completion was cancelled, five complete Shuttle systems were built and used on a total of 135 missions from 1981 to 2011, launched from the Kennedy Space Center (KSC) in Florida. Operational missions launched numerous satellites, interplanetary probes, and the Hubble Space Telescope (HST); conducted science experiments in orbit; and participated in construction and servicing of the International Space Station. The Shuttle fleet's total mission time was 1322 days, 19 hours, 21 minutes and 23 seconds.",
+                             maidenFlight: "1981-04-12",
+                             height: 56.1, diameter: 8.7, humanRated: true, crewCapacity: 7,
+                             payloadCapacity: 27500, flightLife: "14 days",
+                             imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/space2520shuttle_image_20190207032524.jpeg",
+                             nationURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_nation/space2520shuttle_image_20181207003107.png",
+                             wikiURL: "https://en.wikipedia.org/wiki/Space_Shuttle" )
+      checkAgency( agency: spacecraft[ 5 ].agency, agencyID: 44, name: "National Aeronautics and Space Administration",
+                   featured: true, type: "Government", url: "https://ll.thespacedevs.com/2.2.0/agencies/44/",
+                   countryCode: "USA", abbreviation: "NASA",
+                   agencyDescription: "The National Aeronautics and Space Administration is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA have many launch facilities but most are inactive. The most commonly used pad will be LC-39B at Kennedy Space Center in Florida.",
+                   administrator: "Administrator: Jim Bridenstine", foundingYear: "1958", launchers: "Space Shuttle | SLS",
+                   spacecraft: "Orion",
+                   imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg" )
    }
 }

@@ -1,5 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
+// wiftlint:disable function_body_length
+
 /**
  Data that describe a launch.
 
@@ -31,25 +33,25 @@
      "window_start": "2021-01-05T01:27:00Z"
     }
 
- ### Spec
+ ### Spec (API model: LaunchSerializerCommon, LaunchSerializerMini, LaunchDetailed)
        id                        string($uuid)
        url                       string($uri)
-       launch_library_id         integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
+       aunch_library_id         integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
        slug*                     string($slug),pattern: ^[-a-zA-Z0-9_]+$,minLength: 1
        name                      string, maxLength: 2048
        status                    LaunchStatus{...}
        net                       string($date-time), x-nullable: true
        window_end                string($date-time), x-nullable: true
        window_start              string($date-time), x-nullable: true
-       inhold                    boolean, x-nullable: true
-       tbdtime                   boolean, x-nullable: true
-       tbddate                   boolean, x-nullable: true
+       //inhold                    boolean, x-nullable: true
+       //tbdtime                   boolean, x-nullable: true
+       //tbddate                   boolean, x-nullable: true
        probability               integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
        holdreason                string, maxLength: 2048, x-nullable: true
        failreason                string, maxLength: 2048, x-nullable: true
        hashtag                   string, maxLength: 2048, x-nullable: true
-       launch_service_provider   AgencySerializerMini{...}
-       rocket                    RocketSerializerCommon{...}
+       launch_service_provider   AgencySerializerMini{...} or AgenctSerializerDetailedCommon{}
+       rocket                    RocketSerializerCommon{...} or RocketDetailed{}
        mission                   Mission{...}
        pad                       Pad{...}
        infoURLs                  [URLJSON]
@@ -66,14 +68,19 @@
        location_launch_attempt_count_year  string
        pad_launch_attempt_count_year       string
        agency_launch_attempt_count_year    string
+       flightclub_url          string($uri) title: Flightclub url minLength: 1
+       r_spacex_api_id         string title: R spacex api id minLength: 1
+       last_updated            string($date-time)
+       updates                 [Update{...}]
+       notifications_enabled   boolean
  */
 public class LaunchJSON: Decodable, Identifiable, JSONElement
 {
-   /** ID of the astronaut within the API. */
+   /** ID of the launch within the API. */
    public var id: String
-   /** URI of this data. Unused. */
+   /** URI of this data. */
    var url: String?
-   var launchLibraryID: Int64? // unused
+   var launchLibraryID: Int64?
    var failReason: String?
    var hashtag: String?
    var holdReason: String?
@@ -108,6 +115,12 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
    var locationLaunchAttemptCountYear: String?
    var padLaunchAttemptCountYear: String?
    var agencyLaunchAttemptCountYear: String?
+
+   var flightclubURL: String? //   string($uri) title: Flightclub url minLength: 1
+   var rSpacexAPIID: String? //  string title: R spacex api id minLength: 1
+   var lastUpdated: String? //   string($date-time)
+   var updates: [UpdateJSON] = [] //   [Update{...}]
+   var notificationsEnabled: Bool?
 
    /**
     Make a `LaunchJSON` from a JSON structure.
@@ -163,5 +176,11 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
       self.locationLaunchAttemptCountYear = json[ "location_launch_attempt_count_year" ] as? String
       self.padLaunchAttemptCountYear = json[ "pad_launch_attempt_count_year" ] as? String
       self.agencyLaunchAttemptCountYear = json[ "agency_launch_attempt_count_year" ] as? String
+
+      self.lastUpdated = json[ "last_updated" ] as? String
+      self.flightclubURL = json[ "flightclub_url" ] as? String
+      self.rSpacexAPIID = json[ "r_spacex_api_id" ] as? String
+      self.updates = ( json[ "updates" ] as? [JSONStructure] ?? [] ).compactMap { return UpdateJSON( json: $0 ) }
+      self.notificationsEnabled = json[ "notifications_enabled" ] as? Bool
    }
 }

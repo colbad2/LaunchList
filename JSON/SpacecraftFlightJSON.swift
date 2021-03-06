@@ -1,17 +1,20 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
- ### Spec
-       id            integer
+ ### Spec (API models: SpacecraftFlight, SpacecraftFlightSerializerForDockingEvent,
+                         SpacecraftFlightDetailedSerializerForLaunch, SpacecraftFlightDetailed,
+                         SpacecraftFlightForDockingEvent)
+       id*           integer
        url           string($uri)
        destination   string,             maxLength: 255,   x-nullable: true
        mission_end   string($date-time), x-nullable: true
-       spacecraft    Spacecraft{...}
-       launch        Launch{...}
+       spacecraft    Spacecraft{...} or SpacecraftDetailedNoFlights{}
+       launch        Launch{...} or LaunchSerializerCommon
+
        launch_crew   [AstronautFlight{...}]
        onboard_crew   [AstronautFlight{...}]
        landing_crew   [AstronautFlight{...}]
-       docking_events   [DockingEvent{...}]
+       docking_events   [DockingEvent{...}] or DockingEventSerializerForSpacecraftFlight[]
  */
 public class SpacecraftFlightJSON: Decodable, Identifiable, JSONElement, AutoEquatable, AutoHashable
 {

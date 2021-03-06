@@ -26,7 +26,7 @@
          "last_launch_date": "2010-06-04T18:45:00Z",
          "first_launch_date": "2010-06-04T18:45:00Z"
        }
- ### Spec
+ ### Spec (API model: LauncherDetailed, Launcher, LauncherDetail)
        id                  integer
        url                 string($uri)
        details             string maxLength: 2048
@@ -41,7 +41,7 @@
        first_launch_date   string
        successful_landings string
        attempted_landings  string
-       launcher_config     LauncherConfig
+       launcher_config     LauncherConfig or LauncherConfigList or LauncherConfigDetail
  */
 public class LauncherJSON: Decodable, Identifiable, JSONElement
 {

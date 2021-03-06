@@ -2,6 +2,14 @@
 
 /**
  Type of a landing.
+
+ ### Spec (API model: LandingType)
+       id   integer
+       name   string maxLength: 255
+       abbrev   string maxLength: 255
+       description   string
+       maxLength: 2048
+ }
  */
 public class LandingTypeJSON: Decodable, Identifiable, JSONElement
 {

@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
- ### Spec
+ ### Spec (API model: FirstStage)
       id                      integer
       type                    string
       reused                  boolean x-nullable: true

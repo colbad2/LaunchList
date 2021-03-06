@@ -17,15 +17,15 @@
          }
        }
 
- ### Spec (base and detailed)
+ ### Spec (API models: LauncherConfigDetailSerializerForAgency, LauncherConfigList, LauncherConfig,
+                         LauncherConfigDetail )
        id                  integer, readOnly: true
-       launch_library_id   integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
        url                 string($uri), readOnly: true
        name*               string, maxLength: 200, minLength: 1
-       description         string, maxLength: 2048
        family              string, maxLength: 200
        full_name           string, maxLength: 200
        variant             string, maxLength: 200
+       description         string, maxLength: 2048
        alias               string, maxLength: 200
        min_stage           integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
        max_stage           integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
@@ -45,10 +45,12 @@
        successful_launches string, readOnly: true
        failed_launches     string, readOnly: true
        pending_launches    string, readOnly: true
-       manufacturer        Agency{...}
+       manufacturer        AgencySerializerDetailedCommon{...}
        program             [Program{...}]
        reusable            boolean
        total_launch_count  string
+       // launch_library_id   integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
+       launch_cost         string maxLength: 200
  */
 public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
 {
@@ -89,6 +91,8 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
    var programs: [ProgramJSON] = []
    let reusable: Bool?
    let totalLaunchCount: String?
+   /** Launch cost in dollars. */
+   let launchCost: String?
 
    /**
     Make a `LauncherConfigJSON` from a JSON structure.
@@ -104,11 +108,11 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
       self.url = json[ "url" ] as? String
       self.launchLibraryID = json[ "launch_library_id" ] as? Int64
       self.name = json[ "name" ] as? String
-      self.family = json[ "family" ] as? String
+      self.family = nonEmptyString( json[ "family" ] )
       self.fullName = json[ "full_name" ] as? String
-      self.launcherConfigDescription = json[ "description" ] as? String
-      self.variant = json[ "variant" ] as? String
-      self.alias = json[ "alias" ] as? String
+      self.launcherConfigDescription = nonEmptyString( json[ "description" ] )
+      self.variant = nonEmptyString( json[ "variant" ] )
+      self.alias = nonEmptyString( json[ "alias" ] )
       self.minStage = json[ "min_stage" ] as? Int64
       self.maxStage = json[ "max_stage" ] as? Int64
       self.length = json[ "length" ] as? Double
@@ -121,7 +125,7 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
       self.apogee = json[ "apogee" ] as? Int64
       self.vehicleRange = json[ "vehicle_range" ] as? Int64
       self.imageURL = json[ "image_url" ] as? String
-      self.infoURL = json[ "info_url" ] as? String
+      self.infoURL = nonEmptyString( json[ "info_url" ] )
       self.wikiURL = json[ "wiki_url" ] as? String
       self.consecutiveSuccessfulLaunches = json[ "consecutive_successful_launches" ] as? Int64
       self.successfulLaunches = json[ "successful_launches" ] as? Int64
@@ -131,5 +135,6 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
       self.programs = ( json[ "program" ] as? [JSONStructure] ?? [] ).compactMap { return ProgramJSON( json: $0 ) }
       self.reusable = json[ "reusable" ] as? Bool
       self.totalLaunchCount = json[ "total_launch_count" ] as? String
+      self.launchCost = json[ "launch_cost" ] as? String
    }
 }

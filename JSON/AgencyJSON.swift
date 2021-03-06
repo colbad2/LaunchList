@@ -21,12 +21,13 @@
       "image_url": null
     }
 
- ### Spec (base and detailed)
+ ### Spec (API models: Agency, AgencyList, AgencySerializerDetailed, AgencySerializerMini, AgencySerializerDetailedCommon)
        id              integer,      readOnly: true
        url             string($uri), readOnly: true
        name*           string,       maxLength: 200,  minLength: 1
-       featured        boolean
        type            string,       maxLength: 255,  x-nullable: true
+
+       featured        boolean
        country_code    string,       maxLength: 1048
        abbrev          string,       maxLength: 255
        description     string,       maxLength: 2048, x-nullable: true
@@ -116,7 +117,7 @@ public class AgencyJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
    /** List of launcher configurations used by the agency. */
    var configurationList: [LauncherConfigJSON] = []
    /** List of spacecraft used by the agency. */
-   var spacecraftList: [SpacecraftJSON] = []
+   var spacecraftList: [SpacecraftConfigJSON] = []
 
    /**
     Make a `AgencyJSON` from a JSON structure.
@@ -166,7 +167,7 @@ public class AgencyJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
       self.spacecraftList = []
       if let spacecraftArray: [JSONStructure] = json[ "spacecraft_list" ] as? [JSONStructure]
       {
-         self.spacecraftList = spacecraftArray.compactMap { SpacecraftJSON( json: $0 ) }
+         self.spacecraftList = spacecraftArray.compactMap { SpacecraftConfigJSON( json: $0 ) }
       }
    }
 }

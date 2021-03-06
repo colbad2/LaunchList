@@ -17,15 +17,16 @@
            "url": "https://ll.thespacedevs.com/2.1.0/location/12/"
        }
 
- ### Spec
+ ### Spec (API model: Location, LocationDetail)
        id                  integer
        url                 string($uri)
        name                string maxLength: 255
        country_code        string maxLength: 255
-       map_image           string($uri) x-nullable: true
+       map_image           string($uri)
        total_launch_count  string
        total_landing_count string
-       pads*               [Pad]
+
+       pads*               [Pad] or PadSerializerNoLocation[]
  */
 public class LocationJSON: Decodable, Identifiable, JSONElement
 {

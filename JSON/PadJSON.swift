@@ -42,7 +42,7 @@
               "wiki_url": ""
           }
 
- ### Spec
+ ### Spec (API model: Pad, PadSerializerNoLocation)
        id   integer readOnly: true
        url   string($uri) readOnly: true
        agency_id   integer maximum: 2147483647 minimum: -2147483648 x-nullable: true

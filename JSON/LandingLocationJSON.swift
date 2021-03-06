@@ -3,7 +3,7 @@
 /**
  Returned by the 'config/landinglocation' endpoint.
 
- #### Spec
+ #### Spec (API model: LandingLocation)
        id   integer readOnly: true
        name   string maxLength: 255
        abbrev   string maxLength: 255

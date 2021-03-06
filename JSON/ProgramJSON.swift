@@ -43,12 +43,12 @@
            "wiki_url": "https://en.wikipedia.org/wiki/Commercial_Resupply_Services#Commercial_Resupply_Services"
        }
 
- ### Spec
+ ### Spec (API model: Program)
        id   integer
        url   string($uri)
        name*   string maxLength: 255 minLength: 1
        description   string maxLength: 40000 x-nullable: true
-       agencies   [Agency{...}]
+       agencies   [AgencySerializerMini{...}]
        image_url   string($uri) readOnly: true
        start_date string($date-time) x-nullable: true
        end_date   string($date-time) x-nullable: true

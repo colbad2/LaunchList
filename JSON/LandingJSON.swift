@@ -1,7 +1,7 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
 /**
- ### Spec
+ ### Spec (API model: Kanding)
        id   integer
        attempt   boolean x-nullable: true
        success   boolean x-nullable: true

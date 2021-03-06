@@ -8,6 +8,12 @@
           "id": 21,
           "name": "Cryoproof Test"
        }
+
+ ### Spec (API models: SpacecraftConfigType, AstronautStatus, AstronautType, SpacecraftStatus,
+                         AgencyType, DockingLocation, EventType, FirstStagetype, MissionType, NoticeType,
+                         RoadClosureStatus, SpaceStationStatus, SpaceStationType)
+     id   integer
+     name string maxLength: 255
  */
 public class IDNameJSON: Decodable, Identifiable, JSONElement
 {

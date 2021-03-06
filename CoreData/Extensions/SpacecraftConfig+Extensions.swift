@@ -23,7 +23,7 @@ extension SpacecraftConfig
       if let agency: AgencyJSON = agency
       {
          let agencyEntity: Agency = fetchAgency( agency: agency, context: context )
-         self.agency = agencyEntity
+         self.addToAgencies( agencyEntity )
          agencyEntity.addToSpacecraftConfigs( self )
       }
    }
@@ -63,8 +63,8 @@ public func updateEntity( json: SpacecraftConfigJSON, entity: SpacecraftConfig?,
    spacecraftConfigEntity.history = json.history
    spacecraftConfigEntity.details = json.details
    spacecraftConfigEntity.maidenFlight = json.maidenFlight
-   spacecraftConfigEntity.height = guaranteedInt64( json.height )
-   spacecraftConfigEntity.diameter = guaranteedInt64( json.diameter )
+   spacecraftConfigEntity.height = guaranteedDouble( json.height )
+   spacecraftConfigEntity.diameter = guaranteedDouble( json.diameter )
    spacecraftConfigEntity.humanRated = guaranteedBool( json.humanRated )
    spacecraftConfigEntity.crewCapacity = guaranteedInt64( json.crewCapacity )
    spacecraftConfigEntity.payloadCapacity = guaranteedInt64( json.payloadCapacity )

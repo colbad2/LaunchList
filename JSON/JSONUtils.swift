@@ -288,3 +288,24 @@ public func guaranteedBool( _ maybeBool: Bool? ) -> Bool
 {
    return maybeBool ?? false
 }
+
+/**
+ Returns the double, if it exists, or a default value. Used because CoreData can't have optional primitives.
+
+ - parameter maybeDouble: `Double?` possible bool
+ - returns:               `Double` bool or a default value
+ */
+public func guaranteedDouble( _ maybeDouble: Double? ) -> Double
+{
+   return maybeDouble ?? -1
+}
+
+/**
+ Returns a string interpretation of the parameter.
+ */
+public func nonEmptyString( _ any: Any? ) -> String?
+{
+   guard let anyString: String = any as? String else { return nil }
+   if anyString.trim().isEmpty { return nil }
+   return anyString
+}
