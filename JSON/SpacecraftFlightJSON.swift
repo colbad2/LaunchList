@@ -10,7 +10,6 @@
        mission_end   string($date-time), x-nullable: true
        spacecraft    Spacecraft{...} or SpacecraftDetailedNoFlights{}
        launch        Launch{...} or LaunchSerializerCommon
-
        launch_crew   [AstronautFlight{...}]
        onboard_crew   [AstronautFlight{...}]
        landing_crew   [AstronautFlight{...}]

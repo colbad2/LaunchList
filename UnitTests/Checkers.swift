@@ -5,8 +5,8 @@ import XCTest
 // swiftlint:disable function_parameter_count
 // swiftlint:disable function_default_parameter_at_end
 
-func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: String? = nil, lat: String, lon: String,
-               mapImage: String? = nil, mapURL: String? = nil, name: String, totalLaunchCount: Int64,
+func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: String? = nil, lat: String? = nil, lon: String? = nil,
+               mapImage: String? = nil, mapURL: String? = nil, name: String? = nil, totalLaunchCount: Int64? = nil,
                url: String? = nil, wikiURL: String? = nil )
 {
    XCTAssertNotNil( pad )
@@ -23,8 +23,8 @@ func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: Str
    XCTAssertEqual( pad?.wikiURL, wikiURL )
 }
 
-func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: String, mapImage: String? = nil,
-                    name: String, landingCount: Int64, lauchCount: Int64, url: String? = nil )
+func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: String? = nil, mapImage: String? = nil,
+                    name: String? = nil, landingCount: Int64? = nil, lauchCount: Int64? = nil, url: String? = nil )
 {
    XCTAssertNotNil( location )
    XCTAssertEqual( location?.countryCode, countryCode )
@@ -36,9 +36,8 @@ func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: Str
    XCTAssertEqual( location?.url, url )
 }
 
-func checkMission( mission: MissionJSON?, missionID: Int64, description: String, designator: String? = nil,
-                   libraryID: Int64? = nil, name: String, type: String, orbitAbbreviation: String? = nil,
-                   orbitLibraryID: Int64? = nil, orbitName: String? = nil )
+func checkMission( mission: MissionJSON?, missionID: Int64, description: String? = nil, designator: String? = nil,
+                   libraryID: Int64? = nil, name: String? = nil, type: String? = nil )
 {
    XCTAssertNotNil( mission )
    XCTAssertEqual( mission?.description, description )
@@ -47,13 +46,10 @@ func checkMission( mission: MissionJSON?, missionID: Int64, description: String,
    XCTAssertEqual( mission?.launchLibraryID, libraryID )
    XCTAssertEqual( mission?.name, name )
    XCTAssertEqual( mission?.type, type )
-
-   XCTAssertEqual( mission?.orbit?.abbreviation, orbitAbbreviation )
-   XCTAssertEqual( mission?.orbit?.id, orbitLibraryID )
-   XCTAssertEqual( mission?.orbit?.name, orbitName )
+   // check orbit
 }
 
-func checkStatus( status: StatusJSON?, abbreviation: String, description: String, statusID: Int64, name: String )
+func checkStatus( status: StatusJSON?, abbreviation: String? = nil, description: String? = nil, statusID: Int64? = nil, name: String? = nil )
 {
    XCTAssertNotNil( status )
    XCTAssertEqual( status?.abbreviation, abbreviation )
@@ -62,7 +58,7 @@ func checkStatus( status: StatusJSON?, abbreviation: String, description: String
    XCTAssertEqual( status?.name, name )
 }
 
-func checkAgency( agency: AgencyJSON?, agencyID: Int64, name: String, featured: Bool? = nil, type: String, url: String?,
+func checkAgency( agency: AgencyJSON?, agencyID: Int64, name: String? = nil, featured: Bool? = nil, type: String? = nil, url: String? = nil,
                   countryCode: String? = nil, abbreviation: String? = nil, agencyDescription: String? = nil,
                   administrator: String? = nil, foundingYear: String? = nil, launchers: String? = nil,
                   spacecraft: String? = nil, parent: String? = nil,
@@ -102,7 +98,7 @@ func checkAgency( agency: AgencyJSON?, agencyID: Int64, name: String, featured: 
    XCTAssertEqual( agency?.consecutiveSuccessfulLandings, consecutiveSuccessfulLandings )
 }
 
-func checkProgram( program: ProgramJSON?, programID: Int64, description: String?, endDate: String? = nil,
+func checkProgram( program: ProgramJSON?, programID: Int64, description: String? = nil, endDate: String? = nil,
                    imageURL: String? = nil, infoURL: String? = nil, name: String? = nil,
                    startDate: String? = nil, url: String? = nil, wikiURL: String? = nil )
 {
@@ -119,9 +115,9 @@ func checkProgram( program: ProgramJSON?, programID: Int64, description: String?
 }
 
 func checkLaunch( launch: LaunchJSON?, launchID: String, failReason: String? = nil, hashtag: String? = nil,
-                  holdReason: String? = nil, image: String? = nil, infographic: String? = nil, inHold: Bool,
-                  libraryID: Int64, name: String, net: String, probability: Int16, slug: String, tbdDate: Bool,
-                  tbdTime: Bool, url: String? = nil, webcastLive: Bool, windowEnd: String, windowStart: String )
+                  holdReason: String? = nil, image: String? = nil, infographic: String? = nil, inHold: Bool? = nil,
+                  libraryID: Int64? = nil, name: String? = nil, net: String? = nil, probability: Int16? = nil, slug: String? = nil, tbdDate: Bool? = nil,
+                  tbdTime: Bool? = nil, url: String? = nil, webcastLive: Bool? = nil, windowEnd: String? = nil, windowStart: String? = nil, lastUpdated: String? = nil )
 {
    XCTAssertNotNil( launch )
    XCTAssertEqual( launch?.failReason, failReason )
@@ -142,6 +138,7 @@ func checkLaunch( launch: LaunchJSON?, launchID: String, failReason: String? = n
    XCTAssertEqual( launch?.webcastLive, webcastLive )
    XCTAssertEqual( launch?.windowEnd, windowEnd )
    XCTAssertEqual( launch?.windowStart, windowStart )
+   XCTAssertEqual( launch?.lastUpdated, lastUpdated )
 }
 
 func checkLauncherConfig( launcher: LauncherConfigJSON?, launcherID: Int64, libraryID: Int64? = nil, url: String? = nil, name: String? = nil,
@@ -210,4 +207,56 @@ func checkSpacecraftConfig( spacecraft: SpacecraftConfigJSON?, spacecraftID: Int
    XCTAssertEqual( spacecraft?.nationURL, nationURL )
    XCTAssertEqual( spacecraft?.wikiURL, wikiURL )
    XCTAssertEqual( spacecraft?.infoURL, infoURL )
+}
+
+func checkAstronaut( astronaut: AstronautJSON?, id: Int64, url: String? = nil, name: String? = nil, statusID: Int64? = nil, statusName: String? = nil,
+                     typeID: Int64? = nil, typeName: String? = nil, dateOfBirth: String? = nil, dateOfDeath: String? = nil, nationality: String? = nil,
+                     twitter: String? = nil, instagram: String? = nil , bio: String? = nil, profileImage: String? = nil, profileImageThumbnail: String? = nil,
+                     wiki: String? = nil, lastFlight: String? = nil, firstFlight: String? = nil )
+{
+   XCTAssertNotNil( astronaut )
+   XCTAssertEqual( astronaut?.id, id )
+   XCTAssertEqual( astronaut?.url, url )
+   XCTAssertEqual( astronaut?.name, name )
+   XCTAssertEqual( astronaut?.status?.id, statusID )
+   XCTAssertEqual( astronaut?.status?.name, statusName )
+   XCTAssertEqual( astronaut?.type?.id, typeID )
+   XCTAssertEqual( astronaut?.type?.name, typeName )
+   // test agency
+   XCTAssertEqual( astronaut?.dateOfBirth, dateOfBirth )
+   XCTAssertEqual( astronaut?.dateOfDeath, dateOfDeath )
+   XCTAssertEqual( astronaut?.nationality, nationality )
+   XCTAssertEqual( astronaut?.twitter, twitter )
+   XCTAssertEqual( astronaut?.instagram, instagram )
+   XCTAssertEqual( astronaut?.bio, bio )
+   XCTAssertEqual( astronaut?.profileImage, profileImage )
+   XCTAssertEqual( astronaut?.profileImageThumbnail, profileImageThumbnail )
+   XCTAssertEqual( astronaut?.wiki, wiki )
+   XCTAssertEqual( astronaut?.lastFlight, lastFlight )
+   XCTAssertEqual( astronaut?.firstFlight, firstFlight )
+}
+
+func checkOrbit( orbit: OrbitJSON?, id: Int64, name: String? = nil, abbreviation: String? = nil )
+{
+   XCTAssertEqual( orbit?.abbreviation, abbreviation )
+   XCTAssertEqual( orbit?.id, id )
+   XCTAssertEqual( orbit?.name, name )
+}
+
+func checkLanding( spacecraftFlight: SpacecraftFlightJSON, id: Int64, url: String? = nil, destination: String? = nil, missionEnd: String? = nil )
+{
+   XCTAssertNotNil( spacecraftFlight )
+   XCTAssertEqual( spacecraftFlight.id, id )
+   XCTAssertEqual( spacecraftFlight.url, url )
+   XCTAssertEqual( spacecraftFlight.destination, destination )
+   XCTAssertEqual( spacecraftFlight.missionEnd, missionEnd )
+
+   /*
+    let spacecraft: SpacecraftJSON?
+    let launch: LaunchJSON?
+    var launchCrew: [AstronautFlightJSON] = []
+    var onboardCrew: [AstronautFlightJSON] = []
+    var landingCrew: [AstronautFlightJSON] = []
+    var dockingEvents: [DockingEventJSON] = []
+    */
 }

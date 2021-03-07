@@ -29,8 +29,8 @@ class MissionJSONUnitTests: XCTestCase
 
       checkMission( mission: mission, missionID: 1222,
                     description: "T\u{00fc}rksat 5A is the first of two Turkish next generation communications satellites, which will be operated by T\u{00fc}rksat for commercial and military purposes.",
-                    name: "T\u{00fc}rksat 5A", type: "Communications",
-                    orbitAbbreviation: "GTO", orbitLibraryID: 2, orbitName: "Geostationary Transfer Orbit" )
+                    name: "T\u{00fc}rksat 5A", type: "Communications" )
+      checkOrbit( orbit: mission.orbit, id: 2, name: "Geostationary Transfer Orbit", abbreviation: "GTO" )
    }
 
    func testMissionJSON2() throws

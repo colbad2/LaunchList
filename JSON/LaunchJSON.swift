@@ -93,7 +93,7 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
    var net: String?
    var pad: PadJSON?
    var probability: Int16?
-   var programs: [ProgramJSON]?
+   var programs: [ProgramJSON] = []
    var rocket: RocketJSON?
    var slug: String?
    var status: StatusJSON?
@@ -115,7 +115,6 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
    var locationLaunchAttemptCountYear: String?
    var padLaunchAttemptCountYear: String?
    var agencyLaunchAttemptCountYear: String?
-
    var flightclubURL: String? //   string($uri) title: Flightclub url minLength: 1
    var rSpacexAPIID: String? //  string title: R spacex api id minLength: 1
    var lastUpdated: String? //   string($date-time)
@@ -134,9 +133,9 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
 
       self.id = id
       self.url = json[ "url" ] as? String
-      self.failReason = json[ "failreason" ] as? String
+      self.failReason = nonEmptyString( json[ "failreason" ] )
       self.hashtag = json[ "hashtag" ] as? String
-      self.holdReason = json[ "holdreason" ] as? String
+      self.holdReason = nonEmptyString( json[ "holdreason" ] )
       self.image = json[ "image" ] as? String
       self.infographic = json[ "infographic" ] as? String
       self.inHold = json[ "inhold" ] as? Bool
@@ -148,7 +147,7 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
       self.pad = PadJSON( json: json[ "pad" ] as? JSONStructure )
       self.probability = json[ "probability" ] as? Int16
 
-      self.programs = nil
+      self.programs = []
       if let programsArray: [JSONStructure] = json[ "program" ] as? [JSONStructure]
       {
          self.programs = programsArray.compactMap { ProgramJSON( json: $0 ) }
