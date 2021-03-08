@@ -59,6 +59,8 @@ class APIManager
       callCount = 0
    }
 
+   // MARK: - API Access
+
    // /agencies/
    func agencyList() -> [AgencyJSON]
    {
@@ -288,75 +290,204 @@ class APIManager
    }
 
    // /dashboard/starship/
+   func starshipDashboard() -> StarshipListJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)dashboard/starship/" )
+   }
 
    // /docking_event/
+   func dockingEventList() -> [DockingEventJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)docking_event/" )
+   }
 
    // /docking_event/{id}
+   func dockingEvent( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)docking_event/\(id)" )
+   }
 
    // /event/
+   func eventList() -> [EventJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)event/" )
+   }
 
    // /event/{id}
+   func event( withID id: Int64 ) -> EventJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)event/\(id)" )
+   }
 
    // /event/previous/
+   func previousEventList() -> [EventJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)event/previous/" )
+   }
 
    // /event/previous/{id}
+   func previousEvent( withID id: Int64 ) -> EventJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)event/previous/\(id)" )
+   }
 
    // /event/upcoming
+   func upcomingEventList() -> [EventJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)event/upcoming/" )
+   }
 
    // /event/upcoming/{id}
+   func upcomingEvent( withID id: Int64 ) -> EventJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)event/upcoming/\(id)" )
+   }
 
    // /expedition/
+   func expeditionList() -> [ExpeditionJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)expedition/" )
+   }
 
    // /expedition/{id}
+   func expedition( withID id: Int64 ) -> ExpeditionJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)expedition/\(id)" )
+   }
 
    // /launch/
-   func getAPILaunches() -> [LaunchJSON]
+   func launches() -> [LaunchJSON]
    {
       return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/" ) )
    }
 
    // /launch/{id}
+   func launch( withID id: Int64 ) -> LaunchJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)launch/\(id)" )
+   }
 
    // /launch/previous/
-   func getAPIPreviousLaunches() -> [LaunchJSON]
+   func previousLaunches() -> [LaunchJSON]
    {
       return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/previous/" ) )
    }
 
    // /launch/previous/{id}
-   func getAPIPreviousLaunch( withID id: Int64 ) -> LaunchJSON?
+   func previousLaunch( withID id: Int64 ) -> LaunchJSON?
    {
       return getAPIRecord( withURL: "\(API_URL_BASE)launch/previous/\(id)" )
    }
 
    // /launch/upcoming
-   func getAPIUpcomingLaunches() -> [LaunchJSON]
+   func upcomingLaunches() -> [LaunchJSON]
    {
       return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/upcoming/" ) )
    }
 
    // /launch/upcoming/{id}
-   func getAPIUpcomingLaunch( withID id: Int64 ) -> LaunchJSON?
+   func upcomingLaunch( withID id: Int64 ) -> LaunchJSON?
    {
       return getAPIRecord( withURL: "\(API_URL_BASE)launch/upcoming/\(id)" )
    }
 
    // /launcher/
+   func launcherList() -> [LauncherJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)launcher/" )
+   }
+
    // /launcher/{id}
+   func launcher( withID id: Int64 ) -> LauncherJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)launcher/\(id)" )
+   }
+
    // /location/
+   func locationList() -> [LocationJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)location/" )
+   }
+
    // /location/{id}
+   func location( withID id: Int64 ) -> LocationJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)location/\(id)" )
+   }
+
    // /pad/
+   func padList() -> [PadJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)pad/" )
+   }
+
    // /pad/{id}
+   func pad( withID id: Int64 ) -> PadJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)pad/\(id)" )
+   }
+
    // /program/
+   func programList() -> [ProgramJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)program/" )
+   }
+
    // /program/{id}
+   func program( withID id: Int64 ) -> ProgramJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)program/\(id)" )
+   }
+
    // /spacecraft/
+   func spacecraftList() -> [SpacecraftJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)spacecraft/" )
+   }
+
    // /spacecraft/{id}
+   func spacecraft( withID id: Int64 ) -> SpacecraftJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)spacecraft/\(id)" )
+   }
+
    // /spacecraft/flight/
+   func spacecraftFlightList() -> [SpacecraftFlightJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)spacecraft/flight/" )
+   }
+
    // /spacecraft/flight/{id}
+   func spacecraftFlight( withID id: Int64 ) -> SpacecraftFlightJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)spacecraft/flight/\(id)" )
+   }
+
    // /spacestation/
+   func spacestationList() -> [SpaceStationJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)spacestation/" )
+   }
+
    // /spacestation/{id}
+   func spacestation( withID id: Int64 ) -> SpaceStationJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)spacestation/\(id)" )
+   }
+
    // /updates/
+   func updatesList() -> [UpdateJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)updates/" )
+   }
+
    // /updates/{id}
+   func update( withID id: Int64 ) -> UpdateJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)updates/\(id)" )
+   }
+
+   // MARK: - API fetch utilities
 
    /**
     Synchronously fetch a JSON record from the API.
@@ -394,7 +525,7 @@ class APIManager
       return result
    }
 
-   func getResults( withURL url: String ) -> [IDNameJSON]
+   func getResults< T: JSONElement >( withURL url: String ) -> [T]
    {
       guard let json: JSONStructure = getAPIJSON( urlString: url ) else { return [] }
       return parseArray( json[ "results" ] )

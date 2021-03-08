@@ -36,37 +36,34 @@ class LaunchRequest: BaseAPIListRequest, APIListRequest
 
    override var requestURL: String
    {
-      var parameters: [String] = []
-      if let name: String = name { parameters.append( "name=\(name)" ) }
-      if let slug: String = slug { parameters.append( "slug=\(slug)" ) }
-      if let rocketConfigName: String = rocketConfigName { parameters.append( "rocket__configuration__name=\(rocketConfigName)" ) }
-      if let rocketConfigID: String = rocketConfigID { parameters.append( "rocket__configuration__id=\(rocketConfigID)" ) }
-      if let status: String = status { parameters.append( "status=\(status)" ) }
-      if let launchLibraryID: Int = launchLibraryID { parameters.append( "launch_library_id=\(launchLibraryID)" ) }
-      if let spacecraftName: String = spacecraftName { parameters.append( "rocket__spacecraftflight__spacecraft__name=\(spacecraftName)" ) }
-      if let spacecraftNameContains: String = spacecraftNameContains
-         { parameters.append( "rocket__spacecraftflight__spacecraft__name__icontains=\(spacecraftNameContains)" ) }
-      if let spacecraftID: Int = spacecraftID { parameters.append( "rocket__spacecraftflight__spacecraft__id=\(spacecraftID)" ) }
-      if let manufacturerName: String = manufacturerName { parameters.append( "rocket__configuration__manufacturer__name=\(manufacturerName)" ) }
-      if let manufacturerNameContains: String = manufacturerNameContains
-         { parameters.append( "rocket__configuration__manufacturer__name__icontains=\(manufacturerNameContains)" ) }
-      if let rocketConfigFullName: String = rocketConfigFullName { parameters.append( "rocket__configuration__full_name=\(rocketConfigFullName)" ) }
-      if let rocketConfigFullNameContains: String = rocketConfigFullNameContains
-         { parameters.append( "rocket__configuration__full_name__icontains=\(rocketConfigFullNameContains)" ) }
-      if let orbitName: String = orbitName { parameters.append( "mission__orbit__name=\(orbitName)" ) }
-      if let orbitNameContains: String = orbitNameContains { parameters.append( "mission__orbit__name=\(orbitNameContains)" ) }
-      if let program: String = program { parameters.append( "program=\(program)" ) }
-      if let locationIDs: [Int] = locationIDs { parameters.append( "location__ids=\(locationIDs)" ) }
-      if let launchServiceProviderIDs: [Int] = launchServiceProviderIDs { parameters.append( "lsp__ids=\(launchServiceProviderIDs)" ) }
-      if let isCrewed: Bool = isCrewed { parameters.append( "is_crewed=\(isCrewed)" ) }
-      if let includeSuborbital: Bool = includeSuborbital { parameters.append( "include_suborbital=\(includeSuborbital)" ) }
-      if let serialNumber: String = serialNumber { parameters.append( "serial_number=\(serialNumber)" ) }
-      if let launchServiceProviderName: String = launchServiceProviderName { parameters.append( "lsp__name=\(launchServiceProviderName)" ) }
-      if let launchServiceProviderID: Int = launchServiceProviderID { parameters.append( "lsp__id=\(launchServiceProviderID)" ) }
-      if let launcherConfigID: Int = launcherConfigID { parameters.append( "launcher_config__id=\(launcherConfigID)" ) }
-      if let spacecraftConfigIDs: [Int] = spacecraftConfigIDs { parameters.append( "spacecraft_config_ids=\(spacecraftConfigIDs)" ) }
-      if let related: Bool = related { parameters.append( "related=\(related)" ) }
-      if let hideRecentPrevious: Bool = hideRecentPrevious { parameters.append( "hide_recent_previous=\(hideRecentPrevious)" ) }
+      parameters = []
+      addParam( name: "name", value: name )
+      addParam( name: "slug", value: slug )
+      addParam( name: "rocket__configuration__name", value: rocketConfigName )
+      addParam( name: "rocket__configuration__id", value: rocketConfigID )
+      addParam( name: "status", value: status )
+      addParam( name: "launch_library_id", value: launchLibraryID )
+      addParam( name: "rocket__spacecraftflight__spacecraft__name", value: spacecraftName )
+      addParam( name: "rocket__spacecraftflight__spacecraft__name__icontains", value: spacecraftNameContains )
+      addParam( name: "rocket__spacecraftflight__spacecraft__id", value: spacecraftID )
+      addParam( name: "rocket__configuration__manufacturer__name", value: manufacturerName )
+      addParam( name: "rocket__configuration__manufacturer__name__icontains", value: manufacturerNameContains )
+      addParam( name: "rocket__configuration__full_name", value: rocketConfigFullName )
+      addParam( name: "rocket__configuration__full_name__icontains", value: rocketConfigFullNameContains )
+      addParam( name: "mission__orbit__name", value: orbitName )
+      addParam( name: "mission__orbit__name_icontains", value: orbitNameContains )
+      addParam( name: "program", value: program )
+      addParam( name: "location__ids", value: locationIDs )
+      addParam( name: "lsp__ids", value: launchServiceProviderIDs )
+      addParam( name: "is_crewed", value: isCrewed )
+      addParam( name: "include_suborbital", value: includeSuborbital )
+      addParam( name: "serial_number", value: serialNumber )
+      addParam( name: "lsp__name", value: launchServiceProviderName )
+      addParam( name: "lsp__id", value: launchServiceProviderID )
+      addParam( name: "launcher_config__id", value: launcherConfigID )
+      addParam( name: "spacecraft_config_ids", value: spacecraftConfigIDs )
+      addParam( name: "related", value: related )
+      addParam( name: "hide_recent_previous", value: hideRecentPrevious )
 
       return super.requestURL + parameters.joined( separator: "&" )
    }
@@ -84,54 +81,50 @@ class LaunchRequest: BaseAPIListRequest, APIListRequest
       super.init( baseURL: baseURL, endPoint: endPoint, searchTerm: searchTerm,
                   orderingField: orderingField, limit: limit, offset: offset )
 
-      self.name = nil
-      self.slug = nil
-      self.rocketConfigName = nil
-      self.rocketConfigID = nil
-      self.status = nil
-      self.launchLibraryID = nil
-      self.spacecraftName = nil
-      self.spacecraftNameContains = nil
-      self.spacecraftID = nil
-      self.manufacturerName = nil
-      self.manufacturerNameContains = nil
-      self.rocketConfigFullName = nil
-      self.rocketConfigFullNameContains = nil
-      self.orbitName = nil
-      self.orbitNameContains = nil
-      self.program = nil
-      self.locationIDs = nil
-      self.launchServiceProviderIDs = nil
-      self.isCrewed = nil
-      self.includeSuborbital = nil
-      self.serialNumber = nil
-      self.launchServiceProviderName = nil
-      self.launchServiceProviderID = nil
-      self.launcherConfigID = nil
-      self.spacecraftConfigIDs = nil
-      self.related = nil
-      self.hideRecentPrevious = nil
+      self.name = name
+      self.slug = slug
+      self.rocketConfigName = rocketConfigName
+      self.rocketConfigID = rocketConfigID
+      self.status = status
+      self.launchLibraryID = launchLibraryID
+      self.spacecraftName = spacecraftName
+      self.spacecraftNameContains = spacecraftNameContains
+      self.spacecraftID = spacecraftID
+      self.manufacturerName = manufacturerName
+      self.manufacturerNameContains = manufacturerNameContains
+      self.rocketConfigFullName = rocketConfigFullName
+      self.rocketConfigFullNameContains = rocketConfigFullNameContains
+      self.orbitName = orbitName
+      self.orbitNameContains = orbitNameContains
+      self.program = program
+      self.locationIDs = locationIDs
+      self.launchServiceProviderIDs = launchServiceProviderIDs
+      self.isCrewed = isCrewed
+      self.includeSuborbital = includeSuborbital
+      self.serialNumber = serialNumber
+      self.launchServiceProviderName = launchServiceProviderName
+      self.launchServiceProviderID = launchServiceProviderID
+      self.launcherConfigID = launcherConfigID
+      self.spacecraftConfigIDs = spacecraftConfigIDs
+      self.related = related
+      self.hideRecentPrevious = hideRecentPrevious
    }
 
    func copy() -> APIListRequest
    {
-      let newRequest: LaunchRequest =
-         LaunchRequest( baseURL: self.base, endPoint: self.endPoint, searchTerm: self.search, orderingField: self.ordering,
-                        limit: self.limit, offset: self.offset, name: self.name, slug: self.slug,
-                        rocketConfigName: self.rocketConfigName, rocketConfigID: self.rocketConfigID, status: self.status,
-                        launchLibraryID: self.launchLibraryID,
-                        spacecraftName: self.spacecraftName, spacecraftNameContains: self.spacecraftNameContains,
-                        spacecraftID: self.spacecraftID, manufacturerName: self.manufacturerName,
-                        manufacturerNameContains: self.manufacturerNameContains, rocketConfigFullName: self.rocketConfigFullName,
-                        rocketConfigFullNameContains: self.rocketConfigFullNameContains,
-                        orbitName: self.orbitName, orbitNameContains: self.orbitNameContains, program: self.program,
-                        locationIDs: self.locationIDs,
-                        launchServiceProviderIDs: self.launchServiceProviderIDs, isCrewed: self.isCrewed,
-                        includeSuborbital: self.includeSuborbital, serialNumber: self.serialNumber,
-                        launchServiceProviderName: self.launchServiceProviderName, launchServiceProviderID: self.launchServiceProviderID,
-                        launcherConfigID: self.launcherConfigID,
-                        spacecraftConfigIDs: self.spacecraftConfigIDs, related: self.related, hideRecentPrevious: self.hideRecentPrevious )
-
-      return newRequest
+      return LaunchRequest( baseURL: base, endPoint: endPoint, searchTerm: search, orderingField: ordering,
+                            limit: limit, offset: offset, name: name, slug: slug,
+                            rocketConfigName: rocketConfigName, rocketConfigID: rocketConfigID, status: status,
+                            launchLibraryID: launchLibraryID,
+                            spacecraftName: spacecraftName, spacecraftNameContains: spacecraftNameContains,
+                            spacecraftID: spacecraftID, manufacturerName: manufacturerName,
+                            manufacturerNameContains: manufacturerNameContains, rocketConfigFullName: rocketConfigFullName,
+                            rocketConfigFullNameContains: rocketConfigFullNameContains,
+                            orbitName: orbitName, orbitNameContains: orbitNameContains, program: program, locationIDs: locationIDs,
+                            launchServiceProviderIDs: launchServiceProviderIDs, isCrewed: isCrewed,
+                            includeSuborbital: includeSuborbital, serialNumber: serialNumber,
+                            launchServiceProviderName: launchServiceProviderName, launchServiceProviderID: launchServiceProviderID,
+                            launcherConfigID: launcherConfigID,
+                            spacecraftConfigIDs: spacecraftConfigIDs, related: related, hideRecentPrevious: hideRecentPrevious )
    }
 }

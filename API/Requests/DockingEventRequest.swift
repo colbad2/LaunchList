@@ -3,7 +3,7 @@
 /**
  Encapsulation of the API docking event endpoint parameters.
  */
-public class DockingEventRequest: BaseAPIListRequest
+public class DockingEventRequest: BaseAPIListRequest, APIListRequest
 {
    var spaceStationID: Int64?
    var dockingLocationID: Int64?
@@ -15,21 +15,20 @@ public class DockingEventRequest: BaseAPIListRequest
 
    override var requestURL: String
    {
-      var parameters: [String] = []
+      parameters = []
 
-      if let spaceStationID: Int64 = spaceStationID { parameters.append( "space_station__id=\(spaceStationID)" ) }
-      if let dockingLocationID: Int64 = dockingLocationID { parameters.append( "docking_location__id=\(dockingLocationID)" ) }
-      if let flightVehicleID: Int64 = flightVehicleID { parameters.append( "flight_vehicle__id=\(flightVehicleID)" ) }
-      if let dockingAfterDate: String = dockingAfterDate { parameters.append( "docking__gt=\(dockingAfterDate)" ) }
-      if let dockingBeforeDate: String = dockingBeforeDate { parameters.append( "docking__lt=\(dockingBeforeDate)" ) }
-      if let dockingOnOrAfterDate: String = dockingOnOrAfterDate { parameters.append( "docking__gte=\(dockingOnOrAfterDate)" ) }
-      if let dockingOnOrBeforeDate: String = dockingOnOrBeforeDate { parameters.append( "docking__lte=\(dockingOnOrBeforeDate)" ) }
+      addParam( name: "space_station__id", value: "spaceStationID" )
+      addParam( name: "docking_location__id", value: "dockingLocationID" )
+      addParam( name: "flight_vehicle__id", value: "flightVehicleID" )
+      addParam( name: "docking__gt", value: "dockingAfterDate" )
+      addParam( name: "docking__lt", value: "dockingBeforeDate" )
+      addParam( name: "docking__gte", value: "dockingOnOrAfterDate" )
+      addParam( name: "docking__lte", value: "dockingOnOrBeforeDate" )
 
       return super.requestURL + parameters.joined( separator: "&" )
    }
 
-   init( base: String, endPoint: String,
-         spaceStationID: Int64? = nil, dockingLocationID: Int64? = nil, flightVehicleID: Int64? = nil,
+   init( base: String, spaceStationID: Int64? = nil, dockingLocationID: Int64? = nil, flightVehicleID: Int64? = nil,
          dockingAfterDate: String? = nil, dockingBeforeDate: String? = nil, dockingOnOrAfterDate: String? = nil,
          dockingOnOrBeforeDate: String? = nil, searchTerm: String? = nil,
          orderingField: String? = nil, limit: Int = 100, offset: Int = 0 )
@@ -46,14 +45,18 @@ public class DockingEventRequest: BaseAPIListRequest
       self.dockingOnOrBeforeDate = dockingOnOrBeforeDate
    }
 
-   public func parseResponse( json: JSONStructure ) -> [ DockingEventJSON ]
-   {
-      var data: [DockingEventJSON] = []
-      if let dataArray: [JSONStructure] = json[ "sublist" ] as? [JSONStructure]
-      {
-         data = dataArray.compactMap { return DockingEventJSON( $0 ) }
-      }
+   /**
+    Makes a copy of this request
 
-      return data
+    - returns: copy of this request
+    */
+   func copy() -> APIListRequest
+   {
+      return DockingEventRequest( base: base, spaceStationID: spaceStationID, dockingLocationID: dockingLocationID,
+                                  flightVehicleID: flightVehicleID,
+                                  dockingAfterDate: dockingAfterDate, dockingBeforeDate: dockingBeforeDate,
+                                  dockingOnOrAfterDate: dockingOnOrAfterDate,
+                                  dockingOnOrBeforeDate: dockingOnOrBeforeDate, searchTerm: search,
+                                  orderingField: ordering, limit: limit, offset: offset )
    }
 }

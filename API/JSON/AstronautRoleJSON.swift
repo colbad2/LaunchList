@@ -6,7 +6,7 @@
        role*    string maxLength: 255 minLength: 1
        priority integer maximum: 2147483647 minimum: -2147483648
  */
-public class AstronautRole: Identifiable, JSONElement
+public class AstronautRoleJSON: Identifiable, JSONElement
 {
    public let id: Int64?
    let role: String?
@@ -18,5 +18,12 @@ public class AstronautRole: Identifiable, JSONElement
       self.id = nonNegativeInt( json[ "id" ] )
       self.role = nonEmptyString( json[ "role" ] )
       self.priority = nonNegativeInt( json[ "priority" ] )
+   }
+
+   init( id: Int64, role: String, priority: Int64? = 10 )
+   {
+      self.id = id
+      self.role = role
+      self.priority = priority
    }
 }

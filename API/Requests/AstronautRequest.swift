@@ -1,8 +1,5 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-/** API end point for astronaut requests. */
-private let apiEndPoint: String = "astronaut/"
-
 /**
  Astronaut list endpoint request.
  */
@@ -23,25 +20,26 @@ public class AstronautListRequest: BaseAPIListRequest, APIListRequest
    var diedBeforeDate: String?
    var diedAfterOrOnDate: String?
    var diedBeforeOrOnDate: String?
+
    /** URL for the request. */
    override var requestURL: String
    {
-      var parameters: [String] = []
-      addParameter( param: agencyAbbreviation, paramName: "agency__abbrev", parameters: &parameters )
-      addParameter( param: agencyName, paramName: "agency__name", parameters: &parameters )
-      addParameter( param: nationality, paramName: "nationality", parameters: &parameters )
-      addParameter( param: status, paramName: "status", parameters: &parameters )
-      addParameter( param: dateOfBirth, paramName: "date_of_birth", parameters: &parameters )
-      addParameter( param: dateOfDeath, paramName: "date_of_death", parameters: &parameters )
-      addParameter( param: name, paramName: "name", parameters: &parameters )
-      addParameter( param: bornAfterDate, paramName: "date_of_birth__gt", parameters: &parameters )
-      addParameter( param: bornBeforeDate, paramName: "date_of_birth__lt", parameters: &parameters )
-      addParameter( param: bornAfterOrOnDate, paramName: "date_of_birth__gte", parameters: &parameters )
-      addParameter( param: bornBeforeOrOnDate, paramName: "date_of_birth__lte", parameters: &parameters )
-      addParameter( param: diedAfterDate, paramName: "date_of_death__gt", parameters: &parameters )
-      addParameter( param: diedBeforeDate, paramName: "date_of_death__lt", parameters: &parameters )
-      addParameter( param: diedAfterOrOnDate, paramName: "date_of_death__gte", parameters: &parameters )
-      addParameter( param: diedBeforeOrOnDate, paramName: "date_of_death__lte", parameters: &parameters )
+      parameters = []
+      addParam( name: "agency__abbrev", value: agencyAbbreviation )
+      addParam( name: "agency__name", value: agencyName )
+      addParam( name: "nationality", value: nationality )
+      addParam( name: "status", value: status )
+      addParam( name: "date_of_birth", value: dateOfBirth )
+      addParam( name: "date_of_death", value: dateOfDeath )
+      addParam( name: "name", value: name )
+      addParam( name: "date_of_birth__gt", value: bornAfterDate )
+      addParam( name: "date_of_birth__lt", value: bornBeforeDate )
+      addParam( name: "date_of_birth__gte", value: bornAfterOrOnDate )
+      addParam( name: "date_of_birth__lte", value: bornBeforeOrOnDate )
+      addParam( name: "date_of_death__gt", value: diedAfterDate )
+      addParam( name: "date_of_death__lt", value: diedBeforeDate )
+      addParam( name: "date_of_death__gte", value: diedAfterOrOnDate )
+      addParam( name: "date_of_death__lte", value: diedBeforeOrOnDate )
 
       return super.requestURL + parameters.joined( separator: "&" )
    }
@@ -64,7 +62,7 @@ public class AstronautListRequest: BaseAPIListRequest, APIListRequest
          bornBeforeOrOnDate: String? = nil, diedAfterDate: String? = nil, diedBeforeDate: String? = nil,
          diedAfterOrOnDate: String? = nil, diedBeforeOrOnDate: String? = nil )
    {
-      super.init( baseURL: baseURL, endPoint: apiEndPoint, searchTerm: searchTerm,
+      super.init( baseURL: baseURL, endPoint: "astronaut/", searchTerm: searchTerm,
                   orderingField: orderingField, limit: limit, offset: offset )
 
       self.agencyAbbreviation = agencyAbbreviation
@@ -91,21 +89,11 @@ public class AstronautListRequest: BaseAPIListRequest, APIListRequest
     */
    func copy() -> APIListRequest
    {
-      return AstronautListRequest( baseURL: base, searchTerm: search,
-                                   orderingField: ordering, limit: limit, offset: offset )
-   }
-}
-
-public class AstronautRequest: BaseAPIIDRequest
-{
-   /**
-    Creates a request for a specific type, with a specific ID.
-
-    - parameter baseURL: `String` base part of the constructed request URL
-    - parameter id:      `Int64` ID of the type requested
-    */
-   init( baseURL: String, id: Int64 )
-   {
-      super.init( baseURL: baseURL, endPoint: apiEndPoint, id: id )
+      return AstronautListRequest( baseURL: base, searchTerm: search, orderingField: ordering, limit: limit, offset: offset,
+                                   agencyAbbreviation: agencyAbbreviation, agencyName: agencyName, nationality: nationality,
+                                   status: status, dateOfBirth: dateOfBirth, dateOfDeath: dateOfDeath, name: name,
+                                   bornAfterDate: bornAfterDate, bornBeforeDate: bornBeforeDate, bornAfterOrOnDate: bornAfterOrOnDate,
+                                   bornBeforeOrOnDate: bornBeforeOrOnDate, diedAfterDate: diedAfterDate, diedBeforeDate: diedBeforeDate,
+                                   diedAfterOrOnDate: diedAfterOrOnDate, diedBeforeOrOnDate: diedBeforeOrOnDate )
    }
 }
