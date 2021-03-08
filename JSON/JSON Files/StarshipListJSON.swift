@@ -16,18 +16,23 @@ import CoreData
      "vehicles": [ … ]
     }
  */
-public struct StarshipListJSON: Decodable
+public struct StarshipListJSON: JSONElement
 {
-   // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case upcoming, previous, liveStreams, roadClosures, notices, vehicles
-   }
-
    let upcoming: StarshipEventsJSON?
    let previous: StarshipEventsJSON?
    let liveStreams: [LiveStreamJSON]?
    let roadClosures: [RoadClosureJSON]?
    let notices: [IDNameJSON]?
    let vehicles: [LauncherJSON]?
+
+   public init?( _ json: Any? )
+   {
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.upcoming = StarshipEventsJSON( json[ "upcoming" ] as? JSONStructure )
+      self.previous = StarshipEventsJSON( json[ "previous" ] as? JSONStructure )
+      self.liveStreams = parseArray( json[ "liveStreams" ] )
+      self.roadClosures = parseArray( json[ "roadClosures" ] )
+      self.notices = parseArray( json[ "notices" ] )
+      self.vehicles = parseArray( json[ "vehicles" ] )
+   }
 }

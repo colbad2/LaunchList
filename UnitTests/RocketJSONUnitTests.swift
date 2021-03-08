@@ -22,7 +22,7 @@ class RocketJSONUnitTests: XCTestCase
        }
       """
 
-      guard let rocket: RocketJSON = RocketJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let rocket: RocketJSON = RocketJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       XCTAssertNotNil( rocket )
       checkLauncherConfig( launcher: rocket.configuration, launcherID: 164, libraryID: 188,

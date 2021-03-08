@@ -14,19 +14,17 @@
 public class LandingTypeJSON: Decodable, Identifiable, JSONElement
 {
    /** ID of the landing type within the API. */
-   public let id: Int64
+   public let id: Int64?
    let name: String?
    var abbreviation: String?
    var typeDescription: String?
 
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.name = json[ "name" ] as? String
-      self.abbreviation = json[ "abbrev" ] as? String
-      self.typeDescription = json[ "description" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
+      self.typeDescription = nonEmptyString( json[ "description" ] )
    }
 }

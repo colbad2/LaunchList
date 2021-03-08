@@ -13,31 +13,22 @@
  */
 public class LiveStreamJSON: Decodable, JSONElement
 {
-   // translate API attribute names into better var names
-//   enum CodingKeys: String, CodingKey
-//   {
-//      case title, image, url
-//
-//      case liveStreamDescription = "description"
-//   }
-
    let title: String?
    let liveStreamDescription: String?
    let image: String?
-   let url: String
+   let url: String?
 
    /**
     Make a `LiveStreamJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-
-      self.title = json[ "title" ] as? String
-      self.liveStreamDescription = json[ "description" ] as? String
-      self.image = json[ "image" ] as? String
-      self.url = json[ "url" ] as! String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.title = nonEmptyString( json[ "title" ] )
+      self.liveStreamDescription = nonEmptyString( json[ "description" ] )
+      self.image = nonEmptyString( json[ "image" ] )
+      self.url = nonEmptyString( json[ "url" ] )
    }
 }

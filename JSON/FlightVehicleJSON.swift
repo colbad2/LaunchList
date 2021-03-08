@@ -10,10 +10,10 @@
          "spacecraft": { … }
        }
  */
-public class FlightVehicleJSON: Decodable, Identifiable, JSONElement
+public class FlightVehicleJSON: Identifiable, JSONElement
 {
    /** ID of the astronaut within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** URI of this data. Unused. */
    var url: String?
    var destination: String?
@@ -25,15 +25,13 @@ public class FlightVehicleJSON: Decodable, Identifiable, JSONElement
 
     - parameter json: `JSONStructure` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.destination = json[ "destination" ] as? String
-      self.missionEnd = json[ "missionEnd" ] as? String
-      self.spacecraft = SpacecraftJSON( json: json[ "spacecraft" ] as? JSONStructure )
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.destination = nonEmptyString( json[ "destination" ] )
+      self.missionEnd = nonEmptyString( json[ "missionEnd" ] )
+      self.spacecraft = SpacecraftJSON( json[ "spacecraft" ] )
    }
 }

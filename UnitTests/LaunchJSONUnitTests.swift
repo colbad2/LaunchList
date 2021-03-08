@@ -95,13 +95,13 @@ class LaunchJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: launchJSON1 ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: launchJSON1 ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLaunch( launch: launch, launchID: "d5d607b7-05ed-4142-8703-14b553c195e0",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1412, name: "Falcon 9 Block 5 | T\u{00fc}rksat 5A",
                    net: "2021-01-05T01:27:00Z",
-                   probability: -1, slug: "falcon-9-block-5-turksat-5a", tbdDate: true, tbdTime: true,
+                   slug: "falcon-9-block-5-turksat-5a", tbdDate: true, tbdTime: true,
                    url: "https://ll.thespacedevs.com/2.1.0/launch/d5d607b7-05ed-4142-8703-14b553c195e0/",
                    webcastLive: false, windowEnd: "2021-01-05T05:29:00Z",
                    windowStart: "2021-01-05T01:27:00Z" )
@@ -228,7 +228,7 @@ class LaunchJSONUnitTests: XCTestCase
       }
       """
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
       XCTAssertNotNil( launch )
    }
 
@@ -306,13 +306,13 @@ class LaunchJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLaunch( launch: launch, launchID: "f213a5df-579a-4682-8143-df228e463049",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1965, name: "Falcon 9 Block 5 | Dedicated SSO Rideshare Mission 1",
                    net: "2021-01-14T00:00:00Z",
-                   probability: -1, slug: "falcon-9-block-5-dedicated-sso-rideshare-mission-1", tbdDate: true,
+                   slug: "falcon-9-block-5-dedicated-sso-rideshare-mission-1", tbdDate: true,
                    tbdTime: true,
                    url: "https://ll.thespacedevs.com/2.1.0/launch/f213a5df-579a-4682-8143-df228e463049/",
                    webcastLive: false, windowEnd: "2021-01-14T00:00:00Z",
@@ -425,13 +425,13 @@ class LaunchJSONUnitTests: XCTestCase
        }
       """#
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLaunch( launch: launch, launchID: "edaf9a8d-d67c-4e0e-8452-a37b111581d5",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1417, name: "Falcon 9 Block 5 | Sirius SXM-8",
                    net: "2021-01-31T00:00:00Z",
-                   probability: -1, slug: "falcon-9-block-5-sirius-sxm-8", tbdDate: true, tbdTime: true,
+                   slug: "falcon-9-block-5-sirius-sxm-8", tbdDate: true, tbdTime: true,
                    url: "https://ll.thespacedevs.com/2.1.0/launch/edaf9a8d-d67c-4e0e-8452-a37b111581d5/",
                    webcastLive: false, windowEnd: "2021-01-31T00:00:00Z",
                    windowStart: "2021-01-31T00:00:00Z" )
@@ -443,8 +443,8 @@ class LaunchJSONUnitTests: XCTestCase
       XCTAssertNil( launch.mission?.orbit )
       checkPad( pad: launch.pad, padID: 54, lat: "0.0", lon: "0.0",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_54_20200803143536.jpg",
-                mapURL: "", name: "Unknown Pad", totalLaunchCount: 0,
-                url: "https://ll.thespacedevs.com/2.1.0/pad/54/", wikiURL: "" )
+                name: "Unknown Pad", totalLaunchCount: 0,
+                url: "https://ll.thespacedevs.com/2.1.0/pad/54/" )
       checkLocation( location: launch.pad?.location, locationID: 22, countryCode: "UNK",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
                      name: "Unknown Location", landingCount: 0, lauchCount: 0,
@@ -536,13 +536,13 @@ class LaunchJSONUnitTests: XCTestCase
           }
       """#
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLaunch( launch: launch, launchID: "0098c032-73de-4c6f-8d73-5d68b9a12fdf",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon2520heavy_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1585, name: "Falcon Heavy | USSF-52",
                    net: "2021-03-01T00:00:00Z",
-                   probability: -1, slug: "falcon-heavy-ussf-52", tbdDate: false, tbdTime: false,
+                   slug: "falcon-heavy-ussf-52", tbdDate: false, tbdTime: false,
                    url: "https://ll.thespacedevs.com/2.1.0/launch/0098c032-73de-4c6f-8d73-5d68b9a12fdf/",
                    webcastLive: false, windowEnd: "2021-03-01T00:00:00Z",
                    windowStart: "2021-03-01T00:00:00Z" )
@@ -684,13 +684,13 @@ class LaunchJSONUnitTests: XCTestCase
        }
       """#
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLaunch( launch: launch, launchID: "89a150ea-6e4b-489f-853c-3603ae684611",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 2090, name: "Falcon 9 Block 5 | Dragon CRS-2 SpX-22",
                    net: "2021-03-12T00:00:00Z",
-                   probability: -1, slug: "falcon-9-block-5-dragon-crs-2-spx-22", tbdDate: true, tbdTime: true,
+                   slug: "falcon-9-block-5-dragon-crs-2-spx-22", tbdDate: true, tbdTime: true,
                    url: "https://ll.thespacedevs.com/2.1.0/launch/89a150ea-6e4b-489f-853c-3603ae684611/",
                    webcastLive: false, windowEnd: "2021-03-12T00:00:00Z",
                    windowStart: "2021-03-12T00:00:00Z" )
@@ -904,13 +904,13 @@ class LaunchJSONUnitTests: XCTestCase
           }
       """#
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLaunch( launch: launch, launchID: "32dcb5ad-7609-4fc0-8094-768ee5c2ebe0",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 2077, name: "Falcon 9 Block 5 | SpX USCV-2 (NASA Crew Flight 2)",
                    net: "2021-03-30T00:00:00Z",
-                   probability: -1, slug: "falcon-9-block-5-spx-uscv-2-nasa-crew-flight-2", tbdDate: true, tbdTime: true,
+                   slug: "falcon-9-block-5-spx-uscv-2-nasa-crew-flight-2", tbdDate: true, tbdTime: true,
                    url: "https://ll.thespacedevs.com/2.1.0/launch/32dcb5ad-7609-4fc0-8094-768ee5c2ebe0/",
                    webcastLive: false, windowEnd: "2021-03-30T00:00:00Z",
                    windowStart: "2021-03-30T00:00:00Z" )
@@ -1065,13 +1065,13 @@ class LaunchJSONUnitTests: XCTestCase
            }
       """#
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLaunch( launch: launch, launchID: "572dbb78-06f5-47dd-be8c-593967333d81",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
                    inHold: false, libraryID: 1527, name: "Falcon 9 Block 5 | GPS III SV06",
                    net: "2021-04-01T00:00:00Z",
-                   probability: -1, slug: "falcon-9-block-5-gps-iii-sv06", tbdDate: true, tbdTime: true,
+                   slug: "falcon-9-block-5-gps-iii-sv06", tbdDate: true, tbdTime: true,
                    url: "https://ll.thespacedevs.com/2.1.0/launch/572dbb78-06f5-47dd-be8c-593967333d81/",
                    webcastLive: false, windowEnd: "2021-04-01T00:00:00Z",
                    windowStart: "2021-04-01T00:00:00Z" )
@@ -1184,13 +1184,13 @@ class LaunchJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launch: LaunchJSON = LaunchJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launch: LaunchJSON = LaunchJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLaunch( launch: launch, launchID: "e1664280-6e39-4de8-8875-e4d3ca72338b",
                    image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/space2520shuttle2520endeavour2520ov-101_image_20190222030547.jpeg",
                    name: "Space Shuttle Endeavour / OV-105 | STS-123",
                    net: "2008-03-11T06:28:14Z",
-                   probability: -1, slug: "space-shuttle-endeavour-ov-105-sts-123",
+                   slug: "space-shuttle-endeavour-ov-105-sts-123",
                    url: "https://ll.thespacedevs.com/2.2.0/launch/e1664280-6e39-4de8-8875-e4d3ca72338b/",
                    webcastLive: false, windowEnd: "2008-03-11T06:28:14Z",
                    windowStart: "2008-03-11T06:28:14Z", lastUpdated: "2021-02-07T21:10:13Z" )
@@ -1208,7 +1208,7 @@ class LaunchJSONUnitTests: XCTestCase
 
       checkMission( mission: launch.mission, missionID: 127,
                     description: "STS-123 was a Space Shuttle mission to the International Space Station (ISS) which was flown by Space Shuttle Endeavour. STS-123 was the 1J/A ISS assembly mission. The original launch target date was 14 February 2008 but after the delay of STS-122, the shuttle was launched on 11 March 2008. It was the twenty-fifth shuttle mission to visit the ISS, and delivered the first module of the Japanese laboratory, Japanese Experiment Module (KibÅ), and the Canadian Special Purpose Dexterous Manipulator, (SPDM) Dextre robotics system to the station.",
-                    name:"STS-123", type: "Human Exploration" )
+                    name: "STS-123", type: "Human Exploration" )
       checkOrbit( orbit: launch.mission?.orbit, id: 8, name: "Low Earth Orbit", abbreviation: "LEO" )
 
       checkPad( pad: launch.pad, padID: 87, lat: "28.60822681", lon: "-80.60428186",

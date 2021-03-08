@@ -12,7 +12,7 @@
 public class LaunchStatusJSON
 {
    /** ID of the launch status within the API. */
-   public let id: Int64
+   public let id: Int64?
    let name: String?
    var abbreviation: String?
    var statusDescription: String?
@@ -20,11 +20,9 @@ public class LaunchStatusJSON
    init?( json: JSONStructure? )
    {
       guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.name = json[ "name" ] as? String
-      self.abbreviation = json[ "abbrev" ] as? String
-      self.statusDescription = json[ "description" ] as? String
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
+      self.statusDescription = nonEmptyString( json[ "description" ] )
    }
 }

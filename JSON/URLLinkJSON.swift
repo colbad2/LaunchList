@@ -14,17 +14,15 @@ public class URLLinkJSON: Decodable, JSONElement
    let title: String?
    let urlDescription: String?
    let featureImage: String?
-   let url: String
+   let url: String?
 
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let url = json[ "url" ] as? String else { return nil }
-
-      self.url = url
-      self.priority = json[ "priority" ] as? String
-      self.title = json[ "title" ] as? String
-      self.urlDescription = json[ "description" ] as? String
-      self.featureImage = json[ "feature_image" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.url = nonEmptyString( json[ "url" ] )
+      self.priority = nonEmptyString( json[ "priority" ] )
+      self.title = nonEmptyString( json[ "title" ] )
+      self.urlDescription = nonEmptyString( json[ "description" ] )
+      self.featureImage = nonEmptyString( json[ "feature_image" ] )
    }
 }

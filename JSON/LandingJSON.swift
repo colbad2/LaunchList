@@ -12,23 +12,21 @@
 public class LandingJSON: Decodable, Identifiable, JSONElement
 {
    /** ID of the location within the API. */
-   public var id: Int64
+   public var id: Int64?
    var attempt: Bool?
    var success: Bool?
    var landingDescription: String?
    var location: LocationJSON?
    var type: LandingTypeJSON?
 
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
       self.attempt = json[ "attempt" ] as? Bool
       self.success = json[ "success" ] as? Bool
-      self.landingDescription = json[ "description" ] as? String
-      self.location = LocationJSON( json: json[ "location" ] as? JSONStructure )
-      self.type = LandingTypeJSON( json: json[ "type" ] as? JSONStructure )
+      self.landingDescription = nonEmptyString( json[ "description" ] )
+      self.location = LocationJSON( json[ "location" ] )
+      self.type = LandingTypeJSON( json[ "type" ] )
    }
 }

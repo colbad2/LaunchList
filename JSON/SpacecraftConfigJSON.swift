@@ -37,10 +37,10 @@
        wiki_link   string($uri), maxLength: 200
        info_link   string($uri), maxLength: 200
  */
-public class SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
+public class SpacecraftConfigJSON: Identifiable, JSONElement
 {
    /** ID of the config within the API. */
-   public let id: Int64
+   public let id: Int64?
    /** URI of this data in the API. Unused. */
    let url: String?
    /** Config name, like "Soyuz". */
@@ -70,32 +70,30 @@ public class SpacecraftConfigJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `SpacecraftConfigJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.name = json[ "name" ] as? String
-      self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )
-      self.agency = AgencyJSON( json: json[ "agency" ] as? JSONStructure )
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.type = IDNameJSON( json[ "type" ] )
+      self.agency = AgencyJSON( json[ "agency" ] )
       self.inUse = json[ "in_use" ] as? Bool
-      self.imageURL = json[ "image_url" ] as? String
+      self.imageURL = nonEmptyString( json[ "image_url" ] )
       self.capability = nonEmptyString( json[ "capability" ] )
-      self.history = json[ "history" ] as? String
-      self.details = json[ "details" ] as? String
-      self.maidenFlight = json[ "maiden_flight" ] as? String
-      self.height = json[ "height" ] as? Double
-      self.diameter = json[ "diameter" ] as? Double
+      self.history = nonEmptyString( json[ "history" ] )
+      self.details = nonEmptyString( json[ "details" ] )
+      self.maidenFlight = nonEmptyString( json[ "maiden_flight" ] )
+      self.height = nonNegativeDouble( json[ "height" ] )
+      self.diameter = nonNegativeDouble( json[ "diameter" ] )
       self.humanRated = json[ "human_rated" ] as? Bool
-      self.crewCapacity = json[ "crew_capacity" ] as? Int64
-      self.payloadCapacity = json[ "payload_capacity" ] as? Int64
-      self.flightLife = json[ "flight_life" ] as? String
-      self.nationURL = json[ "nation_url" ] as? String
-      self.wikiURL = json[ "wiki_link" ] as? String
+      self.crewCapacity = nonNegativeInt( json[ "crew_capacity" ] )
+      self.payloadCapacity = nonNegativeInt( json[ "payload_capacity" ] )
+      self.flightLife = nonEmptyString( json[ "flight_life" ] )
+      self.nationURL = nonEmptyString( json[ "nation_url" ] )
+      self.wikiURL = nonEmptyString( json[ "wiki_link" ] )
       self.infoURL = nonEmptyString( json[ "info_link" ] )
    }
 }

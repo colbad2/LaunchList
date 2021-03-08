@@ -102,7 +102,7 @@ public class AstronautRequest: BaseAPIIDRequest
     Creates a request for a specific type, with a specific ID.
 
     - parameter baseURL: `String` base part of the constructed request URL
-    - parameter id: `Int64` ID of the type requested
+    - parameter id:      `Int64` ID of the type requested
     */
    init( baseURL: String, id: Int64 )
    {

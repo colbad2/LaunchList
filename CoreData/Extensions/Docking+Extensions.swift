@@ -55,7 +55,7 @@ public func updateEntity( json: DockingJSON, entity: Docking?, context: NSManage
 {
    guard let dockingEntity = entity else { return }
 
-   dockingEntity.id = json.id
+   dockingEntity.id = json.id ?? -1
    dockingEntity.launchID = json.launchID
    dockingEntity.docking = json.docking
    dockingEntity.departure = json.departure
@@ -119,7 +119,7 @@ public func getDocking( by entityID: Int64, context: NSManagedObjectContext ) ->
  */
 public func fetchDocking( docking: DockingJSON, context: NSManagedObjectContext ) -> Docking
 {
-   let dockingEntity: Docking? = getDocking( by: docking.id, context: context )
+   let dockingEntity: Docking? = getDocking( by: docking.id ?? -1, context: context )
    updateEntity( json: docking, entity: dockingEntity, context: context )
    return dockingEntity ?? addToCoreData( json: docking, context: context )
 }

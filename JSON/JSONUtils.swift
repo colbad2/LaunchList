@@ -88,9 +88,9 @@ public func wrapURL( _ urlString: String? ) -> URL?
  Produce a JSON structure of the given type `T` from a file. `T` is determined from context.
 
  - parameter filename: `String` filename of bundle JSON file to parse
- - returns: `T?` parsed JSON struct, if possible
+ - returns:            `T?` parsed JSON struct, if possible
  */
-public func parseJSONFile<T: Decodable>( filename: String ) -> T?
+public func parseJSONFile< T: JSONElement >( filename: String ) -> T?
 {
    guard let jsonData: Data = readBundleJSONFile( forName: filename ) else { return nil }
    return parseJSONString( jsonData: jsonData )
@@ -126,7 +126,7 @@ func readBundleJSONFile( forName name: String ) -> Data?
  - parameter json: `String`  JSON to parse
  - returns: `T?` parsed JSON struct, if possible
  */
-public func parseJSONString<T: Decodable>( json: String ) -> T?
+public func parseJSONString< T: JSONElement >( json: String ) -> T?
 {
    guard let jsonData: Data = json.data( using: .utf8 ) else { return nil }
    return parseJSONString( jsonData: jsonData )
@@ -138,22 +138,23 @@ public func parseJSONString<T: Decodable>( json: String ) -> T?
  - parameter json: `Data`  JSON to parse
  - returns: `T?` parsed JSON struct, if possible
  */
-public func parseJSONString< T: Decodable >( jsonData: Data ) -> T?
+public func parseJSONString< T: JSONElement >( jsonData: Data ) -> T?
 {
-   let decoder: JSONDecoder = JSONDecoder()
-   decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-   do
-   {
-      return try decoder.decode( T.self, from: jsonData )
-   }
-   catch let error as DecodingError
-   {
-      reportDecodingError( error: error )
-   }
-   catch { print( "error: ", error ) }
-
-   return nil
+   return T( parseJSON( data: jsonData ) )
+//   let decoder: JSONDecoder = JSONDecoder()
+//   decoder.keyDecodingStrategy = .convertFromSnakeCase
+//
+//   do
+//   {
+//      return try decoder.decode( T.self, from: jsonData )
+//   }
+//   catch let error as DecodingError
+//   {
+//      reportDecodingError( error: error )
+//   }
+//   catch { print( "error: ", error ) }
+//
+//   return nil
 }
 
 /**
@@ -308,4 +309,32 @@ public func nonEmptyString( _ any: Any? ) -> String?
    guard let anyString: String = any as? String else { return nil }
    if anyString.trim().isEmpty { return nil }
    return anyString
+}
+
+/**
+ Returns a zero or positive int interpretation of the parameter.
+ */
+public func nonNegativeInt( _ any: Any? ) -> Int64?
+{
+   guard let anyInt: Int64 = any as? Int64 else { return nil }
+   if anyInt < 0 { return nil }
+   return anyInt
+}
+
+/**
+ Returns a zero or positive double interpretation of the parameter.
+ */
+public func nonNegativeDouble( _ any: Any? ) -> Double?
+{
+   guard let anyDouble: Double = any as? Double else { return nil }
+   if anyDouble < 0 { return nil }
+   return anyDouble
+}
+
+/**
+ Parse an array from a JSON structure.
+ */
+public func parseArray< T: JSONElement >( _ json: Any? ) -> [T]
+{
+   return ( json as? [JSONStructure] )?.compactMap { T( $0 ) } ?? []
 }

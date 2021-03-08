@@ -19,10 +19,10 @@ import CoreData
        launcher_stage   [FirstStage{...}]
        spacecraft_stage SpacecraftFlightDetailedSerializerForLaunch{...}
  */
-public class RocketJSON: Decodable, Identifiable, JSONElement, AutoEquatable, AutoHashable
+public class RocketJSON: Identifiable, JSONElement, AutoEquatable, AutoHashable
 {
    /** ID of the rocket within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** Details about the kind of rocket. */
    var configuration: LauncherConfigJSON?
    var launcherStage: [FirstStageJSON] = []
@@ -31,16 +31,14 @@ public class RocketJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
    /**
     Make a `RocketJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.configuration = LauncherConfigJSON( json: json[ "configuration" ] as? JSONStructure )
-      self.launcherStage = ( json[ "launcher_stage" ] as? [JSONStructure] )?.compactMap { FirstStageJSON( json: $0 ) } ?? []
-      self.spacecraftStage = SpacecraftFlightJSON( json: json[ "spacecraft_stage" ] as? JSONStructure )
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.configuration = LauncherConfigJSON( json[ "configuration" ] )
+      self.launcherStage = parseArray( json[ "launcher_stage" ] )
+      self.spacecraftStage = SpacecraftFlightJSON( json[ "spacecraft_stage" ] )
    }
 }

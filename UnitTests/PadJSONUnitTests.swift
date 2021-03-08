@@ -32,7 +32,7 @@ class PadJSONUnitTests: XCTestCase
       }
       """
 
-      guard let pad: PadJSON = PadJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let pad: PadJSON = PadJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkPad( pad: pad, padID: 80, agencyID: 121, lat: "28.56194122", lon: "-80.57735736",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_80_20200803143323.jpg",
@@ -75,12 +75,12 @@ class PadJSONUnitTests: XCTestCase
       }
       """
 
-      guard let pad: PadJSON = PadJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let pad: PadJSON = PadJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkPad( pad: pad, padID: 54, lat: "0.0", lon: "0.0",
                 mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_54_20200803143536.jpg",
-                mapURL: "", name: "Unknown Pad", totalLaunchCount: 0,
-                url: "https://ll.thespacedevs.com/2.1.0/pad/54/", wikiURL: "" )
+                name: "Unknown Pad", totalLaunchCount: 0,
+                url: "https://ll.thespacedevs.com/2.1.0/pad/54/" )
       checkLocation( location: pad.location, locationID: 22, countryCode: "UNK",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
                      name: "Unknown Location", landingCount: 0, lauchCount: 0,

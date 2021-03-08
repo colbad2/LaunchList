@@ -198,7 +198,7 @@ public func updateEntity( json: LaunchJSON, entity: Launch?, context: NSManagedO
    launchEntity.name = json.name?.fixBadUTF()
    launchEntity.net = parseISODate( isoDate: json.net )
    launchEntity.addPadFromJSON( pad: json.pad, context: context )
-   launchEntity.probability = guaranteedInt16( json.probability )
+   launchEntity.probability = nonNegativeInt( json.probability ) ?? -1
    launchEntity.addProgramsFromJSON( programs: json.programs, context: context )
    launchEntity.addRocketFromJSON( rocket: json.rocket, context: context )
    launchEntity.slug = json.slug

@@ -42,7 +42,7 @@ func updateEntity( json: MissionJSON, entity: Mission?, context: NSManagedObject
    guard let missionEntity = entity else { return }
 
    missionEntity.missionDescription = json.description?.fixBadUTF()
-   missionEntity.id = json.id
+   missionEntity.id = json.id ?? -1
    missionEntity.launchDesignator = json.launchDesignator
    missionEntity.name = json.name?.fixBadUTF().trim()
 
@@ -81,7 +81,7 @@ func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Missio
  */
 func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mission
 {
-   let missionEntity: Mission? = getMission( by: mission.id, context: context )
+   let missionEntity: Mission? = getMission( by: mission.id ?? -1, context: context )
    updateEntity( json: mission, entity: missionEntity, context: context )
    return missionEntity ?? addToCoreData( json: mission, context: context )
 }

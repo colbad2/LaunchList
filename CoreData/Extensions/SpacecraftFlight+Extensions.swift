@@ -144,7 +144,7 @@ public func updateEntity( json: SpacecraftFlightJSON, entity: SpacecraftFlight?,
 {
    guard let flightEntity = entity else { return }
 
-   flightEntity.id = json.id
+   flightEntity.id = json.id ?? -1
    flightEntity.destination = json.destination
    flightEntity.missionEnd = json.missionEnd
    flightEntity.addSpacecraftFromJSON( spacecraft: json.spacecraft, context: context )
@@ -192,7 +192,7 @@ public func getSpacecraftFlight( by entityID: Int64, context: NSManagedObjectCon
  */
 public func fetchSpacecraftFlight( flight: SpacecraftFlightJSON, context: NSManagedObjectContext ) -> SpacecraftFlight
 {
-   let spacecraftFlightEntity: SpacecraftFlight? = getSpacecraftFlight( by: flight.id, context: context )
+   let spacecraftFlightEntity: SpacecraftFlight? = getSpacecraftFlight( by: flight.id ?? -1, context: context )
    updateEntity( json: flight, entity: spacecraftFlightEntity, context: context )
    return spacecraftFlightEntity ?? addToCoreData( json: flight, context: context )
 }

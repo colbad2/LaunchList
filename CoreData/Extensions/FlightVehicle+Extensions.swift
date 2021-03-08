@@ -64,7 +64,7 @@ public func updateEntity( json: FlightVehicleJSON, entity: FlightVehicle?, conte
 {
    guard let flightVehicleEntity = entity else { return }
 
-   flightVehicleEntity.id = json.id
+   flightVehicleEntity.id = json.id ?? -1
    flightVehicleEntity.url = json.url
    flightVehicleEntity.destination = json.destination
    flightVehicleEntity.missionEnd = json.missionEnd
@@ -126,7 +126,7 @@ public func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContex
  */
 public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSManagedObjectContext ) -> FlightVehicle
 {
-   let flightVehicleEntity: FlightVehicle? = getFlightVehicle( by: flightVehicle.id, context: context )
+   let flightVehicleEntity: FlightVehicle? = getFlightVehicle( by: flightVehicle.id ?? -1, context: context )
    updateEntity( json: flightVehicle, entity: flightVehicleEntity, context: context )
    return flightVehicleEntity ?? addToCoreData( json: flightVehicle, context: context )
 }

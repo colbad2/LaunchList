@@ -55,7 +55,7 @@ public func updateEntity( json: SpacecraftConfigJSON, entity: SpacecraftConfig?,
 {
    guard let spacecraftConfigEntity = entity else { return }
 
-   spacecraftConfigEntity.id = json.id
+   spacecraftConfigEntity.id = json.id ?? -1
    spacecraftConfigEntity.url = json.url
    spacecraftConfigEntity.type = json.type?.name
    spacecraftConfigEntity.addAgencyFromJSON( agency: json.agency, context: context )
@@ -140,7 +140,7 @@ public func getSpacecraftConfig( by entityID: Int64, context: NSManagedObjectCon
  */
 public func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, context: NSManagedObjectContext ) -> SpacecraftConfig
 {
-   let spacecraftConfigEntity: SpacecraftConfig? = getSpacecraftConfig( by: spacecraftConfig.id, context: context )
+   let spacecraftConfigEntity: SpacecraftConfig? = getSpacecraftConfig( by: spacecraftConfig.id ?? -1, context: context )
    updateEntity( json: spacecraftConfig, entity: spacecraftConfigEntity, context: context )
    return spacecraftConfigEntity ?? addToCoreData( json: spacecraftConfig, context: context )
 }

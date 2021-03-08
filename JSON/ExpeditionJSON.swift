@@ -23,18 +23,18 @@
 
  ### Spec (API models: Expedition, ExpeditionDetail, ExpeditionSerializerforSpacestation,
                          ExpeditionDetailedSerializerforSpacestation )
-       id   integer
-       url   string($uri)
-       name*   string maxLength: 255 minLength: 1
-       start*   string($date-time)
-       end   string($date-time)
-       spacestation   SpaceStationSerializerForExpedition or SpaceStationDetailedSerializerForExpedition
-       crew   AstronautFlight[] or AstronautFlightForExpedition[]
+       id           integer
+       url          string($uri)
+       name*        string maxLength: 255 minLength: 1
+       start*       string($date-time)
+       end          string($date-time)
+       spacestation SpaceStationSerializerForExpedition or SpaceStationDetailedSerializerForExpedition
+       crew         AstronautFlight[] or AstronautFlightForExpedition[]
 */
-public class ExpeditionJSON: Decodable, Identifiable, JSONElement
+public class ExpeditionJSON: Identifiable, JSONElement
 {
    /** ID of the rocket within the API. */
-   public let id: Int64
+   public let id: Int64?
    /** URI for this data in the API. Unused. */
    let url: String?
    /** Expedition name. */
@@ -49,18 +49,16 @@ public class ExpeditionJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `ExpeditionJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.name = json[ "name" ] as? String
-      self.start = json[ "start" ] as? String
-      self.end = json[ "end" ] as? String
-      self.spaceStation = SpaceStationJSON( json: json[ "spacestation" ] as? JSONStructure )
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.start = nonEmptyString( json[ "start" ] )
+      self.end = nonEmptyString( json[ "end" ] )
+      self.spaceStation = SpaceStationJSON( json[ "spacestation" ] )
    }
 }

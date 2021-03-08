@@ -54,7 +54,7 @@ public func updateEntity( json: LauncherJSON, entity: Launcher?, context: NSMana
 {
    guard let launcherEntity = entity else { return }
 
-   launcherEntity.id = json.id
+   launcherEntity.id = json.id ?? -1
    launcherEntity.flightProven = guaranteedBool( json.flightProven )
    launcherEntity.serialNumber = json.serialNumber
    launcherEntity.status = json.status
@@ -105,7 +105,7 @@ public func getLauncher( by entityID: Int64, context: NSManagedObjectContext ) -
  */
 public func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectContext ) -> Launcher
 {
-   let launcherEntity: Launcher? = getLauncher( by: launcher.id, context: context )
+   let launcherEntity: Launcher? = getLauncher( by: launcher.id ?? -1, context: context )
    updateEntity( json: launcher, entity: launcherEntity, context: context )
    return launcherEntity ?? addToCoreData( json: launcher, context: context )
 }

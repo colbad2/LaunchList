@@ -59,7 +59,7 @@
 public class PadJSON: Decodable, Identifiable, JSONElement
 {
    /** ID of the astronaut within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** URI of this data. Unused. */
    var url: String?
    var agencyID: Int64?
@@ -76,24 +76,22 @@ public class PadJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `LaunchJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.agencyID = json[ "agency_id" ] as? Int64
-      self.infoURL = json[ "info_url" ] as? String
-      self.latitude = json[ "latitude" ] as? String
-      self.longitude = json[ "longitude" ] as? String
-      self.location = LocationJSON( json: json[ "location" ] as? JSONStructure )
-      self.mapImage = json[ "map_image" ] as? String
-      self.mapURL = json[ "map_url" ] as? String
-      self.name = json[ "name" ] as? String
-      self.totalLaunchCount = json[ "total_launch_count" ] as? Int64
-      self.wikiURL = json[ "wiki_url" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.agencyID = nonNegativeInt( json[ "agency_id" ] )
+      self.infoURL = nonEmptyString( json[ "info_url" ] )
+      self.latitude = nonEmptyString( json[ "latitude" ] )
+      self.longitude = nonEmptyString( json[ "longitude" ] )
+      self.location = LocationJSON( json[ "location" ] )
+      self.mapImage = nonEmptyString( json[ "map_image" ] )
+      self.mapURL = nonEmptyString( json[ "map_url" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.totalLaunchCount = nonNegativeInt( json[ "total_launch_count" ] )
+      self.wikiURL = nonEmptyString( json[ "wiki_url" ] )
    }
 }

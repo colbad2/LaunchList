@@ -58,10 +58,10 @@
  ### See
  [ProgramListJSON]
  */
-public class ProgramJSON: Decodable, Identifiable, JSONElement
+public class ProgramJSON: Identifiable, JSONElement
 {
-   /** ID of the astronaut within the API. */
-   public var id: Int64
+   /** ID of the program within the API. */
+   public var id: Int64?
    /** URI of this data. Unused. */
    var url: String? // unused
    var name: String?
@@ -76,28 +76,20 @@ public class ProgramJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `ProgramJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.name = json[ "name" ] as? String
-      self.description = json[ "description" ] as? String
-
-      self.agencies = []
-      if let agenciesArray: [JSONStructure] = json[ "agencies" ] as? [JSONStructure]
-      {
-         self.agencies = agenciesArray.compactMap { AgencyJSON( json: $0 ) }
-      }
-
-      self.imageURL = json[ "image_url" ] as? String
-      self.startDate = json[ "start_date" ] as? String
-      self.endDate = json[ "end_date" ] as? String
-      self.infoURL = json[ "info_url" ] as? String
-      self.wikiURL = json[ "wiki_url" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.description = nonEmptyString( json[ "description" ] )
+      self.agencies = parseArray( json[ "agencies" ] )
+      self.imageURL = nonEmptyString( json[ "image_url" ] )
+      self.startDate = nonEmptyString( json[ "start_date" ] )
+      self.endDate = nonEmptyString( json[ "end_date" ] )
+      self.infoURL = nonEmptyString( json[ "info_url" ] )
+      self.wikiURL = nonEmptyString( json[ "wiki_url" ] )
    }
 }

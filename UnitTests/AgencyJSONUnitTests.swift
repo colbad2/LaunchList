@@ -21,7 +21,7 @@ public class AgenciesUnitTests: XCTestCase
         }
       """
 
-      let agency: AgencyJSON? = AgencyJSON( json: parseJSON( jsonString: json ) )
+      let agency: AgencyJSON? = AgencyJSON( parseJSON( jsonString: json ) )
       checkAgency( agency: agency, agencyID: 44, name: "National Aeronautics and Space Administration",
                    type: "Government", url: "https://ll.thespacedevs.com/2.1.0/agencies/44/" )
    }
@@ -655,7 +655,7 @@ public class AgenciesUnitTests: XCTestCase
       }
       """#
 
-      guard let agency: AgencyJSON = AgencyJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let agency: AgencyJSON = AgencyJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       XCTAssertNotNil( agency )
       checkAgency( agency: agency, agencyID: 44, name: "National Aeronautics and Space Administration", featured: true,

@@ -41,7 +41,7 @@ public func updateEntity( json: AstronautFlightJSON, entity: AstronautFlight?, c
 {
    guard let flightEntity = entity else { return }
 
-   flightEntity.id = json.id
+   flightEntity.id = json.id ?? -1
    flightEntity.role = json.role
    if let astronaut: AstronautJSON = json.astronaut
    {
@@ -75,7 +75,7 @@ public func getAstronautFlight( by id: Int64, context: NSManagedObjectContext ) 
  */
 public func fetchAstronautFlight( astronautFlight: AstronautFlightJSON, context: NSManagedObjectContext ) -> AstronautFlight
 {
-   let astronautFlightEntity: AstronautFlight? = getAstronautFlight( by: astronautFlight.id, context: context )
+   let astronautFlightEntity: AstronautFlight? = getAstronautFlight( by: astronautFlight.id ?? -1, context: context )
    updateEntity( json: astronautFlight, entity: astronautFlightEntity, context: context )
    return astronautFlightEntity ?? addToCoreData( json: astronautFlight, context: context )
 }

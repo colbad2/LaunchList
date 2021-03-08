@@ -60,10 +60,10 @@
        flights                   [LaunchSerializerCommon{...}]
        landings                  [SpacecraftFlight{...}]
  */
-public class AstronautJSON: Decodable, Identifiable, JSONElement, AutoEquatable, AutoHashable
+public class AstronautJSON: Identifiable, JSONElement, AutoEquatable, AutoHashable
 {
    /** ID of the astronaut within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** URI of this data. Unused. */
    var url: String?
    /** astronaut name. */
@@ -104,31 +104,29 @@ public class AstronautJSON: Decodable, Identifiable, JSONElement, AutoEquatable,
    /**
     Make a `AstronautJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.name = json[ "name" ] as? String
-      self.status = IDNameJSON( json: json[ "status" ] as? JSONStructure )
-      self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )
-      self.dateOfBirth = json[ "date_of_birth" ] as? String
-      self.dateOfDeath = json[ "date_of_death" ] as? String
-      self.nationality = json[ "nationality" ] as? String
-      self.bio = json[ "bio" ] as? String
-      self.twitter = json[ "twitter" ] as? String
-      self.instagram = json[ "instagram" ] as? String
-      self.wiki = json[ "wiki" ] as? String
-      self.agency = AgencyJSON( json: json[ "agency" ] as? JSONStructure )
-      self.firstFlight = json[ "first_flight" ] as? String
-      self.lastFlight = json[ "last_flight" ] as? String
-      self.profileImage = json[ "profile_image" ] as? String
-      self.profileImageThumbnail = json[ "profile_image_thumbnail" ] as? String
-      self.flights = ( json[ "flights" ] as? [JSONStructure] )?.compactMap { LaunchJSON( json: $0 ) } ?? []
-      self.landings = ( json[ "landings" ] as? [JSONStructure] )?.compactMap { SpacecraftFlightJSON( json: $0 ) } ?? []
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.status = IDNameJSON( json[ "status" ] )
+      self.type = IDNameJSON( json[ "type" ] )
+      self.dateOfBirth = nonEmptyString( json[ "date_of_birth" ] )
+      self.dateOfDeath = nonEmptyString( json[ "date_of_death" ] )
+      self.nationality = nonEmptyString( json[ "nationality" ] )
+      self.bio = nonEmptyString( json[ "bio" ] )
+      self.twitter = nonEmptyString( json[ "twitter" ] )
+      self.instagram = nonEmptyString( json[ "instagram" ] )
+      self.wiki = nonEmptyString( json[ "wiki" ] )
+      self.agency = AgencyJSON( json[ "agency" ] )
+      self.firstFlight = nonEmptyString( json[ "first_flight" ] )
+      self.lastFlight = nonEmptyString( json[ "last_flight" ] )
+      self.profileImage = nonEmptyString( json[ "profile_image" ] )
+      self.profileImageThumbnail = nonEmptyString( json[ "profile_image_thumbnail" ] )
+      self.flights = parseArray( json[ "flights" ] )
+      self.landings = parseArray( json[ "landings" ] )
    }
 }

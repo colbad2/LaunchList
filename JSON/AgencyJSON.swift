@@ -22,8 +22,8 @@
     }
 
  ### Spec (API models: Agency, AgencyList, AgencySerializerDetailed, AgencySerializerMini, AgencySerializerDetailedCommon)
-       id              integer,      readOnly: true
-       url             string($uri), readOnly: true
+       id              integer
+       url             string($uri)
        name*           string,       maxLength: 200,  minLength: 1
        type            string,       maxLength: 255,  x-nullable: true
 
@@ -38,16 +38,16 @@
        parent          string,       readOnly: true
        image_url       string($uri), readOnly: true,  x-nullable: true
 
-       launch_library_url                string,       readOnly: true
-       total_launch_count                string,       readOnly: true
-       successful_launches               string,       readOnly: true
-       consecutive_successful_launches   string,       readOnly: true
-       failed_launches                   string,       readOnly: true
-       pending_launches                  string,       readOnly: true
-       successful_landings               string,       readOnly: true
-       failed_landings                   string,       readOnly: true
-       attempted_landings                string,       readOnly: true
-       consecutive_successful_landings   string,       readOnly: true
+       launch_library_url                string
+       total_launch_count                string
+       successful_launches               string
+       consecutive_successful_launches   string
+       failed_launches                   string
+       pending_launches                  string
+       successful_landings               string
+       failed_landings                   string
+       attempted_landings                string
+       consecutive_successful_landings   string
        info_url                          string($uri), maxLength: 200, x-nullable: true
        wiki_url                          string($uri), maxLength: 200, x-nullable: true
        logo_url                          string($uri), readOnly: true, x-nullable: true
@@ -56,10 +56,10 @@
        spacecraft_list                   [SpacecraftConfig]
 
  */
-public class AgencyJSON: Decodable, Identifiable, JSONElement, AutoEquatable, AutoHashable
+public class AgencyJSON: Identifiable, JSONElement, AutoEquatable, AutoHashable
 {
    /** ID of the astronaut within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** URI of this data. Unused. */
    var url: String?
    /** Agency name. */
@@ -122,52 +122,40 @@ public class AgencyJSON: Decodable, Identifiable, JSONElement, AutoEquatable, Au
    /**
     Make a `AgencyJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.name = json[ "name" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.name = nonEmptyString( json[ "name" ] )
       self.featured = json[ "featured" ] as? Bool
-      self.type = json[ "type" ] as? String
-      self.countryCode = json[ "country_code" ] as? String
-      self.abbreviation = json[ "abbrev" ] as? String
-      self.agencyDescription = json[ "description" ] as? String
-      self.administrator = json[ "administrator" ] as? String
-      self.foundingYear = json[ "founding_year" ] as? String
-      self.launchers = json[ "launchers" ] as? String
-      self.spacecraft = json[ "spacecraft" ] as? String
-      self.parent = json[ "parent" ] as? String
-      self.launchLibraryURL = json[ "launch_library_url" ] as? String
-      self.totalLaunchCount = json[ "total_launch_count" ] as? Int64
-      self.successfulLaunches = json[ "successful_launches" ] as? Int64
-      self.consecutiveSuccessfulLaunches = json[ "consecutive_successful_launches" ] as? Int64
-      self.failedLaunches = json[ "failed_launches" ] as? Int64
-      self.pendingLaunches = json[ "pending_launches" ] as? Int64
-      self.successfulLandings = json[ "successful_landings" ] as? Int64
-      self.failedLandings = json[ "failed_landings" ] as? Int64
-      self.attemptedLandings = json[ "attempted_landings" ] as? Int64
-      self.consecutiveSuccessfulLandings = json[ "consecutive_successful_landings" ] as? Int64
-      self.infoURL = json[ "info_url" ] as? String
-      self.wikiURL = json[ "wiki_url" ] as? String
-      self.logoURL = json[ "logo_url" ] as? String
-      self.imageURL = json[ "image_url" ] as? String
-      self.nationURL = json[ "nation_url" ] as? String
-
-      self.configurationList = []
-      if let configurationArray: [JSONStructure] = json[ "launcher_list" ] as? [JSONStructure]
-      {
-         self.configurationList = configurationArray.compactMap { LauncherConfigJSON( json: $0 ) }
-      }
-
-      self.spacecraftList = []
-      if let spacecraftArray: [JSONStructure] = json[ "spacecraft_list" ] as? [JSONStructure]
-      {
-         self.spacecraftList = spacecraftArray.compactMap { SpacecraftConfigJSON( json: $0 ) }
-      }
+      self.type = nonEmptyString( json[ "type" ] )
+      self.countryCode = nonEmptyString( json[ "country_code" ] )
+      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
+      self.agencyDescription = nonEmptyString( json[ "description" ] )
+      self.administrator = nonEmptyString( json[ "administrator" ] )
+      self.foundingYear = nonEmptyString( json[ "founding_year" ] )
+      self.launchers = nonEmptyString( json[ "launchers" ] )
+      self.spacecraft = nonEmptyString( json[ "spacecraft" ] )
+      self.parent = nonEmptyString( json[ "parent" ] )
+      self.launchLibraryURL = nonEmptyString( json[ "launch_library_url" ] )
+      self.totalLaunchCount = nonNegativeInt( json[ "total_launch_count" ] )
+      self.successfulLaunches = nonNegativeInt( json[ "successful_launches" ] )
+      self.consecutiveSuccessfulLaunches = nonNegativeInt( json[ "consecutive_successful_launches" ] )
+      self.failedLaunches = nonNegativeInt( json[ "failed_launches" ] )
+      self.pendingLaunches = nonNegativeInt( json[ "pending_launches" ] )
+      self.successfulLandings = nonNegativeInt( json[ "successful_landings" ] )
+      self.failedLandings = nonNegativeInt( json[ "failed_landings" ] )
+      self.attemptedLandings = nonNegativeInt( json[ "attempted_landings" ] )
+      self.consecutiveSuccessfulLandings = nonNegativeInt( json[ "consecutive_successful_landings" ] )
+      self.infoURL = nonEmptyString( json[ "info_url" ] )
+      self.wikiURL = nonEmptyString( json[ "wiki_url" ] )
+      self.logoURL = nonEmptyString( json[ "logo_url" ] )
+      self.imageURL = nonEmptyString( json[ "image_url" ] )
+      self.nationURL = nonEmptyString( json[ "nation_url" ] )
+      self.configurationList = parseArray( json[ "launcher_list" ] )
+      self.spacecraftList = parseArray( json[ "spacecraft_list" ] )
    }
 }

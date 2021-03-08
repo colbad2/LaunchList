@@ -31,7 +31,7 @@
 public class MissionJSON: Decodable, Identifiable, JSONElement
 {
    /** ID of the mission within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** Description of the mission. Can contain encoded Unicode elements like /u00fc, which are translated correctly on parse of JSON. */
    var description: String?
    /** unknown */
@@ -48,20 +48,18 @@ public class MissionJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `ServiceProviderJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.description = json[ "description" ] as? String
-      self.launchDesignator = json[ "launchDesignator" ] as? String
-      self.launchLibraryID = json[ "launch_library_id" ] as? Int64
-      self.name = json[ "name" ] as? String
-      self.orbit = OrbitJSON( json: json[ "orbit" ] as? JSONStructure )
-      self.type = json[ "type" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.description = nonEmptyString( json[ "description" ] )
+      self.launchDesignator = nonEmptyString( json[ "launchDesignator" ] )
+      self.launchLibraryID = nonNegativeInt( json[ "launch_library_id" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.orbit = OrbitJSON( json[ "orbit" ] )
+      self.type = nonEmptyString( json[ "type" ] )
    }
 }
 

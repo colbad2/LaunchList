@@ -14,9 +14,9 @@
        space_station (or spacestation)    SpaceStation{} or SpaceStationSerializerForDockingEvent{}, SpaceStationSerializerForCommon{}
        departure   string($date-time)
  */
-public class DockingEventJSON: Decodable, Identifiable, JSONElement
+public class DockingEventJSON: Identifiable, JSONElement
 {
-   public let id: Int64
+   public let id: Int64?
    let url: String?
    let launchID: String?
    let docking: String?
@@ -25,24 +25,22 @@ public class DockingEventJSON: Decodable, Identifiable, JSONElement
    let dockingLocation: IDNameJSON?
    var spacestation: SpaceStationJSON?
 
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.launchID = nonEmptyString( json[ "launch_id" ] )
+      self.docking = nonEmptyString( json[ "docking" ] )
+      self.departure = nonEmptyString( json[ "departure" ] )
+      self.flightVehicle = SpacecraftFlightJSON( json[ "flight_vehicle" ] )
+      self.dockingLocation = IDNameJSON( json[ "docking_location" ] )
 
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.launchID = json[ "launch_id" ] as? String
-      self.docking = json[ "docking" ] as? String
-      self.departure = json[ "departure" ] as? String
-      self.flightVehicle = SpacecraftFlightJSON( json: json[ "flight_vehicle" ] as? JSONStructure )
-      self.dockingLocation = IDNameJSON( json: json[ "docking_location" ] as? JSONStructure )
-
-      var spaceStationJSON: JSONStructure? = json[ "space_station" ] as? JSONStructure
+      var spaceStationJSON: Any? = json[ "space_station" ]
       if spaceStationJSON == nil
       {
-         spaceStationJSON = json[ "spacestation" ] as? JSONStructure
+         spaceStationJSON = json[ "spacestation" ]
       }
-      self.spacestation = SpaceStationJSON( json: spaceStationJSON )
+      self.spacestation = SpaceStationJSON( spaceStationJSON )
    }
 }

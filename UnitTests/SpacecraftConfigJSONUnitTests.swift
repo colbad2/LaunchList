@@ -52,7 +52,7 @@ class SpacecraftConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkSpacecraftConfig( spacecraft: spacecraftConfig, spacecraftID: 10, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/10/",
                              name: "Apollo Command/Service Module",
@@ -118,7 +118,7 @@ class SpacecraftConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkSpacecraftConfig( spacecraft: spacecraftConfig, spacecraftID: 12, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/12/",
                              name: "Gemini",
@@ -184,7 +184,7 @@ class SpacecraftConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkSpacecraftConfig( spacecraft: spacecraftConfig, spacecraftID: 11, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/11/",
                              name: "Mercury",
@@ -252,7 +252,7 @@ class SpacecraftConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkSpacecraftConfig( spacecraft: spacecraftConfig, spacecraftID: 13, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/13/",
                              name: "North American X-15",
@@ -321,7 +321,7 @@ class SpacecraftConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkSpacecraftConfig( spacecraft: spacecraftConfig, spacecraftID: 4, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/4/",
                              name: "Orion",
@@ -384,7 +384,7 @@ class SpacecraftConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let spacecraftConfig: SpacecraftConfigJSON = SpacecraftConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkSpacecraftConfig( spacecraft: spacecraftConfig, spacecraftID: 14, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/14/",
                              name: "Space Shuttle",
@@ -406,7 +406,3 @@ class SpacecraftConfigJSONUnitTests: XCTestCase
                    imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg" )
    }
 }
-
-/*
-
- */

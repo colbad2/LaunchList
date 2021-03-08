@@ -24,7 +24,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       """
 
       guard let rocketConfiguration: LauncherConfigJSON =
-               LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+               LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: rocketConfiguration, launcherID: 164, libraryID: 188,
                            url: "https://ll.thespacedevs.com/2.1.0/config/launcher/164/",
@@ -69,7 +69,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 126, libraryID: 158, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/126/",
                            name: "Ares I-X",
@@ -118,7 +118,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
        }
       """
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 162, libraryID: 140, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/162/",
                            name: "Atlas",
@@ -167,7 +167,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 342, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/342/",
                            name: "Nike Cajun",
@@ -215,7 +215,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 195, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/195/",
                            name: "Orion Abort Test Booster",
@@ -265,7 +265,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 163, libraryID: 135, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/163/",
                            name: "Saturn IB",
@@ -314,7 +314,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 93, libraryID: 136, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/93/",
                            name: "Saturn V",
@@ -363,7 +363,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 185, libraryID: 208, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/185/",
                            name: "Scout X-1",
@@ -412,7 +412,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 205, libraryID: 236, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/205/",
                            name: "SLS Block 1B",
@@ -457,7 +457,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 143, libraryID: 144, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/143/",
                            name: "Space Launch System (SLS)",
@@ -506,7 +506,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 98, libraryID: 137, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/98/",
                            name: "Titan II",
@@ -556,7 +556,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 441, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/441/",
                            name: "Trailblazer 1",
@@ -604,7 +604,7 @@ class LauncherConfigJSONUnitTests: XCTestCase
       }
       """#
 
-      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let launcher: LauncherConfigJSON = LauncherConfigJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLauncherConfig( launcher: launcher, launcherID: 442, url: "https://ll.thespacedevs.com/2.2.0/config/launcher/442/",
                            name: "Trailblazer 2",

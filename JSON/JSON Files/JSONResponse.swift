@@ -2,10 +2,16 @@
 
 protocol JSONResponse
 {
-   var totalCount: Int? { get }
+   var totalCount: Int64? { get }
 }
 
-protocol JSONElement
+/**
+ Base protocol for all JSON classes.
+ */
+public protocol JSONElement
 {
-   // marking
+   /**
+    Creates a JSON class from a JSON structure.
+    */
+   init?( _ json: Any? )
 }

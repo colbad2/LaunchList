@@ -13,26 +13,25 @@
        }
 
  ## Spec (API models: Spacecraft, SpacecraftDetailedNoFlights, SpacecraftDetailed)
-       id                integer
-       url               string($uri)
-       name*             string maxLength: 255 minLength: 1
-       serial_number     string maxLength: 255 x-nullable: true
-       status            SpacecraftStatus{...}
-       description*      string maxLength: 2048 minLength: 1
+       id                 integer
+       url                string($uri)
+       name*              string, length 1-255
+       serial_number      string, maxLength: 255
+       status             SpacecraftStatus{...} (IDNameJSON)
+       description*       string length: 1-2048
        spacecraft_config  SpacecraftConfig{...} or SpacecraftConfigDetail
-       flights           [SpacecraftFlight]
+       flights            [SpacecraftFlight]
  */
-public class SpacecraftJSON: Decodable, Identifiable, JSONElement
+public class SpacecraftJSON: Identifiable, JSONElement
 {
    /** ID of the config within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** URI of this data in the API. Unused. */
    var url: String?
    /** Spacecraft name. */
    var name: String?
    var serialNumber: String?
    var status: IDNameJSON?
-   var statusName: String?
    var spacecraftDescription: String?
    var spacecraftConfig: SpacecraftConfigJSON?
    var flights: [SpacecraftFlightJSON] = []
@@ -40,21 +39,18 @@ public class SpacecraftJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `SpacecraftJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.name = json[ "name" ] as? String
-      self.serialNumber = json[ "serial_number" ] as? String
-      self.status = IDNameJSON( json: json[ "status" ] as? JSONStructure )
-      self.statusName = json[ "statusName" ] as? String
-      self.spacecraftDescription = json[ "description" ] as? String
-      self.spacecraftConfig = SpacecraftConfigJSON( json: json[ "spacecraftConfig" ] as? JSONStructure )
-      self.flights = ( json[ "flights" ] as? [JSONStructure] ?? [] ).compactMap { return SpacecraftFlightJSON( json: $0 ) }
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.serialNumber = nonEmptyString( json[ "serial_number" ] )
+      self.status = IDNameJSON( json[ "status" ] )
+      self.spacecraftDescription = nonEmptyString( json[ "description" ] )
+      self.spacecraftConfig = SpacecraftConfigJSON( json[ "spacecraft_config" ] )
+      self.flights = parseArray( json[ "flights" ] )
    }
 }

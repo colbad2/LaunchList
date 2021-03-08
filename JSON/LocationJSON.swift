@@ -31,7 +31,7 @@
 public class LocationJSON: Decodable, Identifiable, JSONElement
 {
    /** ID of the location within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** API URI for this location. */
    var url: String?
    /** Three-letter country code containing the location. */
@@ -50,20 +50,18 @@ public class LocationJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `LocationJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.countryCode = json[ "country_code" ] as? String
-      self.mapImage = json[ "map_image" ] as? String
-      self.name = json[ "name" ] as? String
-      self.totalLandingCount = json[ "total_landing_count" ] as? Int64
-      self.totalLaunchCount = json[ "total_launch_count" ] as? Int64
-      self.pads = ( json[ "pads" ] as? [JSONStructure] ?? [] ).compactMap { return PadJSON( json: $0 ) }
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.countryCode = nonEmptyString( json[ "country_code" ] )
+      self.mapImage = nonEmptyString( json[ "map_image" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.totalLandingCount = nonNegativeInt( json[ "total_landing_count" ] )
+      self.totalLaunchCount = nonNegativeInt( json[ "total_launch_count" ] )
+      self.pads = parseArray( json[ "pads" ] )
    }
 }

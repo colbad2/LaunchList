@@ -33,7 +33,7 @@ public func updateEntity( json: RoadClosureJSON, entity: RoadClosure?, context: 
 {
    guard let entity = entity else { return }
 
-   entity.id = json.id
+   entity.id = json.id ?? -1
    entity.title = json.title
    entity.statusID = guaranteedInt64( json.status?.id )
    entity.statusName = json.status?.name

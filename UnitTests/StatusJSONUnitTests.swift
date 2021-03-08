@@ -16,7 +16,7 @@ class StatusJSONUnitTests: XCTestCase
        }
       """
 
-      guard let status: StatusJSON = StatusJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let status: StatusJSON = StatusJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkStatus( status: status, abbreviation: "TBC",
                    description: "Awaiting official confirmation - current date is known with some certainty.",

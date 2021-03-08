@@ -96,7 +96,7 @@ public func updateEntity( json: AgencyJSON, entity: Agency?, context: NSManagedO
 {
    guard let agencyEntity: Agency = entity else { return }
 
-   agencyEntity.id = json.id
+   agencyEntity.id = json.id ?? -1
    agencyEntity.url = json.url
    agencyEntity.name = json.name
    agencyEntity.type = json.type
@@ -240,7 +240,7 @@ public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> 
  */
 public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -> Agency
 {
-   let agencyEntity: Agency? = getAgency( by: agency.id, context: context )
+   let agencyEntity: Agency? = getAgency( by: agency.id ?? -1, context: context )
    updateEntity( json: agency, entity: agencyEntity, context: context )
    return agencyEntity ?? addToCoreData( json: agency, context: context )
 }

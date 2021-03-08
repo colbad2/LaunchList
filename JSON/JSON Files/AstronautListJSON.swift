@@ -1,18 +1,9 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-public struct AstronautListJSON: Decodable, JSONResponse
+public struct AstronautListJSON: JSONResponse, JSONElement
 {
-   // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case totalCount = "count"
-      case nextGroupURL = "next"
-      case previousGroupURL = "previous"
-      case sublist = "results"
-   }
-
    // total number of records that could be returned from exhaustive use of the URL
-   let totalCount: Int?
+   let totalCount: Int64?
    // URL that fetches the next group of records, as defined by the limit/offset URL attributes, if any. If there
    // are no other records, then the string is "null"
    let nextGroupURL: String?
@@ -21,4 +12,13 @@ public struct AstronautListJSON: Decodable, JSONResponse
    let previousGroupURL: String?
    // Current (sub)list of records, as defined by the URL
    let sublist: [AstronautJSON]?
+
+   public init?( _ json: Any? )
+   {
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.totalCount = nonNegativeInt( json[ "count" ] )
+      self.nextGroupURL = nonEmptyString( json[ "next" ] )
+      self.previousGroupURL = nonEmptyString( json[ "previous" ] )
+      self.sublist = parseArray( json[ "info_url" ] )
+   }
 }

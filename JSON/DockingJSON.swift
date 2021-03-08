@@ -12,11 +12,11 @@
          "docking_location": { … }
        }
  */
-public class DockingJSON: Decodable, Identifiable, JSONElement
+public class DockingJSON: Identifiable, JSONElement
 {
    /** ID of the astronaut within the API. */
-   public var id: Int64
-   /** URI of this data. Unused. */
+   public var id: Int64?
+   /** URI of this data. */
    var url: String?
    var launchID: String?
    /** Docking date. */
@@ -33,20 +33,18 @@ public class DockingJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `DockingJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.launchID = json[ "launchId" ] as? String
-      self.docking = json[ "docking" ] as? String
-      self.dockingLocationName = json[ "dockingLocationName" ] as? String
-      self.departure = json[ "departure" ] as? String
-      self.flightVehicle = FlightVehicleJSON( json: json[ "flightVehicle" ] as? JSONStructure )
-      self.dockingLocation = IDNameJSON( json: json[ "dockingLocation" ] as? JSONStructure )
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.launchID = nonEmptyString( json[ "launchId" ] )
+      self.docking = nonEmptyString( json[ "docking" ] )
+      self.dockingLocationName = nonEmptyString( json[ "dockingLocationName" ] )
+      self.departure = nonEmptyString( json[ "departure" ] )
+      self.flightVehicle = FlightVehicleJSON( json[ "flightVehicle" ] )
+      self.dockingLocation = IDNameJSON( json[ "dockingLocation" ] )
    }
 }

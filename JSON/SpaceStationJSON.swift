@@ -37,10 +37,10 @@
        onboard_crew   string
        docking_location   [ DockingLocationSerializerForSpacestation{...}]
  */
-public class SpaceStationJSON: Decodable, Identifiable, JSONElement
+public class SpaceStationJSON: Identifiable, JSONElement
 {
    /** ID of the rocket within the API. */
-   public let id: Int64
+   public let id: Int64?
    /** URI for this data in the API. Unused. */
    let url: String?
    /** Station name. */
@@ -73,37 +73,33 @@ public class SpaceStationJSON: Decodable, Identifiable, JSONElement
 
     - parameter json: `JSONStructure?` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.status = StatusJSON( json[ "status" ] )
+      self.orbit = nonEmptyString( json[ "orbit" ] )
+      self.imageURL = nonEmptyString( json[ "image_url" ] )
+      self.founded = nonEmptyString( json[ "founded" ] )
+      self.spaceStationDescription = nonEmptyString( json[ "description" ] )
+      self.owners = parseArray( json[ "owners" ] )
+      self.type = IDNameJSON( json[ "type" ] )?.name
+      self.deorbited = nonEmptyString( json[ "deorbited" ] )
 
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.name = json[ "name" ] as? String
-      self.status = StatusJSON( json: json[ "status" ] as? JSONStructure )
-      self.orbit = json[ "orbit" ] as? String
-      self.imageURL = json[ "image_url" ] as? String
-      self.founded = json[ "founded" ] as? String
-      self.spaceStationDescription = json[ "description" ] as? String
-      self.owners = ( json[ "owners" ] as? [JSONStructure] ?? [] ).compactMap { return AgencyJSON( json: $0 ) }
-      self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )?.name
-      self.deorbited = json[ "deorbited" ] as? String
-
-      var expeditionsJSON: [JSONStructure]? = json[ "active_expedition" ] as? [JSONStructure]
+      var expeditionsJSON: Any? = json[ "active_expedition" ]
       if expeditionsJSON == nil
       {
-         expeditionsJSON = json[ "active_expeditions" ] as? [JSONStructure]
+         expeditionsJSON = json[ "active_expeditions" ]
       }
-      self.activeExpeditions = ( expeditionsJSON ?? [] ).compactMap { return ExpeditionJSON( json: $0 ) }
+      self.activeExpeditions = parseArray( expeditionsJSON )
 
-      self.height = json[ "height" ] as? Double
-      self.width = json[ "width" ] as? Double
-      self.mass = json[ "mass" ] as? Double
-      self.volume = json[ "volume" ] as? Int64
-      self.onboardCrew = json[ "onboard_crew" ] as? String
-
-      let dockingLocationsJSON: [JSONStructure] = json[ "docking_location" ] as? [JSONStructure] ?? []
-      self.dockingLocations = dockingLocationsJSON.compactMap { return DockingLocationJSON( json: $0 ) }
+      self.height = nonNegativeDouble( json[ "height" ] )
+      self.width = nonNegativeDouble( json[ "width" ] )
+      self.mass = nonNegativeDouble( json[ "mass" ] )
+      self.volume = nonNegativeInt( json[ "volume" ] )
+      self.onboardCrew = nonEmptyString( json[ "onboard_crew" ] )
+      self.dockingLocations = parseArray( json[ "docking_location" ] )
    }
 }

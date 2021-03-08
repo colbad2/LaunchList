@@ -19,9 +19,9 @@
        spacestations*   [SpaceStationSerializerForCommon{...}]
        program   [ Program{...}]
  */
-public class EventsJSON: Decodable, Identifiable, JSONElement
+public class EventsJSON: Identifiable, JSONElement
 {
-   public let id: Int64
+   public let id: Int64?
    let url: String?
    let slug: String?
    let name: String?
@@ -38,26 +38,24 @@ public class EventsJSON: Decodable, Identifiable, JSONElement
    var spaceStations: [ExpeditionJSON] = []
    var programs: [ProgramJSON] = []
 
-   init?( json: JSONStructure? )
+   public required init?(  _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.slug = json[ "slug" ] as? String
-      self.name = json[ "name" ] as? String
-      self.updates = ( json[ "updates" ] as? [JSONStructure] )?.compactMap { UpdateJSON( json: $0 ) } ?? []
-      self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )
-      self.eventsDescription = json[ "description" ] as? String
-      self.location = json[ "location" ] as? String
-      self.newsURL = json[ "news_url" ] as? String
-      self.videoURL = json[ "video_url" ] as? String
-      self.featureImage = json[ "feature_image" ] as? String
-      self.date = json[ "date" ] as? String
-      self.launches = ( json[ "launches" ] as? [JSONStructure] )?.compactMap { LaunchJSON( json: $0 ) } ?? []
-      self.expeditions = ( json[ "expeditions" ] as? [JSONStructure] )?.compactMap { ExpeditionJSON( json: $0 ) } ?? []
-      self.spaceStations = ( json[ "spacestations" ] as? [JSONStructure] )?.compactMap { ExpeditionJSON( json: $0 ) } ?? []
-      self.programs = ( json[ "program" ] as? [JSONStructure] )?.compactMap { ProgramJSON( json: $0 ) } ?? []
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.slug = nonEmptyString( json[ "slug" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.updates = parseArray( json[ "updates" ] )
+      self.type = IDNameJSON( json[ "type" ] )
+      self.eventsDescription = nonEmptyString( json[ "description" ] )
+      self.location = nonEmptyString( json[ "location" ] )
+      self.newsURL = nonEmptyString( json[ "news_url" ] )
+      self.videoURL = nonEmptyString( json[ "video_url" ] )
+      self.featureImage = nonEmptyString( json[ "feature_image" ] )
+      self.date = nonEmptyString( json[ "date" ] )
+      self.launches = parseArray( json[ "launches" ] )
+      self.expeditions = parseArray( json[ "expeditions" ] )
+      self.spaceStations = parseArray( json[ "spacestations" ] )
+      self.programs = parseArray( json[ "program" ] )
    }
 }

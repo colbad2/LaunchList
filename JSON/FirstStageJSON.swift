@@ -13,10 +13,10 @@
       previous_flight         Launch{...}
 }
 */
-public class FirstStageJSON: Decodable, Identifiable, JSONElement
+public class FirstStageJSON: Identifiable, JSONElement
 {
    /** ID of the landing type within the API. */
-   public let id: Int64
+   public let id: Int64?
    var type: String?
    var reused: Bool?
    var launcherFlightNumber: String?
@@ -26,19 +26,17 @@ public class FirstStageJSON: Decodable, Identifiable, JSONElement
    var turnaroundTimeDays: String?
    var previousFlight: LaunchJSON?
 
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.type = json[ "type" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.type = nonEmptyString( json[ "type" ] )
       self.reused = json[ "reused" ] as? Bool
-      self.launcherFlightNumber = json[ "launcher_flight_number" ] as? String
-      self.launcher = LauncherJSON( json: json[ "reused" ] as? JSONStructure )
-      self.landing = LandingJSON( json: json[ "landing" ] as? JSONStructure )
-      self.previousFlightDate = json[ "previous_flight_date" ] as? String
-      self.turnaroundTimeDays = json[ "turn_around_time_days" ] as? String
-      self.previousFlight = LaunchJSON( json: json[ "previous_flight" ] as? JSONStructure )
+      self.launcherFlightNumber = nonEmptyString( json[ "launcher_flight_number" ] )
+      self.launcher = LauncherJSON( json[ "reused" ] )
+      self.landing = LandingJSON( json[ "landing" ] )
+      self.previousFlightDate = nonEmptyString( json[ "previous_flight_date" ] )
+      self.turnaroundTimeDays = nonEmptyString( json[ "turn_around_time_days" ] )
+      self.previousFlight = LaunchJSON( json[ "previous_flight" ] )
    }
 }

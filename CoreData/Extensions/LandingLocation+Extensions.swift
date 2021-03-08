@@ -54,7 +54,7 @@ public func updateEntity( json: LandingLocationJSON, entity: LandingLocation?, c
 {
    guard let landingLocationEntity = entity else { return }
 
-   landingLocationEntity.id = json.id
+   landingLocationEntity.id = json.id ?? -1
    landingLocationEntity.name = json.name
    landingLocationEntity.abbreviation = json.abbreviation
    landingLocationEntity.addLocationFromJSON( location: json.location, context: context )
@@ -98,7 +98,7 @@ public func getLandingLocation( by entityID: Int64, context: NSManagedObjectCont
  */
 public func fetchLandingLocation( launcher: LandingLocationJSON, context: NSManagedObjectContext ) -> LandingLocation
 {
-   let launcherEntity: LandingLocation? = getLandingLocation( by: launcher.id, context: context )
+   let launcherEntity: LandingLocation? = getLandingLocation( by: launcher.id ?? -1, context: context )
    updateEntity( json: launcher, entity: launcherEntity, context: context )
    return launcherEntity ?? addToCoreData( json: launcher, context: context )
 }

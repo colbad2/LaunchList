@@ -69,7 +69,7 @@ public func updateEntity( json: LauncherConfigJSON, entity: LauncherConfig?, con
 {
    guard let launcherConfigEntity = entity else { return }
 
-   launcherConfigEntity.id = json.id
+   launcherConfigEntity.id = json.id ?? -1
    launcherConfigEntity.name = json.name
    launcherConfigEntity.family = json.family
    launcherConfigEntity.fullName = json.fullName
@@ -127,7 +127,7 @@ public func getLauncherConfig( by entityID: Int64, context: NSManagedObjectConte
  */
 public func fetchLauncherConfig( launcherConfig: LauncherConfigJSON, context: NSManagedObjectContext ) -> LauncherConfig
 {
-   let launcherConfigEntity: LauncherConfig? = getLauncherConfig( by: launcherConfig.id, context: context )
+   let launcherConfigEntity: LauncherConfig? = getLauncherConfig( by: launcherConfig.id ?? -1, context: context )
    updateEntity( json: launcherConfig, entity: launcherConfigEntity, context: context )
    return launcherConfigEntity ?? addToCoreData( json: launcherConfig, context: context )
 }

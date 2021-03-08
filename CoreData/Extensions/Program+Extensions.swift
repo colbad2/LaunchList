@@ -70,7 +70,7 @@ public func updateEntity( json: ProgramJSON, entity: Program?, context: NSManage
 {
    guard let programEntity = entity else { return }
 
-   programEntity.id = json.id
+   programEntity.id = json.id ?? -1
    programEntity.name = json.name
    programEntity.programDescription = json.description
    addAgencies( entity: programEntity, agencies: json.agencies, context: context )
@@ -196,7 +196,7 @@ public func getProgram( by programID: Int64, context: NSManagedObjectContext ) -
  */
 public func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext ) -> Program
 {
-   let programEntity: Program? = getProgram( by: program.id, context: context )
+   let programEntity: Program? = getProgram( by: program.id ?? -1, context: context )
    updateEntity( json: program, entity: programEntity, context: context )
    return programEntity ?? addToCoreData( json: program, context: context )
 }

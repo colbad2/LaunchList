@@ -19,22 +19,20 @@
 public class OrbitJSON: Decodable, Identifiable, JSONElement
 {
    /** ID of the astronaut within the API. */
-   public var id: Int64
+   public var id: Int64?
    let name: String?
    let abbreviation: String?
 
    /**
     Make a `ServiceProviderJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.abbreviation = json[ "abbrev" ] as? String
-      self.name = json[ "name" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
+      self.name = nonEmptyString( json[ "name" ] )
    }
 }

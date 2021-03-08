@@ -7,14 +7,15 @@ import Network
 
 // swiftlint:disable identifier_name
 /** Location of the API. */
-let API_URL_BASE: String = "https://ll.thespacedevs.com/2.1.0/"
+let API_URL_BASE: String = "https://ll.thespacedevs.com/2.2.0/"
 // swiftlint:enable identifier_name
 
-struct APIManager
+class APIManager
 {
    static let shared: APIManager = APIManager()
 
    var baseURL: String = API_URL_BASE
+   var callCount: Int64 = 0
 
    init()
    {
@@ -53,163 +54,379 @@ struct APIManager
       monitor.start( queue: .global() ) // Deliver updates on the background queue
    }
 
-   func fetchAPIAgencies()
+   func resetCallCount()
    {
-      getAPIAgencies( with: AgencyListRequest( baseURL: self.baseURL ) )
+      callCount = 0
    }
 
-   func fetchAPIAgency( withID id: Int64 )
+   // /agencies/
+   func agencyList() -> [AgencyJSON]
    {
-      getAPIAgency( withID: id )
+      return getAPIList( with: AgencyListRequest( baseURL: self.baseURL ) )
    }
 
-   func fetchAPILaunches()
+   // /agencies/{id}
+   func agency( withID id: Int64 ) -> AgencyJSON?
    {
-      getAPILaunches( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/" ) )
+      return getAPIRecord( withURL: "\(API_URL_BASE)agencies/\(id)" )
    }
 
-   func fetchAPIUpcomingLaunches()
+   // /astronaut/
+   func astronautList() -> [AstronautJSON]
    {
-      getAPILaunches( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/upcoming/" ) )
+      return getAPIList( with: AstronautListRequest( baseURL: self.baseURL ) )
    }
 
-   func fetchAPIPreviousLaunches()
+   // /astronaut/{id}
+   func astronaut( withID id: Int64 ) -> AstronautJSON?
    {
-      getAPILaunches( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/previous/" ) )
+      return getAPIRecord( withURL: "\(API_URL_BASE)astronaut/\(id)" )
    }
 
-   func fetchAPIUpcomingLaunch( withID id: Int64 )
+   // /config/agencytype/
+   func agencyTypeList() -> [IDNameJSON]
    {
-      getAPILaunch( with: id, path: "launch/upcoming/" )
+      return getResults( withURL: "\(API_URL_BASE)config/agencytype/" )
    }
 
-   func fetchAPIPreviousLaunch( withID id: Int64 )
+   // /config/agencytype/{id}
+   func agencyType( withID id: Int64 ) -> IDNameJSON?
    {
-      getAPILaunch( with: id, path: "launch/previous/" )
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/agencytype/\(id)" )
+   }
+
+   // /config/astronautrole/
+   func astronautRoleList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/astronautrole/" )
+   }
+
+   // /config/astronautrole/{id}
+   func astronautRole( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/astronautrole/\(id)" )
+   }
+
+   // /config/astronautstatus/
+   func astronautStatusList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/astronautstatus/" )
+   }
+
+   // /config/astronautstatus/{id}
+   func astronautStatus( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/astronautstatus/\(id)" )
+   }
+
+   // /config/astronauttype/
+   func astronautTypeList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/astronauttype/" )
+   }
+
+   // /config/astronauttype/{id}
+   func astronautType( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/astronauttype/\(id)" )
+   }
+
+   // /config/dockinglocation/
+   func dockingLocationList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/dockinglocation/" )
+   }
+
+   // /config/dockinglocation/{id}
+   func dockingLocation( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/dockinglocation/\(id)" )
+   }
+
+   // /config/eventtype/
+   func eventTypeList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/eventtype/" )
+   }
+
+   // /config/eventtype/{id}
+   func eventType( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/eventtype/\(id)" )
+   }
+
+   // /config/firststagetype/
+   func firstStagetypeTypeList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/firststagetype/" )
+   }
+
+   // /config/firststagetype/{id}
+   func firstStageType( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/firststagetype/\(id)" )
+   }
+
+   // /config/landinglocation/
+   func landingLocationList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/landinglocation/" )
+   }
+
+   // /config/landinglocation/{id}
+   func landingLocation( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/landinglocation/\(id)" )
+   }
+
+   // /config/launcher/
+   func launcherList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/launcher/" )
+   }
+
+   // /config/launcher/{id}
+   func launcher( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/launcher/\(id)" )
+   }
+
+   // /config/launchstatus/
+   func launchStatusList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/launchstatus/" )
+   }
+
+   // /config/launchstatus/{id}
+   func launchStatus( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/launchstatus/\(id)" )
+   }
+
+   // /config/missiontype/
+   func missionTypeList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/missiontype/" )
+   }
+
+   // /config/missiontype/{id}
+   func missionType( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/missiontype/\(id)" )
+   }
+
+   // /config/noticetype/
+   func noticeTypeList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/noticetype/" )
+   }
+
+   // /config/noticetype/{id}
+   func noticeType( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/noticetype/\(id)" )
+   }
+
+   // /config/orbit/
+   func orbitList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/orbit/" )
+   }
+
+   // /config/orbit/{id}
+   func orbit( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/orbit/\(id)" )
+   }
+
+   // /config/roadclosurestatus/
+   func roadClosureStatusList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/roadclosurestatus/" )
+   }
+
+   // /config/roadclosurestatus/{id}
+   func roadClosureStatus( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/roadclosurestatus/\(id)" )
+   }
+
+   // /config/spacecraft/
+   func spacecraftList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/spacecraft/" )
+   }
+
+   // /config/spacecraft/{id}
+   func spacecraft( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/spacecraft/\(id)" )
+   }
+
+   // /config/spacecraftstatus/
+   func spacecraftStatusList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/spacecraftstatus/" )
+   }
+
+   // /config/spacecraftstatus/{id}
+   func spacecraftStatus( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/spacecraftstatus/\(id)" )
+   }
+
+   // /config/spacestationstatus/
+   func spaceStationStatusList() -> [IDNameJSON]
+   {
+      return getResults( withURL: "\(API_URL_BASE)config/spacestationstatus/" )
+   }
+
+   // /config/spacestationstatus/{id}
+   func spaceStationStatus( withID id: Int64 ) -> IDNameJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)config/spacestationstatus/\(id)" )
+   }
+
+   // /dashboard/starship/
+
+   // /docking_event/
+
+   // /docking_event/{id}
+
+   // /event/
+
+   // /event/{id}
+
+   // /event/previous/
+
+   // /event/previous/{id}
+
+   // /event/upcoming
+
+   // /event/upcoming/{id}
+
+   // /expedition/
+
+   // /expedition/{id}
+
+   // /launch/
+   func getAPILaunches() -> [LaunchJSON]
+   {
+      return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/" ) )
+   }
+
+   // /launch/{id}
+
+   // /launch/previous/
+   func getAPIPreviousLaunches() -> [LaunchJSON]
+   {
+      return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/previous/" ) )
+   }
+
+   // /launch/previous/{id}
+   func getAPIPreviousLaunch( withID id: Int64 ) -> LaunchJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)launch/previous/\(id)" )
+   }
+
+   // /launch/upcoming
+   func getAPIUpcomingLaunches() -> [LaunchJSON]
+   {
+      return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/upcoming/" ) )
+   }
+
+   // /launch/upcoming/{id}
+   func getAPIUpcomingLaunch( withID id: Int64 ) -> LaunchJSON?
+   {
+      return getAPIRecord( withURL: "\(API_URL_BASE)launch/upcoming/\(id)" )
+   }
+
+   // /launcher/
+   // /launcher/{id}
+   // /location/
+   // /location/{id}
+   // /pad/
+   // /pad/{id}
+   // /program/
+   // /program/{id}
+   // /spacecraft/
+   // /spacecraft/{id}
+   // /spacecraft/flight/
+   // /spacecraft/flight/{id}
+   // /spacestation/
+   // /spacestation/{id}
+   // /updates/
+   // /updates/{id}
+
+   /**
+    Synchronously fetch a JSON record from the API.
+
+    - parameter urlString: JSON URL to fetch
+    - returns              JSON record, if any
+    */
+   func getAPIJSON( urlString: String ) -> JSONStructure?
+   {
+      callCount += 1
+      guard let apiURL: URL = URL( string: urlString ) else { return nil }
+      let apiResult: SessionResult = URLSession.shared.synchronousDataTask( with: apiURL )
+      // test and report errors
+      guard let data: Data = apiResult.data else { return nil }
+      return parseJSON( data: data )
+   }
+
+   func getAPIRecord< T: JSONElement >( withURL url: String ) -> T?
+   {
+      return T( getAPIJSON( urlString: url ) )
+   }
+
+   func getAPIList< T: JSONElement >( with apiRequest: APIListRequest ) -> [T]
+   {
+      var request: APIListRequest? = apiRequest
+      var result: [T] = []
+      while let currentRequest: APIListRequest = request
+      {
+         guard let json: JSONStructure = getAPIJSON( urlString: currentRequest.requestURL ) else { break }
+         let sublist: [T] = parseArray( json[ "sublist" ] )
+         result.append( contentsOf: sublist )
+         request = apiRequest.getNextRequest( count: sublist.count )
+      }
+
+      return result
+   }
+
+   func getResults( withURL url: String ) -> [IDNameJSON]
+   {
+      guard let json: JSONStructure = getAPIJSON( urlString: url ) else { return [] }
+      return parseArray( json[ "results" ] )
    }
 }
 
-func getAPIAgency( withID id: Int64 )
+typealias SessionResult = ( data: Data?, response: URLResponse?, error: Error? )
+
+extension URLSession
 {
-   var json: AgencyJSON?
-   loadJSON( fromAPI: "\(API_URL_BASE)agencies/\(id)" )
+   func synchronousDataTask( with url: URL ) -> SessionResult
    {
-      result in
+      var data: Data?
+      var response: URLResponse?
+      var error: Error?
 
-      switch result
+      let semaphore: DispatchSemaphore = DispatchSemaphore( value: 0 )
+
+      let dataTask: URLSessionDataTask = self.dataTask( with: url )
       {
-         case .success( let data ): json = parseJSONString( jsonData: data )
-         case .failure( let error ): print( error ); return
+         data = $0
+         response = $1
+         error = $2
+
+         semaphore.signal()
       }
+      dataTask.resume()
+
+      _ = semaphore.wait( timeout: .distantFuture )
+
+      return ( data, response, error )
    }
-   guard let agencyJSON: AgencyJSON = json else { return }
-   _ = fetchAgency( agency: agencyJSON, context: PersistenceController.shared.container.viewContext )
-}
-
-func getAPIAgencies( with apiRequest: AgencyListRequest )
-{
-   var request: APIListRequest? = apiRequest
-   while let currentRequest: APIListRequest = request
-   {
-      var json: AgenciesListJSON?
-      loadJSON( fromAPI: currentRequest.requestURL )
-      {
-         result in
-
-         switch result
-         {
-            case .success( let data ): json = parseJSONString( jsonData: data )
-            case .failure( let error ): print( error ); return
-         }
-      }
-      guard let responseJSON: AgenciesListJSON = json else { break }
-
-      for agencyJSON: AgencyJSON in responseJSON.sublist ?? []
-      {
-         _ = fetchAgency( agency: agencyJSON, context: PersistenceController.shared.container.viewContext )
-      }
-
-      request = apiRequest.getNextRequest( count: responseJSON.totalCount )
-   }
-}
-
-/*
- Fill the database with the results of an API call that returns a `LaunchListJSON`.
-
- - parameter: apiRequest - {LaunchRequest} parameters for the API call
- */
-func getAPILaunches( with apiRequest: LaunchRequest )
-{
-   var request: APIListRequest? = apiRequest
-   while let currentRequest: APIListRequest = request
-   {
-      var json: LaunchListJSON?
-      loadJSON( fromAPI: currentRequest.requestURL )
-      {
-         result in
-
-         switch result
-         {
-            case .success( let data ): json = parseJSONString( jsonData: data )
-            case .failure( let error ): print( error ); return
-         }
-      }
-      guard let responseJSON: LaunchListJSON = json else { break }
-
-      for launchJSON in responseJSON.sublist ?? []
-      {
-         _ = fetchLaunch( launch: launchJSON, context: PersistenceController.shared.container.viewContext )
-      }
-
-      request = apiRequest.getNextRequest( count: responseJSON.totalCount )
-   }
-}
-
-func getAPILaunch( with id: Int64, path: String )
-{
-   var json: LaunchJSON?
-   loadJSON( fromAPI: "\(API_URL_BASE)\(path)/\(id)" )
-   {
-      result in
-
-      switch result
-      {
-         case .success( let data ): json = parseJSONString( jsonData: data )
-         case .failure( let error ): print( error ); return
-      }
-   }
-   guard let launchJSON: LaunchJSON = json else { return }
-   _ = fetchLaunch( launch: launchJSON, context: PersistenceController.shared.container.viewContext )
-}
-
-/**
- Loads data from the API.
-
- - parameter apiString: `String` API URL
- - parameter completion: callback for successful load
- */
-private func loadJSON( fromAPI apiString: String,
-                       completion: @escaping ( Result< Data, Error > ) -> Void )
-{
-   guard let url = URL( string: apiString ) else { return }
-
-   let urlSession: URLSessionDataTask =
-      URLSession( configuration: .default, delegate: NetworkingHandler(), delegateQueue: .main ).dataTask( with: url )
-      {
-         data, _, error in
-
-         if let error: Error = error
-         {
-            completion( .failure( error ) )
-         }
-
-         if let data: Data = data
-         {
-            completion( .success( data ) )
-         }
-      }
-
-   urlSession.resume()
 }
 
 /**

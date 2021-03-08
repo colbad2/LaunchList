@@ -2,8 +2,13 @@
 
 import XCTest
 
-// swiftlint:disable function_parameter_count
-// swiftlint:disable function_default_parameter_at_end
+// s wiftlint:disable function_parameter_count
+// s wiftlint:disable function_default_parameter_at_end
+
+// swiftlint:disable line_length
+// s wiftlint:disable file_length
+// s wiftlint:disable type_body_length
+// s wiftlint:disable function_body_length
 
 func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: String? = nil, lat: String? = nil, lon: String? = nil,
                mapImage: String? = nil, mapURL: String? = nil, name: String? = nil, totalLaunchCount: Int64? = nil,
@@ -116,7 +121,7 @@ func checkProgram( program: ProgramJSON?, programID: Int64, description: String?
 
 func checkLaunch( launch: LaunchJSON?, launchID: String, failReason: String? = nil, hashtag: String? = nil,
                   holdReason: String? = nil, image: String? = nil, infographic: String? = nil, inHold: Bool? = nil,
-                  libraryID: Int64? = nil, name: String? = nil, net: String? = nil, probability: Int16? = nil, slug: String? = nil, tbdDate: Bool? = nil,
+                  libraryID: Int64? = nil, name: String? = nil, net: String? = nil, probability: Int64? = nil, slug: String? = nil, tbdDate: Bool? = nil,
                   tbdTime: Bool? = nil, url: String? = nil, webcastLive: Bool? = nil, windowEnd: String? = nil, windowStart: String? = nil, lastUpdated: String? = nil )
 {
    XCTAssertNotNil( launch )
@@ -211,7 +216,7 @@ func checkSpacecraftConfig( spacecraft: SpacecraftConfigJSON?, spacecraftID: Int
 
 func checkAstronaut( astronaut: AstronautJSON?, id: Int64, url: String? = nil, name: String? = nil, statusID: Int64? = nil, statusName: String? = nil,
                      typeID: Int64? = nil, typeName: String? = nil, dateOfBirth: String? = nil, dateOfDeath: String? = nil, nationality: String? = nil,
-                     twitter: String? = nil, instagram: String? = nil , bio: String? = nil, profileImage: String? = nil, profileImageThumbnail: String? = nil,
+                     twitter: String? = nil, instagram: String? = nil, bio: String? = nil, profileImage: String? = nil, profileImageThumbnail: String? = nil,
                      wiki: String? = nil, lastFlight: String? = nil, firstFlight: String? = nil )
 {
    XCTAssertNotNil( astronaut )
@@ -238,12 +243,13 @@ func checkAstronaut( astronaut: AstronautJSON?, id: Int64, url: String? = nil, n
 
 func checkOrbit( orbit: OrbitJSON?, id: Int64, name: String? = nil, abbreviation: String? = nil )
 {
+   XCTAssertNotNil( orbit )
    XCTAssertEqual( orbit?.abbreviation, abbreviation )
    XCTAssertEqual( orbit?.id, id )
    XCTAssertEqual( orbit?.name, name )
 }
 
-func checkLanding( spacecraftFlight: SpacecraftFlightJSON, id: Int64, url: String? = nil, destination: String? = nil, missionEnd: String? = nil )
+func checkSpacecraftFlight( spacecraftFlight: SpacecraftFlightJSON, id: Int64, url: String? = nil, destination: String? = nil, missionEnd: String? = nil )
 {
    XCTAssertNotNil( spacecraftFlight )
    XCTAssertEqual( spacecraftFlight.id, id )
@@ -259,4 +265,25 @@ func checkLanding( spacecraftFlight: SpacecraftFlightJSON, id: Int64, url: Strin
     var landingCrew: [AstronautFlightJSON] = []
     var dockingEvents: [DockingEventJSON] = []
     */
+}
+
+func checkSpacecraft( spacecraft: SpacecraftJSON?, id: Int64, url: String? = nil, name: String? = nil, serialNumber: String? = nil,
+                      description: String? = nil )
+{
+   XCTAssertNotNil( spacecraft )
+   XCTAssertEqual( spacecraft?.id, id )
+   XCTAssertEqual( spacecraft?.url, url )
+   XCTAssertEqual( spacecraft?.name, name )
+   XCTAssertEqual( spacecraft?.serialNumber, serialNumber )
+   // check status
+   XCTAssertEqual( spacecraft?.spacecraftDescription, description )
+   // check spacecraft_config
+   // check flights
+}
+
+func checkIDName( json: IDNameJSON?, id: Int64, name: String? = nil )
+{
+   XCTAssertNotNil( json )
+   XCTAssertEqual( json?.id, id )
+   XCTAssertEqual( json?.name, name )
 }

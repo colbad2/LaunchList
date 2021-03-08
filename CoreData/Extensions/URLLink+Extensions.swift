@@ -72,7 +72,7 @@ public func getURLLink( by entityID: String, context: NSManagedObjectContext ) -
  */
 public func fetchURLLink( link: URLLinkJSON, context: NSManagedObjectContext ) -> URLLink
 {
-   let linkEntity: URLLink? = getURLLink( by: link.url, context: context )
+   let linkEntity: URLLink? = getURLLink( by: link.url ?? "", context: context )
    updateEntity( json: link, entity: linkEntity, context: context )
    return linkEntity ?? addToCoreData( json: link, context: context )
 }

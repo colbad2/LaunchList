@@ -62,7 +62,7 @@ public func updateEntity( json: PadJSON, entity: Pad?, context: NSManagedObjectC
    guard let padEntity = entity else { return }
 
    padEntity.agencyID = guaranteedInt64( json.agencyID )
-   padEntity.id = json.id
+   padEntity.id = json.id ?? -1
    padEntity.infoURL = json.infoURL
    padEntity.latitude = json.latitude ?? ""
    padEntity.longitude = json.longitude ?? ""
@@ -164,7 +164,7 @@ public func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad
  */
 public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
 {
-   let padEntity: Pad? = getPad( by: pad.id, context: context )
+   let padEntity: Pad? = getPad( by: pad.id ?? -1, context: context )
    updateEntity( json: pad, entity: padEntity, context: context )
    return padEntity ?? addToCoreData( json: pad, context: context )
 }

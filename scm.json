@@ -15,6 +15,7 @@
          "path": "LaunchListWidget",
          "is_test": false
       },
+
       {
          "name": "Tests iOS",
          "path": "Tests iOS",
@@ -33,7 +34,27 @@
    ],
    "shared": [
       {
-         "path": "Shared",
+         "name": "API",
+         "path": "API",
+         "is_test": false
+      },
+      {
+         "name": "AppData",
+         "path": "AppData",
+         "is_test": false
+      },
+      {
+         "name": "CoreData",
+         "path": "CoreData",
+         "is_test": false
+      },
+      {
+         "name": "JSON",
+         "path": "JSON",
+         "is_test": false
+      },
+      {
+         "path": "SharedUI",
          "is_test": false
       },
       {

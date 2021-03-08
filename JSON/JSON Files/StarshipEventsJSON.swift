@@ -12,14 +12,15 @@ import CoreData
    "events": [ … ]
  }
  */
-public struct StarshipEventsJSON: Decodable
+public struct StarshipEventsJSON: JSONElement
 {
-   // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case launches, events
-   }
-
    let launches: [LaunchJSON]?
    let events: [EventJSON]?
+
+   public init?( _ json: Any? )
+   {
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.launches = parseArray( json[ "launches" ] )
+      self.events = parseArray( json[ "events" ] )
+   }
 }

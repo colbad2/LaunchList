@@ -83,7 +83,7 @@ public func parseAgencyListResponse( json: JSONStructure ) -> [AgencyJSON]
    var data: [AgencyJSON] = []
    if let dataArray: [JSONStructure] = json[ "sublist" ] as? [JSONStructure]
    {
-      data = dataArray.compactMap { return AgencyJSON( json: $0 ) }
+      data = dataArray.compactMap { return AgencyJSON( $0 ) }
    }
 
    return data

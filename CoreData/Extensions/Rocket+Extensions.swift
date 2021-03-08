@@ -65,7 +65,7 @@ func updateEntity( json: RocketJSON, entity: Rocket?, context: NSManagedObjectCo
 {
    guard let rocketEntity = entity else { return }
 
-   rocketEntity.id = json.id
+   rocketEntity.id = json.id ?? -1
    rocketEntity.addConfigurationFromJSON( configuration: json.configuration, context: context )
    rocketEntity.name = json.configuration?.name
 
@@ -125,7 +125,7 @@ public func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket
  */
 public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -> Rocket
 {
-   let rocketEntity: Rocket? = getRocket( by: rocket.id, context: context )
+   let rocketEntity: Rocket? = getRocket( by: rocket.id ?? -1, context: context )
    updateEntity( json: rocket, entity: rocketEntity, context: context )
    return rocketEntity ?? addToCoreData( json: rocket, context: context )
 }

@@ -3,19 +3,10 @@
 /**
  List of records returned from a URL.
  */
-public struct LocationListJSON: Decodable, JSONResponse
+public struct LocationListJSON: Decodable, JSONResponse, JSONElement
 {
-   // translate API attribute names into better var names
-   enum CodingKeys: String, CodingKey
-   {
-      case totalCount = "count"
-      case nextGroupURL = "next"
-      case previousGroupURL = "previous"
-      case sublist = "results"
-   }
-
    /** Total number of records that could be returned from exhaustive use of the URL */
-   let totalCount: Int?
+   let totalCount: Int64?
    /** URL that fetches the next group of records, as defined by the limit/offset URL attributes, if any. If there
        are no other records, then the string is "null" */
    let nextGroupURL: String?
@@ -24,4 +15,13 @@ public struct LocationListJSON: Decodable, JSONResponse
    let previousGroupURL: String?
    /** Current sublist of records, as defined by the URL */
    let sublist: [LocationJSON]?
+
+   public init?( _ json: Any? )
+   {
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.totalCount = nonNegativeInt( json[ "count" ] )
+      self.nextGroupURL = nonEmptyString( json[ "next" ] )
+      self.previousGroupURL = nonEmptyString( json[ "previous" ] )
+      self.sublist = parseArray( json[ "info_url" ] )
+   }
 }

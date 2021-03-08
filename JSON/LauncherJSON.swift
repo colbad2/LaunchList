@@ -43,11 +43,11 @@
        attempted_landings  string
        launcher_config     LauncherConfig or LauncherConfigList or LauncherConfigDetail
  */
-public class LauncherJSON: Decodable, Identifiable, JSONElement
+public class LauncherJSON: Identifiable, JSONElement
 {
    /** ID of the astronaut within the API. */
-   public var id: Int64
-   /** URI of this data. Unused. */
+   public var id: Int64?
+   /** URI of this data. */
    var url: String?
    var flightProven: Bool?
    var serialNumber: String?
@@ -64,25 +64,23 @@ public class LauncherJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `LauncherJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
       self.flightProven = json[ "flight_proven" ] as? Bool
-      self.serialNumber = json[ "serial_number" ] as? String
-      self.status = json[ "status" ] as? String
-      self.details = json[ "details" ] as? String
-      self.launcherConfig = LauncherConfigJSON( json: json[ "launcher_config" ] as? JSONStructure )
-      self.imageURL = json[ "image_url" ] as? String
-      self.flights = json[ "flights" ] as? Int64
-      self.lastLaunchDate = json[ "last_launch_date" ] as? String
-      self.firstLaunchDate = json[ "first_launch_date" ] as? String
-      self.successfulLandings = json[ "successful_landings" ] as? String
-      self.attemptedLandings = json[ "attempted_landings" ] as? String
+      self.serialNumber = nonEmptyString( json[ "serial_number" ] )
+      self.status = nonEmptyString( json[ "status" ] )
+      self.details = nonEmptyString( json[ "details" ] )
+      self.launcherConfig = LauncherConfigJSON( json[ "launcher_config" ] as? JSONStructure )
+      self.imageURL = nonEmptyString( json[ "image_url" ] )
+      self.flights = nonNegativeInt( json[ "flights" ] )
+      self.lastLaunchDate = nonEmptyString( json[ "last_launch_date" ] )
+      self.firstLaunchDate = nonEmptyString( json[ "first_launch_date" ] )
+      self.successfulLandings = nonEmptyString( json[ "successful_landings" ] )
+      self.attemptedLandings = nonEmptyString( json[ "attempted_landings" ] )
    }
 }

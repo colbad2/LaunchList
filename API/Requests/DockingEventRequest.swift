@@ -51,7 +51,7 @@ public class DockingEventRequest: BaseAPIListRequest
       var data: [DockingEventJSON] = []
       if let dataArray: [JSONStructure] = json[ "sublist" ] as? [JSONStructure]
       {
-         data = dataArray.compactMap { return DockingEventJSON( json: $0 ) }
+         data = dataArray.compactMap { return DockingEventJSON( $0 ) }
       }
 
       return data

@@ -15,7 +15,7 @@
  */
 public class RoadClosureJSON: Decodable, Identifiable, JSONElement
 {
-   public let id: Int64
+   public let id: Int64?
    let title: String?
    let status: IDNameJSON?
    let windowStart: String?
@@ -24,17 +24,15 @@ public class RoadClosureJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `LauncherJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.title = json[ "title" ] as? String
-      self.status = IDNameJSON( json: json[ "status" ] as? JSONStructure )
-      self.windowStart = json[ "windowStart" ] as? String
-      self.windowEnd = json[ "windowEnd" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.title = nonEmptyString( json[ "title" ] )
+      self.status = IDNameJSON( json[ "status" ] )
+      self.windowStart = nonEmptyString( json[ "windowStart" ] )
+      self.windowEnd = nonEmptyString( json[ "windowEnd" ] )
    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Agency" representedClassName=".Agency" parentEntity="Fetched" syncable="YES" codeGenerationType="class">
         <attribute name="abbreviation" optional="YES" attributeType="String"/>
         <attribute name="administrator" optional="YES" attributeType="String"/>
@@ -158,7 +158,7 @@
         <attribute name="orbitalLaunchAttemptCountYear" optional="YES" attributeType="String"/>
         <attribute name="padLaunchAttemptCount" optional="YES" attributeType="String"/>
         <attribute name="padLaunchAttemptCountYear" optional="YES" attributeType="String"/>
-        <attribute name="probability" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="probability" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="slug" optional="YES" attributeType="String"/>
         <attribute name="statusAbbreviation" optional="YES" attributeType="String"/>
         <attribute name="statusDescription" optional="YES" attributeType="String"/>

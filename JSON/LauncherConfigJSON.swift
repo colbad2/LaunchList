@@ -52,10 +52,10 @@
        // launch_library_id   integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
        launch_cost         string maxLength: 200
  */
-public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
+public class LauncherConfigJSON: Identifiable, JSONElement
 {
    /** ID of the astronaut within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** URI of this data. Unused. */
    var url: String?
    /** ID of this data in the original API. Unused. */
@@ -97,44 +97,42 @@ public class LauncherConfigJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `LauncherConfigJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.launchLibraryID = json[ "launch_library_id" ] as? Int64
-      self.name = json[ "name" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.launchLibraryID = nonNegativeInt( json[ "launch_library_id" ] )
+      self.name = nonEmptyString( json[ "name" ] )
       self.family = nonEmptyString( json[ "family" ] )
-      self.fullName = json[ "full_name" ] as? String
+      self.fullName = nonEmptyString( json[ "full_name" ] )
       self.launcherConfigDescription = nonEmptyString( json[ "description" ] )
       self.variant = nonEmptyString( json[ "variant" ] )
       self.alias = nonEmptyString( json[ "alias" ] )
-      self.minStage = json[ "min_stage" ] as? Int64
-      self.maxStage = json[ "max_stage" ] as? Int64
-      self.length = json[ "length" ] as? Double
-      self.diameter = json[ "diameter" ] as? Double
-      self.maidenFlight = json[ "maiden_flight" ] as? String
-      self.launchMass = json[ "launch_mass" ] as? Int64
-      self.leoCapacity = json[ "leo_capacity" ] as? Int64
-      self.gtoCapacity = json[ "gto_capacity" ] as? Int64
-      self.takeoffThrust = json[ "to_thrust" ] as? Int64
-      self.apogee = json[ "apogee" ] as? Int64
-      self.vehicleRange = json[ "vehicle_range" ] as? Int64
-      self.imageURL = json[ "image_url" ] as? String
+      self.minStage = nonNegativeInt( json[ "min_stage" ] )
+      self.maxStage = nonNegativeInt( json[ "max_stage" ] )
+      self.length = nonNegativeDouble( json[ "length" ] )
+      self.diameter = nonNegativeDouble( json[ "diameter" ] )
+      self.maidenFlight = nonEmptyString( json[ "maiden_flight" ] )
+      self.launchMass = nonNegativeInt( json[ "launch_mass" ] )
+      self.leoCapacity = nonNegativeInt( json[ "leo_capacity" ] )
+      self.gtoCapacity = nonNegativeInt( json[ "gto_capacity" ] )
+      self.takeoffThrust = nonNegativeInt( json[ "to_thrust" ] )
+      self.apogee = nonNegativeInt( json[ "apogee" ] )
+      self.vehicleRange = nonNegativeInt( json[ "vehicle_range" ] )
+      self.imageURL = nonEmptyString( json[ "image_url" ] )
       self.infoURL = nonEmptyString( json[ "info_url" ] )
-      self.wikiURL = json[ "wiki_url" ] as? String
-      self.consecutiveSuccessfulLaunches = json[ "consecutive_successful_launches" ] as? Int64
-      self.successfulLaunches = json[ "successful_launches" ] as? Int64
-      self.failedLaunches = json[ "failed_launches" ] as? Int64
-      self.pendingLaunches = json[ "pending_launches" ] as? Int64
-      self.manufacturer = AgencyJSON( json: json[ "manufacturer" ] as? JSONStructure )
-      self.programs = ( json[ "program" ] as? [JSONStructure] ?? [] ).compactMap { return ProgramJSON( json: $0 ) }
+      self.wikiURL = nonEmptyString( json[ "wiki_url" ] )
+      self.consecutiveSuccessfulLaunches = nonNegativeInt( json[ "consecutive_successful_launches" ] )
+      self.successfulLaunches = nonNegativeInt( json[ "successful_launches" ] )
+      self.failedLaunches = nonNegativeInt( json[ "failed_launches" ] )
+      self.pendingLaunches = nonNegativeInt( json[ "pending_launches" ] )
+      self.manufacturer = AgencyJSON( json[ "manufacturer" ] )
+      self.programs = parseArray( json[ "program" ] )
       self.reusable = json[ "reusable" ] as? Bool
-      self.totalLaunchCount = json[ "total_launch_count" ] as? String
-      self.launchCost = json[ "launch_cost" ] as? String
+      self.totalLaunchCount = nonEmptyString( json[ "total_launch_count" ] )
+      self.launchCost = nonEmptyString( json[ "launch_cost" ] )
    }
 }

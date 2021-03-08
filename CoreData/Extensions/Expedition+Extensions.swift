@@ -64,7 +64,7 @@ public func updateEntity( json: ExpeditionJSON, entity: Expedition?, context: NS
 {
    guard let expeditionEntity = entity else { return }
 
-   expeditionEntity.id = json.id
+   expeditionEntity.id = json.id ?? -1
    expeditionEntity.name = json.name
    expeditionEntity.start = json.start
    expeditionEntity.end = json.end
@@ -155,7 +155,7 @@ public func getExpedition( by entityID: Int64, context: NSManagedObjectContext )
  */
 public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjectContext ) -> Expedition
 {
-   let expeditionEntity: Expedition? = getExpedition( by: expedition.id, context: context )
+   let expeditionEntity: Expedition? = getExpedition( by: expedition.id ?? -1, context: context )
    updateEntity( json: expedition, entity: expeditionEntity, context: context )
    return expeditionEntity ?? addToCoreData( json: expedition, context: context )
 }

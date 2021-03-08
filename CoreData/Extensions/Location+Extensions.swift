@@ -56,7 +56,7 @@ public func updateEntity( json: LocationJSON, entity: Location?, context: NSMana
    guard let locationEntity = entity else { return }
 
    locationEntity.countryCode = json.countryCode
-   locationEntity.id = json.id
+   locationEntity.id = json.id ?? -1
    locationEntity.mapImage = json.mapImage
    locationEntity.name = json.name
    locationEntity.totalLandingCount = guaranteedInt64( json.totalLandingCount )
@@ -101,7 +101,7 @@ public func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -
  */
 public func fetchLocation( location: LocationJSON, context: NSManagedObjectContext ) -> Location
 {
-   let locationEntity: Location? = getLocation( by: location.id, context: context )
+   let locationEntity: Location? = getLocation( by: location.id ?? -1, context: context )
    updateEntity( json: location, entity: locationEntity, context: context )
    return locationEntity ?? addToCoreData( json: location, context: context )
 }

@@ -6,20 +6,18 @@
        role      AstronautRole{}
        astronaut Astronaut{...} or AstronautDetailedSerializerNoFlights{}
  */
-public class AstronautFlightJSON: Decodable
+public class AstronautFlightJSON: JSONElement
 {
    /** ID of the astronaut flight within the API. */
-   public let id: Int64
+   public let id: Int64?
    var role: String?
    var astronaut: AstronautJSON?
 
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.role = json[ "role" ] as? String
-      self.astronaut = AstronautJSON( json: json[ "abbrev" ] as? JSONStructure )
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.role = nonEmptyString( json[ "role" ] )
+      self.astronaut = AstronautJSON( json[ "abbrev" ] )
    }
 }

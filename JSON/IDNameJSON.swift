@@ -17,15 +17,19 @@
  */
 public class IDNameJSON: Decodable, Identifiable, JSONElement
 {
-   public let id: Int64
+   public let id: Int64?
    let name: String?
 
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+   }
 
+   public init( id: Int64, name: String )
+   {
       self.id = id
-      self.name = json[ "name" ] as? String
+      self.name = name
    }
 }

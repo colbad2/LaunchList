@@ -19,7 +19,7 @@ class LocationJSONUnitTests: XCTestCase
       }
       """
 
-      guard let location: LocationJSON = LocationJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let location: LocationJSON = LocationJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLocation( location: location, locationID: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
@@ -42,7 +42,7 @@ class LocationJSONUnitTests: XCTestCase
       }
       """
 
-      guard let location: LocationJSON = LocationJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let location: LocationJSON = LocationJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkLocation( location: location, locationID: 22, countryCode: "UNK",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",

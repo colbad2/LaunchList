@@ -46,29 +46,29 @@ import CoreData
        }
 
  ### Spec
- id   integer
- url   string($uri)
- slug*   string($slug) pattern: ^[-a-zA-Z0-9_]+$ minLength: 1
- name*   string maxLength: 200 minLength: 1
- type   EventType{...}
- description   string maxLength: 2048
- location   string maxLength: 100 x-nullable: true
- news_url   string($uri) maxLength: 250 x-nullable: true
- video_url   string($uri) maxLength: 250 x-nullable: true
- feature_image   string($uri)
- date   string($date-time) x-nullable: true
- launches*   [LaunchSerializerCommon{...}]
- expeditions*   [Expedition{...}]
- spacestations*   [SpaceStationSerializerForCommon{...}]
- program   [Program{...}]
+       id             integer
+       url            string($uri)
+       slug*          string($slug) pattern: ^[-a-zA-Z0-9_]+$ minLength: 1
+       name*          string maxLength: 200 minLength: 1
+       type           EventType{...}
+       description    string maxLength: 2048
+       location       string maxLength: 100 x-nullable: true
+       news_url       string($uri) maxLength: 250 x-nullable: true
+       video_url      string($uri) maxLength: 250 x-nullable: true
+       feature_image  string($uri)
+       date           string($date-time) x-nullable: true
+       launches*      [LaunchSerializerCommon{...}]
+       expeditions*   [Expedition{...}]
+       spacestations* [SpaceStationSerializerForCommon{...}]
+       program        [Program{...}]
  */
-public class EventJSON: Decodable, Identifiable, JSONElement
+public class EventJSON: Identifiable, JSONElement
 {
    /** ID of the astronaut within the API. */
-   public let id: Int64
-   /** URI of this data. Unused. */
+   public let id: Int64?
+   /** URI of this data. */
    let url: String?
-   let slug: String? // unused
+   let slug: String?
    let name: String?
    let type: IDNameJSON?
    let eventDescription: String?
@@ -87,25 +87,23 @@ public class EventJSON: Decodable, Identifiable, JSONElement
 
     - parameter json: `JSONStructure` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
-      self.slug = json[ "slug" ] as? String
-      self.name = json[ "name" ] as? String
-      self.type = IDNameJSON( json: json[ "type" ] as? JSONStructure )
-      self.eventDescription = json[ "description" ] as? String
-      self.location = json[ "location" ] as? String
-      self.newsURL = json[ "news_url" ] as? String
-      self.videoURL = json[ "video_url" ] as? String
-      self.featureImage = json[ "feature_image" ] as? String
-      self.date = json[ "date" ] as? String
-      self.launches = ( json[ "launches" ] as? [JSONStructure] )?.compactMap { LaunchJSON( json: $0 ) }
-      self.expeditions = ( json[ "expeditions" ] as? [JSONStructure] )?.compactMap { ExpeditionJSON( json: $0 ) }
-      self.spaceStations = ( json[ "spaceStations" ] as? [JSONStructure] )?.compactMap { SpaceStationJSON( json: $0 ) }
-      self.programs = ( json[ "programs" ] as? [JSONStructure] )?.compactMap { ProgramJSON( json: $0 ) }
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
+      self.slug = nonEmptyString( json[ "slug" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.type = IDNameJSON( json[ "type" ] )
+      self.eventDescription = nonEmptyString( json[ "description" ] )
+      self.location = nonEmptyString( json[ "location" ] )
+      self.newsURL = nonEmptyString( json[ "news_url" ] )
+      self.videoURL = nonEmptyString( json[ "video_url" ] )
+      self.featureImage = nonEmptyString( json[ "feature_image" ] )
+      self.date = nonEmptyString( json[ "date" ] )
+      self.launches = parseArray( json[ "launches" ] )
+      self.expeditions = parseArray( json[ "expeditions" ] )
+      self.spaceStations = parseArray( json[ "spaceStations" ] )
+      self.programs = parseArray( json[ "programs" ] )
    }
 }

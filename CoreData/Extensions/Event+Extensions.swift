@@ -139,7 +139,7 @@ public func updateEntity( json: EventJSON, entity: Event?, context: NSManagedObj
 {
    guard let eventEntity = entity else { return }
 
-   eventEntity.id = json.id
+   eventEntity.id = json.id ?? -1
    eventEntity.name = json.name
    eventEntity.type = json.type?.name
    eventEntity.eventDescription = json.eventDescription
@@ -221,7 +221,7 @@ public func getEvent( by id: Int64, context: NSManagedObjectContext ) -> Event?
  */
 public func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> Event
 {
-   let eventEntity: Event? = getEvent( by: event.id, context: context )
+   let eventEntity: Event? = getEvent( by: event.id ?? -1, context: context )
    updateEntity( json: event, entity: eventEntity, context: context )
    return eventEntity ?? addToCoreData( json: event, context: context )
 }

@@ -1,6 +1,6 @@
 // Copyright © 2021 Bradford Holcombe. All rights reserved.
 
-// wiftlint:disable function_body_length
+// s wiftlint:disable function_body_length
 
 /**
  Data that describe a launch.
@@ -74,10 +74,10 @@
        updates                 [Update{...}]
        notifications_enabled   boolean
  */
-public class LaunchJSON: Decodable, Identifiable, JSONElement
+public class LaunchJSON: Identifiable, JSONElement
 {
    /** ID of the launch within the API. */
-   public var id: String
+   public var id: String?
    /** URI of this data. */
    var url: String?
    var launchLibraryID: Int64?
@@ -92,14 +92,11 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
    var name: String?
    var net: String?
    var pad: PadJSON?
-   var probability: Int16?
+   var probability: Int64?
    var programs: [ProgramJSON] = []
    var rocket: RocketJSON?
    var slug: String?
    var status: StatusJSON?
-   var statusName: String?
-   var statusAbbreviation: String?
-   var statusDescription: String?
    var tbdDate: Bool?
    var tbdTime: Bool?
    var webcastLive: Bool?
@@ -124,62 +121,49 @@ public class LaunchJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `LaunchJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure` JSON to parse
+    - parameter json: `Any` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? String else { return nil }
-
-      self.id = id
-      self.url = json[ "url" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonEmptyString( json[ "id" ] )
+      self.url = nonEmptyString( json[ "url" ] )
       self.failReason = nonEmptyString( json[ "failreason" ] )
-      self.hashtag = json[ "hashtag" ] as? String
+      self.hashtag = nonEmptyString( json[ "hashtag" ] )
       self.holdReason = nonEmptyString( json[ "holdreason" ] )
-      self.image = json[ "image" ] as? String
-      self.infographic = json[ "infographic" ] as? String
+      self.image = nonEmptyString( json[ "image" ] )
+      self.infographic = nonEmptyString( json[ "infographic" ] )
       self.inHold = json[ "inhold" ] as? Bool
-      self.launchLibraryID = json[ "launch_library_id" ] as? Int64
-      self.serviceProvider = AgencyJSON( json: json[ "launch_service_provider" ] as? JSONStructure )
-      self.mission = MissionJSON( json: json[ "mission" ] as? JSONStructure )
-      self.name = json[ "name" ] as? String
-      self.net = json[ "net" ] as? String
-      self.pad = PadJSON( json: json[ "pad" ] as? JSONStructure )
-      self.probability = json[ "probability" ] as? Int16
-
-      self.programs = []
-      if let programsArray: [JSONStructure] = json[ "program" ] as? [JSONStructure]
-      {
-         self.programs = programsArray.compactMap { ProgramJSON( json: $0 ) }
-      }
-
-      self.rocket = RocketJSON( json: json[ "rocket" ] as? JSONStructure )
-      self.slug = json[ "slug" ] as? String
-      self.status = StatusJSON( json: json[ "status" ] as? JSONStructure )
-      self.statusName = self.status?.name
-      self.statusAbbreviation = self.status?.abbreviation
-      self.statusDescription = self.status?.description
+      self.launchLibraryID = nonNegativeInt( json[ "launch_library_id" ] )
+      self.serviceProvider = AgencyJSON( json[ "launch_service_provider" ] )
+      self.mission = MissionJSON( json[ "mission" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.net = nonEmptyString( json[ "net" ] )
+      self.pad = PadJSON( json[ "pad" ] )
+      self.probability = nonNegativeInt( json[ "probability" ] )
+      self.programs = parseArray( json[ "program" ] )
+      self.rocket = RocketJSON( json[ "rocket" ] )
+      self.slug = nonEmptyString( json[ "slug" ] )
+      self.status = StatusJSON( json[ "status" ] )
       self.tbdDate = json[ "tbddate" ] as? Bool
       self.tbdTime = json[ "tbdtime" ] as? Bool
       self.webcastLive = json[ "webcast_live" ] as? Bool
-      self.windowEnd = json[ "window_end" ] as? String
-      self.windowStart = json[ "window_start" ] as? String
-      self.infoURLs = ( json[ "infoURLs" ] as? [JSONStructure] ?? [] ).compactMap { return URLLinkJSON( json: $0 ) }
-      self.vidURLs = ( json[ "vidURLs" ] as? [JSONStructure] ?? [] ).compactMap { return URLLinkJSON( json: $0 ) }
-
-      self.orbitalLaunchAttemptCount = json[ "orbital_launch_attempt_count" ] as? String
-      self.locationLaunchAttemptCount = json[ "location_launch_attempt_count" ] as? String
-      self.padLaunchAttemptCount = json[ "pad_launch_attempt_count" ] as? String
-      self.agencyLaunchAttemptCount = json[ "agency_launch_attempt_count" ] as? String
-      self.orbitalLaunchAttemptCountYear = json[ "orbital_launch_attempt_count_year" ] as? String
-      self.locationLaunchAttemptCountYear = json[ "location_launch_attempt_count_year" ] as? String
-      self.padLaunchAttemptCountYear = json[ "pad_launch_attempt_count_year" ] as? String
-      self.agencyLaunchAttemptCountYear = json[ "agency_launch_attempt_count_year" ] as? String
-
-      self.lastUpdated = json[ "last_updated" ] as? String
-      self.flightclubURL = json[ "flightclub_url" ] as? String
-      self.rSpacexAPIID = json[ "r_spacex_api_id" ] as? String
-      self.updates = ( json[ "updates" ] as? [JSONStructure] ?? [] ).compactMap { return UpdateJSON( json: $0 ) }
+      self.windowEnd = nonEmptyString( json[ "window_end" ] )
+      self.windowStart = nonEmptyString( json[ "window_start" ] )
+      self.infoURLs = parseArray( json[ "infoURLs" ] )
+      self.vidURLs = parseArray( json[ "vidURLs" ] )
+      self.orbitalLaunchAttemptCount = nonEmptyString( json[ "orbital_launch_attempt_count" ] )
+      self.locationLaunchAttemptCount = nonEmptyString( json[ "location_launch_attempt_count" ] )
+      self.padLaunchAttemptCount = nonEmptyString( json[ "pad_launch_attempt_count" ] )
+      self.agencyLaunchAttemptCount = nonEmptyString( json[ "agency_launch_attempt_count" ] )
+      self.orbitalLaunchAttemptCountYear = nonEmptyString( json[ "orbital_launch_attempt_count_year" ] )
+      self.locationLaunchAttemptCountYear = nonEmptyString( json[ "location_launch_attempt_count_year" ] )
+      self.padLaunchAttemptCountYear = nonEmptyString( json[ "pad_launch_attempt_count_year" ] )
+      self.agencyLaunchAttemptCountYear = nonEmptyString( json[ "agency_launch_attempt_count_year" ] )
+      self.lastUpdated = nonEmptyString( json[ "last_updated" ] )
+      self.flightclubURL = nonEmptyString( json[ "flightclub_url" ] )
+      self.rSpacexAPIID = nonEmptyString( json[ "r_spacex_api_id" ] )
+      self.updates = parseArray( json[ "updates" ] )
       self.notificationsEnabled = json[ "notifications_enabled" ] as? Bool
    }
 }

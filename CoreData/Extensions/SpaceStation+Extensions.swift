@@ -89,7 +89,7 @@ public func updateEntity( json: SpaceStationJSON, entity: SpaceStation?, context
 {
    guard let spaceStationEntity = entity else { return }
 
-   spaceStationEntity.id = json.id
+   spaceStationEntity.id = json.id ?? -1
    spaceStationEntity.name = json.name
    spaceStationEntity.status = json.status?.name
    spaceStationEntity.statusName = json.status?.name
@@ -171,7 +171,7 @@ public func getSpaceStation( by entityID: Int64, context: NSManagedObjectContext
  */
 public func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManagedObjectContext ) -> SpaceStation
 {
-   let spaceStationEntity: SpaceStation? = getSpaceStation( by: spaceStation.id, context: context )
+   let spaceStationEntity: SpaceStation? = getSpaceStation( by: spaceStation.id ?? -1, context: context )
    updateEntity( json: spaceStation, entity: spaceStationEntity, context: context )
    return spaceStationEntity ?? addToCoreData( json: spaceStation, context: context )
 }

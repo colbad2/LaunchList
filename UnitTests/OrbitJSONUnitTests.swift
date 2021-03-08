@@ -15,7 +15,7 @@ class OrbitJSONUnitTests: XCTestCase
         }
       """
 
-      guard let orbit: OrbitJSON = OrbitJSON( json: parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
+      guard let orbit: OrbitJSON = OrbitJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkOrbit( orbit: orbit, id: 2, name: "Geostationary Transfer Orbit", abbreviation: "GTO" )
    }

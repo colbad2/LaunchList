@@ -16,7 +16,7 @@
 public class StatusJSON: Decodable, Identifiable, JSONElement
 {
    /** ID of the rocket within the API. */
-   public var id: Int64
+   public var id: Int64?
    /** Staus abbreviation. */
    var abbreviation: String?
    /** Status description. */
@@ -27,16 +27,14 @@ public class StatusJSON: Decodable, Identifiable, JSONElement
    /**
     Make a `StatusJSON` from a JSON structure.
 
-    - parameter json: `JSONStructure?` JSON to parse
+    - parameter json: `Any?` JSON to parse
     */
-   init?( json: JSONStructure? )
+   public required init?( _ json: Any? )
    {
-      guard let json = json else { return nil }
-      guard let id = json[ "id" ] as? Int64 else { return nil }
-
-      self.id = id
-      self.name = json[ "name" ] as? String
-      self.abbreviation = json[ "abbrev" ] as? String
-      self.description = json[ "description" ] as? String
+      guard let json: JSONStructure = json as? JSONStructure else { return nil }
+      self.id = nonNegativeInt( json[ "id" ] )
+      self.name = nonEmptyString( json[ "name" ] )
+      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
+      self.description = nonEmptyString( json[ "description" ] )
    }
 }
