@@ -65,6 +65,8 @@ class LaunchRequest: BaseAPIListRequest, APIListRequest
       addParam( name: "related", value: related )
       addParam( name: "hide_recent_previous", value: hideRecentPrevious )
 
+      addParam( name: "mode", value: "detailed" )
+
       return super.requestURL + parameters.joined( separator: "&" )
    }
 

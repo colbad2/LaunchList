@@ -49,6 +49,7 @@ public class AgencyListRequest: BaseAPIListRequest, APIListRequest
    func copy() -> APIListRequest
    {
       return AgencyListRequest( baseURL: base, searchTerm: search,
-                                orderingField: ordering, limit: limit, offset: offset )
+                                orderingField: ordering, limit: limit, offset: offset,
+                                featured: featured, agencyType: agencyType, countryCode: countryCode )
    }
 }

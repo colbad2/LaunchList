@@ -98,6 +98,7 @@ public class BaseAPIListRequest: BaseAPIRequest
    var limit: Int = 100
    /** The initial index from which to return the results. */
    var offset: Int = 0
+
    /** Partial URL for the request. */
    override var requestURL: String
    {
