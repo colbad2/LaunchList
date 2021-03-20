@@ -86,25 +86,28 @@ public struct PersistenceController
          let forceFill: Bool = false
          if getAgencyCount( context: container.viewContext ) == 0 || forceFill
          {
-//            deleteAllData( entityName: AGENCY_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: ASTRONAUT_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: DOCKING_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: EVENT_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: EXPEDITION_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: FLIGHT_VEHICLE_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: LAUNCH_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: LAUNCHER_CONFIG_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: LIVE_STREAM_CONFIG_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: LOCATION_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: MISSION_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: PAD_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: PROGRAM_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: ROCKET_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: SERVICE_PROVIDER_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: SPACECRAFT_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: SPACESTATION_ENTITY_NAME, context: container.viewContext )
-//            deleteAllData( entityName: VEHICLE_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: AGENCY_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: ASTRONAUT_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: ASTRONAUT_FLIGHT_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: DOCKING_EVENT_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: EVENT_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: EXPEDITION_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: FLIGHT_VEHICLE_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: LANDING_LOCATION_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: LAUNCH_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: LAUNCHER_CONFIG_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: LIVE_STREAM_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: LOCATION_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: MISSION_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: PAD_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: PROGRAM_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: ROCKET_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: SPACECRAFT_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: SPACECRAFT_FLIGHT_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: SPACESTATION_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: URL_LINK_ENTITY_NAME, context: container.viewContext )
+            deleteAllData( entityName: ROAD_CLOSURE_ENTITY_NAME, context: container.viewContext )
             fillStore( viewContext: container.viewContext )
          }
       }
@@ -194,7 +197,7 @@ func loadStarshipTests( context: NSManagedObjectContext )
    {
       _ = fetchEvent( event: event, context: context )
    }
-   print( "parsing upcominglaunches" )
+   print( "parsing upcoming launches" )
    for launch in starshipData?.upcoming?.launches ?? []
    {
       _ = fetchLaunch( launch: launch, context: context )
@@ -243,7 +246,7 @@ func loadDockings( context: NSManagedObjectContext )
    print( "parsing dockings" )
    for docking in dockingList?.sublist ?? []
    {
-      _ = fetchDocking( docking: docking, context: context )
+      _ = fetchDockingEvent( dockingEvent: docking, context: context )
    }
    print( "done docking.json" )
 }

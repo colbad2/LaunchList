@@ -20,9 +20,9 @@ public class LaunchStatusJSON
    init?( json: JSONStructure? )
    {
       guard let json = json else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
-      self.statusDescription = nonEmptyString( json[ "description" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      name = nonEmptyString( json[ "name" ] )
+      abbreviation = nonEmptyString( json[ "abbrev" ] )
+      statusDescription = nonEmptyString( json[ "description" ] )
    }
 }

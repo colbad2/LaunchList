@@ -42,7 +42,7 @@ class RemoteImageCache
     */
    private func getCachedImageFrom( url: String ) -> UIImage?
    {
-      serialQueueForImages.sync { return cachedImages[ url ] }
+      serialQueueForImages.sync { cachedImages[ url ] }
    }
 
    /**
@@ -57,7 +57,7 @@ class RemoteImageCache
    }
 
    /**
-    Removes a cahched image from the cache.
+    Removes a cached image from the cache.
 
     - parameter url: `String` image to clear
     */
@@ -74,7 +74,7 @@ class RemoteImageCache
     */
    private func getDataTaskFrom( url: String ) -> URLSessionTask?
    {
-      serialQueueForDataTasks.sync { return imagesDownloadTasks[ url ] }
+      serialQueueForDataTasks.sync { imagesDownloadTasks[ url ] }
    }
 
    /**
@@ -208,7 +208,7 @@ class RemoteImageCache
  Fetches any image stored in the context under the given URL.
 
  - parameter url: `String?` where the image will come from
- - parameter context: `NSManagedObejctContext` context where to search for the image
+ - parameter context: `NSManagedObjectContext` context where to search for the image
  - returns: `UIImage?` any image found with the given URL, or nil if not found
  */
 func getStoredImage( for imageURL: String?, context: NSManagedObjectContext ) -> UIImage?

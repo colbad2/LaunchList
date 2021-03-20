@@ -55,13 +55,13 @@ public class LocationJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.countryCode = nonEmptyString( json[ "country_code" ] )
-      self.mapImage = nonEmptyString( json[ "map_image" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.totalLandingCount = nonNegativeInt( json[ "total_landing_count" ] )
-      self.totalLaunchCount = nonNegativeInt( json[ "total_launch_count" ] )
-      self.pads = parseArray( json[ "pads" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      countryCode = nonEmptyString( json[ "country_code" ] )
+      mapImage = nonEmptyString( json[ "map_image" ] )
+      name = nonEmptyString( json[ "name" ] )
+      totalLandingCount = nonNegativeInt( json[ "total_landing_count" ] )
+      totalLaunchCount = nonNegativeInt( json[ "total_launch_count" ] )
+      pads = parseArray( json[ "pads" ] )
    }
 }

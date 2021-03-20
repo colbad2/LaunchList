@@ -104,16 +104,16 @@ extension SpacecraftFlight
    /**
     Adds the JSON structs, creating or updating as necessary.
 
-    - parameter dockingEvents: `[DockingEventJSON]?` JSON struct to add
+    - parameter dockingEvents: `[DockingJSON]?` JSON struct to add
     - parameter context:       `NSManagedObjectContext` context to add the JSON struct in
     */
-   func addDockingEventsFromJSON( dockingEvents: [DockingEventJSON]?, context: NSManagedObjectContext )
+   func addDockingEventsFromJSON( dockingEvents: [DockingJSON]?, context: NSManagedObjectContext )
    {
       for dockingEvent in dockingEvents ?? []
       {
          let dockingEventEntity: DockingEvent = fetchDockingEvent( dockingEvent: dockingEvent, context: context )
          self.addToDockingEvents( dockingEventEntity )
-         dockingEventEntity.flightVehicle = self
+         dockingEventEntity.flight = self
       }
    }
 }
@@ -165,7 +165,7 @@ public func updateEntity( json: SpacecraftFlightJSON, entity: SpacecraftFlight?,
  */
 public func fetchAllSpacecraftFlights( context: NSManagedObjectContext ) -> [SpacecraftFlight]?
 {
-   return fetchAllEntities( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context ) as? [SpacecraftFlight]
+   fetchAllEntities( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context ) as? [ SpacecraftFlight ]
 }
 
 /**
@@ -180,7 +180,7 @@ public func fetchAllSpacecraftFlights( context: NSManagedObjectContext ) -> [Spa
  */
 public func getSpacecraftFlight( by entityID: Int64, context: NSManagedObjectContext ) -> SpacecraftFlight?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftFlight
+   getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftFlight
 }
 
 /**
@@ -205,7 +205,7 @@ public func fetchSpacecraftFlight( flight: SpacecraftFlightJSON, context: NSMana
  */
 public func getSpacecraftFlightCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context )
 }
 
 /**

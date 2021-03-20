@@ -10,37 +10,37 @@ struct AgencyData
 
    func getWebsite( _ serviceProvider: Agency ) -> String?
    {
-      return websites[ serviceProvider.id ]
+      websites[ serviceProvider.id ]
    }
 
    func getWiki( _ serviceProvider: Agency ) -> String?
    {
-      return wiki[ serviceProvider.id ]
+      wiki[ serviceProvider.id ]
    }
 
    func getTwitter( _ serviceProvider: Agency ) -> String?
    {
-      return twitter[ serviceProvider.id ]
+      twitter[ serviceProvider.id ]
    }
 
    func getDescription( _ serviceProvider: Agency ) -> String?
    {
-      return descriptions[ serviceProvider.id ]
+      descriptions[ serviceProvider.id ]
    }
 
    func getYouTube( _ serviceProvider: Agency ) -> String?
    {
-      return youTube[ serviceProvider.id ]
+      youTube[ serviceProvider.id ]
    }
 
    func getLogo( _ serviceProvider: Agency ) -> String?
    {
-      return logos[ serviceProvider.id ]
+      logos[ serviceProvider.id ]
    }
 
    func getFlags( _ serviceProvider: Agency ) -> String?
    {
-      return flags[ serviceProvider.id ]
+      flags[ serviceProvider.id ]
    }
 }
 

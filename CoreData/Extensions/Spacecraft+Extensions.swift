@@ -96,7 +96,7 @@ public func updateEntity( json: SpacecraftJSON, spacecraftEntity: Spacecraft?, c
  */
 public func getSpacecraft( by entityID: Int64, context: NSManagedObjectContext ) -> Spacecraft?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_ENTITY_NAME ) as? Spacecraft
+   getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_ENTITY_NAME ) as? Spacecraft
 }
 
 /**
@@ -121,7 +121,7 @@ public func fetchSpacecraft( spacecraft: SpacecraftJSON, context: NSManagedObjec
  */
 public func getSpacecraftCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: SPACECRAFT_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: SPACECRAFT_ENTITY_NAME, context: context )
 }
 
 /**

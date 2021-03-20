@@ -25,12 +25,10 @@ struct TimelineView: View
 
          var nextLaunchID: String? // getNextLaunch( context: PersistenceController.shared.container.viewContext )?.id
          var nextEventID: Int64?
-         var nextDockingID: Int64?
          if let nextEntry: TimelineEntry = nextTimelineEntry
          {
             if nextEntry.isKind( of: Launch.self ) { nextLaunchID = (nextTimelineEntry as! Launch).id }
             if nextEntry.isKind( of: Event.self ) { nextEventID = (nextTimelineEntry as! Event).id }
-            if nextEntry.isKind( of: Docking.self ) { nextDockingID = (nextTimelineEntry as! Docking).id }
          }
 
          var entryView: AnyView = AnyView( Text( "any" ) )
@@ -41,10 +39,6 @@ struct TimelineView: View
          else if listItem.isKind( of: Event.self )
          {
             entryView = AnyView( TimelineEventItem( eventEntry: listItem, nextEventID: nextEventID ) )
-         }
-         else if listItem.isKind( of: Docking.self )
-         {
-            entryView = AnyView( TimelineDockingItem( dockingEntry: listItem, nextDockingID: nextDockingID ) )
          }
 
          return entryView
@@ -120,23 +114,6 @@ struct TimelineEventItem: View
          NavigationLink( destination: EventDetail( event: event ) )
          {
             EventRow( event: event, nextEventID: nextEventID )
-         }
-      }
-   }
-}
-
-struct TimelineDockingItem: View
-{
-   var dockingEntry: TimelineEntry
-   var nextDockingID: Int64?
-
-   var body: some View
-   {
-      if let docking: Docking = dockingEntry as? Docking
-      {
-         NavigationLink( destination: DockingDetail( docking: docking ) )
-         {
-            DockingRow( docking: docking, nextDockingID: nextDockingID )
          }
       }
    }

@@ -74,7 +74,7 @@ public func updateEntity( json: LocationJSON, entity: Location?, context: NSMana
  */
 public func fetchAllLocations( context: NSManagedObjectContext ) -> [Location]?
 {
-   return fetchAllEntities( entityName: LOCATION_ENTITY_NAME, context: context ) as? [Location]
+   fetchAllEntities( entityName: LOCATION_ENTITY_NAME, context: context ) as? [ Location ]
 }
 
 /**
@@ -89,7 +89,7 @@ public func fetchAllLocations( context: NSManagedObjectContext ) -> [Location]?
  */
 public func getLocation( by entityID: Int64, context: NSManagedObjectContext ) -> Location?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: LOCATION_ENTITY_NAME ) as? Location
+   getEntityByID( entityID: entityID, context: context, entityName: LOCATION_ENTITY_NAME ) as? Location
 }
 
 /**
@@ -114,7 +114,7 @@ public func fetchLocation( location: LocationJSON, context: NSManagedObjectConte
  */
 public func getLocationCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: LOCATION_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: LOCATION_ENTITY_NAME, context: context )
 }
 
 /**

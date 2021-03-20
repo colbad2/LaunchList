@@ -13,13 +13,13 @@ public let PAD_ENTITY_NAME: String = "Pad"
 extension Pad
 {
    /** Set< Launch > wrapper for the generated NSSet of `Launch`s. */
-   var launchSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
+   var launchSet: Set< Launch > { launches as? Set< Launch > ?? Set< Launch >() }
 
    /** Array of `Launch`s, sorted by name. */
-   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchSet ) ) }
+   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( launchSet ) ) }
 
    /** True if the `Pad` has any `Launch`s. */
-   var hasLaunches: Bool { return !launchSet.isEmpty }
+   var hasLaunches: Bool { !launchSet.isEmpty }
 
    /**
     Adds the JSON struct, creating or updating as necessary.
@@ -108,7 +108,7 @@ public func updateEntity( json: PadJSON, entity: Pad?, context: NSManagedObjectC
  */
 public func fetchAllPads( context: NSManagedObjectContext ) -> [Pad]?
 {
-   return fetchAllEntities( entityName: PAD_ENTITY_NAME, context: context ) as? [Pad]
+   fetchAllEntities( entityName: PAD_ENTITY_NAME, context: context ) as? [ Pad ]
 }
 
 /**
@@ -152,7 +152,7 @@ public func sortPadsByName( padArray: [Pad]? ) -> [Pad]
  */
 public func getPad( by entityID: Int64, context: NSManagedObjectContext ) -> Pad?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: PAD_ENTITY_NAME ) as? Pad
+   getEntityByID( entityID: entityID, context: context, entityName: PAD_ENTITY_NAME ) as? Pad
 }
 
 /**
@@ -177,7 +177,7 @@ public func fetchPad( pad: PadJSON, context: NSManagedObjectContext ) -> Pad
  */
 public func getPadCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: PAD_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: PAD_ENTITY_NAME, context: context )
 }
 
 /**

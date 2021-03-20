@@ -23,7 +23,7 @@ class LocationJSONUnitTests: XCTestCase
 
       checkLocation( location: location, locationID: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-                     name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
+                     name: "Cape Canaveral, FL, USA", landingCount: 20, launchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
    }
 
@@ -46,7 +46,7 @@ class LocationJSONUnitTests: XCTestCase
 
       checkLocation( location: location, locationID: 22, countryCode: "UNK",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
-                     name: "Unknown Location", landingCount: 0, lauchCount: 0,
+                     name: "Unknown Location", landingCount: 0, launchCount: 0,
                      url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
    }
 }

@@ -16,8 +16,8 @@ public class AstronautFlightJSON: JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.role = nonEmptyString( json[ "role" ] )
-      self.astronaut = AstronautJSON( json[ "abbrev" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      role = nonEmptyString( json[ "role" ] )
+      astronaut = AstronautJSON( json[ "abbrev" ] )
    }
 }

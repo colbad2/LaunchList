@@ -5,17 +5,17 @@ import SwiftUI
 
 struct DockingList: View
 {
-   @FetchRequest( entity: Docking.entity(),
-                  sortDescriptors: [ NSSortDescriptor( keyPath: \Docking.docking,
+   @FetchRequest( entity: DockingEvent.entity(),
+                  sortDescriptors: [ NSSortDescriptor( keyPath: \DockingEvent.docking,
                                                        ascending: false ) ],
                   animation: .default )
-   private var dockings: FetchedResults< Docking >
+   private var dockings: FetchedResults< DockingEvent >
 
    var body: some View
    {
       List( dockings )
       {
-         ( docking: Docking ) in
+         ( docking: DockingEvent ) in
 
          NavigationLink( destination: DockingDetail( docking: docking ) )
          {
@@ -29,7 +29,7 @@ struct DockingList: View
 
 struct DockingRow: View
 {
-   var docking: Docking
+   var docking: DockingEvent
    var nextDockingID: Int64?
 
    var body: some View

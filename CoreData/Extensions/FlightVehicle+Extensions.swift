@@ -12,14 +12,14 @@ public let FLIGHT_VEHICLE_ENTITY_NAME: String = "FlightVehicle"
  */
 extension FlightVehicle
 {
-   /** `Set< Docking >` wrapper for the generated `NSSet` of `Docking`s. */
-   var dockingsSet: Set< Docking > { self.dockings as? Set< Docking > ?? Set< Docking >() }
+   /** `Set< Docking >` wrapper for the generated `NSSet` of `DockingEvent`s. */
+   var dockingsSet: Set< DockingEvent > { dockings as? Set< DockingEvent > ?? Set< DockingEvent >() }
 
    /** Array of `Docking`s, sorted by name. */
-   var sortedDockings: [Docking] { return sortDockingsByName( dockingArray: Array( self.dockingsSet ) ) }
+   var sortedDockings: [DockingEvent] { sortDockingsByName( dockingArray: Array( dockingsSet ) ) }
 
    /** True if the `FlightVehicle` has any `Docking`s. */
-   var hasDockings: Bool { return !dockingsSet.isEmpty }
+   var hasDockings: Bool { !dockingsSet.isEmpty }
 
    /**
     Adds the JSON struct, creating or updating as necessary.
@@ -114,7 +114,7 @@ public func sortFlightVehiclesByName( flightVehicleArray: [FlightVehicle]? ) -> 
  */
 public func getFlightVehicle( by entityID: Int64, context: NSManagedObjectContext ) -> FlightVehicle?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: FLIGHT_VEHICLE_ENTITY_NAME ) as? FlightVehicle
+   getEntityByID( entityID: entityID, context: context, entityName: FLIGHT_VEHICLE_ENTITY_NAME ) as? FlightVehicle
 }
 
 /**
@@ -139,7 +139,7 @@ public func fetchFlightVehicle( flightVehicle: FlightVehicleJSON, context: NSMan
  */
 public func getFlightVehicleCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: FLIGHT_VEHICLE_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: FLIGHT_VEHICLE_ENTITY_NAME, context: context )
 }
 
 /**

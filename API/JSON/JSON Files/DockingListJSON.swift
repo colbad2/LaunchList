@@ -30,9 +30,9 @@ public struct DockingListJSON: JSONResponse, JSONElement
    public init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.totalCount = nonNegativeInt( json[ "count" ] )
-      self.nextGroupURL = nonEmptyString( json[ "next" ] )
-      self.previousGroupURL = nonEmptyString( json[ "previous" ] )
-      self.sublist = parseArray( json[ "info_url" ] )
+      totalCount = nonNegativeInt( json[ "count" ] )
+      nextGroupURL = nonEmptyString( json[ "next" ] )
+      previousGroupURL = nonEmptyString( json[ "previous" ] )
+      sublist = parseArray( json[ "results" ] )
    }
 }

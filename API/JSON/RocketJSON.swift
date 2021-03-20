@@ -36,9 +36,9 @@ public class RocketJSON: Identifiable, JSONElement, AutoEquatable, AutoHashable
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.configuration = LauncherConfigJSON( json[ "configuration" ] )
-      self.launcherStage = parseArray( json[ "launcher_stage" ] )
-      self.spacecraftStage = SpacecraftFlightJSON( json[ "spacecraft_stage" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      configuration = LauncherConfigJSON( json[ "configuration" ] )
+      launcherStage = parseArray( json[ "launcher_stage" ] )
+      spacecraftStage = SpacecraftFlightJSON( json[ "spacecraft_stage" ] )
    }
 }

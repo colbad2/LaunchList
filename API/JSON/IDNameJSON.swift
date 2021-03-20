@@ -23,8 +23,8 @@ public class IDNameJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.name = nonEmptyString( json[ "name" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      name = nonEmptyString( json[ "name" ] )
    }
 
    public init( id: Int64, name: String )

@@ -60,7 +60,7 @@ public func updateEntity( json: URLLinkJSON, entity: URLLink?, context: NSManage
  */
 public func getURLLink( by entityID: String, context: NSManagedObjectContext ) -> URLLink?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: URL_LINK_ENTITY_NAME ) as? URLLink
+   getEntityByID( entityID: entityID, context: context, entityName: URL_LINK_ENTITY_NAME ) as? URLLink
 }
 
 /**

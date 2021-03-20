@@ -14,7 +14,7 @@ extension String
     */
    func utf8DecodedString() -> String
    {
-      if let data: Data = self.data( using: .utf8 ),
+      if let data: Data = data( using: .utf8 ),
          let message: String = String( data: data, encoding: .nonLossyASCII )
       {
          return message
@@ -30,10 +30,10 @@ extension String
     */
    func utf8EncodedString() -> String
    {
-      if let messageData: Data = self.data( using: .nonLossyASCII ),
-         let endcodedString: String = String( data: messageData, encoding: .utf8 )
+      if let messageData: Data = data( using: .nonLossyASCII ),
+         let encodedString: String = String( data: messageData, encoding: .utf8 )
       {
-         return endcodedString
+         return encodedString
       }
 
       return ""
@@ -87,8 +87,8 @@ extension String
     */
    func removePrefix( _ prefix: String ) -> String
    {
-      guard self.hasPrefix( prefix ) else { return self }
-      return String( self.dropFirst( prefix.count ) )
+      guard hasPrefix( prefix ) else { return self }
+      return String( dropFirst( prefix.count ) )
    }
 }
 
@@ -97,7 +97,7 @@ extension String
 
 private func isLowercaseASCIIScalar( _ scalar: Unicode.Scalar ) -> Bool
 {
-   return scalar.value >= 0x61 && scalar.value <= 0x7A
+   scalar.value >= 0x61 && scalar.value <= 0x7A
 }
 
 private func regionalIndicatorSymbol( for scalar: Unicode.Scalar ) -> Unicode.Scalar
@@ -186,17 +186,17 @@ extension String
 {
    func trim() -> String
    {
-      return self.trimmingCharacters( in: .whitespacesAndNewlines )
+      trimmingCharacters( in: .whitespacesAndNewlines )
    }
 
    func stableHash() -> Int64
    {
       var result: UInt64 = UInt64( 2040 )
-      let buf: [UInt8] = [UInt8]( self.utf8 )
-       for byte in buf
-       {
-           result = 127 * (result & 0x00ffffffffffffff) + UInt64( byte )
-       }
-       return Int64( result )
+      let buf: [UInt8] = [UInt8]( utf8 )
+      for byte in buf
+      {
+         result = 127 * (result & 0x00ffffffffffffff) + UInt64( byte )
+      }
+      return Int64( result )
     }
 }

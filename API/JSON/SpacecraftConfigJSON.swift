@@ -75,25 +75,25 @@ public class SpacecraftConfigJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.type = IDNameJSON( json[ "type" ] )
-      self.agency = AgencyJSON( json[ "agency" ] )
-      self.inUse = json[ "in_use" ] as? Bool
-      self.imageURL = nonEmptyString( json[ "image_url" ] )
-      self.capability = nonEmptyString( json[ "capability" ] )
-      self.history = nonEmptyString( json[ "history" ] )
-      self.details = nonEmptyString( json[ "details" ] )
-      self.maidenFlight = nonEmptyString( json[ "maiden_flight" ] )
-      self.height = nonNegativeDouble( json[ "height" ] )
-      self.diameter = nonNegativeDouble( json[ "diameter" ] )
-      self.humanRated = json[ "human_rated" ] as? Bool
-      self.crewCapacity = nonNegativeInt( json[ "crew_capacity" ] )
-      self.payloadCapacity = nonNegativeInt( json[ "payload_capacity" ] )
-      self.flightLife = nonEmptyString( json[ "flight_life" ] )
-      self.nationURL = nonEmptyString( json[ "nation_url" ] )
-      self.wikiURL = nonEmptyString( json[ "wiki_link" ] )
-      self.infoURL = nonEmptyString( json[ "info_link" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      name = nonEmptyString( json[ "name" ] )
+      type = IDNameJSON( json[ "type" ] )
+      agency = AgencyJSON( json[ "agency" ] )
+      inUse = json[ "in_use" ] as? Bool
+      imageURL = nonEmptyString( json[ "image_url" ] )
+      capability = nonEmptyString( json[ "capability" ] )
+      history = nonEmptyString( json[ "history" ] )
+      details = nonEmptyString( json[ "details" ] )
+      maidenFlight = nonEmptyString( json[ "maiden_flight" ] )
+      height = nonNegativeDouble( json[ "height" ] )
+      diameter = nonNegativeDouble( json[ "diameter" ] )
+      humanRated = json[ "human_rated" ] as? Bool
+      crewCapacity = nonNegativeInt( json[ "crew_capacity" ] )
+      payloadCapacity = nonNegativeInt( json[ "payload_capacity" ] )
+      flightLife = nonEmptyString( json[ "flight_life" ] )
+      nationURL = nonEmptyString( json[ "nation_url" ] )
+      wikiURL = nonEmptyString( json[ "wiki_link" ] )
+      infoURL = nonEmptyString( json[ "info_link" ] )
    }
 }

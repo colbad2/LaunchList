@@ -89,11 +89,11 @@ public class AstronautListRequest: BaseAPIListRequest, APIListRequest
     */
    func copy() -> APIListRequest
    {
-      return AstronautListRequest( baseURL: base, searchTerm: search, orderingField: ordering, limit: limit, offset: offset,
-                                   agencyAbbreviation: agencyAbbreviation, agencyName: agencyName, nationality: nationality,
-                                   status: status, dateOfBirth: dateOfBirth, dateOfDeath: dateOfDeath, name: name,
-                                   bornAfterDate: bornAfterDate, bornBeforeDate: bornBeforeDate, bornAfterOrOnDate: bornAfterOrOnDate,
-                                   bornBeforeOrOnDate: bornBeforeOrOnDate, diedAfterDate: diedAfterDate, diedBeforeDate: diedBeforeDate,
-                                   diedAfterOrOnDate: diedAfterOrOnDate, diedBeforeOrOnDate: diedBeforeOrOnDate )
+      AstronautListRequest( baseURL: base, searchTerm: search, orderingField: ordering, limit: limit, offset: offset,
+                            agencyAbbreviation: agencyAbbreviation, agencyName: agencyName, nationality: nationality,
+                            status: status, dateOfBirth: dateOfBirth, dateOfDeath: dateOfDeath, name: name,
+                            bornAfterDate: bornAfterDate, bornBeforeDate: bornBeforeDate, bornAfterOrOnDate: bornAfterOrOnDate,
+                            bornBeforeOrOnDate: bornBeforeOrOnDate, diedAfterDate: diedAfterDate, diedBeforeDate: diedBeforeDate,
+                            diedAfterOrOnDate: diedAfterOrOnDate, diedBeforeOrOnDate: diedBeforeOrOnDate )
    }
 }

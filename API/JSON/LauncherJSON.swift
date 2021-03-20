@@ -69,18 +69,18 @@ public class LauncherJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.flightProven = json[ "flight_proven" ] as? Bool
-      self.serialNumber = nonEmptyString( json[ "serial_number" ] )
-      self.status = nonEmptyString( json[ "status" ] )
-      self.details = nonEmptyString( json[ "details" ] )
-      self.launcherConfig = LauncherConfigJSON( json[ "launcher_config" ] as? JSONStructure )
-      self.imageURL = nonEmptyString( json[ "image_url" ] )
-      self.flights = nonNegativeInt( json[ "flights" ] )
-      self.lastLaunchDate = nonEmptyString( json[ "last_launch_date" ] )
-      self.firstLaunchDate = nonEmptyString( json[ "first_launch_date" ] )
-      self.successfulLandings = nonEmptyString( json[ "successful_landings" ] )
-      self.attemptedLandings = nonEmptyString( json[ "attempted_landings" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      flightProven = json[ "flight_proven" ] as? Bool
+      serialNumber = nonEmptyString( json[ "serial_number" ] )
+      status = nonEmptyString( json[ "status" ] )
+      details = nonEmptyString( json[ "details" ] )
+      launcherConfig = LauncherConfigJSON( json[ "launcher_config" ] as? JSONStructure )
+      imageURL = nonEmptyString( json[ "image_url" ] )
+      flights = nonNegativeInt( json[ "flights" ] )
+      lastLaunchDate = nonEmptyString( json[ "last_launch_date" ] )
+      firstLaunchDate = nonEmptyString( json[ "first_launch_date" ] )
+      successfulLandings = nonEmptyString( json[ "successful_landings" ] )
+      attemptedLandings = nonEmptyString( json[ "attempted_landings" ] )
    }
 }

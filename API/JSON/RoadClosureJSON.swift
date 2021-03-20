@@ -29,10 +29,10 @@ public class RoadClosureJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.title = nonEmptyString( json[ "title" ] )
-      self.status = IDNameJSON( json[ "status" ] )
-      self.windowStart = nonEmptyString( json[ "windowStart" ] )
-      self.windowEnd = nonEmptyString( json[ "windowEnd" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      title = nonEmptyString( json[ "title" ] )
+      status = IDNameJSON( json[ "status" ] )
+      windowStart = nonEmptyString( json[ "windowStart" ] )
+      windowEnd = nonEmptyString( json[ "windowEnd" ] )
    }
 }

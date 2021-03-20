@@ -13,28 +13,28 @@ public let PROGRAM_ENTITY_NAME: String = "Program"
 extension Program
 {
    /** `Set< Agency >` wrapper for the generated `NSSet` of `Agency`s. */
-   var agenciesSet: Set< Agency > { self.agencies as? Set< Agency > ?? Set< Agency >() }
+   var agenciesSet: Set< Agency > { agencies as? Set< Agency > ?? Set< Agency >() }
 
    /** `Set< Event >` wrapper for the generated `NSSet` of `Event`s. */
-   var eventsSet: Set< Event > { self.events as? Set< Event > ?? Set< Event >() }
+   var eventsSet: Set< Event > { events as? Set< Event > ?? Set< Event >() }
 
    /** `Set< Launch >` wrapper for the generated `NSSet` of `Launch`s. */
-   var launchesSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
+   var launchesSet: Set< Launch > { launches as? Set< Launch > ?? Set< Launch >() }
 
    /** Array of `Agency`s, sorted by name. */
-   var sortedAgencies: [Agency] { sortAgenciesByName( agencyArray: Array( self.agenciesSet ) ) }
+   var sortedAgencies: [Agency] { sortAgenciesByName( agencyArray: Array( agenciesSet ) ) }
 
    /** True if the `Program` has any `Agency`s. */
    var hasAgencies: Bool { !agenciesSet.isEmpty }
 
    /** Array of `Event`s, sorted by name. */
-   var sortedEvent: [Event] { sortEventsByName( eventArray: Array( self.eventsSet ) ) }
+   var sortedEvent: [Event] { sortEventsByName( eventArray: Array( eventsSet ) ) }
 
    /** True if the `Program` has any `Event`s. */
    var hasEvents: Bool { !eventsSet.isEmpty }
 
    /** Array of `Launch`s, sorted by name. */
-   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchesSet ) ) }
+   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( launchesSet ) ) }
 
    /** True if the `Program` has any `Launch`s. */
    var hasLaunches: Bool { !launchesSet.isEmpty }
@@ -91,7 +91,7 @@ public func updateEntity( json: ProgramJSON, entity: Program?, context: NSManage
  */
 public func fetchAllPrograms( context: NSManagedObjectContext ) -> [Program]?
 {
-   return fetchAllEntities( entityName: PROGRAM_ENTITY_NAME, context: context ) as? [Program]
+   fetchAllEntities( entityName: PROGRAM_ENTITY_NAME, context: context ) as? [ Program ]
 }
 
 /**
@@ -131,7 +131,7 @@ public func sortProgramsByName( programArray: [Program]? ) -> [Program]
 
  - parameter entity: `Program` program to add the agencies to
  - parameter agencies: `[AgencyJSON]` list of agencies to add
- - parameter context: `NSManagedObjectContext` contenxt in which the linking takes place
+ - parameter context: `NSManagedObjectContext` context in which the linking takes place
  */
 public func addAgencies( entity: Program, agencies: [AgencyJSON], context: NSManagedObjectContext )
 {
@@ -184,7 +184,7 @@ public func getAllAgencyFlags( program: Program? ) -> [String]
  */
 public func getProgram( by programID: Int64, context: NSManagedObjectContext ) -> Program?
 {
-   return getEntityByID( entityID: programID, context: context, entityName: PROGRAM_ENTITY_NAME ) as? Program
+   getEntityByID( entityID: programID, context: context, entityName: PROGRAM_ENTITY_NAME ) as? Program
 }
 
 /**
@@ -209,7 +209,7 @@ public func fetchProgram( program: ProgramJSON, context: NSManagedObjectContext 
  */
 public func getProgramCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: PROGRAM_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: PROGRAM_ENTITY_NAME, context: context )
 }
 
 /**

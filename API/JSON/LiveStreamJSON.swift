@@ -26,9 +26,9 @@ public class LiveStreamJSON: Decodable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.title = nonEmptyString( json[ "title" ] )
-      self.liveStreamDescription = nonEmptyString( json[ "description" ] )
-      self.image = nonEmptyString( json[ "image" ] )
-      self.url = nonEmptyString( json[ "url" ] )
+      title = nonEmptyString( json[ "title" ] )
+      liveStreamDescription = nonEmptyString( json[ "description" ] )
+      image = nonEmptyString( json[ "image" ] )
+      url = nonEmptyString( json[ "url" ] )
    }
 }

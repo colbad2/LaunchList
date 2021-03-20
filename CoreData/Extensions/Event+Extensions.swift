@@ -13,37 +13,37 @@ public let EVENT_ENTITY_NAME: String = "Event"
 extension Event
 {
    /** `Set< Launch >` wrapper for the generated `NSSet` of `Launch`s. */
-   var launchesSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
+   var launchesSet: Set< Launch > { launches as? Set< Launch > ?? Set< Launch >() }
 
    /** `Set< Expedition >` wrapper for the generated `NSSet` of `Expedition`s. */
-   var expeditionsSet: Set< Expedition > { self.expeditions as? Set< Expedition > ?? Set< Expedition >() }
+   var expeditionsSet: Set< Expedition > { expeditions as? Set< Expedition > ?? Set< Expedition >() }
 
    /** `Set< Program >` wrapper for the generated `NSSet` of `Program`s. */
-   var programsSet: Set< Program > { self.programs as? Set< Program > ?? Set< Program >() }
+   var programsSet: Set< Program > { programs as? Set< Program > ?? Set< Program >() }
 
    /** `Set< SpaceStation >` wrapper for the generated `NSSet` of `SpaceStation`s. */
-   var spaceStationsSet: Set< SpaceStation > { self.spaceStations as? Set< SpaceStation > ?? Set< SpaceStation >() }
+   var spaceStationsSet: Set< SpaceStation > { spaceStations as? Set< SpaceStation > ?? Set< SpaceStation >() }
 
    /** Array of `Launch`s, sorted by name. */
-   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchesSet ) ) }
+   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( launchesSet ) ) }
 
    /** True if the `Event` has any `Launch`s. */
    var hasLaunches: Bool { !launchesSet.isEmpty }
 
    /** Array of `Expedition`s, sorted by name. */
-   var sortedExpeditions: [Expedition] { sortExpeditionsByName( expeditionArray: Array( self.expeditionsSet ) ) }
+   var sortedExpeditions: [Expedition] { sortExpeditionsByName( expeditionArray: Array( expeditionsSet ) ) }
 
    /** True if the `Event` has any `Expeditions`s. */
    var hasExpeditions: Bool { !expeditionsSet.isEmpty }
 
    /** Array of `Program`s, sorted by name. */
-   var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( self.programsSet ) ) }
+   var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( programsSet ) ) }
 
    /** True if the `Event` has any `Program`s. */
    var hasPrograms: Bool { !programsSet.isEmpty }
 
    /** Array of `SpaceStation`s, sorted by name. */
-   var sortedSpaceStations: [SpaceStation] { sortSpaceStationsByName( spaceStationArray: Array( self.spaceStationsSet ) ) }
+   var sortedSpaceStations: [SpaceStation] { sortSpaceStationsByName( spaceStationArray: Array( spaceStationsSet ) ) }
 
    /** True if the `Event` has any `SpaceStation`s. */
    var hasSpaceStations: Bool { !spaceStationsSet.isEmpty }
@@ -165,7 +165,7 @@ public func updateEntity( json: EventJSON, entity: Event?, context: NSManagedObj
  */
 public func fetchAllEvents( context: NSManagedObjectContext ) -> [Event]?
 {
-   return fetchAllEntities( entityName: EVENT_ENTITY_NAME, context: context ) as? [Event]
+   fetchAllEntities( entityName: EVENT_ENTITY_NAME, context: context ) as? [ Event ]
 }
 
 /**
@@ -209,7 +209,7 @@ public func sortEventsByName( eventArray: [Event]? ) -> [Event]
  */
 public func getEvent( by id: Int64, context: NSManagedObjectContext ) -> Event?
 {
-   return getEntityByID( entityID: id, context: context, entityName: EVENT_ENTITY_NAME ) as? Event
+   getEntityByID( entityID: id, context: context, entityName: EVENT_ENTITY_NAME ) as? Event
 }
 
 /**
@@ -234,7 +234,7 @@ public func fetchEvent( event: EventJSON, context: NSManagedObjectContext ) -> E
  */
 public func getEventCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: EVENT_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: EVENT_ENTITY_NAME, context: context )
 }
 
 /**

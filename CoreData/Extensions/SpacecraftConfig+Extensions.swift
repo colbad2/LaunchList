@@ -84,7 +84,7 @@ public func updateEntity( json: SpacecraftConfigJSON, entity: SpacecraftConfig?,
  */
 public func fetchAllSpacecraftConfigs( context: NSManagedObjectContext ) -> [SpacecraftConfig]?
 {
-   return fetchAllEntities( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context ) as? [SpacecraftConfig]
+   fetchAllEntities( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context ) as? [ SpacecraftConfig ]
 }
 
 /**
@@ -128,7 +128,7 @@ func sortSpacecraftConfigsByName( spacecraftConfigArray: [SpacecraftConfig]? ) -
  */
 public func getSpacecraftConfig( by entityID: Int64, context: NSManagedObjectContext ) -> SpacecraftConfig?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftConfig
+   getEntityByID( entityID: entityID, context: context, entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftConfig
 }
 
 /**
@@ -153,7 +153,7 @@ public func fetchSpacecraftConfig( spacecraftConfig: SpacecraftConfigJSON, conte
  */
 public func getSpacecraftConfigCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: SPACECRAFT_CONFIG_ENTITY_NAME, context: context )
 }
 
 /**

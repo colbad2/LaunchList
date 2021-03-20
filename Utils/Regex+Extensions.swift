@@ -50,6 +50,6 @@ extension String
     */
    static func ~= ( lhs: String, rhs: String ) -> Bool
    {
-      return NSRegularExpression( rhs ).matches( lhs )
+      NSRegularExpression( rhs ).matches( lhs )
    }
 }

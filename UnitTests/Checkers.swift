@@ -29,7 +29,7 @@ func checkPad( pad: PadJSON?, padID: Int64, agencyID: Int64? = nil, infoURL: Str
 }
 
 func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: String? = nil, mapImage: String? = nil,
-                    name: String? = nil, landingCount: Int64? = nil, lauchCount: Int64? = nil, url: String? = nil )
+                    name: String? = nil, landingCount: Int64? = nil, launchCount: Int64? = nil, url: String? = nil )
 {
    XCTAssertNotNil( location )
    XCTAssertEqual( location?.countryCode, countryCode )
@@ -37,7 +37,7 @@ func checkLocation( location: LocationJSON?, locationID: Int64, countryCode: Str
    XCTAssertEqual( location?.mapImage, mapImage )
    XCTAssertEqual( location?.name, name )
    XCTAssertEqual( location?.totalLandingCount, landingCount )
-   XCTAssertEqual( location?.totalLaunchCount, lauchCount )
+   XCTAssertEqual( location?.totalLaunchCount, launchCount )
    XCTAssertEqual( location?.url, url )
 }
 

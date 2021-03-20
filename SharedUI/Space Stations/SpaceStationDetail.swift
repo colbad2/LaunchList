@@ -83,12 +83,12 @@ struct StationEventList: View
 
 func getEventArray( events: Set< Event > ) -> [Event]
 {
-   return sortEventsByName( eventArray: Array( events ) )
+   sortEventsByName( eventArray: Array( events ) )
 }
 
 func getExpeditionsArray( expeditions: Set< Expedition > ) -> [Expedition]
 {
-   return sortExpeditionsByName( expeditionArray: Array( expeditions ) )
+   sortExpeditionsByName( expeditionArray: Array( expeditions ) )
 }
 
 struct ExpeditionLink: View

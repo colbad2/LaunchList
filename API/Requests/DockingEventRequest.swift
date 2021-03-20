@@ -52,11 +52,11 @@ public class DockingEventRequest: BaseAPIListRequest, APIListRequest
     */
    func copy() -> APIListRequest
    {
-      return DockingEventRequest( base: base, spaceStationID: spaceStationID, dockingLocationID: dockingLocationID,
-                                  flightVehicleID: flightVehicleID,
-                                  dockingAfterDate: dockingAfterDate, dockingBeforeDate: dockingBeforeDate,
-                                  dockingOnOrAfterDate: dockingOnOrAfterDate,
-                                  dockingOnOrBeforeDate: dockingOnOrBeforeDate, searchTerm: search,
-                                  orderingField: ordering, limit: limit, offset: offset )
+      DockingEventRequest( base: base, spaceStationID: spaceStationID, dockingLocationID: dockingLocationID,
+                           flightVehicleID: flightVehicleID,
+                           dockingAfterDate: dockingAfterDate, dockingBeforeDate: dockingBeforeDate,
+                           dockingOnOrAfterDate: dockingOnOrAfterDate,
+                           dockingOnOrBeforeDate: dockingOnOrBeforeDate, searchTerm: search,
+                           orderingField: ordering, limit: limit, offset: offset )
    }
 }

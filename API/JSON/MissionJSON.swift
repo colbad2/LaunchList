@@ -53,22 +53,22 @@ public class MissionJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.description = nonEmptyString( json[ "description" ] )
-      self.launchDesignator = nonEmptyString( json[ "launchDesignator" ] )
-      self.launchLibraryID = nonNegativeInt( json[ "launch_library_id" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.orbit = OrbitJSON( json[ "orbit" ] )
-      self.type = nonEmptyString( json[ "type" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      description = nonEmptyString( json[ "description" ] )
+      launchDesignator = nonEmptyString( json[ "launchDesignator" ] )
+      launchLibraryID = nonNegativeInt( json[ "launch_library_id" ] )
+      name = nonEmptyString( json[ "name" ] )
+      orbit = OrbitJSON( json[ "orbit" ] )
+      type = nonEmptyString( json[ "type" ] )
    }
 }
 
 /**
  Filter the name of an orbit so that the names area standard across the API.
 
- - parameter name: `String` original orbit name
+ - parameter name:         `String` original orbit name
  - parameter abbreviation: `String` short orbit name
- - returns: standarad orbit name
+ - returns:                standard orbit name
  */
 public func normalizedOrbitName( _ name: String?, abbreviation: String? = nil ) -> String?
 {

@@ -58,7 +58,7 @@ public func updateEntity( json: LiveStreamJSON, entity: LiveStream?, context: NS
  */
 public func fetchAllLiveStreams( context: NSManagedObjectContext ) -> [LiveStream]?
 {
-   return fetchAllEntities( entityName: LIVE_STREAM_ENTITY_NAME, context: context ) as? [LiveStream]
+   fetchAllEntities( entityName: LIVE_STREAM_ENTITY_NAME, context: context ) as? [ LiveStream ]
 }
 
 /**
@@ -73,7 +73,7 @@ public func fetchAllLiveStreams( context: NSManagedObjectContext ) -> [LiveStrea
  */
 public func getLiveStream( by entityID: String, context: NSManagedObjectContext ) -> LiveStream?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: LIVE_STREAM_ENTITY_NAME ) as? LiveStream
+   getEntityByID( entityID: entityID, context: context, entityName: LIVE_STREAM_ENTITY_NAME ) as? LiveStream
 }
 
 /**
@@ -98,7 +98,7 @@ public func fetchLiveStream( liveStream: LiveStreamJSON, context: NSManagedObjec
  */
 public func getLiveStreamCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: LIVE_STREAM_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: LIVE_STREAM_ENTITY_NAME, context: context )
 }
 
 /**

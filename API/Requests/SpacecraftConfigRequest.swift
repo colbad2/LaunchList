@@ -52,7 +52,7 @@ public class SpacecraftConfigRequest: BaseAPIListRequest, APIListRequest
 
    func copy() -> APIListRequest
    {
-      return SpacecraftConfigRequest( baseURL: base, searchTerm: search, orderingField: ordering, limit: limit, offset: offset,
-                                      name: name, manufacturer: manufacturer, inUse: inUse, humanRated: humanRated )
+      SpacecraftConfigRequest( baseURL: base, searchTerm: search, orderingField: ordering, limit: limit, offset: offset,
+                               name: name, manufacturer: manufacturer, inUse: inUse, humanRated: humanRated )
    }
 }

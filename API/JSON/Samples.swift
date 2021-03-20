@@ -882,7 +882,7 @@ private let getLaunchListJSON =
  */
 public func getSampleAgency() -> AgencyJSON
 {
-   return AgencyJSON( parseJSON( jsonString: sampleAgencyJSON ) )!
+   AgencyJSON( parseJSON( jsonString: sampleAgencyJSON ) )!
 }
 
 private let sampleAgencyJSON =
@@ -912,7 +912,7 @@ private let sampleAgencyJSON =
  */
 public func getSampleAstronaut() -> AstronautJSON
 {
-   return AstronautJSON( parseJSON( jsonString: sampleAstronautJSON ) )!
+   AstronautJSON( parseJSON( jsonString: sampleAstronautJSON ) )!
 }
 
 private let sampleAstronautJSON =
@@ -966,7 +966,7 @@ private let sampleAstronautJSON =
  */
 public func getSampleDocking() -> DockingJSON
 {
-   return DockingJSON( parseJSON( jsonString: sampleDockingJSON ) )!
+   DockingJSON( parseJSON( jsonString: sampleDockingJSON ) )!
 }
 
 private let sampleDockingJSON =
@@ -1025,7 +1025,7 @@ private let sampleDockingJSON =
  */
 public func getSampleEvent() -> EventJSON
 {
-   return EventJSON( parseJSON( jsonString: sampleEventJSON ) )!
+   EventJSON( parseJSON( jsonString: sampleEventJSON ) )!
 }
 
 private let sampleEventJSON =
@@ -1079,7 +1079,7 @@ private let sampleEventJSON =
  */
 public func getSampleExpedition() -> ExpeditionJSON
 {
-   return ExpeditionJSON( parseJSON( jsonString: sampleExpeditionJSON ) )!
+   ExpeditionJSON( parseJSON( jsonString: sampleExpeditionJSON ) )!
 }
 
 private let sampleExpeditionJSON =
@@ -1111,7 +1111,7 @@ private let sampleExpeditionJSON =
  */
 public func getSampleFlightVehicle() -> FlightVehicleJSON
 {
-   return FlightVehicleJSON( parseJSON( jsonString: sampleFlightVehicleJSON ) )!
+   FlightVehicleJSON( parseJSON( jsonString: sampleFlightVehicleJSON ) )!
 }
 
 private let sampleFlightVehicleJSON =
@@ -1159,7 +1159,7 @@ private let sampleFlightVehicleJSON =
  */
 public func getSampleLauncherConfig() -> LauncherConfigJSON
 {
-   return LauncherConfigJSON( parseJSON( jsonString: sampleLauncherConfigJSON ) )!
+   LauncherConfigJSON( parseJSON( jsonString: sampleLauncherConfigJSON ) )!
 }
 
 private let sampleLauncherConfigJSON =
@@ -1182,7 +1182,7 @@ private let sampleLauncherConfigJSON =
  */
 public func getSampleLauncher() -> LauncherJSON
 {
-   return LauncherJSON( parseJSON( jsonString: sampleLauncherJSON ) )!
+   LauncherJSON( parseJSON( jsonString: sampleLauncherJSON ) )!
 }
 
 private let sampleLauncherJSON =
@@ -1217,7 +1217,7 @@ private let sampleLauncherJSON =
  */
 public func getSampleLaunch() -> LaunchJSON
 {
-   return LaunchJSON( parseJSON( jsonString: sampleLaunchJSON ) )!
+   LaunchJSON( parseJSON( jsonString: sampleLaunchJSON ) )!
 }
 
 private let sampleLaunchJSON =
@@ -1319,7 +1319,7 @@ private let sampleLaunchJSON =
  */
 public func getSampleLiveStream() -> LiveStreamJSON
 {
-   return LiveStreamJSON( parseJSON( jsonString: sampleLiveStreamJSON ) )!
+   LiveStreamJSON( parseJSON( jsonString: sampleLiveStreamJSON ) )!
 }
 
 private let sampleLiveStreamJSON =
@@ -1339,7 +1339,7 @@ private let sampleLiveStreamJSON =
  */
 public func getSampleLocation() -> LocationJSON
 {
-   return LocationJSON( parseJSON( jsonString: sampleLocationJSON ) )!
+   LocationJSON( parseJSON( jsonString: sampleLocationJSON ) )!
 }
 
 private let sampleLocationJSON =
@@ -1362,7 +1362,7 @@ private let sampleLocationJSON =
  */
 func getSampleMission() -> MissionJSON
 {
-   return MissionJSON( parseJSON( jsonString: sampleMissionJSON ) )!
+   MissionJSON( parseJSON( jsonString: sampleMissionJSON ) )!
 }
 
 private let sampleMissionJSON =
@@ -1389,7 +1389,7 @@ private let sampleMissionJSON =
  */
 public func getSamplePad() -> PadJSON
 {
-   return PadJSON( parseJSON( jsonString: samplePadJSON ) )!
+   PadJSON( parseJSON( jsonString: samplePadJSON ) )!
 }
 
 private let samplePadJSON =
@@ -1425,7 +1425,7 @@ private let samplePadJSON =
  */
 public func getSampleProgram() -> ProgramJSON
 {
-   return ProgramJSON( parseJSON( jsonString: sampleProgramJSON ) )!
+   ProgramJSON( parseJSON( jsonString: sampleProgramJSON ) )!
 }
 
 /**
@@ -1435,7 +1435,7 @@ public func getSampleProgram() -> ProgramJSON
  */
 public func getSampleProgram2() -> ProgramJSON
 {
-   return ProgramJSON( parseJSON( jsonString: sampleProgramJSON2 ) )!
+   ProgramJSON( parseJSON( jsonString: sampleProgramJSON2 ) )!
 }
 
 private let sampleProgramJSON =
@@ -1515,7 +1515,7 @@ private let sampleProgramJSON2 =
  */
 public func getSampleRocket() -> RocketJSON
 {
-   return RocketJSON( parseJSON( jsonString: sampleRocketJSON ) )!
+   RocketJSON( parseJSON( jsonString: sampleRocketJSON ) )!
 }
 
 private let sampleRocketJSON =
@@ -1541,7 +1541,7 @@ private let sampleRocketJSON =
  */
 public func getSampleSpacecraftConfig() -> SpacecraftConfigJSON
 {
-   return SpacecraftConfigJSON( parseJSON( jsonString: sampleSpacecraftConfigJSON ) )!
+   SpacecraftConfigJSON( parseJSON( jsonString: sampleSpacecraftConfigJSON ) )!
 }
 
 private let sampleSpacecraftConfigJSON =
@@ -1572,7 +1572,7 @@ private let sampleSpacecraftConfigJSON =
  */
 public func getSampleSpacecraft() -> SpacecraftJSON
 {
-   return SpacecraftJSON( parseJSON( jsonString: sampleSpacecraftJSON ) )!
+   SpacecraftJSON( parseJSON( jsonString: sampleSpacecraftJSON ) )!
 }
 
 private let sampleSpacecraftJSON =
@@ -1614,7 +1614,7 @@ private let sampleSpacecraftJSON =
  */
 public func getSampleSpaceStation() -> SpaceStationJSON
 {
-   return SpaceStationJSON( parseJSON( jsonString: sampleSpaceStationJSON ) )!
+   SpaceStationJSON( parseJSON( jsonString: sampleSpaceStationJSON ) )!
 }
 
 private let sampleSpaceStationJSON =

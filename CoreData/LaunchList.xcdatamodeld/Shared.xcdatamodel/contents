@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Agency" representedClassName=".Agency" parentEntity="Fetched" syncable="YES" codeGenerationType="class">
         <attribute name="abbreviation" optional="YES" attributeType="String"/>
         <attribute name="administrator" optional="YES" attributeType="String"/>
@@ -77,21 +77,15 @@
         <relationship name="launchFlight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpacecraftFlight" inverseName="launchCrewFlights" inverseEntity="SpacecraftFlight"/>
         <relationship name="onboardFlight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpacecraftFlight" inverseName="onboardCrewFlights" inverseEntity="SpacecraftFlight"/>
     </entity>
-    <entity name="Docking" representedClassName=".Docking" parentEntity="TimelineEntry" syncable="YES" codeGenerationType="class">
-        <attribute name="departure" optional="YES" attributeType="String"/>
-        <attribute name="docking" optional="YES" attributeType="String"/>
-        <attribute name="dockingLocationName" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="launchID" optional="YES" attributeType="String"/>
-        <relationship name="flightVehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FlightVehicle" inverseName="dockings" inverseEntity="FlightVehicle"/>
-    </entity>
     <entity name="DockingEvent" representedClassName="DockingEvent" parentEntity="Fetched" syncable="YES" codeGenerationType="class">
         <attribute name="departure" optional="YES" attributeType="String"/>
         <attribute name="docking" optional="YES" attributeType="String"/>
         <attribute name="dockingLocation" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="launchID" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
-        <relationship name="flightVehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpacecraftFlight" inverseName="dockingEvents" inverseEntity="SpacecraftFlight"/>
+        <relationship name="flight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpacecraftFlight" inverseName="dockingEvents" inverseEntity="SpacecraftFlight"/>
+        <relationship name="flightVehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FlightVehicle" inverseName="dockings" inverseEntity="FlightVehicle"/>
         <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="dockingEvents" inverseEntity="Launch"/>
         <relationship name="spacestation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpaceStation" inverseName="dockingEvents" inverseEntity="SpaceStation"/>
     </entity>
@@ -126,7 +120,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="missionEnd" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
-        <relationship name="dockings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Docking" inverseName="flightVehicle" inverseEntity="Docking"/>
+        <relationship name="dockings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DockingEvent" inverseName="flightVehicle" inverseEntity="DockingEvent"/>
         <relationship name="spacecraft" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Spacecraft" inverseName="flightVehicle" inverseEntity="Spacecraft"/>
     </entity>
     <entity name="ImageData" representedClassName=".ImageData" parentEntity="Fetched" syncable="YES" codeGenerationType="class">
@@ -343,7 +337,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="missionEnd" optional="YES" attributeType="String"/>
         <relationship name="astronauts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Astronaut" inverseName="landings" inverseEntity="Astronaut"/>
-        <relationship name="dockingEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DockingEvent" inverseName="flightVehicle" inverseEntity="DockingEvent"/>
+        <relationship name="dockingEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DockingEvent" inverseName="flight" inverseEntity="DockingEvent"/>
         <relationship name="landingCrewFlights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AstronautFlight" inverseName="landingFlight" inverseEntity="AstronautFlight"/>
         <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="spacecraftFlight" inverseEntity="Launch"/>
         <relationship name="launchCrewFlights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AstronautFlight" inverseName="launchFlight" inverseEntity="AstronautFlight"/>
@@ -384,8 +378,7 @@
         <element name="Agency" positionX="119.1752319335938" positionY="693.9176330566406" width="128" height="674"/>
         <element name="Astronaut" positionX="-93.00262451171875" positionY="507.2274169921875" width="128" height="358"/>
         <element name="AstronautFlight" positionX="-432" positionY="90" width="128" height="134"/>
-        <element name="Docking" positionX="-390.4028930664061" positionY="100.9436798095703" width="128" height="133"/>
-        <element name="DockingEvent" positionX="-432" positionY="90" width="128" height="149"/>
+        <element name="DockingEvent" positionX="-432" positionY="90" width="128" height="179"/>
         <element name="Event" positionX="129.9351196289062" positionY="96.01762390136719" width="128" height="238"/>
         <element name="Expedition" positionX="-112.4255371093751" positionY="100.5088806152344" width="128" height="119"/>
         <element name="Fetched" positionX="2.5797119140625" positionY="-26.33880615234375" width="128" height="44"/>

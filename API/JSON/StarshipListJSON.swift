@@ -28,11 +28,11 @@ public struct StarshipListJSON: JSONElement
    public init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.upcoming = StarshipEventsJSON( json[ "upcoming" ] as? JSONStructure )
-      self.previous = StarshipEventsJSON( json[ "previous" ] as? JSONStructure )
-      self.liveStreams = parseArray( json[ "liveStreams" ] )
-      self.roadClosures = parseArray( json[ "roadClosures" ] )
-      self.notices = parseArray( json[ "notices" ] )
-      self.vehicles = parseArray( json[ "vehicles" ] )
+      upcoming = StarshipEventsJSON( json[ "upcoming" ] as? JSONStructure )
+      previous = StarshipEventsJSON( json[ "previous" ] as? JSONStructure )
+      liveStreams = parseArray( json[ "liveStreams" ] )
+      roadClosures = parseArray( json[ "roadClosures" ] )
+      notices = parseArray( json[ "notices" ] )
+      vehicles = parseArray( json[ "vehicles" ] )
    }
 }

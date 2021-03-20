@@ -63,7 +63,7 @@ public func updateEntity( json: AstronautFlightJSON, entity: AstronautFlight?, c
  */
 public func getAstronautFlight( by id: Int64, context: NSManagedObjectContext ) -> AstronautFlight?
 {
-   return getEntityByID( entityID: id, context: context, entityName: ASTRONAUT_FLIGHT_ENTITY_NAME ) as? AstronautFlight
+   getEntityByID( entityID: id, context: context, entityName: ASTRONAUT_FLIGHT_ENTITY_NAME ) as? AstronautFlight
 }
 
 /**

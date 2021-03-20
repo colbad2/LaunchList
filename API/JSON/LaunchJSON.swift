@@ -36,7 +36,7 @@
  ### Spec (API model: LaunchSerializerCommon, LaunchSerializerMini, LaunchDetailed)
        id                        string($uuid)
        url                       string($uri)
-       aunch_library_id         integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
+       launch_library_id         long x-nullable: true
        slug*                     string($slug),pattern: ^[-a-zA-Z0-9_]+$,minLength: 1
        name                      string, maxLength: 2048
        status                    LaunchStatus{...}
@@ -46,7 +46,7 @@
        //inhold                    boolean, x-nullable: true
        //tbdtime                   boolean, x-nullable: true
        //tbddate                   boolean, x-nullable: true
-       probability               integer, maximum: 2147483647, minimum: -2147483648, x-nullable: true
+       probability               long x-nullable: true
        holdreason                string, maxLength: 2048, x-nullable: true
        failreason                string, maxLength: 2048, x-nullable: true
        hashtag                   string, maxLength: 2048, x-nullable: true
@@ -90,6 +90,7 @@ public class LaunchJSON: Identifiable, JSONElement
    var serviceProvider: AgencyJSON?
    var mission: MissionJSON?
    var name: String?
+   /** Launch "No Earlier Than". */
    var net: String?
    var pad: PadJSON?
    var probability: Int64?
@@ -126,44 +127,44 @@ public class LaunchJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonEmptyString( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.failReason = nonEmptyString( json[ "failreason" ] )
-      self.hashtag = nonEmptyString( json[ "hashtag" ] )
-      self.holdReason = nonEmptyString( json[ "holdreason" ] )
-      self.image = nonEmptyString( json[ "image" ] )
-      self.infographic = nonEmptyString( json[ "infographic" ] )
-      self.inHold = json[ "inhold" ] as? Bool
-      self.launchLibraryID = nonNegativeInt( json[ "launch_library_id" ] )
-      self.serviceProvider = AgencyJSON( json[ "launch_service_provider" ] )
-      self.mission = MissionJSON( json[ "mission" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.net = nonEmptyString( json[ "net" ] )
-      self.pad = PadJSON( json[ "pad" ] )
-      self.probability = nonNegativeInt( json[ "probability" ] )
-      self.programs = parseArray( json[ "program" ] )
-      self.rocket = RocketJSON( json[ "rocket" ] )
-      self.slug = nonEmptyString( json[ "slug" ] )
-      self.status = StatusJSON( json[ "status" ] )
-      self.tbdDate = json[ "tbddate" ] as? Bool
-      self.tbdTime = json[ "tbdtime" ] as? Bool
-      self.webcastLive = json[ "webcast_live" ] as? Bool
-      self.windowEnd = nonEmptyString( json[ "window_end" ] )
-      self.windowStart = nonEmptyString( json[ "window_start" ] )
-      self.infoURLs = parseArray( json[ "infoURLs" ] )
-      self.vidURLs = parseArray( json[ "vidURLs" ] )
-      self.orbitalLaunchAttemptCount = nonEmptyString( json[ "orbital_launch_attempt_count" ] )
-      self.locationLaunchAttemptCount = nonEmptyString( json[ "location_launch_attempt_count" ] )
-      self.padLaunchAttemptCount = nonEmptyString( json[ "pad_launch_attempt_count" ] )
-      self.agencyLaunchAttemptCount = nonEmptyString( json[ "agency_launch_attempt_count" ] )
-      self.orbitalLaunchAttemptCountYear = nonEmptyString( json[ "orbital_launch_attempt_count_year" ] )
-      self.locationLaunchAttemptCountYear = nonEmptyString( json[ "location_launch_attempt_count_year" ] )
-      self.padLaunchAttemptCountYear = nonEmptyString( json[ "pad_launch_attempt_count_year" ] )
-      self.agencyLaunchAttemptCountYear = nonEmptyString( json[ "agency_launch_attempt_count_year" ] )
-      self.lastUpdated = nonEmptyString( json[ "last_updated" ] )
-      self.flightclubURL = nonEmptyString( json[ "flightclub_url" ] )
-      self.rSpacexAPIID = nonEmptyString( json[ "r_spacex_api_id" ] )
-      self.updates = parseArray( json[ "updates" ] )
-      self.notificationsEnabled = json[ "notifications_enabled" ] as? Bool
+      id = nonEmptyString( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      failReason = nonEmptyString( json[ "failreason" ] )
+      hashtag = nonEmptyString( json[ "hashtag" ] )
+      holdReason = nonEmptyString( json[ "holdreason" ] )
+      image = nonEmptyString( json[ "image" ] )
+      infographic = nonEmptyString( json[ "infographic" ] )
+      inHold = json[ "inhold" ] as? Bool
+      launchLibraryID = nonNegativeInt( json[ "launch_library_id" ] )
+      serviceProvider = AgencyJSON( json[ "launch_service_provider" ] )
+      mission = MissionJSON( json[ "mission" ] )
+      name = nonEmptyString( json[ "name" ] )
+      net = nonEmptyString( json[ "net" ] )
+      pad = PadJSON( json[ "pad" ] )
+      probability = nonNegativeInt( json[ "probability" ] )
+      programs = parseArray( json[ "program" ] )
+      rocket = RocketJSON( json[ "rocket" ] )
+      slug = nonEmptyString( json[ "slug" ] )
+      status = StatusJSON( json[ "status" ] )
+      tbdDate = json[ "tbddate" ] as? Bool
+      tbdTime = json[ "tbdtime" ] as? Bool
+      webcastLive = json[ "webcast_live" ] as? Bool
+      windowEnd = nonEmptyString( json[ "window_end" ] )
+      windowStart = nonEmptyString( json[ "window_start" ] )
+      infoURLs = parseArray( json[ "infoURLs" ] )
+      vidURLs = parseArray( json[ "vidURLs" ] )
+      orbitalLaunchAttemptCount = nonEmptyString( json[ "orbital_launch_attempt_count" ] )
+      locationLaunchAttemptCount = nonEmptyString( json[ "location_launch_attempt_count" ] )
+      padLaunchAttemptCount = nonEmptyString( json[ "pad_launch_attempt_count" ] )
+      agencyLaunchAttemptCount = nonEmptyString( json[ "agency_launch_attempt_count" ] )
+      orbitalLaunchAttemptCountYear = nonEmptyString( json[ "orbital_launch_attempt_count_year" ] )
+      locationLaunchAttemptCountYear = nonEmptyString( json[ "location_launch_attempt_count_year" ] )
+      padLaunchAttemptCountYear = nonEmptyString( json[ "pad_launch_attempt_count_year" ] )
+      agencyLaunchAttemptCountYear = nonEmptyString( json[ "agency_launch_attempt_count_year" ] )
+      lastUpdated = nonEmptyString( json[ "last_updated" ] )
+      flightclubURL = nonEmptyString( json[ "flightclub_url" ] )
+      rSpacexAPIID = nonEmptyString( json[ "r_spacex_api_id" ] )
+      updates = parseArray( json[ "updates" ] )
+      notificationsEnabled = json[ "notifications_enabled" ] as? Bool
    }
 }

@@ -27,28 +27,28 @@ struct ImageViewer: View
                .resizable()
                .aspectRatio( contentMode: .fill )
                .position( x: geometry.size.width / 2.0, y: geometry.size.height / 2.0 ) // center the image initially
-               .offset( x: self.currentOffset.width, y: self.currentOffset.height ) // apply the offset
-               .scaleEffect( max( self.currentScale, 0.2 ) )
+               .offset( x: currentOffset.width, y: currentOffset.height ) // apply the offset
+               .scaleEffect( max( currentScale, 0.2 ) )
                .gesture( DragGesture()
                            .onChanged
                            {
                               value in
 
-                              let deltaX: CGFloat = value.translation.width - self.previousOffset.width
-                              let deltaY: CGFloat = value.translation.height - self.previousOffset.height
+                              let deltaX: CGFloat = value.translation.width - previousOffset.width
+                              let deltaY: CGFloat = value.translation.height - previousOffset.height
                               self.previousOffset.width = value.translation.width
                               self.previousOffset.height = value.translation.height
 
-                              let newOffsetWidth: CGFloat = self.currentOffset.width + deltaX / self.currentScale
+                              let newOffsetWidth: CGFloat = currentOffset.width + deltaX / currentScale
                               if abs( newOffsetWidth ) <=
-                                    ( image.size.width - geometry.size.width ) / ( 2.0 * self.currentScale  )
+                                    ( image.size.width - geometry.size.width ) / ( 2.0 * currentScale  )
                               {
                                  self.currentOffset.width = newOffsetWidth
                               }
 
-                              let newOffsetHeight: CGFloat = self.currentOffset.height + deltaY / self.currentScale
+                              let newOffsetHeight: CGFloat = currentOffset.height + deltaY / currentScale
                               if abs( newOffsetHeight ) <=
-                                    ( image.size.height - geometry.size.height ) / ( 2.0 * self.currentScale )
+                                    ( image.size.height - geometry.size.height ) / ( 2.0 * currentScale )
                               {
                                  self.currentOffset.height = newOffsetHeight
                               }
@@ -60,7 +60,7 @@ struct ImageViewer: View
                            .onChanged
                            {
                               value in
-                              let delta: CGFloat = value / self.previousScale
+                              let delta: CGFloat = value / previousScale
                               self.previousScale = value
                               self.currentScale *= delta
                            }

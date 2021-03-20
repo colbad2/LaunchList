@@ -17,7 +17,7 @@ public class StatusJSON: Decodable, Identifiable, JSONElement
 {
    /** ID of the rocket within the API. */
    public var id: Int64?
-   /** Staus abbreviation. */
+   /** Status abbreviation. */
    var abbreviation: String?
    /** Status description. */
    var description: String?
@@ -32,9 +32,9 @@ public class StatusJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
-      self.description = nonEmptyString( json[ "description" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      name = nonEmptyString( json[ "name" ] )
+      abbreviation = nonEmptyString( json[ "abbrev" ] )
+      description = nonEmptyString( json[ "description" ] )
    }
 }

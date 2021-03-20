@@ -3,7 +3,7 @@
 import CoreData
 
 /*
- These correspond to the JSON samples in Samples.swift. You would ahve to load those into a CoreData context
+ These correspond to the JSON samples in Samples.swift. You would have to load those into a CoreData context
  before using these.
  */
 
@@ -14,9 +14,9 @@ import CoreData
  */
 public func getSampleAgencyEntity() -> Agency?
 {
-   return getEntityByID( entityID: 63,
-                         context: PersistenceController.preview.container.viewContext,
-                         entityName: AGENCY_ENTITY_NAME ) as? Agency
+   getEntityByID( entityID: 63,
+                  context: PersistenceController.preview.container.viewContext,
+                  entityName: AGENCY_ENTITY_NAME ) as? Agency
 }
 
 /**
@@ -76,12 +76,12 @@ public func getSampleProgramEntity2() -> Program?
 
  - returns: `Docking` entity suitable for previewing
  */
-public func getSampleDockingEntity() -> Docking?
+public func getSampleDockingEntity() -> DockingEvent?
 {
    let context: NSManagedObjectContext = PersistenceController.preview.container.viewContext
    return getEntityByID( entityID: 100,
                          context: context,
-                         entityName: DOCKING_ENTITY_NAME ) as? Docking
+                         entityName: DOCKING_EVENT_ENTITY_NAME ) as? DockingEvent
 }
 
 /**
@@ -206,9 +206,9 @@ public func getSamplePadEntity() -> Pad?
  */
 public func getSampleRocketEntity() -> Rocket?
 {
-   return getEntityByID( entityID: 2663,
-                         context: PersistenceController.preview.container.viewContext,
-                         entityName: ROCKET_ENTITY_NAME ) as? Rocket
+   getEntityByID( entityID: 2663,
+                  context: PersistenceController.preview.container.viewContext,
+                  entityName: ROCKET_ENTITY_NAME ) as? Rocket
 }
 
 /**
@@ -218,9 +218,9 @@ public func getSampleRocketEntity() -> Rocket?
  */
 public func getSampleSpacecraftConfigEntity() -> SpacecraftConfig?
 {
-   return getEntityByID( entityID: 1,
-                         context: PersistenceController.preview.container.viewContext,
-                         entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftConfig
+   getEntityByID( entityID: 1,
+                  context: PersistenceController.preview.container.viewContext,
+                  entityName: SPACECRAFT_CONFIG_ENTITY_NAME ) as? SpacecraftConfig
 }
 
 /**
@@ -230,9 +230,9 @@ public func getSampleSpacecraftConfigEntity() -> SpacecraftConfig?
  */
 public func getSampleSpacecraftEntity() -> Spacecraft?
 {
-   return getEntityByID( entityID: 77,
-                         context: PersistenceController.preview.container.viewContext,
-                         entityName: SPACECRAFT_ENTITY_NAME ) as? Spacecraft
+   getEntityByID( entityID: 77,
+                  context: PersistenceController.preview.container.viewContext,
+                  entityName: SPACECRAFT_ENTITY_NAME ) as? Spacecraft
 }
 
 /**
@@ -242,7 +242,7 @@ public func getSampleSpacecraftEntity() -> Spacecraft?
  */
 public func getSampleSpaceStationEntity() -> SpaceStation?
 {
-   return getEntityByID( entityID: 4,
-                         context: PersistenceController.preview.container.viewContext,
-                         entityName: SPACESTATION_ENTITY_NAME ) as? SpaceStation
+   getEntityByID( entityID: 4,
+                  context: PersistenceController.preview.container.viewContext,
+                  entityName: SPACESTATION_ENTITY_NAME ) as? SpaceStation
 }

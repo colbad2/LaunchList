@@ -31,8 +31,8 @@ public class OrbitJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
-      self.name = nonEmptyString( json[ "name" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      abbreviation = nonEmptyString( json[ "abbrev" ] )
+      name = nonEmptyString( json[ "name" ] )
    }
 }

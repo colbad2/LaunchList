@@ -69,8 +69,8 @@ public class LauncherConfigRequest: BaseAPIListRequest, APIListRequest
     */
    func copy() -> APIListRequest
    {
-      return LauncherConfigRequest( baseURL: base, searchTerm: search, orderingField: ordering, limit: limit, offset: offset,
-                                    family: family, name: name, manufacturer: manufacturer, fullName: fullName,
-                                    active: active, reusable: reusable, program: program )
+      LauncherConfigRequest( baseURL: base, searchTerm: search, orderingField: ordering, limit: limit, offset: offset,
+                             family: family, name: name, manufacturer: manufacturer, fullName: fullName,
+                             active: active, reusable: reusable, program: program )
    }
 }

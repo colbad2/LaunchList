@@ -44,13 +44,13 @@ public class SpacecraftJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.serialNumber = nonEmptyString( json[ "serial_number" ] )
-      self.status = IDNameJSON( json[ "status" ] )
-      self.spacecraftDescription = nonEmptyString( json[ "description" ] )
-      self.spacecraftConfig = SpacecraftConfigJSON( json[ "spacecraft_config" ] )
-      self.flights = parseArray( json[ "flights" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      name = nonEmptyString( json[ "name" ] )
+      serialNumber = nonEmptyString( json[ "serial_number" ] )
+      status = IDNameJSON( json[ "status" ] )
+      spacecraftDescription = nonEmptyString( json[ "description" ] )
+      spacecraftConfig = SpacecraftConfigJSON( json[ "spacecraft_config" ] )
+      flights = parseArray( json[ "flights" ] )
    }
 }

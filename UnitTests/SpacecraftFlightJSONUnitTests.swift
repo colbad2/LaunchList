@@ -46,14 +46,14 @@ class SpacecraftFlightJSONUnitTests: XCTestCase
                 url: "https://ll.thespacedevs.com/2.2.0/pad/87/", wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
       checkLocation( location: spacecraftFlight.launch?.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
-                     name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 184, url: "https://ll.thespacedevs.com/2.2.0/location/27/" )
+                     name: "Kennedy Space Center, FL, USA", landingCount: 0, launchCount: 184, url: "https://ll.thespacedevs.com/2.2.0/location/27/" )
       XCTAssertNotNil( spacecraftFlight.launch?.programs )
       XCTAssertEqual( spacecraftFlight.launch?.programs.count, 0 )
    }
 
    func testSpacecraftFlight90()
    {
-      let json: string =
+      let json: String =
          #"""
       {
          "id": 90,
@@ -167,14 +167,14 @@ class SpacecraftFlightJSONUnitTests: XCTestCase
        }
       """#
 
-      guard let spacecraftFlight: SpacecraftFlightJSON = SpacecraftFlightJSON( parseJSON( jsonString: spacecraftFlight186JSON ) ) else { XCTFail( "can't load test data" ); return }
+      guard let spacecraftFlight: SpacecraftFlightJSON = SpacecraftFlightJSON( parseJSON( jsonString: json ) ) else { XCTFail( "can't load test data" ); return }
 
       checkSpacecraftFlight( spacecraftFlight: spacecraftFlight, id: 90, url: "https://ll.thespacedevs.com/2.2.0/spacecraft/flight/90/",
                              destination: "Low Earth Orbit", missionEnd: "1992-05-16T22:57:00Z" )
       checkSpacecraft( spacecraft: spacecraftFlight.spacecraft, id: 40, url: "https://ll.thespacedevs.com/2.2.0/spacecraft/40/",
                        name: "Space Shuttle Endeavour", serialNumber: "OV-105",
                        description: "Space Shuttle Endeavour (Orbiter Vehicle Designation: OV-105) is a retired orbiter from NASA's Space Shuttle program and the fifth and final operational shuttle built. It embarked on its first mission, STS-49, in May 1992 and its 25th and final mission, STS-134, in May 2011. STS-134 was expected to be the final mission of the Space Shuttle program, but with the authorization of STS-135, Atlantis became the last shuttle to fly.  The United States Congress approved the construction of Endeavour in 1987 to replace Challenger, which was lost in 1986.  Structural spares built during the construction of Discovery and Atlantis were used in its assembly. NASA chose, on cost grounds, to build Endeavour from spares rather than refitting Enterprise." )
-      checkIDName( json: spacecraftFlight.spacecraft.status, id: 2, name: "Retired" )
+      checkIDName( json: spacecraftFlight.spacecraft?.status, id: 2, name: "Retired" )
       checkSpacecraftConfig( spacecraft: spacecraftFlight.spacecraft?.spacecraftConfig, spacecraftID: 14, url: "https://ll.thespacedevs.com/2.2.0/config/spacecraft/14/",
                              name: "Space Shuttle", type: "Unknown", inUse: false,
                              imageURL: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/orbiter_images/space2520shuttle_image_20190207032524.jpeg" )

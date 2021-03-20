@@ -42,8 +42,8 @@ let bioSearchKey = "bio:"
  Returns true if the astronaut conforms to the search text.
 
  - parameter astronaut: `Astronaut` astronaut to check against the criteria
- - parameter searchText: `String?` criteria to check the astornaut against
- - returns: `Bool` true if the astronaut met the cirteria
+ - parameter searchText: `String?` criteria to check the astronaut against
+ - returns: `Bool` true if the astronaut met the criteria
 */
 func filterAstronaut( astronaut: Astronaut, searchText: String? ) -> Bool
 {
@@ -146,7 +146,7 @@ struct AstronautPreviews: PreviewProvider
          }
          .environment( \.colorScheme, .dark )
 
-         // Assitive text large
+         // Assistive text large
          NavigationView
          {
             AstronautList()

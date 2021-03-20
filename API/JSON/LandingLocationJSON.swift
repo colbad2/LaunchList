@@ -32,10 +32,10 @@ public class LandingLocationJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.abbreviation = nonEmptyString( json[ "abbreviation" ] )
-      self.location = LocationJSON( json[ "location" ] )
-      self.successfulLandings = nonEmptyString( json[ "successful_landings" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      name = nonEmptyString( json[ "name" ] )
+      abbreviation = nonEmptyString( json[ "abbreviation" ] )
+      location = LocationJSON( json[ "location" ] )
+      successfulLandings = nonEmptyString( json[ "successful_landings" ] )
    }
 }

@@ -78,9 +78,9 @@ public class ExpeditionRequest: BaseAPIListRequest, APIListRequest
     */
    func copy() -> APIListRequest
    {
-      return ExpeditionRequest( baseURL: base, searchTerm: search, limit: limit, offset: offset,
-                                agency: agency, astronaut: astronaut, name: name, spaceStation: spaceStation,
-                                startAfter: startAfter, startBefore: startBefore, startAfterOrOn: startAfterOrOn, startBeforeOrOn: startBeforeOrOn,
-                                endAfter: endAfter, endBefore: endBefore, endAfterOrOn: endAfterOrOn, endBeforeOrOn: endBeforeOrOn )
+      ExpeditionRequest( baseURL: base, searchTerm: search, limit: limit, offset: offset,
+                         agency: agency, astronaut: astronaut, name: name, spaceStation: spaceStation,
+                         startAfter: startAfter, startBefore: startBefore, startAfterOrOn: startAfterOrOn, startBeforeOrOn: startBeforeOrOn,
+                         endAfter: endAfter, endBefore: endBefore, endAfterOrOn: endAfterOrOn, endBeforeOrOn: endBeforeOrOn )
    }
 }

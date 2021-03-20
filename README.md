@@ -7,7 +7,7 @@ This was a project to teach myself SwiftUI, but I became fond of it, and decided
 
 Currently, the data is fixed in the various JSON files provided in the project. Loading the whole database by API is a big effort, and
 cannot be accomplished in a short time span without running up against the API's throttle limits. I fully intend to build an online fetch, but that is
-a complicated effort, and I don't want to piss off the API providers before I get it right. So, I will get to that after I am
+a complicated effort, and I don't want to anger the API providers before I get it right. So, I will get to that after I am
 happy with the UI.
 
 
@@ -15,24 +15,24 @@ happy with the UI.
 Things that need to happen for a good app 
 
 ### Core Data/JSON
-- prefilled Core Data default data store (data only? iamges loaded sparately)
+- prefilled Core Data default data store (data only? images loaded separately)
 - can we include the external file dir alongside the default data db files?
 - reduce image sizes on import if storing in the db
-- some duplicate Pads/ unknown pads with no info/ lat lons with extra zeros (west texas)/pads with no launches, no countries
+- some duplicate Pads/ unknown pads with no info/ lat longs with extra zeros (west texas)/pads with no launches, no countries
 ### API loading
 - Load db regularly
 - All API loads
 - response when throttled: {"detail": "Request was throttled. Expected available in 2429 seconds."} HTTP error code 429
 - do we have to load locations.json/programs.json because the data are already in other structures?
 - db download scheduler
-- import dbs after app start, not before UI shown
-- check all of Swagger for API parts that I may have missed. I am sure some of the subobjects miss everything the API has
+- import dbs after app start, not before the UI is shown
+- check Swagger for API parts that I may have missed. I am sure some sub-objects miss everything the API has
 - Remove unused old JSON parsing code, including API response JSON structs
 ### Redundancy
 - Program/Agency logos if not provided by the API
 - Alternative internal logos for slow loading ones (ISS)
 ### Performance/efficiency
-- pre-fill image cache with images from db?
+- pre-fill image cache with images from the db?
 ### Beauty
 - tab icons
 - use a common date format
@@ -62,16 +62,16 @@ Things that need to happen for a good app
 - add flag lists to everything associated with an agency
 - better zoomable images
 - flag list tap to see all countries listed in sheet
-- settings with dataset/core data stats to help with default database inclusion, image fetch vs. db hits
+- settings with the data set/core data stats to help with default database inclusion, image fetch vs. db hits
 - search for all datasets
 - search keys for all searches
 - info sheet for each search field with search keys, examples, etc.
-- shortcuts for search keys (agency: -> a:)
+- shortcuts for search keys ( agency: -> a: )
 - search builder sheet
-- searches between dates (start:1998,end:2010)
+- searches between dates ( start:1998, end:2010 )
 - the Roci/Bowman
-- settings tools: clear memory image cache, clear CoreData images
-- periodically refetch images, incase they have changed, or been updated
+- setting tools: clear memory image cache, clear CoreData images
+- periodically re-fetch images, in case they have changed, or been updated
 - previews for every view, working
 - add launchers to the dataset list
 - settings button to clear the image cache entirely, or images that are past a certain lifetime
@@ -85,7 +85,7 @@ Things that need to happen for a good app
 
 // TODO Pad at Guam International Airport has a map URL like "https://www.google.com/maps/place/35Â°03'34.0"N+118Â°09'06.0"W/"
 // I fix it to "https://www.google.com/maps/place/35°03'34.0"N+118°09'06.0"W/", which works in a browser, but URL() fails
-// to convert it to a URL. So, the pad doesn't have a map link it could have. Try to fix the link so it works.
+// to convert it to a URL. So, the pad doesn't have a map link it could have. Try to fix the link so that it works.
 // A number of other map links have the issue
 
 
@@ -93,7 +93,7 @@ Things that need to happen for a good app
 Things that Xcode does that need changing
 
 - remove big headers from new file template
-- write app that clears devicedata, removes elements from coredata files, locates template files
+- write an app that clears devicedata, removes elements from coredata files, locates template files
 - remove "import Foundation" from templates
 
 
@@ -101,9 +101,9 @@ Things that Xcode does that need changing
 Things that Apple might improve on in the future
 
 - search bar
-- text area placeholders fro search fields
+- text area placeholders for search fields
 - use SwiftUI scrollTo proxy when it works in List
-- Programmatically go to databse details pages from links in the next launch home page (not possible yet with SwiftUI)
+- Programmatically go to database details pages from links in the next launch home page (not possible yet with SwiftUI)
 
 
 ## Test/Profile/Analyse
@@ -125,7 +125,7 @@ Things that need addressing that aren't the app itself.
 - project license/copyrights
 - docs/code-generated docs
 - other online dbs?
-- watch SwiftUI WWDC vids
+- watch SwiftUI WWDC videos
 - research GitHUb licenses
 - macOS UI/iPad UI
 - watch widget WWDCs
@@ -190,14 +190,14 @@ Good sites that I just found, but haven't explored
 - https://nshipster.com
 
 
-## Maintenence Checks
-These have been completed, but tend to creep back in if not vigilant
+## Maintenance Checks
+These have been completed, but tend to creep back in if we are not vigilant
 
 - remove "import Foundation" where not needed
 - copyrights on each file
 - comment blocks everywhere
 - proper parameter/returns markup
-- exmaples of use in comments
+- examples of use in comments
 - example data for all data objects
 - check indents, spaces
 - public/private keywords

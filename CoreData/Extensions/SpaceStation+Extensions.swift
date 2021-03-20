@@ -13,19 +13,19 @@ public let SPACESTATION_ENTITY_NAME: String = "SpaceStation"
 extension SpaceStation
 {
    /** `Set< Event >` wrapper for the generated `NSSet` of `Event`s. */
-   var eventsSet: Set< Event > { self.events as? Set< Event > ?? Set< Event >() }
+   var eventsSet: Set< Event > { events as? Set< Event > ?? Set< Event >() }
 
    /** `Set< Expedition >` wrapper for the generated `NSSet` of `Expedition`s. */
-   var expeditionsSet: Set< Expedition > { self.expeditions as? Set< Expedition > ?? Set< Expedition >() }
+   var expeditionsSet: Set< Expedition > { expeditions as? Set< Expedition > ?? Set< Expedition >() }
 
    /** Array of `Event`s, sorted by name. */
-   var sortedEvents: [Event] { sortEventsByName( eventArray: Array( self.eventsSet ) ) }
+   var sortedEvents: [Event] { sortEventsByName( eventArray: Array( eventsSet ) ) }
 
    /** True if the `SpaceStation` has any `Event`s. */
    var hasEvents: Bool { !eventsSet.isEmpty }
 
    /** Array of `Expedition`s, sorted by name. */
-   var sortedExpeditions: [Expedition] { sortExpeditionsByName( expeditionArray: Array( self.expeditionsSet ) ) }
+   var sortedExpeditions: [Expedition] { sortExpeditionsByName( expeditionArray: Array( expeditionsSet ) ) }
 
    /** True if the `SpaceStation` has any `Expedition`s. */
    var hasExpeditions: Bool { !expeditionsSet.isEmpty }
@@ -115,7 +115,7 @@ public func updateEntity( json: SpaceStationJSON, entity: SpaceStation?, context
  */
 public func fetchAllSpaceStations( context: NSManagedObjectContext ) -> [SpaceStation]?
 {
-   return fetchAllEntities( entityName: SPACESTATION_ENTITY_NAME, context: context ) as? [SpaceStation]
+   fetchAllEntities( entityName: SPACESTATION_ENTITY_NAME, context: context ) as? [ SpaceStation ]
 }
 
 /**
@@ -159,7 +159,7 @@ public func sortSpaceStationsByName( spaceStationArray: [SpaceStation]? ) -> [Sp
  */
 public func getSpaceStation( by entityID: Int64, context: NSManagedObjectContext ) -> SpaceStation?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: SPACESTATION_ENTITY_NAME ) as? SpaceStation
+   getEntityByID( entityID: entityID, context: context, entityName: SPACESTATION_ENTITY_NAME ) as? SpaceStation
 }
 
 /**
@@ -184,7 +184,7 @@ public func fetchSpaceStation( spaceStation: SpaceStationJSON, context: NSManage
  */
 public func getSpaceStationCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: SPACESTATION_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: SPACESTATION_ENTITY_NAME, context: context )
 }
 
 /**

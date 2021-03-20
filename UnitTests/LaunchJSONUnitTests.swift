@@ -119,7 +119,7 @@ class LaunchJSONUnitTests: XCTestCase
                 wikiURL: "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40" )
       checkLocation( location: launch.pad?.location, locationID: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-                     name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
+                     name: "Cape Canaveral, FL, USA", landingCount: 20, launchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs.count, 0 )
@@ -328,7 +328,7 @@ class LaunchJSONUnitTests: XCTestCase
                 wikiURL: "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40" )
       checkLocation( location: launch.pad?.location, locationID: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-                     name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
+                     name: "Cape Canaveral, FL, USA", landingCount: 20, launchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs.count, 0 )
@@ -447,7 +447,7 @@ class LaunchJSONUnitTests: XCTestCase
                 url: "https://ll.thespacedevs.com/2.1.0/pad/54/" )
       checkLocation( location: launch.pad?.location, locationID: 22, countryCode: "UNK",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_22_20200803142419.jpg",
-                     name: "Unknown Location", landingCount: 0, lauchCount: 0,
+                     name: "Unknown Location", landingCount: 0, launchCount: 0,
                      url: "https://ll.thespacedevs.com/2.1.0/location/22/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs.count, 0 )
@@ -557,7 +557,7 @@ class LaunchJSONUnitTests: XCTestCase
                 wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
       checkLocation( location: launch.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
-                     name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
+                     name: "Kennedy Space Center, FL, USA", landingCount: 0, launchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs.count, 0 )
@@ -705,7 +705,7 @@ class LaunchJSONUnitTests: XCTestCase
                 wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
       checkLocation( location: launch.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
-                     name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
+                     name: "Kennedy Space Center, FL, USA", landingCount: 0, launchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
 
       XCTAssertNotNil( launch.programs )
@@ -928,7 +928,7 @@ class LaunchJSONUnitTests: XCTestCase
                 wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
       checkLocation( location: launch.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
-                     name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 182,
+                     name: "Kennedy Space Center, FL, USA", landingCount: 0, launchCount: 182,
                      url: "https://ll.thespacedevs.com/2.1.0/location/27/" )
 
       XCTAssertNotNil( launch.programs )
@@ -1086,7 +1086,7 @@ class LaunchJSONUnitTests: XCTestCase
                 wikiURL: "https://en.wikipedia.org/wiki/Cape_Canaveral_Air_Force_Station_Space_Launch_Complex_40" )
       checkLocation( location: launch.pad?.location, locationID: 12, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
-                     name: "Cape Canaveral, FL, USA", landingCount: 20, lauchCount: 208,
+                     name: "Cape Canaveral, FL, USA", landingCount: 20, launchCount: 208,
                      url: "https://ll.thespacedevs.com/2.1.0/location/12/" )
 
       XCTAssertNotNil( launch.programs )
@@ -1219,7 +1219,7 @@ class LaunchJSONUnitTests: XCTestCase
                 wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
       checkLocation( location: launch.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
-                     name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 184,
+                     name: "Kennedy Space Center, FL, USA", landingCount: 0, launchCount: 184,
                      url: "https://ll.thespacedevs.com/2.2.0/location/27/" )
 
       XCTAssertNotNil( launch.programs )

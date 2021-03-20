@@ -49,7 +49,7 @@ func expeditionTitle( expedition: Expedition? ) -> String?
  Formats the dates of an `Expedition`.
 
  - parameter expedition: `Expedition` where to get the dates
- - returns: `String` with the foramtted dates, nil if not possible
+ - returns: `String` with the formatted dates, nil if not possible
  */
 public func expeditionDates( expedition: Expedition? ) -> String?
 {

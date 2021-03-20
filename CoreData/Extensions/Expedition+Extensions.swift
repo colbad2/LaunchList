@@ -13,13 +13,13 @@ public let EXPEDITION_ENTITY_NAME: String = "Expedition"
 extension Expedition
 {
    /** `Set< Event >` wrapper for the generated `NSSet` of `Event`s. */
-   var eventsSet: Set< Event > { self.events as? Set< Event > ?? Set< Event >() }
+   var eventsSet: Set< Event > { events as? Set< Event > ?? Set< Event >() }
 
    /** Array of `Event`s, sorted by name. */
-   var sortedAgencies: [Event] { return sortEventsByName( eventArray: Array( self.eventsSet ) ) }
+   var sortedAgencies: [Event] { sortEventsByName( eventArray: Array( eventsSet ) ) }
 
    /** True if the `Expedition` has any `Event`s. */
-   var hasAgencies: Bool { return !eventsSet.isEmpty }
+   var hasAgencies: Bool { !eventsSet.isEmpty }
 
    /**
     Adds the JSON struct, creating or updating if necessary.
@@ -143,7 +143,7 @@ public func sortExpeditionsByDate( expeditionArray: [Expedition]? ) -> [Expediti
  */
 public func getExpedition( by entityID: Int64, context: NSManagedObjectContext ) -> Expedition?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: EXPEDITION_ENTITY_NAME ) as? Expedition
+   getEntityByID( entityID: entityID, context: context, entityName: EXPEDITION_ENTITY_NAME ) as? Expedition
 }
 
 /**
@@ -168,7 +168,7 @@ public func fetchExpedition( expedition: ExpeditionJSON, context: NSManagedObjec
  */
 public func getExpeditionCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: EXPEDITION_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: EXPEDITION_ENTITY_NAME, context: context )
 }
 
 /**

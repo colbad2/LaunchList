@@ -10,10 +10,7 @@ public class BaseAPIRequest
    /** API end point. */
    let endPoint: String
    /** Partial URL for the request. */
-   var requestURL: String
-   {
-      return base + endPoint + "/?"
-   }
+   var requestURL: String { base + endPoint + "/?" }
    var parameters: [String] = []
 
    /**
@@ -131,8 +128,8 @@ public class BaseAPIListRequest: BaseAPIRequest
    {
       super.init( base: baseURL, endPoint: endPoint )
 
-      self.search = searchTerm
-      self.ordering = orderingField
+      search = searchTerm
+      ordering = orderingField
       self.limit = limit
       self.offset = offset
    }
@@ -145,7 +142,7 @@ public class BaseAPIIDRequest: BaseAPIRequest
    /** URL for the request. */
    override var requestURL: String
    {
-      return super.requestURL + "id=\(id)"
+      super.requestURL + "id=\(id)"
    }
 
    /**

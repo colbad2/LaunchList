@@ -8,7 +8,7 @@ import XCTest
 
 class LauncherConfigJSONUnitTests: XCTestCase
 {
-   func testSmalConfig() throws
+   func testSmallConfig() throws
    {
       let json: String =
          """

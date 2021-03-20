@@ -8,7 +8,7 @@ struct ScrollManagerView: UIViewRepresentable
 
    func makeUIView( context: Context ) -> UIView
    {
-      return UIView()
+      UIView()
    }
 
    func updateUIView( _ uiView: UIView, context: Context )
@@ -35,16 +35,16 @@ extension UIView
 {
    func subview<T>( of type: T.Type ) -> T?
    {
-      return subviews.compactMap { $0 as? T ?? $0.subview( of: type ) }.first
+      subviews.compactMap { $0 as? T ?? $0.subview( of: type ) }.first
    }
 
    func findViewController() -> UIViewController?
    {
-      if let nextResponder: UIViewController = self.next as? UIViewController
+      if let nextResponder: UIViewController = next as? UIViewController
       {
          return nextResponder
       }
-      else if let nextResponder: UIView = self.next as? UIView
+      else if let nextResponder: UIView = next as? UIView
       {
          return nextResponder.findViewController()
       }

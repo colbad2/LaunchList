@@ -19,7 +19,7 @@ struct DatasetList: View
                                            blurb: "video streams of Starship activities" ),
                                  ListItem( title: "Starship Vehicles", entity: ROCKET_ENTITY_NAME, iconName: "Starship",
                                            blurb: "rocket instances" ),
-                                 ListItem( title: "Docking", entity: DOCKING_ENTITY_NAME, iconName: "Docking",
+                                 ListItem( title: "Docking", entity: DOCKING_EVENT_ENTITY_NAME, iconName: "Docking",
                                            blurb: "meetings of vehicles and space stations" ),
                                  ListItem( title: "Space Stations", entity: SPACESTATION_ENTITY_NAME, iconName: "Station",
                                            blurb: "long-term space locations" ),
@@ -90,7 +90,7 @@ struct ListItem: Identifiable
 
    init( title: String, entity: String, iconName: String? = nil, blurb: String? = nil )
    {
-      self.id = title
+      id = title
       self.title = title
       self.entity = entity
       self.iconName = iconName

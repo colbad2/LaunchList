@@ -13,28 +13,28 @@ public let AGENCY_ENTITY_NAME: String = "Agency"
 extension Agency
 {
    /** `Set< Astronaut >` wrapper for the generated `NSSet` of `Astronaut`s. */
-   var astronautsSet: Set< Astronaut > { self.astronauts as? Set< Astronaut > ?? Set< Astronaut >() }
+   var astronautsSet: Set< Astronaut > { astronauts as? Set< Astronaut > ?? Set< Astronaut >() }
 
    /** `Set< Program >` wrapper for the generated `NSSet` of `Program`s. */
-   var programsSet: Set< Program > { self.programs as? Set< Program > ?? Set< Program >() }
+   var programsSet: Set< Program > { programs as? Set< Program > ?? Set< Program >() }
 
    /** `Set< SpacecraftConfig >` wrapper for the generated `NSSet` of `SpacecraftConfig`s. */
-   var spacecraftConfigsSet: Set< SpacecraftConfig > { self.spacecraftConfigs as? Set< SpacecraftConfig > ?? Set< SpacecraftConfig >() }
+   var spacecraftConfigsSet: Set< SpacecraftConfig > { spacecraftConfigs as? Set< SpacecraftConfig > ?? Set< SpacecraftConfig >() }
 
    /** Array of `Astronaut`s, sorted by name. */
-   var sortedAstronauts: [Astronaut] { sortAstronautsByName( astronautArray: Array( self.astronautsSet ) ) }
+   var sortedAstronauts: [Astronaut] { sortAstronautsByName( astronautArray: Array( astronautsSet ) ) }
 
    /** True if the `Agency` has any `Astronaut`s. */
    var hasAstronauts: Bool { !astronautsSet.isEmpty }
 
    /** Array of `Program`s, sorted by name. */
-   var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( self.programsSet ) ) }
+   var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( programsSet ) ) }
 
    /** True if the `Agency` has any `Program`s. */
    var hasPrograms: Bool { !programsSet.isEmpty }
 
    /** Array of `SpacecraftConfig`s, sorted by name. */
-   var sortedSpacecraftConfigs: [SpacecraftConfig] { sortSpacecraftConfigsByName( spacecraftConfigArray: Array( self.spacecraftConfigsSet ) ) }
+   var sortedSpacecraftConfigs: [SpacecraftConfig] { sortSpacecraftConfigsByName( spacecraftConfigArray: Array( spacecraftConfigsSet ) ) }
 
    /** True if the `Agency` has any `SpacecraftConfig`s. */
    var hasSpacecraftConfigs: Bool { !spacecraftConfigsSet.isEmpty }
@@ -48,16 +48,6 @@ extension Agency
          configurationEntity.addToAgencies( self )
       }
    }
-
-//   func addSpacecraftsFromJSON( spacecraftList: [SpacecraftJSON]?, context: NSManagedObjectContext )
-//   {
-//      for spacecraft: SpacecraftJSON in spacecraftList ?? []
-//      {
-//         let spacecraftEntity: Spacecraft = fetchSpacecraft( spacecraft: spacecraft, context: context )
-//         self.addToSpacecraftList( spacecraftEntity )
-//         spacecraftEntity.addToAgencies( self )
-//      }
-//   }
 
    func addSpacecraftConfigsFromJSON( spacecraftConfigs: [SpacecraftConfigJSON]?, context: NSManagedObjectContext )
    {
@@ -163,7 +153,7 @@ public func updateEntity( json: AgencyJSON, entity: Agency?, context: NSManagedO
  */
 public func fetchAllAgencies( context: NSManagedObjectContext ) -> [Agency]?
 {
-   return fetchAllEntities( entityName: AGENCY_ENTITY_NAME, context: context ) as? [Agency]
+   fetchAllEntities( entityName: AGENCY_ENTITY_NAME, context: context ) as? [ Agency ]
 }
 
 /**
@@ -176,8 +166,8 @@ public func sortAgenciesByName( agencyArray: [Agency]? ) -> [Agency]
 {
    guard let agencyArray = agencyArray else { return [] }
 
-   var agencys: [Agency] = Array( agencyArray )
-   agencys.sort
+   var agencies: [Agency] = Array( agencyArray )
+   agencies.sort
    {
       agency1, agency2 in
 
@@ -192,7 +182,7 @@ public func sortAgenciesByName( agencyArray: [Agency]? ) -> [Agency]
       }
    }
 
-   return agencys
+   return agencies
 }
 
 /**
@@ -207,13 +197,13 @@ public func sortAgenciesByName( agencyArray: [Agency]? ) -> [Agency]
  */
 public func isBasic( agency: Agency ) -> Bool
 {
-   return agency.name != nil &&
-      agency.agencyDescription == nil &&
-      agency.administrator == nil &&
-      agency.foundingYear == nil &&
-      agency.launchers == nil &&
-      agency.spacecraft == nil &&
-      agency.imageURL == nil
+   agency.name != nil &&
+   agency.agencyDescription == nil &&
+   agency.administrator == nil &&
+   agency.foundingYear == nil &&
+   agency.launchers == nil &&
+   agency.spacecraft == nil &&
+   agency.imageURL == nil
 }
 
 /**
@@ -228,11 +218,11 @@ public func isBasic( agency: Agency ) -> Bool
  */
 public func getAgency( by entityID: Int64, context: NSManagedObjectContext ) -> Agency?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: AGENCY_ENTITY_NAME ) as? Agency
+   getEntityByID( entityID: entityID, context: context, entityName: AGENCY_ENTITY_NAME ) as? Agency
 }
 
 /**
- Fetches, updates, or creates a `Agency` from the context, given `AgencyJSON` data
+ Fetches, updates, or creates a `Agency` in the context, given `AgencyJSON` data
 
  - parameter agency: `AgencyJSON` JSON data about the agency
  - parameter context: `NSManagedObjectContext` Core Data object context
@@ -253,7 +243,7 @@ public func fetchAgency( agency: AgencyJSON, context: NSManagedObjectContext ) -
  */
 public func getAgencyCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: AGENCY_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: AGENCY_ENTITY_NAME, context: context )
 }
 
 /**

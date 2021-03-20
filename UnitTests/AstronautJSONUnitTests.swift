@@ -61,7 +61,7 @@ class AstronautJSONUnitTests: XCTestCase
                 wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
       checkLocation( location: launch.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
-                     name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 184,
+                     name: "Kennedy Space Center, FL, USA", landingCount: 0, launchCount: 184,
                      url: "https://ll.thespacedevs.com/2.2.0/location/27/" )
       XCTAssertNotNil( launch.programs )
       XCTAssertEqual( launch.programs.count, 0 )
@@ -103,7 +103,7 @@ class AstronautJSONUnitTests: XCTestCase
                 url: "https://ll.thespacedevs.com/2.2.0/pad/87/", wikiURL: "https://en.wikipedia.org/wiki/Kennedy_Space_Center_Launch_Complex_39#Launch_Pad_39A" )
       checkLocation( location: spacecraftFlight.launch?.pad?.location, locationID: 27, countryCode: "USA",
                      mapImage: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_27_20200803142447.jpg",
-                     name: "Kennedy Space Center, FL, USA", landingCount: 0, lauchCount: 184, url: "https://ll.thespacedevs.com/2.2.0/location/27/" )
+                     name: "Kennedy Space Center, FL, USA", landingCount: 0, launchCount: 184, url: "https://ll.thespacedevs.com/2.2.0/location/27/" )
       XCTAssertNotNil( spacecraftFlight.launch?.programs )
       XCTAssertEqual( spacecraftFlight.launch?.programs.count, 0 )
    }

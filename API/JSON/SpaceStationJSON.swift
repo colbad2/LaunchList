@@ -76,30 +76,30 @@ public class SpaceStationJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.status = StatusJSON( json[ "status" ] )
-      self.orbit = nonEmptyString( json[ "orbit" ] )
-      self.imageURL = nonEmptyString( json[ "image_url" ] )
-      self.founded = nonEmptyString( json[ "founded" ] )
-      self.spaceStationDescription = nonEmptyString( json[ "description" ] )
-      self.owners = parseArray( json[ "owners" ] )
-      self.type = IDNameJSON( json[ "type" ] )?.name
-      self.deorbited = nonEmptyString( json[ "deorbited" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      name = nonEmptyString( json[ "name" ] )
+      status = StatusJSON( json[ "status" ] )
+      orbit = nonEmptyString( json[ "orbit" ] )
+      imageURL = nonEmptyString( json[ "image_url" ] )
+      founded = nonEmptyString( json[ "founded" ] )
+      spaceStationDescription = nonEmptyString( json[ "description" ] )
+      owners = parseArray( json[ "owners" ] )
+      type = IDNameJSON( json[ "type" ] )?.name
+      deorbited = nonEmptyString( json[ "deorbited" ] )
 
       var expeditionsJSON: Any? = json[ "active_expedition" ]
       if expeditionsJSON == nil
       {
          expeditionsJSON = json[ "active_expeditions" ]
       }
-      self.activeExpeditions = parseArray( expeditionsJSON )
+      activeExpeditions = parseArray( expeditionsJSON )
 
-      self.height = nonNegativeDouble( json[ "height" ] )
-      self.width = nonNegativeDouble( json[ "width" ] )
-      self.mass = nonNegativeDouble( json[ "mass" ] )
-      self.volume = nonNegativeInt( json[ "volume" ] )
-      self.onboardCrew = nonEmptyString( json[ "onboard_crew" ] )
-      self.dockingLocations = parseArray( json[ "docking_location" ] )
+      height = nonNegativeDouble( json[ "height" ] )
+      width = nonNegativeDouble( json[ "width" ] )
+      mass = nonNegativeDouble( json[ "mass" ] )
+      volume = nonNegativeInt( json[ "volume" ] )
+      onboardCrew = nonEmptyString( json[ "onboard_crew" ] )
+      dockingLocations = parseArray( json[ "docking_location" ] )
    }
 }

@@ -19,10 +19,10 @@ public class URLLinkJSON: Decodable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.url = nonEmptyString( json[ "url" ] )
-      self.priority = nonEmptyString( json[ "priority" ] )
-      self.title = nonEmptyString( json[ "title" ] )
-      self.urlDescription = nonEmptyString( json[ "description" ] )
-      self.featureImage = nonEmptyString( json[ "feature_image" ] )
+      url = nonEmptyString( json[ "url" ] )
+      priority = nonEmptyString( json[ "priority" ] )
+      title = nonEmptyString( json[ "title" ] )
+      urlDescription = nonEmptyString( json[ "description" ] )
+      featureImage = nonEmptyString( json[ "feature_image" ] )
    }
 }

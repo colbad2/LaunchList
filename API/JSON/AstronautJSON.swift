@@ -94,7 +94,7 @@ public class AstronautJSON: Identifiable, JSONElement, AutoEquatable, AutoHashab
    var lastFlight: String?
    /** URL to fill-size astronaut image. */
    var profileImage: String?
-   /** URL to small astromnaut image, */
+   /** URL to small astronaut image, */
    var profileImageThumbnail: String?
    /** Flights manned by this astronaut. */
    var flights: [LaunchJSON] = []
@@ -109,24 +109,24 @@ public class AstronautJSON: Identifiable, JSONElement, AutoEquatable, AutoHashab
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.status = IDNameJSON( json[ "status" ] )
-      self.type = IDNameJSON( json[ "type" ] )
-      self.dateOfBirth = nonEmptyString( json[ "date_of_birth" ] )
-      self.dateOfDeath = nonEmptyString( json[ "date_of_death" ] )
-      self.nationality = nonEmptyString( json[ "nationality" ] )
-      self.bio = nonEmptyString( json[ "bio" ] )
-      self.twitter = nonEmptyString( json[ "twitter" ] )
-      self.instagram = nonEmptyString( json[ "instagram" ] )
-      self.wiki = nonEmptyString( json[ "wiki" ] )
-      self.agency = AgencyJSON( json[ "agency" ] )
-      self.firstFlight = nonEmptyString( json[ "first_flight" ] )
-      self.lastFlight = nonEmptyString( json[ "last_flight" ] )
-      self.profileImage = nonEmptyString( json[ "profile_image" ] )
-      self.profileImageThumbnail = nonEmptyString( json[ "profile_image_thumbnail" ] )
-      self.flights = parseArray( json[ "flights" ] )
-      self.landings = parseArray( json[ "landings" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      name = nonEmptyString( json[ "name" ] )
+      status = IDNameJSON( json[ "status" ] )
+      type = IDNameJSON( json[ "type" ] )
+      dateOfBirth = nonEmptyString( json[ "date_of_birth" ] )
+      dateOfDeath = nonEmptyString( json[ "date_of_death" ] )
+      nationality = nonEmptyString( json[ "nationality" ] )
+      bio = nonEmptyString( json[ "bio" ] )
+      twitter = nonEmptyString( json[ "twitter" ] )
+      instagram = nonEmptyString( json[ "instagram" ] )
+      wiki = nonEmptyString( json[ "wiki" ] )
+      agency = AgencyJSON( json[ "agency" ] )
+      firstFlight = nonEmptyString( json[ "first_flight" ] )
+      lastFlight = nonEmptyString( json[ "last_flight" ] )
+      profileImage = nonEmptyString( json[ "profile_image" ] )
+      profileImageThumbnail = nonEmptyString( json[ "profile_image_thumbnail" ] )
+      flights = parseArray( json[ "flights" ] )
+      landings = parseArray( json[ "landings" ] )
    }
 }

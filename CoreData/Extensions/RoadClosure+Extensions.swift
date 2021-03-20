@@ -2,6 +2,11 @@
 
 import CoreData
 
+// swiftlint:disable identifier_name
+/** Core Data entity name for `URLLink`. */
+public let ROAD_CLOSURE_ENTITY_NAME: String = "RoadClosure"
+// swiftlint:enable identifier_name
+
 extension RoadClosure
 {
    //

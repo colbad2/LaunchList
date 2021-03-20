@@ -12,7 +12,7 @@ struct TabsView: View
    {
       let selectable: Binding =
          Binding(        // << proxy binding to catch tab tap
-            get: { self.selection },
+            get: { selection },
             set: { self.selection = $0
 
                // set new ID to recreate NavigationView, so put it
@@ -45,7 +45,7 @@ struct TabsView: View
          }
          .tabItem { TabInfo( iconName: "list.dash", title: "Datasets" ) }
          .tag( AppTab.datasets )
-         .id( self.resetDatasetsNavigationID ) // << making id modifiable
+         .id( resetDatasetsNavigationID ) // << making id modifiable
 
          NavigationView
          {

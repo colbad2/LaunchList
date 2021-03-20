@@ -115,7 +115,7 @@ public func updateEntity( json: LauncherConfigJSON, entity: LauncherConfig?, con
  */
 public func getLauncherConfig( by entityID: Int64, context: NSManagedObjectContext ) -> LauncherConfig?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_CONFIG_ENTITY_NAME ) as? LauncherConfig
+   getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_CONFIG_ENTITY_NAME ) as? LauncherConfig
 }
 
 /**
@@ -140,7 +140,7 @@ public func fetchLauncherConfig( launcherConfig: LauncherConfigJSON, context: NS
  */
 public func getLauncherConfigCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: LAUNCHER_CONFIG_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: LAUNCHER_CONFIG_ENTITY_NAME, context: context )
 }
 
 /**

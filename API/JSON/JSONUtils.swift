@@ -140,7 +140,7 @@ public func parseJSONString< T: JSONElement >( json: String ) -> T?
  */
 public func parseJSONString< T: JSONElement >( jsonData: Data ) -> T?
 {
-   return T( parseJSON( data: jsonData ) )
+   T( parseJSON( data: jsonData ) )
 //   let decoder: JSONDecoder = JSONDecoder()
 //   decoder.keyDecodingStrategy = .convertFromSnakeCase
 //
@@ -165,7 +165,13 @@ public func parseJSONString< T: JSONElement >( jsonData: Data ) -> T?
  */
 public func parseJSON( data: Data ) -> JSONStructure?
 {
-   return try? JSONSerialization.jsonObject( with: data, options: [] ) as? JSONStructure
+   do
+   {
+      return try JSONSerialization.jsonObject( with: data, options: [] ) as? JSONStructure
+   }
+   catch { print( "error: ", error ) }
+
+   return nil
 }
 
 /**
@@ -265,7 +271,7 @@ public func getCountryCodes( countryCode: String? ) -> [String]
  */
 public func guaranteedInt64( _ maybeInt64: Int64? ) -> Int64
 {
-   return maybeInt64 ?? -1
+   maybeInt64 ?? -1
 }
 
 /**
@@ -276,7 +282,7 @@ public func guaranteedInt64( _ maybeInt64: Int64? ) -> Int64
  */
 public func guaranteedInt16( _ maybeInt16: Int16? ) -> Int16
 {
-   return maybeInt16 ?? -1
+   maybeInt16 ?? -1
 }
 
 /**
@@ -287,7 +293,7 @@ public func guaranteedInt16( _ maybeInt16: Int16? ) -> Int16
  */
 public func guaranteedBool( _ maybeBool: Bool? ) -> Bool
 {
-   return maybeBool ?? false
+   maybeBool ?? false
 }
 
 /**
@@ -298,7 +304,7 @@ public func guaranteedBool( _ maybeBool: Bool? ) -> Bool
  */
 public func guaranteedDouble( _ maybeDouble: Double? ) -> Double
 {
-   return maybeDouble ?? -1
+   maybeDouble ?? -1
 }
 
 /**
@@ -336,5 +342,5 @@ public func nonNegativeDouble( _ any: Any? ) -> Double?
  */
 public func parseArray< T: JSONElement >( _ json: Any? ) -> [T]
 {
-   return ( json as? [JSONStructure] )?.compactMap { T( $0 ) } ?? []
+   ( json as? [ JSONStructure ] )?.compactMap { T( $0 ) } ?? []
 }

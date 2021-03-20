@@ -29,14 +29,14 @@ public class FirstStageJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.type = nonEmptyString( json[ "type" ] )
-      self.reused = json[ "reused" ] as? Bool
-      self.launcherFlightNumber = nonEmptyString( json[ "launcher_flight_number" ] )
-      self.launcher = LauncherJSON( json[ "reused" ] )
-      self.landing = LandingJSON( json[ "landing" ] )
-      self.previousFlightDate = nonEmptyString( json[ "previous_flight_date" ] )
-      self.turnaroundTimeDays = nonEmptyString( json[ "turn_around_time_days" ] )
-      self.previousFlight = LaunchJSON( json[ "previous_flight" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      type = nonEmptyString( json[ "type" ] )
+      reused = json[ "reused" ] as? Bool
+      launcherFlightNumber = nonEmptyString( json[ "launcher_flight_number" ] )
+      launcher = LauncherJSON( json[ "reused" ] )
+      landing = LandingJSON( json[ "landing" ] )
+      previousFlightDate = nonEmptyString( json[ "previous_flight_date" ] )
+      turnaroundTimeDays = nonEmptyString( json[ "turn_around_time_days" ] )
+      previousFlight = LaunchJSON( json[ "previous_flight" ] )
    }
 }

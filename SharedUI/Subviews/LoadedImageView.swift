@@ -9,7 +9,7 @@ struct LoadedImageView: View
 
    var body: some View
    {
-      if self.url != nil
+      if url != nil
       {
          Image( uiImage: imageLoader.image ?? UIImage() )
             .resizable()

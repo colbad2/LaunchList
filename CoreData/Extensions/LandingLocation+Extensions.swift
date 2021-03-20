@@ -71,7 +71,7 @@ public func updateEntity( json: LandingLocationJSON, entity: LandingLocation?, c
  */
 public func fetchAllLandingLocations( context: NSManagedObjectContext ) -> [LandingLocation]?
 {
-   return fetchAllEntities( entityName: LAUNCHER_ENTITY_NAME, context: context ) as? [LandingLocation]
+   fetchAllEntities( entityName: LAUNCHER_ENTITY_NAME, context: context ) as? [ LandingLocation ]
 }
 
 /**
@@ -86,7 +86,7 @@ public func fetchAllLandingLocations( context: NSManagedObjectContext ) -> [Land
  */
 public func getLandingLocation( by entityID: Int64, context: NSManagedObjectContext ) -> LandingLocation?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_ENTITY_NAME ) as? LandingLocation
+   getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_ENTITY_NAME ) as? LandingLocation
 }
 
 /**
@@ -111,7 +111,7 @@ public func fetchLandingLocation( launcher: LandingLocationJSON, context: NSMana
  */
 public func getLandingLocationCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: LAUNCHER_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: LAUNCHER_ENTITY_NAME, context: context )
 }
 
 /**

@@ -69,7 +69,7 @@ func updateEntity( json: MissionJSON, entity: Mission?, context: NSManagedObject
  */
 func getMission( by entityID: Int64, context: NSManagedObjectContext ) -> Mission?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: MISSION_ENTITY_NAME ) as? Mission
+   getEntityByID( entityID: entityID, context: context, entityName: MISSION_ENTITY_NAME ) as? Mission
 }
 
 /**
@@ -94,7 +94,7 @@ func fetchMission( mission: MissionJSON, context: NSManagedObjectContext ) -> Mi
  */
 func getMissionCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: MISSION_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: MISSION_ENTITY_NAME, context: context )
 }
 
 /**

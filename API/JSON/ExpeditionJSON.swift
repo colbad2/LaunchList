@@ -54,11 +54,11 @@ public class ExpeditionJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.start = nonEmptyString( json[ "start" ] )
-      self.end = nonEmptyString( json[ "end" ] )
-      self.spaceStation = SpaceStationJSON( json[ "spacestation" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      name = nonEmptyString( json[ "name" ] )
+      start = nonEmptyString( json[ "start" ] )
+      end = nonEmptyString( json[ "end" ] )
+      spaceStation = SpaceStationJSON( json[ "spacestation" ] )
    }
 }

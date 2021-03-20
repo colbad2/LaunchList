@@ -19,7 +19,7 @@ public class RoleTypeJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.role = nonEmptyString( json[ "role" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      role = nonEmptyString( json[ "role" ] )
    }
 }

@@ -2,27 +2,26 @@
 
 import SwiftUI
 
-struct CountdownView: View
+public struct CountdownView: View
 {
    @State var targetTime: Date?
    @State private var parts: DateComponents?
    // swiftlint:disable explicit_type_interface
-   let timer =
-      Timer.publish( every: 1, on: .main, in: .common ).autoconnect()
+   let timer = Timer.publish( every: 1, on: .main, in: .common ).autoconnect()
    // swiftlint:enable explicit_type_interface
 
-   var body: some View
+   public var body: some View
    {
       HStack
       {
          TimerPiece( top: countdownSign( countdownDate: targetTime ), bottom: " " )
-         TimerPiece( top: countdownString( self.parts?.day ), bottom: "days" )
+         TimerPiece( top: countdownString( parts?.day ), bottom: "days" )
          TimerPiece( top: ":", bottom: " " )
-         TimerPiece( top: countdownString( self.parts?.hour ), bottom: "hours" )
+         TimerPiece( top: countdownString( parts?.hour ), bottom: "hours" )
          TimerPiece( top: ":", bottom: " " )
-         TimerPiece( top: countdownString( self.parts?.minute ), bottom: "mins" )
+         TimerPiece( top: countdownString( parts?.minute ), bottom: "mins" )
          TimerPiece( top: ":", bottom: " " )
-         TimerPiece( top: countdownString( self.parts?.second ), bottom: "secs" )
+         TimerPiece( top: countdownString( parts?.second ), bottom: "secs" )
       }
       .onReceive( timer )
       {

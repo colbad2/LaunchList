@@ -6,11 +6,10 @@ import CoreData
  Structure in the starship API. Not copied into Core Data.
  
  ### Example
-
- {
-   "launches": [ … ],
-   "events": [ … ]
- }
+       {
+         "launches": [ … ],
+         "events": [ … ]
+       }
  */
 public struct StarshipEventsJSON: JSONElement
 {
@@ -20,7 +19,7 @@ public struct StarshipEventsJSON: JSONElement
    public init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.launches = parseArray( json[ "launches" ] )
-      self.events = parseArray( json[ "events" ] )
+      launches = parseArray( json[ "launches" ] )
+      events = parseArray( json[ "events" ] )
    }
 }

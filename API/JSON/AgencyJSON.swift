@@ -56,7 +56,7 @@
        spacecraft_list                   [SpacecraftConfig]
 
  */
-public class AgencyJSON: Identifiable, JSONElement, AutoEquatable, AutoHashable
+public class AgencyJSON: Identifiable, JSONElement, AutoEquatable, AutoHashable, CustomDebugStringConvertible // , Hashable
 {
    /** ID of the astronaut within the API. */
    public var id: Int64?
@@ -119,43 +119,129 @@ public class AgencyJSON: Identifiable, JSONElement, AutoEquatable, AutoHashable
    /** List of spacecraft used by the agency. */
    var spacecraftList: [SpacecraftConfigJSON] = []
 
+   public var debugDescription: String
+   {
+      """
+      AgencyJSON( id: \(id ?? -1),
+                  url: \(url ?? ""),
+                  name: \(name ?? ""),
+                  featured: \(String(describing: featured)),
+                  type: \(type ?? ""),
+                  countryCode: \(countryCode ?? ""),
+                  abbreviation: \(abbreviation ?? ""),
+                  agencyDescription: \(agencyDescription ?? ""),
+                  administrator: \(administrator ?? ""),
+                  foundingYear: \(foundingYear ?? ""),
+                  launchers: \(launchers ?? ""),
+                  spacecraft: \(spacecraft ?? ""),
+                  parent: \(parent ?? ""),
+                  imageURL: \(imageURL ?? ""),
+                  launchLibraryURL: \(launchLibraryURL ?? ""),
+                  totalLaunchCount: \(totalLaunchCount ?? -1),
+                  successfulLaunches: \(successfulLaunches ?? -1),
+                  consecutiveSuccessfulLaunches: \(consecutiveSuccessfulLaunches ?? -1),
+                  failedLaunches: \(failedLaunches ?? -1),
+                  pendingLaunches: \(pendingLaunches ?? -1),
+                  successfulLandings: \(successfulLandings ?? -1),
+                  failedLandings: \(failedLandings ?? -1),
+                  attemptedLandings: \(attemptedLandings ?? -1),
+                  consecutiveSuccessfulLandings: \(consecutiveSuccessfulLandings ?? -1),
+                  infoURL: \(infoURL ?? ""),
+                  wikiURL: \(wikiURL ?? ""),
+                  logoURL: \(logoURL ?? ""),
+                  nationURL: \(nationURL ?? ""),
+                  configurationList: \(configurationList),
+                  spacecraftList: \(spacecraftList))
+      """
+   }
+
+//   public static func == ( lhs: AgencyJSON, rhs: AgencyJSON ) -> Bool
+//   {
+//      if lhs === rhs { return true }
+//      if type( of: lhs ) != type( of: rhs ) { return false }
+//
+//      if lhs.id != rhs.id || lhs.url != rhs.url || lhs.name != rhs.name || lhs.featured != rhs.featured || lhs.type != rhs.type { return false }
+//      if lhs.countryCode != rhs.countryCode || lhs.abbreviation != rhs.abbreviation || lhs.agencyDescription != rhs.agencyDescription ||
+//         lhs.administrator != rhs.administrator || lhs.foundingYear != rhs.foundingYear || lhs.launchers != rhs.launchers { return false }
+//      if lhs.spacecraft != rhs.spacecraft || lhs.parent != rhs.parent || lhs.imageURL != rhs.imageURL { return false }
+//      if lhs.launchLibraryURL != rhs.launchLibraryURL || lhs.totalLaunchCount != rhs.totalLaunchCount { return false }
+//      if lhs.successfulLaunches != rhs.successfulLaunches || lhs.consecutiveSuccessfulLaunches != rhs.consecutiveSuccessfulLaunches { return false }
+//      if lhs.failedLaunches != rhs.failedLaunches || lhs.pendingLaunches != rhs.pendingLaunches { return false }
+//      if lhs.successfulLandings != rhs.successfulLandings || lhs.failedLandings != rhs.failedLandings { return false }
+//      if lhs.attemptedLandings != rhs.attemptedLandings || lhs.consecutiveSuccessfulLandings != rhs.consecutiveSuccessfulLandings { return false }
+//      if lhs.infoURL != rhs.infoURL || lhs.wikiURL != rhs.wikiURL || lhs.logoURL != rhs.logoURL || lhs.nationURL != rhs.nationURL { return false }
+//      return true
+//   }
+
    /**
-    Make a `AgencyJSON` from a JSON structure.
+    Make an `AgencyJSON` from a JSON structure.
 
     - parameter json: `Any` JSON to parse
     */
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.featured = json[ "featured" ] as? Bool
-      self.type = nonEmptyString( json[ "type" ] )
-      self.countryCode = nonEmptyString( json[ "country_code" ] )
-      self.abbreviation = nonEmptyString( json[ "abbrev" ] )
-      self.agencyDescription = nonEmptyString( json[ "description" ] )
-      self.administrator = nonEmptyString( json[ "administrator" ] )
-      self.foundingYear = nonEmptyString( json[ "founding_year" ] )
-      self.launchers = nonEmptyString( json[ "launchers" ] )
-      self.spacecraft = nonEmptyString( json[ "spacecraft" ] )
-      self.parent = nonEmptyString( json[ "parent" ] )
-      self.launchLibraryURL = nonEmptyString( json[ "launch_library_url" ] )
-      self.totalLaunchCount = nonNegativeInt( json[ "total_launch_count" ] )
-      self.successfulLaunches = nonNegativeInt( json[ "successful_launches" ] )
-      self.consecutiveSuccessfulLaunches = nonNegativeInt( json[ "consecutive_successful_launches" ] )
-      self.failedLaunches = nonNegativeInt( json[ "failed_launches" ] )
-      self.pendingLaunches = nonNegativeInt( json[ "pending_launches" ] )
-      self.successfulLandings = nonNegativeInt( json[ "successful_landings" ] )
-      self.failedLandings = nonNegativeInt( json[ "failed_landings" ] )
-      self.attemptedLandings = nonNegativeInt( json[ "attempted_landings" ] )
-      self.consecutiveSuccessfulLandings = nonNegativeInt( json[ "consecutive_successful_landings" ] )
-      self.infoURL = nonEmptyString( json[ "info_url" ] )
-      self.wikiURL = nonEmptyString( json[ "wiki_url" ] )
-      self.logoURL = nonEmptyString( json[ "logo_url" ] )
-      self.imageURL = nonEmptyString( json[ "image_url" ] )
-      self.nationURL = nonEmptyString( json[ "nation_url" ] )
-      self.configurationList = parseArray( json[ "launcher_list" ] )
-      self.spacecraftList = parseArray( json[ "spacecraft_list" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      name = nonEmptyString( json[ "name" ] )
+      featured = json[ "featured" ] as? Bool
+      type = nonEmptyString( json[ "type" ] )
+      countryCode = nonEmptyString( json[ "country_code" ] )
+      abbreviation = nonEmptyString( json[ "abbrev" ] )
+      agencyDescription = nonEmptyString( json[ "description" ] )
+      administrator = nonEmptyString( json[ "administrator" ] )
+      foundingYear = nonEmptyString( json[ "founding_year" ] )
+      launchers = nonEmptyString( json[ "launchers" ] )
+      spacecraft = nonEmptyString( json[ "spacecraft" ] )
+      parent = nonEmptyString( json[ "parent" ] )
+      launchLibraryURL = nonEmptyString( json[ "launch_library_url" ] )
+      totalLaunchCount = nonNegativeInt( json[ "total_launch_count" ] )
+      successfulLaunches = nonNegativeInt( json[ "successful_launches" ] )
+      consecutiveSuccessfulLaunches = nonNegativeInt( json[ "consecutive_successful_launches" ] )
+      failedLaunches = nonNegativeInt( json[ "failed_launches" ] )
+      pendingLaunches = nonNegativeInt( json[ "pending_launches" ] )
+      successfulLandings = nonNegativeInt( json[ "successful_landings" ] )
+      failedLandings = nonNegativeInt( json[ "failed_landings" ] )
+      attemptedLandings = nonNegativeInt( json[ "attempted_landings" ] )
+      consecutiveSuccessfulLandings = nonNegativeInt( json[ "consecutive_successful_landings" ] )
+      infoURL = nonEmptyString( json[ "info_url" ] )
+      wikiURL = nonEmptyString( json[ "wiki_url" ] )
+      logoURL = nonEmptyString( json[ "logo_url" ] )
+      imageURL = nonEmptyString( json[ "image_url" ] )
+      nationURL = nonEmptyString( json[ "nation_url" ] )
+      configurationList = parseArray( json[ "launcher_list" ] )
+      spacecraftList = parseArray( json[ "spacecraft_list" ] )
+   }
+
+   public func hash( into hasher: inout Hasher )
+   {
+      hasher.combine( id )
+      hasher.combine( url )
+      hasher.combine( name )
+      hasher.combine( featured )
+      hasher.combine( type )
+      hasher.combine( countryCode )
+      hasher.combine( abbreviation )
+      hasher.combine( agencyDescription )
+      hasher.combine( administrator )
+      hasher.combine( foundingYear )
+      hasher.combine( launchers )
+      hasher.combine( spacecraft )
+      hasher.combine( parent )
+      hasher.combine( imageURL )
+      hasher.combine( launchLibraryURL )
+      hasher.combine( totalLaunchCount )
+      hasher.combine( successfulLaunches )
+      hasher.combine( consecutiveSuccessfulLaunches )
+      hasher.combine( failedLaunches )
+      hasher.combine( pendingLaunches )
+      hasher.combine( successfulLandings )
+      hasher.combine( failedLandings )
+      hasher.combine( attemptedLandings )
+      hasher.combine( consecutiveSuccessfulLandings )
+      hasher.combine( infoURL )
+      hasher.combine( wikiURL )
+      hasher.combine( logoURL )
+      hasher.combine( nationURL )
    }
 }

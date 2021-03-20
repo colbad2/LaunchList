@@ -4,7 +4,7 @@ import SwiftUI
 
 struct DockingDetail: View
 {
-   var docking: Docking
+   var docking: DockingEvent
 
    var body: some View
    {
@@ -20,7 +20,7 @@ struct DockingDetail: View
                TitleField( text: docking.flightVehicle?.destination )
                LeftField( prefix: "Docking:", text: docking.docking )
                LeftField( prefix: "Departure:", text: docking.docking )
-               LeftField( prefix: "Location:", text: docking.dockingLocationName )
+               LeftField( prefix: "Location:", text: docking.dockingLocation )
 
                // AgencyLink( agencyID: docking.flightVehicle?.spacecraft?.spacecraftConfig?.agencies.id )
                List( getDockingAgencies( docking: docking ) )
@@ -37,7 +37,7 @@ struct DockingDetail: View
    }
 }
 
-func getDockingAgencies( docking: Docking ) -> [Agency]
+func getDockingAgencies( docking: DockingEvent ) -> [Agency]
 {
    let agenciesSet: Set< Agency >? = docking.flightVehicle?.spacecraft?.spacecraftConfig?.agencies as? Set<Agency>
    guard let set = agenciesSet else { return [] }
@@ -49,7 +49,7 @@ struct DockingDetailPreview: PreviewProvider
 {
    static var previews: some View
    {
-      if let docking: Docking = getSampleDockingEntity()
+      if let docking: DockingEvent = getSampleDockingEntity()
       {
          DockingDetail( docking: docking )
       }

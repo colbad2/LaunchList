@@ -22,7 +22,7 @@ extension DockingEvent
  - parameter context: Core Data context to add the entity to.
  - returns:           the added entity
  */
-public func addToCoreData( json: DockingEventJSON, context: NSManagedObjectContext ) -> DockingEvent
+public func addToCoreData( json: DockingJSON, context: NSManagedObjectContext ) -> DockingEvent
 {
    let newDockingEvent: DockingEvent = DockingEvent( context: context )
    updateEntity( json: json, entity: newDockingEvent, context: context )
@@ -37,7 +37,7 @@ public func addToCoreData( json: DockingEventJSON, context: NSManagedObjectConte
  - parameter entity: `DockingEvent?` entity to fill/update
  - parameter context: `NSManagedObjectContext` Core Data object context to do the update in
  */
-public func updateEntity( json: DockingEventJSON, entity: DockingEvent?, context: NSManagedObjectContext )
+public func updateEntity( json: DockingJSON, entity: DockingEvent?, context: NSManagedObjectContext )
 {
    guard let dockingEventEntity = entity else { return }
 
@@ -48,7 +48,7 @@ public func updateEntity( json: DockingEventJSON, entity: DockingEvent?, context
    dockingEventEntity.departure = json.departure
    if let flight: SpacecraftFlightJSON = json.flightVehicle
    {
-      dockingEventEntity.flightVehicle = fetchSpacecraftFlight( flight: flight, context: context )
+      dockingEventEntity.flight = fetchSpacecraftFlight( flight: flight, context: context )
    }
    dockingEventEntity.dockingLocation = json.dockingLocation?.name
    if let spacestation: SpaceStationJSON = json.spacestation
@@ -57,6 +57,35 @@ public func updateEntity( json: DockingEventJSON, entity: DockingEvent?, context
    }
 
    dockingEventEntity.fetched = Date()
+}
+
+/**
+ Returns a sorted version of the given `Docking` array.
+
+ - parameter dockingArray: `[DockingEvent]?` list of `Docking`s to sort
+ - returns: `[Docking]` sorted version of the given `Docking` list, never nil
+ */
+public func sortDockingsByName( dockingArray: [DockingEvent]? ) -> [DockingEvent]
+{
+   guard let dockingArray = dockingArray else { return [] }
+
+   var dockings: [DockingEvent] = Array( dockingArray )
+   dockings.sort
+   {
+      docking1, docking2 in
+
+      if let name1: String = docking1.docking,
+         let name2: String = docking2.docking
+      {
+         return name1 < name2
+      }
+      else
+      {
+         return false
+      }
+   }
+
+   return dockings
 }
 
 /**
@@ -71,17 +100,17 @@ public func updateEntity( json: DockingEventJSON, entity: DockingEvent?, context
  */
 public func getDockingEvent( by entityID: Int64, context: NSManagedObjectContext ) -> DockingEvent?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: DOCKING_EVENT_ENTITY_NAME ) as? DockingEvent
+   getEntityByID( entityID: entityID, context: context, entityName: DOCKING_EVENT_ENTITY_NAME ) as? DockingEvent
 }
 
 /**
- Fetches, updates, or creates a `DockingEvent` from the context, given the data.
+ Fetches, updates, or creates a `Docking` from the context, given the data.
 
- - parameter dockingEvent: `DockingEventJSON` JSON data about the spacecraft config
+ - parameter dockingEvent: `DockingJSON` JSON data about the spacecraft config
  - parameter context:      `NSManagedObjectContext` Core Data object context
  - returns:                `DockingEvent` updated entity
  */
-public func fetchDockingEvent( dockingEvent: DockingEventJSON, context: NSManagedObjectContext ) -> DockingEvent
+public func fetchDockingEvent( dockingEvent: DockingJSON, context: NSManagedObjectContext ) -> DockingEvent
 {
    let dockingEventEntity: DockingEvent? = getDockingEvent( by: dockingEvent.id ?? -1, context: context )
    updateEntity( json: dockingEvent, entity: dockingEventEntity, context: context )

@@ -439,7 +439,7 @@ public class AstronautRoleEnum: BaseConfigs
  "id": 6,
  "name": "Launch in Flight",
  "abbrev": "In Flight",
- "description": "The lauch vehicle has lifted off from the launchpad."
+ "description": "The launch vehicle has lifted off from the launchpad."
  },
  {
  "id": 7,

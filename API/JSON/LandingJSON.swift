@@ -22,11 +22,11 @@ public class LandingJSON: Decodable, Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.attempt = json[ "attempt" ] as? Bool
-      self.success = json[ "success" ] as? Bool
-      self.landingDescription = nonEmptyString( json[ "description" ] )
-      self.location = LocationJSON( json[ "location" ] )
-      self.type = LandingTypeJSON( json[ "type" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      attempt = json[ "attempt" ] as? Bool
+      success = json[ "success" ] as? Bool
+      landingDescription = nonEmptyString( json[ "description" ] )
+      location = LocationJSON( json[ "location" ] )
+      type = LandingTypeJSON( json[ "type" ] )
    }
 }

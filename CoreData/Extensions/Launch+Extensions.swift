@@ -13,20 +13,20 @@ public let LAUNCH_ENTITY_NAME: String = "Launch"
 extension Launch
 {
    /** `Set< Event >` wrapper for the generated `NSSet` of `Event`s. */
-   var eventsSet: Set< Event > { self.events as? Set< Event > ?? Set< Event >() }
+   var eventsSet: Set< Event > { events as? Set< Event > ?? Set< Event >() }
 
    /** `Set< Program >` wrapper for the generated `NSSet` of `Program`s. */
-   var programsSet: Set< Program > { self.programs as? Set< Program > ?? Set< Program >() }
+   var programsSet: Set< Program > { programs as? Set< Program > ?? Set< Program >() }
 
    /** Array of `Program`s, sorted by name. */
-   var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( self.programsSet ) ) }
+   var sortedPrograms: [Program] { sortProgramsByName( programArray: Array( programsSet ) ) }
 
    /** True if the `Launch` has any `Program`s. */
    var hasPrograms: Bool { !programsSet.isEmpty }
 
    func getProviderName() -> String // DATABASE CHANGE
    {
-      var providerName: String? = self.agency?.name
+      var providerName: String? = agency?.name
       if providerName == "National Aeronautics and Space Administration"
       {
          providerName = "NASA"
@@ -53,7 +53,7 @@ extension Launch
    {
       guard let json = provider else { return }
       let agencyEntity: Agency = fetchAgency( agency: json, context: context )
-      self.agency = agencyEntity
+      agency = agencyEntity
       agencyEntity.addToLaunches( self )
    }
 
@@ -233,7 +233,7 @@ public func updateEntity( json: LaunchJSON, entity: Launch?, context: NSManagedO
  */
 public func fetchAllLaunches( context: NSManagedObjectContext ) -> [Launch]?
 {
-   return fetchAllEntities( entityName: LAUNCH_ENTITY_NAME, context: context ) as? [Launch]
+   fetchAllEntities( entityName: LAUNCH_ENTITY_NAME, context: context ) as? [ Launch ]
 }
 
 /**
@@ -327,7 +327,7 @@ public func fetchLaunch( launch: LaunchJSON, context: NSManagedObjectContext ) -
  */
 public func getLaunchCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: LAUNCH_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: LAUNCH_ENTITY_NAME, context: context )
 }
 
 /**

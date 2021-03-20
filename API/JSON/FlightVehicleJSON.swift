@@ -28,10 +28,10 @@ public class FlightVehicleJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.destination = nonEmptyString( json[ "destination" ] )
-      self.missionEnd = nonEmptyString( json[ "missionEnd" ] )
-      self.spacecraft = SpacecraftJSON( json[ "spacecraft" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      destination = nonEmptyString( json[ "destination" ] )
+      missionEnd = nonEmptyString( json[ "missionEnd" ] )
+      spacecraft = SpacecraftJSON( json[ "spacecraft" ] )
    }
 }

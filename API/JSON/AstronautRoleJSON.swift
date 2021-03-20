@@ -15,9 +15,9 @@ public class AstronautRoleJSON: Identifiable, JSONElement
    public required init?(  _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.role = nonEmptyString( json[ "role" ] )
-      self.priority = nonNegativeInt( json[ "priority" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      role = nonEmptyString( json[ "role" ] )
+      priority = nonNegativeInt( json[ "priority" ] )
    }
 
    init( id: Int64, role: String, priority: Int64? = 10 )

@@ -13,19 +13,19 @@ public let ROCKET_ENTITY_NAME: String = "Rocket"
 extension Rocket
 {
    /** `Set< Launch >` wrapper for the generated `NSSet` of `Launch`s. */
-   var launchesSet: Set< Launch > { self.launches as? Set< Launch > ?? Set< Launch >() }
+   var launchesSet: Set< Launch > { launches as? Set< Launch > ?? Set< Launch >() }
 
    /** `Set< Vehicle >` wrapper for the generated `NSSet` of `Vehicle`s. */
-   var rocketsSet: Set< Rocket > { self.vehicles as? Set< Rocket > ?? Set< Rocket >() }
+   var rocketsSet: Set< Rocket > { vehicles as? Set< Rocket > ?? Set< Rocket >() }
 
    /** Array of `Launch`s, sorted by name. */
-   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( self.launchesSet ) ) }
+   var sortedLaunches: [Launch] { sortLaunchesByName( launchArray: Array( launchesSet ) ) }
 
    /** True if the `Rocket` has any `Launch`s. */
    var hasLaunches: Bool { !launchesSet.isEmpty }
 
    /** Array of `Vehicle`s, sorted by name. */
-   var sortedRockets: [Rocket] { sortRocketsByName( rocketArray: Array( self.rocketsSet ) ) }
+   var sortedRockets: [Rocket] { sortRocketsByName( rocketArray: Array( rocketsSet ) ) }
 
    /** True if the `Rocket` has any `Vehicle`s. */
    var hasVehicles: Bool { !rocketsSet.isEmpty }
@@ -113,7 +113,7 @@ func sortRocketsByName( rocketArray: [Rocket]? ) -> [Rocket]
  */
 public func getRocket( by id: Int64, context: NSManagedObjectContext ) -> Rocket?
 {
-   return getEntityByID( entityID: id, context: context, entityName: ROCKET_ENTITY_NAME ) as? Rocket
+   getEntityByID( entityID: id, context: context, entityName: ROCKET_ENTITY_NAME ) as? Rocket
 }
 
 /**
@@ -138,7 +138,7 @@ public func fetchRocket( rocket: RocketJSON, context: NSManagedObjectContext ) -
  */
 public func getRocketCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: ROCKET_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: ROCKET_ENTITY_NAME, context: context )
 }
 
 /**

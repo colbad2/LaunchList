@@ -110,7 +110,7 @@ public func updateEntity( json: AstronautJSON, entity: Astronaut?, context: NSMa
  */
 public func fetchAllAstronauts( context: NSManagedObjectContext ) -> [Astronaut]?
 {
-   return fetchAllEntities( entityName: ASTRONAUT_ENTITY_NAME, context: context ) as? [Astronaut]
+   fetchAllEntities( entityName: ASTRONAUT_ENTITY_NAME, context: context ) as? [ Astronaut ]
 }
 
 /**
@@ -154,7 +154,7 @@ public func sortAstronautsByName( astronautArray: [Astronaut]? ) -> [Astronaut]
  */
 public func getAstronaut( by id: Int64, context: NSManagedObjectContext ) -> Astronaut?
 {
-   return getEntityByID( entityID: id, context: context, entityName: ASTRONAUT_ENTITY_NAME ) as? Astronaut
+   getEntityByID( entityID: id, context: context, entityName: ASTRONAUT_ENTITY_NAME ) as? Astronaut
 }
 
 /**
@@ -179,7 +179,7 @@ public func fetchAstronaut( astronaut: AstronautJSON, context: NSManagedObjectCo
  */
 public func getAstronautCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: ASTRONAUT_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: ASTRONAUT_ENTITY_NAME, context: context )
 }
 
 /**

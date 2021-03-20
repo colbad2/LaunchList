@@ -114,19 +114,19 @@ class LaunchRequest: BaseAPIListRequest, APIListRequest
 
    func copy() -> APIListRequest
    {
-      return LaunchRequest( baseURL: base, endPoint: endPoint, searchTerm: search, orderingField: ordering,
-                            limit: limit, offset: offset, name: name, slug: slug,
-                            rocketConfigName: rocketConfigName, rocketConfigID: rocketConfigID, status: status,
-                            launchLibraryID: launchLibraryID,
-                            spacecraftName: spacecraftName, spacecraftNameContains: spacecraftNameContains,
-                            spacecraftID: spacecraftID, manufacturerName: manufacturerName,
-                            manufacturerNameContains: manufacturerNameContains, rocketConfigFullName: rocketConfigFullName,
-                            rocketConfigFullNameContains: rocketConfigFullNameContains,
-                            orbitName: orbitName, orbitNameContains: orbitNameContains, program: program, locationIDs: locationIDs,
-                            launchServiceProviderIDs: launchServiceProviderIDs, isCrewed: isCrewed,
-                            includeSuborbital: includeSuborbital, serialNumber: serialNumber,
-                            launchServiceProviderName: launchServiceProviderName, launchServiceProviderID: launchServiceProviderID,
-                            launcherConfigID: launcherConfigID,
-                            spacecraftConfigIDs: spacecraftConfigIDs, related: related, hideRecentPrevious: hideRecentPrevious )
+      LaunchRequest( baseURL: base, endPoint: endPoint, searchTerm: search, orderingField: ordering,
+                     limit: limit, offset: offset, name: name, slug: slug,
+                     rocketConfigName: rocketConfigName, rocketConfigID: rocketConfigID, status: status,
+                     launchLibraryID: launchLibraryID,
+                     spacecraftName: spacecraftName, spacecraftNameContains: spacecraftNameContains,
+                     spacecraftID: spacecraftID, manufacturerName: manufacturerName,
+                     manufacturerNameContains: manufacturerNameContains, rocketConfigFullName: rocketConfigFullName,
+                     rocketConfigFullNameContains: rocketConfigFullNameContains,
+                     orbitName: orbitName, orbitNameContains: orbitNameContains, program: program, locationIDs: locationIDs,
+                     launchServiceProviderIDs: launchServiceProviderIDs, isCrewed: isCrewed,
+                     includeSuborbital: includeSuborbital, serialNumber: serialNumber,
+                     launchServiceProviderName: launchServiceProviderName, launchServiceProviderID: launchServiceProviderID,
+                     launcherConfigID: launcherConfigID,
+                     spacecraftConfigIDs: spacecraftConfigIDs, related: related, hideRecentPrevious: hideRecentPrevious )
    }
 }

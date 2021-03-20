@@ -73,8 +73,8 @@ struct AstronautDetail: View
  */
 func lifeDates( astronaut: Astronaut ) -> String
 {
-   return dates( first: astronaut.dateOfBirth ?? "",
-                 second: astronaut.dateOfDeath ?? "present" )
+   dates( first: astronaut.dateOfBirth ?? "",
+          second: astronaut.dateOfDeath ?? "present" )
 }
 
 /**

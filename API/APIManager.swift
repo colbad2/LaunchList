@@ -64,427 +64,427 @@ class APIManager
    // /agencies/
    func agencyList() -> [AgencyJSON]
    {
-      return getAPIList( with: AgencyListRequest( baseURL: self.baseURL ) )
+      getAPIList( with: AgencyListRequest( baseURL: baseURL ) )
    }
 
    // /agencies/{id}
    func agency( withID id: Int64 ) -> AgencyJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)agencies/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)agencies/\(id)" )
    }
 
    // /astronaut/
    func astronautList() -> [AstronautJSON]
    {
-      return getAPIList( with: AstronautListRequest( baseURL: self.baseURL ) )
+      getAPIList( with: AstronautListRequest( baseURL: baseURL ) )
    }
 
    // /astronaut/{id}
    func astronaut( withID id: Int64 ) -> AstronautJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)astronaut/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)astronaut/\(id)" )
    }
 
    // /config/agencytype/
    func agencyTypeList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/agencytype/" )
+      getResults( withURL: "\(API_URL_BASE)config/agencytype/" )
    }
 
    // /config/agencytype/{id}
    func agencyType( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/agencytype/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/agencytype/\(id)" )
    }
 
    // /config/astronautrole/
    func astronautRoleList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/astronautrole/" )
+      getResults( withURL: "\(API_URL_BASE)config/astronautrole/" )
    }
 
    // /config/astronautrole/{id}
    func astronautRole( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/astronautrole/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/astronautrole/\(id)" )
    }
 
    // /config/astronautstatus/
    func astronautStatusList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/astronautstatus/" )
+      getResults( withURL: "\(API_URL_BASE)config/astronautstatus/" )
    }
 
    // /config/astronautstatus/{id}
    func astronautStatus( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/astronautstatus/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/astronautstatus/\(id)" )
    }
 
    // /config/astronauttype/
    func astronautTypeList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/astronauttype/" )
+      getResults( withURL: "\(API_URL_BASE)config/astronauttype/" )
    }
 
    // /config/astronauttype/{id}
    func astronautType( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/astronauttype/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/astronauttype/\(id)" )
    }
 
    // /config/dockinglocation/
    func dockingLocationList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/dockinglocation/" )
+      getResults( withURL: "\(API_URL_BASE)config/dockinglocation/" )
    }
 
    // /config/dockinglocation/{id}
    func dockingLocation( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/dockinglocation/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/dockinglocation/\(id)" )
    }
 
    // /config/eventtype/
    func eventTypeList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/eventtype/" )
+      getResults( withURL: "\(API_URL_BASE)config/eventtype/" )
    }
 
    // /config/eventtype/{id}
    func eventType( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/eventtype/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/eventtype/\(id)" )
    }
 
    // /config/firststagetype/
-   func firstStagetypeTypeList() -> [IDNameJSON]
+   func firstStageTypeList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/firststagetype/" )
+      getResults( withURL: "\(API_URL_BASE)config/firststagetype/" )
    }
 
    // /config/firststagetype/{id}
    func firstStageType( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/firststagetype/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/firststagetype/\(id)" )
    }
 
    // /config/landinglocation/
    func landingLocationList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/landinglocation/" )
+      getResults( withURL: "\(API_URL_BASE)config/landinglocation/" )
    }
 
    // /config/landinglocation/{id}
    func landingLocation( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/landinglocation/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/landinglocation/\(id)" )
    }
 
    // /config/launcher/
-   func launcherList() -> [IDNameJSON]
+   func launcherConfigList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/launcher/" )
+      getResults( withURL: "\(API_URL_BASE)config/launcher/" )
    }
 
    // /config/launcher/{id}
-   func launcher( withID id: Int64 ) -> IDNameJSON?
+   func launcherConfig( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/launcher/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/launcher/\(id)" )
    }
 
    // /config/launchstatus/
    func launchStatusList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/launchstatus/" )
+      getResults( withURL: "\(API_URL_BASE)config/launchstatus/" )
    }
 
    // /config/launchstatus/{id}
    func launchStatus( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/launchstatus/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/launchstatus/\(id)" )
    }
 
    // /config/missiontype/
    func missionTypeList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/missiontype/" )
+      getResults( withURL: "\(API_URL_BASE)config/missiontype/" )
    }
 
    // /config/missiontype/{id}
    func missionType( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/missiontype/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/missiontype/\(id)" )
    }
 
    // /config/noticetype/
    func noticeTypeList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/noticetype/" )
+      getResults( withURL: "\(API_URL_BASE)config/noticetype/" )
    }
 
    // /config/noticetype/{id}
    func noticeType( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/noticetype/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/noticetype/\(id)" )
    }
 
    // /config/orbit/
    func orbitList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/orbit/" )
+      getResults( withURL: "\(API_URL_BASE)config/orbit/" )
    }
 
    // /config/orbit/{id}
    func orbit( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/orbit/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/orbit/\(id)" )
    }
 
    // /config/roadclosurestatus/
    func roadClosureStatusList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/roadclosurestatus/" )
+      getResults( withURL: "\(API_URL_BASE)config/roadclosurestatus/" )
    }
 
    // /config/roadclosurestatus/{id}
    func roadClosureStatus( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/roadclosurestatus/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/roadclosurestatus/\(id)" )
    }
 
    // /config/spacecraft/
-   func spacecraftList() -> [IDNameJSON]
+   func spacecraftConfigList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/spacecraft/" )
+      getResults( withURL: "\(API_URL_BASE)config/spacecraft/" )
    }
 
    // /config/spacecraft/{id}
-   func spacecraft( withID id: Int64 ) -> IDNameJSON?
+   func spacecraftConfig( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/spacecraft/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/spacecraft/\(id)" )
    }
 
    // /config/spacecraftstatus/
    func spacecraftStatusList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/spacecraftstatus/" )
+      getResults( withURL: "\(API_URL_BASE)config/spacecraftstatus/" )
    }
 
    // /config/spacecraftstatus/{id}
    func spacecraftStatus( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/spacecraftstatus/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/spacecraftstatus/\(id)" )
    }
 
    // /config/spacestationstatus/
    func spaceStationStatusList() -> [IDNameJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)config/spacestationstatus/" )
+      getResults( withURL: "\(API_URL_BASE)config/spacestationstatus/" )
    }
 
    // /config/spacestationstatus/{id}
    func spaceStationStatus( withID id: Int64 ) -> IDNameJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)config/spacestationstatus/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)config/spacestationstatus/\(id)" )
    }
 
    // /dashboard/starship/
    func starshipDashboard() -> StarshipListJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)dashboard/starship/" )
+      getAPIRecord( withURL: "\(API_URL_BASE)dashboard/starship/" )
    }
 
    // /docking_event/
-   func dockingEventList() -> [DockingEventJSON]
+   func dockingEventList() -> [DockingJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)docking_event/" )
+      getResults( withURL: "\(API_URL_BASE)docking_event/" )
    }
 
    // /docking_event/{id}
-   func dockingEvent( withID id: Int64 ) -> IDNameJSON?
+   func dockingEvent( withID id: Int64 ) -> DockingJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)docking_event/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)docking_event/\(id)" )
    }
 
    // /event/
    func eventList() -> [EventJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)event/" )
+      getResults( withURL: "\(API_URL_BASE)event/" )
    }
 
    // /event/{id}
    func event( withID id: Int64 ) -> EventJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)event/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)event/\(id)" )
    }
 
    // /event/previous/
    func previousEventList() -> [EventJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)event/previous/" )
+      getResults( withURL: "\(API_URL_BASE)event/previous/" )
    }
 
    // /event/previous/{id}
    func previousEvent( withID id: Int64 ) -> EventJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)event/previous/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)event/previous/\(id)" )
    }
 
    // /event/upcoming
    func upcomingEventList() -> [EventJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)event/upcoming/" )
+      getResults( withURL: "\(API_URL_BASE)event/upcoming/" )
    }
 
    // /event/upcoming/{id}
    func upcomingEvent( withID id: Int64 ) -> EventJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)event/upcoming/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)event/upcoming/\(id)" )
    }
 
    // /expedition/
    func expeditionList() -> [ExpeditionJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)expedition/" )
+      getResults( withURL: "\(API_URL_BASE)expedition/" )
    }
 
    // /expedition/{id}
    func expedition( withID id: Int64 ) -> ExpeditionJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)expedition/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)expedition/\(id)" )
    }
 
    // /launch/
-   func launches() -> [LaunchJSON]
+   func launchList() -> [LaunchJSON]
    {
-      return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/" ) )
+      getAPIList( with: LaunchRequest( baseURL: baseURL, endPoint: "launch/" ) )
    }
 
    // /launch/{id}
    func launch( withID id: Int64 ) -> LaunchJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)launch/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)launch/\(id)" )
    }
 
    // /launch/previous/
    func previousLaunches() -> [LaunchJSON]
    {
-      return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/previous/" ) )
+      getAPIList( with: LaunchRequest( baseURL: baseURL, endPoint: "launch/previous/" ) )
    }
 
    // /launch/previous/{id}
    func previousLaunch( withID id: Int64 ) -> LaunchJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)launch/previous/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)launch/previous/\(id)" )
    }
 
    // /launch/upcoming
    func upcomingLaunches() -> [LaunchJSON]
    {
-      return getAPIList( with: LaunchRequest( baseURL: self.baseURL, endPoint: "launch/upcoming/" ) )
+      getAPIList( with: LaunchRequest( baseURL: baseURL, endPoint: "launch/upcoming/" ) )
    }
 
    // /launch/upcoming/{id}
    func upcomingLaunch( withID id: Int64 ) -> LaunchJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)launch/upcoming/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)launch/upcoming/\(id)" )
    }
 
    // /launcher/
    func launcherList() -> [LauncherJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)launcher/" )
+      getResults( withURL: "\(API_URL_BASE)launcher/" )
    }
 
    // /launcher/{id}
    func launcher( withID id: Int64 ) -> LauncherJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)launcher/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)launcher/\(id)" )
    }
 
    // /location/
    func locationList() -> [LocationJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)location/" )
+      getResults( withURL: "\(API_URL_BASE)location/" )
    }
 
    // /location/{id}
    func location( withID id: Int64 ) -> LocationJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)location/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)location/\(id)" )
    }
 
    // /pad/
    func padList() -> [PadJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)pad/" )
+      getResults( withURL: "\(API_URL_BASE)pad/" )
    }
 
    // /pad/{id}
    func pad( withID id: Int64 ) -> PadJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)pad/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)pad/\(id)" )
    }
 
    // /program/
    func programList() -> [ProgramJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)program/" )
+      getResults( withURL: "\(API_URL_BASE)program/" )
    }
 
    // /program/{id}
    func program( withID id: Int64 ) -> ProgramJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)program/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)program/\(id)" )
    }
 
    // /spacecraft/
    func spacecraftList() -> [SpacecraftJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)spacecraft/" )
+      getResults( withURL: "\(API_URL_BASE)spacecraft/" )
    }
 
    // /spacecraft/{id}
    func spacecraft( withID id: Int64 ) -> SpacecraftJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)spacecraft/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)spacecraft/\(id)" )
    }
 
    // /spacecraft/flight/
    func spacecraftFlightList() -> [SpacecraftFlightJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)spacecraft/flight/" )
+      getResults( withURL: "\(API_URL_BASE)spacecraft/flight/" )
    }
 
    // /spacecraft/flight/{id}
    func spacecraftFlight( withID id: Int64 ) -> SpacecraftFlightJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)spacecraft/flight/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)spacecraft/flight/\(id)" )
    }
 
    // /spacestation/
-   func spacestationList() -> [SpaceStationJSON]
+   func spaceStationList() -> [SpaceStationJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)spacestation/" )
+      getResults( withURL: "\(API_URL_BASE)spacestation/" )
    }
 
    // /spacestation/{id}
-   func spacestation( withID id: Int64 ) -> SpaceStationJSON?
+   func spaceStation( withID id: Int64 ) -> SpaceStationJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)spacestation/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)spacestation/\(id)" )
    }
 
    // /updates/
-   func updatesList() -> [UpdateJSON]
+   func updateList() -> [UpdateJSON]
    {
-      return getResults( withURL: "\(API_URL_BASE)updates/" )
+      getResults( withURL: "\(API_URL_BASE)updates/" )
    }
 
    // /updates/{id}
    func update( withID id: Int64 ) -> UpdateJSON?
    {
-      return getAPIRecord( withURL: "\(API_URL_BASE)updates/\(id)" )
+      getAPIRecord( withURL: "\(API_URL_BASE)updates/\(id)" )
    }
 
    // MARK: - API fetch utilities
@@ -507,7 +507,7 @@ class APIManager
 
    func getAPIRecord< T: JSONElement >( withURL url: String ) -> T?
    {
-      return T( getAPIJSON( urlString: url ) )
+      T( getAPIJSON( urlString: url ) )
    }
 
    func getAPIList< T: JSONElement >( with apiRequest: APIListRequest ) -> [T]

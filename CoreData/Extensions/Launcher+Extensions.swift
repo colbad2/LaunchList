@@ -22,8 +22,8 @@ extension Launcher
    {
       if let config: LauncherConfigJSON = config
       {
-         self.launcherConfig = fetchLauncherConfig( launcherConfig: config, context: context )
-         self.launcherConfig?.launcher = self
+         launcherConfig = fetchLauncherConfig( launcherConfig: config, context: context )
+         launcherConfig?.launcher = self
       }
    }
 }
@@ -78,7 +78,7 @@ public func updateEntity( json: LauncherJSON, entity: Launcher?, context: NSMana
  */
 public func fetchAllLaunchers( context: NSManagedObjectContext ) -> [Launcher]?
 {
-   return fetchAllEntities( entityName: LAUNCHER_ENTITY_NAME, context: context ) as? [Launcher]
+   fetchAllEntities( entityName: LAUNCHER_ENTITY_NAME, context: context ) as? [ Launcher ]
 }
 
 /**
@@ -93,7 +93,7 @@ public func fetchAllLaunchers( context: NSManagedObjectContext ) -> [Launcher]?
  */
 public func getLauncher( by entityID: Int64, context: NSManagedObjectContext ) -> Launcher?
 {
-   return getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_ENTITY_NAME ) as? Launcher
+   getEntityByID( entityID: entityID, context: context, entityName: LAUNCHER_ENTITY_NAME ) as? Launcher
 }
 
 /**
@@ -118,7 +118,7 @@ public func fetchLauncher( launcher: LauncherJSON, context: NSManagedObjectConte
  */
 public func getLauncherCount( context: NSManagedObjectContext ) -> Int?
 {
-   return getRecordsCount( entityName: LAUNCHER_ENTITY_NAME, context: context )
+   getRecordsCount( entityName: LAUNCHER_ENTITY_NAME, context: context )
 }
 
 /**

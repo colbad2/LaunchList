@@ -2,9 +2,9 @@
 
 /**
  ### Spec (API model: DockingLocationSerializerForSpacestation)
- id   integer
- name*   string maxLength: 255 minLength: 1
- docked   DockingEventDetailedSerializerForSpacestation{...}
+      id     integer
+      name*  string maxLength: 255 minLength: 1
+      docked DockingEventDetailedSerializerForSpacestation{...}
  */
 public class DockingLocationJSON: Identifiable, JSONElement
 {
@@ -12,13 +12,13 @@ public class DockingLocationJSON: Identifiable, JSONElement
    public let id: Int64?
    /** Station name. */
    let name: String?
-   let docked: DockingEventJSON?
+   let docked: DockingJSON?
 
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.docked = DockingEventJSON( json[ "docked" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      name = nonEmptyString( json[ "name" ] )
+      docked = DockingJSON( json[ "docked" ] )
    }
 }

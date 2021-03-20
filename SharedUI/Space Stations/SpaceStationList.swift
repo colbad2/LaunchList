@@ -69,7 +69,7 @@ struct SpaceStationPreviews: PreviewProvider
          }
          .environment( \.colorScheme, .dark )
 
-         // Assitive text large
+         // Assistive text large
          NavigationView
          {
             SpaceStationList()

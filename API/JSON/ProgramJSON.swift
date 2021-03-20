@@ -81,15 +81,15 @@ public class ProgramJSON: Identifiable, JSONElement
    public required init?( _ json: Any? )
    {
       guard let json: JSONStructure = json as? JSONStructure else { return nil }
-      self.id = nonNegativeInt( json[ "id" ] )
-      self.url = nonEmptyString( json[ "url" ] )
-      self.name = nonEmptyString( json[ "name" ] )
-      self.description = nonEmptyString( json[ "description" ] )
-      self.agencies = parseArray( json[ "agencies" ] )
-      self.imageURL = nonEmptyString( json[ "image_url" ] )
-      self.startDate = nonEmptyString( json[ "start_date" ] )
-      self.endDate = nonEmptyString( json[ "end_date" ] )
-      self.infoURL = nonEmptyString( json[ "info_url" ] )
-      self.wikiURL = nonEmptyString( json[ "wiki_url" ] )
+      id = nonNegativeInt( json[ "id" ] )
+      url = nonEmptyString( json[ "url" ] )
+      name = nonEmptyString( json[ "name" ] )
+      description = nonEmptyString( json[ "description" ] )
+      agencies = parseArray( json[ "agencies" ] )
+      imageURL = nonEmptyString( json[ "image_url" ] )
+      startDate = nonEmptyString( json[ "start_date" ] )
+      endDate = nonEmptyString( json[ "end_date" ] )
+      infoURL = nonEmptyString( json[ "info_url" ] )
+      wikiURL = nonEmptyString( json[ "wiki_url" ] )
    }
 }

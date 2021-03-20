@@ -49,7 +49,7 @@ public class EventRequest: BaseAPIListRequest, APIListRequest
     */
    func copy() -> APIListRequest
    {
-      return EventRequest( baseURL: base, searchTerm: search, limit: limit, offset: offset,
-                           slug: slug, type: type, program: program )
+      EventRequest( baseURL: base, searchTerm: search, limit: limit, offset: offset,
+                    slug: slug, type: type, program: program )
    }
 }

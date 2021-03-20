@@ -197,7 +197,7 @@ func deleteAllEntities( entityType: String, context: NSManagedObjectContext )
  */
 func getNextLaunch( context: NSManagedObjectContext ) -> Launch?
 {
-   return getNextLaunches( count: 1, context: context ).first
+   getNextLaunches( count: 1, context: context ).first
 }
 
 /**
@@ -235,7 +235,7 @@ func getNextLaunches( count: Int, context: NSManagedObjectContext ) -> [Launch]
  */
 func getNextTimelineEvent( context: NSManagedObjectContext ) -> TimelineEntry?
 {
-   return getNextTimelineEvents( count: 1, context: context ).first
+   getNextTimelineEvents( count: 1, context: context ).first
 }
 
 /**
@@ -263,4 +263,27 @@ func getNextTimelineEvents( count: Int, context: NSManagedObjectContext ) -> [Ti
    }
 
    return []
+}
+
+/**
+ Returns the number of records of the given entity type in the context. Efficient, does not load the records.
+
+ - parameter entityName: `String` Core Data name of entities to count
+ - parameter context:    `NSManagedObjectContext`  Core Data database context
+ - returns:              `Int` entity record count
+
+ */
+func getRecordsCount( entityName: String, context: NSManagedObjectContext ) -> Int
+{
+   let fetchRequest: NSFetchRequest = NSFetchRequest< NSFetchRequestResult >( entityName: entityName )
+   do
+   {
+      return try context.count( for: fetchRequest )
+   }
+   catch
+   {
+      print( error.localizedDescription )
+   }
+
+   return -1
 }

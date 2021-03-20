@@ -188,7 +188,7 @@ struct LoadJSONButton: View
                }
          }
 
-         if self.isLoading
+         if isLoading
          {
             Spacer()
             ProgressView()
